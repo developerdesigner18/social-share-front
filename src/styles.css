@@ -6,11 +6,15 @@
 	box-sizing: border-box;
 	font-family: 'Roboto Slab', serif;
 }
+html{
+  height: 100%;   
+}
+
 body{
-	height: 100vh;
 	background-image: linear-gradient(180deg,rgba(27,31,37,0.3) 0%,#003459 100%),url(assets/images/share.jpg)!important;
 	background-size: cover;
 	background-position: center;
+	background-attachment: fixed;
 }
 header{
 	background-color: #003459;
@@ -120,4 +124,34 @@ img.connecting_image {
 }
 .form_of_sign_up input, button {
     border-radius: 4px;
+}
+
+@media (max-width: 768px){
+	.sign_up_conatiner {
+	    width: 100%;
+	}
+}
+@media (max-width: 576px){
+	.logo {
+	    width: 30%;
+	}
+	.sign_up_sec{
+		display: block;
+		max-width: 90vw;
+	}
+	.login_container {
+	    margin-top: 20px;
+	}
+	header {
+	    display: inline-block !important;
+	}
+	body {
+	 height: auto;
+ 	}
+}
+
+.error { color: red; }
+
+.btn-full {
+	width: 100%;
 }
