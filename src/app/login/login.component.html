@@ -1,31 +1,29 @@
 <div class="login_container">
-  <div class="alert alert-danger" *ngIf="loginError">
-     {{loginError}}
-  </div>
-  <form class="form-login" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <form class="form-login" [formGroup]="loginForm" (ngSubmit)="onSubmit()" style="display: flex;">
   <div>
     <label class="title">Email or Phone</label>
     <input type="text" formControlName="email" name="email" id="email" placeholder="Email or Phone">
     <div *ngIf="email.invalid && (email.dirty || email.touched)" class="error">
-      <div *ngIf="email.errors.required">Email is required.</div>
-      <div *ngIf="email.errors.email">Please enter valid email address.</div>
+      <div *ngIf="email.errors.required" style="font-size: 13px">Email is required.</div>
+      <div *ngIf="email.errors.email" style="font-size: 13px">Please enter valid email address.</div>
     </div>
   </div>
   <div>
-    <div>
-      <label class="title">Password</label>
-      <input type="password" formControlName="password" name="password" id="password" placeholder="Password">
-      <div *ngIf="password.invalid && (password.dirty || password.touched)" class="error">
-        <div *ngIf="password.errors.required">Password is required.</div>
-        <div *ngIf="password.errors.minlength">Password should be greter then 6 character.</div>
+    <div class="d-flex align-items-center">
+      <div class="pass-error">
+        <div class="pass-class">
+          <label class="title">Password</label>
+          <input type="password" formControlName="password" name="password" id="password" placeholder="Password">
+        </div>
+        <div *ngIf="password.invalid && (password.dirty || password.touched)" class="error">
+          <div *ngIf="password.errors.required" style="font-size: 13px">Password is required.</div>
+        </div>
       </div>
-      <button>Log In</button>
+      <div class="button-get" >
+        <button>Log In</button>
+        <a class="forget-link" href="/forget">Forget Password</a>
+      </div>
     </div>
-    <a class="forget-link" href="/forget">Forget Password</a>
   </div>
   </form>
-</div>
-<div class="service-error" *ngIf="error">
-  <!-- <h1>{{error.errorTitle}}</h1>
-  <h3>{{error.errorDesc}}</h3> -->
 </div>

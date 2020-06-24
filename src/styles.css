@@ -7,19 +7,19 @@
 	font-family: 'Roboto Slab', serif;
 }
 html{
-  height: 100%;   
+  height: 100%;
 }
 
-body{
-	background-image: linear-gradient(180deg,rgba(27,31,37,0.3) 0%,#003459 100%),url(assets/images/share.jpg)!important;
-	background-size: cover;
-	background-position: center;
-	background-attachment: fixed;
+body {
+    height: 100vh;
+    background-image: linear-gradient(180deg,rgba(27,31,37,0.3) 0%,#ffffffdb 100%),url(assets/images/share.jpg)!important;
+    background-size: cover;
+    background-position: center;
 }
+
 header{
 	background-color: #003459;
-	/* padding: 20px; */
-  padding: .5rem 1rem .8rem 1rem;
+	padding: 20px;
 }
 .logo {
 	width: 10%;
@@ -83,7 +83,7 @@ header{
     border-radius: 4px;
     width: 80%;
     margin: auto;
-    background-image: linear-gradient(170deg,rgb(0, 52, 89) 5%,#ffffff00 100%)!important;
+    background-image: linear-gradient(94deg,rgb(0, 52, 89) 5%,#ffffff00 100%)!important;
 }
 img.connecting_image {
     width: 100%;
@@ -98,11 +98,21 @@ img.connecting_image {
     color: #ffffff;
 }
 .form_of_sign_up input {
-    margin: 10px 0;
-    padding: 8px;
+		color: white;
+		background-color: #ffffff00;
+		border: 1px solid #191919
+}
+.form_of_sign_up input:focus {
+	background: transparent;
+	color: #FFFFFF;
+	border: 1px solid #FFFFFF !important;
+	outline: none !important;
+	box-shadow: none;
+}
+.form_of_sign_up input::placeholder {
+    color: darkgray;
+    font-weight: 400 !important;
     font-size: 14px;
-    background-color: #ffffff;
-    border: 1px solid #000000;
 }
 .form_of_sign_up {
     margin-top: 25px;
@@ -119,7 +129,7 @@ img.connecting_image {
 .privacy_aggrement {
     margin-top: 30px;
     font-weight: 300;
-    color: #b9b9b9;
+    color: #FFFFFF;
     font-size: 13px;
 }
 .form_of_sign_up input, button {
@@ -154,4 +164,15 @@ img.connecting_image {
 
 .btn-full {
 	width: 100%;
+}
+
+.button-get{
+	display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    justify-content: flex-end;
+}
+
+.pass-error{
+	margin-right: 20px;
 }
