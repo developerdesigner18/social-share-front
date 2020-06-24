@@ -37,8 +37,8 @@ export class UserProfileComponent implements OnInit {
       });
     })(jQuery);
   }
-
-  logout() {
-    this.authService.logout()
-  }
+  // logout() {
+  //   this.authService.logout()
+  //
+  // }
 }

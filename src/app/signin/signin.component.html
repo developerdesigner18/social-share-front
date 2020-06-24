@@ -29,7 +29,7 @@
 
 					<div class="form-group" [ngClass]="{ 'has-error': formControls.password.errors }">
 	            <input formControlName="password" id="password" class="form-control" type="password" placeholder="Password">
-	            <div *ngIf="isSubmitted && formControls.uname.errors">
+	            <div *ngIf="isSubmitted && formControls.password.errors">
 								<div *ngIf="formControls.password.errors.required" class="error">Password is required.</div>
                 <div *ngIf="formControls.password.errors.minlength" class="error">Password should be greter then 6 character.</div>
 	            </div>

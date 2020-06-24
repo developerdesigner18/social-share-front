@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { first } from 'rxjs/operators';
+import { MatDialog, MatDialogRef } from  '@angular/material/dialog';
+import { DialogErrorComponent } from '../dialog-error/dialog-error.component';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    public router: Router
+    public router: Router,
+    public dialog:  MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -38,17 +40,18 @@ export class LoginComponent implements OnInit {
     this.submitted = true;
     this.authService.login(this.email.value, this.password.value).subscribe((data) => {
        if (this.authService.isLoggedIn) {
+          // this.dialog.closeAll();
           const redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/profile/1';
           this.router.navigate([redirect]);
-        } else {
-          // this.loginError = 'Email or password is incorrect.';
-          console.log('Error login message');
-          // alert('Users successfully created')
-          // this.showMsg= true;
-          // this.msg = 'success';
         }
-      },
-      error => this.error = error
+      }
     );
+    // if (this.authService.isLoggedIn() !== true) {
+    //   this.loginForm.reset()
+    //   this.submitted = false;
+    //   this.dialog.open(DialogErrorComponent, {
+    //     width: '420px'
+    //   })
+    // }
   }
 }

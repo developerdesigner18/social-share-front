@@ -3,7 +3,7 @@
   <div>
     <label class="title">Email or Phone</label>
     <input type="text" formControlName="email" name="email" id="email" placeholder="Email or Phone">
-    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="error">
+    <div *ngIf="submitted && email.invalid && email.errors" class="error">
       <div *ngIf="email.errors.required" style="font-size: 13px">Email is required.</div>
       <div *ngIf="email.errors.email" style="font-size: 13px">Please enter valid email address.</div>
     </div>
@@ -15,7 +15,7 @@
           <label class="title">Password</label>
           <input type="password" formControlName="password" name="password" id="password" placeholder="Password">
         </div>
-        <div *ngIf="password.invalid && (password.dirty || password.touched)" class="error">
+        <div *ngIf="submitted && password.invalid && password.errors" class="error">
           <div *ngIf="password.errors.required" style="font-size: 13px">Password is required.</div>
         </div>
       </div>
