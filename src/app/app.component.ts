@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { AuthService } from './auth.service';
 
@@ -17,5 +17,10 @@ export class AppComponent {
 
   setPageTitle(title: string) {
     this.titleService.setTitle(title);
+  }
+
+  @HostListener('window:popstate', ['$event'])
+  onPopState(event) {
+    location.reload();
   }
 }

@@ -11,7 +11,7 @@ import { AuthGuard } from "./auth.guard";
 const routes: Routes = [
   { path: '', component: AuthComponent },
   { path: 'forget', component: ForgetComponent },
-  { path: 'profile/:id', component: UserProfileComponent }
+  { path: 'profile', component: UserProfileComponent}
 ];
 
 @NgModule({

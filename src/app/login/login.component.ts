@@ -41,7 +41,8 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.email.value, this.password.value).subscribe((data) => {
        if (this.authService.isLoggedIn) {
           // this.dialog.closeAll();
-          const redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/profile/1';
+          console.log('data id', data);
+          const redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/profile';
           this.router.navigate([redirect]);
         }
       }

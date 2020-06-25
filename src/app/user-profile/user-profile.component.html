@@ -7,7 +7,7 @@
 		<div class="login_container d-flex justify-content-end">
 			<div class="position-relative">
 				<img class="logout" src="assets/images/logout.png">
-				<button [routerLink]="['']">Log out</button>
+				<button (click)="logout()" *ngIf="this.authService.isLoggedIn()">Log out</button>
 			</div>
 		</div>
 	</div>

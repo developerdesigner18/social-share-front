@@ -30,7 +30,7 @@
               "src/styles.css"
             ],
             "scripts": [
-              "node_modules/owl.carousel/dist/owl.carousel.min.js",
+              "node_modules/owl.carousel/dist/owl.carousel.min.js"
             ]
           },
           "configurations": {
@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "social-share"
+  "defaultProject": "social-share",
+  "cli": {
+    "analytics": false
+  }
 }

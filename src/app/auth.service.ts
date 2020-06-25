@@ -19,10 +19,10 @@ export class AuthService {
   // API_URL: string = 'http://localhost:8000';
   // let headers = new HttpHeaders();
   headers = new HttpHeaders().set('Content-Type', 'application/json');
-  // currentUser = {};
+  currentUser = {};
   errorData: {};
 
-  constructor(private httpClient: HttpClient){ }
+  constructor(private httpClient: HttpClient, public router: Router){ }
 
   redirectUrl: string;
 
@@ -63,12 +63,27 @@ export class AuthService {
     return this.httpClient.post<any>(`${environment.apiUrl}/auth/signin`, {email: email, password: password})
     .pipe(map(user => {
       if (user && user.token) {
-          localStorage.setItem('currentUser', JSON.stringify(user));
-        }
+        localStorage.setItem('currentUser', JSON.stringify(user));
+      }
+      this.getUserProfile(user._id).subscribe((user) => {
+        this.currentUser = user;
+        // this.router.navigate(['profile/' + user.msg._id]);
+      })
     }),
     catchError(this.handleError)
     )
   }
+
+  // User profile
+  // getUserProfile(id): Observable<any> {
+  //   let api = `${this.endpoint}/user-profile/${id}`;
+  //   return this.http.get(api, { headers: this.headers }).pipe(
+  //     map((res: Response) => {
+  //       return res || {}
+  //     }),
+  //     catchError(this.handleError)
+  //   )
+  // }
 
   isLoggedIn() {
     if (localStorage.getItem('currentUser')) {
@@ -87,8 +102,15 @@ export class AuthService {
   }
 
   getUserProfile(id): Observable<any> {
-    return this.httpClient.get(`${environment.apiUrl}/user/profile/${id}`, { headers: this.headers }).pipe(
+    console.log('user id', id);
+    return this.httpClient.get(`${environment.apiUrl}/api/user/profile?id=5ef2e9fe78be2f13e0478a0e`, { headers: this.headers }).pipe(
       map((res: Response) => {
+        console.log('response', res);
+        console.log('data', res.data[0]._id);
+
+        if(res.success == true){
+          this.router.navigate([`profile`, data]);
+        }
         return res || {}
       }),
       catchError(this.handleError)
@@ -96,22 +118,25 @@ export class AuthService {
   }
 
   private handleError(error: HttpErrorResponse) {
+    let msg = '';
     if (error.error instanceof ErrorEvent) {
 
       // A client-side or network error occurred. Handle it accordingly.
       console.error('An error occurred:', error.error.message);
+      msg = 'An error occurred:', error.error.message;
     } else {
 
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong.
       console.error(`Backend returned code ${error.status}, ` + `body was: ${error.error}`);
+      msg = 'Backend returned code ${error.status}, ` + `body was: ${error.error}'
     }
 
     // return an observable with a user-facing error message
-    this.errorData = {
-      errorTitle: 'Oops! Request for document failed',
-      errorDesc: 'Something bad happened. Please try again later.'
-    };
-    return throwError(this.errorData);
+    // this.errorData = {
+    //   errorTitle: 'Oops! Request for document failed',
+    //   errorDesc: 'Something bad happened. Please try again later.'
+    // };
+    return throwError(msg);
   }
 }
