@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { MatDialog, MatDialogRef } from  '@angular/material/dialog';
+import { MatDialog } from  '@angular/material/dialog';
 import { DialogErrorComponent } from '../dialog-error/dialog-error.component';
 
 @Component({
@@ -40,19 +40,16 @@ export class LoginComponent implements OnInit {
     this.submitted = true;
     this.authService.login(this.email.value, this.password.value).subscribe((data) => {
        if (this.authService.isLoggedIn) {
-          // this.dialog.closeAll();
-          console.log('data id', data);
-          const redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/profile';
-          this.router.navigate([redirect]);
+         this.dialog.closeAll();
         }
       }
     );
-    // if (this.authService.isLoggedIn() !== true) {
-    //   this.loginForm.reset()
-    //   this.submitted = false;
-    //   this.dialog.open(DialogErrorComponent, {
-    //     width: '420px'
-    //   })
-    // }
+    if (this.authService.isLoggedIn() !== true) {
+      this.loginForm.reset();
+      this.submitted = false;
+      this.dialog.open(DialogErrorComponent, {
+        width: '420px'
+      })
+    }
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { environment } from '../../environments/environment';
 declare var jQuery: any;
 
 @Component({
@@ -11,6 +12,7 @@ declare var jQuery: any;
 })
 export class UserProfileComponent implements OnInit {
   currentUser: Object = {};
+  name = '';
 
   constructor(
     public authService: AuthService,
@@ -18,7 +20,8 @@ export class UserProfileComponent implements OnInit {
   ) {
     let id = this.activatedRoute.snapshot.paramMap.get('id');
     this.authService.getUserProfile(id).subscribe(res => {
-      this.currentUser = res.msg;
+      // this.currentUser = res.msg;
+      this.name =  res.data[0].name
     })
   }
 
