@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
@@ -24,7 +24,9 @@ export class AuthService {
   currentUser = {};
   errorData: {};
 
-  constructor(private httpClient: HttpClient, public router: Router, public dialog: MatDialog){ }
+  // private modalService: MatDialogModule
+
+  constructor(private httpClient: HttpClient, public router: Router, public dialog: MatDialog, private injector: Injector){ }
 
   redirectUrl: string;
 
@@ -74,6 +76,7 @@ export class AuthService {
       map((res: Response) => {
         if(res['success'] == true){
           this.router.navigate([`profile`, {id: res['data'][0]['_id']}])
+          // this.router.navigate([`profile`], { queryParams: {id: id}})
         }
         return res || {}
       }),
@@ -89,8 +92,24 @@ export class AuthService {
     } else {
       console.error(`Backend returned code ${error.status}, ` + `body was: ${error.error}`);
       msg = 'Backend returned code ${error.status}, ` + `body was: ${error.error}'
+      // this.modalService = this.injector.get(MatDialogModule);
+      // if(error.status === 500){
+      this.dialog.open(DialogErrorComponent, {
+        width: '420px'
+      })
+      // }
     }
-
+    // if(error.status === 500)
+    // {
+      // console.log('Retun this poup if error 500');
+      //
+      // this.modalService = this.injector.get(MatDialogModule);
+      // this.dialog.open(DialogErrorComponent, {
+      //   width: '420px'
+      // })
+      // alert('Wrong authenticate')
+      // this.router.navigate([''])
+    // }
     return throwError(msg);
   }
 }
