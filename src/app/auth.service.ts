@@ -1,10 +1,10 @@
-import { Injectable, Injector } from '@angular/core';
+import { Injectable, Injector, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { MatDialog } from  '@angular/material/dialog';
-// import { environment } from '../environments/environment';
-import { environment } from '../environments/environment.prod';
+import { environment } from '../environments/environment';
+// import { environment } from '../environments/environment.prod';
 
 import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
@@ -55,6 +55,19 @@ export class AuthService {
     )
   }
 
+  forget(user: User): Observable<any>{
+
+    return this.httpClient.post(`${environment.apiUrl}/auth/forgotpassword`, user).pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  resetPassword(token: string, password: string){
+    return this.httpClient.post(`${environment.apiUrl}/auth/resetPassword?token=${token}`, {password: password}).pipe(
+      catchError(this.handleError)
+    )
+  }
+
   isLoggedIn() {
     if (localStorage.getItem('currentUser')) {
       return true;
@@ -75,7 +88,8 @@ export class AuthService {
     return this.httpClient.get(`${environment.apiUrl}/api/user/profile?id=${id}`, { headers: this.headers }).pipe(
       map((res: Response) => {
         if(res['success'] == true){
-          this.router.navigate([`profile`, {id: res['data'][0]['_id']}])
+          // this.router.navigate([`profile`, {id: res['data'][0]['_id']}])
+          this.router.navigate([`profile/${id}`])
           // this.router.navigate([`profile`], { queryParams: {id: id}})
         }
         return res || {}
@@ -92,11 +106,12 @@ export class AuthService {
     } else {
       console.error(`Backend returned code ${error.status}, ` + `body was: ${error.error}`);
       msg = 'Backend returned code ${error.status}, ` + `body was: ${error.error}'
+      // LoginComponent
       // this.modalService = this.injector.get(MatDialogModule);
       // if(error.status === 500){
-      this.dialog.open(DialogErrorComponent, {
-        width: '420px'
-      })
+      // this.dialog.open(DialogErrorComponent, {
+      //   width: '420px'
+      // })
       // }
     }
     // if(error.status === 500)

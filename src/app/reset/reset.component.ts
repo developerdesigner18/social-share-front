@@ -1,0 +1,54 @@
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+// import { jwt_decode } from 'jwt-decode';
+// import * as jwt_decode from "jwt-decode";
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../auth.service';
+import { MatDialog } from  '@angular/material/dialog';
+import { DialogPasswordChangeComponent } from '../dialog-password-change/dialog-password-change.component';
+
+@Component({
+  selector: 'app-reset',
+  templateUrl: './reset.component.html',
+  styleUrls: ['./reset.component.css']
+})
+export class ResetComponent implements OnInit {
+  resetForm: FormGroup;
+  token: string;
+  mail: string;
+
+
+  constructor (
+    private route: ActivatedRoute,
+    private fb: FormBuilder,
+    private authService: AuthService,
+    public dialog:  MatDialog
+  ) {}
+
+  ngOnInit(){
+    const helper = new JwtHelperService();
+    this.route.queryParams.subscribe(params => {
+      this.token = params['token'];
+    });
+
+    this.mail = helper.decodeToken(this.token).sub
+    this.resetForm = this.fb.group({
+      password: ['']
+    });
+  }
+
+  get password() { return this.resetForm.get('password'); }
+
+  onForget(){
+    this.authService.resetPassword(this.token, this.password.value).subscribe(() => {
+      if (this.authService.isLoggedIn) {
+        this.resetForm.reset();
+        this.dialog.open(DialogPasswordChangeComponent, {
+          width: '420px'
+        })
+      }
+    })
+  }
+
+}

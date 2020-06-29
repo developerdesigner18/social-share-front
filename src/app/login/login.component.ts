@@ -38,19 +38,18 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    this.authService.login(this.email.value, this.password.value).subscribe((data) => {
+    this.authService.login(this.email.value, this.password.value).subscribe(() => {
        if (this.authService.isLoggedIn) {
-         // this.dialog.closeAll();
+         this.dialog.closeAll();
         }
       }
     );
-
-    // if (this.authService.isLoggedIn() !== true) {
-    //   this.loginForm.reset();
-    //   this.submitted = false;
-    //   this.dialog.open(DialogErrorComponent, {
-    //     width: '420px'
-    //   })
-    // }
+    if (this.authService.isLoggedIn() !== true) {
+      this.loginForm.reset();
+      this.submitted = false;
+      this.dialog.open(DialogErrorComponent, {
+        width: '420px'
+      })
+    }
   }
 }
