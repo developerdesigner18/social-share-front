@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { MatDialog } from  '@angular/material/dialog';
 import { DialogPasswordChangeComponent } from '../dialog-password-change/dialog-password-change.component';
+import { DialogPassmatchComponent } from '../dialog-passmatch/dialog-passmatch.component';
 
 @Component({
   selector: 'app-reset',
@@ -17,6 +18,7 @@ export class ResetComponent implements OnInit {
   resetForm: FormGroup;
   token: string;
   mail: string;
+  isSubmitted = false;
 
 
   constructor (
@@ -34,21 +36,32 @@ export class ResetComponent implements OnInit {
 
     this.mail = helper.decodeToken(this.token).sub
     this.resetForm = this.fb.group({
-      password: ['']
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confpassword: ['']
     });
   }
 
   get password() { return this.resetForm.get('password'); }
+  get formControls() { return this.resetForm.controls }
+  get confpassword() { return this.resetForm.get('confpassword'); }
 
   onForget(){
-    this.authService.resetPassword(this.token, this.password.value).subscribe(() => {
-      if (this.authService.isLoggedIn) {
-        this.resetForm.reset();
-        this.dialog.open(DialogPasswordChangeComponent, {
-          width: '420px'
-        })
+    if (this.password.value == this.confpassword.value) {
+      this.isSubmitted = true;
+      if(!this.resetForm.valid){
+        return;
       }
-    })
+      this.authService.resetPassword(this.token, this.password.value).subscribe(() => {
+        if (this.authService.isLoggedIn) {
+          this.dialog.open(DialogPasswordChangeComponent, {
+            width: '420px'
+          })
+        }
+      })
+    }else{
+      this.dialog.open(DialogPassmatchComponent, {
+        width: '420px'
+      })
+    }
   }
-
 }

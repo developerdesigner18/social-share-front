@@ -63,7 +63,7 @@ export class AuthService {
   }
 
   resetPassword(token: string, password: string){
-    return this.httpClient.post(`${environment.apiUrl}/auth/resetPassword?token=${token}`, {password: password}).pipe(
+    return this.httpClient.post(`${environment.apiUrl}/auth/resetpassword?token=${token}`, {password: password}).pipe(
       catchError(this.handleError)
     )
   }

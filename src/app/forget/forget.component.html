@@ -8,7 +8,7 @@
 		<div class="form_of_sign_up d-flex flex-column">
       <form [formGroup]="forgetForm" (ngSubmit)="forgetUser()">
         <div class="form-group" [ngClass]="{ 'has-error': isSubmitted && formControls.email.errors }">
-          <input formControlName="email" id="email" class="form-control" type="email" placeholder="Mobile Number or Email">
+          <input formControlName="email" id="email" class="form-control" type="email" placeholder="Enter Email Address">
           <div *ngIf="isSubmitted && formControls.email.errors">
               <div *ngIf="formControls.email.errors.required" class="error">Email is required.</div>
               <div *ngIf="formControls.email.errors.email" class="error">Please enter valid email address.</div>

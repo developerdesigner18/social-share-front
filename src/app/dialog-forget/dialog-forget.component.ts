@@ -17,9 +17,4 @@ export class DialogForgetComponent implements OnInit {
       this.dialogRef.close();
   }
 
-  reset(){
-    // this.router.navigate([`reset`])
-    // this.dialogRef.close();
-  }
-
 }

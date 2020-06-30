@@ -16,6 +16,7 @@ import { AuthComponent } from './auth/auth.component';
 import { DialogBodyComponent } from './dialog-body/dialog-body.component';
 import { DialogForgetComponent } from './dialog-forget/dialog-forget.component';
 import { DialogPasswordChangeComponent } from './dialog-password-change/dialog-password-change.component';
+import { DialogPassmatchComponent } from './dialog-passmatch/dialog-passmatch.component';
 import { ResetComponent } from './reset/reset.component';
 
 @NgModule({
@@ -29,6 +30,7 @@ import { ResetComponent } from './reset/reset.component';
     DialogBodyComponent,
     DialogForgetComponent,
     DialogPasswordChangeComponent,
+    DialogPassmatchComponent,
     ResetComponent
   ],
   entryComponents: [DialogBodyComponent],
