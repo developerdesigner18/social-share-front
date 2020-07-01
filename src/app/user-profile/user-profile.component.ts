@@ -20,7 +20,6 @@ export class UserProfileComponent implements OnInit {
   ) {
     let id = this.activatedRoute.snapshot.paramMap.get('id');
     this.authService.getUserProfile(id).subscribe(res => {
-      // this.currentUser = res.msg;
       this.name =  res.data[0].name
     })
   }
@@ -42,7 +41,6 @@ export class UserProfileComponent implements OnInit {
   }
 
   logout() {
-    // this.authService.logout();
     window.location.replace('');
   }
 }

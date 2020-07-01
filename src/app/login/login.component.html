@@ -1,32 +1,20 @@
-<div class="login_container" style="margin-top: 10px">
+<div class="login_container">
   <form class="form-login" [formGroup]="loginForm" (ngSubmit)="onSubmit()" style="display: flex;">
-  <div>
-    <!-- <label class="title">Email or Phone</label> -->
-    <input type="text" formControlName="email" name="email" id="email" placeholder="Email or Phone">
-    <!-- <div *ngIf="submitted && email.invalid && email.errors" class="error">
-      <div *ngIf="email.errors.required" style="font-size: 13px">Email is required.</div>
-      <div *ngIf="email.errors.email" style="font-size: 13px">Please enter valid email address.</div>
-    </div> -->
-  </div>
-  <div>
-    <div class="d-flex align-items-center">
-      <div class="pass-error">
-        <div class="pass-class">
-          <!-- <label class="title">Password</label> -->
-          <input type="password" formControlName="password" name="password" id="password" placeholder="Password">
-          <div>
-            <a class="forget-link" href="/forget">Forget Password</a>
+    <div>
+      <input type="text" formControlName="email" name="email" id="email" placeholder="Email or Phone">
+    </div>
+    <div>
+      <div class="d-flex align-items-center">
+        <div class="pass-error">
+          <div class="pass-class">
+            <input type="password" formControlName="password" name="password" id="password" placeholder="Password">
+            <div>
+              <a class="forget-link" href="/forget">Forget Password</a>
+            </div>
           </div>
         </div>
-        <!-- <div *ngIf="submitted && password.invalid && password.errors" class="error">
-          <div *ngIf="password.errors.required" style="font-size: 13px">Password is required.</div>
-        </div> -->
+          <button style="margin: 0px 10px 24px 5px">Log In</button>
       </div>
-      <!-- <div class="button-get" > -->
-        <button style="margin: 0px 10px 22px 5px">Log In</button>
-        <!-- <a class="forget-link" href="/forget">Forget Password</a> -->
-      <!-- </div> -->
     </div>
-  </div>
   </form>
 </div>

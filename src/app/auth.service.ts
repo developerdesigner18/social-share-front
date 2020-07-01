@@ -17,13 +17,8 @@ import { DialogErrorComponent } from './dialog-error/dialog-error.component';
 })
 export class AuthService {
   private currentUserSubject: BehaviorSubject<User>;
-  // public currentUser: Observable<User>;
-  // API_URL: string = 'http://localhost:8000';
-  // let headers = new HttpHeaders();
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   currentUser = {};
-  errorData: {};
-
   // private modalService: MatDialogModule
 
   constructor(private httpClient: HttpClient, public router: Router, public dialog: MatDialog, private injector: Injector){ }
@@ -51,7 +46,7 @@ export class AuthService {
         })
       }
     }),
-    catchError(this.handleError)
+    catchError(this.handleError.bind(this))
     )
   }
 
@@ -88,14 +83,18 @@ export class AuthService {
     return this.httpClient.get(`${environment.apiUrl}/api/user/profile?id=${id}`, { headers: this.headers }).pipe(
       map((res: Response) => {
         if(res['success'] == true){
-          // this.router.navigate([`profile`, {id: res['data'][0]['_id']}])
           this.router.navigate([`profile/${id}`])
-          // this.router.navigate([`profile`], { queryParams: {id: id}})
         }
         return res || {}
       }),
       catchError(this.handleError)
     )
+  }
+
+  isLoggedErr(){
+    this.dialog.open(DialogErrorComponent, {
+      width: '420px'
+    })
   }
 
   private handleError(error: HttpErrorResponse) {
@@ -106,25 +105,9 @@ export class AuthService {
     } else {
       console.error(`Backend returned code ${error.status}, ` + `body was: ${error.error}`);
       msg = 'Backend returned code ${error.status}, ` + `body was: ${error.error}'
-      // LoginComponent
-      // this.modalService = this.injector.get(MatDialogModule);
-      // if(error.status === 500){
-      // this.dialog.open(DialogErrorComponent, {
-      //   width: '420px'
-      // })
-      // }
+      this.isLoggedErr();
     }
-    // if(error.status === 500)
-    // {
-      // console.log('Retun this poup if error 500');
-      //
-      // this.modalService = this.injector.get(MatDialogModule);
-      // this.dialog.open(DialogErrorComponent, {
-      //   width: '420px'
-      // })
-      // alert('Wrong authenticate')
-      // this.router.navigate([''])
-    // }
     return throwError(msg);
   }
+
 }
