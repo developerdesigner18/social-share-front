@@ -1,5 +1,6 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
 
 @Component({
@@ -8,7 +9,10 @@ import { AuthService } from './auth.service';
 })
 export class AppComponent {
   title = 'Social Share'
-  constructor( private titleService: Title, private authService: AuthService) { }
+  sessionUser = false;
+  constructor( private titleService: Title, private authService: AuthService, private router: Router) {
+    
+  }
 
   ngOnInit() {
   }

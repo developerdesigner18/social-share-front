@@ -38,6 +38,11 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
+    if(!this.loginForm.valid){
+      this.dialog.open(DialogErrorComponent, {
+        width: '420px'
+      })
+    }
     this.authService.login(this.email.value, this.password.value).subscribe(() => {});
     if (this.authService.isLoggedIn() !== true) {
       this.loginForm.reset();

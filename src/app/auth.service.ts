@@ -3,8 +3,8 @@ import { Injectable, Injector, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { MatDialog } from  '@angular/material/dialog';
-import { environment } from '../environments/environment';
-// import { environment } from '../environments/environment.prod';
+// import { environment } from '../environments/environment';
+import { environment } from '../environments/environment.prod';
 
 import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
@@ -19,7 +19,6 @@ export class AuthService {
   private currentUserSubject: BehaviorSubject<User>;
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   currentUser = {};
-  // private modalService: MatDialogModule
 
   constructor(private httpClient: HttpClient, public router: Router, public dialog: MatDialog, private injector: Injector){ }
 
@@ -41,7 +40,7 @@ export class AuthService {
     .pipe(map(user => {
       if (user && user.token) {
         localStorage.setItem('currentUser', JSON.stringify(user));
-        this.getUserProfile(user.data._id).subscribe((user) => {
+        this.getUserHome(user.data._id).subscribe((user) => {
           this.currentUser = user;
         })
       }
@@ -84,6 +83,18 @@ export class AuthService {
       map((res: Response) => {
         if(res['success'] == true){
           this.router.navigate([`profile/${id}`])
+        }
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  getUserHome(id): Observable<any> {
+    return this.httpClient.get(`${environment.apiUrl}/api/user/profile?id=${id}`, { headers: this.headers }).pipe(
+      map((res: Response) => {
+        if(res['success'] == true){
+          this.router.navigate([`home/${id}`])
         }
         return res || {}
       }),

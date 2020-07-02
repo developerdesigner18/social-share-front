@@ -4,20 +4,23 @@ import { AuthService } from '../auth.service';
 declare var jQuery: any;
 
 @Component({
-  selector: 'app-user-profile',
-  templateUrl: './user-profile.component.html',
-  styleUrls: ['./user-profile.component.css'],
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css'],
   encapsulation: ViewEncapsulation.None,
 })
-export class UserProfileComponent implements OnInit {
+export class HomeComponent implements OnInit {
   name = '';
+  id = '';
 
   constructor(
     public authService: AuthService,
     private activatedRoute: ActivatedRoute
   ) {
     let id = this.activatedRoute.snapshot.paramMap.get('id');
-    this.authService.getUserProfile(id).subscribe(res => {
+    this.authService.getUserHome(id).subscribe(res => {
+      console.log('res.data', res.data[0]._id);
+      this.id =  res.data[0]._id
       this.name =  res.data[0].name
     })
   }

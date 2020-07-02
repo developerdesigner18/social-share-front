@@ -36,7 +36,6 @@ export class ForgetComponent implements OnInit {
     this.authService.forget(this.forgetForm.value).subscribe((res) => {
      if (!res.result) {
        this.forgetForm.reset()
-       // alert('successfully send')
        this.dialog.open(DialogForgetComponent, {
          width: '650px'
        })

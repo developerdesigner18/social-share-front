@@ -154,12 +154,55 @@ img.connecting_image {
 	.login_container {
 	    margin-top: 20px;
 	}
-	header {
-	    display: inline-block !important;
-	}
 	body {
 	 height: auto;
  	}
+	header{
+		display: inline-block !important;
+		flex-direction: column;
+	}
+	header form {
+		display: flex;
+		width: 100%;
+		flex-direction: column;
+	}
+	header form > div:first-child {
+	    margin-bottom: 10px;
+	}
+	.login-passerror {
+    flex-direction: column;
+    justify-content: flex-start !important;
+    width: 100%;
+    align-items: flex-start !important;
+	}
+	.login_container button {
+    margin: 10px 0 !important;
+	}
+	app-login {
+    width: 90%;
+	}
+	header form input {
+    width: 100%;
+	}
+	.pass-error{
+		margin: 0 !important;
+		width: 100%;
+	}
+	img.connecting_image {
+    width: 100%;
+    padding: 50px;
+    display: none;
+	}
+	.sign_up_sec {
+    max-width: 90vw !important;
+		margin-bottom: 50px !important;
+	}
+	header {
+    padding: 25px 0;
+	}
+	body {
+    background-repeat-y: no-repeat;
+	}
 }
 
 .error { color: red; }
@@ -181,4 +224,9 @@ img.connecting_image {
 
 .header-item{
 	padding:20px;
+}
+@media (max-width: 1024px){
+	.sign_up_sec {
+    max-width: 95vw;
+}
 }
