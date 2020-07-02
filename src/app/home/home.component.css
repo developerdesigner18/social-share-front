@@ -480,9 +480,6 @@ button.comment_sec {
 }
 .owl-stage {
     display: -webkit-box;
-    display: -moz-box;
-    display: -ms-box;
-    display: flex;
 }
 .owl-carousel.owl-drag .owl-item,.owl-carousel .owl-stage{
     width: 100% !important;
