@@ -7,6 +7,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ResetComponent } from './reset/reset.component';
 import { AuthComponent } from './auth/auth.component';
 import { HomeComponent } from './home/home.component';
+import { SearchComponent } from './search/search.component';
 
 import { AuthGuard } from "./auth.guard";
 
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path: 'forget', component: ForgetComponent },
   { path: 'profile/:id', component: UserProfileComponent, canActivate:[AuthGuard]},
   { path: 'reset', component: ResetComponent},
-  { path: 'home/:id', component: HomeComponent, canActivate:[AuthGuard]}
+  { path: 'home/:id', component: HomeComponent, canActivate:[AuthGuard]},
+  { path: 'search/:id', component: SearchComponent, canActivate:[AuthGuard]}
 ];
 
 @NgModule({

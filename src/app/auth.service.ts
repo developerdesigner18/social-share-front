@@ -11,6 +11,7 @@ import { catchError, map } from 'rxjs/operators';
 
 import { User } from './user';
 import { DialogErrorComponent } from './dialog-error/dialog-error.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,7 @@ export class AuthService {
   private currentUserSubject: BehaviorSubject<User>;
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   currentUser = {};
+  user_post: string;
 
   constructor(private httpClient: HttpClient, public router: Router, public dialog: MatDialog, private injector: Injector){ }
 
@@ -100,6 +102,31 @@ export class AuthService {
       }),
       catchError(this.handleError)
     )
+  }
+
+  getSearchUser(id): Observable<any> {
+    return this.httpClient.get(`${environment.apiUrl}/api/user/profile?id=${id}`, { headers: this.headers }).pipe(
+      map((res: Response) => {
+        if(res['success'] == true){
+          this.router.navigate([`search/${id}`])
+        }
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  openDialog(post, city, hobbies): Observable<any> {
+    console.log('post', post);
+    console.log('city', city);
+    console.log('hobbies', hobbies);
+
+    const dialogRef = this.dialog.open(EditProfileComponent, {
+      width: '550px',
+      data: {post: post, city: city, hobbies: hobbies}
+    });
+
+    return dialogRef.afterClosed();
   }
 
   isLoggedErr(){

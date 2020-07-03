@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, ViewEncapsulation, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../auth.service';
 declare var jQuery: any;
@@ -12,8 +12,6 @@ declare var jQuery: any;
 export class HomeComponent implements OnInit {
   name = '';
   id = '';
-
-  @Output() public sidenavToggle = new EventEmitter();
 
   constructor(
     public authService: AuthService,

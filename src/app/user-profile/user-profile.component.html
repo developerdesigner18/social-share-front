@@ -1,10 +1,15 @@
 <app-header></app-header>
 
-<div class="cover_pic"></div>
+<div class="cover_pic">
+		<div class="main_action">
+			<button class="position-relative cover-set" id="file"><i class="fa fa-camera"></i>Add Cover Photo</button>
+		</div>
+</div>
 <div class="bg-white profile_navbar">
 	<div class="profile_pic_main_tabs_sec width_95">
-		<div class="profile_pic position-relative">
+		<div class="profile_pic position-relative profile_edit">
 			<img src="assets/images/user3.jpg">
+			<i class="fa fa-camera"></i>
 			<div class="profile_name">{{name}}</div>
 		</div>
 		<div class="actions">
@@ -27,19 +32,22 @@
 			<div class="some_words w_90">I Do not know how? But i believe that it is possible one day if i stay with my dream all time!</div>
 			<div class="info_container w_90 d-flex align-items-center">
 				<i class="fas fa-briefcase"></i>
-				<div>Web designer</div>
+				<div #post >Web designer</div>
 			</div>
 			<div class="info_container w_90 d-flex align-items-center">
 				<i class="fas fa-home"></i>
-				<div>Surat, India</div>
+				<div #city>Surat, India</div>
 			</div>
 			<div class="info_container w_90 d-flex align-items-center">
 				<i class="fas fa-grin-hearts"></i>
-				<div>Football, Movies, Music</div>
+				<div #hobbies>Football, Movies, Music</div>
 			</div>
 			<div class="info_container w_90 d-flex align-items-center">
 				<i class="fas fa-stopwatch"></i>
 				<div>Joined on october 2009</div>
+			</div>
+			<div class="info_container w_90 d-flex align-items-center">
+				<button class="edit-button" (click)="openDialog()">Edit Details</button>
 			</div>
 		</div>
 		<div class="photos">

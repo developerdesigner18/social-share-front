@@ -22,6 +22,7 @@ import { ResetComponent } from './reset/reset.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { SearchComponent } from './search/search.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { SearchComponent } from './search/search.component';
     ResetComponent,
     HomeComponent,
     HeaderComponent,
-    SearchComponent
+    SearchComponent,
+    EditProfileComponent
   ],
   entryComponents: [DialogBodyComponent],
   imports: [
