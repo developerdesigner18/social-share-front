@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -19,6 +20,8 @@ import { DialogPasswordChangeComponent } from './dialog-password-change/dialog-p
 import { DialogPassmatchComponent } from './dialog-passmatch/dialog-passmatch.component';
 import { ResetComponent } from './reset/reset.component';
 import { HomeComponent } from './home/home.component';
+import { HeaderComponent } from './header/header.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,9 @@ import { HomeComponent } from './home/home.component';
     DialogPasswordChangeComponent,
     DialogPassmatchComponent,
     ResetComponent,
-    HomeComponent
+    HomeComponent,
+    HeaderComponent,
+    SearchComponent
   ],
   entryComponents: [DialogBodyComponent],
   imports: [
@@ -43,7 +48,8 @@ import { HomeComponent } from './home/home.component';
     ReactiveFormsModule,
     HttpClientModule,
     MatDialogModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatToolbarModule
   ],
   providers: [
     {

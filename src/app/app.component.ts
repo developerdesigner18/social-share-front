@@ -11,7 +11,7 @@ export class AppComponent {
   title = 'Social Share'
   sessionUser = false;
   constructor( private titleService: Title, private authService: AuthService, private router: Router) {
-    
+
   }
 
   ngOnInit() {

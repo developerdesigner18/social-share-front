@@ -225,8 +225,3 @@ img.connecting_image {
 .header-item{
 	padding:20px;
 }
-@media (max-width: 1024px){
-	.sign_up_sec {
-    max-width: 95vw;
-}
-}

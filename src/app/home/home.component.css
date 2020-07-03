@@ -690,3 +690,68 @@ a.my_post_links:hover div > div {
     border-radius: 4px;
     font-size: 18px;
 }
+@media (max-width: 576px){
+	header{
+		width: 100%;
+		padding: 0;
+	}
+	.justify-content-center{
+			height: auto !important;
+	}
+
+	.logo{
+		width: 70%;
+	}
+
+	.login_container{
+		margin: unset;
+	}
+	.position-relative{
+		/* height: 32px; */
+	}
+
+	/* .navbar-collapse{
+		display: flex;
+	} */
+
+	.profile_name {
+		color: #ffffff;
+	}
+
+	.position-relative{
+		width: 100%;
+	}
+
+	.badges_for_pymk:before{
+		right: 165px;
+	}
+
+	.badges_for_fr:before {
+		right: 210px;
+	}
+
+	.left_sidebar { display: none; }
+
+	img.logout {
+		width: 6%;
+	}
+
+	.login_container button{
+		margin: 5px 160px !important;
+	}
+
+	.logo{
+		margin-left: unset;
+	}
+
+	.navbar-toggler{
+		font-size: 0.9rem;
+		/* margin-left: 15px; */
+		padding: unset;
+	}
+}
+
+/* Tempurary css for menu collapse */
+/* .navbar-expand-lg .navbar-collapse {
+	display: none !important;
+} */
