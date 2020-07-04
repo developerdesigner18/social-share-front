@@ -20,7 +20,6 @@ export class AuthService {
   private currentUserSubject: BehaviorSubject<User>;
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   currentUser = {};
-  user_post: string;
 
   constructor(private httpClient: HttpClient, public router: Router, public dialog: MatDialog, private injector: Injector){ }
 
@@ -116,17 +115,24 @@ export class AuthService {
     )
   }
 
-  openDialog(post, city, hobbies): Observable<any> {
-    console.log('post', post);
-    console.log('city', city);
-    console.log('hobbies', hobbies);
+  openDialog(postition, city, country, hobbies): any {
+    console.log("-p=-=-=Auth dialog data");
+    console.log(postition);
+    console.log("-p=-=-=Auth dialog data");
 
     const dialogRef = this.dialog.open(EditProfileComponent, {
       width: '550px',
-      data: {post: post, city: city, hobbies: hobbies}
+      data: {postition: postition, city: city, country: country, hobbies: hobbies}
     });
 
     return dialogRef.afterClosed();
+  }
+
+  profileUpdate(user: User): Observable<any> {
+    console.log('Success fully service call');
+    return this.httpClient.post(`${environment.apiUrl}/api/user/update`, user).pipe(
+        catchError(this.handleError)
+    )
   }
 
   isLoggedErr(){

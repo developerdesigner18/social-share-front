@@ -4,4 +4,8 @@ export class User {
   name: string;
   uname: string;
   password: string;
+  designation:String;
+  country:String;
+  city:String;
+  hobbies:Array<string>;
 }

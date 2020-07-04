@@ -13,14 +13,15 @@ declare var jQuery: any;
 })
 export class UserProfileComponent implements OnInit {
   name = '';
-  post_user = "Web designer";
-  // city = "Surat";
-  // hobbies = "Football, Movies, Music";
-  // join = ""
-  @ViewChild('post') postElement: any;
+  designation = '';
+  country = '';
+  city = '';
+  hobbies = '';
+  @ViewChild('designation') public designationElement: any;
   @ViewChild('city') cityElement: any;
+  @ViewChild('country') countryElement: any;
   @ViewChild('hobbies') hobbiesElement: any;
-  // message: string;
+
   constructor(
     public authService: AuthService,
     private activatedRoute: ActivatedRoute,
@@ -28,13 +29,13 @@ export class UserProfileComponent implements OnInit {
   ) {
     let id = this.activatedRoute.snapshot.paramMap.get('id');
     this.authService.getUserProfile(id).subscribe(res => {
-      this.name =  res.data[0].name
-      // this.join =  res.data[0]
-    })
-  }
 
-  PostValue(){
-    return this.post_user;
+      this.name =  res.data[0].name
+      this.designation =  res.data[0].designation
+      this.country =  res.data[0].country
+      this.city =  res.data[0].city
+      this.hobbies =  res.data[0].hobbies
+    })
   }
 
   ngOnInit(): void {
@@ -58,19 +59,11 @@ export class UserProfileComponent implements OnInit {
   }
 
   openDialog() {
-    // this.dialog.open(EditProfileComponent, {
-    //   width: '550px',
-    //   data: {post_user: this.post_user}
-    // });
-    const user_post = this.postElement.nativeElement.textContent;
+    const user_post = this.designationElement.nativeElement.textContent;
     const user_city = this.cityElement.nativeElement.textContent;
+    const user_country = this.countryElement.nativeElement.textContent;
     const user_hobbies = this.hobbiesElement.nativeElement.textContent;
-    // console.log('height', height);
 
-    this.authService.openDialog(user_post, user_city, user_hobbies).subscribe(data => {
-      console.log("-=-=-=-=-=-");
-      console.log(data);
-      console.log("-=-=-=-=-=-");
-    });
+    this.authService.openDialog(user_post, user_city, user_country, user_hobbies)
   }
 }

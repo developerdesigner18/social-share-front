@@ -1,18 +1,15 @@
 <h2 mat-dialog-title>Edit Details</h2>
 <mat-dialog-content>
-  <form>
-    <!-- <label>{{post_user}}</label> -->
-    <!-- <label>{{user_p}}</label> -->
-    <!-- <input matInput [(ngModel)]="data.post_user"> -->
-    {{data.post}}
-    <input id="post" class="form-control" type="text" placeholder="Mobile Number or Email" value="{{data.post}}">
-    <input id="city" class="form-control" type="text" placeholder="Full Name" value="{{data.city}}">
-    <input id="name" class="form-control" type="text" placeholder="User Name" value="{{data.hobbies}}">
-    <input id="join_at" class="form-control" type="text" placeholder="Password" value="{{data.post}}">
+  <form [formGroup]="profileForm" (ngSubmit)="updateProfile()">
+    <input id="designation" formControlName="designation" class="form-control" type="text" placeholder="Enter Designation" value="{{data.postition}}">
+    <input id="country" formControlName="country" class="form-control" type="text" placeholder="Enter country" value="{{data.country}}">
+    <input id="city" formControlName="city" class="form-control" type="text" placeholder="Enter city" value="{{data.city}}">
+    <input id="hobbies" formControlName="hobbies" class="form-control" type="text" placeholder="Enter Hobbies" value="{{data.hobbies}}">
+    <button class="mat-raised-button btn btn-primary">Save</button>
   </form>
 </mat-dialog-content>
 
 <div class="modal-footer">
-  <button class="mat-raised-button btn btn-primary" (click)="close()">Save</button>
+
   <button class="mat-raised-button btn btn-primary" (click)="close()">Cancel</button>
 </div>
