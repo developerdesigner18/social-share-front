@@ -8,4 +8,5 @@ export class User {
   country:String;
   city:String;
   hobbies:Array<string>;
+  createdAt: string;
 }

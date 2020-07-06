@@ -116,10 +116,6 @@ export class AuthService {
   }
 
   openDialog(postition, city, country, hobbies): any {
-    console.log("-p=-=-=Auth dialog data");
-    console.log(postition);
-    console.log("-p=-=-=Auth dialog data");
-
     const dialogRef = this.dialog.open(EditProfileComponent, {
       width: '550px',
       data: {postition: postition, city: city, country: country, hobbies: hobbies}
