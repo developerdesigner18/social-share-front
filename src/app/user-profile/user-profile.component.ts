@@ -19,8 +19,10 @@ export class UserProfileComponent implements OnInit {
   u_hobbies = '';
   newDate: Date = null;
   url = '';
-  fileData: File = null;
+  fileDataVal: File = null;
   previewUrl:any = null;
+  imageCov:any = '../../assets/images/cover.jpg';
+  token = '';
 
   @ViewChild('designation') designationElement: any;
   @ViewChild('city') cityElement: any;
@@ -36,13 +38,13 @@ export class UserProfileComponent implements OnInit {
     let id = this.activatedRoute.snapshot.paramMap.get('id');
     this.authService.getUserProfile(id).subscribe(res => {
 
-      this.name =  res.data[0].name
-      this.u_designation =  res.data[0].designation
-      this.u_country =  res.data[0].country
-      this.u_city =  res.data[0].city
-      this.u_hobbies =  res.data[0].hobbies
+      this.name =  res.data.name
+      this.u_designation =  res.data.designation
+      this.u_country =  res.data.country
+      this.u_city =  res.data.city
+      this.u_hobbies =  res.data.hobbies
 
-      this.newDate= new Date(res.data[0].createdAt);
+      this.newDate= new Date(res.data.createdAt);
 
       this.url = "/assets/images/gal_3.jpg"
     })
@@ -78,21 +80,45 @@ export class UserProfileComponent implements OnInit {
   }
 
   uploadPic(fileInput: any){
-    this.fileData = <File>fileInput.target.files[0];
+    this.fileDataVal = <File>fileInput.target.files[0];
     this.preview();
   }
 
   preview() {
-    // Show preview
-    var mimeType = this.fileData.type;
+    var mimeType = this.fileDataVal.type;
     if (mimeType.match(/image\/*/) == null) {
       return;
     }
 
     var reader = new FileReader();
-    reader.readAsDataURL(this.fileData);
+    reader.readAsDataURL(this.fileDataVal);
     reader.onload = (_event) => {
       this.previewUrl = reader.result;
+      this.token = localStorage.getItem('token')
+
+      this.authService.setProfile(this.token, this.fileDataVal).subscribe((res) => {})
+    }
+  }
+
+
+  uploadCov(fileInput: any){
+    this.fileDataVal = <File>fileInput.target.files[0];
+    this.previewCov();
+  }
+
+  previewCov() {
+    var mimeType = this.fileDataVal.type;
+    if (mimeType.match(/image\/*/) == null) {
+      return;
+    }
+
+    var reader = new FileReader();
+    reader.readAsDataURL(this.fileDataVal);
+    reader.onload = (_event) => {
+      this.imageCov = reader.result;
+      this.token = localStorage.getItem('token')
+
+      this.authService.setCover(this.token, this.fileDataVal).subscribe((res) => {})
     }
   }
 }

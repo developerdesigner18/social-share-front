@@ -1,16 +1,17 @@
 <app-header></app-header>
 
-<div class="cover_pic">
+<div class="cover_pic" [ngStyle]="{ 'background-image': 'url(' + imageCov + ')'}">
 		<div class="main_action">
-			<button class="position-relative cover-set" id="file"><i class="fa fa-camera"></i>Add Cover Photo</button>
+			<input type="file" style="display:none" #Covfile accept="image/*" (change)="uploadCov($event)"/>
+			<button class="position-relative cover-set" id="file" (click)="Covfile.click();"><i class="fa fa-camera"></i>Add Cover Photo</button>
 		</div>
 </div>
 <div class="bg-white profile_navbar">
 	<div class="profile_pic_main_tabs_sec width_95">
 		<div class="profile_pic position-relative profile_edit">
 			<img src="assets/images/user3.jpg" [src]="previewUrl" onerror="this.src='/assets/images/user3.jpg';">
-			<input type="file" style="display:none" #file accept="image/*" (change)="uploadPic($event)"/>
-			<i class="fa fa-camera" id="OpenImgUpload" (click)="file.click();"></i>
+				<input type="file" style="display:none" #file accept="image/*" name = "image" (change)="uploadPic($event)"/>
+				<i class="fa fa-camera" id="OpenImgUpload" (click)="file.click();"></i>
 			<div class="profile_name">{{name}}</div>
 		</div>
 		<div class="actions">

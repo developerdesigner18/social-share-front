@@ -19,6 +19,8 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 export class AuthService {
   private currentUserSubject: BehaviorSubject<User>;
   headers = new HttpHeaders().set('Content-Type', 'application/json');
+  // token = localStorage.getItem('token')
+  // headers = new HttpHeaders({'Content-Type':'multipart/form-data', 'token':this.token});
   currentUser = {};
 
   constructor(private httpClient: HttpClient, public router: Router, public dialog: MatDialog, private injector: Injector){ }
@@ -41,6 +43,7 @@ export class AuthService {
     .pipe(map(user => {
       if (user && user.token) {
         localStorage.setItem('currentUser', JSON.stringify(user));
+        localStorage.setItem('token', user.token);
         this.getUserHome(user.data._id).subscribe((user) => {
           this.currentUser = user;
         })
@@ -77,6 +80,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('currentUser');
+    localStorage.removeItem('token');
   }
 
   getUserProfile(id): Observable<any> {
@@ -125,8 +129,25 @@ export class AuthService {
   }
 
   profileUpdate(user: User): Observable<any> {
-    console.log('Success fully service call');
     return this.httpClient.post(`${environment.apiUrl}/api/user/update`, user).pipe(
+        catchError(this.handleError)
+    )
+  }
+
+  setProfile(u_token, profile): Observable<any> {
+    const formData: any = new FormData();
+    formData.append('image', profile);
+    this.headers.append('token', u_token)
+    return this.httpClient.post(`${environment.apiUrl}/api/user/setprofileimg`, formData, {headers: {token: u_token}}).pipe(
+        catchError(this.handleError)
+    )
+  }
+
+  setCover(u_token, cover): Observable<any> {
+    const formData: any = new FormData();
+    formData.append('image', cover);
+    this.headers.append('token', u_token)
+    return this.httpClient.post(`${environment.apiUrl}/api/user/setcoverimg`, formData, {headers: {token: u_token}}).pipe(
         catchError(this.handleError)
     )
   }

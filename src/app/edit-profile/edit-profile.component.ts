@@ -36,24 +36,13 @@ export class EditProfileComponent implements OnInit {
   }
 
   updateProfile() {
-    // this.isSubmitted = true;
-   //  this.route.paramMap.subscribe(params => {
-   //     this.userType = params.get("id")
-   // })
-
-   console.log('=-=-=-=-=-=-chek id');
    let hobby = this.profileForm.value.hobbies.split(',').map(item => item.trim());
-   console.log('hobby',hobby);
-
-   console.log('=-=-=-=-=-=-chek id');
-
    this.profileForm.value.hobbies = hobby;
     this.authService.profileUpdate(this.profileForm.value).subscribe((res) => {
      if (!res.result) {
        this.dialog.open(DialogBodyComponent, {
          width: '350px'
        })
-       // this.isSubmitted = false;
      }
    })
   }
@@ -61,5 +50,4 @@ export class EditProfileComponent implements OnInit {
   close() {
     this.dialogRef.close();
   }
-
 }

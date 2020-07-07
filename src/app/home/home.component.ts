@@ -19,8 +19,8 @@ export class HomeComponent implements OnInit {
   ) {
     let id = this.activatedRoute.snapshot.paramMap.get('id');
     this.authService.getUserHome(id).subscribe(res => {
-      this.id =  res.data[0]._id
-      this.name =  res.data[0].name
+      this.id = res.data._id
+      this.name =  res.data.name
     })
   }
 
