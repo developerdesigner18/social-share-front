@@ -3,7 +3,7 @@
 	<div class="main_container d-flex align-items-start">
 		<div class="left_sidebar">
 			<div class="profile_image">
-				<img src="assets/images/profile.jpg">
+				<img src="assets/images/profile.jpg" [src]="profileImg" onerror="this.src='/assets/images/default_user.jpg';">
 			</div>
 			<div class="profile_name">{{name}}</div>
 			<div class="friends_Posts d-flex align-items-center">

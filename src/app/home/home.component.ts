@@ -12,6 +12,7 @@ declare var jQuery: any;
 export class HomeComponent implements OnInit {
   name = '';
   id = '';
+  profileImg = '';
 
   constructor(
     public authService: AuthService,
@@ -21,6 +22,7 @@ export class HomeComponent implements OnInit {
     this.authService.getUserHome(id).subscribe(res => {
       this.id = res.data._id
       this.name =  res.data.name
+      this.profileImg = res.data.profileImgURL
     })
   }
 

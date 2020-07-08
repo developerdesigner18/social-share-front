@@ -1,9 +1,8 @@
 import { Component, OnInit, ViewChild, Inject, Input } from '@angular/core';
-import {MatDialogRef, MAT_DIALOG_DATA, MatDialog} from  '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog} from  '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../auth.service';
-import { DialogBodyComponent } from '../dialog-body/dialog-body.component';
+import { DialogEditSuccessComponent } from '../dialog-edit-success/dialog-edit-success.component';
 
 @Component({
   selector: 'app-edit-profile',
@@ -18,8 +17,7 @@ export class EditProfileComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public  data:  any,
     public formBuilder: FormBuilder,
     public authService: AuthService,
-    public  dialog:  MatDialog,
-    private route: ActivatedRoute
+    public  dialog:  MatDialog
   ) {
     this.profileForm = this.formBuilder.group({
       userId: window.location.href.split('/')[4],
@@ -33,6 +31,7 @@ export class EditProfileComponent implements OnInit {
   get formControls() { return this.profileForm.controls }
 
   ngOnInit(): void {
+
   }
 
   updateProfile() {
@@ -40,8 +39,9 @@ export class EditProfileComponent implements OnInit {
    this.profileForm.value.hobbies = hobby;
     this.authService.profileUpdate(this.profileForm.value).subscribe((res) => {
      if (!res.result) {
-       this.dialog.open(DialogBodyComponent, {
-         width: '350px'
+       this.dialogRef.close();
+       this.dialog.open(DialogEditSuccessComponent, {
+         width: '400px'
        })
      }
    })
@@ -49,5 +49,12 @@ export class EditProfileComponent implements OnInit {
 
   close() {
     this.dialogRef.close();
+  }
+
+  save(){
+    setTimeout(() => {
+     this.dialogRef.close();
+     window.location.replace('profile/' + window.location.href.split('/')[4]);
+   }, 2000);
   }
 }

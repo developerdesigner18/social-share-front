@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { MatDialog, MatDialogRef } from  '@angular/material/dialog';
 import { AuthService } from '../auth.service';
 // import { EditProfileComponent } from '../edit-profile/edit-profile.component';
+import { DialogEditSuccessComponent } from '../dialog-edit-success/dialog-edit-success.component';
 declare var jQuery: any;
 
 @Component({
@@ -21,8 +22,13 @@ export class UserProfileComponent implements OnInit {
   url = '';
   fileDataVal: File = null;
   previewUrl:any = null;
-  imageCov:any = '../../assets/images/cover.jpg';
+  imageCov:any = 'assets/images/bg.jpg';
   token = '';
+
+  user_post = '';
+  user_city = '';
+  user_country = '';
+  user_hobbies = '';
 
   @ViewChild('designation') designationElement: any;
   @ViewChild('city') cityElement: any;
@@ -45,8 +51,12 @@ export class UserProfileComponent implements OnInit {
       this.u_hobbies =  res.data.hobbies
 
       this.newDate= new Date(res.data.createdAt);
+      this.previewUrl = res.data.profileImgURL
+      this.imageCov = res.data.coverImgURl
 
-      this.url = "/assets/images/gal_3.jpg"
+      if(this.imageCov == undefined){
+        this.imageCov = 'assets/images/bg.jpg'
+      }
     })
   }
 
@@ -71,12 +81,14 @@ export class UserProfileComponent implements OnInit {
   }
 
   openDialog() {
-    const user_post = this.designationElement.nativeElement.textContent;
-    const user_city = this.cityElement.nativeElement.textContent;
-    const user_country = this.countryElement.nativeElement.textContent;
-    const user_hobbies = this.hobbiesElement.nativeElement.textContent;
+    console.log('this.designationElement', this.designationElement)
 
-    this.authService.openDialog(user_post, user_city, user_country, user_hobbies)
+    this.user_post= (this.designationElement !== undefined) ? this.designationElement.nativeElement.textContent : this.user_post;
+    this.user_city = (this.cityElement !== undefined) ? this.cityElement.nativeElement.textContent : this.user_city;
+    this.user_country = (this.countryElement !== undefined) ? this.countryElement.nativeElement.textContent : this.user_country;
+    this.user_hobbies = (this.hobbiesElement !== undefined) ? this.hobbiesElement.nativeElement.textContent : this.user_hobbies;
+
+    this.authService.openDialog(this.user_post, this.user_city, this.user_country, this.user_hobbies)
   }
 
   uploadPic(fileInput: any){
@@ -93,10 +105,20 @@ export class UserProfileComponent implements OnInit {
     var reader = new FileReader();
     reader.readAsDataURL(this.fileDataVal);
     reader.onload = (_event) => {
-      this.previewUrl = reader.result;
+      // this.previewUrl = reader.result;
       this.token = localStorage.getItem('token')
 
-      this.authService.setProfile(this.token, this.fileDataVal).subscribe((res) => {})
+      this.authService.setProfile(this.token, this.fileDataVal).subscribe((res) => {
+        if (!res.result) {
+          const dialogRefSuc = this.dialog.open(DialogEditSuccessComponent, {
+            width: '400px'
+          })
+          setTimeout(() => {
+            dialogRefSuc.close();
+            window.location.replace('profile/' + window.location.href.split('/')[4]);
+          }, 2000)
+        }
+      })
     }
   }
 
@@ -115,10 +137,20 @@ export class UserProfileComponent implements OnInit {
     var reader = new FileReader();
     reader.readAsDataURL(this.fileDataVal);
     reader.onload = (_event) => {
-      this.imageCov = reader.result;
+      // this.imageCov = reader.result;
       this.token = localStorage.getItem('token')
 
-      this.authService.setCover(this.token, this.fileDataVal).subscribe((res) => {})
+      this.authService.setCover(this.token, this.fileDataVal).subscribe((res) => {
+        if (!res.result) {
+          const dialogRefSuc = this.dialog.open(DialogEditSuccessComponent, {
+            width: '400px'
+          })
+          setTimeout(() => {
+            dialogRefSuc.close();
+            window.location.replace('profile/' + window.location.href.split('/')[4]);
+          }, 2000)
+        }
+      })
     }
   }
 }

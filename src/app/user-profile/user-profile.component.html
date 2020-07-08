@@ -9,9 +9,9 @@
 <div class="bg-white profile_navbar">
 	<div class="profile_pic_main_tabs_sec width_95">
 		<div class="profile_pic position-relative profile_edit">
-			<img src="assets/images/user3.jpg" [src]="previewUrl" onerror="this.src='/assets/images/user3.jpg';">
+			<img src="assets/images/user3.jpg" [src]="previewUrl" onerror="this.src='/assets/images/default_user.jpg';">
 				<input type="file" style="display:none" #file accept="image/*" name = "image" (change)="uploadPic($event)"/>
-				<i class="fa fa-camera" id="OpenImgUpload" (click)="file.click();"></i>
+				<i class="fa fa-camera" title="Upload Profile Photo" id="OpenImgUpload" (click)="file.click();"></i>
 			<div class="profile_name">{{name}}</div>
 		</div>
 		<div class="actions">
@@ -40,14 +40,14 @@
 			<div class="info_container w_90 d-flex align-items-center">
 				<i class="fas fa-home"></i>
 				<div #city *ngIf="u_city; else defineCity">{{u_city}}</div>
-				<ng-template #defineCity>City</ng-template>,&nbsp;&nbsp;
+				<ng-template #defineCity>City</ng-template>,&nbsp;
 				<div #country *ngIf="u_country; else defineCountry">{{u_country}}</div>
 				<ng-template #defineCountry>Country</ng-template>
 			</div>
 			<div class="info_container w_90 d-flex align-items-center">
 				<i class="fas fa-grin-hearts"></i>
-				<div #hobbies *ngIf="u_hobbies; else defineHobbies">{{u_hobbies}}</div>
-				<ng-template #defineHobbies>Hobbies</ng-template>
+				<div #hobbies *ngIf="u_hobbies">{{u_hobbies}}</div>
+				<div *ngIf="u_hobbies.length == undefined || u_hobbies.length == 0 || u_hobbies == ''">Hobbies</div>
 			</div>
 			<div class="info_container w_90 d-flex align-items-center">
 				<i class="fas fa-stopwatch"></i>
