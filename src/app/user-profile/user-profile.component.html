@@ -9,9 +9,11 @@
 <div class="bg-white profile_navbar">
 	<div class="profile_pic_main_tabs_sec width_95">
 		<div class="profile_pic position-relative profile_edit">
-			<img src="assets/images/user3.jpg" [src]="previewUrl" onerror="this.src='/assets/images/default_user.jpg';">
-				<input type="file" style="display:none" #file accept="image/*" name = "image" (change)="uploadPic($event)"/>
-				<i class="fa fa-camera" title="Upload Profile Photo" id="OpenImgUpload" (click)="file.click();"></i>
+				<div class="profile-pic-icon">
+					<img [src]="previewUrl" onerror="this.src='/assets/images/default_user.jpg';">
+					<input type="file" style="display:none" #file accept="image/*" name = "image" (change)="uploadPic($event)"/>
+					<i class="fa fa-camera" title="Upload Profile Photo" id="OpenImgUpload" (click)="file.click();"></i>
+				</div>
 			<div class="profile_name">{{name}}</div>
 		</div>
 		<div class="actions">
@@ -22,7 +24,7 @@
 			<button>More</button>
 		</div>
 		<div class="main_action">
-			<button class="position-relative"><i class="fas fa-user-plus"></i>Add as Friend</button>
+			<!-- <button class="position-relative"><i class="fas fa-user-plus"></i>Add as Friend</button> -->
 		</div>
 	</div>
 </div>

@@ -92,12 +92,13 @@ img.logout {
     height: 200px;
     object-fit: cover;
     object-position: top;
-    position: absolute;
+    position: static !important;
     top: -190px;
     left: 0;
     border: 5px solid #ffffff;
     right: 0;
     margin: auto;
+		margin-top: -190px;
 }
 .profile_pic_main_tabs_sec {
     background-color: #ffffff;
@@ -615,8 +616,8 @@ button.comment_sec {
 
 .profile_edit i {
   position: absolute;
-	bottom: 55px;
-  right: 40px;
+	bottom: 24px;
+  right: 14px;
   /* border: 1px solid; */
   border-radius: 50%;
   /* padding: 11px; */
@@ -626,8 +627,15 @@ button.comment_sec {
   align-items: center;
   justify-content: center;
   background-color: white;
-  color: cornflowerblue;
+  color: #FF9000;
   box-shadow: 0 0 8px 3px #B8B8B8;
+}
+
+.profile-pic-icon{
+	text-align: center;
+	position: relative;
+	width: 200px;
+	margin: auto;
 }
 
 .main-profile-img {

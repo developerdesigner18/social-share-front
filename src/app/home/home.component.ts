@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
     this.authService.getUserHome(id).subscribe(res => {
       this.id = res.data._id
       this.name =  res.data.name
-      this.profileImg = res.data.profileImgURL
+      this.profileImg = res.data.profileImgURl
     })
   }
 

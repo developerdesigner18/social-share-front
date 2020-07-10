@@ -13,6 +13,7 @@ export class SearchComponent implements OnInit {
   name = '';
   id = '';
   searchText;
+  profileImg = '';
 
   constructor(
     public authService: AuthService,
@@ -20,8 +21,9 @@ export class SearchComponent implements OnInit {
   ) {
     let id = this.activatedRoute.snapshot.paramMap.get('id');
     this.authService.getSearchUser(id).subscribe(res => {
-      this.id =  res.data[0]._id
-      this.name =  res.data[0].name
+      this.id =  res.data._id
+      this.name =  res.data.name
+      this.profileImg = res.data.profileImgURl
     })
   }
 

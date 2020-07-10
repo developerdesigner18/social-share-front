@@ -51,7 +51,7 @@ export class UserProfileComponent implements OnInit {
       this.u_hobbies =  res.data.hobbies
 
       this.newDate= new Date(res.data.createdAt);
-      this.previewUrl = res.data.profileImgURL
+      this.previewUrl = res.data.profileImgURl
       this.imageCov = res.data.coverImgURl
 
       if(this.imageCov == undefined){
