@@ -6,6 +6,7 @@ export class User {
   password: string;
   designation:String;
   country:String;
+  state:String;
   city:String;
   hobbies:Array<string>;
   createdAt: string;

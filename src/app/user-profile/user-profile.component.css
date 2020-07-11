@@ -121,7 +121,7 @@ img.logout {
     color: #003459;
     font-size: 22px;
     position: relative;
-    top: 10px;
+    /* top: 10px; */
     font-weight: 500;
 }
 .profile_pic_main_tabs_sec > div {

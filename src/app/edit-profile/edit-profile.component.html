@@ -2,9 +2,29 @@
 <mat-dialog-content>
   <form [formGroup]="profileForm" (ngSubmit)="updateProfile()" style="display: contents;">
     <input id="designation" formControlName="designation" class="form-control text-spaces" type="text" placeholder="Enter Designation" value="{{data.postition}}">
-    <input id="country" formControlName="country" class="form-control text-spaces" type="text" placeholder="Enter country" value="{{data.country}}">
-    <input id="city" formControlName="city" class="form-control text-spaces" type="text" placeholder="Enter city" value="{{data.city}}">
+    <select placeholder="Select country" (change)="changeCountry($event.target.value)" class="form-control text-spaces" formControlName="country">
+      <option *ngIf="data.country !== ''" disabled>{{data.country}} </option>
+      <option *ngIf="data.country !== ''" disabled>____________</option>
+      <option>Select Country</option>
+      <option *ngFor ="let count of countryList" value={{count.name}}>{{count.name}} </option>
+    </select>
+
+    <select placeholder="Select state" (change)="changeState($event.target.value)" class="form-control text-spaces" formControlName="state">
+      <option *ngIf=data.state selected disabled>{{data.state}} </option>
+      <option *ngIf="data.state !== '' && states" disabled>____________</option>
+      <option *ngIf="states">Select State</option>
+      <option *ngFor ="let state of states" value={{state}}>{{state}} </option>
+    </select>
+
+    <select placeholder="Select city" class="form-control text-spaces" formControlName="city">
+      <option *ngIf=data.city selected disabled>{{data.city}} </option>
+      <option *ngIf="data.city !== '' && cities" disabled>____________</option>
+      <option value="" *ngIf="cities">Select City</option>
+      <option *ngFor ="let city of cities" value={{city}}>{{city}} </option>
+    </select>
+
     <input id="hobbies" formControlName="hobbies" class="form-control text-spaces" type="text" placeholder="Enter Hobbies" value="{{data.hobbies}}">
+
     <button class="btn btn-primary" style="margin-right: 10px;" (click)="save()">Save</button>
   </form>
   <button class="btn btn-secondary" (click)="close()">Cancel</button>

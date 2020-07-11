@@ -15,6 +15,7 @@ declare var jQuery: any;
 export class UserProfileComponent implements OnInit {
   name = '';
   u_designation = '';
+  u_state = '';
   u_country = '';
   u_city = '';
   u_hobbies = '';
@@ -27,11 +28,13 @@ export class UserProfileComponent implements OnInit {
 
   user_post = '';
   user_city = '';
+  user_state = '';
   user_country = '';
   user_hobbies = '';
 
   @ViewChild('designation') designationElement: any;
   @ViewChild('city') cityElement: any;
+  @ViewChild('state') stateElement: any;
   @ViewChild('country') countryElement: any;
   @ViewChild('hobbies') hobbiesElement: any;
 
@@ -47,6 +50,7 @@ export class UserProfileComponent implements OnInit {
       this.name =  res.data.name
       this.u_designation =  res.data.designation
       this.u_country =  res.data.country
+      this.u_state =  res.data.state
       this.u_city =  res.data.city
       this.u_hobbies =  res.data.hobbies
 
@@ -81,14 +85,13 @@ export class UserProfileComponent implements OnInit {
   }
 
   openDialog() {
-    console.log('this.designationElement', this.designationElement)
-
     this.user_post= (this.designationElement !== undefined) ? this.designationElement.nativeElement.textContent : this.user_post;
     this.user_city = (this.cityElement !== undefined) ? this.cityElement.nativeElement.textContent : this.user_city;
+    this.user_state = (this.stateElement !== undefined) ? this.stateElement.nativeElement.textContent : this.user_state;
     this.user_country = (this.countryElement !== undefined) ? this.countryElement.nativeElement.textContent : this.user_country;
     this.user_hobbies = (this.hobbiesElement !== undefined) ? this.hobbiesElement.nativeElement.textContent : this.user_hobbies;
 
-    this.authService.openDialog(this.user_post, this.user_city, this.user_country, this.user_hobbies)
+    this.authService.openDialog(this.user_post, this.user_city, this.user_state, this.user_country, this.user_hobbies)
   }
 
   uploadPic(fileInput: any){

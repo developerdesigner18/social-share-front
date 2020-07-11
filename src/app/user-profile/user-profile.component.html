@@ -39,12 +39,24 @@
 				<div #designation *ngIf="u_designation; else defineDes">{{u_designation}}</div>
 				<ng-template #defineDes>Designation</ng-template>
 			</div>
+
 			<div class="info_container w_90 d-flex align-items-center">
-				<i class="fas fa-home"></i>
-				<div #city *ngIf="u_city; else defineCity">{{u_city}}</div>
-				<ng-template #defineCity>City</ng-template>,&nbsp;
+				<i class="fas fa-globe"></i>
 				<div #country *ngIf="u_country; else defineCountry">{{u_country}}</div>
 				<ng-template #defineCountry>Country</ng-template>
+			</div>
+
+			<div class="info_container w_90 d-flex align-items-center">
+				<i class="fa fa-map"></i>
+				<div #state *ngIf="u_state; else defineState">{{u_state}}</div>
+				<ng-template #defineState>State</ng-template>
+			</div>
+			<div class="info_container w_90 d-flex align-items-center">
+				<i class="fas fa-map-marker-alt"></i>
+				<div #city *ngIf="u_city; else defineCity">{{u_city}}</div>
+				<ng-template #defineCity>City</ng-template>
+				<!-- <div #country *ngIf="u_country; else defineCountry">{{u_country}}</div>
+				<ng-template #defineCountry>Country</ng-template> -->
 			</div>
 			<div class="info_container w_90 d-flex align-items-center">
 				<i class="fas fa-grin-hearts"></i>
