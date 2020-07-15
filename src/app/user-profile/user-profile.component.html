@@ -2,8 +2,7 @@
 
 <div class="cover_pic" [ngStyle]="{ 'background-image': 'url(' + imageCov + ')'}">
 		<div class="main_action">
-			<input type="file" style="display:none" #Covfile accept="image/*" (change)="uploadCov($event)"/>
-			<button class="position-relative cover-set" id="file" (click)="Covfile.click();"><i class="fa fa-camera"></i>Add Cover Photo</button>
+			<button class="position-relative cover-set" data-toggle="modal" data-target="#covermodel"><i class="fa fa-camera"></i>Add Cover Photo</button>
 		</div>
 </div>
 <div class="bg-white profile_navbar">
@@ -11,20 +10,19 @@
 		<div class="profile_pic position-relative profile_edit">
 				<div class="profile-pic-icon">
 					<img [src]="previewUrl" onerror="this.src='/assets/images/default_user.jpg';">
-					<input type="file" style="display:none" #file accept="image/*" name = "image" (change)="uploadPic($event)"/>
-					<i class="fa fa-camera" title="Upload Profile Photo" id="OpenImgUpload" (click)="file.click();"></i>
+					<i class="fa fa-camera" title="Upload Profile Photo" id="OpenImgUpload" data-toggle="modal" data-target="#profilemodel"></i>
 				</div>
 			<div class="profile_name">{{name}}</div>
 		</div>
+
 		<div class="actions">
-			<button>Timeline</button>
-			<button>About</button>
-			<button>Photos</button>
-			<button>Friends</button>
-			<button>More</button>
+			<a [routerLink]="['timeline']"><button>Timeline</button></a>
+			<a [routerLink]="['about']"><button>About</button></a>
+			<a [routerLink]="['photos']"><button>Photos</button></a>
+			<a [routerLink]="['friends']"><button>Friends</button></a>
+			<a [routerLink]="['more']"><button>More</button></a>
 		</div>
 		<div class="main_action">
-			<!-- <button class="position-relative"><i class="fas fa-user-plus"></i>Add as Friend</button> -->
 		</div>
 	</div>
 </div>
@@ -49,14 +47,12 @@
 			<div class="info_container w_90 d-flex align-items-center">
 				<i class="fa fa-map"></i>
 				<div #state *ngIf="u_state; else defineState">{{u_state}}</div>
-				<ng-template #defineState>State</ng-template>
+				<ng-template #defineState>Province</ng-template>
 			</div>
 			<div class="info_container w_90 d-flex align-items-center">
 				<i class="fas fa-map-marker-alt"></i>
 				<div #city *ngIf="u_city; else defineCity">{{u_city}}</div>
 				<ng-template #defineCity>City</ng-template>
-				<!-- <div #country *ngIf="u_country; else defineCountry">{{u_country}}</div>
-				<ng-template #defineCountry>Country</ng-template> -->
 			</div>
 			<div class="info_container w_90 d-flex align-items-center">
 				<i class="fas fa-grin-hearts"></i>
@@ -127,166 +123,23 @@
 			</div>
 		</div>
 	</div>
+
 	<div class="main_area">
-		<div class="say_words position-relative">
-			<input type="text" placeholder=" Wanna Say something to Lynda?!">
-			<button>Post</button>
+		<!-- <div *ngIf="router.url == '/profile/id/timeline'">
+			<app-timeline></app-timeline>
 		</div>
-		<div class="main_post_content d-flex flex-column">
-			<div class="d-flex">
-				<div class="profile_pic_profile position-relative">
-					<img src="assets/images/user3.jpg">
-				</div>
-				<div class="name_and_desc">
-					<div class="d-flex justify-content-between align-items-center">
-						<div class="profile_name_of_poster">Lynda Wexler</div>
-						<div class="province d-flex align-items-center">
-							<img src="assets/images/add_ob.png">
-							<div>Pulshar, MB</div>
-						</div>
-					</div>
-					<div class="item_desc mt-3">Hi there, I want to sell my mobile Lorem ipsum dolor sit amet, consectetur adipiscing elit. Utafaf aliquet non mi eget facilisis. Donec facilisis purus eu urna sollicitudin, sed mollis felis ultrices. Nulla sagittis sodales dui ut ornare. Donec feugiat at lacus et tempor. Vivamus eros odio, convallis ut orci et, feugiat ultrices elit. Aenean suscipit tellus accumsan, gravida risus sed, sagittis velit.</div>
-				</div>
-			</div>
-			<div class="slider_bid_like-share d-flex flex-column">
-				<div class="owl-carousel owl-theme">
-					<div class="item">
-						<img class="slider_image" src="assets/images/gal_2.jpg">
-					</div>
-					<div class="item">
-						<img class="slider_image" src="assets/images/gal_3.jpg">
-					</div>
-					<div class="item">
-						<img class="slider_image" src="assets/images/gal_4.jpg">
-					</div>
-				</div>
-				<div class="cat_bid d-flex justify-content-between align-items-center mt-3">
-					<div class="category">Electronics</div>
-					<div class="bid_current d-flex align-items-center">
-						<div class="current_bid">Current bid @</div>
-						<div>310$</div>
-					</div>
-				</div>
-				<div class="bid_section d-flex justify-content-between align-items-center mt-3">
-					<div class="d-flex align-items-center">
-						<div class="starting_bid mt-0">Asking Price @</div>
-						<div class="main-price">300$</div>
-					</div>
-					<div class="bid_now">
-						<button>BID NOW</button>
-					</div>
-				</div>
-				<div class="take_action">
-					<button class="like_sec">
-						<i class="far fa-thumbs-up"></i>
-						<div>Like <span>1.4k</span></div>
-					</button>
-					<button id="hide show" class="comment_sec">
-						<i class="far fa-comment-dots"></i>
-						<div>Comment<span>96</span></div>
-					</button>
-					<button class="share_sec">
-						<i class="far fa-share"></i>
-						<div>Share<span>7</span></div>
-					</button>
-				</div>
-				<div class="comments_container" style="display: none;">
-					<div class="comment_title">Comments:</div>
-					<div class="comment_user d-flex ">
-						<img src="assets/images/profile.jpg">
-						<div>
-							<div class="commenter">Arturo flex</div>
-							<div class="comment_here">Nulla sagittis sodales dui ut ornare. Donec feugiat at lacus et tempor. Vivamus eros odio, convallis ut orci et, feugiat ultrices elit. Aenean suscipit tellus accumsan, gravida risus sed,</div>
-						</div>
-					</div>
-					<div class="comment_user d-flex ">
-						<img src="assets/images/user2.jpg">
-						<div>
-							<div class="commenter">Mellisa mcmahon</div>
-							<div class="comment_here">Nulla sagittis sodales dui ut ornare. Donec feugiat at lacus et tempor. Vivamus eros odio, convallis ut orci et, feugiat ultrices elit. Aenean suscipit tellus accumsan, gravida risus sed,</div>
-						</div>
-					</div>
-				</div>
-			</div>
+		<div *ngIf="router.url == '/profile/id/about'">
+			<app-about></app-about>
 		</div>
-		<div class="main_post_content d-flex flex-column">
-			<div class="d-flex">
-				<div class="profile_pic_profile position-relative">
-					<img src="assets/images/user3.jpg">
-				</div>
-				<div class="name_and_desc">
-					<div class="d-flex justify-content-between align-items-center">
-						<div class="profile_name_of_poster">Lynda Wexler</div>
-						<div class="province d-flex align-items-center">
-							<img src="assets/images/add_ob.png">
-							<div>Pulshar, MB</div>
-						</div>
-					</div>
-					<div class="item_desc mt-3">Hi there, I want to sell my mobile Lorem ipsum dolor sit amet, consectetur adipiscing elit. Utafaf aliquet non mi eget facilisis. Donec facilisis purus eu urna sollicitudin, sed mollis felis ultrices. Nulla sagittis sodales dui ut ornare. Donec feugiat at lacus et tempor. Vivamus eros odio, convallis ut orci et, feugiat ultrices elit. Aenean suscipit tellus accumsan, gravida risus sed, sagittis velit.</div>
-				</div>
-			</div>
-			<div class="slider_bid_like-share d-flex flex-column">
-				<div class="owl-carousel owl-theme">
-					<div class="item">
-						<img class="slider_image" src="assets/images/gal_4.jpg">
-					</div>
-					<div class="item">
-						<img class="slider_image" src="assets/images/gal_2.jpg">
-					</div>
-					<div class="item">
-						<img class="slider_image" src="assets/images/gal_3.jpg">
-					</div>
-				</div>
-				<div class="cat_bid d-flex justify-content-between align-items-center mt-3">
-					<div class="category">Electronics</div>
-					<div class="bid_current d-flex align-items-center">
-						<div class="current_bid">Current bid @</div>
-						<div>310$</div>
-					</div>
-				</div>
-				<div class="bid_section d-flex justify-content-between align-items-center mt-3">
-					<div class="d-flex align-items-center">
-						<div class="starting_bid mt-0">Asking Price @</div>
-						<div class="main-price">300$</div>
-					</div>
-					<div class="bid_now">
-						<button>BID NOW</button>
-					</div>
-				</div>
-				<div class="take_action">
-					<button class="like_sec">
-						<i class="far fa-thumbs-up"></i>
-						<div>Like <span>1.4k</span></div>
-					</button>
-					<button id="hide show" class="comment_sec">
-						<i class="far fa-comment-dots"></i>
-						<div>Comment<span>96</span></div>
-					</button>
-					<button class="share_sec">
-						<i class="far fa-share"></i>
-						<div>Share<span>7</span></div>
-					</button>
-				</div>
-				<div class="comments_container" style="display: none;">
-					<div class="comment_title">Comments:</div>
-					<div class="comment_user d-flex ">
-						<img src="assets/images/profile.jpg">
-						<div>
-							<div class="commenter">Arturo flex</div>
-							<div class="comment_here">Nulla sagittis sodales dui ut ornare. Donec feugiat at lacus et tempor. Vivamus eros odio, convallis ut orci et, feugiat ultrices elit. Aenean suscipit tellus accumsan, gravida risus sed,</div>
-						</div>
-					</div>
-					<div class="comment_user d-flex ">
-						<img src="assets/images/user2.jpg">
-						<div>
-							<div class="commenter">Mellisa mcmahon</div>
-							<div class="comment_here">Nulla sagittis sodales dui ut ornare. Donec feugiat at lacus et tempor. Vivamus eros odio, convallis ut orci et, feugiat ultrices elit. Aenean suscipit tellus accumsan, gravida risus sed,</div>
-						</div>
-					</div>
-				</div>
-			</div>
+		<div *ngIf="router.url == '/profile/5ef57cc81b40cf10ecf3e4ae/photos'">
+			<app-photos></app-photos>
 		</div>
+		<div *ngIf="router.url == '/profile/5ef57cc81b40cf10ecf3e4ae/friends'">
+			<app-friends></app-friends>
+		</div> -->
+		<router-outlet></router-outlet>  
 	</div>
+
 	<div class="right_sidebar">
 		<div class="notification_sec">
 			<div class="right_title w_90">Recent Notification</div>
@@ -322,4 +175,81 @@
 			</div>
 		</div>
 	</div>
+</div>
+
+
+<!-- Modal For Profile Photo Upload -->
+<div class="modal fade" id="profilemodel" tabindex="-1" role="dialog" aria-labelledby="profilemodelLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document" style="max-width: 60%;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="profilemodelLabel">Upload Profile Picture</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="display: flex; align-items: center !important; margin-bottom: 20px;">
+				<input type="file" style="display:none" #file class="btn btn-primary" (change)="fileChangeEvent($event)" />
+				<button type="button" class="btn btn-primary" (click)="file.click();" style="position: absolute; top: 10px;">Upload Image</button>
+				<!-- <input type="file" class="btn btn-primary" (change)="uploadPic($event,$event)" /> -->
+				<div class="text-center col-md-6" *ngIf="imgeDiv" style="margin-top: 50px;">
+						<image-cropper
+						[imageChangedEvent]="imageChangedEvent"
+						[roundCropper]=true
+						[maintainAspectRatio]="true"
+						[aspectRatio]="4 / 4"
+						[resizeToWidth]="256"
+						format="png"
+						(imageCropped)="imageCropped($event)"
+						(imageLoaded)="imageLoaded()"
+						(cropperReady)="cropperReady()"
+						(loadImageFailed)="loadImageFailed()"></image-cropper>
+				</div>
+				<div class="text-center col-md-6" *ngIf="imgeDiv" style="margin-top: 50px;">
+						<img [src]="croppedImage" onerror="this.src='/assets/images/default_user.jpg';" class="preview_circle" >
+				</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="uploadPic()" data-dismiss="modal">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal For Cover Photo Upload -->
+<div class="modal fade" id="covermodel" tabindex="-1" role="dialog" aria-labelledby="covermodelLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document" style="max-width: 60%;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="covermodelLabel">Upload Cover Photo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="margin-bottom: 20px;">
+				<input type="file" style="display:none" #file class="btn btn-primary" (change)="fileCovChangeEvent($event)" />
+				<button type="button" class="btn btn-primary" (click)="file.click();" style="position: absolute; top: 10px;">Upload Image</button>
+				<div class="text-center col-md-12" *ngIf="imgeDiv" style="margin-top: 50px;">
+						<image-cropper
+						[imageChangedEvent]="imageChangedEvent"
+						[maintainAspectRatio]="true"
+						[aspectRatio]="4 / 1"
+						[resizeToWidth]="1520"
+						format="png"
+						(imageCropped)="covImageCropped($event)"
+						(imageLoaded)="imageLoaded()"
+						(cropperReady)="cropperReady()"
+						(loadImageFailed)="loadImageFailed()"></image-cropper>
+				</div>
+				<div class="text-center col-md-12" *ngIf="imgeDiv" style="margin-top: 50px;">
+						<img [src]="croppedCovImage" onerror="this.src='/assets/images/default_user.jpg';" style="height: 210px; width: 100%;">
+				</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="uploadCov()" data-dismiss="modal">Save changes</button>
+      </div>
+    </div>
+  </div>
 </div>

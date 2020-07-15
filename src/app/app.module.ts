@@ -5,6 +5,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -23,6 +24,10 @@ import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { SearchComponent } from './search/search.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { PhotosComponent } from './photos/photos.component';
+import { TimelineComponent } from './timeline/timeline.component';
+import { AboutComponent } from './about/about.component';
+import { FriendsComponent } from './friends/friends.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +45,11 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
     HomeComponent,
     HeaderComponent,
     SearchComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    PhotosComponent,
+    TimelineComponent,
+    AboutComponent,
+    FriendsComponent
   ],
   entryComponents: [DialogBodyComponent],
   imports: [
@@ -51,7 +60,8 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
     HttpClientModule,
     MatDialogModule,
     BrowserAnimationsModule,
-    MatToolbarModule
+    MatToolbarModule,
+    ImageCropperModule
   ],
   providers: [
     {

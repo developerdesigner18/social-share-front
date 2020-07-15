@@ -1,9 +1,9 @@
-import { Component, ViewChild, OnInit, ViewEncapsulation, Input, ElementRef, EventEmitter, Output } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, ViewChild, OnInit, ViewEncapsulation, Input, ElementRef, EventEmitter, Output, SecurityContext } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog, MatDialogRef } from  '@angular/material/dialog';
 import { AuthService } from '../auth.service';
-// import { EditProfileComponent } from '../edit-profile/edit-profile.component';
 import { DialogEditSuccessComponent } from '../dialog-edit-success/dialog-edit-success.component';
+import { ImageCroppedEvent } from 'ngx-image-cropper';
 declare var jQuery: any;
 
 @Component({
@@ -20,7 +20,6 @@ export class UserProfileComponent implements OnInit {
   u_city = '';
   u_hobbies = '';
   newDate: Date = null;
-  url = '';
   fileDataVal: File = null;
   previewUrl:any = null;
   imageCov:any = 'assets/images/bg.jpg';
@@ -41,6 +40,7 @@ export class UserProfileComponent implements OnInit {
   constructor(
     public authService: AuthService,
     private activatedRoute: ActivatedRoute,
+    public router: Router,
     public  dialog:  MatDialog,
     public elRef: ElementRef
   ) {
@@ -94,24 +94,21 @@ export class UserProfileComponent implements OnInit {
     this.authService.openDialog(this.user_post, this.user_city, this.user_state, this.user_country, this.user_hobbies)
   }
 
-  uploadPic(fileInput: any){
-    this.fileDataVal = <File>fileInput.target.files[0];
-    this.preview();
-  }
-
-  preview() {
-    var mimeType = this.fileDataVal.type;
+  uploadPic() {
+    var mimeType = this.fileToReturn.type;
     if (mimeType.match(/image\/*/) == null) {
       return;
     }
 
+    this.token = localStorage.getItem('token')
+
     var reader = new FileReader();
-    reader.readAsDataURL(this.fileDataVal);
+    reader.readAsDataURL(this.fileToReturn);
     reader.onload = (_event) => {
-      // this.previewUrl = reader.result;
+    this.croppedImage = reader.result.toString();
       this.token = localStorage.getItem('token')
 
-      this.authService.setProfile(this.token, this.fileDataVal).subscribe((res) => {
+      this.authService.setProfile(this.token, this.fileToReturn).subscribe((res) => {
         if (!res.result) {
           const dialogRefSuc = this.dialog.open(DialogEditSuccessComponent, {
             width: '400px'
@@ -125,25 +122,18 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
-
-  uploadCov(fileInput: any){
-    this.fileDataVal = <File>fileInput.target.files[0];
-    this.previewCov();
-  }
-
-  previewCov() {
-    var mimeType = this.fileDataVal.type;
+  uploadCov() {
+    var mimeType = this.fileCovToReturn.type;
     if (mimeType.match(/image\/*/) == null) {
       return;
     }
 
     var reader = new FileReader();
-    reader.readAsDataURL(this.fileDataVal);
+    reader.readAsDataURL(this.fileCovToReturn);
     reader.onload = (_event) => {
-      // this.imageCov = reader.result;
       this.token = localStorage.getItem('token')
 
-      this.authService.setCover(this.token, this.fileDataVal).subscribe((res) => {
+      this.authService.setCover(this.token, this.fileCovToReturn).subscribe((res) => {
         if (!res.result) {
           const dialogRefSuc = this.dialog.open(DialogEditSuccessComponent, {
             width: '400px'
@@ -156,4 +146,66 @@ export class UserProfileComponent implements OnInit {
       })
     }
   }
+
+    imageChangedEvent: any = '';
+    croppedImage: any = '';
+    croppedCovImage: any = '';
+    fileToReturn: File = null;
+    fileCovToReturn: File = null;
+    imgeDiv = false;
+
+
+    // For Profile Photo Preview
+    fileChangeEvent(event: any): void {
+        this.imageChangedEvent = event;
+        this.imgeDiv = true
+    }
+    imageCropped(event: ImageCroppedEvent) {
+        this.croppedImage = event.base64;
+        this.fileToReturn = this.base64ToFile(
+          event.base64,
+          this.imageChangedEvent.target.files[0].name,
+        )
+        return this.fileToReturn.name;
+    }
+    imageLoaded() {
+        // show cropper
+    }
+    cropperReady() {
+        // cropper ready
+    }
+    loadImageFailed() {
+        // show message
+    }
+
+    // For based64 convert to image
+    base64ToFile(data, filename) {
+       const arr = data.split(',');
+       const mime = arr[0].match(/:(.*?);/)[1];
+       const bstr = atob(arr[1]);
+       let n = bstr.length;
+       let u8arr = new Uint8Array(n);
+
+       while(n--){
+           u8arr[n] = bstr.charCodeAt(n);
+       }
+
+       return new File([u8arr], filename, { type: mime });
+    }
+
+    // For Cover Photo preview
+    fileCovChangeEvent(event: any): void {
+        this.imageChangedEvent = event;
+        this.imgeDiv = true
+    }
+    covImageCropped(event: ImageCroppedEvent) {
+        this.croppedCovImage = event.base64;
+        this.fileCovToReturn = this.base64ToFile(
+          event.base64,
+          this.imageChangedEvent.target.files[0].name,
+        )
+        return this.fileCovToReturn.name;
+    }
+
+
 }

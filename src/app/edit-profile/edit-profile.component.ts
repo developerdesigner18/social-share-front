@@ -13,20 +13,26 @@ export class EditProfileComponent implements OnInit {
   isSubmitted = false;
   state = [];
   isEnabled = false;
+  selectedValue = 0;
 
   countryList: Array<any> = [
-    { name: 'Canada', states: ['Ontario', 'Alberta', 'Quebec', 'Nova Scotia', 'New Brunswick'] },
-    { name: 'India', states: ['Gujarat', 'Maharashtra', 'Rajasthan','Punjab'] }
+    { name: 'Canada', states: ['Alberta','British Columbia','Manitoba','New Brunswick','Newfoundland and Labrador', 'Nova Scotia', 'Ontario','Prince Edward Island','Quebec','Saskatchewan','Northwest Territories','Nunavut','Yukon'] }
   ];
 
   stateList: Array<any> = [
-    { states: 'Ontario', cities: ['Toronto','Hearst','Ottawa','Hamilton','London'] },
     { states: 'Alberta', cities: ['Calgary','Edmonton','Lethbridge','Red Deer'] },
-    { states: 'Quebec', cities: ['Montreal','Gatineau','Sherbrooke','Levis'] },
-    { states: 'Nova Scotia', cities: ['Sydney','Amherst','Truro','Yarmouth'] },
+    { states: 'British Columbia', cities: ['Vancouver','Victoria','Kelowna','Surrey'] },
+    { states: 'Manitoba', cities: ['Winnipeg','Brandon','Morden','Steinbach'] },
     { states: 'New Brunswick', cities: ['Bathurst','Dieppe','Edmundston','Miramichi'] },
-    { states: 'Gujarat', cities: ['Surat','Ahmedabad','Vadodara','Rajkot'] },
-    { states: 'Maharashtra', cities: ['Mumbai','Pune','Nagpur'] }
+    { states: 'Newfoundland and Labrador', cities: ['Labrador City','Gander','Corner Brook','Mount Pearl','Deer Lake'] },
+    { states: 'Nova Scotia', cities: ['Sydney','Amherst','Truro','Yarmouth'] },
+    { states: 'Ontario', cities: ['Toronto','Hearst','Ottawa','Hamilton','London'] },
+    { states: 'Prince Edward Island', cities: ['Charlottetown','Summerside','Souris','Alberton','Kensington'] },
+    { states: 'Quebec', cities: ['Montreal','Gatineau','Sherbrooke','Levis'] },
+    { states: 'Saskatchewan', cities: ['Regina','Saskatoon','Prince Albert','Moose Jaw'] },
+    { states: 'Northwest Territories', cities: ['Yellowknife','Fort Simposn','Norman Wells','Tuktoyaktuk'] },
+    { states: 'Nunavut', cities: ['Iqaluit','Rankin Inlet','Pangnirtung','Pound Inlet'] },
+    { states: 'Yukon', cities: ['Dawson City','Whitehourse','Carcross','Teslin'] }
   ]
 
   constructor(
@@ -44,32 +50,18 @@ export class EditProfileComponent implements OnInit {
       city: [data.city],
       hobbies: [data.hobbies]
     })
-
-    // console.log("+-=-=----==")
-    // console.log(data.country == '')
-    // if(data.country == ''){
-    //   country = 0;
-    // }
-    // console.log("+-=-=----==")
   }
 
 
   cities: Array<any>;
   states: Array<any>;
   changeCountry(count: any) {
-    // if(this.countryList.find(con => con.name == this.data.country).name == this.data.country)
-    // {
-    //   console.log('True set')
-    //   this.isEnabled = true
-    // }
-    // this.cities = this.countryList.find(con => con.name == count).cities;
     this.states = this.countryList.find(con => con.name == count).states;
   }
 
   changeState(count) {
 
     this.cities = this.stateList.find(con => con.states == count).cities;
-    // this.states = this.countryList.find(con => con.name == count).states;
   }
 
   get formControls() { return this.profileForm.controls }

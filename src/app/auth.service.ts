@@ -19,8 +19,6 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 export class AuthService {
   private currentUserSubject: BehaviorSubject<User>;
   headers = new HttpHeaders().set('Content-Type', 'application/json');
-  // token = localStorage.getItem('token')
-  // headers = new HttpHeaders({'Content-Type':'multipart/form-data', 'token':this.token});
   currentUser = {};
 
   constructor(private httpClient: HttpClient, public router: Router, public dialog: MatDialog, private injector: Injector){ }
