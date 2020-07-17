@@ -22,8 +22,7 @@
 			<a [routerLink]="['friends']"><button>Friends</button></a>
 			<a [routerLink]="['more']"><button>More</button></a>
 		</div>
-		<div class="main_action">
-		</div>
+		<div class="main_action"></div>
 	</div>
 </div>
 
@@ -125,19 +124,7 @@
 	</div>
 
 	<div class="main_area">
-		<!-- <div *ngIf="router.url == '/profile/id/timeline'">
-			<app-timeline></app-timeline>
-		</div>
-		<div *ngIf="router.url == '/profile/id/about'">
-			<app-about></app-about>
-		</div>
-		<div *ngIf="router.url == '/profile/5ef57cc81b40cf10ecf3e4ae/photos'">
-			<app-photos></app-photos>
-		</div>
-		<div *ngIf="router.url == '/profile/5ef57cc81b40cf10ecf3e4ae/friends'">
-			<app-friends></app-friends>
-		</div> -->
-		<router-outlet></router-outlet>  
+		<router-outlet></router-outlet>
 	</div>
 
 	<div class="right_sidebar">
@@ -188,11 +175,11 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body" style="display: flex; align-items: center !important; margin-bottom: 20px;">
-				<input type="file" style="display:none" #file class="btn btn-primary" (change)="fileChangeEvent($event)" />
+      <div class="modal-body" id="modelBodyImg" style="display: flex; align-items: center !important; margin-bottom: 20px;">
+				<input type="file" style="display:none" #file class="btn btn-primary" (change)="fileChangeEvent($event);showImageCrop()" />
 				<button type="button" class="btn btn-primary" (click)="file.click();" style="position: absolute; top: 10px;">Upload Image</button>
 				<!-- <input type="file" class="btn btn-primary" (change)="uploadPic($event,$event)" /> -->
-				<div class="text-center col-md-6" *ngIf="imgeDiv" style="margin-top: 50px;">
+				<div class="text-center col-md-6" *ngIf="imgeDiv && show" style="margin-top: 50px;">
 						<image-cropper
 						[imageChangedEvent]="imageChangedEvent"
 						[roundCropper]=true
@@ -205,12 +192,12 @@
 						(cropperReady)="cropperReady()"
 						(loadImageFailed)="loadImageFailed()"></image-cropper>
 				</div>
-				<div class="text-center col-md-6" *ngIf="imgeDiv" style="margin-top: 50px;">
-						<img [src]="croppedImage" onerror="this.src='/assets/images/default_user.jpg';" class="preview_circle" >
+				<div class="text-center col-md-6" *ngIf="imgeDiv && show" style="margin-top: 50px;">
+						<img id="croppedimg" [src]="croppedImage" onerror="this.src='/assets/images/default_user.jpg';" class="preview_circle" >
 				</div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="resetModel()">Close</button>
         <button type="button" class="btn btn-primary" (click)="uploadPic()" data-dismiss="modal">Save changes</button>
       </div>
     </div>
@@ -228,7 +215,7 @@
         </button>
       </div>
       <div class="modal-body" style="margin-bottom: 20px;">
-				<input type="file" style="display:none" #file class="btn btn-primary" (change)="fileCovChangeEvent($event)" />
+				<input type="file" style="display:none" #file class="btn btn-primary" (change)="fileCovChangeEvent($event);showImageCrop()" />
 				<button type="button" class="btn btn-primary" (click)="file.click();" style="position: absolute; top: 10px;">Upload Image</button>
 				<div class="text-center col-md-12" *ngIf="imgeDiv" style="margin-top: 50px;">
 						<image-cropper
@@ -247,7 +234,7 @@
 				</div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="resetModel()">Close</button>
         <button type="button" class="btn btn-primary" (click)="uploadCov()" data-dismiss="modal">Save changes</button>
       </div>
     </div>

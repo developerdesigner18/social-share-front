@@ -1,6 +1,6 @@
-import { Component, ViewChild, OnInit, ViewEncapsulation, Input, ElementRef, EventEmitter, Output, SecurityContext } from '@angular/core';
+import { Component, ViewChild, OnInit, ViewEncapsulation, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MatDialog, MatDialogRef } from  '@angular/material/dialog';
+import { MatDialog } from  '@angular/material/dialog';
 import { AuthService } from '../auth.service';
 import { DialogEditSuccessComponent } from '../dialog-edit-success/dialog-edit-success.component';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
@@ -80,7 +80,18 @@ export class UserProfileComponent implements OnInit {
     })(jQuery);
   }
 
+  show = true
+  resetModel(){
+    this.show = false;
+  }
+
+  showImageCrop(){
+    this.show = true;
+  }
+
   logout() {
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('token');
     window.location.replace('');
   }
 

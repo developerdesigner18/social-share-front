@@ -1,0 +1,32 @@
+<div class="overview-main">
+  <div class="work_tab">
+    <h6>Conatct info</h6>
+  </div>
+  <div style="margin-bottom: 10px;">
+    <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add mobile phone</a>
+  </div>
+  <div style="margin-bottom: 10px;">
+    <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add your address</a>
+  </div>
+  <div *ngIf="u_email" style="margin-bottom: 25px;">
+    <i class="fa fa-envelope"></i> &nbsp;{{u_email}}
+  </div>
+  <div class="work_tab">
+    <h6>Website and social links</h6>
+  </div>
+  <div style="margin-bottom: 10px;">
+    <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add a Websites</a>
+  </div>
+  <div style="margin-bottom: 10px;">
+    <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add a social link</a>
+  </div>
+  <div *ngIf="u_website" style="margin-bottom: 25px;">
+    <i class="fa fa-share-alt-square"></i> &nbsp;<a href="{{u_website}}" target="_blank">www.socialshare.com</a>
+  </div>
+  <div class="work_tab">
+    <h6>Basic info</h6>
+	</div>
+  <div>
+    <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add your religious views</a>
+  </div>
+</div>

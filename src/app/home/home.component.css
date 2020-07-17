@@ -44,7 +44,7 @@ header .ads {
     padding: 5px;
     border-radius: 4px;
     color: #f0f8ff;
-    height: 43px;
+    height: 70px;
 }
 header .logo, .login_container {
     flex: 1;

@@ -1,40 +1,40 @@
 <div class="photos_sec">
-  <div onclick="openModal();currentSlide(1)" class="pics_cat position-relative">
+  <div (click)="openModal()" class="pics_cat position-relative">
     <img src="assets/images/gal_1.jpg">
     <div class="pic_cat">
       <div>Sports</div>
       <img class="plus_icon" src="assets/images/plus.png">
     </div>
   </div>
-  <div onclick="openModal();currentSlide(2)" class="pics_cat position-relative">
+  <div (click)="openModal();currentSlide(2)" class="pics_cat position-relative">
     <img src="assets/images/gal_2.jpg">
     <div class="pic_cat">
       <div>Switzerland</div>
       <img class="plus_icon" src="assets/images/plus.png">
     </div>
   </div>
-  <div onclick="openModal();currentSlide(3)" class="pics_cat position-relative">
+  <div (click)="openModal();currentSlide(3)" class="pics_cat position-relative">
     <img src="assets/images/gal_3.jpg">
     <div class="pic_cat">
       <div>Outdoor</div>
       <img class="plus_icon" src="assets/images/plus.png">
     </div>
   </div>
-  <div onclick="openModal();currentSlide(4)" class="pics_cat position-relative">
+  <div (click)="openModal();currentSlide(4)" class="pics_cat position-relative">
     <img src="assets/images/gal_4.jpg">
     <div class="pic_cat">
       <div>Home</div>
       <img class="plus_icon" src="assets/images/plus.png">
     </div>
   </div>
-  <div  class="pics_cat position-relative">
+  <div (click)="openModal();currentSlide(5)" class="pics_cat position-relative">
     <img src="assets/images/gal_5.jpg">
     <div class="pic_cat">
       <div>Love</div>
       <img class="plus_icon" src="assets/images/plus.png">
     </div>
   </div>
-  <div class="pics_cat position-relative">
+  <div (click)="openModal();currentSlide(6)" class="pics_cat position-relative">
     <img src="assets/images/gal_6.jpg">
     <div class="pic_cat">
       <div>Uploads</div>
@@ -42,3 +42,43 @@
     </div>
   </div>
 </div>
+
+<!-- The Modal/Lightbox -->
+		<div #myModal id="myModal" class="modal">
+			<span class="close cursor" (click)="closeModal()">&times;</span>
+			<div class="modal-content">
+
+				<div class="mySlides">
+					<div class="numbertext"><span>1</span> / 6</div>
+					<img src="assets/images/gal_1.jpg" style="width:100%">
+				</div>
+
+				<div class="mySlides">
+					<div class="numbertext"><span>2</span> / 6</div>
+					<img src="assets/images/gal_2.jpg" style="width:100%">
+				</div>
+
+				<div class="mySlides">
+					<div class="numbertext"><span>3</span> / 6</div>
+					<img src="assets/images/gal_3.jpg" style="width:100%">
+				</div>
+
+				<div class="mySlides">
+					<div class="numbertext"><span>4</span> / 6</div>
+					<img src="assets/images/gal_4.jpg" style="width:100%">
+				</div>
+        <div class="mySlides">
+					<div class="numbertext"><span>5</span> / 6</div>
+					<img src="assets/images/gal_5.jpg" style="width:100%">
+				</div>
+        <div class="mySlides">
+					<div class="numbertext"><span>6</span> / 6</div>
+					<img src="assets/images/gal_6.jpg" style="width:100%">
+				</div>
+
+				<!-- Next/previous controls -->
+				<a class="prev" (click)="plusSlides(-1)">&#10094;</a>
+				<a class="next" (click)="plusSlides(1)">&#10095;</a>
+
+			</div>
+		</div>

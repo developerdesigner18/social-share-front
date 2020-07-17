@@ -1,6 +1,17 @@
-<div class="say_words position-relative">
+<div class="say_words position-relative" style="padding-bottom: 10px !important;">
   <input type="text" placeholder=" Wanna Say something to Lynda?!">
   <button>Post</button>
+  <!-- <div>
+    <img src="assets/images/post_phot.png" height="24px" width="24px" />
+  </div> -->
+  <div class="slider_bid_like-share d-flex flex-column">
+    <div class="take_action" style="grid-template-columns: 1fr 1fr 0fr; padding: 5px" (click)="openDialog()">
+      <button class="like_sec" style="display: contents;">
+        <i class="fa fa-camera"></i>
+        <div>Photo</div>
+      </button>
+    </div>
+  </div>
 </div>
 <div class="main_post_content d-flex flex-column">
   <div class="d-flex">

@@ -1,3 +1,33 @@
-<div class="say_words position-relative">
-  About
+<div class="about_sec">
+	<div class="about_container d-flex flex-row align-items-baseline">
+		<div class="about_action_tabs">
+      <h5 class="title-about">About</h5>
+			<ul class="nav nav-pills flex-column">
+				<li [routerLinkActive]="['active']">
+          <a [routerLink]="['overview']" class="about-menu">Overview</a>
+        </li>
+				<li [routerLinkActive]="['active']">
+          <a [routerLink]="['work_and_education']" class="about-menu">Work & Education</a>
+        </li>
+				<li [routerLinkActive]="['active']">
+          <a [routerLink]="['place']" class="about-menu">Placed Lived</a>
+        </li>
+				<li [routerLinkActive]="['active']">
+          <a [routerLink]="['contact_and_basic_info']" class="about-menu">Contact and Basic Info</a>
+        </li>
+				<li [routerLinkActive]="['active']">
+          <a [routerLink]="['family_and_relationships']" class="about-menu">Family and Relationships</a>
+        </li>
+				<li [routerLinkActive]="['active']">
+          <a [routerLink]="['about_details']" class="about-menu">Details About You </a>
+        </li>
+				<li [routerLinkActive]="['active']">
+          <a [routerLink]="['life_event']" class="about-menu">Life Events</a>
+        </li>
+			</ul>
+		</div>
+		<div class="about_description tab-content">
+      <router-outlet></router-outlet>
+		</div>
+	</div>
 </div>

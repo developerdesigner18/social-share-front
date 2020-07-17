@@ -93,6 +93,15 @@ export class AuthService {
     )
   }
 
+  getProfileforAbout(id): Observable<any> {
+    return this.httpClient.get(`${environment.apiUrl}/api/user/profile?id=${id}`, { headers: this.headers }).pipe(
+      map((res: Response) => {
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
   getUserHome(id): Observable<any> {
     return this.httpClient.get(`${environment.apiUrl}/api/user/profile?id=${id}`, { headers: this.headers }).pipe(
       map((res: Response) => {
@@ -150,12 +159,6 @@ export class AuthService {
     )
   }
 
-  isLoggedErr(){
-    this.dialog.open(DialogErrorComponent, {
-      width: '420px'
-    })
-  }
-
   private handleError(error: HttpErrorResponse) {
     let msg = '';
     if (error.error instanceof ErrorEvent) {
@@ -164,7 +167,9 @@ export class AuthService {
     } else {
       console.error(`Backend returned code ${error.status}, ` + `body was: ${error.error}`);
       msg = 'Backend returned code ${error.status}, ` + `body was: ${error.error}'
-      this.isLoggedErr();
+      this.dialog.open(DialogErrorComponent, {
+        width: '420px'
+      })
     }
     return throwError(msg);
   }

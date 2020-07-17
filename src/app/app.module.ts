@@ -28,6 +28,14 @@ import { PhotosComponent } from './photos/photos.component';
 import { TimelineComponent } from './timeline/timeline.component';
 import { AboutComponent } from './about/about.component';
 import { FriendsComponent } from './friends/friends.component';
+import { OverviewComponent } from './overview/overview.component';
+import { WorkComponent } from './work/work.component';
+import { PlaceComponent } from './place/place.component';
+import { ContactComponent } from './contact/contact.component';
+import { FamilyComponent } from './family/family.component';
+import { DetailsComponent } from './details/details.component';
+import { LifeComponent } from './life/life.component';
+import { PostModalComponent } from './post-modal/post-modal.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +57,15 @@ import { FriendsComponent } from './friends/friends.component';
     PhotosComponent,
     TimelineComponent,
     AboutComponent,
-    FriendsComponent
+    FriendsComponent,
+    OverviewComponent,
+    WorkComponent,
+    PlaceComponent,
+    ContactComponent,
+    FamilyComponent,
+    DetailsComponent,
+    LifeComponent,
+    PostModalComponent
   ],
   entryComponents: [DialogBodyComponent],
   imports: [
