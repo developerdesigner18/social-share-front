@@ -11,6 +11,7 @@ import { catchError, map } from 'rxjs/operators';
 
 import { User } from './user';
 import { DialogErrorComponent } from './dialog-error/dialog-error.component';
+import { DialogEmailErrorComponent } from './dialog-email-error/dialog-email-error.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 @Injectable({
@@ -51,10 +52,9 @@ export class AuthService {
     )
   }
 
-  forget(user: User): Observable<any>{
-
+  forget(user: User): Observable <any> {
     return this.httpClient.post(`${environment.apiUrl}/auth/forgotpassword`, user).pipe(
-      catchError(this.handleError)
+      catchError(this.handleError.bind(this))
     )
   }
 
@@ -159,17 +159,46 @@ export class AuthService {
     )
   }
 
+
+  // new post save
+  newPost(u_token, msg, imgUrl): Observable<any> {
+    const formData: any = new FormData();
+    formData.append('description', msg);
+    formData.append('Url', imgUrl);
+
+    return this.httpClient.post(`${environment.apiUrl}/api/photos/newPosts`, formData, {headers: {token: u_token}}).pipe(
+        catchError(this.handleError)
+    )
+  }
+
+  getProfilePost(u_token): Observable<any> {
+    this.headers.append('token', u_token)
+    return this.httpClient.get(`${environment.apiUrl}/api/photos/show`, { headers: {token: u_token}}).pipe(
+      map((res: Response) => {
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
   private handleError(error: HttpErrorResponse) {
     let msg = '';
+    if(error.error.success == false){
+      this.dialog.open(DialogEmailErrorComponent, {
+        width: '500px'
+      })
+    }
     if (error.error instanceof ErrorEvent) {
       console.error('An error occurred:', error.error.message);
       msg = 'An error occurred:', error.error.message;
     } else {
       console.error(`Backend returned code ${error.status}, ` + `body was: ${error.error}`);
       msg = 'Backend returned code ${error.status}, ` + `body was: ${error.error}'
-      this.dialog.open(DialogErrorComponent, {
-        width: '420px'
-      })
+      if(error.status == 500){
+        this.dialog.open(DialogErrorComponent, {
+          width: '420px'
+        })
+      }
     }
     return throwError(msg);
   }

@@ -759,6 +759,6 @@ button.comment_sec {
 	margin-bottom: 10px;
 }
 
-mat-dialog-container {
-    padding: 0 !important;
+.custom-dialog-container .mat-dialog-container {
+	padding: 0 !important;
 }

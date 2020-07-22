@@ -12,10 +12,10 @@ import { DialogErrorComponent } from '../dialog-error/dialog-error.component';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-    submitted = false;
-    returnUrl: string;
-    error: {};
-    loginError: string;
+  submitted = false;
+  returnUrl: string;
+  error: {};
+  loginError: string;
 
   constructor(
     private fb: FormBuilder,

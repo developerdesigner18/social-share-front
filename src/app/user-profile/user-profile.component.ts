@@ -175,7 +175,7 @@ export class UserProfileComponent implements OnInit {
         this.croppedImage = event.base64;
         this.fileToReturn = this.base64ToFile(
           event.base64,
-          this.imageChangedEvent.target.files[0].name,
+          this.imageChangedEvent.target.files[0].name
         )
         return this.fileToReturn.name;
     }
