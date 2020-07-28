@@ -1,6 +1,6 @@
 <div class="say_words position-relative" style="padding-bottom: 10px !important;">
-  <input type="text" placeholder=" Wanna Say something to Lynda?!">
-  <button>Post</button>
+  <input #textmsgPost type="text" placeholder=" Say something!" (click)="openTextDialog()">
+  <!-- <button type="button" (click)="textPost()">Post</button> -->
   <div class="slider_bid_like-share d-flex flex-column">
     <input type="file" style="display:none" #file class="btn btn-primary" (change)="openDialog($event)" multiple="" />
     <div class="take_action" style="grid-template-columns: 1fr 1fr 0fr; padding: 5px" (click)="file.click();">
@@ -12,36 +12,10 @@
   </div>
 </div>
 
-<!-- <owl-carousel [options]="mySlideOptions" [items]="images" [carouselClasses]="['owl-theme', 'sliding']" >
- <div class="item" *ngFor="let data of datas;let i = index">
-  <div>
-    <img src={{data.imageUrl}}/>
-  </div>
- </div>
-</owl-carousel> -->
-
-<!-- <owl-carousel [options]="mySlideOptions" [items]="images" [carouselClasses]="['owl-theme', 'sliding']" >
-    <div class="item" *ngFor="let image of mySlideImages;let i = index">
-    <div>
-    <img src={{image}}/>
-    </div>
-    </div>
-</owl-carousel> -->
-
-<!-- <owl-carousel-o [options]="customOptions">
-
-    <ng-template carouselSlide *ngFor="let slide of slidesStore" [id]="slide.id">
-      <img [src]="slide.src" [alt]="slide.alt" [title]="slide.title">
-    </ng-template>
-
-</owl-carousel-o> -->
-<!-- <div *ngFor="let post of newposts; let i = index" [attr.data-index]="i" class="main_post_content d-flex flex-column"> -->
 <div *ngFor="let data of datas; let i = index" class="main_post_content d-flex flex-column">
-<!-- <div class="main_post_content d-flex flex-column"> -->
   <div class="d-flex" style="width: 100%">
     <div class="profile_pic_profile position-relative">
       <img [src]="profileImg" onerror="this.src='/assets/images/default_user.jpg';">
-      <!-- <img [src]="data.imageUrl" onerror="this.src='/assets/images/default_user.jpg';"> -->
     </div>
     <div class="name_and_desc" style="width: 100%">
       <div class="d-flex justify-content-between align-items-center">
@@ -52,16 +26,12 @@
         </div>
       </div>
       <div class="item_desc mt-3" style="width: 100%">{{data.description}}</div>
-      <!-- <div class="item_desc mt-3">Hi there, I want to sell my mobile Lorem ipsum dolor sit amet, consectetur adipiscing elit. Utafaf aliquet non mi eget facilisis. Donec facilisis purus eu urna sollicitudin, sed mollis felis ultrices. Nulla sagittis sodales dui ut ornare. Donec feugiat at lacus et tempor. Vivamus eros odio, convallis ut orci et, feugiat ultrices elit. Aenean suscipit tellus accumsan, gravida risus sed, sagittis velit.</div> -->
     </div>
   </div>
   <div class="slider_bid_like-share d-flex flex-column" style="width: 100%">
-    <div class="owl-carousel owl-theme">
+    <div class="owl-carousel owl-theme" *ngIf="data.imageUrl">
       <div class="item">
-        <!-- {{data.imageUrl}} -->
-        <!-- <img [src]="data.imageUrl" class="slider_image"> -->
         <img class="slider_image" [src]="data.imageUrl" [attr.data-slide-to]="i">
-        <!-- <img class="slider_image" src="assets/images/gal_3.jpg"> -->
       </div>
       <div class="item">
         <img class="slider_image" src="assets/images/gal_3.jpg">
@@ -70,14 +40,14 @@
         <img class="slider_image" src="assets/images/gal_4.jpg">
       </div>
     </div>
-    <div class="cat_bid d-flex justify-content-between align-items-center mt-3">
+    <div class="cat_bid d-flex justify-content-between align-items-center mt-3" *ngIf="data.imageUrl">
       <div class="category">Electronics</div>
       <div class="bid_current d-flex align-items-center">
         <div class="current_bid">Current bid @</div>
         <div>310$</div>
       </div>
     </div>
-    <div class="bid_section d-flex justify-content-between align-items-center mt-3">
+    <div class="bid_section d-flex justify-content-between align-items-center mt-3" *ngIf="data.imageUrl">
       <div class="d-flex align-items-center">
         <div class="starting_bid mt-0">Asking Price @</div>
         <div class="main-price">300$</div>

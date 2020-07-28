@@ -19,6 +19,7 @@ import { FamilyComponent } from './family/family.component';
 import { DetailsComponent } from './details/details.component';
 import { LifeComponent } from './life/life.component';
 import { FriendsComponent } from './friends/friends.component';
+import { RequestFriendsComponent } from './request-friends/request-friends.component';
 
 import { AuthGuard } from "./auth.guard";
 
@@ -46,6 +47,26 @@ const routes: Routes = [
     ]
   },
   { path: 'reset', component: ResetComponent},
+  { path: 'friends/:id', component: RequestFriendsComponent, canActivate:[AuthGuard],
+    children: [
+      { path: 'friend_timeline', component: TimelineComponent },
+      { path: 'about', component: AboutComponent,
+        children: [
+          { path: 'overview', component: OverviewComponent },
+          { path: 'work_and_education', component: WorkComponent },
+          { path: 'place', component: PlaceComponent },
+          { path: 'contact_and_basic_info', component: ContactComponent },
+          { path: 'family_and_relationships', component: FamilyComponent },
+          { path: 'about_details', component: DetailsComponent },
+          { path: 'life_event', component: LifeComponent },
+          // { path: '', redirectTo:'overview', pathMatch:"full" }
+        ]
+      },
+      { path: 'photos', component: PhotosComponent },
+      { path: 'friends', component: FriendsComponent },
+      // { path: '', redirectTo:'friend_timeline', pathMatch:"full" }
+    ]
+  },
   { path: 'home/:id', component: HomeComponent, canActivate:[AuthGuard]},
   { path: 'search/:id', component: SearchComponent, canActivate:[AuthGuard]}
 ];

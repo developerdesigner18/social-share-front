@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-photos',
@@ -7,11 +8,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PhotosComponent implements OnInit {
   slideIndex = 1
+  token = '';
+  urls = [];
+  totalImg = 0;
 
-  constructor() { }
+  public datas;
+  constructor(public authService: AuthService) {
+    this.token = localStorage.getItem('token')
+    this.authService.getProfilePost(this.token).subscribe(res => {
+      this.datas = res
+      this.totalImg = this.datas.length
+      for(let i = 0; i < this.datas.length; i++){
+        if(this.datas[i].imageUrl != undefined){
+          this.urls.push(this.datas[i].imageUrl);
+        }
+      }
+      return this.datas
+    })
+  }
 
   ngOnInit(): void {
-    this.showSlides(this.slideIndex);
+    // this.showSlides(this.slideIndex = 1);
   }
 
   // Close the Modal
@@ -48,9 +65,6 @@ export class PhotosComponent implements OnInit {
   				dots[i].className = dots[i].className.replace(" active", "");
   			}
   			slides[this.slideIndex-1].style.display = "block";
-        // console.log(dots)
-        // console.log(this.slideIndex - 1)
-        // console.log("-=-=-=-=-=-=-Class")
   			// dots[this.slideIndex-1].className += " active";
   			// captionText.innerHTML = dots[this.slideIndex-1].alt;
   }

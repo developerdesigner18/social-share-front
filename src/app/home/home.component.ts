@@ -1,18 +1,20 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 declare var jQuery: any;
+declare var $: any;
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  encapsulation: ViewEncapsulation.None,
+  encapsulation: ViewEncapsulation.None
 })
 export class HomeComponent implements OnInit {
   name = '';
   id = '';
   profileImg = '';
+  param = '';
 
   constructor(
     public authService: AuthService,
@@ -27,19 +29,17 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    (function ($) {
-      $(document).ready(function(){
-        $('.owl-carousel').owlCarousel({
-      		nav:true,
-      		items:1,
-          autoWidth: true
-      	});
+    $(document).ready(function(){
+      $('.owl-carousel').owlCarousel({
+    		nav:true,
+    		items:1,
+        autoWidth: true
+    	});
 
-        $('.comment_sec').on('click',function(){
-    			$('.comments_container').toggle();
-    		});
-      });
-    })(jQuery);
+      $('.comment_sec').on('click',function(){
+  			$('.comments_container').toggle();
+  		});
+    });
   }
 
   logout() {

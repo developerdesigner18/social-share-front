@@ -20,6 +20,7 @@ body {
 header{
 	background-color: #003459;
 	padding: 5px;
+	border-bottom: 1px solid #334c6b;
 }
 .logo {
 	width: 10%;
@@ -57,6 +58,18 @@ header{
 	border-radius: 4px;
 	color: #ffffff;
 	font-size: 14px;
+}
+
+.icon-password {
+	top: 24px;
+	position: absolute;
+	right: 115px;
+	width: auto;
+}
+
+.icon-password > i {
+	font-size: 13px;
+	color: #757ea2;
 }
 
 .forget-link{
@@ -154,6 +167,17 @@ img.connecting_image {
 	.login_container {
 	    margin-top: 20px;
 	}
+	.icon-password {
+	    top: 131px;
+	    position: absolute;
+	    right: 32px;
+	    width: auto;
+	}
+	.icon-password > i {
+		font-size: 13px;
+		color: #757ea2;
+	}
+
 	body {
 	 height: auto;
  	}

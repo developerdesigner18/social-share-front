@@ -1,0 +1,57 @@
+<app-header></app-header>
+
+<div class="sidenav left">
+  <div class="row" style="padding: 10px;" *ngFor="let data of datas;">
+    <div class="col-md-12" (click)="openProfile(data._id)">
+      <img width="60" height="60" [src]="data.profileImgURl" onerror="this.src='/assets/images/default_user.jpg';" style="border-radius: 50%;" />
+      <label style="color: #ffffff;margin-left: 10px;">{{data.name}}</label>
+    </div>
+    <div class="col-md-12" style="margin-left: 70px">
+      <button type="button" name="button" style="background-color: #1e4a6b;border-color:#1e4a6b;" class="btn btn-primary">Add Friends</button>
+      <button type="button" name="button" style="margin-left: 15px;" class="btn btn-secondary">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<div class="viewProfile" style="margin-left: 20.0rem;justify-content: center;display: flex;height:100%" *ngIf="showView != true">
+  <div class="container" style="position: relative;">
+    <div class="vertical-center" style="position: inherit;top: 50%;transform: translateY(-50%);text-align: center;">
+      <div>
+        <img width="60" height="60" src='/assets/images/default_user.jpg' style="border-radius: 50%;" />
+      </div>
+      <div>
+        Select people's names to preview their profile.
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="viewProfile" style="margin-left: 20.0rem;" *ngIf="showView">
+  <div class="cover_pic" [ngStyle]="{ 'background-image': 'url(' + imageCov + ')'}"></div>
+
+  <div class="bg-white profile_navbar">
+  	<div class="profile_pic_main_tabs_sec width_95">
+  		<div class="profile_pic position-relative profile_edit">
+  				<div class="profile-pic-icon">
+  					<img [src]="previewUrl" onerror="this.src='/assets/images/default_user.jpg';">
+  				</div>
+  			<div class="profile_name">{{name}}</div>
+  		</div>
+
+  		<div class="actions">
+  			<a [routerLink]="['#']"><button>Timeline</button></a>
+  			<a [routerLink]="['about']"><button>About</button></a>
+  			<a [routerLink]="['photos']"><button>Photos</button></a>
+  			<a [routerLink]="['friends']"><button>Friends</button></a>
+  			<a [routerLink]="['more']"><button>More</button></a>
+  		</div>
+  		<div class="main_action"></div>
+  	</div>
+  </div>
+
+  <div class="main d-flex">
+    <div class="main_area">
+  		<router-outlet></router-outlet>
+  	</div>
+  </div>
+</div>

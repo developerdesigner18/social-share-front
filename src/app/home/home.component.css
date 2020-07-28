@@ -49,7 +49,7 @@ header .ads {
 header .logo, .login_container {
     flex: 1;
 }
-.left_sidebar {
+.left_sidebars {
     position: sticky !important;
     margin-top: 20px;
 }
@@ -74,13 +74,14 @@ img.logout {
     width: 95vw;
     margin: auto;
 }
-.left_sidebar,.right_sidebar{
+.left_sidebars,.right_sidebar{
 	flex: 1;
 }
-.main_area {
+.main_areas {
     flex: 2.5;
+		margin: 0 25px;
 }
-.left_sidebar, .right_sidebar > div, .main_area_content{
+.left_sidebars, .right_sidebar > div, .main_area_contents{
     display: flex;
     justify-content: center;
     background-color: #ffffff;
@@ -220,7 +221,7 @@ a.premium_upgrade {
     color: #a5a5a5;
     text-transform: capitalize;
 }
-.post input::placeholder {
+.posts input::placeholder {
     font-size: 15px;
     color: #003459a1;
 }
@@ -319,15 +320,12 @@ a.premium_upgrade {
     border: 2px solid #FF9000;
     background: none;
 }
-.main_area {
-    margin: 0 25px;
-}
-.post {
+.posts {
     display: flex;
     width: 100%;
     padding: 10px;
 }
-.post input {
+.posts input {
     background-color: #f1f1f1;
     border: 0;
     padding: 5px 10px;
@@ -339,7 +337,7 @@ a.premium_upgrade {
     font-size: 14px;
     padding-left: 15px;
 }
-.post button {
+.posts button {
     background-color: #003459;
     border: 0;
     color: #ffffff;
@@ -353,13 +351,13 @@ a.premium_upgrade {
 .online_sec.offline_sec > div:last-child {
     margin-bottom: 0;
 }
-.profile_pic img {
+.profile_pics img {
     width: 50px;
     height: 50px;
     object-fit: cover;
     border-radius: 50%;
 }
-.main_post_content {
+.main_post_contents {
     padding: 25px 20px;
     overflow: hidden;
 }
@@ -375,7 +373,7 @@ a.premium_upgrade {
     color: #003459;
     margin-top: -15px;
 }
-.profile_pic:before {
+.profile_pics:before {
     content: "";
     position: absolute;
     right: 2px;
@@ -538,7 +536,7 @@ button.owl-prev, .owl-next {
     border-radius: 50% !important;
     box-shadow: 0 0 6px 0px #003459;
 }
-.post_by_user_second .profile_pic:before {
+.post_by_user_second .profile_pics:before {
     content: "";
     position: absolute;
     right: 2px;
@@ -730,7 +728,7 @@ a.my_post_links:hover div > div {
 		right: 210px;
 	}
 
-	.left_sidebar { display: none; }
+	.left_sidebars { display: none; }
 
 	img.logout {
 		width: 6%;

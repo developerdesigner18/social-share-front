@@ -36,6 +36,7 @@ import { FamilyComponent } from './family/family.component';
 import { DetailsComponent } from './details/details.component';
 import { LifeComponent } from './life/life.component';
 import { PostModalComponent } from './post-modal/post-modal.component';
+import { RequestFriendsComponent } from './request-friends/request-friends.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { PostModalComponent } from './post-modal/post-modal.component';
     FamilyComponent,
     DetailsComponent,
     LifeComponent,
-    PostModalComponent
+    PostModalComponent,
+    RequestFriendsComponent
   ],
   entryComponents: [DialogBodyComponent],
   imports: [

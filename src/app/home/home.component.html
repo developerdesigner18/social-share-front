@@ -1,7 +1,7 @@
 
 	<app-header></app-header>
 	<div class="main_container d-flex align-items-start">
-		<div class="left_sidebar">
+		<div class="left_sidebars">
 			<div class="profile_image">
 				<img [src]="profileImg" onerror="this.src='/assets/images/default_user.jpg';">
 			</div>
@@ -28,7 +28,7 @@
 					<div>Account Setting</div>
 				</div>
 			</a>
-			<a class="my_post_links" href="#">
+			<a class="my_post_links" href="friends/{{id}}">
 				<div class="left_content">
 					<i class="fas fa-user-plus"></i>
 					<div class="badges_for_fr position-relative">Friend Requests</div>
@@ -53,17 +53,17 @@
 				</div>
 			</a>
 		</div>
-		<div class="main_area">
-			<div class="main_area_content post">
-			  <div class="post position-relative">
+		<div class="main_areas">
+			<div class="main_area_contents posts">
+			  <div class="posts position-relative">
 			    <input type="text" placeholder="What are you looking to sell today!">
 			    <button>Post</button>
 			  </div>
 			</div>
-			<div class="main_area_content timeline">
-			  <div class="main_post_content d-flex flex-column">
+			<div class="main_area_contents timeline">
+			  <div class="main_post_contents d-flex flex-column">
 			    <div class="d-flex">
-			      <div class="profile_pic position-relative">
+			      <div class="profile_pics position-relative">
 			        <img src="assets/images/user3.jpg">
 			      </div>
 			      <div class="name_and_desc">
@@ -139,10 +139,10 @@
 			    </div>
 			  </div>
 			</div>
-			<div class="main_area_content timeline post_by_user_second">
-			  <div class="main_post_content d-flex flex-column">
+			<div class="main_area_contents timeline post_by_user_second">
+			  <div class="main_post_contents d-flex flex-column">
 			    <div class="d-flex">
-			      <div class="profile_pic position-relative">
+			      <div class="profile_pics position-relative">
 			        <img src="assets/images/user2.jpg">
 			      </div>
 			      <div class="name_and_desc">

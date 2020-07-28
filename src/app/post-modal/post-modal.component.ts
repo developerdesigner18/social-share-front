@@ -1,7 +1,5 @@
 import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from  '@angular/material/dialog';
-import { ActivatedRoute} from '@angular/router';
-import { DomSanitizer } from '@angular/platform-browser';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -23,21 +21,17 @@ export class PostModalComponent implements OnInit {
 
   constructor(
     private  dialogRef:  MatDialogRef<PostModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public  data:  any,
-    public authService: AuthService,
-    private activatedRoute: ActivatedRoute,
-    private _sanitizer: DomSanitizer
+    @Inject(MAT_DIALOG_DATA) public  data: any,
+    public authService: AuthService
   ) {
     this.authService.getProfileforAbout(data.id).subscribe(res => {
-      this.userId = data.id
+      // this.userId = data.id
       this.name =  res.data.name
       this.smallProfile = res.data.profileImgURl
-      this.fileData = data.file
     })
 
-    console.log("-=-=-=-=-=-=-=-=Dialog data")
-    console.log(data.file)
-    console.log("-=-=-=-=-=-=-=-=Dialog data")
+    this.fileData = data.file
+    // this.fileData = data.image
   }
 
   ngOnInit(): void {
@@ -48,22 +42,27 @@ export class PostModalComponent implements OnInit {
   }
 
   postSave(){
-    this.fileCovToReturn = this.base64ToFile(
-      this.postImageElement.nativeElement.src,
-      this.fileData.name,
-    )
+    this.token = localStorage.getItem('token')
+    if(this.postImageElement){
+      this.fileCovToReturn = this.base64ToFile(
+        this.postImageElement.nativeElement.src,
+        this.fileData.name,
+      )
 
-    var mimeType = this.fileCovToReturn.type;
-    if (mimeType.match(/image\/*/) == null) {
-      return;
-    }
+      var mimeType = this.fileCovToReturn.type;
+      if (mimeType.match(/image\/*/) == null) {
+        return;
+      }
 
-    var reader = new FileReader();
-    reader.readAsDataURL(this.fileCovToReturn);
-    reader.onload = (_event) => {
-      this.token = localStorage.getItem('token')
-      this.authService.newPost(this.token, this.postMesssgeElement.nativeElement.value, this.fileCovToReturn).subscribe((res) => {
-          console.log(res)
+      var reader = new FileReader();
+      reader.readAsDataURL(this.fileCovToReturn);
+      reader.onload = (_event) => {
+        this.authService.newPost(this.token, this.postMesssgeElement.nativeElement.value, this.fileCovToReturn).subscribe((res) => {
+            window.location.replace('profile/' + window.location.href.split('/')[4]);
+        })
+      }
+    }else{
+      this.authService.newtextPost(this.token, this.postMesssgeElement.nativeElement.value).subscribe((res) => {
           window.location.replace('profile/' + window.location.href.split('/')[4]);
       })
     }

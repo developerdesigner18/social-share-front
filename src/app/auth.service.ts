@@ -1,7 +1,7 @@
 import { Injectable, Injector, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { MatDialog } from  '@angular/material/dialog';
 import { environment } from '../environments/environment';
 // import { environment } from '../environments/environment.prod';
@@ -93,6 +93,49 @@ export class AuthService {
     )
   }
 
+  getProfileForFriend(id): Observable<any> {
+    return this.httpClient.get(`${environment.apiUrl}/api/user/profile?id=${id}`, { headers: this.headers }).pipe(
+      map((res: Response) => {
+        // if(res['success'] == true){
+        //   this.router.navigate([`profile/${id}`])
+        // }
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  getUsersFriends(id): Observable<any> {
+    return this.httpClient.get(`${environment.apiUrl}/api/user/profile?id=${id}`, { headers: this.headers }).pipe(
+      map((res: Response) => {
+        // if(res['success'] == true){
+        //   this.router.navigate([`profile/${id}`])
+        // }
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  getAllFriends(u_token, userId): Observable<any> {
+    console.log("=-=-=-=-=--UserId", userId)
+    // const httpBody = new HttpParams().set('userId', userId)
+    // const data = JSON.stringify({userId: userId });
+    this.headers.append('token', u_token)
+    return this.httpClient.get<any>(`${environment.apiUrl}/api/friend`, { headers: {token: u_token}}).pipe(
+      map((res: Response) => {
+        console.log("-=-=-=-=-=-Rsponse")
+        console.log(res)
+        console.log("-=-=-=-=-=-Rsponse")
+        // if(res['success'] == true){
+        //   this.router.navigate([`profile/${id}`])
+        // }
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
   getProfileforAbout(id): Observable<any> {
     return this.httpClient.get(`${environment.apiUrl}/api/user/profile?id=${id}`, { headers: this.headers }).pipe(
       map((res: Response) => {
@@ -167,6 +210,17 @@ export class AuthService {
     formData.append('Url', imgUrl);
 
     return this.httpClient.post(`${environment.apiUrl}/api/photos/newPosts`, formData, {headers: {token: u_token}}).pipe(
+        catchError(this.handleError)
+    )
+  }
+
+  newtextPost(u_token, msg): Observable<any> {
+    const formData: any = new FormData();
+    formData.append('description', msg);
+    return this.httpClient.post(`${environment.apiUrl}/api/photos/newPosts`, formData, {headers: {token: u_token}}).pipe(
+      map((res: Response) => {
+        return res || {}
+      }),
         catchError(this.handleError)
     )
   }

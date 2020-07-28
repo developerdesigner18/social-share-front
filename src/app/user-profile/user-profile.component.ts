@@ -5,6 +5,7 @@ import { AuthService } from '../auth.service';
 import { DialogEditSuccessComponent } from '../dialog-edit-success/dialog-edit-success.component';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 declare var jQuery: any;
+declare var $: any;
 
 @Component({
   selector: 'app-user-profile',
@@ -65,19 +66,15 @@ export class UserProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    (function ($) {
+    $(window).on('load', function(){
       $(document).ready(function(){
         $('.owl-carousel').owlCarousel({
       		nav:true,
       		items:1,
           autoWidth: true
-      	});
-
-        $('.comment_sec').on('click',function(){
-    			$('.comments_container').toggle();
-    		});
+      	})
       });
-    })(jQuery);
+    });
   }
 
   show = true

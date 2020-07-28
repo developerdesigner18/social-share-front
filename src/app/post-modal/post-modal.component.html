@@ -8,10 +8,12 @@
   </div>
   <br/>
   <div>
-    <input #postMsg type="text" placeholder="What's on your mind?" style="width: 100%; border: none;">
+    <!-- <input #postMsg type="text" placeholder="Say something!" style="width: 100%; height: 100%; border: none;"> -->
+    <textarea #postMsg name="Text1" cols="40" rows="5" placeholder="Say something!" style="width: 100%; height: 100%; border: none;"></textarea>
   </div>
-  <div class="text-center col-md-12" style="margin-top: 50px;">
+  <div class="text-center col-md-12" style="margin-top: 50px;" *ngIf="data.postImg">
     <img #postImage [src]="data.postImg" src='/assets/images/default_user.jpg' style="height: 290px; width: 100%;" />
+    <!-- <img #postImage [src]="data.image" src='/assets/images/default_user.jpg' style="height: 290px; width: 100%;" /> -->
   </div>
   <br/>
   <div>

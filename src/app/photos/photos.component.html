@@ -1,8 +1,11 @@
 <div class="photos_sec">
-  <div (click)="openModal()" class="pics_cat position-relative">
-    <img src="assets/images/gal_1.jpg">
+  <div (click)="openModal();currentSlide(1)" class="pics_cat position-relative" *ngFor="let url of urls">
+    <!-- <img src="assets/images/gal_1.jpg"> -->
+    <!-- <div *ngFor="let url of urls"> -->
+      <img src="{{url}}" *ngIf="urls">
+    <!-- </div> -->
     <div class="pic_cat">
-      <div>Sports</div>
+      <!-- <div>Sports</div> -->
       <img class="plus_icon" src="assets/images/plus.png">
     </div>
   </div>
@@ -48,12 +51,13 @@
 			<span class="close cursor" (click)="closeModal()">&times;</span>
 			<div class="modal-content">
 
-				<div class="mySlides">
-					<div class="numbertext"><span>1</span> / 6</div>
-					<img src="assets/images/gal_1.jpg" style="width:100%">
+				<div class="mySlides" *ngFor="let url of urls;index as i">
+					<div class="numbertext"><span>{{i + 1}}</span> / {{totalImg}}</div>
+					<!-- <img src="assets/images/gal_1.jpg" style="width:100%"> -->
+          <img src="{{url}}" style="width:100%">
 				</div>
 
-				<div class="mySlides">
+				<!-- <div class="mySlides">
 					<div class="numbertext"><span>2</span> / 6</div>
 					<img src="assets/images/gal_2.jpg" style="width:100%">
 				</div>
@@ -74,7 +78,7 @@
         <div class="mySlides">
 					<div class="numbertext"><span>6</span> / 6</div>
 					<img src="assets/images/gal_6.jpg" style="width:100%">
-				</div>
+				</div> -->
 
 				<!-- Next/previous controls -->
 				<a class="prev" (click)="plusSlides(-1)">&#10094;</a>

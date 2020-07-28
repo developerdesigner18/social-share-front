@@ -16,13 +16,16 @@ export class LoginComponent implements OnInit {
   returnUrl: string;
   error: {};
   loginError: string;
+  show;
 
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
     public router: Router,
     public dialog:  MatDialog
-  ) { }
+  ) {
+    this.show = false;
+  }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -48,5 +51,9 @@ export class LoginComponent implements OnInit {
       this.loginForm.reset();
       this.submitted = false;
     }
+  }
+
+  passShow(event: any){
+    this.show = !this.show;
   }
 }
