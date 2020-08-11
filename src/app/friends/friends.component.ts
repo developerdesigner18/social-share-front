@@ -21,6 +21,10 @@ export class FriendsComponent implements OnInit {
       this.profileImg =  res.data.profileImgURl
       this.u_name =  res.data.name
     })
+    // console.log("-=-=-=-=-=-=friend stroge", localStorage.getItem("friendId"))
+    // this.authService.getFriendRequest(id).subscribe(res => {
+    //   console.log("-=-=-=-=-=-any friend", res)
+    // })
   }
 
   ngOnInit(): void {

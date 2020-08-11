@@ -1,7 +1,7 @@
-import { Injectable, Injector, OnInit } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 
 import { Router } from '@angular/router';
-import { HttpClient, HttpHeaders, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { MatDialog } from  '@angular/material/dialog';
 import { environment } from '../environments/environment';
 // import { environment } from '../environments/environment.prod';
@@ -79,6 +79,7 @@ export class AuthService {
   logout() {
     localStorage.removeItem('currentUser');
     localStorage.removeItem('token');
+    localStorage.removeItem('friendId');
   }
 
   getUserProfile(id): Observable<any> {
@@ -87,49 +88,6 @@ export class AuthService {
         if(res['success'] == true){
           this.router.navigate([`profile/${id}`])
         }
-        return res || {}
-      }),
-      catchError(this.handleError)
-    )
-  }
-
-  getProfileForFriend(id): Observable<any> {
-    return this.httpClient.get(`${environment.apiUrl}/api/user/profile?id=${id}`, { headers: this.headers }).pipe(
-      map((res: Response) => {
-        // if(res['success'] == true){
-        //   this.router.navigate([`profile/${id}`])
-        // }
-        return res || {}
-      }),
-      catchError(this.handleError)
-    )
-  }
-
-  getUsersFriends(id): Observable<any> {
-    return this.httpClient.get(`${environment.apiUrl}/api/user/profile?id=${id}`, { headers: this.headers }).pipe(
-      map((res: Response) => {
-        // if(res['success'] == true){
-        //   this.router.navigate([`profile/${id}`])
-        // }
-        return res || {}
-      }),
-      catchError(this.handleError)
-    )
-  }
-
-  getAllFriends(u_token, userId): Observable<any> {
-    console.log("=-=-=-=-=--UserId", userId)
-    // const httpBody = new HttpParams().set('userId', userId)
-    // const data = JSON.stringify({userId: userId });
-    this.headers.append('token', u_token)
-    return this.httpClient.get<any>(`${environment.apiUrl}/api/friend`, { headers: {token: u_token}}).pipe(
-      map((res: Response) => {
-        console.log("-=-=-=-=-=-Rsponse")
-        console.log(res)
-        console.log("-=-=-=-=-=-Rsponse")
-        // if(res['success'] == true){
-        //   this.router.navigate([`profile/${id}`])
-        // }
         return res || {}
       }),
       catchError(this.handleError)
@@ -151,6 +109,15 @@ export class AuthService {
         if(res['success'] == true){
           this.router.navigate([`home/${id}`])
         }
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  getHomePostProfile(id): Observable<any> {
+    return this.httpClient.get(`${environment.apiUrl}/api/user/profile?id=${id}`, { headers: this.headers }).pipe(
+      map((res: Response) => {
         return res || {}
       }),
       catchError(this.handleError)
@@ -235,9 +202,122 @@ export class AuthService {
     )
   }
 
+  sendFriendRequest(userId, requestId): Observable<any> {
+    return this.httpClient.post(`${environment.apiUrl}/api/friend/send`, {userId: userId, requestId: requestId}, {headers: this.headers}).pipe(
+      map((res: Response) => {
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  acceptFriendRequest(userId, confirmId): Observable<any> {
+    return this.httpClient.post(`${environment.apiUrl}/api/friend/accept`, {userId: userId, requestId: confirmId}, {headers: this.headers}).pipe(
+      map((res: Response) => {
+        console.log("=-=-=-=-=-=res", res)
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  rejectFriendRequest(userId, rejectId): Observable<any> {
+    return this.httpClient.post(`${environment.apiUrl}/api/friend/reject`, {userId: userId, requestId: rejectId}, {headers: this.headers}).pipe(
+      map((res: Response) => {
+        console.log("=-=-=-=-=-=res", res)
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  getFriendPost(id): Observable<any> {
+    return this.httpClient.get(`${environment.apiUrl}/api/photos/showPost?id=${id}`, { headers: this.headers }).pipe(
+      map((res: Response) => {
+        // if(Object.keys(res).length >= 0){
+        //   this.router.navigate(['friends/5ef57cc81b40cf10ecf3e4ae/friend_timeline'])
+        // }
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  getProfileForFriend(id): Observable<any> {
+    return this.httpClient.get(`${environment.apiUrl}/api/user/profile?id=${id}`, { headers: this.headers }).pipe(
+      map((res: Response) => {
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  getUsersFriends(id): Observable<any> {
+    return this.httpClient.get(`${environment.apiUrl}/api/user/profile?id=${id}`, { headers: this.headers }).pipe(
+      map((res: Response) => {
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  getAllFriends(u_token): Observable<any> {
+    this.headers.append('token', u_token)
+    // return this.httpClient.get<any>(`${environment.apiUrl}/api/friend`, { headers: {token: u_token}}).pipe(
+    return this.httpClient.get<any>(`${environment.apiUrl}/api/friend/allfriendList`, { headers: {token: u_token}}).pipe(
+      map((res: Response) => {
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  setRequestSend(u_token): Observable<any> {
+    this.headers.append('token', u_token)
+    return this.httpClient.get(`${environment.apiUrl}/api/friend/sentRequests`, { headers: {token: u_token}}).pipe(
+      map((res: Response) => {
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  getFriendRequest(id): Observable<any> {
+    return this.httpClient.get(`${environment.apiUrl}/api/friend/requests?id=${id}`, { headers: this.headers}).pipe(
+      map((res: Response) => {
+        console.log("-=-=-=-=-=-=-=res revese", res)
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  getFriendData(id): Observable<any> {
+    // this.headers.append('token', u_token)
+    return this.httpClient.get(`${environment.apiUrl}/api/friend/requestsData?id=${id}`, { headers: this.headers}).pipe(
+      map((res: Response) => {
+        // console.log("=-=-=-=-=-=-res headers", res)
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  getAllFriendPost(u_token): Observable<any> {
+    this.headers.append('token', u_token)
+    return this.httpClient.get(`${environment.apiUrl}/api/photos/homePost`, { headers: {token: u_token}}).pipe(
+      map((res: Response) => {
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
   private handleError(error: HttpErrorResponse) {
     let msg = '';
-    if(error.error.success == false){
+    if(error.error.message == 'friend request already sent or recive either you are already friends'){
+      alert('Request already send')
+    }else if(error.error.success == false && error.error.message == 'email in not registered'){
       this.dialog.open(DialogEmailErrorComponent, {
         width: '500px'
       })

@@ -1,10 +1,17 @@
 <div class="overview-main">
   <div class="overview_tab">
     <i class="fas fa-briefcase"></i>
-    <div>works as <span>{{u_designation}}</span></div>
+    <div>
+      <span *ngIf="u_designation; else no_designation">works as <b>{{u_designation}}</b></span>
+      <!-- <span *ngIf="f_designation; else no_designation">{{f_designation}}</span> -->
+      <ng-template #no_designation>Not mention work</ng-template>
+    </div>
   </div>
   <div class="overview_tab">
 		<i class="fas fa-home"></i>
-		<div>lives in <span>{{u_city}}, {{u_state}}, {{u_country}}</span></div>
+    <div>
+  		<div *ngIf="u_country; else no_country"><span>lives in <b>{{u_city}}, {{u_state}}, {{u_country}}</b></span></div>
+      <ng-template #no_country>Not mention location</ng-template>
+    </div>
 	</div>
 </div>

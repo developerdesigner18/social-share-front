@@ -3,7 +3,7 @@
   <!-- <button type="button" (click)="textPost()">Post</button> -->
   <div class="slider_bid_like-share d-flex flex-column">
     <input type="file" style="display:none" #file class="btn btn-primary" (change)="openDialog($event)" multiple="" />
-    <div class="take_action" style="grid-template-columns: 1fr 1fr 0fr; padding: 5px" (click)="file.click();">
+    <div class="take_action" style="grid-template-columns: 1fr 1fr 0fr; padding: 5px;" (click)="file.click();">
       <button class="like_sec" style="display: contents;">
         <i class="fa fa-camera"></i>
         <div>Photo</div>
@@ -28,8 +28,8 @@
       <div class="item_desc mt-3" style="width: 100%">{{data.description}}</div>
     </div>
   </div>
-  <div class="slider_bid_like-share d-flex flex-column" style="width: 100%">
-    <div class="owl-carousel owl-theme" *ngIf="data.imageUrl">
+  <div class="slider_bid_like-share d-flex flex-column" style="width: 100%" id="slider-owl-carousel-load">
+    <div class="owl-carousel owl-theme" id="owl-demo" *ngIf="data.imageUrl">
       <div class="item">
         <img class="slider_image" [src]="data.imageUrl" [attr.data-slide-to]="i">
       </div>

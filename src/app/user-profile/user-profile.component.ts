@@ -62,7 +62,14 @@ export class UserProfileComponent implements OnInit {
       if(this.imageCov == undefined){
         this.imageCov = 'assets/images/bg.jpg'
       }
+
+      // this.owlcarouselSet()
     })
+
+    if(this.router.url !== '/friends/' + this.activatedRoute.snapshot.paramMap.get('id'))
+    {
+      localStorage.removeItem('friendId')
+    }
   }
 
   ngOnInit(): void {
@@ -75,6 +82,19 @@ export class UserProfileComponent implements OnInit {
       	})
       });
     });
+    $(document).ready(function(){
+      $('.owl-carousel').owlCarousel({
+        nav:true,
+        items:1,
+        autoWidth: true
+      })
+    })
+    $('.owl-carousel').owlCarousel({
+      nav:true,
+      items:1,
+      autoWidth: true
+    })
+    // this.owlcarouselSet()
   }
 
   show = true
@@ -84,12 +104,6 @@ export class UserProfileComponent implements OnInit {
 
   showImageCrop(){
     this.show = true;
-  }
-
-  logout() {
-    localStorage.removeItem('currentUser');
-    localStorage.removeItem('token');
-    window.location.replace('');
   }
 
   openDialog() {
@@ -215,5 +229,14 @@ export class UserProfileComponent implements OnInit {
         return this.fileCovToReturn.name;
     }
 
-
+    // owlcarouselSet(){
+    //   console.log("-=-=-=-=-=-call")
+    //   $(document).ready(function(){
+    //     $('.owl-carousel').owlCarousel({
+    //       nav:true,
+    //       items:1,
+    //       autoWidth: true
+    //     })
+    //   })
+    // }
 }

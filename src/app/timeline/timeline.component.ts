@@ -48,7 +48,6 @@ export class TimelineComponent implements OnInit {
       for(let i = 0; i < this.datas.length; i++){
         this.description = this.datas[i].description;
         this.url = this.datas[i].imageUrl;
-
       }
       return this.datas
     })
@@ -56,7 +55,8 @@ export class TimelineComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    $(document).ready(function(){
+    jQuery(document).ready(function(){
+      // $('#owl-demo').trigger('refresh.owl.carousel')
       $('.owl-carousel').owlCarousel({
         nav:true,
         items:1,
@@ -70,7 +70,24 @@ export class TimelineComponent implements OnInit {
         autoWidth: true
     	})
     });
+    // $('.owl-carousel').owlCarousel({
+    //   nav:true,
+    //   items:1,
+    //   autoWidth: true
+    // })
+    // var element = this.id;
+    // $('.owl-carousel').addClass('display','block')
+    // $('.owl-carousel'):not(.owl-loaded){
+    //     opacity: 0;
+    // }
+    // function init_carousel(){
+    //   console.log("=-=-=-=-=-init car")
+    //   console.log($('.owl-carousel').owlCarousel())
+    //   console.log("=-=-=-=-=-init car")
+    // }
   }
+
+
 
   openTextDialog(){
     this.dialog.open(PostModalComponent, {
@@ -103,8 +120,6 @@ export class TimelineComponent implements OnInit {
         panelClass: 'custom-dialog-container',
         data: { id: this.id, postImg: this.previewUrl, file: this.fileData }
       });
-
-
     }
 
     //Multipul Image upload
@@ -190,4 +205,14 @@ export class TimelineComponent implements OnInit {
   //    return new File([u8arr], filename, { type: mime });
   // }
 
+  changeslider(){
+    console.log("-=-=-=-=-=-=-=-chnage slider")
+      $(document).ready(function(){
+        $('.owl-carousel').owlCarousel({
+          nav:true,
+          items:1,
+          autoWidth: true
+        })
+      })
+  }
 }

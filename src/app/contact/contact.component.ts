@@ -16,9 +16,16 @@ export class ContactComponent implements OnInit {
     private activatedRoute: ActivatedRoute
   ) {
     let id = this.activatedRoute.parent.parent.params['value']['id'];
-    this.authService.getProfileforAbout(id).subscribe(res => {
-      this.u_email =  res.data.emailId
-    })
+    if(localStorage.getItem('friendId')){
+      this.authService.getProfileForFriend(localStorage.getItem('friendId')).subscribe(res => {
+        this.u_email =  res.data.emailId
+      })
+    }else{
+      this.authService.getProfileforAbout(id).subscribe(res => {
+        this.u_email =  res.data.emailId
+      })
+    }
+
    }
 
   ngOnInit(): void {

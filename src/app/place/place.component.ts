@@ -17,11 +17,20 @@ export class PlaceComponent implements OnInit {
     private activatedRoute: ActivatedRoute
   ) {
     let id = this.activatedRoute.parent.parent.params['value']['id'];
-    this.authService.getProfileforAbout(id).subscribe(res => {
-      this.u_country =  res.data.country
-      this.u_state =  res.data.state
-      this.u_city =  res.data.city
-    })
+    if(localStorage.getItem('friendId')){
+      this.authService.getProfileForFriend(localStorage.getItem('friendId')).subscribe(res => {
+        this.u_country =  res.data.country
+        this.u_state =  res.data.state
+        this.u_city =  res.data.city
+      })
+    }else{
+      this.authService.getProfileforAbout(id).subscribe(res => {
+        this.u_country =  res.data.country
+        this.u_state =  res.data.state
+        this.u_city =  res.data.city
+      })
+    }
+
   }
 
   ngOnInit(): void {

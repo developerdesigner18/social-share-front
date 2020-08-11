@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-work',
@@ -7,7 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WorkComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public router: Router,
+    public authService: AuthService
+  ) {
+    console.log("-=-=-=-=-=-friendId")
+    console.log(localStorage.getItem('friendId'))
+    console.log("-=-=-=-=-=-friendId")
+    if(localStorage.getItem('friendId')){
+      this.authService.getFriendData(localStorage.getItem('friendId')).subscribe(res => {
+        console.log("--=-=-=-=-=-=-res", res)
+      })
+    }
+  }
 
   ngOnInit(): void {
   }

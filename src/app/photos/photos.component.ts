@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-photos',
@@ -11,20 +12,40 @@ export class PhotosComponent implements OnInit {
   token = '';
   urls = [];
   totalImg = 0;
+  public frd_datas: any = [];
 
   public datas;
-  constructor(public authService: AuthService) {
+  constructor(
+    public authService: AuthService,
+    public router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {
     this.token = localStorage.getItem('token')
-    this.authService.getProfilePost(this.token).subscribe(res => {
-      this.datas = res
-      this.totalImg = this.datas.length
-      for(let i = 0; i < this.datas.length; i++){
-        if(this.datas[i].imageUrl != undefined){
-          this.urls.push(this.datas[i].imageUrl);
+
+    if(this.router.url === '/friends/' + this.activatedRoute.parent.params['value']['id'] + '/photos'){
+      this.authService.getFriendPost(localStorage.getItem('friendId')).subscribe(res => {
+        this.datas = res
+        this.totalImg = this.datas.length
+        for(let i = 0; i < this.datas.length; i++){
+          if(this.datas[i].imageUrl != undefined){
+            this.urls.push(this.datas[i].imageUrl);
+          }
         }
-      }
-      return this.datas
-    })
+        return this.datas
+      })
+    }else{
+      localStorage.removeItem('friendId')
+      this.authService.getProfilePost(this.token).subscribe(res => {
+        this.datas = res
+        this.totalImg = this.datas.length
+        for(let i = 0; i < this.datas.length; i++){
+          if(this.datas[i].imageUrl != undefined){
+            this.urls.push(this.datas[i].imageUrl);
+          }
+        }
+        return this.datas
+      })
+    }
   }
 
   ngOnInit(): void {

@@ -17,6 +17,7 @@ export class HeaderComponent implements OnInit {
   logout() {
     localStorage.removeItem('currentUser');
     localStorage.removeItem('token');
+    localStorage.removeItem('friendId');
     window.location.replace('');
   }
 }

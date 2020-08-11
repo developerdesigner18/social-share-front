@@ -58,13 +58,25 @@ export class PostModalComponent implements OnInit {
       reader.readAsDataURL(this.fileCovToReturn);
       reader.onload = (_event) => {
         this.authService.newPost(this.token, this.postMesssgeElement.nativeElement.value, this.fileCovToReturn).subscribe((res) => {
+          if(window.location.href.split('/')[3] == "home"){
+            window.location.replace('home/' + window.location.href.split('/')[4]);
+          }else{
             window.location.replace('profile/' + window.location.href.split('/')[4]);
+          }
         })
       }
     }else{
-      this.authService.newtextPost(this.token, this.postMesssgeElement.nativeElement.value).subscribe((res) => {
-          window.location.replace('profile/' + window.location.href.split('/')[4]);
-      })
+      if(this.postMesssgeElement.nativeElement.value == ''){
+        console.log("You are not set description")
+      }else if(this.postMesssgeElement.nativeElement.value.valid !== ''){
+        this.authService.newtextPost(this.token, this.postMesssgeElement.nativeElement.value).subscribe((res) => {
+          if(window.location.href.split('/')[3] == "home"){
+            window.location.replace('home/' + window.location.href.split('/')[4]);
+          }else{
+            window.location.replace('profile/' + window.location.href.split('/')[4]);
+          }
+        })
+      }
     }
   }
 

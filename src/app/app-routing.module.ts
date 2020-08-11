@@ -49,7 +49,6 @@ const routes: Routes = [
   { path: 'reset', component: ResetComponent},
   { path: 'friends/:id', component: RequestFriendsComponent, canActivate:[AuthGuard],
     children: [
-      { path: 'friend_timeline', component: TimelineComponent },
       { path: 'about', component: AboutComponent,
         children: [
           { path: 'overview', component: OverviewComponent },
@@ -59,12 +58,12 @@ const routes: Routes = [
           { path: 'family_and_relationships', component: FamilyComponent },
           { path: 'about_details', component: DetailsComponent },
           { path: 'life_event', component: LifeComponent },
-          // { path: '', redirectTo:'overview', pathMatch:"full" }
+          { path: '', redirectTo:'overview', pathMatch:"full" }
         ]
       },
       { path: 'photos', component: PhotosComponent },
-      { path: 'friends', component: FriendsComponent },
-      // { path: '', redirectTo:'friend_timeline', pathMatch:"full" }
+      { path: 'friends', component: FriendsComponent }
+      // { path: '', redirectTo:'friends/:id', pathMatch:"full" }
     ]
   },
   { path: 'home/:id', component: HomeComponent, canActivate:[AuthGuard]},
