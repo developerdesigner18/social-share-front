@@ -2,7 +2,6 @@ import { Component, OnInit, ViewEncapsulation, ViewChild} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog} from  '@angular/material/dialog';
 import { PostModalComponent } from '../post-modal/post-modal.component';
-// import { UserProfileComponent } from '../user-profile/user-profile.component';
 import { AuthService } from '../auth.service';
 declare var jQuery: any;
 declare var $: any;
@@ -16,12 +15,11 @@ declare var $: any;
 export class TimelineComponent implements OnInit {
   id = '';
   postImage: any = '';
-  // images = [];
-  images: Array<any>;
+  images = [];
   postProfileimg: any = null;
   u_name = '';
   description = '';
-  url = '';
+  urls = [];
   profileImg = '';
   posts: any = '';
   token = '';
@@ -34,7 +32,6 @@ export class TimelineComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     public authService: AuthService,
     public router: Router
-    // public userprofile: UserProfileComponent
   ) {
     this.id = this.activatedRoute.parent.params['value']['id'];
     this.authService.getUserProfile(this.id).subscribe(res => {
@@ -47,33 +44,43 @@ export class TimelineComponent implements OnInit {
       this.datas = res
       for(let i = 0; i < this.datas.length; i++){
         this.description = this.datas[i].description;
-        this.url = this.datas[i].imageUrl;
+        this.urls.push(this.datas[i].imageUrl)
       }
       return this.datas
     })
-    // this.userprofile.ngOnInit()
   }
 
   ngOnInit(): void {
+    // $.noConflict();
+    $('.owl-carousel').owlCarousel();
     jQuery(document).ready(function(){
       // $('#owl-demo').trigger('refresh.owl.carousel')
-      $('.owl-carousel').owlCarousel({
+      jQuery('.owl-carousel').owlCarousel({
         nav:true,
         items:1,
-        autoWidth: true
+        autoWidth: true,
+        video:true,
+        lazyLoad: true
       })
     });
     $(window).on('load', function(){
       $('.owl-carousel').owlCarousel({
     		nav:true,
     		items:1,
-        autoWidth: true
+        autoWidth: true,
+        video:true,
+        lazyLoad: true
     	})
+
+      // $('.owl-video-play-icon').remove();
     });
+    this.changeslider();
+
     // $('.owl-carousel').owlCarousel({
     //   nav:true,
     //   items:1,
-    //   autoWidth: true
+    //   autoWidth: true,
+    //   video:true,
     // })
     // var element = this.id;
     // $('.owl-carousel').addClass('display','block')
@@ -87,8 +94,6 @@ export class TimelineComponent implements OnInit {
     // }
   }
 
-
-
   openTextDialog(){
     this.dialog.open(PostModalComponent, {
       width: '550px',
@@ -97,122 +102,41 @@ export class TimelineComponent implements OnInit {
     });
   }
 
-  private filesData: any[] = [];
   fileData: File = null;
   previewUrl: any = null;
+  previewallUrl: any[] = [];
   fileToReturn: File = null;
+  files_data: any = [];
   openDialog(event: any): void {
-    this.fileData = <File>event.target.files[0]
+    if (event.target.files && event.target.files[0]) {
+        var filesAmount = event.target.files.length;
+        for (let i = 0; i < filesAmount; i++) {
+          var reader = new FileReader();
 
-    // Show preview
-    var mimeType = this.fileData.type;
-    if (mimeType.match(/image\/*/) == null) {
-      return;
+          reader.onload = (event:any) => {
+            this.images.push(event.target.result);
+          }
+          reader.readAsDataURL(event.target.files[i]);
+          this.files_data.push(event.target.files[i]);
+        }
     }
-
-    var reader = new FileReader();
-    reader.readAsDataURL(this.fileData);
-
-    reader.onload = (_event) => {
-      this.previewUrl = reader.result; //based64 image
-      this.dialog.open(PostModalComponent, {
-        width: '550px',
-        panelClass: 'custom-dialog-container',
-        data: { id: this.id, postImg: this.previewUrl, file: this.fileData }
-      });
-    }
-
-    //Multipul Image upload
-    // if (event.target.files && event.target.files[0]) {
-    //     var filesAmount = event.target.files.length;
-    //     for (let i = 0; i < filesAmount; i++) {
-    //       var reader = new FileReader();
-    //
-    //       reader.onload = (event:any) => {
-    //         // console.log(event.target.result);
-    //          this.images.push(event.target.result);
-    //          // console.log("=-=-=-=-=-=-reader.target.result")
-    //          // console.log(event.target.result)
-    //          // console.log("=-=-=-=-=-=-reader.target.result")
-    //          // this.myForm.patchValue({
-    //          //    fileSource: this.images
-    //          // });
-    //       }
-    //       reader.readAsDataURL(event.target.files[i]);
-    //       // this.fileData = event.target.files[i]
-    //       // reader.readAsDataURL(this.fileData);
-    //       // console.log("=-=-=-=-=-=target")
-    //       // console.log(this.images)
-    //       // console.log(reader.result)
-    //       // console.log("-=-=-=-=-=-target")
-    //       // console.log(event.target.files[i].name)
-    //       // console.log("=-=-=-=-=-=this.previewUrl")
-    //       // console.log(this.previewUrl)
-    //       // console.log("=-=-=-=-=-=this.previewUrl")
-    //       // this.fileToReturn = this.base64ToFile(
-    //       //   this.images,
-    //       //   event.target.files[i].name
-    //       // )
-    //       // this.images.push(event.target.files[i])
-    //
-    //       }
-    //
-    //       // reader.onload = (_event) => {
-    //       //   this.previewUrl = reader.result; //based64 image
-    //       //   console.log("==-=-=--=--previewUrl")
-    //       //   console.log(this.previewUrl)
-    //       //   console.log("==-=-=--=--")
-    //
-    //       // this.dialog.open(PostModalComponent, {
-    //       //   width: '550px',
-    //       //   panelClass: 'custom-dialog-container',
-    //       //   data: { id: this.id, file: event.target.files[i].name }
-    //       // });
-    //     // }
-    //
-    //     // console.log("---=-=-=-=-=-=-Images")
-    //     // console.log(this.fileToReturn)
-    //     // console.log("---=-=-=-=-=-=-Images")
-    //     // this.fileToReturn = this.base64ToFile(
-    //     //   this.images,
-    //     //   this.imageChangedEvent.target.files[0].name
-    //     // )
-    // }
-    // console.log("-=-=-=-=-files")
-    // console.log(this.images)
-    // console.log("-=-=-=-=-files")
-    // this.dialog.open(PostModalComponent, {
-    //   width: '550px',
-    //   panelClass: 'custom-dialog-container',
-    //   data: { id: this.id, image: this.images }
-    // });
+    this.dialog.open(PostModalComponent, {
+      width: '550px',
+      panelClass: 'custom-dialog-container',
+      data: { id: this.id, images: this.images, file: this.files_data  }
+    });
   }
 
-  // base64ToFile(data, filename) {
-  //   console.log("=-=-=-=-=-=Data")
-  //   console.log(data)
-  //   console.log("=-=-=-=-=-=Data")
-  //    const arr = data.toString().split(',');
-  //    const mime = arr[0].match(/:(.*?);/)[1];
-  //    const bstr = atob(arr[1]);
-  //    let n = bstr.length;
-  //    let u8arr = new Uint8Array(n);
-  //
-  //    while(n--){
-  //        u8arr[n] = bstr.charCodeAt(n);
-  //    }
-  //
-  //    return new File([u8arr], filename, { type: mime });
-  // }
-
   changeslider(){
-    console.log("-=-=-=-=-=-=-=-chnage slider")
-      $(document).ready(function(){
-        $('.owl-carousel').owlCarousel({
-          nav:true,
-          items:1,
-          autoWidth: true
-        })
+    $(document).ready(function(){
+      $('.owl-carousel').owlCarousel({
+        nav:true,
+        items:1,
+        autoWidth: true,
+        video:true,
+        lazyLoad: true
       })
+      // $('.owl-video-play-icon').remove();
+    })
   }
 }

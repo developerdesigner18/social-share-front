@@ -23,7 +23,7 @@ header{
 	position: unset;
 }
 .logo {
-    width: 42%;
+    width: 60%;
 }
 .header_alignment{
 	width: 95vw;
@@ -428,21 +428,49 @@ img.slider_image {
     background-color: #ecedee;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    padding: 7px 0;
+    padding: 5px;
     margin-top: 15px;
     border-radius: 4px;
 }
+.post_take_action {
+    grid-template-columns: 0fr 0fr 0fr;
+}
+
+.take_action > button {
+		display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff00;
+    border: 0;
+		text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: #003459;
+}
+
+.take_action > button i {
+    font-size: 20px;
+    margin-right: 10px;
+    font-weight: 600;
+}
+
+.take_action > button span {
+    color: #ff9000;
+    padding-left: 5px;
+    font-weight: 500;
+    font-size: 16px;
+}
+.take_action > button div {
+    display: flex;
+    align-items: center;
+}
+
 button.comment_sec {
     border: 1px solid #ff9000 !important;
     border-top: 0 !important;
     border-bottom: 0 !important;
 }
-.take_action > button {
-    text-align: center;
-    font-size: 14px;
-    font-weight: 500;
-    color: #003459;
-}
+
 .Comment_sec {
     border-left: 1px solid #ff9000;
     border-right: 1px solid #ff9000;
@@ -479,20 +507,25 @@ button.comment_sec {
     line-height: 1;
 }
 .owl-stage {
-    display: -webkit-box;
+		display: -webkit-box;
 }
-.owl-carousel.owl-drag .owl-item,.owl-carousel .owl-stage{
+.owl-carousel, .owl-drag, .owl-item, .owl-carousel, .owl-stage{
     width: 100% !important;
 }
+/* .owl-stage-outer { */
+	/* transition: height 500ms ease-in-out 0s; */
+	/* transform: translate3d(-740px, 0px, 0px) !important; */
+	/* transition: all 0.25s ease 0s; */
+/* } */
 .owl-dots {
     display: none;
 }
 .owl-nav {
     position: absolute;
-    top: 0;
+    top: 150px;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 10%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -557,19 +590,7 @@ button.owl-prev, .owl-next {
     display: flex;
     align-items: center;
 }
-.take_action > button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: 400;
-    background-color: #ffffff00;
-    border: 0;
-}
-.take_action > button i {
-    font-size: 20px;
-    margin-right: 10px;
-    font-weight: 600;
-}
+
 a.my_post_links:hover div > div {
     text-decoration: underline;
 }
@@ -600,16 +621,7 @@ a.my_post_links:hover div > div {
     bottom: -3px;
     left: -18px;
 }
-.take_action > button span {
-    color: #ff9000;
-    padding-left: 5px;
-    font-weight: 500;
-    font-size: 16px;
-}
-.take_action > button div {
-    display: flex;
-    align-items: center;
-}
+
 .comments_container {
     background-color: #f0f8ff;
     border-radius: 4px;
@@ -768,7 +780,12 @@ a.my_post_links:hover div > div {
 		margin-bottom: 10px;
 }
 
-.write_words button {
+.write_words div {
+	align-items: center;
+	/* margin-top: -12px; */
+}
+
+/* .write_words button {
     background-color: #003459;
     border: 0;
     color: #ffffff;
@@ -778,45 +795,7 @@ a.my_post_links:hover div > div {
     position: absolute;
     right: 35px;
 		top: 28px;
-}
-
-.take_action {
-    background-color: #ecedee;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    padding: 7px 0;
-    margin-top: 15px;
-    border-radius: 4px;
-}
-.take_action > button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: 400;
-    background-color: #ffffff00;
-    border: 0;
-}
-.take_action > button {
-    text-align: center;
-    font-size: 14px;
-    font-weight: 500;
-    color: #003459;
-}
-.take_action > button i {
-    font-size: 20px;
-    margin-right: 10px;
-    font-weight: 600;
-}
-.take_action > button div {
-    display: flex;
-    align-items: center;
-}
-.take_action > button span {
-    color: #ff9000;
-    padding-left: 5px;
-    font-weight: 500;
-    font-size: 16px;
-}
+} */
 
 .profile_pic_profile img {
     width: 50px;
@@ -835,4 +814,11 @@ a.my_post_links:hover div > div {
 }
 .mat-dialog-container {
 	padding: 0 !important;
+}
+
+.slider_video {
+	height: 300px;
+	margin-top: 25px;
+	width: 100%;
+	object-fit: cover;
 }

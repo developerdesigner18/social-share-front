@@ -21,7 +21,7 @@ header{
 	padding: 15px 0;
 }
 .logo {
-    width: 42%;
+    width: 60%;
 }
 .header_alignment{
 	width: 95vw;
@@ -301,6 +301,11 @@ body .profile_pic_main_tabs_sec .actions {
     font-size: 14px;
     padding-left: 15px;
 }
+
+.say_words > div > div > a:hover{
+	padding: 10px;
+  background-color: aliceblue;
+}
 .commenter:before {
     position: absolute;
     content: "";
@@ -366,10 +371,12 @@ body .profile_pic_main_tabs_sec .actions {
     display: -ms-box;
     display: flex;
 }
-.owl-carousel.owl-drag .owl-item, .owl-carousel .owl-stage {
+.owl-carousel, .owl-drag, .owl-item, .owl-carousel, .owl-stage {
     width: 100% !important;
 }
-.item {
+
+.owl-carousel .item-video { height: 300px; }
+.item, .item-video {
     margin: auto;
     width: 96%;
 }
@@ -378,15 +385,23 @@ img.slider_image {
     object-fit: cover;
 }
 .slider_image {
-    height: 300px;
-    margin-top: 25px;
+  	height: 300px;
+  	margin-top: 25px;
 }
+
+.slider_video {
+		height: 300px;
+		margin-top: 25px;
+		width: 100%;
+		object-fit: cover;
+}
+
 .owl-nav {
     position: absolute;
-    top: 0;
+    top: 150px;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 10%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -486,24 +501,25 @@ button.owl-next span {
     background-color: #ecedee;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    padding: 7px 0;
+    padding: 5px;
     margin-top: 15px;
     border-radius: 4px;
+}
+.post_take_action {
+    grid-template-columns: 0fr 0fr 0fr;
 }
 .take_action > button {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-weight: 400;
     background-color: #ffffff00;
     border: 0;
-}
-.take_action > button {
-    text-align: center;
+		text-align: center;
     font-size: 14px;
     font-weight: 500;
     color: #003459;
 }
+
 .take_action > button i {
     font-size: 20px;
     margin-right: 10px;
@@ -687,6 +703,9 @@ button.comment_sec {
 }
 .about_description{
 	flex: 2;
+	margin-left: 10px;
+	flex:none;
+	width: 100%
 }
 
 .about-menu{
@@ -761,4 +780,20 @@ button.comment_sec {
 
 .custom-dialog-container .mat-dialog-container {
 	padding: 0 !important;
+}
+
+.playpause {
+		background-image: url('/../assets/images/play_video.jpg');
+    background-repeat:no-repeat;
+    width:50%;
+    height:50%;
+    position:absolute;
+    left:0%;
+    right:0%;
+    top:0%;
+    bottom:0%;
+    margin:auto;
+    background-size:contain;
+    background-position: center;
+		z-index: 1;
 }

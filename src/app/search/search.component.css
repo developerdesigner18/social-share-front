@@ -22,7 +22,7 @@ header{
 	padding: 15px 0;
 }
 .logo {
-    width: 42%;
+    width: 60%;
 }
 .header_alignment{
 	width: 95vw;
@@ -44,7 +44,7 @@ header .ads {
     padding: 5px;
     border-radius: 4px;
     color: #f0f8ff;
-    height: 43px;
+    height: 70px;
 }
 header .logo, .login_container {
     flex: 1;
@@ -74,17 +74,17 @@ img.logout {
     width: 95vw;
     margin: auto;
 }
-.left_sidebar,.right_sidebar{
+.left_sidebar {
 	flex: 1;
 }
 .main_area {
     flex: 2.5;
 }
-.left_sidebar, .right_sidebar > div, .main_area_content{
+.left_sidebar, .main_area_content{
     display: flex;
     justify-content: center;
     background-color: #ffffff;
-     box-shadow: 0px 1px 15px 0px rgba(0, 52, 89, 0.58);
+    box-shadow: 0px 1px 15px 0px rgba(0, 52, 89, 0.58);
     position: relative;
     top: 20px;
     flex-direction: column;
@@ -172,153 +172,6 @@ a.my_post_links{
     bottom: 0;
     margin: auto;
 }
-.upgrade_premium i {
-    font-size: 20px;
-    color: #ff9000;
-}
-a.premium_upgrade {
-    width: 90%;
-}
-.upgrade_premium {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    color: #003459;
-}
-.upgrade_premium div {
-    font-weight: 500;
-    margin-left: 10px;
-    font-size: 14px;
-    text-transform: uppercase;
-}
-.right_sidebar > div {
-    padding: 25px 0;
-}
-.cat_search {
-    margin-top: 25px;
-    width: 90%;
-}
-.cat_search input {
-    background-color: #f1f1f1;
-    border: 0;
-    padding: 5px 10px;
-    width: 100%;
-    border-radius: 4px;
-}
-.cat_search i {
-    color: #003459;
-    position: absolute;
-    right: 10px;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    display: flex;
-    align-items: center;
-}
-.cat_search input::placeholder {
-    font-size: 14px;
-    color: #a5a5a5;
-    text-transform: capitalize;
-}
-.post input::placeholder {
-    font-size: 15px;
-    color: #003459a1;
-}
-.put_ads_here {
-    margin: 25px 0 0;
-    width: 90%;
-    height: 300px;
-    background-color: #003459;
-    color: #ffffff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 4px;
-}
-.chat {
-    margin-top: 25px;
-}
-.chat_title {
-    color: #003459;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.chat_sec {
-    width: 90%;
-    background-color: aliceblue;
-    padding: 25px 10px;
-    margin: 25px 0 0;
-    border-radius: 4px;
-}
-.chat_title i {
-    font-size: 30px;
-    color: #ff9000;
-    margin-right: 10px;
-    display: flex;
-    align-items: center;
-}
-.chat_title div {
-    color: #003459;
-    font-size: 18px;
-    font-weight: 500;
-}
-.online_title {
-    color: #003459;
-    font-weight: 500;
-    margin-top: 20px;
-    padding-left: 25px;
-    position: relative;
-    margin-bottom: 10px;
-    border-bottom: 1px solid;
-    padding-bottom: 10px;
-    border-color: #ff9000;
-}
-.online_title:before {
-    content: "";
-    background: #FF9000;
-    height: 15px;
-    width: 15px;
-    position: absolute;
-    left: 0;
-    border-radius: 50%;
-    top: -10px;
-    bottom: 0;
-    margin: auto;
-}
-.online_user img {
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-.online_user {
-    display: flex;
-    align-items: center;
-    background-color: #ffffff;
-    padding: 7px 10px;
-    border-radius: 4px;
-    margin-bottom: 15px;
-}
-.online_user div {
-    margin-left: 10px;
-    font-size: 14px;
-    color: #003459;
-}
-.offline_sec .online_title:before {
-    content: "";
-    height: 15px;
-    width: 15px;
-    position: absolute;
-    left: 0;
-    border-radius: 50%;
-    top: -10px;
-    bottom: 0;
-    margin: auto;
-    border: 2px solid #FF9000;
-    background: none;
-}
 .main_area {
     margin-left: 25px;
 }
@@ -350,9 +203,6 @@ a.premium_upgrade {
     right: 22px;
     margin-top: 9px;
 }
-.online_sec.offline_sec > div:last-child {
-    margin-bottom: 0;
-}
 .profile_pic img {
     width: 50px;
     height: 50px;
@@ -370,6 +220,7 @@ a.premium_upgrade {
 }
 .name_and_desc {
     margin-left: 20px;
+		margin-top: 12px;
 }
 .item_desc {
     font-size: 14px;
@@ -385,68 +236,6 @@ a.premium_upgrade {
     width: 12px;
     height: 12px;
     border-radius: 50%;
-}
-.slider_image {
-    height: 300px;
-    margin-top: 25px;
-}
-img.slider_image {
-    border-radius: 4px;
-    object-fit: cover;
-}
-.item {
-    margin: auto;
-    width: 96%;
-}
-.starting_bid {
-    display: flex;
-    justify-content: center;
-    margin-top: 15px;
-    color: #003459;
-    font-size: 18px;
-}
-.bid_section{
-    justify-content: center;
-}
-.main-price {
-    background-color: aliceblue;
-    padding: 5px 15px;
-    margin-left: 10px;
-    color: #003459;
-    font-size: 20px;
-    font-weight: 500;
-    border-radius: 4px;
-}
-.bid_now button {
-    background-color: #ff9000;
-    border: 0;
-    color: #ffffff;
-    padding: 7px 18px;
-    border-radius: 4px;
-    margin-left: 10px;
-}
-.take_action {
-    background-color: #ecedee;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    padding: 7px 0;
-    margin-top: 15px;
-    border-radius: 4px;
-}
-button.comment_sec {
-    border: 1px solid #ff9000 !important;
-    border-top: 0 !important;
-    border-bottom: 0 !important;
-}
-.take_action > button {
-    text-align: center;
-    font-size: 14px;
-    font-weight: 500;
-    color: #003459;
-}
-.Comment_sec {
-    border-left: 1px solid #ff9000;
-    border-right: 1px solid #ff9000;
 }
 .friends_Posts {
     width: 90%;
@@ -479,66 +268,6 @@ button.comment_sec {
     color: #003459;
     line-height: 1;
 }
-.owl-stage {
-    display: -webkit-box;
-}
-.owl-carousel.owl-drag .owl-item,.owl-carousel .owl-stage{
-    width: 100% !important;
-}
-.owl-dots {
-    display: none;
-}
-.owl-nav {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-button.owl-prev span {
-    position: absolute;
-    font-size: 34px;
-    color: #003459;
-    top: -6px;
-    bottom: 0;
-    margin: auto;
-    display: flex;
-    align-items: center;
-    font-weight: 400;
-    z-index: 9;
-    left: 9px !important;
-}
-button.owl-next span {
-    position: absolute;
-    font-size: 34px;
-    color: #003459;
-    top: -6px;
-    bottom: 0;
-    margin: auto;
-    display: flex;
-    align-items: center;
-    font-weight: 400;
-    right: 8px;
-    z-index: 9;
-}
-button.owl-next {
-    position: relative;
-    left: 5px;
-}
-button.owl-prev {
-    position: relative;
-    left: -5px;
-}
-button.owl-prev, .owl-next {
-    background: #ffffff !important;
-    height: 30px;
-    width: 30px;
-    border-radius: 50% !important;
-    box-shadow: 0 0 6px 0px #003459;
-}
 .post_by_user_second .profile_pic:before {
     content: "";
     position: absolute;
@@ -550,146 +279,8 @@ button.owl-prev, .owl-next {
     border-radius: 50%;
     border: 2px solid #ff9000;
 }
-.upgrade_premium {
-    padding: 7px;
-    border: 2px solid #003459db;
-    border-radius: 4px;
-    color: #003459;
-    display: flex;
-    align-items: center;
-}
-.take_action > button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: 400;
-    background-color: #ffffff00;
-    border: 0;
-}
-.take_action > button i {
-    font-size: 20px;
-    margin-right: 10px;
-    font-weight: 600;
-}
 a.my_post_links:hover div > div {
     text-decoration: underline;
-}
-.online_user div{
-    position: relative;
-}
-.online_user div:before {
-    position: absolute;
-    content: "";
-    height: 10px;
-    width: 10px;
-    background-color: #ff9000;
-    border-radius: 50%;
-    bottom: -3px;
-    left: -18px;
-}
-.offline_sec .online_user div{
-    position: relative;
-}
-.offline_sec .online_user div:before {
-    position: absolute;
-    content: "";
-    height: 10px;
-    width: 10px;
-    border: 2px solid #FF9000;
-    background-color: transparent;
-    border-radius: 50%;
-    bottom: -3px;
-    left: -18px;
-}
-.take_action > button span {
-    color: #ff9000;
-    padding-left: 5px;
-    font-weight: 500;
-    font-size: 16px;
-}
-.take_action > button div {
-    display: flex;
-    align-items: center;
-}
-.comments_container {
-    background-color: #f0f8ff;
-    border-radius: 4px;
-    margin-top: 15px;
-    color: #003459;
-    padding: 15px;
-}
-.comment_title {
-    font-weight: 500;
-    color: #ff9000;
-    font-size: 18px;
-    margin-bottom: 20px;
-}
-.comment_user img {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-.comment_user div {
-    margin-left: 10px;
-    font-size: 13px;
-    position: relative;
-}
-.commenter:before {
-    position: absolute;
-    content: "";
-    height: 10px;
-    width: 10px;
-    background-color: #ff9000;
-    border-radius: 50%;
-    bottom: -11px;
-    left: -29px;
-}
-.comment_user {
-    margin: 10px 0;
-}
-.commenter {
-    font-size: 16px !important;
-    line-height: 1.2;
-}
-.comment_here {
-    background: #ffffff;
-    border-radius: 4px;
-    margin-top: 10px;
-    padding: 5px;
-}
-.province img {
-    width: 25px;
-    margin-right: 10px;
-}
-.province div {
-    color: #003459;
-    font-size: 14px;
-}
-.province {
-    padding: 5px 10px;
-    box-shadow: 0 0 4px #003459;
-    border-radius: 4px;
-}
-.cat_bid {
-    color: #003459;
-}
-.category {
-    background-color: #ecedee;
-    padding: 5px 7px;
-    border-radius: 4px;
-    font-size: 14px;
-    letter-spacing: 1px;
-}
-.current_bid {
-    font-size: 14px;
-    margin-right: 10px;
-}
-.bid_current > div:last-child {
-    padding: 5px 7px;
-    background-color: aliceblue;
-    border-radius: 4px;
-    font-size: 18px;
 }
 @media (max-width: 576px){
 	header{
@@ -710,11 +301,6 @@ a.my_post_links:hover div > div {
 	.position-relative{
 		/* height: 32px; */
 	}
-
-	/* .navbar-collapse{
-		display: flex;
-	} */
-
 	.profile_name {
 		color: #ffffff;
 	}
@@ -747,12 +333,11 @@ a.my_post_links:hover div > div {
 
 	.navbar-toggler{
 		font-size: 0.9rem;
-		/* margin-left: 15px; */
 		padding: unset;
 	}
 }
 
-/* Tempurary css for menu collapse */
-/* .navbar-expand-lg .navbar-collapse {
-	display: none !important;
-} */
+.allusers_set{
+	border-bottom: 1px solid #e5e5e5;
+	padding: 12px 0px 12px 0px;
+}

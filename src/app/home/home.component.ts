@@ -22,7 +22,8 @@ export class HomeComponent implements OnInit {
 
   // posts
   description = '';
-  url = '';
+  // url = '';
+  url = [];
   public datas;
   token = '';
 
@@ -47,7 +48,8 @@ export class HomeComponent implements OnInit {
         this.datas = res.posts
         for(let i = 0; i < this.datas.length; i++){
           this.description = this.datas[i].description;
-          this.url = this.datas[i].imageUrl;
+          // this.url = this.datas[i].imageUrl;
+          this.url.push(this.datas[i].imageUrl)
           // console.log("-=-=-=-=-=-=-=-=-=-", this.datas[i].userId)
           // console.log("-=-=-=-=-=-=-=-=-=-datas", this.datas)
           this.authService.getHomePostProfile(this.datas[i].userId).subscribe(res => {
@@ -68,7 +70,6 @@ export class HomeComponent implements OnInit {
     })
 
     this.authService.getFriendData(id).subscribe(res => {
-      console.log("==-=-----=res count", res.list.length)
       this.frd_request_count = res.list.length
     })
   }
@@ -77,8 +78,11 @@ export class HomeComponent implements OnInit {
     $(document).ready(function(){
       $('.owl-carousel').owlCarousel({
     		nav:true,
-    		items:1,
-        autoWidth: true
+    		items: 1,
+        autoWidth: true,
+        video: true,
+        videoHeight: 300,
+        videoWidth: 600
     	});
 
       $('.comment_sec').on('click',function(){
@@ -95,7 +99,6 @@ export class HomeComponent implements OnInit {
   }
 
   openTextDialog(){
-    console.log("-=-=-=-=-=-text box open", this.id)
     this.dialog.open(PostModalComponent, {
       width: '550px',
       panelClass: 'custom-dialog-container',
@@ -105,26 +108,49 @@ export class HomeComponent implements OnInit {
 
   fileData: File = null;
   previewUrl: any = null;
+  images = [];
+  files_data: any = [];
   openDialog(event: any): void{
-    console.log("-=-=-=-=-=-photos open")
-    this.fileData = <File>event.target.files[0]
 
-    // Show preview
-    var mimeType = this.fileData.type;
-    if (mimeType.match(/image\/*/) == null) {
-      return;
+    // Single image post upload
+    // console.log("-=-=-=-=-=-photos open")
+    // this.fileData = <File>event.target.files[0]
+    //
+    // // Show preview
+    // var mimeType = this.fileData.type;
+    // if (mimeType.match(/image\/*/) == null) {
+    //   return;
+    // }
+    //
+    // var reader = new FileReader();
+    // reader.readAsDataURL(this.fileData);
+    //
+    // reader.onload = (_event) => {
+    //   this.previewUrl = reader.result; //based64 image
+    //   this.dialog.open(PostModalComponent, {
+    //     width: '550px',
+    //     panelClass: 'custom-dialog-container',
+    //     data: { id: this.id, postImg: this.previewUrl, file: this.fileData }
+    //   });
+    // }
+
+    //Multipul Image upload
+    if (event.target.files && event.target.files[0]) {
+      var filesAmount = event.target.files.length;
+      for (let i = 0; i < filesAmount; i++) {
+        var reader = new FileReader();
+
+        reader.onload = (event:any) => {
+           this.images.push(event.target.result);
+        }
+        reader.readAsDataURL(event.target.files[i]);
+        this.files_data.push(event.target.files[i]);
+      }
     }
-
-    var reader = new FileReader();
-    reader.readAsDataURL(this.fileData);
-
-    reader.onload = (_event) => {
-      this.previewUrl = reader.result; //based64 image
-      this.dialog.open(PostModalComponent, {
-        width: '550px',
-        panelClass: 'custom-dialog-container',
-        data: { id: this.id, postImg: this.previewUrl, file: this.fileData }
-      });
-    }
+    this.dialog.open(PostModalComponent, {
+      width: '550px',
+      panelClass: 'custom-dialog-container',
+      data: { id: this.id, images: this.images, file: this.files_data  }
+    });
   }
 }

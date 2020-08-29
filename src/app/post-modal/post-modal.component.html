@@ -2,21 +2,30 @@
   <button class="close" mat-button (click)="Close()">x</button>
   <h2 style="font-size: 1.25rem;text-align: center;padding: 10px;">Create Post</h2>
 </div>
-<div style="padding: 20px;">
+<div style="padding: 20px 0px 20px 20px;">
   <div>
     <img width="40" height="40" [src]="smallProfile" onerror="this.src='/assets/images/default_user.jpg';" style="border-radius: 50%;" /> {{name}}
   </div>
   <br/>
-  <div>
-    <!-- <input #postMsg type="text" placeholder="Say something!" style="width: 100%; height: 100%; border: none;"> -->
-    <textarea #postMsg name="Text1" cols="40" rows="5" placeholder="Say something!" style="width: 100%; height: 100%; border: none;" required></textarea>
-  </div>
-  <div class="text-center col-md-12" style="margin-top: 50px;" *ngIf="data.postImg">
-    <img #postImage [src]="data.postImg" src='/assets/images/default_user.jpg' style="height: 290px; width: 100%;" />
-    <!-- <img #postImage [src]="data.image" src='/assets/images/default_user.jpg' style="height: 290px; width: 100%;" /> -->
+  <div style="overflow-y: scroll; max-height: 60vh;">
+    <div>
+      <textarea #postMsg name="Text1" cols="40" rows="5" placeholder="Say something!" style="width: 100%; height: 100%; border: none; padding: 8px" required></textarea>
+    </div>
+    <div class="text-center col-md-12 load_new_image" style="margin-top: 50px;" *ngFor="let image of images; let i = index" id="load_new_image_id">
+      <img #postImage class="image_set_size" [src]="image" src='/assets/images/default_user.jpg' style="height: 290px; width: 100%;" *ngIf="image.split(',')[0].split(':')[1].split(';')[0] == 'image/jpeg' || image.split(',')[0].split(':')[1].split(';')[0] == 'image/jpg' || image.split(',')[0].split(':')[1].split(';')[0] == 'image/png'"/>
+      <!-- <img #postImage class="image_set_size" [src]="image" src='/assets/images/default_user.jpg' style="height: 290px; width: 100%;" /> -->
+      <video #postImage controls class="video_set_size" *ngIf="image.split(',')[0].split(':')[1].split(';')[0] == 'video/mp4'">
+        <source [src]="image" type="video/mp4">
+      </video>
+    </div>
   </div>
   <br/>
-  <div>
+  <input type="file" style="display:none" #file class="btn btn-primary" (change)="openNewDialog($event)" multiple="" />
+  <div style="border: 1px solid #000000; border-radius: 6px; margin: 5px 20px 10px 0px; padding: 5px;" (click)="file.click();">
+    <img src='/assets/images/photos.png' style="width: 5%; float: right;" />
+    <h6>Upload Photos/Videos</h6>
+  </div>
+  <div style="margin-right: 20px;">
     <button type="button" class="btn btn-primary" style="width: 100%" (click)="postSave()">Post</button>
   </div>
 </div>

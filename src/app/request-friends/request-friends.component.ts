@@ -90,7 +90,6 @@ export class RequestFriendsComponent implements OnInit {
             this.datas = this.datas.filter(({ _id }) => _id !== this.frd_profile_datas[i]._id)
           }
         })
-
       }
     })
   }
@@ -143,6 +142,7 @@ export class RequestFriendsComponent implements OnInit {
     let userId = this.activatedRoute.snapshot.paramMap.get('id');
     this.authService.rejectFriendRequest(userId, reject_id).subscribe(res => {})
   }
+
 
   owlcarouselSet(){
     jQuery(document).ready(function(){

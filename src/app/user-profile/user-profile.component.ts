@@ -78,22 +78,38 @@ export class UserProfileComponent implements OnInit {
         $('.owl-carousel').owlCarousel({
       		nav:true,
       		items:1,
-          autoWidth: true
+          autoWidth: true,
+          video:true,
+          lazyLoad: true
       	})
+        // $('.owl-video-play-icon').remove();
       });
     });
     $(document).ready(function(){
       $('.owl-carousel').owlCarousel({
         nav:true,
         items:1,
-        autoWidth: true
+        autoWidth: true,
+        video:true,
+        lazyLoad: true
       })
+      // $('.owl-video-play-icon').remove();
     })
-    $('.owl-carousel').owlCarousel({
-      nav:true,
-      items:1,
-      autoWidth: true
-    })
+    // $('.owl-carousel').owlCarousel({
+    //   nav:true,
+    //   items:1,
+    //   autoWidth: true,
+    //   video:true,
+    //   lazyLoad: true
+    // })
+    // $('.owl-carousel').owlCarousel({
+    //   nav:true,
+    //   items:1,
+    //   autoWidth: true,
+    //   video:true,
+    //   videoHeight: 300,
+    //   videoWidth: 600
+    // })
     // this.owlcarouselSet()
   }
 
@@ -183,12 +199,12 @@ export class UserProfileComponent implements OnInit {
         this.imgeDiv = true
     }
     imageCropped(event: ImageCroppedEvent) {
-        this.croppedImage = event.base64;
-        this.fileToReturn = this.base64ToFile(
-          event.base64,
-          this.imageChangedEvent.target.files[0].name
-        )
-        return this.fileToReturn.name;
+      this.croppedImage = event.base64;
+      this.fileToReturn = this.base64ToFile(
+        event.base64,
+        this.imageChangedEvent.target.files[0].name
+      )
+      return this.fileToReturn.name;
     }
     imageLoaded() {
         // show cropper
@@ -231,12 +247,13 @@ export class UserProfileComponent implements OnInit {
 
     // owlcarouselSet(){
     //   console.log("-=-=-=-=-=-call")
-    //   $(document).ready(function(){
-    //     $('.owl-carousel').owlCarousel({
-    //       nav:true,
-    //       items:1,
-    //       autoWidth: true
-    //     })
-    //   })
+    //   $('.owl-carousel').trigger('refresh.owl.carousel');
+      // $(document).ready(function(){
+      //   $('.owl-carousel').owlCarousel({
+      //     nav:true,
+      //     items:1,
+      //     autoWidth: true
+      //   })
+      // })
     // }
 }

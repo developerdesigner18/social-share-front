@@ -10,10 +10,15 @@ import { AuthService } from '../auth.service';
 export class FriendsComponent implements OnInit {
   profileImg = '';
   u_name = '';
+  id = '';
+  frdDetails = [];
+  notAnyFrd = '';
+  friend_id = '';
 
   constructor(
     public authService: AuthService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    public router: Router
   ) {
     let id = this.activatedRoute.parent.params['value']['id'];
     this.authService.getUsersFriends(id).subscribe(res => {
@@ -21,13 +26,37 @@ export class FriendsComponent implements OnInit {
       this.profileImg =  res.data.profileImgURl
       this.u_name =  res.data.name
     })
-    // console.log("-=-=-=-=-=-=friend stroge", localStorage.getItem("friendId"))
-    // this.authService.getFriendRequest(id).subscribe(res => {
-    //   console.log("-=-=-=-=-=-any friend", res)
-    // })
+
+    this.friend_id =  '/profile/'+id+'/friends'
+    if(router.url === '/profile/'+id+'/friends'){
+      this.authService.getFriends(id).subscribe(res => {
+        if(res.success)
+        {
+          for(let i = 0; i < res.userInfo.length; i++){
+            this.frdDetails.push(res.userInfo[i])
+          }
+        }else{
+          this.notAnyFrd = res.message
+        }
+      })
+    }
+
+    //For friends panel set selected friend friends
+    if(router.url === '/friends/'+id+'/friends'){
+      this.authService.getFriends(localStorage.getItem('friendId')).subscribe(res => {
+        if(res.success){
+          for(let i = 0; i < res.userInfo.length; i++){
+            this.frdDetails.push(res.userInfo[i])
+          }
+        }else{
+          this.notAnyFrd = res.message
+        }
+      })
+    }
   }
 
   ngOnInit(): void {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.id = currentUser.data._id
   }
-
 }

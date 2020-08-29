@@ -26,7 +26,7 @@ header{
 	z-index: 99;
 }
 .logo {
-    width: 42%;
+    width: 60%;
 }
 .header_alignment{
 	width: 95vw;
@@ -120,7 +120,7 @@ img.logout {
 
 .load_area{
 	margin: 25px;
-	width: 100%;
+	width: 100% !important;
 }
 /* Friends profile view */
 .cover_pic {
@@ -207,6 +207,7 @@ body .profile_pic_main_tabs_sec .actions {
 }
 .about_description{
 	flex: 2;
+	margin-left: 30px !important;
 }
 
 .about-menu{
@@ -578,6 +579,24 @@ button.comment_sec {
 .modal {
 	margin-top: 100px;
 }
+
+.say_words button {
+    background-color: #003459;
+    border: 0;
+    color: #ffffff;
+    padding: 7px 18px;
+    border-radius: 4px;
+    margin-left: 10px;
+    position: absolute;
+    right: 35px;
+		top: 28px;
+}
+
+.say_words > div {
+	margin: 0px 5px 0px 5px;
+}
+
+
 
 /* .overview_tab > div > div > span {
 	 padding-left: 15px

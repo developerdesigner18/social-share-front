@@ -1,35 +1,37 @@
 <div class="say_words position-relative" style="align-items: unset">
   <div class="row">
-    <div class="about_sec col-md-7" style="display: block; flex-grow: 1">
+    <div class="about_sec col-md-4" style="display: block; flex-grow: 1">
       <h5 class="title-about" style="display: block;">Friends</h5>
   	</div>
-    <div class="col-md-5">
+    <div class="col-md-5" style="bottom: 5px;">
       <i class="fa fa-search" style="position: absolute; padding: 12px; min-width: 40px;"></i><input id="searchFrd" class="form-control" type="text" placeholder="Search" style="max-width: max-content;border-radius: 20px;height: 40px;padding-left: 40px;">
     </div>
+    <div class="col-md-3" *ngIf="router.url === friend_id">
+      <a [routerLink]="['/friends/', id]" style="padding: 10px; color: #003459;">Friends requests</a>
+    </div>
   </div>
-  <div class="row">
-  	<div class="about_description tab-content" style="margin-left: 25px; flex:none; width: 100%">
-      All Friends
-  	</div>
-    <!-- <div class="col-md-12" style="margin-top: 10px"> -->
-      <div class="col-md-6" style="padding: 25px; border: 1px solid #ececec;border-radius: 8px;">
-        <img width="40" height="40" [src]="profileImg" onerror="this.src='/assets/images/default_user.jpg';" style="border-radius: 50%;" /> {{u_name}}
-        <button type="button" name="button">Friends</button>
-      </div>
-      <div class="col-md-6" style="padding: 25px; border: 1px solid #ececec;border-radius: 8px;">
-        <img width="40" height="40" [src]="profileImg" onerror="this.src='/assets/images/default_user.jpg';" style="border-radius: 50%;" /> {{u_name}}
-        <button type="button" name="button">Friends</button>
-      </div>
-    <!-- </div> -->
-    <!-- <div class="col-md-12" style="margin-top: 10px"> -->
-      <div class="col-md-6" style="padding: 25px; border: 1px solid #ececec;border-radius: 8px;">
-        <img width="40" height="40" [src]="profileImg" onerror="this.src='/assets/images/default_user.jpg';" style="border-radius: 50%;" /> {{u_name}}
-        <button type="button" name="button">Friends</button>
-      </div>
-      <div class="col-md-6" style="padding: 25px; border: 1px solid #ececec;border-radius: 8px;">
-        <img width="40" height="40" [src]="profileImg" onerror="this.src='/assets/images/default_user.jpg';" style="border-radius: 50%;" /> {{u_name}}
-        <button type="button" name="button">Friends</button>
-      </div>
-    <!-- </div> -->
+  <div class="about_description tab-content">
+    All Friends
+  </div>
+  <div class="row" *ngIf="router.url === friend_id">
+    <div class="col-md-6" style="padding: 25px; border: 1px solid #ececec;border-radius: 8px;" *ngFor="let frddetail of frdDetails; let i = index">
+      <!-- <img width="40" height="40" [src]="profileImg" onerror="this.src='/assets/images/default_user.jpg';" style="border-radius: 50%;" /> {{u_name}} -->
+      <img width="40" height="40" [src]="frddetail.profileImgURl" onerror="this.src='/assets/images/default_user.jpg';" style="border-radius: 50%;" /> {{frddetail.name}}
+      <button type="button" name="button">Friends</button>
+    </div>
+    <div class="col-md-6" *ngIf="notAnyFrd" style="text-align: center; margin-left: 25%;">
+      {{notAnyFrd}}
+    </div>
+  </div>
+
+  <div class="row" *ngIf="router.url !== friend_id">
+    <div class="col-md-6" style="padding: 25px; border: 1px solid #ececec;border-radius: 8px;" *ngFor="let frddetail of frdDetails; let i = index">
+      <!-- <img width="40" height="40" [src]="profileImg" onerror="this.src='/assets/images/default_user.jpg';" style="border-radius: 50%;" /> {{u_name}} -->
+      <img width="40" height="40" [src]="frddetail.profileImgURl" onerror="this.src='/assets/images/default_user.jpg';" style="border-radius: 50%;" /> {{frddetail.name}}
+      <button type="button" name="button">Friends</button>
+    </div>
+    <div class="col-md-6" *ngIf="notAnyFrd" style="text-align: center; margin-left: 25%;">
+      {{notAnyFrd}}
+    </div>
   </div>
 </div>

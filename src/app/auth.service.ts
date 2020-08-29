@@ -124,11 +124,11 @@ export class AuthService {
     )
   }
 
-  getSearchUser(id): Observable<any> {
-    return this.httpClient.get(`${environment.apiUrl}/api/user/profile?id=${id}`, { headers: this.headers }).pipe(
+  getSearchUser(name): Observable<any> {
+    return this.httpClient.get<any>(`${environment.apiUrl}/api/friend/search?search=${name}`, { headers: this.headers }).pipe(
       map((res: Response) => {
         if(res['success'] == true){
-          this.router.navigate([`search/${id}`])
+          this.router.navigate([`search/${res['data'][0]._id}`])
         }
         return res || {}
       }),
@@ -169,12 +169,13 @@ export class AuthService {
     )
   }
 
-
   // new post save
   newPost(u_token, msg, imgUrl): Observable<any> {
     const formData: any = new FormData();
     formData.append('description', msg);
-    formData.append('Url', imgUrl);
+    for(let i=0; i < imgUrl.length; i++){
+      formData.append('Url', imgUrl[i]);
+    }
 
     return this.httpClient.post(`${environment.apiUrl}/api/photos/newPosts`, formData, {headers: {token: u_token}}).pipe(
         catchError(this.handleError)
@@ -285,7 +286,6 @@ export class AuthService {
   getFriendRequest(id): Observable<any> {
     return this.httpClient.get(`${environment.apiUrl}/api/friend/requests?id=${id}`, { headers: this.headers}).pipe(
       map((res: Response) => {
-        console.log("-=-=-=-=-=-=-=res revese", res)
         return res || {}
       }),
       catchError(this.handleError)
@@ -293,10 +293,19 @@ export class AuthService {
   }
 
   getFriendData(id): Observable<any> {
-    // this.headers.append('token', u_token)
     return this.httpClient.get(`${environment.apiUrl}/api/friend/requestsData?id=${id}`, { headers: this.headers}).pipe(
       map((res: Response) => {
-        // console.log("=-=-=-=-=-=-res headers", res)
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  getFriends(userId): Observable<any> {
+    console.log("=-=-=-=-=-=- friendId", userId)
+    return this.httpClient.get(`${environment.apiUrl}/api/friend/show?userId=${userId}`, { headers: this.headers}).pipe(
+      map((res: Response) => {
+        console.log("=--=-=-=-=-=- res", res)
         return res || {}
       }),
       catchError(this.handleError)

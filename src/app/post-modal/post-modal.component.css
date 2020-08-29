@@ -13,3 +13,10 @@
 button.close{
   padding: 10px;
 }
+
+
+.video_set_size{
+  height: 290px;
+  width: 100%;
+  object-fit: cover;
+}

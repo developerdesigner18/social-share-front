@@ -3,10 +3,10 @@
   <!-- <button type="button" (click)="textPost()">Post</button> -->
   <div class="slider_bid_like-share d-flex flex-column">
     <input type="file" style="display:none" #file class="btn btn-primary" (change)="openDialog($event)" multiple="" />
-    <div class="take_action" style="grid-template-columns: 1fr 1fr 0fr; padding: 5px;" (click)="file.click();">
+    <div class="take_action post_take_action" (click)="file.click();" title="Photos/Videos">
       <button class="like_sec" style="display: contents;">
         <i class="fa fa-camera"></i>
-        <div>Photo</div>
+        <div>Photos/Videos</div>
       </button>
     </div>
   </div>
@@ -28,26 +28,46 @@
       <div class="item_desc mt-3" style="width: 100%">{{data.description}}</div>
     </div>
   </div>
-  <div class="slider_bid_like-share d-flex flex-column" style="width: 100%" id="slider-owl-carousel-load">
-    <div class="owl-carousel owl-theme" id="owl-demo" *ngIf="data.imageUrl">
-      <div class="item">
-        <img class="slider_image" [src]="data.imageUrl" [attr.data-slide-to]="i">
-      </div>
-      <div class="item">
-        <img class="slider_image" src="assets/images/gal_3.jpg">
-      </div>
-      <div class="item">
-        <img class="slider_image" src="assets/images/gal_4.jpg">
+  <div class="slider_bid_like-share d-flex flex-column" style="width: 100%">
+    <div class="owl-carousel owl-theme" id="owl-demo" *ngIf="data.imageUrl.length > 0">
+      <!-- {{data.imageUrl}} -->
+      <!-- {{data.imageUrl.split('.')}} -->
+      <div class="item" *ngFor="let imageurl of data.imageUrl">
+
+        <!-- <img class="slider_image" [src]="data.imageUrl" [attr.data-slide-to]="i"> -->
+        <!-- {{imageurl.split('.')}} -->
+        <!-- {{imageurl.split('.')[1]}} -->
+        <img class="slider_image" [src]="imageurl" [attr.data-slide-to]="i" *ngIf="imageurl.split('.').pop() !== 'mp4'">
+        <!-- <button class="playpause">play</button> -->
+        <video controls class="slider_video" *ngIf="imageurl.split('.').pop() == 'mp4'" disablePictureInPicture controlsList="nodownload">
+          <source [src]="imageurl" type="video/mp4">
+          <!-- <source [src]="imageurl" type="video/ogg"> -->
+        </video>
+
+        <!-- <iframe type="text/html" frameborder="0" allowfullscreen src="{{imageurl}}">
+        </iframe> -->
+        <!-- <iframe type="text/html"
+                src="https://www.youtube.com/embed/M7lc1UVf-VE?enablejsapi=1" frameborder="0" allowfullscreen>
+        </iframe> -->
+        <!-- <div class="owl-video" href="{{imageUrl}}"> -->
+        <!-- <a class="owl-video slider_image" href="{{imageurl}}" [attr.data-slide-to]="i"></a> -->
+        <!-- <a class="owl-video slider_image" href="https://www.youtube.com/watch?v=Rpzp0yCAmq4"></a> -->
+        <!-- <div class="item-video" data-merge="1"><a class="owl-video" href="https://www.youtube.com/watch?v=Rpzp0yCAmq4"></a></div> -->
+        <!-- {{imageurl}} -->
+        <!-- {{data.imageUrl}} -->
+        <!-- <div class="item-video" data-merge="1" *ngFor="let imageurl of data.imageUrl"><a class="owl-video" href="{{data.imageUrl}}"></a></div> -->
+        <!-- <div class="item-video" data-merge="1" *ngFor="let imageurl of data.imageUrl"><a class="owl-video" href="{{data.imageUrl}}"></a></div> -->
       </div>
     </div>
-    <div class="cat_bid d-flex justify-content-between align-items-center mt-3" *ngIf="data.imageUrl">
+
+    <div class="cat_bid d-flex justify-content-between align-items-center mt-3" *ngIf="data.imageUrl.length > 0">
       <div class="category">Electronics</div>
       <div class="bid_current d-flex align-items-center">
         <div class="current_bid">Current bid @</div>
         <div>310$</div>
       </div>
     </div>
-    <div class="bid_section d-flex justify-content-between align-items-center mt-3" *ngIf="data.imageUrl">
+    <div class="bid_section d-flex justify-content-between align-items-center mt-3" *ngIf="data.imageUrl.length > 0">
       <div class="d-flex align-items-center">
         <div class="starting_bid mt-0">Asking Price @</div>
         <div class="main-price">300$</div>

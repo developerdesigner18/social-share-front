@@ -12,7 +12,8 @@ html{
 
 body {
     height: 100vh;
-    background-image: linear-gradient(180deg,rgba(27,31,37,0.3) 0%,#ffffffdb 100%),url(assets/images/share.jpg)!important;
+    /* background-image: linear-gradient(180deg,rgba(27,31,37,0.3) 0%,#ffffffdb 100%),url(assets/images/share.jpg)!important; */
+    background-image: linear-gradient(180deg,rgba(27,31,37,0.3) 0%,#ffffffdb 100%),url(assets/images/banner_mitchol.jpg)!important;
     background-size: cover;
     background-position: center;
 }
@@ -23,7 +24,7 @@ header{
 	border-bottom: 1px solid #334c6b;
 }
 .logo {
-	width: 10%;
+	width: 15%;
 	margin-left: 10px;
 }
 
@@ -168,7 +169,7 @@ img.connecting_image {
 	    margin-top: 20px;
 	}
 	.icon-password {
-	    top: 131px;
+	    top: 108px;
 	    position: absolute;
 	    right: 32px;
 	    width: auto;
