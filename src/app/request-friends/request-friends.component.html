@@ -138,9 +138,29 @@
               <input type="text" placeholder=" Write a comment...!" formControlName="newcomment">
             </form>
           </div>
-          <div class="comments_container" style="display: none;">
+          <div class="comments_container_{{data._id}} comments_container" style="display: none;" *ngIf="data.comment.length > 0">
             <div class="comment_title">Comments:</div>
-            <div class="comment_user d-flex ">
+            <ng-container *ngIf="checkTem && tempPostId === data._id">
+              <div class="comment_user d-flex"  *ngFor="let temp of temCmnt.slice().reverse()">
+                <!-- <img src="assets/images/profile.jpg"> -->
+                <img [src]="data.post_profileImg" onerror="this.src='/assets/images/default_user.jpg';">
+                <div>
+                  <div class="commenter">{{data.post_user}}</div>
+                  <div class="comment_here">{{temp}}</div>
+                </div>
+              </div>
+            </ng-container>
+
+            <div class="comment_user d-flex" *ngFor="let comnt of data.comment.slice().reverse();">
+              <!-- <img src="assets/images/profile.jpg"> -->
+              <img [src]="data.post_profileImg" onerror="this.src='/assets/images/default_user.jpg';">
+              <div>
+                <div class="commenter">{{data.post_user}}</div>
+                <div class="comment_here">{{comnt.newcomment}}</div>
+              </div>
+            </div>
+
+            <!-- <div class="comment_user d-flex ">
               <img src="assets/images/profile.jpg">
               <div>
                 <div class="commenter">Arturo flex</div>
@@ -153,7 +173,7 @@
                 <div class="commenter">Mellisa mcmahon</div>
                 <div class="comment_here">Nulla sagittis sodales dui ut ornare. Donec feugiat at lacus et tempor. Vivamus eros odio, convallis ut orci et, feugiat ultrices elit. Aenean suscipit tellus accumsan, gravida risus sed,</div>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>

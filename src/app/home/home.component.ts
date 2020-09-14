@@ -42,6 +42,7 @@ export class HomeComponent implements OnInit {
   // postCmtId = '';
 
   public datas;
+  public temp;
   constructor(
     public authService: AuthService,
     public  dialog:  MatDialog,
@@ -71,7 +72,7 @@ export class HomeComponent implements OnInit {
           // console.log("-=--=-=-=-=-=-like ", this.datas[i].like)
           this.likes = this.datas[i].like
           this.comments = this.datas[i].comment.length
-          console.log("=-=-=-=-=-=-=comment length", this.datas[i].comment.length)
+          // console.log("=-=-=-=-=-=-=comment length", this.datas[i].comment.length)
           // this.url = this.datas[i].imageUrl;
           this.url.push(this.datas[i].imageUrl)
           // console.log("-=-=-=-=-=-=-=-=-=-", this.datas[i].userId)
@@ -247,23 +248,45 @@ export class HomeComponent implements OnInit {
   checkTem =  false
   tempPostId = '';
   // functionCall = this.datas.map((cmnt) => cmnt.comment.length)
+  count = 0
 
   addComments(postId, userName, profilePic){
     // console.log("==-=-=-=-=-=-=-=functionCall", this.functionCall[0])
+    // console.log("=-=-=-=-=-=-=-=-",this.checkTem)
     this.objVal = Object.keys(this.commentsForm.value).map(key => ({type: key, value: this.commentsForm.value[key]}))
     this.authService.sendPostComment(postId, this.objVal[0].value).subscribe(res => {
       if(res['success']){
         $(`.comments_container_${postId}`).css('display','block');
         if(this.datas.map((id) => id._id).includes(postId)){
+          // this.count += 1
           // this.datas.push(this.objVal[0].value)
-          // console.log("=-=-=-==-=-=-=-ciunt comments", this.datas.map((cmnt) => cmnt.comment.length + 1))
+          // let temp = [];
+          // console.log("=-=-=-==-=-=-=-ciunt comments", this.datas.map((cmnt) => cmnt._id).includes(postId))
+          // this.authService.getAllFriendPost(this.token).subscribe(res => {
+          //   this.temp = res.posts
+          //   for(let i = 0; i < this.datas.length; i++){
+          //     console.log("=-=-=-=-=-=-comment length", this.datas[i].comment.length)
+          //   }
+          // })
+          // console.log("=-=-=-=-temp", this.temp)
+          // console.log("=-=-=-=-comment posts length", this.temp.find((cmnt) => cmnt._id === postId))
+          // const selectedPost = this.temp.find((cmnt) => cmnt._id === postId)
+          // console.log("=-=-=-=-select post", selectedPost)
+
           // console.log("=-=-=-=-=-=-=-", this.comments)
+          // this.router.navigate([`home/${this.activatedRoute.snapshot.paramMap.get('id')}`])
+          // console.log("=-=--=-=--=-=--=-=-count", this.count)
+          // if(this.count > 1){
+          //     this.checkTem = true
+          // }
           this.tempPostId = postId
           this.checkTem = true
           this.temCmnt.push(this.objVal[0].value)
         }
       }
     })
+
+    console.log("=-=-=-=-=-=-comment length end loop", this.datas.map((cmnt) => cmnt.comment.length))
     this.commentsForm.reset()
   }
 }

@@ -144,6 +144,12 @@ export class RequestFriendsComponent implements OnInit {
         if(this.likes.length > 0){
           this.postlikeId.push(this.frd_datas[i]._id)
         }
+        for(let j = 0; j < this.frd_datas[i].comment.length; j++){
+          this.authService.getHomePostProfile(this.frd_datas[i].comment[j].userId).subscribe(res => {
+            this.frd_datas[i].post_profileImg = res.data.profileImgURl
+            this.frd_datas[i].post_user = res.data.name
+          })
+        }
       }
       this.owlcarouselSet()
     })
@@ -200,11 +206,10 @@ export class RequestFriendsComponent implements OnInit {
 
   addComments(postId, userName, profilePic){
     this.objVal = Object.keys(this.commentsForm.value).map(key => ({type: key, value: this.commentsForm.value[key]}))
-    console.log("-=-=-=-=-=-=-=-obj Val", this.objVal)
     this.authService.sendPostComment(postId, this.objVal[0].value).subscribe(res => {
       if(res['success']){
         $(`.comments_container_${postId}`).css('display','block');
-        if(this.datas.map((id) => id._id).includes(postId)){
+        if(this.frd_datas.map((id) => id._id).includes(postId)){
           this.tempPostId = postId
           this.checkTem = true
           this.temCmnt.push(this.objVal[0].value)
