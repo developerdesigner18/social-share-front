@@ -4,12 +4,12 @@ import { AuthService } from '../auth.service';
 declare var jQuery: any;
 
 @Component({
-  selector: 'app-search',
-  templateUrl: './search.component.html',
-  styleUrls: ['./search.component.css'],
+  selector: 'app-people-know',
+  templateUrl: './people-know.component.html',
+  styleUrls: ['./people-know.component.css'],
   encapsulation: ViewEncapsulation.None,
 })
-export class SearchComponent implements OnInit {
+export class PeopleKnowComponent implements OnInit {
   name = '';
   id = '';
   search_id = '';
@@ -19,13 +19,12 @@ export class SearchComponent implements OnInit {
   search_by_name = false;
   search_data: Array<any> = [];
   frd_request_count = 0;
-  // cancel_request = false;
   hideme=[]
   user_post = 0;
   count_frd = 0;
   accept_hideme=[]
-  noRecord = '';
-  countSuggest = 0
+  mutulFrdcount = [];
+  mutulFrd = [];
 
   @ViewChild('searchText') searchTextElement: any;
 
@@ -38,10 +37,6 @@ export class SearchComponent implements OnInit {
     this.authService.getProfileforAbout(this.id).subscribe(res => {
       this.name = res.data.name
       this.user_profile = res.data.profileImgURl
-    })
-
-    this.authService.getAllFriends(localStorage.getItem("token")).subscribe(res => {
-      this.allUsers = res.AllUser[0]
     })
 
     this.authService.getFriendData(this.id).subscribe(res => {
@@ -63,38 +58,28 @@ export class SearchComponent implements OnInit {
     })
 
     this.authService.getSuggestUser(this.id).subscribe(res => {
-      this.countSuggest = res['data'].length
+      this.allUsers = res['data']
+      for(let i = 0; i < res['data'].length; i++){
+        this.authService.getFriends(res['data'][i]._id).subscribe(res => {
+          this.mutulFrdcount = res.userInfo.length
+          // this.mutulFrd = res.userInfo.map(n => n.name)
+        })
+      }
+      // console.log("=-=-=-=-=-=-=", this.mutulFrd)
     })
   }
 
   ngOnInit(): void {
   }
 
-  searchFrd(){
-    if(this.searchTextElement.nativeElement.value === ''){
-      this.search_by_name = false
-    }else{
-      this.search_by_name = true
-
-      this.authService.getSearchUser(this.searchTextElement.nativeElement.value).subscribe(res => {
-        if(res['success'] == true){
-          this.search_data = res.data;
-        }else{
-          this.noRecord = res.data;
-        }
-      })
-    }
-  }
-
   sendRequest(requestId){
-    // let userId = this.activatedRoute.snapshot.paramMap.get('id');
     this.authService.sendFriendRequest(this.id, requestId).subscribe(res => {})
   }
 
   reject_request(reject_id){
-    // let userId = this.activatedRoute.snapshot.paramMap.get('id');
     this.authService.rejectFriendRequest(this.id, reject_id).subscribe(res => {
-      console.log("=-=-=-=-=- reject req", res)
+      // console.log("=-=-=-=-=- reject req", res)
     })
   }
+
 }

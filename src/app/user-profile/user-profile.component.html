@@ -2,7 +2,7 @@
 
 <div class="cover_pic" [ngStyle]="{ 'background-image': 'url(' + imageCov + ')'}">
 		<div class="main_action">
-			<button class="position-relative cover-set" data-toggle="modal" data-target="#covermodel"><i class="fa fa-camera"></i>Add Cover Photo</button>
+			<button class="position-relative cover-set" data-toggle="modal" data-target="#covermodel" *ngIf="current_user_profile"><i class="fa fa-camera"></i>Add Cover Photo</button>
 		</div>
 </div>
 <div class="bg-white profile_navbar">
@@ -10,7 +10,7 @@
 		<div class="profile_pic position-relative profile_edit">
 				<div class="profile-pic-icon">
 					<img [src]="previewUrl" onerror="this.src='/assets/images/default_user.jpg';">
-					<i class="fa fa-camera" title="Upload Profile Photo" id="OpenImgUpload" data-toggle="modal" data-target="#profilemodel"></i>
+					<i class="fa fa-camera" title="Upload Profile Photo" id="OpenImgUpload" data-toggle="modal" data-target="#profilemodel" *ngIf="current_user_profile"></i>
 				</div>
 			<div class="profile_name">{{name}}</div>
 		</div>
@@ -62,62 +62,32 @@
 				<i class="fas fa-stopwatch"></i>
 				<div>Joined on {{newDate | date:"dd MMMM yyyy"}}</div>
 			</div>
-			<div class="info_container w_90 d-flex align-items-center">
+			<div class="info_container w_90 d-flex align-items-center" *ngIf="current_user_profile">
 				<button class="edit-button" (click)="openDialog()">Edit Details</button>
 			</div>
 		</div>
 		<div class="photos">
 			<div class="left_title w_90">Photos</div>
-			<div class="photos_container w_90">
-				<img src="assets/images/gal_1.jpg">
-				<img src="assets/images/gal_2.jpg">
-				<img src="assets/images/gal_3.jpg">
-				<img src="assets/images/gal_4.jpg">
-				<img src="assets/images/gal_5.jpg">
-				<img src="assets/images/gal_6.jpg">
-				<img src="assets/images/gal_7.jpg">
-				<img src="assets/images/gal_1.jpg">
-				<img src="assets/images/gal_2.jpg">
+			<div class="photos_container w_90" *ngIf="onlyImg">
+				<div *ngFor="let img of onlyImg">
+					<img [src]="img">
+				</div>
+			</div>
+			<div *ngIf="notfound == 404" style="color: #003459">
+				<h6>Not any photos</h6>
 			</div>
 		</div>
 		<div class="Friends">
 			<div class="left_title w_90">Friends</div>
-			<div class="friends_container w_90">
-				<div class="a_friend">
-					<img src="assets/images/user2.jpg">
-					<div>jessy spears</div>
+			<div class="friends_container w_90" *ngIf="frdDetails">
+				<div class="a_friend" *ngFor="let frddetail of frdDetails; let i = index">
+					<img [src]="frddetail.profileImgURl" onerror="this.src='/assets/images/default_user.jpg';">
+					<div>{{frddetail.name}}</div>
 				</div>
+			</div>
+			<div *ngIf="notAnyFrd">
 				<div class="a_friend">
-					<img src="assets/images/profile.jpg">
-					<div>Gus fring</div>
-				</div>
-				<div class="a_friend">
-					<img src="assets/images/gal_3.jpg">
-					<div>Jenny jane</div>
-				</div>
-				<div class="a_friend">
-					<img src="assets/images/user2.jpg">
-					<div>jessy spears</div>
-				</div>
-				<div class="a_friend">
-					<img src="assets/images/profile.jpg">
-					<div>Gus fring</div>
-				</div>
-				<div class="a_friend">
-					<img src="assets/images/gal_3.jpg">
-					<div>Jenny jane</div>
-				</div>
-				<div class="a_friend">
-					<img src="assets/images/user2.jpg">
-					<div>jessy spears</div>
-				</div>
-				<div class="a_friend">
-					<img src="assets/images/profile.jpg">
-					<div>Gus fring</div>
-				</div>
-				<div class="a_friend">
-					<img src="assets/images/gal_3.jpg">
-					<div>Jenny jane</div>
+					<div><h6>Not any friends</h6></div>
 				</div>
 			</div>
 		</div>

@@ -165,7 +165,7 @@ a.my_post_links{
     margin: auto;
 }
 .badges_for_pymk:before {
-    content: attr(data-content);
+    content: "9";
     position: absolute;
     right: -30px;
     font-size: 9px;
@@ -358,4 +358,9 @@ a.my_post_links:hover div > div {
 	border: 1px solid #000000;
 	background: #043458;
 	padding-left: 5px;
+}
+
+.mutual_frd{
+  position: absolute;
+  margin-top: 40px;
 }

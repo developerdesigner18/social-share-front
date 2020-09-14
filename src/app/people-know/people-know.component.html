@@ -34,10 +34,10 @@
 					<div class="badges_for_fr position-relative" [attr.data-content]="frd_request_count">Friend Requests</div>
 				</div>
 			</a>
-			<a class="my_post_links" href="peopleknow/{{id}}">
+      <a class="my_post_links" href="search/{{id}}">
 				<div class="left_content">
-					<i class="fas fa-users"></i>
-					<div class="badges_for_pymk position-relative" [attr.data-content]="countSuggest">People you may know</div>
+					<i class="fas fa-search-plus"></i>
+					<div>Search for someone</div>
 				</div>
 			</a>
 			<a class="my_post_links" href="#">
@@ -48,23 +48,15 @@
 			</a>
 		</div>
 		<div class="main_area">
-			<div class="main_area_content post">
-				<div class="post position-relative">
-					<form style="width: 100%">
-						<input #searchText type="text" placeholder="Search friends" value="">
-						<button (click)="searchFrd()">Search</button>
-					</form>
-				</div>
-			</div>
 			<div class="main_area_content timeline">
 				<div class="main_post_content d-flex flex-column">
           <div class="d-flex">
 						<div class="d-flex justify-content-between">
-							<div class="profile_name_of_poster">Peoples</div>
+							<div class="profile_name_of_poster">Peoples May You Know</div>
 						</div>
 					</div>
           <hr/>
-					<ng-container *ngIf="search_by_name == false">
+					<!-- <ng-container *ngIf="search_by_name == false"> -->
 						<div class="d-flex allusers_set" *ngFor="let user of allUsers;let i = index">
 	            <div class="profile_pic position-relative">
 								<img [src]="user.profileImgURl" onerror="this.src='/assets/images/default_user.jpg';">
@@ -72,6 +64,7 @@
 							<div class="name_and_desc">
 								<div class="d-flex justify-content-between align-items-center">
 									<a href="profile/{{user._id}}"><div class="profile_name_of_poster">{{user.name}}</div></a>
+                  <span *ngIf="mutulFrdcount" class="mutual_frd">{{mutulFrdcount}} mutual friends</span>
 								</div>
 							</div>
 							<div class="icon_container d-flex justify-content-end">
@@ -81,8 +74,8 @@
 								</div>
 							</div>
 						</div>
-					</ng-container>
-					<ng-container *ngIf="search_by_name == true">
+					<!-- </ng-container> -->
+					<!-- <ng-container *ngIf="search_by_name == true">
 						<div class="d-flex allusers_set" *ngFor="let dt_name of search_data">
 	            <div class="profile_pic position-relative">
 								<img [src]="dt_name.profileImgURl" onerror="this.src='/assets/images/default_user.jpg';">
@@ -93,11 +86,7 @@
 								</div>
 							</div>
 						</div>
-						<div style="text-align: center" *ngIf="noRecord">
-							<h5>We didn't find any results</h5>
-							<h6>Make sure that everything is spelt correctly or try different keywords.</h6>
-						</div>
-					</ng-container>
+					</ng-container> -->
 				</div>
 			</div>
 		</div>

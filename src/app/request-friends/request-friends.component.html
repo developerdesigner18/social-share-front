@@ -95,7 +95,12 @@
         <div class="slider_bid_like-share d-flex flex-column" style="width: 100%" id="slider-owl-carousel-load">
           <div class="owl-carousel owl-theme" id="owl-demo" *ngIf="data.imageUrl.length > 0">
             <div class="item" *ngFor="let imageurl of data.imageUrl">
-              <img class="slider_image" [src]="imageurl" [attr.data-slide-to]="i">
+              <!-- <img class="slider_image" [src]="imageurl" [attr.data-slide-to]="i"> -->
+              <img class="slider_image" [src]="imageurl" [attr.data-slide-to]="i" *ngIf="imageurl.split('.').pop() !== 'mp4'">
+              <video controls class="slider_video" *ngIf="imageurl.split('.').pop() == 'mp4'" disablePictureInPicture controlsList="nodownload">
+                <source [src]="imageurl" type="video/mp4">
+                <!-- <source [src]="imageurl" type="video/ogg"> -->
+              </video>
             </div>
           </div>
           <div class="cat_bid d-flex justify-content-between align-items-center mt-3" *ngIf="data.imageUrl.length > 0">
@@ -115,18 +120,23 @@
             </div>
           </div>
           <div class="take_action">
-            <button class="like_sec">
-              <i class="far fa-thumbs-up"></i>
-              <div>Like <span>1.4k</span></div>
+            <button class="like_sec" (click)="likeIt(data._id);">
+              <i class="fa" [ngClass]="postlikeId.includes(data._id) ? 'fa-thumbs-up': 'fa-thumbs-o-up'" #like_font></i>
+              <div>Like <span>{{data.like.length === 0 ? '' : data.like.length}}</span></div>
             </button>
-            <button id="hide show" class="comment_sec">
+            <button class="comment_sec_{{data._id}} comment_sec" (click)="open_comments(data._id)">
               <i class="far fa-comment-dots"></i>
-              <div>Comment<span>96</span></div>
+              <div>Comment<span>{{data.comment.length === 0 ? '' : checkTem ? data.comment.length + 1 : data.comment.length}}</span></div>
             </button>
             <button class="share_sec">
               <i class="far fa-share"></i>
               <div>Share<span>7</span></div>
             </button>
+          </div>
+          <div class="write_comments">
+            <form (ngSubmit)="addComments(data._id, data.post_user, data.post_profileImg)" [formGroup]="commentsForm">
+              <input type="text" placeholder=" Write a comment...!" formControlName="newcomment">
+            </form>
           </div>
           <div class="comments_container" style="display: none;">
             <div class="comment_title">Comments:</div>

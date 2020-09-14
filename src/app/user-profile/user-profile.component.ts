@@ -25,12 +25,19 @@ export class UserProfileComponent implements OnInit {
   previewUrl:any = null;
   imageCov:any = 'assets/images/bg.jpg';
   token = '';
+  current_user_profile = true
+  frdDetails = [];
+  notAnyFrd = '';
 
   user_post = '';
   user_city = '';
   user_state = '';
   user_country = '';
   user_hobbies = '';
+  notfound = 0;
+  urls = [];
+  datas = [];
+  onlyImg = [];
 
   @ViewChild('designation') designationElement: any;
   @ViewChild('city') cityElement: any;
@@ -38,6 +45,7 @@ export class UserProfileComponent implements OnInit {
   @ViewChild('country') countryElement: any;
   @ViewChild('hobbies') hobbiesElement: any;
 
+  // public datas;
   constructor(
     public authService: AuthService,
     private activatedRoute: ActivatedRoute,
@@ -70,6 +78,39 @@ export class UserProfileComponent implements OnInit {
     {
       localStorage.removeItem('friendId')
     }
+
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if(currentUser.data._id == id){
+      this.current_user_profile = true
+    }else{
+      this.current_user_profile = false
+    }
+
+    this.authService.getFriends(id).subscribe(res => {
+      if(res.success)
+      {
+        for(let i = 0; i < res.userInfo.length; i++){
+          this.frdDetails.push(res.userInfo[i])
+        }
+      }else{
+        this.notAnyFrd = res.message
+      }
+    })
+
+    this.authService.getProfilePost(id).subscribe(res => {
+      if(res.length > 0){
+
+        for(let i = 0; i < res.length; i++){
+          for(let j = 0; j < res[i].imageUrl.length; j++){
+            if(res[i].imageUrl[j].split('.').pop() !== 'mp4'){
+              this.onlyImg.push(res[i].imageUrl[j])
+            }
+          }
+        }
+      }else{
+        this.notfound = res.code
+      }
+    })
   }
 
   ngOnInit(): void {
@@ -82,7 +123,6 @@ export class UserProfileComponent implements OnInit {
           video:true,
           lazyLoad: true
       	})
-        // $('.owl-video-play-icon').remove();
       });
     });
     $(document).ready(function(){
@@ -255,5 +295,10 @@ export class UserProfileComponent implements OnInit {
       //     autoWidth: true
       //   })
       // })
+    // }
+
+    // openComments(postId){
+    //   console.log("-=-=-=-=-=-==-=-toggle")
+    //   $('.comments_container').toggle();
     // }
 }

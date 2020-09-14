@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, ViewChild} from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog} from  '@angular/material/dialog';
 import { PostModalComponent } from '../post-modal/post-modal.component';
@@ -23,15 +24,32 @@ export class TimelineComponent implements OnInit {
   profileImg = '';
   posts: any = '';
   token = '';
+  current_user_profile = true
+  notfound = 0;
+  likePost = false;
+  checkloginUser = '';
+  likepostUserId = '';
+  hideme=[];
+  likes = [];
+  removelike = 0;
+  objVal = [];
+
+  postlikeId = []
+  // selectedIconHtml = `<i class=fa fa-thumbs-o-up"></i>`;
+  commentsForm: FormGroup;
 
   @ViewChild('textmsgPost') postMesssgeElement: any;
+  // @ViewChild('like_font', {static: false}) likeFontElement: any;
+  @ViewChild('like_font') likeFontElement: any;
+  // @ViewChild('writeComments') writeCommentElement: any;
 
   public datas;
   constructor(
     public  dialog:  MatDialog,
     private activatedRoute: ActivatedRoute,
     public authService: AuthService,
-    public router: Router
+    public router: Router,
+    public formBuilder: FormBuilder
   ) {
     this.id = this.activatedRoute.parent.params['value']['id'];
     this.authService.getUserProfile(this.id).subscribe(res => {
@@ -39,28 +57,59 @@ export class TimelineComponent implements OnInit {
       this.profileImg =  res.data.profileImgURl
       this.u_name =  res.data.name
     })
-    this.token = localStorage.getItem('token')
-    this.authService.getProfilePost(this.token).subscribe(res => {
-      this.datas = res
-      for(let i = 0; i < this.datas.length; i++){
-        this.description = this.datas[i].description;
-        this.urls.push(this.datas[i].imageUrl)
+    // this.token = localStorage.getItem('token')
+
+    this.authService.getProfilePost(this.id).subscribe(res => {
+      if(res.length > 0){
+        this.datas = res
+        for(let i = 0; i < this.datas.length; i++){
+          this.description = this.datas[i].description;
+          this.urls.push(this.datas[i].imageUrl)
+          this.likes = this.datas[i].like
+          if(this.likes.length > 0){
+            this.postlikeId.push(this.datas[i]._id)
+            // this.likePost= false
+            // this.likeFontElement.nativeElement.classList.add('fa-thumbs-up');
+            // this.likes = true
+            // this.datas[i].like
+            // this.likePost = true
+            // console.log("native element",this.likeFontElement)
+            // this.likeFontElement.nativeElement.classList.add('fa-thumbs-up');
+            // let body = document.getElementById('like_font');
+            // body.classList.add('fa-thumbs-up')
+            // $('.fa-thumbs-o-up').removeClass('fa-thumbs-o-up')
+            // $('.fa-thumbs-o-up').addClass('fa-thumbs-up')
+          }
+        }
+        // this.removelike = this.likes.length
+        return this.datas
+      }else{
+        this.notfound = res.code
       }
-      return this.datas
     })
+
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if(currentUser.data._id == this.id){
+      this.current_user_profile = true
+    }else{
+      this.current_user_profile = false
+    }
+
+    this.commentsForm= this.formBuilder.group({
+      newcomment: ['']
+    })
+
   }
 
+  get formControls() { return this.commentsForm.controls }
+
   ngOnInit(): void {
-    // $.noConflict();
-    $('.owl-carousel').owlCarousel();
     jQuery(document).ready(function(){
-      // $('#owl-demo').trigger('refresh.owl.carousel')
       jQuery('.owl-carousel').owlCarousel({
         nav:true,
         items:1,
         autoWidth: true,
-        video:true,
-        lazyLoad: true
+        video:true
       })
     });
     $(window).on('load', function(){
@@ -68,30 +117,14 @@ export class TimelineComponent implements OnInit {
     		nav:true,
     		items:1,
         autoWidth: true,
-        video:true,
-        lazyLoad: true
+        video:true
     	})
-
-      // $('.owl-video-play-icon').remove();
     });
     this.changeslider();
+  }
 
-    // $('.owl-carousel').owlCarousel({
-    //   nav:true,
-    //   items:1,
-    //   autoWidth: true,
-    //   video:true,
-    // })
-    // var element = this.id;
-    // $('.owl-carousel').addClass('display','block')
-    // $('.owl-carousel'):not(.owl-loaded){
-    //     opacity: 0;
-    // }
-    // function init_carousel(){
-    //   console.log("=-=-=-=-=-init car")
-    //   console.log($('.owl-carousel').owlCarousel())
-    //   console.log("=-=-=-=-=-init car")
-    // }
+  open_comments(postId){
+    $(`.comments_container_${postId}`).toggle();
   }
 
   openTextDialog(){
@@ -136,7 +169,42 @@ export class TimelineComponent implements OnInit {
         video:true,
         lazyLoad: true
       })
-      // $('.owl-video-play-icon').remove();
     })
+  }
+
+  likeIt(postId){
+
+    this.authService.sendLikePost(postId).subscribe(res => {
+      if(res['success'])
+      {
+
+        if(this.likeFontElement.nativeElement.classList[2] == 'fa-thumbs-up' || this.likeFontElement.nativeElement.classList[1] == 'fa-thumbs-up')
+        {
+          this.likeFontElement.nativeElement.classList.remove('fa-thumbs-up')
+          this.likeFontElement.nativeElement.classList.add('fa-thumbs-o-up')
+        }else {
+          this.likeFontElement.nativeElement.classList.add('fa-thumbs-up')
+        }
+      }
+    })
+  }
+
+  temCmnt = [];
+  checkTem =  false
+  tempPostId = '';
+
+  addComments(postId, userName, profilePic){
+    this.objVal = Object.keys(this.commentsForm.value).map(key => ({type: key, value: this.commentsForm.value[key]}))
+    this.authService.sendPostComment(postId, this.objVal[0].value).subscribe(res => {
+      if(res['success']){
+        $(`.comments_container_${postId}`).css('display','block');
+        if(this.datas.map((id) => id._id).includes(postId)){
+          this.tempPostId = postId
+          this.checkTem = true
+          this.temCmnt.push(this.objVal[0].value)
+        }
+      }
+    })
+    this.commentsForm.reset()
   }
 }

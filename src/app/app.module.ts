@@ -37,6 +37,7 @@ import { DetailsComponent } from './details/details.component';
 import { LifeComponent } from './life/life.component';
 import { PostModalComponent } from './post-modal/post-modal.component';
 import { RequestFriendsComponent } from './request-friends/request-friends.component';
+import { PeopleKnowComponent } from './people-know/people-know.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { RequestFriendsComponent } from './request-friends/request-friends.compo
     DetailsComponent,
     LifeComponent,
     PostModalComponent,
-    RequestFriendsComponent
+    RequestFriendsComponent,
+    PeopleKnowComponent
   ],
   entryComponents: [DialogBodyComponent],
   imports: [

@@ -20,6 +20,7 @@ import { DetailsComponent } from './details/details.component';
 import { LifeComponent } from './life/life.component';
 import { FriendsComponent } from './friends/friends.component';
 import { RequestFriendsComponent } from './request-friends/request-friends.component';
+import { PeopleKnowComponent } from './people-know/people-know.component';
 
 import { AuthGuard } from "./auth.guard";
 
@@ -67,7 +68,8 @@ const routes: Routes = [
     ]
   },
   { path: 'home/:id', component: HomeComponent, canActivate:[AuthGuard]},
-  { path: 'search/:id', component: SearchComponent, canActivate:[AuthGuard]}
+  { path: 'search/:id', component: SearchComponent, canActivate:[AuthGuard]},
+  { path: 'peopleknow/:id', component: PeopleKnowComponent, canActivate:[AuthGuard]}
 ];
 
 @NgModule({

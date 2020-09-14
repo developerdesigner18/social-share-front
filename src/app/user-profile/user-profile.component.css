@@ -535,6 +535,22 @@ button.owl-next span {
     font-weight: 500;
     font-size: 16px;
 }
+
+.write_comments {
+    display: grid;
+    margin-top: 15px;
+    border-radius: 4px;
+}
+
+.write_comments > form > input {
+		padding: 4px;
+    background: #ecedee;
+    border: none;
+		border-radius: 5px;
+		padding-left: 10px;
+		width: 100%;
+}
+
 button.comment_sec {
     border: 1px solid #ff9000 !important;
     border-top: 0 !important;
@@ -782,7 +798,7 @@ button.comment_sec {
 	padding: 0 !important;
 }
 
-.playpause {
+/* .playpause {
 		background-image: url('/../assets/images/play_video.jpg');
     background-repeat:no-repeat;
     width:50%;
@@ -796,4 +812,4 @@ button.comment_sec {
     background-size:contain;
     background-position: center;
 		z-index: 1;
-}
+} */

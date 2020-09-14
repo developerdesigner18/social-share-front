@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
@@ -48,16 +49,33 @@ export class RequestFriendsComponent implements OnInit {
   public check_datas;
   check_id_frd_list = [];
   remove_datas = '';
+  postlikeId = []
+  likes = [];
+  objVal = [];
+  commentsForm: FormGroup;
+
+  @ViewChild('like_font') likeFontElement: any;
 
   constructor(
     public authService: AuthService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private location: Location
+    private location: Location,
+    public formBuilder: FormBuilder
   ) {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.login_id = currentUser.data._id
+
+    this.commentsForm= this.formBuilder.group({
+      newcomment: ['']
+    })
   }
+
+  open_comments(postId){
+    $(`.comments_container_${postId}`).toggle();
+  }
+
+  get formControls() { return this.commentsForm.controls }
 
   ngOnInit(): void {
     let current_id = this.activatedRoute.snapshot.paramMap.get('id');
@@ -121,6 +139,12 @@ export class RequestFriendsComponent implements OnInit {
 
     this.authService.getFriendPost(localStorage.getItem('friendId')).subscribe(res => {
       this.frd_datas = res
+      for(let i = 0; i < this.frd_datas.length; i++){
+        this.likes = this.frd_datas[i].like
+        if(this.likes.length > 0){
+          this.postlikeId.push(this.frd_datas[i]._id)
+        }
+      }
       this.owlcarouselSet()
     })
 
@@ -143,6 +167,22 @@ export class RequestFriendsComponent implements OnInit {
     this.authService.rejectFriendRequest(userId, reject_id).subscribe(res => {})
   }
 
+  likeIt(postId){
+
+    this.authService.sendLikePost(postId).subscribe(res => {
+      if(res['success'])
+      {
+
+        if(this.likeFontElement.nativeElement.classList[2] == 'fa-thumbs-up' || this.likeFontElement.nativeElement.classList[1] == 'fa-thumbs-up')
+        {
+          this.likeFontElement.nativeElement.classList.remove('fa-thumbs-up')
+          this.likeFontElement.nativeElement.classList.add('fa-thumbs-o-up')
+        }else {
+          this.likeFontElement.nativeElement.classList.add('fa-thumbs-up')
+        }
+      }
+    })
+  }
 
   owlcarouselSet(){
     jQuery(document).ready(function(){
@@ -152,5 +192,25 @@ export class RequestFriendsComponent implements OnInit {
         autoWidth: true
       })
     })
+  }
+
+  temCmnt = [];
+  checkTem =  false
+  tempPostId = '';
+
+  addComments(postId, userName, profilePic){
+    this.objVal = Object.keys(this.commentsForm.value).map(key => ({type: key, value: this.commentsForm.value[key]}))
+    console.log("-=-=-=-=-=-=-=-obj Val", this.objVal)
+    this.authService.sendPostComment(postId, this.objVal[0].value).subscribe(res => {
+      if(res['success']){
+        $(`.comments_container_${postId}`).css('display','block');
+        if(this.datas.map((id) => id._id).includes(postId)){
+          this.tempPostId = postId
+          this.checkTem = true
+          this.temCmnt.push(this.objVal[0].value)
+        }
+      }
+    })
+    this.commentsForm.reset()
   }
 }

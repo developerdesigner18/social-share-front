@@ -155,7 +155,7 @@ a.my_post_links{
     margin: auto;
 }
 .badges_for_pymk:before {
-    content: "9";
+    content: attr(data-content);
     position: absolute;
     right: -30px;
     font-size: 9px;
@@ -821,4 +821,19 @@ a.my_post_links:hover div > div {
 	margin-top: 25px;
 	width: 100%;
 	object-fit: cover;
+}
+
+.write_comments {
+    display: grid;
+    margin-top: 15px;
+    border-radius: 4px;
+}
+
+.write_comments > form > input {
+		padding: 4px;
+    background: #ecedee;
+    border: none;
+		border-radius: 5px;
+		padding-left: 10px;
+		width: 100%;
 }

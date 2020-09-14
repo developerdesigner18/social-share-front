@@ -3,8 +3,8 @@ import { Injectable, Injector } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { MatDialog } from  '@angular/material/dialog';
-import { environment } from '../environments/environment';
-// import { environment } from '../environments/environment.prod';
+// import { environment } from '../environments/environment';
+import { environment } from '../environments/environment.prod';
 
 import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
@@ -125,7 +125,7 @@ export class AuthService {
   }
 
   getSearchUser(name): Observable<any> {
-    return this.httpClient.get<any>(`${environment.apiUrl}/api/friend/search?search=${name}`, { headers: this.headers }).pipe(
+    return this.httpClient.get(`${environment.apiUrl}/api/friend/search?search=${name}`, { headers: this.headers }).pipe(
       map((res: Response) => {
         if(res['success'] == true){
           this.router.navigate([`search/${res['data'][0]._id}`])
@@ -189,13 +189,13 @@ export class AuthService {
       map((res: Response) => {
         return res || {}
       }),
-        catchError(this.handleError)
+      catchError(this.handleError)
     )
   }
 
-  getProfilePost(u_token): Observable<any> {
-    this.headers.append('token', u_token)
-    return this.httpClient.get(`${environment.apiUrl}/api/photos/show`, { headers: {token: u_token}}).pipe(
+  getProfilePost(id): Observable<any> {
+    // this.headers.append('token', u_token)
+    return this.httpClient.get(`${environment.apiUrl}/api/photos/show?id=${id}`, { headers: this.headers}).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -265,7 +265,7 @@ export class AuthService {
   getAllFriends(u_token): Observable<any> {
     this.headers.append('token', u_token)
     // return this.httpClient.get<any>(`${environment.apiUrl}/api/friend`, { headers: {token: u_token}}).pipe(
-    return this.httpClient.get<any>(`${environment.apiUrl}/api/friend/allfriendList`, { headers: {token: u_token}}).pipe(
+    return this.httpClient.get(`${environment.apiUrl}/api/friend/allfriendList`, { headers: {token: u_token}}).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -302,10 +302,8 @@ export class AuthService {
   }
 
   getFriends(userId): Observable<any> {
-    console.log("=-=-=-=-=-=- friendId", userId)
     return this.httpClient.get(`${environment.apiUrl}/api/friend/show?userId=${userId}`, { headers: this.headers}).pipe(
       map((res: Response) => {
-        console.log("=--=-=-=-=-=- res", res)
         return res || {}
       }),
       catchError(this.handleError)
@@ -316,6 +314,48 @@ export class AuthService {
     this.headers.append('token', u_token)
     return this.httpClient.get(`${environment.apiUrl}/api/photos/homePost`, { headers: {token: u_token}}).pipe(
       map((res: Response) => {
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  getSuggestUser(userId){
+    return this.httpClient.post(`${environment.apiUrl}/api/friend/suggest`, {userId: userId }, { headers: this.headers}).pipe(
+      map((res: Response) => {
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  sendLikePost(postId){
+    let u_token = localStorage.getItem('token')
+    return this.httpClient.post(`${environment.apiUrl}/api/photos/like`, {postId: postId }, { headers: {token: u_token}}).pipe(
+      map((res: Response) => {
+        console.log("-=-=-=-=-=-=-res sucess", res)
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  sendDisLikePost(postId){
+    let u_token = localStorage.getItem('token')
+    return this.httpClient.post(`${environment.apiUrl}/api/photos/like`, {postId: postId }, { headers: {token: u_token}}).pipe(
+      map((res: Response) => {
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  // sendPostComment
+  sendPostComment(postId, commentMsg){
+    let u_token = localStorage.getItem('token')
+    return this.httpClient.post(`${environment.apiUrl}/api/photos/comment`, {postId: postId, newcomment: commentMsg }, { headers: {token: u_token}}).pipe(
+      map((res: Response) => {
+        console.log("=---=-=-=-=-=-res", res)
         return res || {}
       }),
       catchError(this.handleError)
