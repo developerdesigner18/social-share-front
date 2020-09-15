@@ -54,6 +54,9 @@ export class RequestFriendsComponent implements OnInit {
   objVal = [];
   commentsForm: FormGroup;
 
+  cmntuname = '';
+  cmntuprofile = '';
+
   @ViewChild('like_font') likeFontElement: any;
 
   constructor(
@@ -144,14 +147,20 @@ export class RequestFriendsComponent implements OnInit {
         if(this.likes.length > 0){
           this.postlikeId.push(this.frd_datas[i]._id)
         }
-        for(let j = 0; j < this.frd_datas[i].comment.length; j++){
-          this.authService.getHomePostProfile(this.frd_datas[i].comment[j].userId).subscribe(res => {
-            this.frd_datas[i].post_profileImg = res.data.profileImgURl
-            this.frd_datas[i].post_user = res.data.name
-          })
-        }
+        // for(let j = 0; j < this.frd_datas[i].comment.length; j++){
+        //   this.authService.getHomePostProfile(this.frd_datas[i].comment[j].userId).subscribe(res => {
+        //     this.frd_datas[i].post_profileImg = res.data.profileImgURl
+        //     this.frd_datas[i].post_user = res.data.name
+        //   })
+        // }
       }
       this.owlcarouselSet()
+    })
+
+    this.authService.getProfileforAbout(this.activatedRoute.snapshot.paramMap.get('id')).subscribe(res => {
+      // this.id = res.data._id
+      this.cmntuname =  res.data.name
+      this.cmntuprofile = res.data.profileImgURl
     })
 
     this.timeline_hide = true
@@ -203,6 +212,8 @@ export class RequestFriendsComponent implements OnInit {
   temCmnt = [];
   checkTem =  false
   tempPostId = '';
+  tempProfile = '';
+  tempName = '';
 
   addComments(postId, userName, profilePic){
     this.objVal = Object.keys(this.commentsForm.value).map(key => ({type: key, value: this.commentsForm.value[key]}))
@@ -210,6 +221,8 @@ export class RequestFriendsComponent implements OnInit {
       if(res['success']){
         $(`.comments_container_${postId}`).css('display','block');
         if(this.frd_datas.map((id) => id._id).includes(postId)){
+          this.tempName = userName
+          this.tempProfile = profilePic
           this.tempPostId = postId
           this.checkTem = true
           this.temCmnt.push(this.objVal[0].value)

@@ -134,7 +134,7 @@
             </button>
           </div>
           <div class="write_comments">
-            <form (ngSubmit)="addComments(data._id, data.post_user, data.post_profileImg)" [formGroup]="commentsForm">
+            <form (ngSubmit)="addComments(data._id, cmntuname, cmntuprofile)" [formGroup]="commentsForm">
               <input type="text" placeholder=" Write a comment...!" formControlName="newcomment">
             </form>
           </div>
@@ -143,9 +143,9 @@
             <ng-container *ngIf="checkTem && tempPostId === data._id">
               <div class="comment_user d-flex"  *ngFor="let temp of temCmnt.slice().reverse()">
                 <!-- <img src="assets/images/profile.jpg"> -->
-                <img [src]="data.post_profileImg" onerror="this.src='/assets/images/default_user.jpg';">
+                <img [src]="tempProfile" onerror="this.src='/assets/images/default_user.jpg';">
                 <div>
-                  <div class="commenter">{{data.post_user}}</div>
+                  <div class="commenter">{{tempName}}</div>
                   <div class="comment_here">{{temp}}</div>
                 </div>
               </div>
@@ -153,9 +153,9 @@
 
             <div class="comment_user d-flex" *ngFor="let comnt of data.comment.slice().reverse();">
               <!-- <img src="assets/images/profile.jpg"> -->
-              <img [src]="data.post_profileImg" onerror="this.src='/assets/images/default_user.jpg';">
+              <img [src]="comnt.profile" onerror="this.src='/assets/images/default_user.jpg';">
               <div>
-                <div class="commenter">{{data.post_user}}</div>
+                <div class="commenter">{{comnt.name}}</div>
                 <div class="comment_here">{{comnt.newcomment}}</div>
               </div>
             </div>

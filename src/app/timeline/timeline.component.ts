@@ -62,10 +62,19 @@ export class TimelineComponent implements OnInit {
     this.authService.getProfilePost(this.id).subscribe(res => {
       if(res.length > 0){
         this.datas = res
+        console.log("=-=-=-=-=-=-=-=-=-=-=datas", this.datas)
         for(let i = 0; i < this.datas.length; i++){
           this.description = this.datas[i].description;
           this.urls.push(this.datas[i].imageUrl)
           this.likes = this.datas[i].like
+          for(let j = 0; j < this.datas[i].comment.length; j++){
+          // console.log("=-=-=-=-=-=-=-=-=-user name", this.datas[i].comment[j].userId)
+            this.authService.getHomePostProfile(this.datas[i].comment[j].userId).subscribe(res => {
+              // console.log("--=-=-=-=-=---=-=-=user profile data", res.data)
+              this.datas[i].post_profileImg = res.data.profileImgURl
+              this.datas[i].post_user = res.data.name
+            })
+          }
           if(this.likes.length > 0){
             this.postlikeId.push(this.datas[i]._id)
             // this.likePost= false
@@ -172,12 +181,16 @@ export class TimelineComponent implements OnInit {
     })
   }
 
+  temCmnt = [];
+  checkTem =  false
+  tempPostId = '';
+
   likeIt(postId){
 
     this.authService.sendLikePost(postId).subscribe(res => {
       if(res['success'])
       {
-
+        // this.checkTem = true
         if(this.likeFontElement.nativeElement.classList[2] == 'fa-thumbs-up' || this.likeFontElement.nativeElement.classList[1] == 'fa-thumbs-up')
         {
           this.likeFontElement.nativeElement.classList.remove('fa-thumbs-up')
@@ -188,10 +201,6 @@ export class TimelineComponent implements OnInit {
       }
     })
   }
-
-  temCmnt = [];
-  checkTem =  false
-  tempPostId = '';
 
   addComments(postId, userName, profilePic){
     this.objVal = Object.keys(this.commentsForm.value).map(key => ({type: key, value: this.commentsForm.value[key]}))

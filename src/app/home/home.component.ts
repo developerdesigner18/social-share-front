@@ -59,57 +59,29 @@ export class HomeComponent implements OnInit {
 
     this.token = localStorage.getItem('token')
     this.authService.getAllFriendPost(this.token).subscribe(res => {
-      // console.log("=-=-=-=-=-=-=-=-res", res)
       if(res.message == "You are not any friend")
       {
         console.log("-=-=-=-=-Welcome to social share")
       }else{
-        // console.log("=-=-=-=-=-=-=-=-posts ", res.posts[0].like[0].userId)
         this.datas = res.posts
         for(let i = 0; i < this.datas.length; i++){
           this.description = this.datas[i].description;
-          // console.log("-=--=-=-=-=-=-like datas", this.datas[i])
-          // console.log("-=--=-=-=-=-=-like ", this.datas[i].like)
           this.likes = this.datas[i].like
           this.comments = this.datas[i].comment.length
-          // console.log("=-=-=-=-=-=-=comment length", this.datas[i].comment.length)
-          // this.url = this.datas[i].imageUrl;
           this.url.push(this.datas[i].imageUrl)
-          // console.log("-=-=-=-=-=-=-=-=-=-", this.datas[i].userId)
-          // console.log("-=-=-=-=-=-=-=-=-=-datas", this.datas)
           this.authService.getHomePostProfile(this.datas[i].userId).subscribe(res => {
-            // console.log("-=-=-=-=-=-=-=-=-res", res.data.profileImgURl)
-            // console.log("-=-=-=-=-=-=-=-=-userid", this.datas[i].userId)
-            // console.log("-=-=-=-=-=-=-=-=-res", res.data._id)
-            // this.id = res.data._id
             this.datas[i].post_profileImg = res.data.profileImgURl
-            // this.post_profileImg = res.data.profileImgURl
              this.datas[i].post_user = res.data.name
-            // this.name =  res.data.name
           })
 
           if(this.likes.length > 0){
             for(let j = 0; j < this.datas[i].like.length; j++){
-            // console.log("-=-=-=-=-=-=-=datas j", this.datas[i].like.length)
-              // console.log("-=-=-=-=-=--=-=-this.datas[i].likes", this.datas[i].like[j]['userId'])
-              // this.postlikeId.push(this.datas[i].like[j]['userId'])
               this.postlikeuserId.push(this.datas[i].like[j]['userId'])
-              // console.log("-=-=--=-=psost like", this.postlikeuserId)
-              // console.log("-=-=--=-=psost like check id", this.postlikeuserId.includes(id))
               if(this.postlikeuserId.includes(id)){
                 this.postlikeId.push(this.datas[i]._id)
               }
-              // if(this.postlikeuserId){
-              //   this.oneByonePosts = this.datas[i]._id
-              // }
-              // this.authService.getAllFriendPost(this.token).subscribe(res => {})
             }
-            // console.log("-=-=-=-=-=-=-=final post like", this.postlikeId)
-            // console.log("-=-=-=-=-=-=-=final post like", Array.from(new Set(this.postlikeId)))
             this.postlikeuserId = Array.from(new Set(this.postlikeuserId)) //For Uniquee fecth
-
-            // console.log("-=-=-=-=-=--=-=-this.datas[i].likes", this.datas[i].like[i]['userId'])
-              // this.postlikeId.push(this.datas[i]._id)
           }
 
         }
@@ -249,6 +221,8 @@ export class HomeComponent implements OnInit {
   tempPostId = '';
   // functionCall = this.datas.map((cmnt) => cmnt.comment.length)
   count = 0
+  tempProfile = '';
+  tempName = '';
 
   addComments(postId, userName, profilePic){
     // console.log("==-=-=-=-=-=-=-=functionCall", this.functionCall[0])
@@ -279,6 +253,8 @@ export class HomeComponent implements OnInit {
           // if(this.count > 1){
           //     this.checkTem = true
           // }
+          this.tempName = userName
+          this.tempProfile = profilePic
           this.tempPostId = postId
           this.checkTem = true
           this.temCmnt.push(this.objVal[0].value)

@@ -145,8 +145,8 @@
 							</button>
 							<button class="comment_sec_{{data._id}} comment_sec" (click)="open_comments(data._id)">
 								<i class="far fa-comment-dots"></i>
-								<!-- <div>Comment<span>{{data.comment.length === 0 ? '' : checkTem ? data.comment.length + 1 : data.comment.length}}</span></div> -->
-								<div>Comment<span>{{data.comment.length}}</span></div>
+								<div>Comment<span>{{data.comment.length === 0 ? '' : checkTem ? data.comment.length + 1 : data.comment.length}}</span></div>
+								<!-- <div>Comment<span>{{data.comment.length}}</span></div> -->
 								<!-- <div>Comment<span>{{comment_count}}</span></div> -->
 								<!-- <div>Comment{{checkTem}}<span>{{data.comment.length === 0 ? '' : checkTem ? cmntcount : data.comment.length}}</span></div> -->
 							</button>
@@ -156,18 +156,18 @@
 							</button>
 						</div>
 						<div class="write_comments">
-				      <form (ngSubmit)="addComments(data._id, data.post_user, data.post_profileImg)" [formGroup]="commentsForm">
+				      <form (ngSubmit)="addComments(data._id, name, profileImg)" [formGroup]="commentsForm">
 				        <input type="text" placeholder=" Write a comment...!" formControlName="newcomment">
 				      </form>
 				    </div>
 						<div class="comments_container_{{data._id}} comments_container" style="display: none;" *ngIf="data.comment.length > 0">
 							<div class="comment_title">Comments:</div>
 							<ng-container *ngIf="checkTem && tempPostId === data._id">
-								<div class="comment_user d-flex"  *ngFor="let temp of temCmnt.slice().reverse()">
+								<div class="comment_user d-flex" *ngFor="let temp of temCmnt.slice().reverse()">
 									<!-- <img src="assets/images/profile.jpg"> -->
-									<img [src]="data.post_profileImg" onerror="this.src='/assets/images/default_user.jpg';">
+									<img [src]="tempProfile" onerror="this.src='/assets/images/default_user.jpg';">
 									<div>
-										<div class="commenter">{{data.post_user}}</div>
+										<div class="commenter">{{tempName}}</div>
 										<div class="comment_here">{{temp}}</div>
 									</div>
 								</div>
@@ -175,9 +175,11 @@
 
 							<div class="comment_user d-flex" *ngFor="let comnt of data.comment.slice().reverse();">
 								<!-- <img src="assets/images/profile.jpg"> -->
-								<img [src]="data.post_profileImg" onerror="this.src='/assets/images/default_user.jpg';">
+								<!-- {{comnt.name}} -->
+								<img [src]="comnt.profile" onerror="this.src='/assets/images/default_user.jpg';">
 								<div>
-									<div class="commenter">{{data.post_user}}</div>
+									<!-- <div class="commenter">{{data.post_cmnt_user}}</div> -->
+									<div class="commenter">{{comnt.name}}</div>
 									<div class="comment_here">{{comnt.newcomment}}</div>
 								</div>
 							</div>
@@ -194,7 +196,7 @@
 				</div>
 
 			</div>
-			<div class="main_area_contents timeline post_by_user_second">
+			<!-- <div class="main_area_contents timeline post_by_user_second">
 			  <div class="main_post_contents d-flex flex-column">
 			    <div class="d-flex">
 			      <div class="profile_pics position-relative">
@@ -272,7 +274,7 @@
 			      </div>
 			    </div>
 			  </div>
-			</div>
+			</div> -->
 		</div>
 		<div class="right_sidebar">
 			<div>
