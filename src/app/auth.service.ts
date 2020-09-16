@@ -333,17 +333,7 @@ export class AuthService {
     let u_token = localStorage.getItem('token')
     return this.httpClient.post(`${environment.apiUrl}/api/photos/like`, {postId: postId }, { headers: {token: u_token}}).pipe(
       map((res: Response) => {
-        console.log("-=-=-=-=-=-=-res sucess", res)
-        return res || {}
-      }),
-      catchError(this.handleError)
-    )
-  }
-
-  sendDisLikePost(postId){
-    let u_token = localStorage.getItem('token')
-    return this.httpClient.post(`${environment.apiUrl}/api/photos/like`, {postId: postId }, { headers: {token: u_token}}).pipe(
-      map((res: Response) => {
+        // console.log("-=-=-=-=-=-=-res sucess", res)
         return res || {}
       }),
       catchError(this.handleError)
@@ -355,7 +345,7 @@ export class AuthService {
     let u_token = localStorage.getItem('token')
     return this.httpClient.post(`${environment.apiUrl}/api/photos/comment`, {postId: postId, newcomment: commentMsg }, { headers: {token: u_token}}).pipe(
       map((res: Response) => {
-        console.log("=---=-=-=-=-=-res", res)
+        console.log("=---=-=-=-=-=-res auth", res)
         return res || {}
       }),
       catchError(this.handleError)

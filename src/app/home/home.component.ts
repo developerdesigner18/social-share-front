@@ -199,25 +199,36 @@ export class HomeComponent implements OnInit {
     });
   }
 
-
-  likeIt(postId){
-
+  temLike = 0;
+  checkTem =  false
+  likeIt(postId: any, likeCount){
+    // console.log("=-=-=-=-=-=-=-=Font 1", this.dataMatchElement.nativeElement.value)
     this.authService.sendLikePost(postId).subscribe(res => {
       if(res['success'])
       {
-        if(this.likeFontElement.nativeElement.classList[2] == 'fa-thumbs-up' || this.likeFontElement.nativeElement.classList[1] == 'fa-thumbs-up')
-        {
-          this.likeFontElement.nativeElement.classList.remove('fa-thumbs-up')
-          this.likeFontElement.nativeElement.classList.add('fa-thumbs-o-up')
-        }else {
-          this.likeFontElement.nativeElement.classList.add('fa-thumbs-up')
-        }
+        // console.log("=-=-=-=-=-=-=-=postId", postId)
+        // console.log("=-=-=-=-=-=-=-=Font ", this.likeFontElement.nativeElement.id)
+        // console.log("=-=-=-=-=-=temLike", this.temLike)
+        // comment_sec_{{data._id}}
+        // if(postId === this.likeFontElement.nativeElement.id)
+        // {
+          this.checkTem = true
+          if(this.likeFontElement.nativeElement.classList[2] == 'fa-thumbs-up' || this.likeFontElement.nativeElement.classList[1] == 'fa-thumbs-up')
+          {
+            this.likeFontElement.nativeElement.classList.remove('fa-thumbs-up')
+            this.likeFontElement.nativeElement.classList.add('fa-thumbs-o-up')
+            this.temLike = likeCount - 1
+          }else {
+            this.likeFontElement.nativeElement.classList.add('fa-thumbs-up')
+            this.temLike = likeCount + 1
+          }
+        // }
       }
     })
+    // return true
   }
 
   temCmnt = [];
-  checkTem =  false
   tempPostId = '';
   // functionCall = this.datas.map((cmnt) => cmnt.comment.length)
   count = 0
@@ -232,27 +243,6 @@ export class HomeComponent implements OnInit {
       if(res['success']){
         $(`.comments_container_${postId}`).css('display','block');
         if(this.datas.map((id) => id._id).includes(postId)){
-          // this.count += 1
-          // this.datas.push(this.objVal[0].value)
-          // let temp = [];
-          // console.log("=-=-=-==-=-=-=-ciunt comments", this.datas.map((cmnt) => cmnt._id).includes(postId))
-          // this.authService.getAllFriendPost(this.token).subscribe(res => {
-          //   this.temp = res.posts
-          //   for(let i = 0; i < this.datas.length; i++){
-          //     console.log("=-=-=-=-=-=-comment length", this.datas[i].comment.length)
-          //   }
-          // })
-          // console.log("=-=-=-=-temp", this.temp)
-          // console.log("=-=-=-=-comment posts length", this.temp.find((cmnt) => cmnt._id === postId))
-          // const selectedPost = this.temp.find((cmnt) => cmnt._id === postId)
-          // console.log("=-=-=-=-select post", selectedPost)
-
-          // console.log("=-=-=-=-=-=-=-", this.comments)
-          // this.router.navigate([`home/${this.activatedRoute.snapshot.paramMap.get('id')}`])
-          // console.log("=-=--=-=--=-=--=-=-count", this.count)
-          // if(this.count > 1){
-          //     this.checkTem = true
-          // }
           this.tempName = userName
           this.tempProfile = profilePic
           this.tempPostId = postId
@@ -261,8 +251,7 @@ export class HomeComponent implements OnInit {
         }
       }
     })
-
-    console.log("=-=-=-=-=-=-comment length end loop", this.datas.map((cmnt) => cmnt.comment.length))
+    // console.log("=-=-=-=-=-=-comment length end loop", this.datas.map((cmnt) => cmnt.comment.length))
     this.commentsForm.reset()
   }
 }

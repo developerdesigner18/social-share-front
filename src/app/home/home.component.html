@@ -132,7 +132,7 @@
 						</div>
 						<div class="take_action">
 							<!-- id:-{{data._id}} like:-{{data.like[i]['userId']}} -->
-							<button class="like_sec" (click)="likeIt(data._id);">
+								<button class="like_sec" (click)="likeIt(data._id, data.like.length);">
 								<!-- id:-{{id}}, alreay likes:- {{postlikeId}}
 								userLikeId:- {{postlikeuserId}} S
 								{{checkPostsId}}
@@ -141,11 +141,12 @@
 								{{postlikeId.includes(id) && postlikeId.includes(data._id)}} -->
 								<!-- <i class="fa" [ngClass]="postlikeId.includes(data._id) ? 'fa-thumbs-up': 'fa-thumbs-o-up'" #like_font></i> -->
 								<i class="fa" [ngClass]="postlikeId.includes(data._id) ? 'fa-thumbs-up': 'fa-thumbs-o-up'" #like_font></i>
-								<div>Like <span>{{data.like.length === 0 ? '' : data.like.length}}</span></div>
+								<!-- <div>Like<span>{{data.like.length === 0 ? '' : data.like.length}}</span></div> -->
+								<div>Like<span>{{data.like.length === 0 ? '' : checkTem == false ? data.like.length : temLike > 1 ? temLike - 1: temLike === 0 ? '' : temLike}}</span></div>
 							</button>
 							<button class="comment_sec_{{data._id}} comment_sec" (click)="open_comments(data._id)">
 								<i class="far fa-comment-dots"></i>
-								<div>Comment<span>{{data.comment.length === 0 ? '' : checkTem ? data.comment.length + 1 : data.comment.length}}</span></div>
+								<div>Comment<span>{{data.comment.length === 0 ? '' : checkTem ? data.comment.length + temCmnt.length : data.comment.length}}</span></div>
 								<!-- <div>Comment<span>{{data.comment.length}}</span></div> -->
 								<!-- <div>Comment<span>{{comment_count}}</span></div> -->
 								<!-- <div>Comment{{checkTem}}<span>{{data.comment.length === 0 ? '' : checkTem ? cmntcount : data.comment.length}}</span></div> -->
@@ -163,8 +164,9 @@
 						<div class="comments_container_{{data._id}} comments_container" style="display: none;" *ngIf="data.comment.length > 0">
 							<div class="comment_title">Comments:</div>
 							<ng-container *ngIf="checkTem && tempPostId === data._id">
-								<div class="comment_user d-flex" *ngFor="let temp of temCmnt.slice().reverse()">
+								<div class="comment_user d-flex" *ngFor="let temp of temCmnt.slice().reverse(); let i = index">
 									<!-- <img src="assets/images/profile.jpg"> -->
+									<!-- {{temp ? temCmnt.length : ''}} -->
 									<img [src]="tempProfile" onerror="this.src='/assets/images/default_user.jpg';">
 									<div>
 										<div class="commenter">{{tempName}}</div>
@@ -173,9 +175,10 @@
 								</div>
 							</ng-container>
 
-							<div class="comment_user d-flex" *ngFor="let comnt of data.comment.slice().reverse();">
+							<div class="comment_user d-flex" *ngFor="let comnt of data.comment.slice().reverse(); let i = index">
 								<!-- <img src="assets/images/profile.jpg"> -->
-								<!-- {{comnt.name}} -->
+								<!-- {{i}}
+								{{comnt ? data.comment.length : ''}} -->
 								<img [src]="comnt.profile" onerror="this.src='/assets/images/default_user.jpg';">
 								<div>
 									<!-- <div class="commenter">{{data.post_cmnt_user}}</div> -->

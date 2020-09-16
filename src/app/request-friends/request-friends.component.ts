@@ -182,18 +182,22 @@ export class RequestFriendsComponent implements OnInit {
     this.authService.rejectFriendRequest(userId, reject_id).subscribe(res => {})
   }
 
-  likeIt(postId){
+  temLike = 0;
+  checkTem =  false
+  likeIt(postId, likeCount){
 
     this.authService.sendLikePost(postId).subscribe(res => {
       if(res['success'])
       {
-
+        this.checkTem = true
         if(this.likeFontElement.nativeElement.classList[2] == 'fa-thumbs-up' || this.likeFontElement.nativeElement.classList[1] == 'fa-thumbs-up')
         {
           this.likeFontElement.nativeElement.classList.remove('fa-thumbs-up')
           this.likeFontElement.nativeElement.classList.add('fa-thumbs-o-up')
+          this.temLike = likeCount - 1
         }else {
           this.likeFontElement.nativeElement.classList.add('fa-thumbs-up')
+          this.temLike = likeCount + 1
         }
       }
     })
@@ -210,7 +214,6 @@ export class RequestFriendsComponent implements OnInit {
   }
 
   temCmnt = [];
-  checkTem =  false
   tempPostId = '';
   tempProfile = '';
   tempName = '';
