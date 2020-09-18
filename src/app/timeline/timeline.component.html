@@ -77,7 +77,7 @@
         <button>BID NOW</button>
       </div>
     </div>
-    <div class="take_action">
+    <div [ngClass]="current_user_profile ? 'no_share_action' : 'take_action'">
       <button class="like_sec" (click)="likeIt(data._id, data.like.length);">
         <i class="fa" [ngClass]="postlikeId.includes(data._id) ? 'fa-thumbs-up': 'fa-thumbs-o-up'" #like_font></i>
         <!-- <div>Like <span>{{data.like.length === 0 ? '' : data.like.length}}</span></div> -->
@@ -87,9 +87,10 @@
 
       <button class="comment_sec_{{data._id}} comment_sec" (click)="open_comments(data._id)">
         <i class="far fa-comment-dots"></i>
-        <div>Comment<span>{{data.comment.length === 0 ? '' : checkTem ? data.comment.length + temCmnt.length : data.comment.length}}</span></div>
+        <!-- <div>Comment<span>{{data.comment.length === 0 ? '' : checkTem ? data.comment.length + temCmnt.length : data.comment.length}}</span></div> -->
+        <div>Comment<span>{{data.comment.length !== 0 ? checkTem ? data.comment.length + temCmnt.length : data.comment.length : temCmnt.length === 0 ? '' : temCmnt.length}}</span></div>
       </button>
-      <button class="share_sec">
+      <button class="share_sec" *ngIf="!current_user_profile">
         <i class="far fa-share"></i>
         <div>Share<span>7</span></div>
       </button>

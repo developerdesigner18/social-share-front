@@ -130,9 +130,9 @@
 								<button>BID NOW</button>
 							</div>
 						</div>
-						<div class="take_action">
+						<div [ngClass]="current_user['data']._id !== data.userId ? 'take_action' : 'no_share_action'">
 							<!-- id:-{{data._id}} like:-{{data.like[i]['userId']}} -->
-								<button class="like_sec" (click)="likeIt(data._id, data.like.length);">
+							<button class="like_sec" (click)="likeIt(data._id, data.like.length); toggle[i] = !toggle[i]">
 								<!-- id:-{{id}}, alreay likes:- {{postlikeId}}
 								userLikeId:- {{postlikeuserId}} S
 								{{checkPostsId}}
@@ -140,18 +140,28 @@
 								{{postlikeId.includes(data._id)}}
 								{{postlikeId.includes(id) && postlikeId.includes(data._id)}} -->
 								<!-- <i class="fa" [ngClass]="postlikeId.includes(data._id) ? 'fa-thumbs-up': 'fa-thumbs-o-up'" #like_font></i> -->
-								<i class="fa" [ngClass]="postlikeId.includes(data._id) ? 'fa-thumbs-up': 'fa-thumbs-o-up'" #like_font></i>
+								<!-- <div  id="{{data._id}}"> -->
+								<!-- <i class="fa " id="{{data._id}}"  [ngClass]="postlikeId.includes(data._id) ? 'fa-thumbs-up': 'fa-thumbs-o-up'" #like_font_5f40b82f662ffa202a87d2e6></i> -->
+								<!-- <i class="fa"  [ngClass]="toggle[i] === toggle[i] ? 'fa-thumbs-up': 'fa-thumbs-o-up'"></i> -->
+								<!-- <i class="fa fa-thumbs-up"  *ngIf="postlikeId.includes(data._id) && toggle[i] === toggle[i]"></i>
+								<i class="fa fa-thumbs-o-up"  *ngIf="!postlikeId.includes(data._id) && toggle[i] !== toggle[i]"></i> -->
+								<!-- <i class="fa" [ngClass]="toggle[i] ? 'fa-thumbs-up': postlikeId.includes(data._id) ? 'fa-thumbs-up' : 'fa-thumbs-o-up'"></i> -->
+								<!-- {{data._id}}
+								{{postlikeId.includes}}
+								{{postlikeId.includes(data._id)}} -->
+								<i class="fa"  [ngClass]="postlikeId.includes(data._id) ? 'fa-thumbs-up ' + data._id : 'fa-thumbs-o-up ' + data._id" #like_font></i>
+								<!-- <i class="fa"  [ngClass]="postlikeId.includes(data._id) ? 'fa-thumbs-up ' + data._id : 'fa-thumbs-o-up ' + data._id" #like_font></i> -->
+								<!-- <input type="hidden"  name="" value="{{data._id}}"> -->
+								<!-- </div> -->
 								<!-- <div>Like<span>{{data.like.length === 0 ? '' : data.like.length}}</span></div> -->
 								<div>Like<span>{{data.like.length === 0 ? '' : checkTem == false ? data.like.length : temLike > 1 ? temLike - 1: temLike === 0 ? '' : temLike}}</span></div>
 							</button>
 							<button class="comment_sec_{{data._id}} comment_sec" (click)="open_comments(data._id)">
 								<i class="far fa-comment-dots"></i>
-								<div>Comment<span>{{data.comment.length === 0 ? '' : checkTem ? data.comment.length + temCmnt.length : data.comment.length}}</span></div>
-								<!-- <div>Comment<span>{{data.comment.length}}</span></div> -->
-								<!-- <div>Comment<span>{{comment_count}}</span></div> -->
-								<!-- <div>Comment{{checkTem}}<span>{{data.comment.length === 0 ? '' : checkTem ? cmntcount : data.comment.length}}</span></div> -->
+								<div>Comment<span>{{data.comment.length !== 0 ? checkTem ? data.comment.length + temCmnt.length : data.comment.length : temCmnt.length === 0 ? '' : temCmnt.length}}</span></div>
 							</button>
-							<button class="share_sec">
+							<!-- {{current_user['data']._id === data.userId}} -->
+							<button class="share_sec" *ngIf="current_user['data']._id !== data.userId">
 								<i class="far fa-share"></i>
 								<div>Share<span>7</span></div>
 							</button>
@@ -161,7 +171,7 @@
 				        <input type="text" placeholder=" Write a comment...!" formControlName="newcomment">
 				      </form>
 				    </div>
-						<div class="comments_container_{{data._id}} comments_container" style="display: none;" *ngIf="data.comment.length > 0">
+						<div class="comments_container_{{data._id}} comments_container" style="display: none;">
 							<div class="comment_title">Comments:</div>
 							<ng-container *ngIf="checkTem && tempPostId === data._id">
 								<div class="comment_user d-flex" *ngFor="let temp of temCmnt.slice().reverse(); let i = index">

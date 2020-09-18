@@ -179,6 +179,17 @@ export class TimelineComponent implements OnInit {
         lazyLoad: true
       })
     })
+    $(window).on('load', function(){
+      $(document).ready(function(){
+        $('.owl-carousel').owlCarousel({
+      		nav:true,
+      		items:1,
+          autoWidth: true,
+          video:true,
+          lazyLoad: true
+      	})
+      });
+    })
   }
 
   temCmnt = [];

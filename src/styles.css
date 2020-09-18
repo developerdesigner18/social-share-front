@@ -63,9 +63,9 @@ header{
 
 .icon-password {
 	top: 24px;
-	position: absolute;
+	position: absolute !important;
 	right: 115px;
-	width: auto;
+	width: auto !important;
 }
 
 .icon-password > i {

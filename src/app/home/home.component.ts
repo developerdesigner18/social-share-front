@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation,ViewChild } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation,ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog} from  '@angular/material/dialog';
@@ -35,8 +35,10 @@ export class HomeComponent implements OnInit {
   postlikeuserId = [];
   objVal = [];
   comments = 0;
+  toggle = {};
+  current_user = '';
 
-  @ViewChild('like_font') likeFontElement: any;
+  @ViewChild('like_font') private likeFontElement: ElementRef<HTMLElement>;
   checkPostsId: any;
   commentsForm: FormGroup;
   // postCmtId = '';
@@ -58,6 +60,7 @@ export class HomeComponent implements OnInit {
     })
 
     this.token = localStorage.getItem('token')
+    this.current_user = JSON.parse(localStorage.getItem('currentUser'))
     this.authService.getAllFriendPost(this.token).subscribe(res => {
       if(res.message == "You are not any friend")
       {
@@ -130,6 +133,9 @@ export class HomeComponent implements OnInit {
         videoWidth: 600
     	});
     });
+    // testLike(){
+    //   console.log("=-=-=-=-=-=-=-=Font ", this.likeFontElement.nativeElement.id)
+    // }
   }
 
   open_comments(postId){
@@ -201,17 +207,30 @@ export class HomeComponent implements OnInit {
 
   temLike = 0;
   checkTem =  false
-  likeIt(postId: any, likeCount){
+
+  // get value() {
+  //     return this.likeFontElement.nativeElement.id;
+  // }
+  //
+  // ngAfterViewInit() {
+  //   console.log('value of i: ', this.value) // value of p: Dynamic value
+  // }
+
+  likeIt(postId, likeCount){
     // console.log("=-=-=-=-=-=-=-=Font 1", this.dataMatchElement.nativeElement.value)
     this.authService.sendLikePost(postId).subscribe(res => {
       if(res['success'])
       {
-        // console.log("=-=-=-=-=-=-=-=postId", postId)
-        // console.log("=-=-=-=-=-=-=-=Font ", this.likeFontElement.nativeElement.id)
+        console.log("=-=-=-=-=-=-=-=postId", postId)
+        console.log("=-=-=-=-=-=-=-=Font backend", res['data'])
         // console.log("=-=-=-=-=-=temLike", this.temLike)
         // comment_sec_{{data._id}}
-        // if(postId === this.likeFontElement.nativeElement.id)
+        // console.log("=-=-=-=-=-=-=-=Font jquery", $('.font_change').attr('id'))
+        // console.log("=-=-=-=-=-=temLike", this.temLike)
+        // comment_sec_{{data._id}}
+        // if(postId == res['data'])
         // {
+        console.log("=-=-=-=-=-=-=-= class list",this.likeFontElement.nativeElement.classList)
           this.checkTem = true
           if(this.likeFontElement.nativeElement.classList[2] == 'fa-thumbs-up' || this.likeFontElement.nativeElement.classList[1] == 'fa-thumbs-up')
           {
@@ -225,6 +244,8 @@ export class HomeComponent implements OnInit {
         // }
       }
     })
+    console.log("=-=-=-=-=-=-=-= class list",this.postlikeId)
+
     // return true
   }
 
@@ -234,20 +255,29 @@ export class HomeComponent implements OnInit {
   count = 0
   tempProfile = '';
   tempName = '';
+  temCmntCnt = ''
 
   addComments(postId, userName, profilePic){
     // console.log("==-=-=-=-=-=-=-=functionCall", this.functionCall[0])
     // console.log("=-=-=-=-=-=-=-=-",this.checkTem)
+    // if(length === 0 ){
+    //   this.temCmntCnt = ''
+    // }else{
+    //   this.temCmntCnt = length
+    // }
     this.objVal = Object.keys(this.commentsForm.value).map(key => ({type: key, value: this.commentsForm.value[key]}))
     this.authService.sendPostComment(postId, this.objVal[0].value).subscribe(res => {
       if(res['success']){
         $(`.comments_container_${postId}`).css('display','block');
+        // this.router.navigate([`home/${this.activatedRoute.snapshot.paramMap.get('id')}`])
+        // this.datas.map((id) => id.comment)
         if(this.datas.map((id) => id._id).includes(postId)){
           this.tempName = userName
           this.tempProfile = profilePic
           this.tempPostId = postId
           this.checkTem = true
           this.temCmnt.push(this.objVal[0].value)
+          // this.datas[0].comment.length
         }
       }
     })

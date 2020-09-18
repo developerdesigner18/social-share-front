@@ -126,7 +126,8 @@
             </button>
             <button class="comment_sec_{{data._id}} comment_sec" (click)="open_comments(data._id)">
               <i class="far fa-comment-dots"></i>
-              <div>Comment<span>{{data.comment.length === 0 ? '' : checkTem ? data.comment.length + temCmnt.length : data.comment.length}}</span></div>
+              <!-- <div>Comment<span>{{data.comment.length === 0 ? '' : checkTem ? data.comment.length + temCmnt.length : data.comment.length}}</span></div> -->
+              <div>Comment<span>{{data.comment.length !== 0 ? checkTem ? data.comment.length + temCmnt.length : data.comment.length : temCmnt.length === 0 ? '' : temCmnt.length}}</span></div>
             </button>
             <button class="share_sec">
               <i class="far fa-share"></i>
