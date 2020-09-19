@@ -35,10 +35,10 @@ export class HomeComponent implements OnInit {
   postlikeuserId = [];
   objVal = [];
   comments = 0;
-  toggle = {};
+  toggle = [];
   current_user = '';
 
-  @ViewChild('like_font') private likeFontElement: ElementRef<HTMLElement>;
+  // @ViewChild('like_font') likeFontElement: any;
   checkPostsId: any;
   commentsForm: FormGroup;
   // postCmtId = '';
@@ -133,6 +133,7 @@ export class HomeComponent implements OnInit {
         videoWidth: 600
     	});
     });
+    this.toggle = this.toggle
     // testLike(){
     //   console.log("=-=-=-=-=-=-=-=Font ", this.likeFontElement.nativeElement.id)
     // }
@@ -208,37 +209,36 @@ export class HomeComponent implements OnInit {
   temLike = 0;
   checkTem =  false
 
-  // get value() {
-  //     return this.likeFontElement.nativeElement.id;
-  // }
-  //
-  // ngAfterViewInit() {
-  //   console.log('value of i: ', this.value) // value of p: Dynamic value
-  // }
 
   likeIt(postId, likeCount){
     // console.log("=-=-=-=-=-=-=-=Font 1", this.dataMatchElement.nativeElement.value)
     this.authService.sendLikePost(postId).subscribe(res => {
       if(res['success'])
       {
-        console.log("=-=-=-=-=-=-=-=postId", postId)
-        console.log("=-=-=-=-=-=-=-=Font backend", res['data'])
-        // console.log("=-=-=-=-=-=temLike", this.temLike)
+        console.log("=-=-=-=-=-=temLike", this.temLike)
+        console.log("=-=-=-=-=-=likeCount", likeCount)
         // comment_sec_{{data._id}}
         // console.log("=-=-=-=-=-=-=-=Font jquery", $('.font_change').attr('id'))
         // console.log("=-=-=-=-=-=temLike", this.temLike)
         // comment_sec_{{data._id}}
         // if(postId == res['data'])
         // {
-        console.log("=-=-=-=-=-=-=-= class list",this.likeFontElement.nativeElement.classList)
+        console.log("=-=-=-=-=-=-=-= class list",document.getElementById(postId).classList)
+        // document.getElementById(postId).classList.add('fa-thumbs-up')
+        // document.getElementById(postId).classList.add('fa-thumbs-o-up')
           this.checkTem = true
-          if(this.likeFontElement.nativeElement.classList[2] == 'fa-thumbs-up' || this.likeFontElement.nativeElement.classList[1] == 'fa-thumbs-up')
+
+
+          if(document.getElementById(postId).classList[2] === 'fa-thumbs-up' && postId === document.getElementById(postId).id || document.getElementById(postId).classList[1] === 'fa-thumbs-up' && postId === document.getElementById(postId).id)
           {
-            this.likeFontElement.nativeElement.classList.remove('fa-thumbs-up')
-            this.likeFontElement.nativeElement.classList.add('fa-thumbs-o-up')
+            // this.likeFontElement.nativeElement.classList.remove('fa-thumbs-up')
+            // this.likeFontElement.nativeElement.classList.add('fa-thumbs-o-up')
+            document.getElementById(postId).classList.remove('fa-thumbs-up')
+            document.getElementById(postId).classList.add('fa-thumbs-o-up')
             this.temLike = likeCount - 1
           }else {
-            this.likeFontElement.nativeElement.classList.add('fa-thumbs-up')
+            // this.likeFontElement.nativeElement.classList.add('fa-thumbs-up')
+            document.getElementById(postId).classList.add('fa-thumbs-up')
             this.temLike = likeCount + 1
           }
         // }
@@ -247,6 +247,12 @@ export class HomeComponent implements OnInit {
     console.log("=-=-=-=-=-=-=-= class list",this.postlikeId)
 
     // return true
+  }
+
+  DoNotlikeIt(postId, likeCount){
+    // console.log("=-=-=-=-=-=-=-=Font 1", this.dataMatchElement.nativeElement.value)
+    this.authService.sendLikePost(postId).subscribe(res => {
+    })
   }
 
   temCmnt = [];

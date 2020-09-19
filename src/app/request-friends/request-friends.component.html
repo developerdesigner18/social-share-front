@@ -121,7 +121,7 @@
           </div>
           <div class="take_action">
             <button class="like_sec" (click)="likeIt(data._id, data.like.length);">
-              <i class="fa" [ngClass]="postlikeId.includes(data._id) ? 'fa-thumbs-up': 'fa-thumbs-o-up'" #like_font></i>
+              <i class="fa" id="{{data._id}}" [ngClass]="postlikeId.includes(data._id) ? 'fa-thumbs-up': 'fa-thumbs-o-up'"></i>
               <div>Like <span>{{data.like.length === 0 ? '' : checkTem == false ? data.like.length : temLike > 1 ? temLike - 1: temLike === 0 ? '' : temLike}}</span></div>
             </button>
             <button class="comment_sec_{{data._id}} comment_sec" (click)="open_comments(data._id)">

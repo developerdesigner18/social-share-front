@@ -57,8 +57,6 @@ export class RequestFriendsComponent implements OnInit {
   cmntuname = '';
   cmntuprofile = '';
 
-  @ViewChild('like_font') likeFontElement: any;
-
   constructor(
     public authService: AuthService,
     private activatedRoute: ActivatedRoute,
@@ -190,13 +188,16 @@ export class RequestFriendsComponent implements OnInit {
       if(res['success'])
       {
         this.checkTem = true
-        if(this.likeFontElement.nativeElement.classList[2] == 'fa-thumbs-up' || this.likeFontElement.nativeElement.classList[1] == 'fa-thumbs-up')
+        if(document.getElementById(postId).classList[2] === 'fa-thumbs-up' && postId === document.getElementById(postId).id || document.getElementById(postId).classList[1] === 'fa-thumbs-up' && postId === document.getElementById(postId).id)
         {
-          this.likeFontElement.nativeElement.classList.remove('fa-thumbs-up')
-          this.likeFontElement.nativeElement.classList.add('fa-thumbs-o-up')
+          // this.likeFontElement.nativeElement.classList.remove('fa-thumbs-up')
+          // this.likeFontElement.nativeElement.classList.add('fa-thumbs-o-up')
+          document.getElementById(postId).classList.remove('fa-thumbs-up')
+          document.getElementById(postId).classList.add('fa-thumbs-o-up')
           this.temLike = likeCount - 1
         }else {
-          this.likeFontElement.nativeElement.classList.add('fa-thumbs-up')
+          // this.likeFontElement.nativeElement.classList.add('fa-thumbs-up')
+          document.getElementById(postId).classList.add('fa-thumbs-up')
           this.temLike = likeCount + 1
         }
       }
