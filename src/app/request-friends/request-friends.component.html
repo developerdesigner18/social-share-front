@@ -30,9 +30,9 @@
       <!-- <label style="color: #ffffff">{{data._id}}</label> -->
     </div>
     <div class="col-md-12" style="margin-left: 70px;bottom: 15px;">
-      <button type="button" name="button" style="background-color: #1e4a6b;border-color:#1e4a6b;" *ngIf="data.match != true" class="btn btn-primary" [hidden]="hideme[i]" (click)="sendRequest(data._id);hideme[i] = !hideme[i]">Add Friends</button>
-      <button type="button" name="button" class="btn btn-secondary" *ngIf="hideme[i] || data.match">Cancel Request</button>
-      <button type="button" name="button" style="margin-left: 15px;" class="btn btn-secondary" [hidden]="hideme[i]" *ngIf="data.match != true">Cancel</button>
+      <button type="button" name="button" style="background-color: #1e4a6b;border-color:#1e4a6b;" *ngIf="friend_id.includes(data._id) != true" class="btn btn-primary" [hidden]="hideme[i]" (click)="sendRequest(data._id);hideme[i] = !hideme[i]">Add Friends</button>
+      <button type="button" name="button" class="btn btn-secondary" *ngIf="hideme[i] || friend_id.includes(data._id)" (click)="remove_send_request(data._id);hideme[i] = !hideme[i];">Cancel Request</button>
+      <button type="button" name="button" style="margin-left: 15px;" class="btn btn-secondary" [hidden]="hideme[i]" *ngIf="friend_id.includes(data._id) != true">Cancel</button>
     </div>
   </div>
 </div>
@@ -122,7 +122,8 @@
           <div class="take_action">
             <button class="like_sec" (click)="likeIt(data._id, data.like.length);">
               <i class="fa" id="{{data._id}}" [ngClass]="postlikeId.includes(data._id) ? 'fa-thumbs-up': 'fa-thumbs-o-up'"></i>
-              <div>Like <span>{{data.like.length === 0 ? '' : checkTem == false ? data.like.length : temLike > 1 ? temLike - 1: temLike === 0 ? '' : temLike}}</span></div>
+              <!-- <div>Like <span>{{data.like.length === 0 ? '' : checkTem == false ? data.like.length : temLike > 1 ? temLike - 1: temLike === 0 ? '' : temLike}}</span></div> -->
+              <div>Like<span id="count_{{data._id}}">{{data.like.length === 0 ? '' : data.like.length}}</span></div>
             </button>
             <button class="comment_sec_{{data._id}} comment_sec" (click)="open_comments(data._id)">
               <i class="far fa-comment-dots"></i>

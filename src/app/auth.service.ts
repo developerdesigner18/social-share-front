@@ -3,8 +3,8 @@ import { Injectable, Injector } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { MatDialog } from  '@angular/material/dialog';
-import { environment } from '../environments/environment';
-// import { environment } from '../environments/environment.prod';
+// import { environment } from '../environments/environment';
+import { environment } from '../environments/environment.prod';
 
 import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
@@ -226,6 +226,15 @@ export class AuthService {
     return this.httpClient.post(`${environment.apiUrl}/api/friend/reject`, {userId: userId, requestId: rejectId}, {headers: this.headers}).pipe(
       map((res: Response) => {
         console.log("=-=-=-=-=-=res", res)
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  removeSendRequest(userId, rejectId): Observable<any> {
+    return this.httpClient.post(`${environment.apiUrl}/api/friend/removeRequest`, {userId: userId, requestId: rejectId}, {headers: this.headers}).pipe(
+      map((res: Response) => {
         return res || {}
       }),
       catchError(this.handleError)

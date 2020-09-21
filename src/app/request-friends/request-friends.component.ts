@@ -56,6 +56,7 @@ export class RequestFriendsComponent implements OnInit {
 
   cmntuname = '';
   cmntuprofile = '';
+  friend_id = [];
 
   constructor(
     public authService: AuthService,
@@ -70,28 +71,14 @@ export class RequestFriendsComponent implements OnInit {
     this.commentsForm= this.formBuilder.group({
       newcomment: ['']
     })
-  }
 
-  open_comments(postId){
-    $(`.comments_container_${postId}`).toggle();
-  }
-
-  get formControls() { return this.commentsForm.controls }
-
-  ngOnInit(): void {
     let current_id = this.activatedRoute.snapshot.paramMap.get('id');
     this.authService.getAllFriends(localStorage.getItem('token')).subscribe(res => {
       this.datas = res.AllUser[0]
     })
 
     this.authService.setRequestSend(localStorage.getItem('token')).subscribe(res => {
-      for(let i = 0; i < res.list.length; i++){
-        for(let j = 0; j < this.datas.length; j++){
-          if(this.datas[j]._id == res.list[i].friendId){
-            this.datas[j].match = true
-          }
-        }
-      }
+      this.friend_id = res.list.map((id) => id.friendId)
     })
 
     this.authService.getFriendRequest(current_id).subscribe(res => {
@@ -111,6 +98,15 @@ export class RequestFriendsComponent implements OnInit {
         })
       }
     })
+  }
+
+  open_comments(postId){
+    $(`.comments_container_${postId}`).toggle();
+  }
+
+  get formControls() { return this.commentsForm.controls }
+
+  ngOnInit(): void {
   }
 
   openProfile(id){
@@ -180,6 +176,12 @@ export class RequestFriendsComponent implements OnInit {
     this.authService.rejectFriendRequest(userId, reject_id).subscribe(res => {})
   }
 
+  //Reject for it's own request for already send
+  remove_send_request(reject_id){
+    let userId = this.activatedRoute.snapshot.paramMap.get('id');
+    this.authService.removeSendRequest(userId, reject_id).subscribe(res => {})
+  }
+
   temLike = 0;
   checkTem =  false
   likeIt(postId, likeCount){
@@ -188,17 +190,25 @@ export class RequestFriendsComponent implements OnInit {
       if(res['success'])
       {
         this.checkTem = true
-        if(document.getElementById(postId).classList[2] === 'fa-thumbs-up' && postId === document.getElementById(postId).id || document.getElementById(postId).classList[1] === 'fa-thumbs-up' && postId === document.getElementById(postId).id)
+        if(document.getElementById(postId).classList[2] === 'fa-thumbs-up' || document.getElementById(postId).classList[1] === 'fa-thumbs-up')
         {
-          // this.likeFontElement.nativeElement.classList.remove('fa-thumbs-up')
-          // this.likeFontElement.nativeElement.classList.add('fa-thumbs-o-up')
           document.getElementById(postId).classList.remove('fa-thumbs-up')
           document.getElementById(postId).classList.add('fa-thumbs-o-up')
           this.temLike = likeCount - 1
+          this.temLike <= 0 ? document.getElementById('count_'+postId).innerHTML = '' : document.getElementById('count_'+postId).innerHTML = String(this.temLike);
         }else {
-          // this.likeFontElement.nativeElement.classList.add('fa-thumbs-up')
           document.getElementById(postId).classList.add('fa-thumbs-up')
           this.temLike = likeCount + 1
+          if(likeCount < 1){
+            this.temLike = this.temLike - 1
+          }
+
+          if(this.temLike >= 2){
+            this.temLike = this.temLike - 1
+          }else{
+            this.temLike = this.temLike + 1
+          }
+          this.temLike <= 0 ? document.getElementById('count_'+postId).innerHTML = '' : document.getElementById('count_'+postId).innerHTML = String(this.temLike);
         }
       }
     })

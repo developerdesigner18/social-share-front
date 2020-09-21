@@ -203,17 +203,25 @@ export class TimelineComponent implements OnInit {
       if(res['success'])
       {
         this.checkTem = true
-        if(document.getElementById(postId).classList[2] === 'fa-thumbs-up' && postId === document.getElementById(postId).id || document.getElementById(postId).classList[1] === 'fa-thumbs-up' && postId === document.getElementById(postId).id)
+        if(document.getElementById(postId).classList[2] === 'fa-thumbs-up' || document.getElementById(postId).classList[1] === 'fa-thumbs-up')
         {
-          // this.likeFontElement.nativeElement.classList.remove('fa-thumbs-up')
-          // this.likeFontElement.nativeElement.classList.add('fa-thumbs-o-up')
           document.getElementById(postId).classList.remove('fa-thumbs-up')
           document.getElementById(postId).classList.add('fa-thumbs-o-up')
           this.temLike = likeCount - 1
+          this.temLike <= 0 ? document.getElementById('count_'+postId).innerHTML = '' : document.getElementById('count_'+postId).innerHTML = String(this.temLike);
         }else {
-          // this.likeFontElement.nativeElement.classList.add('fa-thumbs-up')
           document.getElementById(postId).classList.add('fa-thumbs-up')
           this.temLike = likeCount + 1
+          if(likeCount < 1){
+            this.temLike = this.temLike - 1
+          }
+
+          if(this.temLike >= 2){
+            this.temLike = this.temLike - 1
+          }else{
+            this.temLike = this.temLike + 1
+          }
+          this.temLike <= 0 ? document.getElementById('count_'+postId).innerHTML = '' : document.getElementById('count_'+postId).innerHTML = String(this.temLike);
         }
       }
     })

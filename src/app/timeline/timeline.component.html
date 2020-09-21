@@ -81,8 +81,8 @@
       <button class="like_sec" (click)="likeIt(data._id, data.like.length);">
         <i class="fa" id="{{data._id}}" [ngClass]="postlikeId.includes(data._id) ? 'fa-thumbs-up': 'fa-thumbs-o-up'"></i>
         <!-- <div>Like <span>{{data.like.length === 0 ? '' : data.like.length}}</span></div> -->
-        <div>Like<span>{{data.like.length === 0 ? '' : checkTem == false ? data.like.length : temLike > 1 ? temLike - 1: temLike === 0 ? '' : temLike}}</span></div>
-        <!-- <div>Like <span>{{data.like.length === 0 ? '' : checkTem ? data.like.length + 1 : data.like.length}}</span></div> -->
+        <!-- <div>Like<span>{{data.like.length === 0 ? '' : checkTem == false ? data.like.length : temLike > 1 ? temLike - 1: temLike === 0 ? '' : temLike}}</span></div> -->
+        <div>Like<span id="count_{{data._id}}">{{data.like.length === 0 ? '' : data.like.length}}</span></div>
       </button>
 
       <button class="comment_sec_{{data._id}} comment_sec" (click)="open_comments(data._id)">
