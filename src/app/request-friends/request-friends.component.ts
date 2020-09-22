@@ -44,9 +44,9 @@ export class RequestFriendsComponent implements OnInit {
   frd_req_get_count = 0
 
   public datas: any = [];
+  public checksendreq: any = [];
   public frd_datas: any = [];
   public frd_profile_datas: any = [];
-  public check_datas;
   check_id_frd_list = [];
   remove_datas = '';
   postlikeId = []
@@ -141,12 +141,6 @@ export class RequestFriendsComponent implements OnInit {
         if(this.likes.length > 0){
           this.postlikeId.push(this.frd_datas[i]._id)
         }
-        // for(let j = 0; j < this.frd_datas[i].comment.length; j++){
-        //   this.authService.getHomePostProfile(this.frd_datas[i].comment[j].userId).subscribe(res => {
-        //     this.frd_datas[i].post_profileImg = res.data.profileImgURl
-        //     this.frd_datas[i].post_user = res.data.name
-        //   })
-        // }
       }
       this.owlcarouselSet()
     })
@@ -163,7 +157,16 @@ export class RequestFriendsComponent implements OnInit {
 
   sendRequest(requestId){
     let userId = this.activatedRoute.snapshot.paramMap.get('id');
-    this.authService.sendFriendRequest(userId, requestId).subscribe(res => {})
+    this.authService.sendFriendRequest(userId, requestId).subscribe(res => {
+      // $(`.show_add_friend_${requestId}`).attr('style', 'display: inline !important');
+      // $(`.add_friend_${requestId}`).css('display','none');
+      // $(`.remove_friend_${requestId}`).css('display','none');
+      // $(`.remove_friend_${requestId}`).attr('style', 'display: inline !important');
+    })
+    // if(this.friend_id.includes(requestId)){
+      // $(`.add_friend_${requestId}`).css('display','none');
+      // $(`.remove_friend_${requestId}`).css('display','none');
+    // }
   }
 
   confirm_request(confirm_id){
@@ -179,7 +182,20 @@ export class RequestFriendsComponent implements OnInit {
   //Reject for it's own request for already send
   remove_send_request(reject_id){
     let userId = this.activatedRoute.snapshot.paramMap.get('id');
-    this.authService.removeSendRequest(userId, reject_id).subscribe(res => {})
+    this.authService.removeSendRequest(userId, reject_id).subscribe(res => {
+      // console.log("=-=-=-=-=-=-=-=-=-disply", $(`.show_add_friend_${reject_id}`).is(":visible"))
+      // if($(`.show_add_friend_${reject_id}`).is(":visible"))
+      // {
+      //   $(`.show_add_friend_${reject_id}`).css('display','none');
+      //   $(`.add_friend_${reject_id}`).attr('style', 'display: inline !important');
+      //   $(`.remove_friend_${reject_id}`).attr('style', 'display: inline !important');
+      // }else{
+        $(`.show_add_friend_${reject_id}`).css('display','none');
+        $(`.add_friend_${reject_id}`).attr('style', 'display: inline !important');
+        $(`.remove_friend_${reject_id}`).attr('style', 'display: inline !important');
+      // }
+      // if($(`.show_add_friend_${reject_id}`).attr('style') == 'display: none;')
+    })
   }
 
   temLike = 0;
@@ -244,5 +260,12 @@ export class RequestFriendsComponent implements OnInit {
       }
     })
     this.commentsForm.reset()
+  }
+
+  remove_people(people_id){
+    $(`.remove_people_${people_id}`).parent().css('display','none');
+    // $(`.show_add_friend_${people_id}`).css('display','none');
+    // $(`.add_friend_${people_id}`).css('display','inline');
+    // $(`.remove_friend_${people_id}`).css('display','inline');
   }
 }

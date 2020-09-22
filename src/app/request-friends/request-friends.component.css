@@ -620,3 +620,13 @@ button.comment_sec {
 /* .overview_tab > div > div > span {
 	 padding-left: 15px
 } */
+
+
+.add_friend_btn{
+	background-color: #1e4a6b !important;
+	border-color:#1e4a6b !important;
+}
+
+.remove_friend_btn{
+	margin-left: 15px !important;
+}
