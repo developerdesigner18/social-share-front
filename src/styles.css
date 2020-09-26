@@ -12,16 +12,16 @@ html{
 
 body {
     height: 100vh;
-    /* background-image: linear-gradient(180deg,rgba(27,31,37,0.3) 0%,#ffffffdb 100%),url(assets/images/share.jpg)!important; */
-    background-image: linear-gradient(180deg,rgba(27,31,37,0.3) 0%,#ffffffdb 100%),url(assets/images/banner_mitchol.jpg)!important;
+    /* background-image: linear-gradient(180deg,rgba(27,31,37,0.3) 0%,#ffffffdb 100%),url(assets/images/background.png)!important; */
+    background-image: url(assets/images/background_2.jpg)!important;
     background-size: cover;
-    background-position: center;
+    background-position: top;
 }
 
 header{
-	background-color: #003459;
+	background-color: #0f1b31;
 	padding: 5px;
-	border-bottom: 1px solid #334c6b;
+	/* border-bottom: 1px solid #334c6b; */
 }
 .logo {
 	width: 15%;
@@ -89,17 +89,17 @@ header{
 	max-width: 70vw;
 	margin: auto;
 	display: grid;
-	grid-template-columns: 1fr 1fr;
-    margin-top: 50px;
+	/* grid-template-columns: 1fr 1fr; */
+  margin-top: 50px;
 }
 .sign_up_conatiner {
     display: flex;
     flex-direction: column;
     padding: 25px;
     border-radius: 4px;
-    width: 80%;
+    width: 40%;
     margin: auto;
-    background-image: linear-gradient(94deg,rgb(0, 52, 89) 5%,#ffffff00 100%)!important;
+    background-image: linear-gradient(100deg,rgb(51 55 64) 20%,#ffffff00 100%)!important;
 }
 img.connecting_image {
     width: 100%;

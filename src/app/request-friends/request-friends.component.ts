@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -56,7 +56,7 @@ export class RequestFriendsComponent implements OnInit {
 
   cmntuname = '';
   cmntuprofile = '';
-  friend_id = [];
+  friend_id:any = []
 
   constructor(
     public authService: AuthService,
@@ -73,31 +73,29 @@ export class RequestFriendsComponent implements OnInit {
     })
 
     let current_id = this.activatedRoute.snapshot.paramMap.get('id');
-    this.authService.getAllFriends(localStorage.getItem('token')).subscribe(res => {
-      this.datas = res.AllUser[0]
-    })
-
-    this.authService.setRequestSend(localStorage.getItem('token')).subscribe(res => {
-      this.friend_id = res.list.map((id) => id.friendId)
-    })
-
     this.authService.getFriendRequest(current_id).subscribe(res => {
       if(res.message == "Not any friend request avilable")
       {
         this.friend_req_hidden = false
+        console.log("[][][][][][][][][]not any firend")
       }else{
         if(res.list.length == 0){
           this.friend_req_hidden = false
         }
         this.authService.getFriendData(current_id).subscribe(res => {
           this.frd_profile_datas = res.list
+          console.log("[][][][][][][][][]inside get frined")
           for(let i = 0; i < this.frd_profile_datas.length; i++){
+            console.log("[][][][][][][][][]inside for i")
             this.frd_req_get_count += 1
             this.datas = this.datas.filter(({ _id }) => _id !== this.frd_profile_datas[i]._id)
           }
         })
       }
     })
+
+    // console.log("=-=-=-=--=-=-=-=-friend_id", this.friend_id)
+    // console.log("=-=-=-=-=-=-=-=-=-=-includes check", this.friend_id.includes(this.datas.filter((id) => id._id)))
   }
 
   open_comments(postId){
@@ -107,6 +105,36 @@ export class RequestFriendsComponent implements OnInit {
   get formControls() { return this.commentsForm.controls }
 
   ngOnInit(): void {
+    // const that = this;
+    this.authService.getAllFriends(localStorage.getItem('token')).subscribe(res => {
+      this.datas = res.AllUser[0]
+      console.log("=-=-=-=-=-=-=-=-=-datas", this.datas)
+      this.checkSendReq();
+    })
+
+    this.authService.setRequestSend(localStorage.getItem('token')).subscribe(res => {
+      this.friend_id = res.list.map((id) => id.friendId)
+      console.log("=-=-=-=-=-=-=-=friend_id first", this.friend_id)
+      console.log("=-=-=-=-=-=-=-=data", this.datas)
+      console.log("=-=-=-=-=-=-=-=data _id first", this.datas.filter((id) => id._id))
+      this.checkSendReq();
+    })
+
+    // console.log("=-=-=-=--=-=-=-=-friend_id", this.friend_id)
+  }
+  hide_cancel_req = false
+  checkSendReq(){
+    console.log("=-=-=-=-=-=-=-=-=-this check req datas", this.datas)
+    console.log("=-=-=-=-=-=-=-=-=-this check req datas", this.datas.map((id) => id._id))
+    console.log("=-=-=-=--=-=-=-=-friend_id", this.friend_id)
+    for(let i = 0; i < this.datas.length; i++){
+      console.log("=-=-=-=--=-=-=-=-friend_id", this.friend_id.includes(this.datas[i]._id))
+      if(this.friend_id.includes(this.datas[i]._id))
+      {
+        this.hide_cancel_req = true
+        // $(`#add_${reject_id}`).attr('style', 'display: inline !important');
+      }
+    }
   }
 
   openProfile(id){
@@ -158,9 +186,9 @@ export class RequestFriendsComponent implements OnInit {
   sendRequest(requestId){
     let userId = this.activatedRoute.snapshot.paramMap.get('id');
     this.authService.sendFriendRequest(userId, requestId).subscribe(res => {
-      // $(`.show_add_friend_${requestId}`).attr('style', 'display: inline !important');
-      // $(`.add_friend_${requestId}`).css('display','none');
-      // $(`.remove_friend_${requestId}`).css('display','none');
+      $(`.cancel_friend_${requestId}`).attr('style', 'display: inline !important');
+      $(`.add_friend_${requestId}`).css('display','none');
+      $(`.remove_friend_${requestId}`).css('display','none');
       // $(`.remove_friend_${requestId}`).attr('style', 'display: inline !important');
     })
     // if(this.friend_id.includes(requestId)){
@@ -183,17 +211,22 @@ export class RequestFriendsComponent implements OnInit {
   remove_send_request(reject_id){
     let userId = this.activatedRoute.snapshot.paramMap.get('id');
     this.authService.removeSendRequest(userId, reject_id).subscribe(res => {
-      // console.log("=-=-=-=-=-=-=-=-=-disply", $(`.show_add_friend_${reject_id}`).is(":visible"))
-      // if($(`.show_add_friend_${reject_id}`).is(":visible"))
-      // {
+      console.log("=-=-=-=-=-=-=-=-=-disply", $(`.show_add_friend_${reject_id}`).is(":visible"))
+      console.log("=-=-=-=-=-=-=-=-=-disply", $(`.show_add_friend_${reject_id}`).attr('id'))
+      if($(`.show_add_friend_${reject_id}`).is(":visible"))
+      {
       //   $(`.show_add_friend_${reject_id}`).css('display','none');
       //   $(`.add_friend_${reject_id}`).attr('style', 'display: inline !important');
       //   $(`.remove_friend_${reject_id}`).attr('style', 'display: inline !important');
-      // }else{
-        $(`.show_add_friend_${reject_id}`).css('display','none');
+      //   this.friend_id = [];
+      // $(`.add_friend_${reject_id}`).css('display','none');
+        $(`#add_${reject_id}`).attr('style', 'display: inline !important');
+      }else{
+        // this.friend_id = [];
+        $(`.cancel_friend_${reject_id}`).css('display','none');
         $(`.add_friend_${reject_id}`).attr('style', 'display: inline !important');
         $(`.remove_friend_${reject_id}`).attr('style', 'display: inline !important');
-      // }
+      }
       // if($(`.show_add_friend_${reject_id}`).attr('style') == 'display: none;')
     })
   }
@@ -235,7 +268,8 @@ export class RequestFriendsComponent implements OnInit {
       $('.owl-carousel').owlCarousel({
         nav:true,
         items:1,
-        autoWidth: true
+        autoWidth: true,
+        video: true
       })
     })
   }

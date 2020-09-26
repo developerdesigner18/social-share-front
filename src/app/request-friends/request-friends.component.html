@@ -26,11 +26,16 @@
     <div class="col-md-12 remove_people_{{data._id}}" (click)="openProfile(data._id);">
       <img width="60" height="60" [src]="data.profileImgURl" onerror="this.src='/assets/images/default_user.jpg';" style="border-radius: 50%;" />
       <label style="color: #ffffff;margin-left: 10px;position: absolute;">{{data.name}}</label>
+      <label style="color: #ffffff">{{data._id}}</label>
     </div>
     <div class="col-md-12 remove_people_{{data._id}}" style="margin-left: 70px;bottom: 15px;">
       <button type="button" *ngIf="friend_id.includes(data._id) != true" class="btn btn-primary add_friend_btn add_friend_{{data._id}}" [hidden]="hideme[i]" (click)="sendRequest(data._id);hideme[i] = !hideme[i];">Add Friends</button>
       <button type="button" class="btn btn-secondary show_add_friend_{{data._id}}" *ngIf="hideme[i] || friend_id.includes(data._id)" (click)="remove_send_request(data._id);hideme[i] = hideme[i];">Cancel Request</button>
       <button type="button" class="btn btn-secondary remove_friend_btn remove_friend_{{data._id}}" [hidden]="hideme[i]" *ngIf="friend_id.includes(data._id) != true" (click)="remove_people(data._id)">Remove</button>
+
+      <!-- <button type="button" id="add_{{data._id}}" class="btn btn-primary add_friend_btn add_friend_{{data._id}}" (click)="sendRequest(data._id);">Add Friends</button>
+      <button type="button" class="btn btn-secondary cancel_friend_{{data._id}}" *ngIf="hide_cancel_req != true" (click)="remove_send_request(data._id);">Cancel Request</button>
+      <button type="button" class="btn btn-secondary remove_friend_btn remove_friend_{{data._id}}" (click)="remove_people(data._id)">Remove</button> -->
 
       <!-- <button type="button" style="background-color: #1e4a6b;border-color:#1e4a6b;" class="btn btn-primary add_friend_{{data._id}}" (click)="sendRequest(data._id);">Add Friends</button>
       <button type="button" class="btn btn-secondary show_add_friend_{{data._id}}" (click)="remove_send_request(data._id);">Cancel Request</button>
