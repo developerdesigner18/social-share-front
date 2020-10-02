@@ -18,7 +18,7 @@ body {
     background-image: none !important;
 }
 header{
-	background-color: #003459;
+	background-color: #0f1b31;
 	padding: 15px 0;
 }
 .logo {
@@ -204,6 +204,13 @@ a.my_post_links{
     font-size: 14px;
     padding-left: 15px;
 }
+
+.autocomplete-container .input-container input{
+	background-color: #f1f1f1 !important;
+  border-radius: 4px;
+  height: 45px !important;
+}
+
 .post button {
     background-color: #003459;
     border: 0;

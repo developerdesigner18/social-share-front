@@ -37,6 +37,9 @@ export class HomeComponent implements OnInit {
   comments = 0;
   toggle = [];
   current_user = '';
+  allUsers = [];
+
+  keyword = 'name';
 
   // @ViewChild('like_font') likeFontElement: any;
   checkPostsId: any;
@@ -91,6 +94,10 @@ export class HomeComponent implements OnInit {
         this.ngOnInit()
         return this.datas
       }
+    })
+
+    this.authService.getAllFriends(localStorage.getItem("token")).subscribe(res => {
+      this.allUsers = res.AllUser[0]
     })
 
     this.authService.getFriendData(id).subscribe(res => {
@@ -228,7 +235,7 @@ export class HomeComponent implements OnInit {
             if(likeCount < 1){
               this.temLike = this.temLike - 1
             }
-            
+
             if(this.temLike >= 2){
               this.temLike = this.temLike - 1
             }else{

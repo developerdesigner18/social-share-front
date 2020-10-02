@@ -26,7 +26,7 @@
     <div class="col-md-12 remove_people_{{data._id}}" (click)="openProfile(data._id);">
       <img width="60" height="60" [src]="data.profileImgURl" onerror="this.src='/assets/images/default_user.jpg';" style="border-radius: 50%;" />
       <label style="color: #ffffff;margin-left: 10px;position: absolute;">{{data.name}}</label>
-      <label style="color: #ffffff">{{data._id}}</label>
+      <!-- <label style="color: #ffffff">{{data._id}}</label> -->
     </div>
     <div class="col-md-12 remove_people_{{data._id}}" style="margin-left: 70px;bottom: 15px;">
       <button type="button" *ngIf="friend_id.includes(data._id) != true" class="btn btn-primary add_friend_btn add_friend_{{data._id}}" [hidden]="hideme[i]" (click)="sendRequest(data._id);hideme[i] = !hideme[i];">Add Friends</button>
@@ -106,22 +106,6 @@
               <video controls class="slider_video" *ngIf="imageurl.split('.').pop() == 'mp4'" disablePictureInPicture controlsList="nodownload">
                 <source [src]="imageurl" type="video/mp4">
               </video>
-            </div>
-          </div>
-          <div class="cat_bid d-flex justify-content-between align-items-center mt-3" *ngIf="data.imageUrl.length > 0">
-            <div class="category">Electronics</div>
-            <div class="bid_current d-flex align-items-center">
-              <div class="current_bid">Current bid @</div>
-              <div>310$</div>
-            </div>
-          </div>
-          <div class="bid_section d-flex justify-content-between align-items-center mt-3" *ngIf="data.imageUrl.length > 0">
-            <div class="d-flex align-items-center">
-              <div class="starting_bid mt-0">Asking Price @</div>
-              <div class="main-price">300$</div>
-            </div>
-            <div class="bid_now">
-              <button>BID NOW</button>
             </div>
           </div>
           <div class="take_action">

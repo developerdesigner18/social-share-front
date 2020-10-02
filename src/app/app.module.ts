@@ -6,6 +6,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -81,7 +82,8 @@ import { PeopleKnowComponent } from './people-know/people-know.component';
     MatDialogModule,
     BrowserAnimationsModule,
     MatToolbarModule,
-    ImageCropperModule
+    ImageCropperModule,
+    AutocompleteLibModule
   ],
   providers: [
     {

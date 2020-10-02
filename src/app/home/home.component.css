@@ -18,7 +18,7 @@ body {
     background-image: none !important;
 }
 header{
-	background-color: #003459;
+	background-color: #0f1b31;
 	padding: 15px 0;
 	position: unset;
 }
@@ -193,9 +193,6 @@ a.premium_upgrade {
     font-size: 14px;
     text-transform: uppercase;
 }
-.right_sidebar > div {
-    padding: 25px 0;
-}
 .cat_search {
     margin-top: 25px;
     width: 90%;
@@ -353,11 +350,16 @@ a.premium_upgrade {
     margin-bottom: 0;
 }
 .profile_pics img {
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
     object-fit: cover;
     border-radius: 50%;
 }
+
+.autocomplete-container .suggestions-container ul li a {
+		padding: 5px 8px 20px 15px !important;
+}
+
 .main_post_contents {
     padding: 25px 20px;
     overflow: hidden;
@@ -379,7 +381,7 @@ a.premium_upgrade {
     content: "";
     position: absolute;
     right: 2px;
-    top: 36px;
+    top: 22px;
     background: #ff9000;
     width: 12px;
     height: 12px;
@@ -551,6 +553,17 @@ img.slider_image {
     font-size: 20px;
     color: #003459;
     line-height: 1;
+}
+.search_somenone_profile{
+	font-size: 15px;
+	color: #003459;
+	line-height: 1;
+}
+.autocomplete-container{
+	box-shadow: none !important;
+}
+.autocomplete-container .input-container input{
+	background-color: #f1f1f1 !important;
 }
 .owl-stage {
 		display: -webkit-box;
@@ -852,12 +865,6 @@ a.my_post_links:hover div > div {
 .name_and_desc {
     margin-left: 20px;
 }
-.profile_name_of_poster {
-    font-weight: 500;
-    font-size: 20px;
-    color: #003459;
-    line-height: 1;
-}
 .mat-dialog-container {
 	padding: 0 !important;
 }
@@ -882,4 +889,10 @@ a.my_post_links:hover div > div {
 		border-radius: 5px;
 		padding-left: 10px;
 		width: 100%;
+}
+
+.allusers_set{
+	padding-left: 15px;
+	margin-top: 10px;
+	border-bottom: 1px solid #e5e5e5;
 }

@@ -19,7 +19,7 @@ body {
 		overflow-x: hidden;
 }
 header{
-	background-color: #003459;
+	background-color: #0f1b31;
 	padding: 15px 0;
 	position: fixed;
 	width: 100%;
@@ -78,7 +78,7 @@ img.logout {
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: #043458;
+  background-color: #0f1b31;
   overflow-x: hidden;
   padding-top: 20px;
 }

@@ -61,22 +61,6 @@
       </div>
     </div>
 
-    <div class="cat_bid d-flex justify-content-between align-items-center mt-3" *ngIf="data.imageUrl.length > 0">
-      <div class="category">Electronics</div>
-      <div class="bid_current d-flex align-items-center">
-        <div class="current_bid">Current bid @</div>
-        <div>310$</div>
-      </div>
-    </div>
-    <div class="bid_section d-flex justify-content-between align-items-center mt-3" *ngIf="data.imageUrl.length > 0">
-      <div class="d-flex align-items-center">
-        <div class="starting_bid mt-0">Asking Price @</div>
-        <div class="main-price">300$</div>
-      </div>
-      <div class="bid_now">
-        <button>BID NOW</button>
-      </div>
-    </div>
     <div [ngClass]="current_user_profile ? 'no_share_action' : 'take_action'">
       <button class="like_sec" (click)="likeIt(data._id, data.like.length);">
         <i class="fa" id="{{data._id}}" [ngClass]="postlikeId.includes(data._id) ? 'fa-thumbs-up': 'fa-thumbs-o-up'"></i>

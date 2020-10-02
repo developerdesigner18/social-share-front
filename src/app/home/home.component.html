@@ -48,15 +48,15 @@
 			</a>
 			<a class="my_post_links" href="#">
 				<div class="left_content">
-					<i class="fas fa-ad"></i>
-					<div>Go to my Adds</div>
+					<i class="fas fa-cog"></i>
+					<div>Customization</div>
 				</div>
 			</a>
 		</div>
 		<div class="main_areas">
 			<div class="main_area_contents">
 				<div class="write_words position-relative" style="padding-bottom: 10px !important;">
-				  <input #textmsgPost type="text" placeholder=" Say something {{name}}!" (click)="openTextDialog()">
+				  <input #textmsgPost type="text" placeholder=" What is going on in your gaming world today {{name}}!" (click)="openTextDialog()">
 				  <div class="slider_bid_like-share d-flex flex-column">
 				    <input type="file" style="display:none" #file class="btn btn-primary" (change)="openDialog($event)" multiple="" />
 				    <div class="take_action post_take_action" (click)="file.click();" title="Photos/Videos">
@@ -112,22 +112,6 @@
 								<!-- <div class="item-video"><a class="owl-video" href="https://www.youtube.com/watch?v=EF_kj2ojZaE"></a></div> -->
 								<!-- {{imageurl}} -->
 								<!-- <div class="item-video"><a class="owl-video" [attr.href]="imageurl"></a></div> -->
-							</div>
-						</div>
-						<div class="cat_bid d-flex justify-content-between align-items-center mt-3" *ngIf="data.imageUrl.length > 0">
-							<div class="category">Electronics</div>
-							<div class="bid_current d-flex align-items-center">
-								<div class="current_bid">Current bid @</div>
-								<div>310$</div>
-							</div>
-						</div>
-						<div class="bid_section d-flex justify-content-between align-items-center mt-3" *ngIf="data.imageUrl.length > 0">
-							<div class="d-flex align-items-center">
-								<div class="starting_bid mt-0">Asking Price @</div>
-								<div class="main-price">300$</div>
-							</div>
-							<div class="bid_now">
-								<button>BID NOW</button>
 							</div>
 						</div>
 						<div [ngClass]="current_user['data']._id !== data.userId ? 'take_action' : 'no_share_action'">
@@ -272,15 +256,29 @@
 		</div>
 		<div class="right_sidebar">
 			<div>
-				<a class="premium_upgrade" href="#">
-					<div class="upgrade_premium">
-						<i class="fas fa-crown"></i>
-						<div>Upgrade to premium</div>
-					</div>
-				</a>
 				<div class="cat_search position-relative">
-					<input type="search" placeholder="category search">
-					<i class="fas fa-search"></i>
+					<!-- <input type="search" placeholder="category search"> -->
+					<!-- <i class="fas fa-search"></i> -->
+					<ng-autocomplete class="autocomplete-container" #searchText [data]="allUsers" placeHolder="Search someone" value="" [searchKeyword]="keyword" [itemTemplate]="itemTemplate"
+							[notFoundTemplate]="notFoundTemplate">
+					</ng-autocomplete>
+
+					<ng-template #itemTemplate let-item>
+						<div class="d-flex allusers_set">
+							<div class="profile_pics position-relative">
+								<img [src]="item.profileImgURl" onerror="this.src='/assets/images/default_user.jpg';">
+							</div>
+							<div>
+								<div class="d-flex justify-content-between align-items-center">
+									<a href="profile/{{item._id}}"><div class="search_somenone_profile">{{item.name}}</div></a>
+								</div>
+							</div>
+						</div>
+					</ng-template>
+
+					<ng-template #notFoundTemplate let-notFound>
+							<div [innerHTML]="notFound"></div>
+					</ng-template>
 				</div>
 				<div class="put_ads_here">Put Your Ads here!</div>
 				<div class="chat_sec">

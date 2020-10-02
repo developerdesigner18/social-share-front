@@ -27,6 +27,8 @@ export class SearchComponent implements OnInit {
   noRecord = '';
   countSuggest = 0
 
+  keyword = 'name';
+
   @ViewChild('searchText') searchTextElement: any;
 
   constructor(

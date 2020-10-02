@@ -35,13 +35,9 @@ export class TimelineComponent implements OnInit {
   objVal = [];
 
   postlikeId = []
-  // selectedIconHtml = `<i class=fa fa-thumbs-o-up"></i>`;
   commentsForm: FormGroup;
 
   @ViewChild('textmsgPost') postMesssgeElement: any;
-  // @ViewChild('like_font', {static: false}) likeFontElement: any;
-  // @ViewChild('like_font') likeFontElement: any;
-  // @ViewChild('writeComments') writeCommentElement: any;
 
   public datas;
   constructor(
@@ -57,40 +53,24 @@ export class TimelineComponent implements OnInit {
       this.profileImg =  res.data.profileImgURl
       this.u_name =  res.data.name
     })
-    // this.token = localStorage.getItem('token')
 
     this.authService.getProfilePost(this.id).subscribe(res => {
       if(res.length > 0){
         this.datas = res
-        console.log("=-=-=-=-=-=-=-=-=-=-=datas", this.datas)
         for(let i = 0; i < this.datas.length; i++){
           this.description = this.datas[i].description;
           this.urls.push(this.datas[i].imageUrl)
           this.likes = this.datas[i].like
           for(let j = 0; j < this.datas[i].comment.length; j++){
-          // console.log("=-=-=-=-=-=-=-=-=-user name", this.datas[i].comment[j].userId)
             this.authService.getHomePostProfile(this.datas[i].comment[j].userId).subscribe(res => {
-              // console.log("--=-=-=-=-=---=-=-=user profile data", res.data)
               this.datas[i].post_profileImg = res.data.profileImgURl
               this.datas[i].post_user = res.data.name
             })
           }
           if(this.likes.length > 0){
             this.postlikeId.push(this.datas[i]._id)
-            // this.likePost= false
-            // this.likeFontElement.nativeElement.classList.add('fa-thumbs-up');
-            // this.likes = true
-            // this.datas[i].like
-            // this.likePost = true
-            // console.log("native element",this.likeFontElement)
-            // this.likeFontElement.nativeElement.classList.add('fa-thumbs-up');
-            // let body = document.getElementById('like_font');
-            // body.classList.add('fa-thumbs-up')
-            // $('.fa-thumbs-o-up').removeClass('fa-thumbs-o-up')
-            // $('.fa-thumbs-o-up').addClass('fa-thumbs-up')
           }
         }
-        // this.removelike = this.likes.length
         return this.datas
       }else{
         this.notfound = res.code
