@@ -25,11 +25,13 @@ export class RequestFriendsComponent implements OnInit {
 
   // For friends profile view varible
   name = '';
+  u_id = '';
   u_designation = '';
   u_state = '';
   u_country = '';
   u_city = '';
   u_hobbies = '';
+  u_email = '';
   newDate: Date = null;
   fileDataVal: File = null;
   previewUrl:any = null;
@@ -57,6 +59,7 @@ export class RequestFriendsComponent implements OnInit {
   cmntuname = '';
   cmntuprofile = '';
   friend_id:any = []
+  showbasicProfile = [];
 
   constructor(
     public authService: AuthService,
@@ -77,25 +80,19 @@ export class RequestFriendsComponent implements OnInit {
       if(res.message == "Not any friend request avilable")
       {
         this.friend_req_hidden = false
-        console.log("[][][][][][][][][]not any firend")
       }else{
         if(res.list.length == 0){
           this.friend_req_hidden = false
         }
         this.authService.getFriendData(current_id).subscribe(res => {
           this.frd_profile_datas = res.list
-          console.log("[][][][][][][][][]inside get frined")
           for(let i = 0; i < this.frd_profile_datas.length; i++){
-            console.log("[][][][][][][][][]inside for i")
             this.frd_req_get_count += 1
             this.datas = this.datas.filter(({ _id }) => _id !== this.frd_profile_datas[i]._id)
           }
         })
       }
     })
-
-    // console.log("=-=-=-=--=-=-=-=-friend_id", this.friend_id)
-    // console.log("=-=-=-=-=-=-=-=-=-=-includes check", this.friend_id.includes(this.datas.filter((id) => id._id)))
   }
 
   open_comments(postId){
@@ -105,34 +102,22 @@ export class RequestFriendsComponent implements OnInit {
   get formControls() { return this.commentsForm.controls }
 
   ngOnInit(): void {
-    // const that = this;
     this.authService.getAllFriends(localStorage.getItem('token')).subscribe(res => {
       this.datas = res.AllUser[0]
-      console.log("=-=-=-=-=-=-=-=-=-datas", this.datas)
       this.checkSendReq();
     })
 
     this.authService.setRequestSend(localStorage.getItem('token')).subscribe(res => {
       this.friend_id = res.list.map((id) => id.friendId)
-      console.log("=-=-=-=-=-=-=-=friend_id first", this.friend_id)
-      console.log("=-=-=-=-=-=-=-=data", this.datas)
-      console.log("=-=-=-=-=-=-=-=data _id first", this.datas.filter((id) => id._id))
       this.checkSendReq();
     })
-
-    // console.log("=-=-=-=--=-=-=-=-friend_id", this.friend_id)
   }
   hide_cancel_req = false
   checkSendReq(){
-    console.log("=-=-=-=-=-=-=-=-=-this check req datas", this.datas)
-    console.log("=-=-=-=-=-=-=-=-=-this check req datas", this.datas.map((id) => id._id))
-    console.log("=-=-=-=--=-=-=-=-friend_id", this.friend_id)
     for(let i = 0; i < this.datas.length; i++){
-      console.log("=-=-=-=--=-=-=-=-friend_id", this.friend_id.includes(this.datas[i]._id))
       if(this.friend_id.includes(this.datas[i]._id))
       {
         this.hide_cancel_req = true
-        // $(`#add_${reject_id}`).attr('style', 'display: inline !important');
       }
     }
   }
@@ -142,6 +127,7 @@ export class RequestFriendsComponent implements OnInit {
     this.showView = true
 
     this.authService.getProfileForFriend(id).subscribe(res => {
+      this.u_id = res.data._id
       this.name = res.data.name
       this.u_designation =  res.data.designation
       this.u_country =  res.data.country
@@ -150,6 +136,7 @@ export class RequestFriendsComponent implements OnInit {
       this.u_hobbies =  res.data.hobbies
       this.profileImg =  res.data.profileImgURl
       this.u_name =  res.data.name
+      this.u_email =  res.data.emailId
 
       this.newDate= new Date(res.data.createdAt);
       this.previewUrl = res.data.profileImgURl
@@ -189,12 +176,7 @@ export class RequestFriendsComponent implements OnInit {
       $(`.cancel_friend_${requestId}`).attr('style', 'display: inline !important');
       $(`.add_friend_${requestId}`).css('display','none');
       $(`.remove_friend_${requestId}`).css('display','none');
-      // $(`.remove_friend_${requestId}`).attr('style', 'display: inline !important');
     })
-    // if(this.friend_id.includes(requestId)){
-      // $(`.add_friend_${requestId}`).css('display','none');
-      // $(`.remove_friend_${requestId}`).css('display','none');
-    // }
   }
 
   confirm_request(confirm_id){
@@ -211,23 +193,15 @@ export class RequestFriendsComponent implements OnInit {
   remove_send_request(reject_id){
     let userId = this.activatedRoute.snapshot.paramMap.get('id');
     this.authService.removeSendRequest(userId, reject_id).subscribe(res => {
-      console.log("=-=-=-=-=-=-=-=-=-disply", $(`.show_add_friend_${reject_id}`).is(":visible"))
-      console.log("=-=-=-=-=-=-=-=-=-disply", $(`.show_add_friend_${reject_id}`).attr('id'))
       if($(`.show_add_friend_${reject_id}`).is(":visible"))
       {
-      //   $(`.show_add_friend_${reject_id}`).css('display','none');
-      //   $(`.add_friend_${reject_id}`).attr('style', 'display: inline !important');
-      //   $(`.remove_friend_${reject_id}`).attr('style', 'display: inline !important');
-      //   this.friend_id = [];
-      // $(`.add_friend_${reject_id}`).css('display','none');
         $(`#add_${reject_id}`).attr('style', 'display: inline !important');
       }else{
-        // this.friend_id = [];
+
         $(`.cancel_friend_${reject_id}`).css('display','none');
         $(`.add_friend_${reject_id}`).attr('style', 'display: inline !important');
         $(`.remove_friend_${reject_id}`).attr('style', 'display: inline !important');
       }
-      // if($(`.show_add_friend_${reject_id}`).attr('style') == 'display: none;')
     })
   }
 
@@ -298,8 +272,5 @@ export class RequestFriendsComponent implements OnInit {
 
   remove_people(people_id){
     $(`.remove_people_${people_id}`).parent().css('display','none');
-    // $(`.show_add_friend_${people_id}`).css('display','none');
-    // $(`.add_friend_${people_id}`).css('display','inline');
-    // $(`.remove_friend_${people_id}`).css('display','inline');
   }
 }

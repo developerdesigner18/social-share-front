@@ -40,6 +40,7 @@ export class HomeComponent implements OnInit {
   allUsers = [];
 
   keyword = 'name';
+  showbasicProfile = [];
 
   // @ViewChild('like_font') likeFontElement: any;
   checkPostsId: any;
@@ -76,8 +77,10 @@ export class HomeComponent implements OnInit {
           this.comments = this.datas[i].comment.length
           this.url.push(this.datas[i].imageUrl)
           this.authService.getHomePostProfile(this.datas[i].userId).subscribe(res => {
+            this.datas[i].post_user_designation = res.data.designation
+            this.datas[i].post_user_email = res.data.emailId
             this.datas[i].post_profileImg = res.data.profileImgURl
-             this.datas[i].post_user = res.data.name
+            this.datas[i].post_user = res.data.name
           })
 
           if(this.likes.length > 0){
@@ -141,9 +144,6 @@ export class HomeComponent implements OnInit {
     	});
     });
     this.toggle = this.toggle
-    // testLike(){
-    //   console.log("=-=-=-=-=-=-=-=Font ", this.likeFontElement.nativeElement.id)
-    // }
   }
 
   open_comments(postId){

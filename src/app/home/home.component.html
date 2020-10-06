@@ -72,15 +72,25 @@
 			<div class="main_area_contents timeline" *ngFor="let data of datas;let i = index">
 
 				<div class="main_post_contents d-flex flex-column">
-					<div class="d-flex" style="width: 100%">
-						<div class="profile_pic_profile position-relative">
+					<div class="d-flex show_basic_info" style="width: 100%">
+						<div class="profile_pic_profile position-relative" (mouseover)="showbasicProfile[i]=true">
 							<img [src]="data.post_profileImg" onerror="this.src='/assets/images/default_user.jpg';">
 							<!-- <img src='/assets/images/default_user.jpg'> -->
+							<div class="basic_info" *ngIf="showbasicProfile[i]" (mouseleave)="showbasicProfile[i]=false">
+								<div class="d-flex">
+									<img [src]="data.post_profileImg" onerror="this.src='/assets/images/default_user.jpg';">
+									<div style="padding: 10px;">
+										<a href="profile/{{data.userId}}"><div class="profile_basic_info set_redirect_link">{{data.post_user}}</div></a>
+										<div class="profile_basic_info">{{data.post_user_designation}}</div>
+										<div class="profile_basic_info">{{data.post_user_email}}</div>
+									</div>
+								</div>
+							</div>
 						</div>
 						<div class="name_and_desc" style="width: 100%">
 							<div class="d-flex justify-content-between align-items-center">
 								<!-- <div class="profile_name_of_poster">{{u_name}}</div> -->
-								<div class="profile_name_of_poster">{{data.post_user}}</div>
+								<a href="profile/{{data.userId}}"><div class="profile_name_of_poster">{{data.post_user}}</div></a>
 								<div class="province d-flex align-items-center">
 									<img src="assets/images/add_ob.png">
 									<div>Pulshar, MB</div>
@@ -89,6 +99,7 @@
 							<div class="item_desc mt-3" style="width: 100%">{{data.description}}</div>
 						</div>
 					</div>
+
 					<div class="slider_bid_like-share d-flex flex-column" style="width: 100%" id="slider-owl-carousel-load">
 						<!-- <video controls class="slider_video">
 							<source [src]="data.imageUrl[1]" type="video/mp4">

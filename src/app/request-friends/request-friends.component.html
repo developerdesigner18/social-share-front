@@ -85,12 +85,23 @@
       <ng-container *ngIf="timeline_hide">
       <div *ngFor="let data of frd_datas; let i = index;" class="main_post_content d-flex flex-column">
         <div class="d-flex" style="width: 100%">
-          <div class="profile_pic_profile position-relative">
+          <div class="profile_pic_profile position-relative" (mouseover)="showbasicProfile[i]=true">
             <img [src]="profileImg" onerror="this.src='/assets/images/default_user.jpg';">
+
+            <div class="basic_info" *ngIf="showbasicProfile[i]" (mouseleave)="showbasicProfile[i]=false">
+              <div class="d-flex">
+                <img [src]="profileImg" onerror="this.src='/assets/images/default_user.jpg';">
+                <div style="padding: 10px;">
+                  <a href="profile/{{data.userId}}"><div class="profile_basic_info set_redirect_link">{{name}}</div></a>
+                  <div class="profile_basic_info">{{u_designation}}</div>
+                  <div class="profile_basic_info">{{u_email}}</div>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="name_and_desc" style="width: 100%">
             <div class="d-flex justify-content-between align-items-center">
-              <div class="profile_name_of_poster">{{u_name}}</div>
+              <a href="profile/{{u_id}}"><div class="profile_name_of_poster">{{u_name}}</div></a>
               <div class="province d-flex align-items-center">
                 <img src="assets/images/add_ob.png">
                 <div>Pulshar, MB</div>

@@ -19,6 +19,8 @@ export class TimelineComponent implements OnInit {
   images = [];
   postProfileimg: any = null;
   u_name = '';
+  u_designation = '';
+  u_email = '';
   description = '';
   urls = [];
   profileImg = '';
@@ -34,8 +36,9 @@ export class TimelineComponent implements OnInit {
   removelike = 0;
   objVal = [];
 
-  postlikeId = []
+  postlikeId = [];
   commentsForm: FormGroup;
+  showbasicProfile = [];
 
   @ViewChild('textmsgPost') postMesssgeElement: any;
 
@@ -49,9 +52,10 @@ export class TimelineComponent implements OnInit {
   ) {
     this.id = this.activatedRoute.parent.params['value']['id'];
     this.authService.getUserProfile(this.id).subscribe(res => {
-
       this.profileImg =  res.data.profileImgURl
       this.u_name =  res.data.name
+      this.u_designation =  res.data.designation
+      this.u_email =  res.data.emailId
     })
 
     this.authService.getProfilePost(this.id).subscribe(res => {
@@ -65,6 +69,8 @@ export class TimelineComponent implements OnInit {
             this.authService.getHomePostProfile(this.datas[i].comment[j].userId).subscribe(res => {
               this.datas[i].post_profileImg = res.data.profileImgURl
               this.datas[i].post_user = res.data.name
+              this.datas[i].post_user_designation = res.data.designation
+              this.datas[i].post_user_email = res.data.emailId
             })
           }
           if(this.likes.length > 0){

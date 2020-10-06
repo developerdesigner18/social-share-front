@@ -15,8 +15,19 @@
 <ng-container *ngIf="notfound !== 404">
 <div *ngFor="let data of datas; let i = index" class="main_post_content d-flex flex-column">
   <div class="d-flex" style="width: 100%">
-    <div class="profile_pic_profile position-relative">
+    <div class="profile_pic_profile position-relative" (mouseover)="showbasicProfile[i]=true">
       <img [src]="profileImg" onerror="this.src='/assets/images/default_user.jpg';">
+
+      <div class="basic_info" *ngIf="showbasicProfile[i]" (mouseleave)="showbasicProfile[i]=false">
+        <div class="d-flex">
+          <img [src]="profileImg" onerror="this.src='/assets/images/default_user.jpg';">
+          <div style="padding: 10px;">
+            <div class="profile_basic_info">{{u_name}}</div>
+            <div class="profile_basic_info">{{u_designation}}</div>
+            <div class="profile_basic_info">{{u_email}}</div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="name_and_desc" style="width: 100%">
       <div class="d-flex justify-content-between align-items-center">

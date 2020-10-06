@@ -630,3 +630,25 @@ button.comment_sec {
 .remove_friend_btn{
 	margin-left: 15px !important;
 }
+
+.basic_info{
+	position: absolute;
+	z-index: 9;
+	top: 70px;
+	background-color: #ffffff;
+	box-shadow: 0px 1px 15px 0px rgba(0, 52, 89, 0.58);
+	display: block !important;
+	padding: 15px;
+}
+
+.set_redirect_link:hover, .profile_name_of_poster:hover{
+	text-decoration: underline;
+}
+
+.profile_basic_info{
+		font-weight: 500;
+    font-size: 20px;
+    color: #003459;
+    line-height: 1;
+		margin-bottom: 12px;
+}
