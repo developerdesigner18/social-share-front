@@ -62,6 +62,7 @@ header .logo, .login_container {
     position: relative;
     background: #FF9000;
     border-radius: 4px;
+		margin: 10px 0 10px 0;
 }
 img.logout {
     width: 18%;
@@ -801,8 +802,6 @@ a.my_post_links:hover div > div {
 		right: 210px;
 	}
 
-	.left_sidebars { display: none; }
-
 	img.logout {
 		width: 6%;
 	}
@@ -832,10 +831,9 @@ a.my_post_links:hover div > div {
     width: 100%;
     border-radius: 4px;
     height: 55px;
-    padding-right: 12.6%;
-    color: #003459;
-    font-size: 14px;
-    padding-left: 15px;
+		color: #003459;
+		font-size: 14px;
+    padding: 5px 12.6% 5px 15px;
 		margin-bottom: 10px;
 }
 
@@ -927,4 +925,185 @@ a.my_post_links:hover div > div {
     color: #003459;
     line-height: 1;
 		margin-bottom: 12px;
+}
+
+
+
+/*-----------------------rcss---------------------------*/
+
+	.profile_name_of_poster {
+	    margin-right: 10px;
+	}
+
+
+@media (max-width: 320px){
+	.right_sidebar {
+		 display: none;
+	}
+	.write_words input {
+	    padding: 6px 3px !important;
+	    margin-top: 14px;
+	    border-radius: 50px;
+	    border: 1px solid #ddd;
+	    margin-bottom: 12px;
+			font-size: 11px;
+	}
+	.profile_pic_profile.position-relative img {
+	    width: 100%;
+	    border-radius: 50%;
+	}
+	.main_areas {
+	    margin: 0;
+	    width: 100%;
+	}
+	.header_alignment {
+	    display: block !important;
+	}
+	header {
+	    width: 100%;
+	}
+	.logo {
+	    width: 56%;
+	    margin: 0 auto;
+	    text-align: center;
+	}
+	header .ads {
+	    margin-top: 15px;
+	}
+	.login_container {
+	    justify-content: center !important;
+	}
+	.main_area_contents {
+	    margin-top: 12px;
+	}
+	.login_container button {
+	    margin: 0 !important;
+	    margin-left: 22px !important;
+	}
+	.profile_name_of_poster {
+	    margin-right: 10px;
+	}
+	.take_action > button div {
+	    font-size: 10px;
+	}
+	.take_action > button span {
+	    font-size: 12px;
+	}
+	.bid_now button{
+		font-size: 12px;
+	}
+	.badges_for_fr:before {
+	    right: -3px;
+	}
+	.badges_for_pymk:before {
+	    right: -7px;
+	}
+	.right_sidebar > div {
+	    padding: 25px 0;
+	}
+	.left_sidebars {
+	    position: unset !important;
+	}
+
+	.write_words {
+	    width: 100%;
+	    padding: 8px !important;
+	}
+}
+
+@media (min-width: 321px) and (max-width: 767px){
+
+	.right_sidebar {
+		 display: none;
+	}
+	.left_sidebars {
+	    position: unset !important;
+	}
+
+	.left_sidebars {
+	    top: 0;
+	}
+	.profile_pic_profile.position-relative img {
+	    width: 100% ;
+	    border-radius: 50%;
+	}
+	.profile_name_of_poster {
+	    margin-right: 10px;
+	}
+	.main_areas {
+	    margin: 0;
+	    width: 100%;
+	}
+	.header_alignment {
+	    display: block !important;
+	}
+	header {
+	    width: 100%;
+	}
+	.logo {
+	    width: 56%;
+	    margin: 0 auto;
+	    text-align: center;
+	}
+	header .ads {
+	    margin-top: 15px;
+	}
+	.login_container {
+	    justify-content: center !important;
+	}
+	.main_area_contents {
+	    margin-top: 12px;
+	}
+	.login_container button {
+	    margin: 0 !important;
+	    margin-left: 22px !important;
+	}
+	.write_words input {
+    margin-top: 14px;
+    padding: 6px 52px !important;
+    border-radius: 50px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+}
+	.bid_now button{
+		font-size: 13px;
+	}
+
+}
+
+@media (min-width: 768px) and (max-width: 1023px){
+	.profile_pic_profile img {
+	    width: 100%;
+	    border-radius: 50%;
+	}
+}
+
+
+@media (max-width: 1024px){
+	.left_sidebars {
+		order: 1;
+		flex: 1;
+	}
+	.right_sidebar {
+		order: 2;
+		flex: 1;
+	}
+	.main_container {
+		flex-wrap: wrap;
+	}
+	.main_areas {
+		flex: 1;
+		order: 3;
+	}
+	.profile_name_of_poster {
+	    margin-right: 10px;
+	}
+		.write_words input {
+	    margin-top: 14px;
+	    padding: 6px 123px;
+	    border-radius: 50px;
+	    border: 1px solid #ddd;
+	    margin-bottom: 12px;
+	}
+
 }
