@@ -41,6 +41,7 @@ export class HomeComponent implements OnInit {
 
   keyword = 'name';
   showbasicProfile = [];
+  showLikes = [];
 
   // @ViewChild('like_font') likeFontElement: any;
   checkPostsId: any;
@@ -227,7 +228,6 @@ export class HomeComponent implements OnInit {
             document.getElementById(postId).classList.remove('fa-thumbs-up')
             document.getElementById(postId).classList.add('fa-thumbs-o-up')
             this.temLike = likeCount - 1
-            // console.log("=-=-=-=-=-=-=-=-=-temlike",this.temLike)
             this.temLike <= 0 ? document.getElementById('count_'+postId).innerHTML = '' : document.getElementById('count_'+postId).innerHTML = String(this.temLike);
           }else {
             document.getElementById(postId).classList.add('fa-thumbs-up')
@@ -248,44 +248,31 @@ export class HomeComponent implements OnInit {
   }
 
   DoNotlikeIt(postId, likeCount){
-    // console.log("=-=-=-=-=-=-=-=Font 1", this.dataMatchElement.nativeElement.value)
     this.authService.sendLikePost(postId).subscribe(res => {
     })
   }
 
   temCmnt = [];
   tempPostId = '';
-  // functionCall = this.datas.map((cmnt) => cmnt.comment.length)
   count = 0
   tempProfile = '';
   tempName = '';
   temCmntCnt = ''
 
   addComments(postId, userName, profilePic){
-    // console.log("==-=-=-=-=-=-=-=functionCall", this.functionCall[0])
-    // console.log("=-=-=-=-=-=-=-=-",this.checkTem)
-    // if(length === 0 ){
-    //   this.temCmntCnt = ''
-    // }else{
-    //   this.temCmntCnt = length
-    // }
     this.objVal = Object.keys(this.commentsForm.value).map(key => ({type: key, value: this.commentsForm.value[key]}))
     this.authService.sendPostComment(postId, this.objVal[0].value).subscribe(res => {
       if(res['success']){
         $(`.comments_container_${postId}`).css('display','block');
-        // this.router.navigate([`home/${this.activatedRoute.snapshot.paramMap.get('id')}`])
-        // this.datas.map((id) => id.comment)
         if(this.datas.map((id) => id._id).includes(postId)){
           this.tempName = userName
           this.tempProfile = profilePic
           this.tempPostId = postId
           this.checkTem = true
           this.temCmnt.push(this.objVal[0].value)
-          // this.datas[0].comment.length
         }
       }
     })
-    // console.log("=-=-=-=-=-=-comment length end loop", this.datas.map((cmnt) => cmnt.comment.length))
     this.commentsForm.reset()
   }
 }

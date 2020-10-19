@@ -138,7 +138,7 @@ a.my_post_links{
 .badges_for_fr:before {
     content: attr(data-content);
     position: absolute;
-    right: -30px;
+    right: -30px !important;
     font-size: 9px;
     width: 20px;
     height: 20px;
@@ -158,7 +158,7 @@ a.my_post_links{
 .badges_for_pymk:before {
     content: attr(data-content);
     position: absolute;
-    right: -30px;
+    right: -30px !important;
     font-size: 9px;
     width: 20px;
     height: 20px;
@@ -767,9 +767,6 @@ a.my_post_links:hover div > div {
 		width: 100%;
 		padding: 0;
 	}
-	.justify-content-center{
-			height: auto !important;
-	}
 
 	.logo{
 		width: 70%;
@@ -778,21 +775,27 @@ a.my_post_links:hover div > div {
 	.login_container{
 		margin: unset;
 	}
-	.position-relative{
-		/* height: 32px; */
+	/* .position-relative{
+		height: 32px;
+	} */
+
+	.position-relative-img{
+		width: 20%;
+		 position: relative!important;
 	}
 
 	/* .navbar-collapse{
 		display: flex;
 	} */
 
-	.profile_name {
+	/* .profile_name {
 		color: #ffffff;
-	}
+	} */
 
-	.position-relative{
+	/* .position-relative{
+		position: relative!important;
 		width: 100%;
-	}
+	} */
 
 	.badges_for_pymk:before{
 		right: 165px;
@@ -803,7 +806,7 @@ a.my_post_links:hover div > div {
 	}
 
 	img.logout {
-		width: 6%;
+		width: 18%;
 	}
 
 	.login_container button{
@@ -926,8 +929,6 @@ a.my_post_links:hover div > div {
     line-height: 1;
 		margin-bottom: 12px;
 }
-
-
 
 /*-----------------------rcss---------------------------*/
 
@@ -1106,4 +1107,35 @@ a.my_post_links:hover div > div {
 	    margin-bottom: 12px;
 	}
 
+}
+
+.tooltiptext {
+  /* visibility: hidden; */
+	display: none;
+	position: absolute;
+  width: 120px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+	margin-top: 4%;
+	margin-left: 18%;
+}
+
+/* .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+} */
+
+.showLikes:hover + .tooltiptext {
+  /* visibility: visible !important; */
+	display: block !important;
+  opacity: 0.5;
 }

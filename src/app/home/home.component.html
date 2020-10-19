@@ -73,9 +73,8 @@
 
 				<div class="main_post_contents d-flex flex-column">
 					<div class="d-flex show_basic_info" style="width: 100%">
-						<div class="profile_pic_profile position-relative" (mouseover)="showbasicProfile[i]=true">
+						<div class="profile_pic_profile position-relative-img" (mouseover)="showbasicProfile[i]=true">
 							<img [src]="data.post_profileImg" onerror="this.src='/assets/images/default_user.jpg';">
-							<!-- <img src='/assets/images/default_user.jpg'> -->
 							<div class="basic_info" *ngIf="showbasicProfile[i]" (mouseleave)="showbasicProfile[i]=false">
 								<div class="d-flex">
 									<img [src]="data.post_profileImg" onerror="this.src='/assets/images/default_user.jpg';">
@@ -89,7 +88,6 @@
 						</div>
 						<div class="name_and_desc" style="width: 100%">
 							<div class="d-flex justify-content-between align-items-center">
-								<!-- <div class="profile_name_of_poster">{{u_name}}</div> -->
 								<a href="profile/{{data.userId}}"><div class="profile_name_of_poster">{{data.post_user}}</div></a>
 								<div class="province d-flex align-items-center">
 									<img src="assets/images/add_ob.png">
@@ -101,47 +99,38 @@
 					</div>
 
 					<div class="slider_bid_like-share d-flex flex-column" style="width: 100%" id="slider-owl-carousel-load">
-						<!-- <video controls class="slider_video">
-							<source [src]="data.imageUrl[1]" type="video/mp4">
-						</video> -->
-						<!-- <div class="item-video"><a class="owl-video" [attr.href]="data.imageUrl[1]"></a></div> -->
 						<div class="owl-carousel owl-theme" id="owl-demo" *ngIf="data.imageUrl.length > 0">
 
 							<div class="item" *ngFor="let imageurl of data.imageUrl">
-								<!-- {{imageurl}} -->
-								<!-- {{imageurl.split('.').pop()}} -->
-								<!-- <img class="slider_image" [src]="imageurl" [attr.data-slide-to]="i"> -->
 								<img class="slider_image" [src]="imageurl" [attr.data-slide-to]="i" *ngIf="imageurl.split('.').pop() !== 'mp4'">
 								<video controls class="slider_video" *ngIf="imageurl.split('.').pop() == 'mp4'" disablePictureInPicture controlsList="nodownload">
 				          <source src="{{imageurl}}" type="video/mp4">
-				          <!-- <source [src]="imageurl" type="video/ogg"> -->
 				        </video>
-
-								<!-- <iframe type="text/html" width="720" height="405"
-												src="https://www.youtube.com/embed/M7lc1UVf-VE?enablejsapi=1" frameborder="0" allowfullscreen>
-								</iframe> -->
-								<!-- <div class="item-video"><a class="owl-video" href="https://www.youtube.com/watch?v=EF_kj2ojZaE"></a></div> -->
-								<!-- {{imageurl}} -->
-								<!-- <div class="item-video"><a class="owl-video" [attr.href]="imageurl"></a></div> -->
 							</div>
 						</div>
 						<div [ngClass]="current_user['data']._id !== data.userId ? 'take_action' : 'no_share_action'">
-							<button class="like_sec" (click)="likeIt(data._id, data.like.length);">
+							<button class="showLikes" (click)="likeIt(data._id, data.like.length);">
 								<i class="fa" id="{{data._id}}" [ngClass]="postlikeId.includes(data._id) ? 'fa-thumbs-up' : 'fa-thumbs-o-up'"></i>
 								<!-- <div>Like<span id="count_{{data._id}}">{{data.like.length === 0 ? '' : checkTem == false ? data.like.length : temLike > 1 ? temLike - 1: temLike === 0 ? '' : temLike}}</span></div> -->
 								<div>Like<span id="count_{{data._id}}">{{data.like.length === 0 ? '' : data.like.length}}</span></div>
 							</button>
 
+							<div class="tooltiptext" *ngIf="data.like.length > 0">
+								<div *ngFor="let like of data.like">
+									{{like.name}}
+								</div>
+							</div>
+
 							<button class="comment_sec_{{data._id}} comment_sec" (click)="open_comments(data._id)">
 								<i class="far fa-comment-dots"></i>
 								<div>Comment<span>{{data.comment.length !== 0 ? checkTem ? data.comment.length + temCmnt.length : data.comment.length : temCmnt.length === 0 ? '' : temCmnt.length}}</span></div>
 							</button>
-							<!-- {{current_user['data']._id === data.userId}} -->
 							<button class="share_sec" *ngIf="current_user['data']._id !== data.userId">
 								<i class="far fa-share"></i>
 								<div>Share<span>7</span></div>
 							</button>
 						</div>
+
 						<div class="write_comments">
 				      <form (ngSubmit)="addComments(data._id, name, profileImg)" [formGroup]="commentsForm">
 				        <input type="text" placeholder=" Write a comment...!" formControlName="newcomment">
@@ -151,8 +140,6 @@
 							<div class="comment_title">Comments:</div>
 							<ng-container *ngIf="checkTem && tempPostId === data._id">
 								<div class="comment_user d-flex" *ngFor="let temp of temCmnt.slice().reverse(); let i = index">
-									<!-- <img src="assets/images/profile.jpg"> -->
-									<!-- {{temp ? temCmnt.length : ''}} -->
 									<img [src]="tempProfile" onerror="this.src='/assets/images/default_user.jpg';">
 									<div>
 										<div class="commenter">{{tempName}}</div>
@@ -162,114 +149,20 @@
 							</ng-container>
 
 							<div class="comment_user d-flex" *ngFor="let comnt of data.comment.slice().reverse(); let i = index">
-								<!-- <img src="assets/images/profile.jpg"> -->
-								<!-- {{i}}
-								{{comnt ? data.comment.length : ''}} -->
 								<img [src]="comnt.profile" onerror="this.src='/assets/images/default_user.jpg';">
 								<div>
-									<!-- <div class="commenter">{{data.post_cmnt_user}}</div> -->
 									<div class="commenter">{{comnt.name}}</div>
 									<div class="comment_here">{{comnt.newcomment}}</div>
 								</div>
 							</div>
-
-							<!-- <div class="comment_user d-flex ">
-								<img src="assets/images/user2.jpg">
-								<div>
-									<div class="commenter">Mellisa mcmahon</div>
-									<div class="comment_here">Nulla sagittis sodales dui ut ornare. Donec feugiat at lacus et tempor. Vivamus eros odio, convallis ut orci et, feugiat ultrices elit. Aenean suscipit tellus accumsan, gravida risus sed,</div>
-								</div>
-							</div> -->
 						</div>
 					</div>
 				</div>
-
 			</div>
-			<!-- <div class="main_area_contents timeline post_by_user_second">
-			  <div class="main_post_contents d-flex flex-column">
-			    <div class="d-flex">
-			      <div class="profile_pics position-relative">
-			        <img src="assets/images/user2.jpg">
-			      </div>
-			      <div class="name_and_desc">
-			        <div class="d-flex justify-content-between align-items-center">
-			          <div class="profile_name_of_poster">Kylie Miller</div>
-			          <div class="province d-flex align-items-center">
-			            <img src="assets/images/add_ob.png">
-			            <div>Surat, GJ</div>
-			          </div>
-			        </div>
-			        <div class="item_desc mt-3">Hi there, I want to sell my mobile Lorem ipsum dolor sit amet, consectetur adipiscing elit. Utafaf aliquet non mi eget facilisis. Donec facilisis purus eu urna sollicitudin, sed mollis felis ultrices. Nulla sagittis sodales dui ut ornare. Donec feugiat at lacus et tempor. Vivamus eros odio, convallis ut orci et, feugiat ultrices elit. Aenean suscipit tellus accumsan, gravida risus sed, sagittis velit.</div>
-			      </div>
-			    </div>
-			    <div class="slider_bid_like-share d-flex flex-column">
-			      <div class="owl-carousel owl-theme">
-			        <div class="item">
-			          <img class="slider_image" src="assets/images/item_for_sale2.jpg">
-			        </div>
-			        <div class="item">
-			          <img class="slider_image" src="assets/images/item_for_sale.jpg">
-			        </div>
-			        <div class="item">
-			          <img class="slider_image" src="assets/images/item_for_sale3.jpg">
-			        </div>
-			      </div>
-			      <div class="cat_bid d-flex justify-content-between align-items-center mt-3">
-			        <div class="category">Electronics</div>
-			        <div class="bid_current d-flex align-items-center">
-			          <div class="current_bid">Current bid @</div>
-			          <div>310$</div>
-			        </div>
-			      </div>
-			      <div class="bid_section d-flex justify-content-between align-items-center mt-3">
-			        <div class="d-flex align-items-center">
-			          <div class="starting_bid mt-0">Asking Price @</div>
-			          <div class="main-price">300$</div>
-			        </div>
-			        <div class="bid_now">
-			          <button>BID NOW</button>
-			        </div>
-			      </div>
-			      <div class="take_action">
-			        <button class="like_sec">
-			          <i class="fa fa-thumbs-o-up"></i>
-			          <div>Like <span>1.4k</span></div>
-			        </button>
-			        <button class="comment_sec">
-			          <i class="far fa-comment-dots"></i>
-			          <div>Comment<span>96</span></div>
-			        </button>
-			        <button class="share_sec">
-			          <i class="far fa-share"></i>
-			          <div>Share<span>7</span></div>
-			        </button>
-			      </div>
-			      <div class="comments_container">
-			        <div class="comment_title">Comments:</div>
-			        <div class="comment_user d-flex ">
-			          <img src="assets/images/profile.jpg">
-			          <div>
-			            <div class="commenter">Arturo flex</div>
-			            <div class="comment_here">Nulla sagittis sodales dui ut ornare. Donec feugiat at lacus et tempor. Vivamus eros odio, convallis ut orci et, feugiat ultrices elit. Aenean suscipit tellus accumsan, gravida risus sed,</div>
-			          </div>
-			        </div>
-			        <div class="comment_user d-flex ">
-			          <img src="assets/images/user2.jpg">
-			          <div>
-			            <div class="commenter">Mellisa mcmahon</div>
-			            <div class="comment_here">Nulla sagittis sodales dui ut ornare. Donec feugiat at lacus et tempor. Vivamus eros odio, convallis ut orci et, feugiat ultrices elit. Aenean suscipit tellus accumsan, gravida risus sed,</div>
-			          </div>
-			        </div>
-			      </div>
-			    </div>
-			  </div>
-			</div> -->
 		</div>
 		<div class="right_sidebar">
 			<div>
 				<div class="cat_search position-relative">
-					<!-- <input type="search" placeholder="category search"> -->
-					<!-- <i class="fas fa-search"></i> -->
 					<ng-autocomplete class="autocomplete-container" #searchText [data]="allUsers" placeHolder="Search someone" value="" [searchKeyword]="keyword" [itemTemplate]="itemTemplate"
 							[notFoundTemplate]="notFoundTemplate">
 					</ng-autocomplete>

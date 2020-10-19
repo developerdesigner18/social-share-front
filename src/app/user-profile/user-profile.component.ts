@@ -151,7 +151,18 @@ export class UserProfileComponent implements OnInit {
     //   videoWidth: 600
     // })
     // this.owlcarouselSet()
+
+
   }
+
+  // myFunction() {
+  //   var x = document.getElementById("myTopnav");
+  //   if (x.className === "topnav") {
+  //     x.className += " responsive";
+  //   } else {
+  //     x.className = "topnav";
+  //   }
+  // }
 
   show = true
   resetModel(){

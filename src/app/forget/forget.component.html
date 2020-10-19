@@ -1,5 +1,5 @@
 <header class="d-flex justify-content-between align-items-center">
-  <a [routerLink]="['']"><img class="logo" src="assets/images/logo.png" style="width: 45%"></a>
+  <a [routerLink]="['']"><img class="logo" src="assets/images/logo2.png" style="width: 25%"></a>
   <app-login></app-login>
 </header>
 
@@ -9,13 +9,13 @@
 		<div class="form_of_sign_up d-flex flex-column">
       <form [formGroup]="forgetForm" (ngSubmit)="forgetUser()">
         <div class="form-group" [ngClass]="{ 'has-error': isSubmitted && formControls.email.errors }">
-          <input formControlName="email" id="email" class="form-control" type="email" placeholder="Enter Email Address">
+          <input formControlName="email" id="email" class="form-control" type="email" placeholder="Enter email address">
           <div *ngIf="isSubmitted && formControls.email.errors">
             <div *ngIf="formControls.email.errors.required" class="error">Email is required.</div>
             <div *ngIf="formControls.email.errors.email" class="error">Please enter valid email address.</div>
           </div>
         </div>
-  			<button class="btn-full">Search</button>
+  			<button class="btn-full">Confirm</button>
       </form>
 		</div>
 	</div>

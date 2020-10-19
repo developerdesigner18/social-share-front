@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild, ElementRef, QueryList } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from  '@angular/material/dialog';
 import { AuthService } from '../auth.service';
 declare var jQuery: any;
@@ -16,18 +16,21 @@ export class PostModalComponent implements OnInit {
   userId = '';
   token = '';
   fileData: Array<File> = [];
-  // fileData = [];
   fileCovToReturn: Array<File> = [];
-  // fileCovToReturn: File = null;
   images = [];
   last_images = '';
   add_files = [];
   sec_img_width = '';
   arrayfile: any = [];
-  // arrayfile: Array<File> = [];
+  total = false;
+  sum = 0;
+  twowidth = '100%';
+  height = '';
+  firstwidth = '';
+  twoimg = false;
+  threeimg = false;
 
   @ViewChild('postMsg') postMesssgeElement: any;
-  // @ViewChild('postImage') postImageElement: any;
   @ViewChild('postImage') postImageElement: ElementRef;
 
   constructor(
@@ -40,53 +43,69 @@ export class PostModalComponent implements OnInit {
       this.name =  res.data.name
       this.smallProfile = res.data.profileImgURl
     })
-    // this.fileData = data.file
-    // console.log("=-=-=-=-=-=-=-=-this.arrayfile", this.arrayfile)
-    // console.log("=-=-=-=-=-=-=-=-data.file", data.file)
-    // console.log("=-=-=-=-=-=-=-=-data.images", data.images)
     this.fileData.push(data.file)
     this.images = data.images
-
-    // console.log("-=-=-=-=-=-=-image count", this.images)
+    console.log("=-=-=-=-=-=Object.keys(this.fileData[0]).length", Object.keys(this.fileData[0]).length)
     // console.log("-=-=-=-=-=-=-image count 1", Object.keys(this.fileData[0]).length)
 
-    // $(".image_set_size").css({"width": "50% !important", "float": "left"})
 
-
-    // if(Object.keys(this.fileData[0]).length > 1)
-    // {
+    if(Object.keys(this.fileData[0]).length === 2)
+    {
       // this.fileData[0][0].width = "50%"
-      // console.log("=-=-=-=-=- fileData", this.fileData[0][0].width)
+      // this.imageWidth()
+      // $('.change_width').width('50%')
+      // this.twoimg = true
+      // this.twowidth = "50%"
+
+
+      // this.height = "320px"
+      console.log("=-=-=-=-=- fileData width", this.twowidth)
+      console.log("=-=-=-=-=- fileData height", this.twowidth)
+
+      // $( "img" ).each( function() {
+      //     var $img = $( this );
+      //     $img.width( $img.width() * .5 );
+      // });
       // this.sec_img_width = this.fileData[0][0].width
       // for(let i = 0; i < Object.keys(this.fileData[0]).length; i++ ){
       //
       // }
       // this.images[0].width = "50%"
       // var width = {}
-      // console.log("=-=-=-=-=-=-=-=-=- grater then 1", Object(this.fileData[0].push({width: "50%"}))
+      // console.log("=-=-=-=-=-=-=-=-=- grater then 1", Object(this.fileData[0].push({width: "50%"})));
       // for(let i=0; i < Object.keys(this.fileData[0]).length; i++){
-        // for(let j=0; j < )
+        // for(let j=0; j < this.fileData[i].length)
         // console.log("-=-=-=-=-=-=-this.fileData[i] loop", this.fileData[0][i].width = "50%")
         // this.fileData[i][i].width = "50%"
       // }
       // console.log("=-=-=-=-=-=-=-=-=- grater then 1", this.fileData[0][0].width = "50%")
       // jQuery(document).ready(function(){
       // console.log("-=-=-=-=-=-=-0= this omage", this.fileData)
-        // $("#image_set_size").css({"width": "50% !important", "float": "left !important"})
+      //   $("#image_set_size").css({"width": "50% !important", "float": "left !important"})
       // })
-    // }else{
+    }else if(Object.keys(this.fileData[0]).length == 3){
+      this.threeimg = true
+      this.firstwidth = "100%"
+      this.twowidth = "50%"
+      this.height = "320px"
       // jQuery(document).ready(function(){
-        // $("#image_set_size").css({"width": "100%", "height": "290px"})
+      //   $("#image_set_size").css({"width": "100%", "height": "290px"})
       // })
-    // }
+    }
 
   }
 
   ngOnInit(): void {
+    this.imageWidth();
+  }
+
+  public imageWidth(){
+    console.log("-=-==-=-=-=-=-=close post bimageEleemt", this.postImageElement.nativeElement)
   }
 
   public Close() {
       this.dialogRef.close();
+      this.postImageElement;
   }
 
   // fileArray = []

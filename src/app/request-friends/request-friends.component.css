@@ -652,3 +652,21 @@ button.comment_sec {
     line-height: 1;
 		margin-bottom: 12px;
 }
+
+.tooltiptext {
+	display: none;
+	position: absolute;
+  width: 120px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+	margin-top: 3%;
+	margin-left: 12%;
+}
+
+.showLikes:hover + .tooltiptext {
+	display: block !important;
+  opacity: 0.5;
+}

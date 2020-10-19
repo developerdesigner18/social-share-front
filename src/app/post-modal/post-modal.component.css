@@ -20,3 +20,38 @@ button.close{
   width: 100%;
   object-fit: cover;
 }
+
+.image_set_size{
+  /* height: 100%; */
+  /* width: 100%; */
+}
+
+.second_image_set_size{
+  height: 290px;
+  width: 50%;
+  text-align: unset !important;
+}
+
+@media (max-width: 320px){
+  .create_post_photo_icon{
+    width: 9% !important;
+  }
+}
+
+@media (min-width: 321px) and (max-width: 767px){
+  .create_post_photo_icon{
+    width: 9% !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px){
+  .create_post_photo_icon{
+    width: 9% !important;
+  }
+}
+
+@media (max-width: 1024px){
+  .create_post_photo_icon{
+    width: 9% !important;
+  }
+}

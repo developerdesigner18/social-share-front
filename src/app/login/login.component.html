@@ -1,22 +1,17 @@
 <div class="login_container">
   <form class="form-login" [formGroup]="loginForm" (ngSubmit)="onSubmit()" style="display: flex;">
     <div>
-      <input type="text" formControlName="email" name="email" id="email" placeholder="Email or Phone">
+      <input type="text" formControlName="email" name="email" id="email" placeholder="Email or phone">
     </div>
     <div>
       <div class="d-flex align-items-center login-passerror">
         <div class="pass-error">
           <div class="pass-class">
-            <!-- <input type="password" formControlName="password" name="password" id="password" placeholder="Password"> -->
             <input [type]="show ? 'text' : 'password'" formControlName="password" name="password" id="password" placeholder="Password">
-            <!-- <input formControlName="password" name="password" id="password" placeholder="Password"> -->
             <div class="input-group icon-password" (click)="passShow($event)">
-              <!-- <span class="input-group-text"> -->
                 <i *ngIf="show == false" class="fa fa-eye-slash"></i>
                 <i *ngIf="show !== false" class="fa fa-eye"></i>
-              <!-- </span> -->
             </div>
-            <!-- <i class="fa fa-search" style="position: absolute; padding: 12px; min-width: 40px;"></i> -->
             <div>
               <a class="forget-link" href="/forget">Forget Password</a>
             </div>

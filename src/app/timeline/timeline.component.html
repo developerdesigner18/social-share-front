@@ -73,12 +73,18 @@
     </div>
 
     <div [ngClass]="current_user_profile ? 'no_share_action' : 'take_action'">
-      <button class="like_sec" (click)="likeIt(data._id, data.like.length);">
+      <button class="showLikes" (click)="likeIt(data._id, data.like.length);">
         <i class="fa" id="{{data._id}}" [ngClass]="postlikeId.includes(data._id) ? 'fa-thumbs-up': 'fa-thumbs-o-up'"></i>
         <!-- <div>Like <span>{{data.like.length === 0 ? '' : data.like.length}}</span></div> -->
         <!-- <div>Like<span>{{data.like.length === 0 ? '' : checkTem == false ? data.like.length : temLike > 1 ? temLike - 1: temLike === 0 ? '' : temLike}}</span></div> -->
         <div>Like<span id="count_{{data._id}}">{{data.like.length === 0 ? '' : data.like.length}}</span></div>
       </button>
+
+      <div class="tooltiptext" *ngIf="data.like.length > 0">
+        <div *ngFor="let like of data.like">
+          {{like.name}}
+        </div>
+      </div>
 
       <button class="comment_sec_{{data._id}} comment_sec" (click)="open_comments(data._id)">
         <i class="far fa-comment-dots"></i>
