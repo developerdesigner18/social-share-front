@@ -17,17 +17,44 @@
       <!-- <img #postImage class="image_set_size" [src]="image" *ngIf="image.split(',')[0].split(':')[1].split(';')[0] == 'image/jpeg' || image.split(',')[0].split(':')[1].split(';')[0] == 'image/jpg' || image.split(',')[0].split(':')[1].split(';')[0] == 'image/png'"/> -->
       <!-- <img #postImage ng-style="twoimg ? (width: twowidth) : (width: '100%')" [src]="image" *ngFor="let image of images; let i = index;"/> -->
       <!-- <img #postImage class="change_width" style="width: {{(twoimg) ? twowidth : (threeimg && i === 4) ? firstwidth : twowidth}}; height: {{(twoimg) ? height : (threeimg) ? height : height}}" [src]="image" *ngFor="let image of images; let i = index;"/> -->
-      <img #postImage class="change_width" [src]="image" *ngFor="let image of images; let i = index;"/>
-      <!-- <img #postImage ng-style="threeimg" style="width: {{firstwidth}}; height: {{height}}" [src]="image" *ngFor="let image of images; let i = index;"/> -->
-      <!-- <img #postImage [ngClass]="(i===0) ? 'image_set_size' : 'second_image_set_size'" [src]="image" style="height: 290px; width: 100%;" *ngIf="(i == 0) && image.split(',')[0].split(':')[1].split(';')[0] == 'image/jpeg' || image.split(',')[0].split(':')[1].split(';')[0] == 'image/jpg' || image.split(',')[0].split(':')[1].split(';')[0] == 'image/png'"/>
-      <img #postImage [ngClass]="(i===1) ? 'second_image_set_size' : 'third_image_set_size'" [src]="image" style="height: 290px; width: 100%;" *ngIf="( i == 1) && image.split(',')[0].split(':')[1].split(';')[0] == 'image/jpeg' || image.split(',')[0].split(':')[1].split(';')[0] == 'image/jpg' || image.split(',')[0].split(':')[1].split(';')[0] == 'image/png'"/>
-      <img #postImage [ngClass]="(i===2) ? 'third_image_set_size' : 'image_set_size'" [src]="image" style="height: 290px; width: 100%;" *ngIf="( i == 2) && image.split(',')[0].split(':')[1].split(';')[0] == 'image/jpeg' || image.split(',')[0].split(':')[1].split(';')[0] == 'image/jpg' || image.split(',')[0].split(':')[1].split(';')[0] == 'image/png'"/> -->
-      <!-- <img #postImage [ngClass]="i === 2 ? 'second_image_set_size' : 'third_image_set_size'" [src]="image" src='/assets/images/default_user.jpg' style="height: 290px; width: 100%;" *ngIf="( i == 1) && image.split(',')[0].split(':')[1].split(';')[0] == 'image/jpeg' || image.split(',')[0].split(':')[1].split(';')[0] == 'image/jpg' || image.split(',')[0].split(':')[1].split(';')[0] == 'image/png'"/> -->
-      <!-- <img #postImage class="image_set_size" [src]="image" src='/ssets/images/default_user.jpg' style="height: 290px; width: 100%;" *ngIf="(i < 0) && image.split(',')[0].split(':')[1].split(';')[0] == 'image/jpeg' || image.split(',')[0].split(':')[1].split(';')[0] == 'image/jpg' || image.split(',')[0].split(':')[1].split(';')[0] == 'image/png'"/> -->
-      <!-- <img #postImage class="image_set_size" [src]="image" src='/assets/images/default_user.jpg' style="height: 290px; width: 100%;" /> -->
-      <!-- <video #postImage controls class="video_set_size" *ngIf="image.split(',')[0].split(':')[1].split(';')[0] == 'video/mp4'">
-        <source [src]="image" type="video/mp4">
-      </video> -->
+      <ng-container *ngIf="!twoimg && !threeimg && !fourimg && !fiveimg">
+        <img #postImage class="change_width" style="width: 100%" [src]="image" *ngFor="let image of images; let i = index;"/>
+        <!-- <video #postImage controls class="video_set_size" *ngFor="let image of images;">
+          <source [src]="image" type="video/mp4">
+        </video> -->
+      </ng-container>
+      <ng-container *ngIf="twoimg && !threeimg && !fiveimg && !fourimg">
+        <img #postImage class="change_width" style="width: 50%; height: 400px;" [src]="image" *ngFor="let image of images; let i = index;"/>
+        <!-- <video #postImage controls class="video_set_size" *ngFor="let image of images;">
+          <source [src]="image" type="video/mp4">
+        </video> -->
+      </ng-container>
+      <ng-container *ngIf="threeimg && !twoimg && !fiveimg && !fourimg">
+        <img #postImage class="change_width" style="width: {{(isFirst) ? '100%' : '50%'}}; height: 400px;" [src]="image" *ngFor="let image of images; let i = index; first as isFirst"/>
+        <!-- <video #postImage controls class="video_set_size" *ngFor="let image of images;">
+          <source [src]="image" type="video/mp4">
+        </video> -->
+      </ng-container>
+      <ng-container *ngIf="fourimg && !twoimg && !threeimg && !fiveimg">
+        <img #postImage class="change_width" style="width: '50%'; height: 400px;" [src]="image" *ngFor="let image of images; let i = index;"/>
+        <!-- <video #postImage controls class="video_set_size" *ngFor="let image of images;">
+          <source [src]="image" type="video/mp4">
+        </video> -->
+      </ng-container>
+      <ng-container *ngIf="fiveimg && !fourimg && !twoimg && !threeimg">
+        <img #postImage class="{{(isLast) ? 'hidden_last_img' : 'change_width'}}" style="width: 50%; height: 400px;" [src]="image" *ngFor="let image of images; let i = index; last as isLast"/>
+        <div class="bottom-left set_view_more">View More</div>
+        <!-- <video #postImage controls class="video_set_size" *ngFor="let image of images;">
+          <source [src]="image" type="video/mp4">
+        </video> -->
+      </ng-container>
+
+      <!-- <video #postImage controls class="video_set_size" *ngIf="image.split(',')[0].split(':')[1].split(';')[0] == 'video/mp4'"> -->
+      <!-- <video #postImage controls class="video_set_size" *ngFor="let image of images;"> -->
+        <!-- <ng-container *ngIf="image.split(',')[0].split(':')[1].split(';')[0] == 'video/mp4'"> -->
+          <!-- <source [src]="image" type="video/mp4"> -->
+        <!-- </ng-container> -->
+      <!-- </video> -->
         <!-- <img #postImage [ngClass]="i == 0 ? 'image_set_size' : 'second_image_set_size'" [src]="image" src='/assets/images/default_user.jpg' *ngFor="let image of images; let i = index"/> -->
         <!-- <img #postImage [ngClass]="(i == 1) ? 'second_image_set_size' : 'image_set_size'" [src]="image" src='/assets/images/default_user.jpg' *ngFor="let image of images; let i = index"/> -->
     </div>

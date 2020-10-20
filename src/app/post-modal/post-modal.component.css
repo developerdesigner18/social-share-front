@@ -55,3 +55,20 @@ button.close{
     width: 9% !important;
   }
 }
+
+.change_width{
+  border: 2px solid #555;
+}
+
+.hidden_last_img{
+  display: none;
+}
+
+.set_view_more{
+  position: absolute;
+  top: 75%;
+  left: 75%;
+  transform: translate(-50%, -50%);
+  font-size: 30px;
+  color: #ffffff;
+}

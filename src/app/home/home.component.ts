@@ -46,6 +46,7 @@ export class HomeComponent implements OnInit {
   // @ViewChild('like_font') likeFontElement: any;
   checkPostsId: any;
   commentsForm: FormGroup;
+  twoimg = false;
   // postCmtId = '';
 
   public datas;
@@ -92,6 +93,10 @@ export class HomeComponent implements OnInit {
               }
             }
             this.postlikeuserId = Array.from(new Set(this.postlikeuserId)) //For Uniquee fecth
+          }
+          // console.log("=-=-=-=-=-=-=-=image url",this.datas[i].imageUrl.length)
+          if(this.datas[i].imageUrl.length == 2){
+            this.twoimg = true
           }
 
         }

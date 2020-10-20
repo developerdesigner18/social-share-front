@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, ViewChild, ElementRef, QueryList } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild, ElementRef, QueryList, ViewChildren } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from  '@angular/material/dialog';
 import { AuthService } from '../auth.service';
 declare var jQuery: any;
@@ -29,9 +29,11 @@ export class PostModalComponent implements OnInit {
   firstwidth = '';
   twoimg = false;
   threeimg = false;
+  fourimg = false;
+  fiveimg = false;
 
   @ViewChild('postMsg') postMesssgeElement: any;
-  @ViewChild('postImage') postImageElement: ElementRef;
+  @ViewChildren('postImage') postImageElement: QueryList<ElementRef>;
 
   constructor(
     private  dialogRef:  MatDialogRef<PostModalComponent>,
@@ -51,56 +53,29 @@ export class PostModalComponent implements OnInit {
 
     if(Object.keys(this.fileData[0]).length === 2)
     {
-      // this.fileData[0][0].width = "50%"
-      // this.imageWidth()
-      // $('.change_width').width('50%')
-      // this.twoimg = true
-      // this.twowidth = "50%"
-
-
-      // this.height = "320px"
-      console.log("=-=-=-=-=- fileData width", this.twowidth)
-      console.log("=-=-=-=-=- fileData height", this.twowidth)
-
-      // $( "img" ).each( function() {
-      //     var $img = $( this );
-      //     $img.width( $img.width() * .5 );
-      // });
-      // this.sec_img_width = this.fileData[0][0].width
-      // for(let i = 0; i < Object.keys(this.fileData[0]).length; i++ ){
-      //
-      // }
-      // this.images[0].width = "50%"
-      // var width = {}
-      // console.log("=-=-=-=-=-=-=-=-=- grater then 1", Object(this.fileData[0].push({width: "50%"})));
-      // for(let i=0; i < Object.keys(this.fileData[0]).length; i++){
-        // for(let j=0; j < this.fileData[i].length)
-        // console.log("-=-=-=-=-=-=-this.fileData[i] loop", this.fileData[0][i].width = "50%")
-        // this.fileData[i][i].width = "50%"
-      // }
-      // console.log("=-=-=-=-=-=-=-=-=- grater then 1", this.fileData[0][0].width = "50%")
-      // jQuery(document).ready(function(){
-      // console.log("-=-=-=-=-=-=-0= this omage", this.fileData)
-      //   $("#image_set_size").css({"width": "50% !important", "float": "left !important"})
-      // })
+      this.twoimg = true
+      this.threeimg = false
+      this.fourimg = false
+      this.fiveimg = false
     }else if(Object.keys(this.fileData[0]).length == 3){
       this.threeimg = true
-      this.firstwidth = "100%"
-      this.twowidth = "50%"
-      this.height = "320px"
-      // jQuery(document).ready(function(){
-      //   $("#image_set_size").css({"width": "100%", "height": "290px"})
-      // })
+      this.twoimg = false
+      this.fourimg = false
+      this.fiveimg = false
+    }else if(Object.keys(this.fileData[0]).length == 4){
+      this.threeimg = false
+      this.twoimg = false
+      this.fourimg = true
+      this.fiveimg = false
+    }else if(Object.keys(this.fileData[0]).length == 5){
+      this.threeimg = false
+      this.twoimg = false
+      this.fourimg = false
+      this.fiveimg = true
     }
-
   }
 
   ngOnInit(): void {
-    this.imageWidth();
-  }
-
-  public imageWidth(){
-    console.log("-=-==-=-=-=-=-=close post bimageEleemt", this.postImageElement.nativeElement)
   }
 
   public Close() {
@@ -174,6 +149,32 @@ export class PostModalComponent implements OnInit {
 
 
   openNewDialog(event: any): void {
+    console.log("=-=-=-=-==-=-=-===-=-images", this.images.length)
+    console.log("=-=-=-=-==-=-=-===-=-open new Object.keys(this.fileData[0]).length", Object.keys(this.fileData[0]).length)
+    console.log("=-=-=-=-check what images twoimg", this.twoimg)
+    console.log("=-=-=-=-check what images threeimg", this.threeimg)
+    if(this.images.length === 1)
+    {
+      this.twoimg = true
+      this.threeimg = false
+      this.fourimg = false
+      this.fiveimg = false
+    }else if(this.images.length === 2){
+      this.threeimg = true
+      this.twoimg = false
+      this.fourimg = false
+      this.fiveimg = false
+    }else if(this.images.length === 3){
+      this.fourimg = true
+      this.threeimg = false
+      this.twoimg = false
+      this.fiveimg = false
+    }else if(this.images.length === 4){
+      this.fourimg = false
+      this.threeimg = false
+      this.twoimg = false
+      this.fiveimg = true
+    }
     if(this.images !== undefined){
       this.images
     }else{
