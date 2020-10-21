@@ -94,13 +94,11 @@ export class HomeComponent implements OnInit {
             }
             this.postlikeuserId = Array.from(new Set(this.postlikeuserId)) //For Uniquee fecth
           }
-          // console.log("=-=-=-=-=-=-=-=image url",this.datas[i].imageUrl.length)
           if(this.datas[i].imageUrl.length == 2){
             this.twoimg = true
           }
-
         }
-        this.ngOnInit()
+        // this.ngOnInit()
         return this.datas
       }
     })
@@ -212,10 +210,15 @@ export class HomeComponent implements OnInit {
         this.files_data.push(event.target.files[i]);
       }
     }
-    this.dialog.open(PostModalComponent, {
+    const dialogRef = this.dialog.open(PostModalComponent, {
       width: '550px',
       panelClass: 'custom-dialog-container',
       data: { id: this.id, images: this.images, file: this.files_data  }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.images = [];
+      this.files_data = [];
     });
   }
 

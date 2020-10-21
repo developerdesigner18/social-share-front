@@ -391,6 +391,7 @@ a.premium_upgrade {
 .slider_image {
     height: 300px;
     margin-top: 25px;
+		vertical-align: unset !important; 
 }
 img.slider_image {
     border-radius: 4px;
@@ -1142,4 +1143,17 @@ a.my_post_links:hover div > div {
 
 .my_custom_img>img{
 	border: 4px solid #ffffff;
+}
+
+.hidden_last_img{
+  display: none;
+}
+
+.set_view_more{
+  position: absolute;
+  top: 67%;
+  left: 75%;
+  transform: translate(-50%, -50%);
+  font-size: 30px;
+  color: #ffffff;
 }

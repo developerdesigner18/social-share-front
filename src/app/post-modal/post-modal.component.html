@@ -42,7 +42,7 @@
         </video> -->
       </ng-container>
       <ng-container *ngIf="fiveimg && !fourimg && !twoimg && !threeimg">
-        <img #postImage class="{{(isLast) ? 'hidden_last_img' : 'change_width'}}" style="width: 50%; height: 400px;" [src]="image" *ngFor="let image of images; let i = index; last as isLast"/>
+        <img #postImage class="{{(i + 1 > 4) ? 'hidden_last_img' : 'change_width'}}" style="width: 50%; height: 400px;" [src]="image" *ngFor="let image of images; let i = index; last as isLast"/>
         <div class="bottom-left set_view_more">View More</div>
         <!-- <video #postImage controls class="video_set_size" *ngFor="let image of images;">
           <source [src]="image" type="video/mp4">

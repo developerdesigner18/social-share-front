@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject, ViewChild, ElementRef, QueryList, ViewChildren } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from  '@angular/material/dialog';
 import { AuthService } from '../auth.service';
+import { ActivatedRoute, Router } from '@angular/router';
 declare var jQuery: any;
 declare var $: any;
 
@@ -31,6 +32,7 @@ export class PostModalComponent implements OnInit {
   threeimg = false;
   fourimg = false;
   fiveimg = false;
+  closeDialog = false;
 
   @ViewChild('postMsg') postMesssgeElement: any;
   @ViewChildren('postImage') postImageElement: QueryList<ElementRef>;
@@ -38,8 +40,11 @@ export class PostModalComponent implements OnInit {
   constructor(
     private  dialogRef:  MatDialogRef<PostModalComponent>,
     @Inject(MAT_DIALOG_DATA) public  data: any,
-    public authService: AuthService
+    public authService: AuthService,
+    private activatedRoute: ActivatedRoute,
+    public router: Router,
   ) {
+    // let id = this.activatedRoute.snapshot.paramMap.get('id');
     this.authService.getProfileforAbout(data.id).subscribe(res => {
       // this.userId = data.id
       this.name =  res.data.name
@@ -47,31 +52,30 @@ export class PostModalComponent implements OnInit {
     })
     this.fileData.push(data.file)
     this.images = data.images
-    console.log("=-=-=-=-=-=Object.keys(this.fileData[0]).length", Object.keys(this.fileData[0]).length)
-    // console.log("-=-=-=-=-=-=-image count 1", Object.keys(this.fileData[0]).length)
 
-
-    if(Object.keys(this.fileData[0]).length === 2)
-    {
-      this.twoimg = true
-      this.threeimg = false
-      this.fourimg = false
-      this.fiveimg = false
-    }else if(Object.keys(this.fileData[0]).length == 3){
-      this.threeimg = true
-      this.twoimg = false
-      this.fourimg = false
-      this.fiveimg = false
-    }else if(Object.keys(this.fileData[0]).length == 4){
-      this.threeimg = false
-      this.twoimg = false
-      this.fourimg = true
-      this.fiveimg = false
-    }else if(Object.keys(this.fileData[0]).length == 5){
-      this.threeimg = false
-      this.twoimg = false
-      this.fourimg = false
-      this.fiveimg = true
+    if(data.images && data.files != ''){
+      if(Object.keys(this.fileData[0]).length === 2)
+      {
+        this.twoimg = true
+        this.threeimg = false
+        this.fourimg = false
+        this.fiveimg = false
+      }else if(Object.keys(this.fileData[0]).length == 3){
+        this.threeimg = true
+        this.twoimg = false
+        this.fourimg = false
+        this.fiveimg = false
+      }else if(Object.keys(this.fileData[0]).length == 4){
+        this.threeimg = false
+        this.twoimg = false
+        this.fourimg = true
+        this.fiveimg = false
+      }else if(Object.keys(this.fileData[0]).length > 4){
+        this.threeimg = false
+        this.twoimg = false
+        this.fourimg = false
+        this.fiveimg = true
+      }
     }
   }
 
@@ -79,11 +83,9 @@ export class PostModalComponent implements OnInit {
   }
 
   public Close() {
-      this.dialogRef.close();
-      this.postImageElement;
+    this.dialogRef.close();
   }
 
-  // fileArray = []
   postSave(){
     this.token = localStorage.getItem('token')
     if(this.postImageElement){
@@ -149,10 +151,6 @@ export class PostModalComponent implements OnInit {
 
 
   openNewDialog(event: any): void {
-    console.log("=-=-=-=-==-=-=-===-=-images", this.images.length)
-    console.log("=-=-=-=-==-=-=-===-=-open new Object.keys(this.fileData[0]).length", Object.keys(this.fileData[0]).length)
-    console.log("=-=-=-=-check what images twoimg", this.twoimg)
-    console.log("=-=-=-=-check what images threeimg", this.threeimg)
     if(this.images.length === 1)
     {
       this.twoimg = true
@@ -169,7 +167,7 @@ export class PostModalComponent implements OnInit {
       this.threeimg = false
       this.twoimg = false
       this.fiveimg = false
-    }else if(this.images.length === 4){
+    }else if(this.images.length >= 4){
       this.fourimg = false
       this.threeimg = false
       this.twoimg = false
