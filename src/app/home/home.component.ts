@@ -47,10 +47,16 @@ export class HomeComponent implements OnInit {
   checkPostsId: any;
   commentsForm: FormGroup;
   twoimg = false;
+  slideIndex = 1
   // postCmtId = '';
 
   public datas;
   public temp;
+
+  imageObject: Array<object> = [{
+        image: 'assets/images/gal_1.jpg',
+    }]
+
   constructor(
     public authService: AuthService,
     public  dialog:  MatDialog,
@@ -282,5 +288,46 @@ export class HomeComponent implements OnInit {
       }
     })
     this.commentsForm.reset()
+  }
+
+
+  // Open the Modal
+  openModal(){
+    document.getElementById("myModal").style.display = "block";
+  }
+
+  // Close the Modal
+	closeModal() {
+		document.getElementById("myModal").style.display = "none";
+	}
+
+  // Next/previous controls
+	plusSlides(event: any) {
+      console.log("=-=-=-=-=-=-=-event", event)
+		// this.showSlides(this.slideIndex += n);
+	}
+
+	// Thumbnail image controls
+	currentSlide(n) {
+    console.log("=-=-=-=-=-=-=-slider is", n)
+		this.showSlides(this.slideIndex = n);
+	}
+
+  showSlides(n) {
+  	var i;
+  	var slides = document.getElementsByClassName("mySlides");
+  	var dots = document.getElementsByClassName("demo");
+  	var captionText = document.getElementById("caption");
+  	if (n > slides.length) {this.slideIndex = 1}
+  		if (n < 1) {this.slideIndex = slides.length}
+  			for (i = 0; i < slides.length; i++) {
+  				slides[i].style.display = "none";
+  			}
+  			for (i = 0; i < dots.length; i++) {
+  				dots[i].className = dots[i].className.replace(" active", "");
+  			}
+  			slides[this.slideIndex-1].style.display = "block";
+  			// dots[this.slideIndex-1].className += " active";
+  			// captionText.innerHTML = dots[this.slideIndex-1].alt;
   }
 }

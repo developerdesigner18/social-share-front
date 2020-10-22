@@ -52,7 +52,7 @@ export class PhotosComponent implements OnInit {
     // this.showSlides(this.slideIndex = 1);
   }
 
-  // Close the Modal
+  // open the Modal
   openModal(){
     document.getElementById("myModal").style.display = "block";
   }

@@ -366,9 +366,11 @@ a.premium_upgrade {
     overflow: hidden;
 		width: 100%;
 }
+
 .timeline {
-    margin: 25px 0;
+    margin: 20px 80px 20px 80px;
     overflow: hidden;
+		height: 700px;
 }
 .name_and_desc {
     margin-left: 20px;
@@ -389,9 +391,9 @@ a.premium_upgrade {
     border-radius: 50%;
 }
 .slider_image {
-    height: 300px;
+    height: 238px;
     margin-top: 25px;
-		vertical-align: unset !important; 
+		vertical-align: unset !important;
 }
 img.slider_image {
     border-radius: 4px;
@@ -872,10 +874,10 @@ a.my_post_links:hover div > div {
 }
 
 .slider_video {
-	height: 300px;
+	height: 238px;
 	margin-top: 25px;
 	width: 100%;
-	object-fit: cover;
+	/* object-fit: cover; */
 }
 
 .write_comments {
