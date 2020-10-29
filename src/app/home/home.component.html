@@ -108,8 +108,8 @@
 
 						<div *ngIf="data.imageUrl.length == 1">
 							<div class="item" *ngFor="let imageurl of data.imageUrl; let i = index;">
-								<img class="slider_image" style="width: 100%; height: 508px; margin-top: 10px;" [src]="imageurl" [attr.data-slide-to]="i" *ngIf="imageurl.split('.').pop() !== 'mp4'" (click)="openModal();currentSlide(i+1)">
-								<video controls class="slider_video" style="width: 100%; height: 508px; margin-top: 10px;" *ngIf="imageurl.split('.').pop() == 'mp4'" disablePictureInPicture controlsList="nodownload">
+								<img class="slider_image" style="width: 100%; height: 320px; margin-top: 10px;" [src]="imageurl" [attr.data-slide-to]="i" *ngIf="imageurl.split('.').pop() !== 'mp4'" (click)="openModal(data._id);currentSlide(i+1)">
+								<video controls class="slider_video" style="width: 100%; height: 100%; margin-top: 50px;" *ngIf="imageurl.split('.').pop() == 'mp4'" disablePictureInPicture controlsList="nodownload">
 									<source src="{{imageurl}}" type="video/mp4">
 								</video>
 							</div>
@@ -117,8 +117,9 @@
 						<div *ngIf="data.imageUrl.length == 2">
 							<div class="item" >
 								<ng-container *ngFor="let imageurl of data.imageUrl; let i = index;">
-									<img class="slider_image" style="width: 50%; height: 508px; border: 5px solid #fff; margin-top: 1px;" [src]="imageurl" [attr.data-slide-to]="i" *ngIf="imageurl.split('.').pop() !== 'mp4'">
-									<video controls class="slider_video" style="width: 50%; height: 508px; border: 5px solid #fff; margin-top: 1px;" *ngIf="imageurl.split('.').pop() == 'mp4'" disablePictureInPicture controlsList="nodownload">
+									<!-- {{imageurl.split('.').pop()}} -->
+									<img class="slider_image" style="width: '100%'; height: 320px; border: 5px solid #fff; margin-top: 1px;" [src]="imageurl" [attr.data-slide-to]="i" *ngIf="imageurl.split('.').pop() !== 'mp4'" (click)="openModal(data._id);currentSlide(i+1)">
+									<video controls class="slider_video" style="width: '100%'; height: 100%; border: 5px solid #fff; margin-top: 50px;" *ngIf="imageurl.split('.').pop() == 'mp4'" disablePictureInPicture controlsList="nodownload">
 					          <source src="{{imageurl}}" type="video/mp4">
 					        </video>
 								</ng-container>
@@ -127,8 +128,8 @@
 						<div *ngIf="data.imageUrl.length == 3">
 							<div class="item">
 								<ng-container *ngFor="let imageurl of data.imageUrl; let i = index; first as isFirst;" >
-									<img class="slider_image" style="width: {{(isFirst) ? '100%' : '50%'}}; border: 5px solid #fff; margin-top: 1px;" [src]="imageurl" [attr.data-slide-to]="i" *ngIf="imageurl.split('.').pop() !== 'mp4'">
-									<video controls class="slider_video" style="width: {{(isFirst) ? '100%' : '50%'}}; border: 5px solid #fff; margin-top: 1px;" *ngIf="imageurl.split('.').pop() == 'mp4'" disablePictureInPicture controlsList="nodownload">
+									<img class="slider_image slider_image_3" style="width: {{(isFirst) ? '100%' : '50%'}}; border: 5px solid #fff; margin-top: 1px;" [src]="imageurl" [attr.data-slide-to]="i" *ngIf="imageurl.split('.').pop() !== 'mp4'" (click)="openModal(data._id);currentSlide(i+1)">
+									<video controls class="slider_video" style="width: {{(isFirst) ? '100%' : '50%'}}; border: 5px solid #fff; margin-top: 50px;" *ngIf="imageurl.split('.').pop() == 'mp4'" disablePictureInPicture controlsList="nodownload">
 					          <source src="{{imageurl}}" type="video/mp4">
 					        </video>
 								</ng-container>
@@ -137,7 +138,7 @@
 						<div *ngIf="data.imageUrl.length == 4">
 							<div class="item">
 								<ng-container *ngFor="let imageurl of data.imageUrl; let i = index;" >
-									<img class="slider_image" style="width: 50%; border: 5px solid #fff; margin-top: 1px;" [src]="imageurl" [attr.data-slide-to]="i" *ngIf="imageurl.split('.').pop() !== 'mp4'" (click)="openModal();currentSlide(i+1)">
+									<img class="slider_image" style="width: 50%; border: 5px solid #fff; margin-top: 1px;" [src]="imageurl" [attr.data-slide-to]="i" *ngIf="imageurl.split('.').pop() !== 'mp4'" (click)="openModal(data._id);currentSlide(i+1);">
 									<video controls class="slider_video" style="width: 50%; border: 5px solid #fff; margin-top: 1px;" *ngIf="imageurl.split('.').pop() == 'mp4'" disablePictureInPicture controlsList="nodownload">
 					          <source src="{{imageurl}}" type="video/mp4">
 					        </video>
@@ -147,7 +148,7 @@
 						<div *ngIf="data.imageUrl.length > 4">
 							<div class="item">
 								<ng-container *ngFor="let imageurl of data.imageUrl; let i = index; last as isLast">
-									<img class="{{(i + 1 > 4) ? 'hidden_last_img' : 'slider_image'}}" style="width: 50%; border: 5px solid #fff; margin-top: 1px;" [src]="imageurl" [attr.data-slide-to]="i" *ngIf="imageurl.split('.').pop() !== 'mp4'">
+									<img class="{{(i + 1 > 4) ? 'hidden_last_img' : 'slider_image'}}" style="width: 50%; border: 5px solid #fff; margin-top: 1px;" [src]="imageurl" [attr.data-slide-to]="i" *ngIf="imageurl.split('.').pop() !== 'mp4'" (click)="openModal(data._id);currentSlide(i+1)">
 									<video controls class="{{(i + 1 > 4) ? 'hidden_last_img' : 'slider_video'}}" style="width: 50%; border: 5px solid #fff; margin-top: 1px;" *ngIf="imageurl.split('.').pop() == 'mp4'" disablePictureInPicture controlsList="nodownload">
 					          <source src="{{imageurl}}" type="video/mp4">
 					        </video>
@@ -290,23 +291,55 @@
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<!-- The Modal/Lightbox -->
-			<div #myModal id="myModal" class="modal">
-				<span class="close cursor" (click)="closeModal()">&times;</span>
-				<div class="modal-content">
 
-					<!-- <div class="mySlides" *ngFor="let url of urls;index as i"> -->
-					<div class="mySlides">
-						<!-- <div class="numbertext"><span>{{i + 1}}</span> / {{totalImg}}</div> -->
-						<img src="assets/images/gal_1.jpg" style="width:100%">
-	          <!-- <img src="{{url}}" style="width:100%"> -->
+		<!-- The Modal/Lightbox -->
+				<div #myModal id="myModal" class="modal">
+
+					<div class="modal-content" id="modalContent">
+						<!-- <ng-container > -->
+							<!-- <div class="mySlides" #mySlidesImg *ngFor="let imageurl of viewImg;index as i">
+								<div class="numbertext"><span>2</span> / 6</div>
+								<img src="{{imageurl}}" style="width:100%">
+							</div> -->
+						<!-- </ng-container> -->
+						<div class="mySlides" #mySlidesImg *ngFor="let imageurl of viewImg;index as i">
+						<!-- <div class="mySlides"> -->
+							<span class="close cursor" (click)="closeModal()">&times;</span>
+							<div class="numbertext"><span>{{i + 1}}</span> / {{totalImg}}</div>
+							<!-- <div class="numbertext"><span>1</span> / 6</div> -->
+							<!-- {{imageurl.parent.length}} -->
+							<img style="width:100%;" src="{{imageurl}}" class="modalImg">
+							<!-- <img style="width:100%;" src="assets/images/gal_1.jpg" class="myClassImg"> -->
+						</div>
+
+						<!-- <div class="mySlides">
+							<div class="numbertext"><span>2</span> / 6</div>
+							<img src="assets/images/gal_2.jpg" style="width:100%">
+						</div>
+
+						<div class="mySlides">
+							<div class="numbertext"><span>3</span> / 6</div>
+							<img src="assets/images/gal_3.jpg" style="width:100%">
+						</div>
+
+						<div class="mySlides">
+							<div class="numbertext"><span>4</span> / 6</div>
+							<img src="assets/images/gal_4.jpg" style="width:100%">
+						</div>
+						<div class="mySlides">
+							<div class="numbertext"><span>5</span> / 6</div>
+							<img src="assets/images/gal_5.jpg" style="width:100%">
+						</div>
+						<div class="mySlides">
+							<div class="numbertext"><span>6</span> / 6</div>
+							<img src="assets/images/gal_6.jpg" style="width:100%">
+						</div> -->
+
+						<!-- Next/previous controls -->
+						<a class="prev" (click)="plusSlides(-1)" *ngIf="totalImg > 1">&#10094;</a>
+						<a class="next" (click)="plusSlides(1)" *ngIf="totalImg > 1">&#10095;</a>
+
 					</div>
-
-					<!-- Next/previous controls -->
-					<a class="prev" (click)="plusSlides(-1)">&#10094;</a>
-					<a class="next" (click)="plusSlides(1)">&#10095;</a>
-
 				</div>
-			</div>
+	</div>

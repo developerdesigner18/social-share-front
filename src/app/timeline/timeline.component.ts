@@ -40,6 +40,10 @@ export class TimelineComponent implements OnInit {
   commentsForm: FormGroup;
   showbasicProfile = [];
 
+  viewImgdatas = [];
+  viewImg = [];
+  slideIndex = 1;
+
   @ViewChild('textmsgPost') postMesssgeElement: any;
 
   public datas;
@@ -226,5 +230,48 @@ export class TimelineComponent implements OnInit {
       }
     })
     this.commentsForm.reset()
+  }
+
+
+  totalImg = 0;
+  // Open the Modal
+  openModal(id: any){
+    this.authService.getAllFriendPost(this.token).subscribe(res => {
+      this.viewImgdatas = res.posts
+      let onlyMatch = this.viewImgdatas.find(({_id}) => _id === id)
+      this.totalImg = onlyMatch.imageUrl.length
+      this.viewImg = onlyMatch.imageUrl
+    })
+    document.getElementById("myModal").style.display = "block";
+  }
+
+  // Close the Modal
+	closeModal() {
+    document.getElementById("myModal").style.display = "none";
+	}
+
+  // Next/previous controls
+	plusSlides(n) {
+		this.showSlides(this.slideIndex += n);
+	}
+
+	// Thumbnail image controls
+	currentSlide(n) {
+		this.showSlides(this.slideIndex = n);
+	}
+
+  showSlides(n: any){
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    // const change = document.getElementById("modalContent").getElementsByClassName('mySlides')
+    if (n > slides.length) {this.slideIndex = 1}
+    if (n < 1) {this.slideIndex = slides.length}
+    for (i = 0; i < slides.length; i++) {
+
+      slides[i].style.display = "none";
+    }
+    slides[this.slideIndex-1].style.display = "block";
+    // dots[this.slideIndex-1].className += " active";
+    // captionText.innerHTML = dots[this.slideIndex-1].alt;
   }
 }

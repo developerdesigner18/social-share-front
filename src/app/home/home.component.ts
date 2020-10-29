@@ -47,11 +47,18 @@ export class HomeComponent implements OnInit {
   checkPostsId: any;
   commentsForm: FormGroup;
   twoimg = false;
-  slideIndex = 1
   // postCmtId = '';
+  oneimg = false;
+  urls = [];
+  viewImgdatas = [];
+  postId = [];
+  viewImg = [];
+  slideIndex = 1;
 
   public datas;
   public temp;
+
+  @ViewChild("mySlidesImg", {static: true}) mySlidesImg: ElementRef;
 
   imageObject: Array<object> = [{
         image: 'assets/images/gal_1.jpg',
@@ -141,6 +148,10 @@ export class HomeComponent implements OnInit {
   }
 
   get formControls() { return this.commentsForm.controls }
+
+  // ngAfterViewInit(): void {
+  //   this.showSlides(this.slideIndex)
+  // }
 
   ngOnInit(): void {
     $(document).ready(function(){
@@ -290,44 +301,129 @@ export class HomeComponent implements OnInit {
     this.commentsForm.reset()
   }
 
-
+  totalImg = 0;
   // Open the Modal
-  openModal(){
+  openModal(id: any){
+    this.authService.getAllFriendPost(this.token).subscribe(res => {
+      this.viewImgdatas = res.posts
+      let onlyMatch = this.viewImgdatas.find(({_id}) => _id === id)
+      this.totalImg = onlyMatch.imageUrl.length
+      this.viewImg = onlyMatch.imageUrl
+    })
     document.getElementById("myModal").style.display = "block";
   }
 
   // Close the Modal
 	closeModal() {
-		document.getElementById("myModal").style.display = "none";
+    document.getElementById("myModal").style.display = "none";
 	}
 
   // Next/previous controls
-	plusSlides(event: any) {
-      console.log("=-=-=-=-=-=-=-event", event)
-		// this.showSlides(this.slideIndex += n);
+	plusSlides(n) {
+		this.showSlides(this.slideIndex += n);
 	}
 
 	// Thumbnail image controls
 	currentSlide(n) {
-    console.log("=-=-=-=-=-=-=-slider is", n)
 		this.showSlides(this.slideIndex = n);
 	}
 
-  showSlides(n) {
-  	var i;
-  	var slides = document.getElementsByClassName("mySlides");
-  	var dots = document.getElementsByClassName("demo");
-  	var captionText = document.getElementById("caption");
-  	if (n > slides.length) {this.slideIndex = 1}
-  		if (n < 1) {this.slideIndex = slides.length}
-  			for (i = 0; i < slides.length; i++) {
-  				slides[i].style.display = "none";
-  			}
-  			for (i = 0; i < dots.length; i++) {
-  				dots[i].className = dots[i].className.replace(" active", "");
-  			}
-  			slides[this.slideIndex-1].style.display = "block";
-  			// dots[this.slideIndex-1].className += " active";
-  			// captionText.innerHTML = dots[this.slideIndex-1].alt;
+  // showSlides(n) {
+  //   console.log("=-=-=-=-=-n is", n)
+  // 	var slides = $(".mySlides");
+  //   console.log("=-=-=-=-jquery slides length", this.totalImg)
+  //   // $(document).ready(function() {
+  //   //   var parent = document.getElementById("parentId");
+  //   //   var nodesSameClass = parent.getElementsByClassName("mySlides");
+  //   //   console.log("=-=-=-=--= total length", nodesSameClass.length);
+  //   // })
+  //   console.log("=-=-=-=-=-=-slides",document.getElementsByClassName('mySlides').length)
+  //   console.log("=-=-=-=-=-=-slides n", n)
+  // 	// var dots = document.getElementsByClassName("demo");
+  // 	// var captionText = document.getElementById("caption");
+  // 	if (n > slides.length) {this.slideIndex = 1}
+  // 	if (n < 1) {this.slideIndex = slides.length}
+	// 	for (var i = 0; i < slides.length; i++) {
+	// 		slides[i].style.display = "none";
+	// 	}
+	// 	// for (i = 0; i < dots.length; i++) {
+	// 	// 	dots[i].className = dots[i].className.replace(" active", "");
+	// 	// }
+  //   console.log("=-=-=-=-=-=slides[this.slideIndex-1]", this.slideIndex)
+  //   console.log("=-=-=-=-=-=slides[this.slideIndex-1] slides", slides[this.slideIndex-1])
+	//   slides[this.slideIndex-1].style.display = "block";
+	//   // slides[this.slideIndex-1].css('style','display: block');
+	//   // $(".mySlides").css('style','display: block');
+	// 	// dots[this.slideIndex-1].className += " active";
+	// 	// captionText.innerHTML = dots[this.slideIndex-1].alt;
+  // }
+
+  // showSlides = () => {
+  // const slides = document.getElementsByClassName('mySlides');
+  // console.log("=-=-=-=-=-slides", slides)
+  //   for (let i = 0; i < slides.length; i++) {
+  //       const slide = slides[i] as HTMLElement;
+  //       slide.style.display = "none";
+  //   }
+  // };
+
+  showSlides(n: any){
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    // var slides = $(".slider_image_3");
+    // console.log("=-=-=-=-=-==-=--get class name", document.getElementById("modalContent").getElementsByClassName('mySlides'))
+    // document.addEventListener("DOMContentLoaded", function(e) {
+    // $('document').ready(function(){
+    // (function() {
+      // const slides2 = document.getElementById("modalContent").getElementsByClassName('mySlides')
+      // console.log("=-=-=-=-=-=-slides2", slides)
+      // for (let i = 0; i < slides.length; i++) {
+      //   const slide = slides[i];
+      //   console.log("=----=----==-slide", slide)
+      // }
+      // for (let index = 0; index < slides2.length; index++) {
+      //   const input = slides.item(index);
+      //   console.log("=-=-=-=-=input", input)
+      // }
+      //
+      // const elements: Element[] = Array.from(document.getElementById("modalContent").getElementsByClassName('mySlides'));
+      // console.log("=-=-=-=-=-=-elements", elements)
+      // elements.forEach((el: Element) => {
+      //   console.log("=-=-=-=-=-=-=-=-el elements", el)
+      //     // do something
+      // })
+
+      // slides2.foreach((slide) => {
+      //
+      // })
+      // var slides2 = document.getElementById("modalContent").getElementsByClassName('mySlides')
+      // for (const c of slides2) {
+
+      // for (const item of slides2) {
+      //       console.log("=-=-=-=-=-item", item);
+      //   }
+          // console.log("=-=-=-=-=-=-slides2", slides2.innerHTML)
+      // }
+
+    // })
+    // $(".slider_image_3").removeClass('.slider_image_3')
+    // $(".mySlides").addClass(".slider_image_3")
+    // console.log("=-=-=-=-=-=-=-slides length next", slides.length)
+    // console.log("=-=-=-=-=-=-=-slides length next", slides)
+    // console.log("=-=-=-=-=-=-=-n", n)
+    // console.log("=-=-=-=-=-=-=-slide index", this.slideIndex)
+    const change = document.getElementById("modalContent").getElementsByClassName('mySlides')
+    // console.log("=-=-=-=-=-=-change", change)
+    if (n > slides.length) {this.slideIndex = 1}
+    if (n < 1) {this.slideIndex = slides.length}
+    for (i = 0; i < slides.length; i++) {
+      // console.log("=-=-=-=-=-modal images", document.getElementById("modalContent").getElementsByClassName('mySlides'))
+      // console.log("=-=-=-=-=-slides", slides[i])
+
+      slides[i].style.display = "none";
+    }
+    slides[this.slideIndex-1].style.display = "block";
+        // dots[this.slideIndex-1].className += " active";
+        // captionText.innerHTML = dots[this.slideIndex-1].alt;
   }
 }

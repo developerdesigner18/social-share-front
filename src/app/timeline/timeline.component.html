@@ -41,34 +41,54 @@
     </div>
   </div>
   <div class="slider_bid_like-share d-flex flex-column" style="width: 100%">
-    <div class="owl-carousel owl-theme" id="owl-demo" *ngIf="data.imageUrl.length > 0">
-      <!-- {{data.imageUrl}} -->
-      <!-- {{data.imageUrl.split('.')}} -->
-      <div class="item" *ngFor="let imageurl of data.imageUrl">
-
-        <!-- <img class="slider_image" [src]="data.imageUrl" [attr.data-slide-to]="i"> -->
-        <!-- {{imageurl.split('.')}} -->
-        <!-- {{imageurl.split('.')[1]}} -->
-        <img class="slider_image" [src]="imageurl" [attr.data-slide-to]="i" *ngIf="imageurl.split('.').pop() !== 'mp4'">
-        <!-- <button class="playpause">play</button> -->
-        <video controls class="slider_video" *ngIf="imageurl.split('.').pop() == 'mp4'" disablePictureInPicture controlsList="nodownload">
-          <source [src]="imageurl" type="video/mp4">
-          <!-- <source [src]="imageurl" type="video/ogg"> -->
+    <div *ngIf="data.imageUrl.length == 1">
+      <div class="item" *ngFor="let imageurl of data.imageUrl; let i = index;">
+        <img class="slider_image" style="width: 100%; height: 320px; margin-top: 10px;" [src]="imageurl" [attr.data-slide-to]="i" *ngIf="imageurl.split('.').pop() !== 'mp4'" (click)="openModal(data._id);currentSlide(i+1)">
+        <video controls class="slider_video" style="width: 100%; height: 100%; margin-top: 50px;" *ngIf="imageurl.split('.').pop() == 'mp4'" disablePictureInPicture controlsList="nodownload">
+          <source src="{{imageurl}}" type="video/mp4">
         </video>
-
-        <!-- <iframe type="text/html" frameborder="0" allowfullscreen src="{{imageurl}}">
-        </iframe> -->
-        <!-- <iframe type="text/html"
-                src="https://www.youtube.com/embed/M7lc1UVf-VE?enablejsapi=1" frameborder="0" allowfullscreen>
-        </iframe> -->
-        <!-- <div class="owl-video" href="{{imageUrl}}"> -->
-        <!-- <a class="owl-video slider_image" href="{{imageurl}}" [attr.data-slide-to]="i"></a> -->
-        <!-- <a class="owl-video slider_image" href="https://www.youtube.com/watch?v=Rpzp0yCAmq4"></a> -->
-        <!-- <div class="item-video" data-merge="1"><a class="owl-video" href="https://www.youtube.com/watch?v=Rpzp0yCAmq4"></a></div> -->
-        <!-- {{imageurl}} -->
-        <!-- {{data.imageUrl}} -->
-        <!-- <div class="item-video" data-merge="1" *ngFor="let imageurl of data.imageUrl"><a class="owl-video" href="{{data.imageUrl}}"></a></div> -->
-        <!-- <div class="item-video" data-merge="1" *ngFor="let imageurl of data.imageUrl"><a class="owl-video" href="{{data.imageUrl}}"></a></div> -->
+      </div>
+    </div>
+    <div *ngIf="data.imageUrl.length == 2">
+      <div class="item" >
+        <ng-container *ngFor="let imageurl of data.imageUrl; let i = index;">
+          <!-- {{imageurl.split('.').pop()}} -->
+          <img class="slider_image" style="width: '100%'; height: 320px; border: 5px solid #fff; margin-top: 1px;" [src]="imageurl" [attr.data-slide-to]="i" *ngIf="imageurl.split('.').pop() !== 'mp4'" (click)="openModal(data._id);currentSlide(i+1)">
+          <video controls class="slider_video" style="width: '100%'; height: 100%; border: 5px solid #fff; margin-top: 50px;" *ngIf="imageurl.split('.').pop() == 'mp4'" disablePictureInPicture controlsList="nodownload">
+            <source src="{{imageurl}}" type="video/mp4">
+          </video>
+        </ng-container>
+      </div>
+    </div>
+    <div *ngIf="data.imageUrl.length == 3">
+      <div class="item">
+        <ng-container *ngFor="let imageurl of data.imageUrl; let i = index; first as isFirst;" >
+          <img class="slider_image slider_image_3" style="width: {{(isFirst) ? '100%' : '50%'}}; border: 5px solid #fff; margin-top: 1px;" [src]="imageurl" [attr.data-slide-to]="i" *ngIf="imageurl.split('.').pop() !== 'mp4'" (click)="openModal(data._id);currentSlide(i+1)">
+          <video controls class="slider_video" style="width: {{(isFirst) ? '100%' : '50%'}}; border: 5px solid #fff; margin-top: 50px;" *ngIf="imageurl.split('.').pop() == 'mp4'" disablePictureInPicture controlsList="nodownload">
+            <source src="{{imageurl}}" type="video/mp4">
+          </video>
+        </ng-container>
+      </div>
+    </div>
+    <div *ngIf="data.imageUrl.length == 4">
+      <div class="item">
+        <ng-container *ngFor="let imageurl of data.imageUrl; let i = index;" >
+          <img class="slider_image" style="width: 50%; border: 5px solid #fff; margin-top: 1px;" [src]="imageurl" [attr.data-slide-to]="i" *ngIf="imageurl.split('.').pop() !== 'mp4'" (click)="openModal(data._id);currentSlide(i+1);">
+          <video controls class="slider_video" style="width: 50%; border: 5px solid #fff; margin-top: 1px;" *ngIf="imageurl.split('.').pop() == 'mp4'" disablePictureInPicture controlsList="nodownload">
+            <source src="{{imageurl}}" type="video/mp4">
+          </video>
+        </ng-container>
+      </div>
+    </div>
+    <div *ngIf="data.imageUrl.length > 4">
+      <div class="item">
+        <ng-container *ngFor="let imageurl of data.imageUrl; let i = index; last as isLast">
+          <img class="{{(i + 1 > 4) ? 'hidden_last_img' : 'slider_image'}}" style="width: 50%; border: 5px solid #fff; margin-top: 1px;" [src]="imageurl" [attr.data-slide-to]="i" *ngIf="imageurl.split('.').pop() !== 'mp4'" (click)="openModal(data._id);currentSlide(i+1)">
+          <video controls class="{{(i + 1 > 4) ? 'hidden_last_img' : 'slider_video'}}" style="width: 50%; border: 5px solid #fff; margin-top: 1px;" *ngIf="imageurl.split('.').pop() == 'mp4'" disablePictureInPicture controlsList="nodownload">
+            <source src="{{imageurl}}" type="video/mp4">
+          </video>
+        </ng-container>
+        <div class="bottom-left set_view_more">View More</div>
       </div>
     </div>
 
