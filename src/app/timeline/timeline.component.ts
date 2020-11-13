@@ -10,7 +10,6 @@ declare var $: any;
 @Component({
   selector: 'app-timeline',
   templateUrl: './timeline.component.html',
-  styleUrls: ['./timeline.component.css'],
   encapsulation: ViewEncapsulation.None
 })
 export class TimelineComponent implements OnInit {
@@ -39,10 +38,11 @@ export class TimelineComponent implements OnInit {
   postlikeId = [];
   commentsForm: FormGroup;
   showbasicProfile = [];
+  showbasicProfile2 = [];
 
   viewImgdatas = [];
   viewImg = [];
-  slideIndex = 1;
+  public slideIndex = 1;
 
   @ViewChild('textmsgPost') postMesssgeElement: any;
 
@@ -54,6 +54,7 @@ export class TimelineComponent implements OnInit {
     public router: Router,
     public formBuilder: FormBuilder
   ) {
+    this.token = localStorage.getItem('token')
     this.id = this.activatedRoute.parent.params['value']['id'];
     this.authService.getUserProfile(this.id).subscribe(res => {
       this.profileImg =  res.data.profileImgURl
@@ -103,23 +104,6 @@ export class TimelineComponent implements OnInit {
   get formControls() { return this.commentsForm.controls }
 
   ngOnInit(): void {
-    jQuery(document).ready(function(){
-      jQuery('.owl-carousel').owlCarousel({
-        nav:true,
-        items:1,
-        autoWidth: true,
-        video:true
-      })
-    });
-    $(window).on('load', function(){
-      $('.owl-carousel').owlCarousel({
-    		nav:true,
-    		items:1,
-        autoWidth: true,
-        video:true
-    	})
-    });
-    this.changeslider();
   }
 
   open_comments(postId){
@@ -127,10 +111,15 @@ export class TimelineComponent implements OnInit {
   }
 
   openTextDialog(){
-    this.dialog.open(PostModalComponent, {
+    const dialogRefTex = this.dialog.open(PostModalComponent, {
       width: '550px',
       panelClass: 'custom-dialog-container',
       data: { id: this.id }
+    });
+
+    dialogRefTex.afterClosed().subscribe(result => {
+      this.images = [];
+      this.files_data = [];
     });
   }
 
@@ -152,34 +141,16 @@ export class TimelineComponent implements OnInit {
           this.files_data.push(event.target.files[i]);
         }
     }
-    this.dialog.open(PostModalComponent, {
+    const dialogRef = this.dialog.open(PostModalComponent, {
       width: '550px',
       panelClass: 'custom-dialog-container',
       data: { id: this.id, images: this.images, file: this.files_data  }
     });
-  }
 
-  changeslider(){
-    $(document).ready(function(){
-      $('.owl-carousel').owlCarousel({
-        nav:true,
-        items:1,
-        autoWidth: true,
-        video:true,
-        lazyLoad: true
-      })
-    })
-    $(window).on('load', function(){
-      $(document).ready(function(){
-        $('.owl-carousel').owlCarousel({
-      		nav:true,
-      		items:1,
-          autoWidth: true,
-          video:true,
-          lazyLoad: true
-      	})
-      });
-    })
+    dialogRef.afterClosed().subscribe(result => {
+      this.images = [];
+      this.files_data = [];
+    });
   }
 
   temCmnt = [];
@@ -217,6 +188,10 @@ export class TimelineComponent implements OnInit {
     })
   }
 
+  totalImg = 0;
+  modalProfopen = true;
+  next_img = false;
+
   addComments(postId, userName, profilePic){
     this.objVal = Object.keys(this.commentsForm.value).map(key => ({type: key, value: this.commentsForm.value[key]}))
     this.authService.sendPostComment(postId, this.objVal[0].value).subscribe(res => {
@@ -232,8 +207,6 @@ export class TimelineComponent implements OnInit {
     this.commentsForm.reset()
   }
 
-
-  totalImg = 0;
   // Open the Modal
   openModal(id: any){
     this.authService.getAllFriendPost(this.token).subscribe(res => {
@@ -242,36 +215,43 @@ export class TimelineComponent implements OnInit {
       this.totalImg = onlyMatch.imageUrl.length
       this.viewImg = onlyMatch.imageUrl
     })
-    document.getElementById("myModal").style.display = "block";
+    this.modalProfopen = false
   }
 
   // Close the Modal
 	closeModal() {
-    document.getElementById("myModal").style.display = "none";
+    this.modalProfopen = true
+    window.location.replace(`profile/${this.id}`)
 	}
 
   // Next/previous controls
-	plusSlides(n) {
-		this.showSlides(this.slideIndex += n);
+  plusSlides(n) {
+    this.next_img = true
+		this.showImgSlides(this.slideIndex += n);
 	}
 
 	// Thumbnail image controls
 	currentSlide(n) {
-		this.showSlides(this.slideIndex = n);
+		this.showImgSlides(this.slideIndex = n);
 	}
 
-  showSlides(n: any){
+  showImgSlides(n) {
     var i;
     var slides = document.getElementsByClassName("mySlides");
-    // const change = document.getElementById("modalContent").getElementsByClassName('mySlides')
     if (n > slides.length) {this.slideIndex = 1}
     if (n < 1) {this.slideIndex = slides.length}
     for (i = 0; i < slides.length; i++) {
-
       slides[i].style.display = "none";
     }
-    slides[this.slideIndex-1].style.display = "block";
-    // dots[this.slideIndex-1].className += " active";
-    // captionText.innerHTML = dots[this.slideIndex-1].alt;
+    console.log("=-=-=slides[this.slideIndex-1]", slides[this.slideIndex-1])
+    if(slides[this.slideIndex-1] !== undefined)
+    {
+      slides[this.slideIndex-1].style.display = "block";
+      slides[this.slideIndex-1].style.background = "#000000";
+    }
+  };
+
+  showProfile(){
+    this.router.navigate([`profile/${this.id}`])
   }
 }

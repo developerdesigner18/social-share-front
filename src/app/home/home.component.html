@@ -54,7 +54,7 @@
 			</a>
 		</div>
 		<div class="main_areas">
-			<div class="main_area_contents" style="margin: 0px 80px 20px 80px;">
+			<div class="main_area_contents">
 				<div class="write_words position-relative" style="padding-bottom: 10px !important;">
 				  <input #textmsgPost type="text" placeholder="What is going on in your gaming world today {{name}}!" (click)="openTextDialog()">
 				  <div class="slider_bid_like-share d-flex flex-column">
@@ -73,42 +73,76 @@
 
 				<div class="main_post_contents d-flex flex-column">
 					<div class="d-flex show_basic_info" style="width: 100%">
-						<div class="profile_pic_profile position-relative-img" (mouseover)="showbasicProfile[i]=true">
+						<div class="profile_pic_profile position-relative-img" (mouseover)="showbasicProfile[i]=true" (mouseleave)="showbasicProfile[i]=false">
 							<img [src]="data.post_profileImg" onerror="this.src='/assets/images/default_user.jpg';">
-							<div class="basic_info" *ngIf="showbasicProfile[i]" (mouseleave)="showbasicProfile[i]=false">
+							<div class="basic_info" *ngIf="showbasicProfile[i]" >
 								<div class="d-flex">
-									<img [src]="data.post_profileImg" onerror="this.src='/assets/images/default_user.jpg';">
+									<img [src]="data.post_profileImg" onerror="this.src='/assets/images/default_user.jpg';" class="hover-info-img">
 									<div style="padding: 10px;">
 										<a href="profile/{{data.userId}}"><div class="profile_basic_info set_redirect_link">{{data.post_user}}</div></a>
 										<div class="profile_basic_info">{{data.post_user_designation}}</div>
 										<div class="profile_basic_info">{{data.post_user_email}}</div>
 									</div>
 								</div>
+								<div class="full-width-50" *ngIf="current_user['data']._id !== data.userId">
+									<i class="fa fa-comments-o" style="margin: 0px 11px 0px 23px"></i><div style="display: contents;">Message</div>
+								</div>
+								<div class="full-width-50" *ngIf="current_user['data']._id == data.userId">
+									<i class="fa fa-comments-o" style="margin: 0px 11px 0px 23px"></i><div style="display: contents;">Edit Profile</div>
+								</div>
+								<div class="full-width-20" *ngIf="current_user['data']._id !== data.userId">
+									<i class="fas fa-user-check" style="margin-left: 18px"></i>
+								</div>
+								<div class="full-width-20" *ngIf="current_user['data']._id == data.userId" (click)="showProfile()" title="View as">
+									<i class="fas fa-eye" style="margin-left: 18px"></i>
+								</div>
+								<div class="full-width-20">
+									<i class="fas fa-ellipsis-h" style="margin-left: 18px"></i>
+								</div>
 							</div>
 						</div>
-						<div class="name_and_desc" style="width: 100%">
+						<div class="name_and_desc" style="width: 100%" (mouseover)="showbasicProfile2[i]=true" (mouseleave)="showbasicProfile2[i]=false">
 							<div class="d-flex justify-content-between align-items-center">
 								<a href="profile/{{data.userId}}"><div class="profile_name_of_poster">{{data.post_user}}</div></a>
 								<div class="province d-flex align-items-center">
 									<img src="assets/images/add_ob.png">
 									<div>Pulshar, MB</div>
 								</div>
+								<div class="basic_info" *ngIf="showbasicProfile2[i]">
+									<div class="d-flex">
+										<img [src]="data.post_profileImg" onerror="this.src='/assets/images/default_user.jpg';" class="hover-info-img2">
+										<div style="padding: 10px;">
+											<a href="profile/{{data.userId}}"><div class="profile_basic_info set_redirect_link">{{data.post_user}}</div></a>
+											<div class="profile_basic_info">{{data.post_user_designation}}</div>
+											<div class="profile_basic_info">{{data.post_user_email}}</div>
+										</div>
+									</div>
+									<div class="full-width-50" *ngIf="current_user['data']._id !== data.userId">
+										<i class="fa fa-comments-o" style="margin: 0px 11px 0px 23px"></i><div style="display: contents;">Message</div>
+									</div>
+									<div class="full-width-50" *ngIf="current_user['data']._id == data.userId">
+										<i class="fa fa-comments-o" style="margin: 0px 11px 0px 23px"></i><div style="display: contents;">Edit Profile</div>
+									</div>
+									<div class="full-width-20" *ngIf="current_user['data']._id !== data.userId">
+										<i class="fas fa-user-check" style="margin-left: 18px"></i>
+									</div>
+									<div class="full-width-20" *ngIf="current_user['data']._id == data.userId" (click)="showProfile()" title="View as">
+										<i class="fas fa-eye" style="margin-left: 18px"></i>
+									</div>
+									<div class="full-width-20">
+										<i class="fas fa-ellipsis-h" style="margin-left: 18px"></i>
+									</div>
+								</div>
 							</div>
 							<div class="item_desc mt-3" style="width: 100%">{{data.description}}</div>
 						</div>
+
 					</div>
 
-					<div class="slider_bid_like-share d-flex flex-column" style="width: 100%" id="slider-owl-carousel-load">
-						<!-- <div *ngIf="data.imageUrl.length > 0">
-							<div class="item" *ngFor="let imageurl of data.imageUrl; let i = index;">
-								<img class="slider_image" style="width: 100%; height: 400px;" [src]="imageurl" [attr.data-slide-to]="i" *ngIf="imageurl.split('.').pop() !== 'mp4'">
-
-							</div>
-						</div> -->
-
+					<div class="slider_bid_like-share d-flex flex-column" style="width: 100%">
 						<div *ngIf="data.imageUrl.length == 1">
 							<div class="item" *ngFor="let imageurl of data.imageUrl; let i = index;">
-								<img class="slider_image" style="width: 100%; height: 320px; margin-top: 10px;" [src]="imageurl" [attr.data-slide-to]="i" *ngIf="imageurl.split('.').pop() !== 'mp4'" (click)="openModal(data._id);currentSlide(i+1)">
+								<img class="slider_image" style="width: 100%; height: 320px; margin-top: 10px;" [src]="imageurl" [attr.data-slide-to]="i" *ngIf="imageurl.split('.').pop() !== 'mp4'" (click)="openModal(data._id, $event);currentSlide(i+1)">
 								<video controls class="slider_video" style="width: 100%; height: 100%; margin-top: 50px;" *ngIf="imageurl.split('.').pop() == 'mp4'" disablePictureInPicture controlsList="nodownload">
 									<source src="{{imageurl}}" type="video/mp4">
 								</video>
@@ -117,18 +151,18 @@
 						<div *ngIf="data.imageUrl.length == 2">
 							<div class="item" >
 								<ng-container *ngFor="let imageurl of data.imageUrl; let i = index;">
-									<!-- {{imageurl.split('.').pop()}} -->
-									<img class="slider_image" style="width: '100%'; height: 320px; border: 5px solid #fff; margin-top: 1px;" [src]="imageurl" [attr.data-slide-to]="i" *ngIf="imageurl.split('.').pop() !== 'mp4'" (click)="openModal(data._id);currentSlide(i+1)">
+									<img class="slider_image" style="width: '100%'; height: 320px; border: 5px solid #fff; margin-top: 1px;" [src]="imageurl" [attr.data-slide-to]="i" *ngIf="imageurl.split('.').pop() !== 'mp4'" (click)="openModal(data._id, $event);currentSlide(i+1)">
 									<video controls class="slider_video" style="width: '100%'; height: 100%; border: 5px solid #fff; margin-top: 50px;" *ngIf="imageurl.split('.').pop() == 'mp4'" disablePictureInPicture controlsList="nodownload">
 					          <source src="{{imageurl}}" type="video/mp4">
 					        </video>
 								</ng-container>
 							</div>
 						</div>
+						<!-- <div *ngIf="data.imageUrl.length == 3"> -->
 						<div *ngIf="data.imageUrl.length == 3">
 							<div class="item">
 								<ng-container *ngFor="let imageurl of data.imageUrl; let i = index; first as isFirst;" >
-									<img class="slider_image slider_image_3" style="width: {{(isFirst) ? '100%' : '50%'}}; border: 5px solid #fff; margin-top: 1px;" [src]="imageurl" [attr.data-slide-to]="i" *ngIf="imageurl.split('.').pop() !== 'mp4'" (click)="openModal(data._id);currentSlide(i+1)">
+									<img class="slider_image slider_image_3" style="width: {{(isFirst) ? '100%' : '50%'}}; border: 5px solid #fff; margin-top: 1px;" [src]="imageurl" [attr.data-slide-to]="i" *ngIf="imageurl.split('.').pop() !== 'mp4'" (click)="openModal(data._id, $event);currentSlide(i+1)">
 									<video controls class="slider_video" style="width: {{(isFirst) ? '100%' : '50%'}}; border: 5px solid #fff; margin-top: 50px;" *ngIf="imageurl.split('.').pop() == 'mp4'" disablePictureInPicture controlsList="nodownload">
 					          <source src="{{imageurl}}" type="video/mp4">
 					        </video>
@@ -138,7 +172,7 @@
 						<div *ngIf="data.imageUrl.length == 4">
 							<div class="item">
 								<ng-container *ngFor="let imageurl of data.imageUrl; let i = index;" >
-									<img class="slider_image" style="width: 50%; border: 5px solid #fff; margin-top: 1px;" [src]="imageurl" [attr.data-slide-to]="i" *ngIf="imageurl.split('.').pop() !== 'mp4'" (click)="openModal(data._id);currentSlide(i+1);">
+									<img class="slider_image" style="width: 50%; border: 5px solid #fff; margin-top: 1px;" [src]="imageurl" [attr.data-slide-to]="i" *ngIf="imageurl.split('.').pop() !== 'mp4'" (click)="openModal(data._id, $event);currentSlide(i+1)">
 									<video controls class="slider_video" style="width: 50%; border: 5px solid #fff; margin-top: 1px;" *ngIf="imageurl.split('.').pop() == 'mp4'" disablePictureInPicture controlsList="nodownload">
 					          <source src="{{imageurl}}" type="video/mp4">
 					        </video>
@@ -148,7 +182,7 @@
 						<div *ngIf="data.imageUrl.length > 4">
 							<div class="item">
 								<ng-container *ngFor="let imageurl of data.imageUrl; let i = index; last as isLast">
-									<img class="{{(i + 1 > 4) ? 'hidden_last_img' : 'slider_image'}}" style="width: 50%; border: 5px solid #fff; margin-top: 1px;" [src]="imageurl" [attr.data-slide-to]="i" *ngIf="imageurl.split('.').pop() !== 'mp4'" (click)="openModal(data._id);currentSlide(i+1)">
+									<img class="{{(i + 1 > 4) ? 'hidden_last_img' : 'slider_image'}}" style="width: 50%; border: 5px solid #fff; margin-top: 1px;" [src]="imageurl" [attr.data-slide-to]="i" *ngIf="imageurl.split('.').pop() !== 'mp4'" (click)="openModal(data._id, $event);currentSlide(i+1)">
 									<video controls class="{{(i + 1 > 4) ? 'hidden_last_img' : 'slider_video'}}" style="width: 50%; border: 5px solid #fff; margin-top: 1px;" *ngIf="imageurl.split('.').pop() == 'mp4'" disablePictureInPicture controlsList="nodownload">
 					          <source src="{{imageurl}}" type="video/mp4">
 					        </video>
@@ -156,22 +190,9 @@
 								<div class="bottom-left set_view_more">View More</div>
 							</div>
 						</div>
-						<!-- <div class="owl-carousel owl-theme" id="owl-demo" *ngIf="data.imageUrl.length > 0"> -->
-						<!-- <ng-container *ngIf="twoimg"> -->
-							<!-- <div class="item" *ngFor="let imageurl of data.imageUrl; let i = index;"> -->
-								<!-- <img class="slider_image" style="width: 100%; height: 400px;" [src]="imageurl" [attr.data-slide-to]="i" *ngIf="imageurl.split('.').pop() !== 'mp4'"> -->
-								<!-- <div class="my_custom_img"> -->
-									<!-- <img class="slider_image" style="width: 50%; height: 400px;" [src]="imageurl" [attr.data-slide-to]="i" *ngFor="let imageurl of data.imageUrl; let i = index;"> -->
-								<!-- <video controls class="slider_video" *ngIf="imageurl.split('.').pop() == 'mp4'" disablePictureInPicture controlsList="nodownload">
-				          <source src="{{imageurl}}" type="video/mp4">
-				        </video> -->
-							<!-- </div> -->
-						<!-- </ng-container> -->
-						<!-- </div> -->
 						<div [ngClass]="current_user['data']._id !== data.userId ? 'take_action' : 'no_share_action'">
 							<button class="showLikes" (click)="likeIt(data._id, data.like.length);">
 								<i class="fa" id="{{data._id}}" [ngClass]="postlikeId.includes(data._id) ? 'fa-thumbs-up' : 'fa-thumbs-o-up'"></i>
-								<!-- <div>Like<span id="count_{{data._id}}">{{data.like.length === 0 ? '' : checkTem == false ? data.like.length : temLike > 1 ? temLike - 1: temLike === 0 ? '' : temLike}}</span></div> -->
 								<div>Like<span id="count_{{data._id}}">{{data.like.length === 0 ? '' : data.like.length}}</span></div>
 							</button>
 
@@ -291,55 +312,30 @@
 				</div>
 			</div>
 		</div>
-
-
-		<!-- The Modal/Lightbox -->
-				<div #myModal id="myModal" class="modal">
-
-					<div class="modal-content" id="modalContent">
-						<!-- <ng-container > -->
-							<!-- <div class="mySlides" #mySlidesImg *ngFor="let imageurl of viewImg;index as i">
-								<div class="numbertext"><span>2</span> / 6</div>
-								<img src="{{imageurl}}" style="width:100%">
-							</div> -->
-						<!-- </ng-container> -->
-						<div class="mySlides" #mySlidesImg *ngFor="let imageurl of viewImg;index as i">
-						<!-- <div class="mySlides"> -->
-							<span class="close cursor" (click)="closeModal()">&times;</span>
-							<div class="numbertext"><span>{{i + 1}}</span> / {{totalImg}}</div>
-							<!-- <div class="numbertext"><span>1</span> / 6</div> -->
-							<!-- {{imageurl.parent.length}} -->
-							<img style="width:100%;" src="{{imageurl}}" class="modalImg">
-							<!-- <img style="width:100%;" src="assets/images/gal_1.jpg" class="myClassImg"> -->
-						</div>
-
-						<!-- <div class="mySlides">
-							<div class="numbertext"><span>2</span> / 6</div>
-							<img src="assets/images/gal_2.jpg" style="width:100%">
-						</div>
-
-						<div class="mySlides">
-							<div class="numbertext"><span>3</span> / 6</div>
-							<img src="assets/images/gal_3.jpg" style="width:100%">
-						</div>
-
-						<div class="mySlides">
-							<div class="numbertext"><span>4</span> / 6</div>
-							<img src="assets/images/gal_4.jpg" style="width:100%">
-						</div>
-						<div class="mySlides">
-							<div class="numbertext"><span>5</span> / 6</div>
-							<img src="assets/images/gal_5.jpg" style="width:100%">
-						</div>
-						<div class="mySlides">
-							<div class="numbertext"><span>6</span> / 6</div>
-							<img src="assets/images/gal_6.jpg" style="width:100%">
-						</div> -->
-
-						<!-- Next/previous controls -->
-						<a class="prev" (click)="plusSlides(-1)" *ngIf="totalImg > 1">&#10094;</a>
-						<a class="next" (click)="plusSlides(1)" *ngIf="totalImg > 1">&#10095;</a>
-
-					</div>
-				</div>
 	</div>
+
+
+<!-- The Modal/Lightbox -->
+<div id="myModal" class="modal" [hidden]="modalopen" tabindex='-1'>
+	<div class="modal-content" >
+		<div class="mySlides" *ngFor="let imageurl of viewImg;let i = index;first as isFirst;">
+			<span class="close_img cursor" (click)="closeModal();" data-dismiss="modal">&times;</span>
+			<div class="numbertext" *ngIf="isFirst"><span>1</span> / {{totalImg}}</div>
+			<div class="numbertext" *ngIf="next_img"><span>{{i + 1}}</span> / {{totalImg}}</div>
+			<img style="width:100%;" src="{{imageurl}}" *ngIf="isFirst && imageurl.split('.').pop() !== 'mp4'">
+
+			<video controls style="width:100%;" *ngIf="imageurl.split('.').pop() == 'mp4' && isFirst" disablePictureInPicture controlsList="nodownload">
+				<source src="{{imageurl}}" type="video/mp4">
+			</video>
+			<img style="width:100%;" src="{{imageurl}}" *ngIf="next_img && isFirst === false && imageurl.split('.').pop() !== 'mp4'">
+			<video controls *ngIf="imageurl.split('.').pop() == 'mp4' && next_img && isFirst === false" disablePictureInPicture controlsList="nodownload">
+				<source src="{{imageurl}}" type="video/mp4">
+			</video>
+		</div>
+
+		<!-- Next/previous controls -->
+		<a class="prev" (click)="plusSlides(-1)" *ngIf="totalImg > 1">&#10094;</a>
+		<a class="next" (click)="plusSlides(1)" *ngIf="totalImg > 1">&#10095;</a>
+
+	</div>
+</div>

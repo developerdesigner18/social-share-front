@@ -94,6 +94,10 @@ img.logout {
     align-items: center;
     border-radius: 4px;
 }
+
+.main_area_contents{
+	margin: 0px 80px 20px 80px;
+}
 .left_content {
     display: flex;
     align-items: center;
@@ -866,6 +870,18 @@ a.my_post_links:hover div > div {
     object-fit: cover;
     border-radius: 50%;
 }
+.hover-info-img{
+	width: 80px !important;
+  height: 80px !important;
+}
+
+.hover-info-img2{
+	width: 80px !important;
+  height: 80px !important;
+  border-radius: 50%;
+	object-fit: cover;
+}
+
 .name_and_desc {
     margin-left: 20px;
 }
@@ -909,7 +925,8 @@ a.my_post_links:hover div > div {
 .basic_info{
 	position: absolute;
 	z-index: 9;
-	top: 70px;
+	top: 75px;
+	left: 10px;
 	background-color: #ffffff;
 	box-shadow: 0px 1px 15px 0px rgba(0, 52, 89, 0.58);
 	display: block !important;
@@ -978,7 +995,7 @@ a.my_post_links:hover div > div {
 	    justify-content: center !important;
 	}
 	.main_area_contents {
-	    margin-top: 12px;
+			margin: 12px 0px;
 	}
 	.login_container button {
 	    margin: 0 !important;
@@ -1012,6 +1029,9 @@ a.my_post_links:hover div > div {
 	.write_words {
 	    width: 100%;
 	    padding: 8px !important;
+	}
+	.province{
+		padding: 5px 5px;
 	}
 }
 
@@ -1056,7 +1076,7 @@ a.my_post_links:hover div > div {
 	    justify-content: center !important;
 	}
 	.main_area_contents {
-	    margin-top: 12px;
+	    margin: 12px 0px;
 	}
 	.login_container button {
 	    margin: 0 !important;
@@ -1068,17 +1088,32 @@ a.my_post_links:hover div > div {
     border-radius: 50px;
     border: 1px solid #ddd;
     margin-bottom: 12px;
-}
+	}
 	.bid_now button{
 		font-size: 13px;
 	}
-
+	.province{
+		padding: 5px 5px;
+	}
 }
 
 @media (min-width: 768px) and (max-width: 1023px){
 	.profile_pic_profile img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+	.left_sidebars {
+		 position: inherit !important;
+		 margin-top: 20px !important;
+	}
+	.main_area_contents {
+	    margin-top: 20px !important;
 	    width: 100%;
-	    border-radius: 50%;
+	    margin: 0 auto;
+	}
+	.main_container {
+    display: block !important;
 	}
 }
 
@@ -1102,7 +1137,7 @@ a.my_post_links:hover div > div {
 	.profile_name_of_poster {
 	    margin-right: 10px;
 	}
-		.write_words input {
+	.write_words input {
 	    margin-top: 14px;
 	    padding: 6px 123px;
 	    border-radius: 50px;
@@ -1110,6 +1145,9 @@ a.my_post_links:hover div > div {
 	    margin-bottom: 12px;
 	}
 
+	.province{
+		padding: 5px 5px;
+	}
 }
 
 .tooltiptext {
@@ -1154,7 +1192,7 @@ a.my_post_links:hover div > div {
 .set_view_more{
   position: absolute;
   top: 67%;
-  left: 75%;
+  left: 72%;
   transform: translate(-50%, -50%);
   font-size: 30px;
   color: #ffffff;
@@ -1162,7 +1200,7 @@ a.my_post_links:hover div > div {
 
 /* The Modal (background) */
 .modal {
-  display: none;
+  display: block;
   position: fixed;
   z-index: 1;
   left: 0;
@@ -1183,6 +1221,23 @@ a.my_post_links:hover div > div {
 	/* max-width: 1200px; */
 }
 .mySlides img {
+    height: 80vh;
+    object-fit: contain;
+		background-color: #000000;
+		padding-top: 60px;
+}
+
+.mySlides video {
+    object-fit: contain;
+    background-color: black;
+		background-color: #000000 !important;
+		padding-top: 60px;
+		width: 90%;
+		margin-left: 80px;
+		height: auto;
+}
+
+.only_one_slide img {
     height: 80vh;
     object-fit: contain;
     background-color: black;
@@ -1234,8 +1289,8 @@ a.my_post_links:hover div > div {
   background-color: #ffffff;
 }
 
-/* The Close Button */
-.close {
+/* The close_img Button */
+.close_img {
     color: #e6e6e6;
     position: absolute;
     top: 10px;
@@ -1246,8 +1301,8 @@ a.my_post_links:hover div > div {
     text-shadow: none;
 }
 
-.close:hover,
-.close:focus {
+.close_img:hover,
+.close_img:focus {
   color: #999;
   text-decoration: none;
   cursor: pointer;
@@ -1264,4 +1319,30 @@ a.my_post_links:hover div > div {
 .numbertext span {
     font-size: 45px;
     color: #fffbfb;
+}
+
+.full-width-50{
+	border: 2px solid #000000;
+	width: 50%;
+	height: 35px;
+	border-radius: 8px;
+	padding: 4px;
+	background: #c5c5c5;
+	border-color: #c5c5c5;
+	display: inline-block;
+}
+
+.full-width-20{
+	border: 2px solid #000000;
+	width: 20%;
+	height: 35px;
+	border-radius: 8px;
+	padding: 4px;
+	background: #c5c5c5;
+	border-color: #c5c5c5;
+	display: inline-block;
+	margin-left: 10px;
+}
+.custom-dialog-container .mat-dialog-container {
+	padding: 0 !important;
 }
