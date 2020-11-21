@@ -1196,6 +1196,7 @@ a.my_post_links:hover div > div {
   transform: translate(-50%, -50%);
   font-size: 30px;
   color: #ffffff;
+	cursor: pointer;
 }
 
 /* The Modal (background) */
@@ -1342,6 +1343,7 @@ a.my_post_links:hover div > div {
 	border-color: #c5c5c5;
 	display: inline-block;
 	margin-left: 10px;
+	cursor: pointer;
 }
 .custom-dialog-container .mat-dialog-container {
 	padding: 0 !important;

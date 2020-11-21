@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation,ViewChild } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog} from  '@angular/material/dialog';
@@ -52,16 +52,32 @@ export class HomeComponent implements OnInit {
   postId = [];
   viewImg = [];
   public slideIndex = 1;
+  // imageObject: Array<object>;
+  imageObject = []
 
   public datas;
   public temp;
+
+  postImageData = {}
+
+  // imageObject = [{
+  //       image: 'http://localhost:8000/post/5ef57cc81b40cf10ecf3e4ae_1603345965714_gal_1.jpg',
+  //       thumbImage: 'http://localhost:8000/post/5ef57cc81b40cf10ecf3e4ae_1603345965714_gal_1.jpg',
+  //       id: 1
+  //   }, {
+  //       image: 'http://localhost:8000/post/5ef57cc81b40cf10ecf3e4ae_1603345965714_gal_1.jpg', // Support base64 image
+  //       thumbImage: 'http://localhost:8000/post/5ef57cc81b40cf10ecf3e4ae_1603345965714_gal_1.jpg', // Support base64 image
+  //       id: 2
+  //   }
+  // ];
 
   constructor(
     public authService: AuthService,
     public  dialog:  MatDialog,
     private activatedRoute: ActivatedRoute,
     public formBuilder: FormBuilder,
-    public router: Router
+    public router: Router,
+    private route: ActivatedRoute
   ) {
     let id = this.activatedRoute.snapshot.paramMap.get('id');
     this.authService.getUserHome(id).subscribe(res => {
@@ -78,11 +94,48 @@ export class HomeComponent implements OnInit {
         console.log("-=-=-=-=-Welcome to social share")
       }else{
         this.datas = res.posts
+        const { image, thumbImage, alt, title } = res.posts;
+        console.log("=-=-=-=-=typeof", this.imageObject)
+        console.log("=-=-=-=-=this.datas", this.datas)
         for(let i = 0; i < this.datas.length; i++){
+          const images = []
           this.description = this.datas[i].description;
           this.likes = this.datas[i].like
           this.comments = this.datas[i].comment.length
           this.url.push(this.datas[i].imageUrl)
+          // this.datas[i].imageUrl.image = this.datas[i].imageUrl
+          // this.datas[i].imageUrl.thumbImage = this.datas[i].imageUrl
+          // this.postImageData = this.datas[i].imageUrl.reduce(
+          //   (previousData, currentData) => {
+          //     const id = this.datas[i]._id;
+          //     images.push({
+          //       image: currentData,
+          //       thumbImage: currentData,
+          //     });
+          //     previousData[id] = images;
+          //     return previousData;
+          //   },
+          //   {}
+          // );
+
+          // this.datas[i]['newImages'] = this.datas[i].imageUrl.reduce(
+          //   (previousData, currentData) => {
+          //     previousData.push({
+          //       image: currentData,
+          //       thumbImage: currentData,
+          //     });
+          //     return previousData;
+          //   },
+          //   []
+          // );
+          // console.log("=-=-=-=-this.imageObject", this.datas[i]['newImages'])
+          // for(let j = 0; j < this.datas[i].imageUrl.length; j++)
+          // {
+          //   console.log("=-=-=-=--this.datas[i].imageUrl.image", this.datas[i].imageUrl = {image: this.datas[i].imageUrl[j], thumbImage: this.datas[i].imageUrl[j], id: this.datas[i]._id})
+          // }
+          // console.log("=-=-=-=-this.imageObject loop", this.postImageData)
+          // this.imageObject.push(this.datas[i].imageUrl)
+          // , 'thumbImage': this.datas[i].imageUrl}]
           this.authService.getHomePostProfile(this.datas[i].userId).subscribe(res => {
             this.datas[i].post_user_designation = res.data.designation
             this.datas[i].post_user_email = res.data.emailId
@@ -103,6 +156,7 @@ export class HomeComponent implements OnInit {
             this.twoimg = true
           }
         }
+        // console.log("=-=-=-=-this.imageObject", this.imageObject)
         // this.ngOnInit()
         return this.datas
       }
@@ -170,28 +224,6 @@ export class HomeComponent implements OnInit {
   files_data: any = [];
   openDialog(event: any): void{
 
-    // Single image post upload
-    // console.log("-=-=-=-=-=-photos open")
-    // this.fileData = <File>event.target.files[0]
-    //
-    // // Show preview
-    // var mimeType = this.fileData.type;
-    // if (mimeType.match(/image\/*/) == null) {
-    //   return;
-    // }
-    //
-    // var reader = new FileReader();
-    // reader.readAsDataURL(this.fileData);
-    //
-    // reader.onload = (_event) => {
-    //   this.previewUrl = reader.result; //based64 image
-    //   this.dialog.open(PostModalComponent, {
-    //     width: '550px',
-    //     panelClass: 'custom-dialog-container',
-    //     data: { id: this.id, postImg: this.previewUrl, file: this.fileData }
-    //   });
-    // }
-
     //Multipul Image upload
     if (event.target.files && event.target.files[0]) {
       var filesAmount = event.target.files.length;
@@ -219,7 +251,6 @@ export class HomeComponent implements OnInit {
 
   temLike = 0;
   checkTem =  false
-
 
   likeIt(postId, likeCount){
     this.authService.sendLikePost(postId).subscribe(res => {
@@ -256,14 +287,14 @@ export class HomeComponent implements OnInit {
   }
 
   showProfile(){
-    this.router.navigate([`profile/${this.id}`])
+    window.location.replace('profile/' + this.id);
   }
 
   temCmnt = [];
   tempPostId = '';
   tempProfile = '';
   tempName = '';
-  modalopen = true;
+  modalopen = false;
   next_img = false;
   totalImg = 0;
 
@@ -284,27 +315,58 @@ export class HomeComponent implements OnInit {
     this.commentsForm.reset()
   }
 
+  closeId: String;
+  closeImg = false
+  openModalt = 0
   // Open the Modal
-  openModal(id: any, event){
-    this.modalopen = false
+  openModal(id: any){
+    // this.openModalt++
+    // console.log("=-=-=-this.openModalt", this.openModalt)
     this.authService.getAllFriendPost(this.token).subscribe(res => {
       this.viewImgdatas = res.posts
       let onlyMatch = this.viewImgdatas.find(({_id}) => _id === id)
       this.totalImg = onlyMatch.imageUrl.length
-      this.viewImg = onlyMatch.imageUrl
+      console.log("=-=-=-=-=-onlyImg", onlyMatch.imageUrl[0])
+      // if(this.openModalt > 1)
+      // {
+      //   this.viewImg = onlyMatch.imageUrl[0]
+      // }else{
+        this.viewImg = onlyMatch.imageUrl
+        this.closeId = onlyMatch._id
+      // }
     })
+    this.modalopen = true
+    // slides[0].attr("style", "display: block")
+    // slides[1].attr("style", "display: none")
+    // slides[2].attr("style", "display: none")
+    // slides[3].attr("style", "display: none")
+    // console.log("=-=-=-slides", slides[0].style.display = "block")
+    // console.log("=-=-=-slides", slides[1].style.display = "none")
+    // console.log("=-=-=-slides", slides[2].style.display = "none")
+    // console.log("=-=-=-slides", slides[3].style.display = "none")
   }
 
   // Close the Modal
-	closeModal() {
-    this.modalopen = true
-    this.router.navigate([`home/${this.id}`])
+	closeModal(close: any) {
+    // $("#posts_img").load(`home/${this.id}` + ' #posts_img');
+    this.modalopen = false
+    // return false;
+    // window.location.href = `home/${this.id}?` + close
+    // return true;
+    // window.history.back();
+    window.location.replace(`home/${this.id}`)
+    // window.location = window.location
 	}
 
+  // countPlus = 1
   // Next/previous controls
 	plusSlides(n) {
     this.next_img = true
 		this.showImgSlides(this.slideIndex += n);
+    // if(this.openModalt > 1)
+    // {
+    //   this.showImgSlides(this.slideIndex += n);
+    // }
 	}
 
 	// Thumbnail image controls
@@ -312,11 +374,13 @@ export class HomeComponent implements OnInit {
 		this.showImgSlides(this.slideIndex = n);
 	}
 
+  nextPostImg = false
   showImgSlides(n) {
-    var i;
+    this.openModalt++
     var slides = document.getElementsByClassName("mySlides");
     if (n > slides.length) {this.slideIndex = 1}
     if (n < 1) {this.slideIndex = slides.length}
+    var i;
     for (i = 0; i < slides.length; i++) {
       slides[i].style.display = "none";
     }
