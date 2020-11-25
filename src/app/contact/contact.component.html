@@ -2,11 +2,19 @@
   <div class="work_tab">
     <h6>Conatct info</h6>
   </div>
-  <div style="margin-bottom: 10px;">
+  <div style="margin-bottom: 10px;" (click)="newMobile()">
     <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add mobile phone</a>
   </div>
-  <div style="margin-bottom: 10px;">
+  <div class="mobile" *ngIf="mobile">
+    <input type="text" name="" value="" placeholder="Add mobile number">
+    <button type="button" name="button" (click)="Cancel()">Cancel</button>
+  </div>
+  <div style="margin-bottom: 10px;" (click)="newAddress()">
     <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add your address</a>
+  </div>
+  <div class="address" *ngIf="address">
+    <input type="text" name="" value="" placeholder="Add your address">
+    <button type="button" name="button" (click)="Cancel()">Cancel</button>
   </div>
   <div *ngIf="u_email" style="margin-bottom: 25px;">
     <i class="fa fa-envelope"></i> &nbsp;{{u_email}}
@@ -14,19 +22,27 @@
   <div class="work_tab">
     <h6>Website and social links</h6>
   </div>
-  <div style="margin-bottom: 10px;">
+  <div style="margin-bottom: 10px;" (click)="newWebsites()">
     <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add a Websites</a>
   </div>
-  <div style="margin-bottom: 10px;">
+  <div class="website" *ngIf="website">
+    <input type="text" name="" value="" placeholder="Add a Websites">
+    <button type="button" name="button" (click)="Cancel()">Cancel</button>
+  </div>
+  <!-- <div style="margin-bottom: 10px;">
     <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add a social link</a>
   </div>
   <div *ngIf="u_website" style="margin-bottom: 25px;">
     <i class="fa fa-share-alt-square"></i> &nbsp;<a href="{{u_website}}" target="_blank">www.socialshare.com</a>
-  </div>
+  </div> -->
   <div class="work_tab">
     <h6>Basic info</h6>
 	</div>
-  <div>
+  <div (click)="newReligious()">
     <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add your religious views</a>
+  </div>
+  <div class="religious" *ngIf="religious">
+    <input type="text" name="" value="" placeholder="Add new quotes">
+    <button type="button" name="button" (click)="Cancel()">Cancel</button>
   </div>
 </div>

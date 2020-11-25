@@ -6,10 +6,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./life.component.css']
 })
 export class LifeComponent implements OnInit {
+  life: boolean;
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  newLifeEvent(){
+    this.life = true
+  }
+
+  Cancel(){
+    this.life = false
   }
 
 }

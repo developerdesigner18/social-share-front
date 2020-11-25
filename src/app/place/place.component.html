@@ -8,8 +8,15 @@
       <img width="40" height="40" src='assets/images/safe_image.jpeg' style="border-radius: 50%;" />
     </div>
     <div class="col-md-5" style="font-size: 14px">
-      <span style="font-weight: 500;">{{u_city}}, {{u_state}}</span>
+      <!-- <span style="font-weight: 500;">{{u_city}}, {{u_state}}</span> -->
       <div>Current City</div>
+      <div style="margin-bottom: 10px;" (click)="newCurrent()">
+        <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add your current city</a>
+      </div>
+      <div class="current" *ngIf="current">
+        <input type="text" name="" value="" placeholder="Add your current city">
+        <button type="button" name="button" (click)="Cancel()">Cancel</button>
+      </div>
     </div>
   </div>
   <br/>
@@ -19,8 +26,15 @@
       <img width="40" height="40" src='assets/images/safe_image.jpeg' style="border-radius: 50%;" />
     </div>
     <div class="col-md-5" style="font-size: 14px">
-      <span style="font-weight: 500;">{{u_city}}, {{u_state}}</span>
+      <!-- <span style="font-weight: 500;">{{u_city}}, {{u_state}}</span> -->
       <div>Home Town</div>
+      <div style="margin-bottom: 10px;" (click)="newHome()">
+        <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add your home town</a>
+      </div>
+      <div class="home" *ngIf="home">
+        <input type="text" name="" value="" placeholder="Add your home town">
+        <button type="button" name="button" (click)="Cancel()">Cancel</button>
+      </div>
     </div>
   </div>
 </div>

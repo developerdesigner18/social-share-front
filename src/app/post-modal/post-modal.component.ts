@@ -36,6 +36,7 @@ export class PostModalComponent implements OnInit {
 
   @ViewChild('postMsg') postMesssgeElement: any;
   @ViewChildren('postImage') postImageElement: QueryList<ElementRef>;
+  textOnlylength: number;
 
   constructor(
     private  dialogRef:  MatDialogRef<PostModalComponent>,
@@ -151,23 +152,30 @@ export class PostModalComponent implements OnInit {
 
 
   openNewDialog(event: any): void {
-    if(this.images.length === 1)
+    for (var i = 0; i < event.target.files.length; i++) {
+      if (i === event.target.files.length - 1)
+      {
+        this.textOnlylength = i
+      }
+    }
+
+    if(this.images.length === 1 || this.textOnlylength === 1)
     {
       this.twoimg = true
       this.threeimg = false
       this.fourimg = false
       this.fiveimg = false
-    }else if(this.images.length === 2){
+    }else if(this.images.length === 2 || this.textOnlylength === 2){
       this.threeimg = true
       this.twoimg = false
       this.fourimg = false
       this.fiveimg = false
-    }else if(this.images.length === 3){
+    }else if(this.images.length === 3 || this.textOnlylength === 3){
       this.fourimg = true
       this.threeimg = false
       this.twoimg = false
       this.fiveimg = false
-    }else if(this.images.length >= 4){
+    }else if(this.images.length >= 4 || this.textOnlylength >= 4){
       this.fourimg = false
       this.threeimg = false
       this.twoimg = false

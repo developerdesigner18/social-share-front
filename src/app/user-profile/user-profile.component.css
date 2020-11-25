@@ -888,6 +888,8 @@ button.owl-next span {
     color: #003459;
     line-height: 1;
 		margin-bottom: 12px;
+		font-size: 16px;
+
 }
 
 /** responsive css */
@@ -1103,7 +1105,8 @@ button.owl-next span {
   border-radius: 6px;
   padding: 5px 0;
 	margin-top: 4%;
-	margin-left: 18%;
+	margin-left: 12%;
+	font-size: 14px;
 }
 
 

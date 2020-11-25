@@ -367,7 +367,6 @@ a.premium_upgrade {
 
 .main_post_contents {
     padding: 25px 20px;
-    overflow: hidden;
 		width: 100%;
 }
 
@@ -948,6 +947,7 @@ a.my_post_links:hover div > div {
     color: #003459;
     line-height: 1;
 		margin-bottom: 12px;
+		font-size: 16px;
 }
 
 /*-----------------------rcss---------------------------*/
@@ -1161,7 +1161,8 @@ a.my_post_links:hover div > div {
   border-radius: 6px;
   padding: 5px 0;
 	margin-top: 4%;
-	margin-left: 18%;
+	margin-left: 12%;
+	font-size: 14px;
 }
 
 /* .tooltiptext::after {
@@ -1347,4 +1348,16 @@ a.my_post_links:hover div > div {
 }
 .custom-dialog-container .mat-dialog-container {
 	padding: 0 !important;
+}
+.bottom-left.set_view_more {
+    bottom: 25%;
+    right: 8%;
+    color: #fff;
+    font-size: 20px;
+    padding: 10px;
+    background: #00000094;
+}
+body.modal {
+	position: fixed;
+  overflow: hidden;
 }

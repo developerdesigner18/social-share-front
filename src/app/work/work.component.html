@@ -2,21 +2,33 @@
   <div class="work_tab">
     <h6>Work</h6>
   </div>
-  <div>
+  <div (click)="newWork()">
     <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add Work Place</a>
+  </div>
+  <div class="work" *ngIf="work">
+    <input type="text" name="" value="" placeholder="Add work place">
+    <button type="button" name="button" (click)="Cancel()">Cancel</button>
   </div>
   <br/>
   <div class="work_tab">
     <h6>University</h6>
   </div>
-  <div>
+  <div (click)="newUniversity()">
     <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add university</a>
+  </div>
+  <div class="university" *ngIf="university">
+    <input type="text" name="" value="" placeholder="Add university">
+    <button type="button" name="button" (click)="Cancel()">Cancel</button>
   </div>
   <br/>
   <div class="work_tab">
     <h6>High School</h6>
 	</div>
-  <div>
+  <div (click)="newSchool()">
     <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add high school</a>
+  </div>
+  <div class="school" *ngIf="school">
+    <input type="text" name="" value="" placeholder="Add high school">
+    <button type="button" name="button" (click)="Cancel()">Cancel</button>
   </div>
 </div>

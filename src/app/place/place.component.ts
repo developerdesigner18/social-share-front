@@ -11,6 +11,8 @@ export class PlaceComponent implements OnInit {
   u_country = '';
   u_state = '';
   u_city = '';
+  current: boolean;
+  home: boolean;
 
   constructor(
     public authService: AuthService,
@@ -34,6 +36,19 @@ export class PlaceComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  newCurrent(){
+    this.current = true
+  }
+
+  newHome(){
+    this.home = true
+  }
+
+  Cancel(){
+    this.current = false
+    this.home = false
   }
 
 }

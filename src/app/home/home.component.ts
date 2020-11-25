@@ -56,9 +56,13 @@ export class HomeComponent implements OnInit {
   imageObject = []
 
   public datas;
+  u_country: any;
+  u_state: any;
   public temp;
 
   postImageData = {}
+  showMore: boolean;
+  u_city: any;
 
   // imageObject = [{
   //       image: 'http://localhost:8000/post/5ef57cc81b40cf10ecf3e4ae_1603345965714_gal_1.jpg',
@@ -84,6 +88,7 @@ export class HomeComponent implements OnInit {
       this.id = res.data._id
       this.name =  res.data.name
       this.profileImg = res.data.profileImgURl
+
     })
 
     this.token = localStorage.getItem('token')
@@ -94,9 +99,8 @@ export class HomeComponent implements OnInit {
         console.log("-=-=-=-=-Welcome to social share")
       }else{
         this.datas = res.posts
+        console.log("=-=-=-=-=-=this.datas", this.datas)
         const { image, thumbImage, alt, title } = res.posts;
-        console.log("=-=-=-=-=typeof", this.imageObject)
-        console.log("=-=-=-=-=this.datas", this.datas)
         for(let i = 0; i < this.datas.length; i++){
           const images = []
           this.description = this.datas[i].description;
@@ -141,6 +145,8 @@ export class HomeComponent implements OnInit {
             this.datas[i].post_user_email = res.data.emailId
             this.datas[i].post_profileImg = res.data.profileImgURl
             this.datas[i].post_user = res.data.name
+            this.u_state =  res.data.state
+            this.u_city =  res.data.city
           })
 
           if(this.likes.length > 0){
@@ -152,6 +158,11 @@ export class HomeComponent implements OnInit {
             }
             this.postlikeuserId = Array.from(new Set(this.postlikeuserId)) //For Uniquee fecth
           }
+          // console.log("=-=-=-this.datas[i].imageUrl.length", this.datas[i].imageUrl.length)
+          // if(this.datas[i].imageUrl.length > 4){
+          //   this.showMore = true
+          //   $('#viewMore').html("<h3>View More</h3>")
+          // }
           if(this.datas[i].imageUrl.length == 2){
             this.twoimg = true
           }
@@ -161,6 +172,12 @@ export class HomeComponent implements OnInit {
         return this.datas
       }
     })
+
+    // this.authService.getUserProfile(this.activatedRoute.snapshot.paramMap.get('id')).subscribe(res => {
+    //   this.u_country =  res.data.country
+    //   this.u_state =  res.data.state
+    //   // this.u_city =  res.data.city
+    // })
 
     this.authService.getAllFriends(localStorage.getItem("token")).subscribe(res => {
       this.allUsers = res.AllUser[0]
@@ -210,11 +227,31 @@ export class HomeComponent implements OnInit {
     window.location.replace('');
   }
 
-  openTextDialog(){
-    this.dialog.open(PostModalComponent, {
+  openTextDialog(event: any){
+
+    //Multipul Image upload
+    if (event.target.files && event.target.files[0]) {
+      var filesAmount = event.target.files.length;
+      for (let i = 0; i < filesAmount; i++) {
+        var reader = new FileReader();
+
+        reader.onload = (event:any) => {
+           this.images.push(event.target.result);
+        }
+        reader.readAsDataURL(event.target.files[i]);
+        this.files_data.push(event.target.files[i]);
+      }
+    }
+
+    const dialogRef = this.dialog.open(PostModalComponent, {
       width: '550px',
       panelClass: 'custom-dialog-container',
-      data: { id: this.id }
+      data: { id: this.id, images: this.images, file: this.files_data }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.images = [];
+      this.files_data = [];
     });
   }
 
@@ -247,6 +284,8 @@ export class HomeComponent implements OnInit {
       this.images = [];
       this.files_data = [];
     });
+
+    // $('html').css('overflow','hidden')
   }
 
   temLike = 0;
@@ -320,42 +359,23 @@ export class HomeComponent implements OnInit {
   openModalt = 0
   // Open the Modal
   openModal(id: any){
-    // this.openModalt++
-    // console.log("=-=-=-this.openModalt", this.openModalt)
     this.authService.getAllFriendPost(this.token).subscribe(res => {
       this.viewImgdatas = res.posts
       let onlyMatch = this.viewImgdatas.find(({_id}) => _id === id)
       this.totalImg = onlyMatch.imageUrl.length
-      console.log("=-=-=-=-=-onlyImg", onlyMatch.imageUrl[0])
-      // if(this.openModalt > 1)
-      // {
-      //   this.viewImg = onlyMatch.imageUrl[0]
-      // }else{
         this.viewImg = onlyMatch.imageUrl
         this.closeId = onlyMatch._id
-      // }
     })
     this.modalopen = true
-    // slides[0].attr("style", "display: block")
-    // slides[1].attr("style", "display: none")
-    // slides[2].attr("style", "display: none")
-    // slides[3].attr("style", "display: none")
-    // console.log("=-=-=-slides", slides[0].style.display = "block")
-    // console.log("=-=-=-slides", slides[1].style.display = "none")
-    // console.log("=-=-=-slides", slides[2].style.display = "none")
-    // console.log("=-=-=-slides", slides[3].style.display = "none")
+    const body = document.body;
+    body.style.height = '100vh';
+    body.style.overflowY = 'hidden';
   }
 
   // Close the Modal
 	closeModal(close: any) {
-    // $("#posts_img").load(`home/${this.id}` + ' #posts_img');
     this.modalopen = false
-    // return false;
-    // window.location.href = `home/${this.id}?` + close
-    // return true;
-    // window.history.back();
     window.location.replace(`home/${this.id}`)
-    // window.location = window.location
 	}
 
   // countPlus = 1
@@ -363,10 +383,6 @@ export class HomeComponent implements OnInit {
 	plusSlides(n) {
     this.next_img = true
 		this.showImgSlides(this.slideIndex += n);
-    // if(this.openModalt > 1)
-    // {
-    //   this.showImgSlides(this.slideIndex += n);
-    // }
 	}
 
 	// Thumbnail image controls
@@ -383,11 +399,13 @@ export class HomeComponent implements OnInit {
     var i;
     for (i = 0; i < slides.length; i++) {
       slides[i].style.display = "none";
+      slides[this.slideIndex-1].style.overflow = "hidden";
     }
     if(slides[this.slideIndex-1] !== undefined)
     {
       slides[this.slideIndex-1].style.display = "block";
       slides[this.slideIndex-1].style.background = "#000000";
+      slides[this.slideIndex-1].style.overflow = "hidden";
     }
   };
 }

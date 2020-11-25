@@ -57,7 +57,7 @@ button.close{
 }
 
 .change_width{
-  border: 2px solid #555;
+  border: 2px solid #0b1222;
 }
 
 .hidden_last_img{
@@ -69,6 +69,8 @@ button.close{
   top: 75%;
   left: 75%;
   transform: translate(-50%, -50%);
-  font-size: 30px;
+  font-size: 21px;
   color: #ffffff;
+  bottom: auto;
+  right: auto;
 }

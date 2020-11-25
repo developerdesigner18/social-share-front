@@ -1,6 +1,6 @@
 <div class="say_words position-relative timeline" style="padding-bottom: 10px !important;">
-  <input #textmsgPost type="text" placeholder=" Say something!" (click)="openTextDialog()" *ngIf="current_user_profile">
-  <input #textmsgPost type="text" placeholder=" Say something to {{u_name}}!" (click)="openTextDialog()" *ngIf="!current_user_profile">
+  <input #textmsgPost type="text" placeholder=" Say something!" (click)="openTextDialog($event)" *ngIf="current_user_profile">
+  <input #textmsgPost type="text" placeholder=" Say something to {{u_name}}!" (click)="openTextDialog($event)" *ngIf="!current_user_profile">
   <div class="slider_bid_like-share d-flex flex-column">
     <input type="file" style="display:none" #file class="btn btn-primary" (change)="openDialog($event)" multiple="" />
     <div class="take_action post_take_action" (click)="file.click();" title="Photos/Videos">
@@ -12,45 +12,25 @@
   </div>
 </div>
 <ng-container *ngIf="notfound !== 404">
-<div *ngFor="let data of datas; let i = index" class="main_post_content d-flex flex-column timeline">
-  <div class="d-flex" style="width: 100%">
-    <div class="profile_pic_profile position-relative" (mouseover)="showbasicProfile[i]=true" (mouseleave)="showbasicProfile[i]=false">
+<div *ngFor="let data of datas; let i = index" class="main_post_content d-flex flex-column timeline" >
+  <div class="d-flex" style="width: 100%" (mouseleave)="showbasicProfile2[i]=false">
+    <div class="profile_pic_profile position-relative">
       <img [src]="profileImg" onerror="this.src='/assets/images/default_user.jpg';">
-
-      <div class="basic_info" *ngIf="showbasicProfile[i]" >
-        <div class="d-flex">
-          <img [src]="profileImg" onerror="this.src='/assets/images/default_user.jpg';" class="hover-info-img">
-          <div style="padding: 10px;">
-            <div class="profile_basic_info">{{u_name}}</div>
-            <div class="profile_basic_info">{{u_designation}}</div>
-            <div class="profile_basic_info">{{u_email}}</div>
-          </div>
-        </div>
-        <div class="full-width-50">
-          <i class="fa fa-comments-o" style="margin: 0px 11px 0px 18px"></i><div style="display: contents;">Edit Profile</div>
-        </div>
-        <div class="full-width-20" (click)="showProfile()" title="View as">
-          <i class="fas fa-eye" style="margin-left: 15px"></i>
-        </div>
-        <div class="full-width-20">
-          <i class="fas fa-ellipsis-h" style="margin-left: 15px"></i>
-        </div>
-      </div>
     </div>
-    <div class="name_and_desc" style="width: 100%" (mouseover)="showbasicProfile2[i]=true" (mouseleave)="showbasicProfile2[i]=false">
+    <div class="name_and_desc" style="width: 100%" >
       <div class="d-flex justify-content-between align-items-center">
-        <a href="profile/{{data.userId}}"><div class="profile_name_of_poster">{{u_name}}</div></a>
+        <a href="profile/{{data.userId}}" (mouseover)="showbasicProfile2[i]=true"><div class="profile_name_of_poster">{{u_name}}</div></a>
         <div class="province d-flex align-items-center">
           <img src="assets/images/add_ob.png">
-          <div>Pulshar, MB</div>
+          <div>{{u_city}}, {{u_state}}</div>
         </div>
-        <div class="basic_info2" *ngIf="showbasicProfile2[i]" >
+        <div class="basic_info2" *ngIf="showbasicProfile2[i]" (mouseleave)="showbasicProfile2[i]=false">
           <div class="d-flex">
             <img [src]="profileImg" onerror="this.src='/assets/images/default_user.jpg';" class="hover-info-img2">
             <div style="padding: 10px;">
               <div class="profile_basic_info">{{u_name}}</div>
-              <div class="profile_basic_info">{{u_designation}}</div>
-              <div class="profile_basic_info">{{u_email}}</div>
+              <div class="profile_basic_info"><i class="fas fa-user-tie" style="margin-right: 10px"></i>{{u_designation}}</div>
+              <div class="profile_basic_info"><i class="fas fa-envelope" style="margin-right: 10px"></i>{{u_email}}</div>
             </div>
           </div>
           <div class="full-width-50">
@@ -175,8 +155,8 @@
 </ng-container>
 
 <!-- The Modal/Lightbox -->
-<div>
-  <div id="myModal" class="img-modal" [hidden]="modalProfopen">
+<div *ngIf="!modalProfopen">
+  <div id="myModal" class="img-modal">
     <div class="img-modal-content">
       <div class="mySlides" *ngFor="let imageurl of viewImg;let i = index;first as isFirst;">
         <span class="close_img cursor" (click)="closeModal();" >&times;</span>

@@ -1,0 +1,22 @@
+input{
+  background-color: #f1f1f1;
+    border: 0;
+    /* padding: 5px 10px; */
+    /* width: 100%; */
+    border-radius: 4px;
+    height: 40px;
+    padding-right: 12.6%;
+    color: #003459;
+    font-size: 14px;
+    padding-left: 15px;
+}
+
+button{
+  border: 1px solid #f0f8ff;
+    background-color: #f0f8ff;
+    /* height: 0px; */
+    color: #fa9000;
+    margin-left: 5px;
+    height: 38px;
+    padding: 0px 9px;
+}

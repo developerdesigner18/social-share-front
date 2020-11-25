@@ -10,6 +10,10 @@ import { ActivatedRoute} from '@angular/router';
 export class ContactComponent implements OnInit {
   u_email = '';
   u_website = 'http://159.203.67.155/'
+  mobile: boolean;
+  address: boolean;
+  website: boolean;
+  religious: boolean;
 
   constructor(
     public authService: AuthService,
@@ -29,6 +33,29 @@ export class ContactComponent implements OnInit {
    }
 
   ngOnInit(): void {
+  }
+
+  newMobile(){
+    this.mobile = true
+  }
+
+  newAddress(){
+    this.address = true
+  }
+
+  newWebsites(){
+    this.website = true
+  }
+
+  newReligious(){
+    this.religious = true
+  }
+
+  Cancel(){
+    this.mobile = false
+    this.address = false
+    this.website = false
+    this.religious = false
   }
 
 }

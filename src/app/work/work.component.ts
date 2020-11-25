@@ -8,6 +8,9 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./work.component.css']
 })
 export class WorkComponent implements OnInit {
+  work: boolean;
+  university: boolean;
+  school: boolean;
 
   constructor(
     public router: Router,
@@ -24,6 +27,25 @@ export class WorkComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+
+  newWork(){
+    this.work = true
+  }
+
+  newUniversity(){
+    this.university = true
+  }
+
+  newSchool(){
+    this.school = true
+  }
+
+  Cancel(){
+    this.work = false
+    this.university = false
+    this.school = false
   }
 
 }

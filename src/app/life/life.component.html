@@ -2,7 +2,11 @@
   <div class="work_tab">
     <h6>Life events</h6>
   </div>
-  <div style="margin-bottom: 20px;">
+  <div style="margin-bottom: 20px;" (click)="newLifeEvent()">
     <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add life event</a>
+  </div>
+  <div class="life" *ngIf="life">
+    <textarea name="life" placeholder="Enter Your Life Event"></textarea>
+    <button type="button" name="button" (click)="Cancel()">Cancel</button>
   </div>
 </div>

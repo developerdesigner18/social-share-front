@@ -3,8 +3,8 @@ import { Injectable, Injector } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { MatDialog } from  '@angular/material/dialog';
-// import { environment } from '../environments/environment';
-import { environment } from '../environments/environment.prod';
+import { environment } from '../environments/environment';
+// import { environment } from '../environments/environment.prod';
 
 import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
@@ -80,6 +80,7 @@ export class AuthService {
     localStorage.removeItem('currentUser');
     localStorage.removeItem('token');
     localStorage.removeItem('friendId');
+    // window.location.replace('');
   }
 
   getUserProfile(id): Observable<any> {
@@ -323,6 +324,7 @@ export class AuthService {
     this.headers.append('token', u_token)
     return this.httpClient.get(`${environment.apiUrl}/api/photos/homePost`, { headers: {token: u_token}}).pipe(
       map((res: Response) => {
+        console.log("=-=-=-=-res", res)
         return res || {}
       }),
       catchError(this.handleError)

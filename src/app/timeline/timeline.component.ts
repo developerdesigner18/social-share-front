@@ -47,6 +47,9 @@ export class TimelineComponent implements OnInit {
   @ViewChild('textmsgPost') postMesssgeElement: any;
 
   public datas;
+  u_country: any;
+  u_state: any;
+  u_city: any;
   constructor(
     public  dialog:  MatDialog,
     private activatedRoute: ActivatedRoute,
@@ -61,6 +64,12 @@ export class TimelineComponent implements OnInit {
       this.u_name =  res.data.name
       this.u_designation =  res.data.designation
       this.u_email =  res.data.emailId
+    })
+
+    this.authService.getUserProfile(this.id).subscribe(res => {
+      // this.u_country =  res.data.country
+      this.u_state =  res.data.state
+      this.u_city =  res.data.city
     })
 
     this.authService.getProfilePost(this.id).subscribe(res => {
@@ -110,14 +119,28 @@ export class TimelineComponent implements OnInit {
     $(`.comments_container_${postId}`).toggle();
   }
 
-  openTextDialog(){
-    const dialogRefTex = this.dialog.open(PostModalComponent, {
+  openTextDialog(event: any){
+    //Multipul Image upload
+    if (event.target.files && event.target.files[0]) {
+      var filesAmount = event.target.files.length;
+      for (let i = 0; i < filesAmount; i++) {
+        var reader = new FileReader();
+
+        reader.onload = (event:any) => {
+           this.images.push(event.target.result);
+        }
+        reader.readAsDataURL(event.target.files[i]);
+        this.files_data.push(event.target.files[i]);
+      }
+    }
+
+    const dialogRef = this.dialog.open(PostModalComponent, {
       width: '550px',
       panelClass: 'custom-dialog-container',
-      data: { id: this.id }
+      data: { id: this.id, images: this.images, file: this.files_data }
     });
 
-    dialogRefTex.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe(result => {
       this.images = [];
       this.files_data = [];
     });
@@ -216,6 +239,9 @@ export class TimelineComponent implements OnInit {
       this.viewImg = onlyMatch.imageUrl
     })
     this.modalProfopen = false
+    const body = document.body;
+    body.style.height = '100vh';
+    body.style.overflowY = 'hidden';
   }
 
   // Close the Modal

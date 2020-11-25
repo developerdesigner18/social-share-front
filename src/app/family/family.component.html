@@ -2,14 +2,22 @@
   <div class="work_tab">
     <h6>Relationship</h6>
   </div>
-  <div>
+  <div (click)="newStatus()">
     <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add relationship status</a>
+  </div>
+  <div class="status" *ngIf="status">
+    <input type="text" name="" value="" placeholder="Add your relationship status">
+    <button type="button" name="button" (click)="Cancel()">Cancel</button>
   </div>
   <br/>
   <div class="work_tab">
     <h6>Family Members</h6>
   </div>
-  <div>
+  <div (click)="newFamily()">
     <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add family member</a>
+  </div>
+  <div class="family" *ngIf="family">
+    <input type="text" name="" value="" placeholder="Add family members">
+    <button type="button" name="button" (click)="Cancel()">Cancel</button>
   </div>
 </div>

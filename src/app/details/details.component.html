@@ -2,31 +2,48 @@
   <div class="work_tab">
     <h6>About You</h6>
   </div>
-  <div style="margin-bottom: 20px;">
-    <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Write some deatils about yourself</a>
+  <div style="margin-bottom: 20px;" (click)="aboutDetails()">
+    <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Write some details about yourself</a>
+  </div>
+  <div class="details" *ngIf="about">
+    <input type="text" name="" value="" placeholder="Write your details">
+    <button type="button" name="button" (click)="Cancel()">Cancel</button>
   </div>
   <div class="work_tab">
     <h6>Names pronunciation</h6>
   </div>
-  <div style="margin-bottom: 20px;">
+
+  <div style="margin-bottom: 20px;" (click)="newPronunciation()">
     <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add a name pronunciation</a>
+  </div>
+  <div class="pronunciation" *ngIf="name">
+    <input type="text" name="" value="" placeholder="Add a new pronunciation">
+    <button type="button" name="button" (click)="Cancel()">Cancel</button>
   </div>
   <div class="work_tab">
     <h6>Other Names</h6>
   </div>
-  <div style="margin-bottom: 20px;">
+  <div style="margin-bottom: 20px;" (click)="newNickname()">
     <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add a nickname</a>
+  </div>
+  <div class="nickname" *ngIf="nickname">
+    <input type="text" name="" value="" placeholder="Add your nickname">
+    <button type="button" name="button" (click)="Cancel()">Cancel</button>
   </div>
   <div class="work_tab">
     <h6>Favourite Quotes</h6>
   </div>
-  <div style="margin-bottom: 20px;">
-    <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add a nickname</a>
+  <div style="margin-bottom: 20px;" (click)="newQuotes()">
+    <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add a quotes</a>
   </div>
-  <div class="work_tab">
+  <div class="quotes" *ngIf="quotes">
+    <input type="text" name="" value="" placeholder="Add new quotes">
+    <button type="button" name="button" (click)="Cancel()">Cancel</button>
+  </div>
+  <!-- <div class="work_tab">
     <h6>Blood donations</h6>
-  </div>
-  <div style="margin-bottom: 20px;">
+  </div> -->
+  <!-- <div style="margin-bottom: 20px;">
     <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Learn about blood donor on social share</a>
-  </div>
+  </div> -->
 </div>

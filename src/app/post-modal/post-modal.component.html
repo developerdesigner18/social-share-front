@@ -24,25 +24,25 @@
         </video> -->
       </ng-container>
       <ng-container *ngIf="twoimg && !threeimg && !fiveimg && !fourimg">
-        <img #postImage class="change_width" style="width: 50%; height: 400px;" [src]="image" *ngFor="let image of images; let i = index;"/>
+        <img #postImage class="change_width" style="width: 50%; height: 243px; object-fit: cover;" [src]="image" *ngFor="let image of images; let i = index;"/>
         <!-- <video #postImage controls class="video_set_size" *ngFor="let image of images;">
           <source [src]="image" type="video/mp4">
         </video> -->
       </ng-container>
       <ng-container *ngIf="threeimg && !twoimg && !fiveimg && !fourimg">
-        <img #postImage class="change_width" style="width: {{(isFirst) ? '100%' : '50%'}}; height: 400px;" [src]="image" *ngFor="let image of images; let i = index; first as isFirst"/>
+        <img #postImage class="change_width" style="width: {{(isFirst) ? '100%' : '50%'}}; height: 243px; object-fit: cover;" [src]="image" *ngFor="let image of images; let i = index; first as isFirst"/>
         <!-- <video #postImage controls class="video_set_size" *ngFor="let image of images;">
           <source [src]="image" type="video/mp4">
         </video> -->
       </ng-container>
       <ng-container *ngIf="fourimg && !twoimg && !threeimg && !fiveimg">
-        <img #postImage class="change_width" style="width: '50%'; height: 400px;" [src]="image" *ngFor="let image of images; let i = index;"/>
+        <img #postImage class="change_width" style="width: '50%'; height: 243px; object-fit: cover;" [src]="image" *ngFor="let image of images; let i = index;"/>
         <!-- <video #postImage controls class="video_set_size" *ngFor="let image of images;">
           <source [src]="image" type="video/mp4">
         </video> -->
       </ng-container>
       <ng-container *ngIf="fiveimg && !fourimg && !twoimg && !threeimg">
-        <img #postImage class="{{(i + 1 > 4) ? 'hidden_last_img' : 'change_width'}}" style="width: 50%; height: 400px;" [src]="image" *ngFor="let image of images; let i = index; last as isLast"/>
+        <img #postImage class="{{(i + 1 > 4) ? 'hidden_last_img' : 'change_width'}}" style="width: 50%; height: 243px; object-fit: cover;" [src]="image" *ngFor="let image of images; let i = index; last as isLast"/>
         <div class="bottom-left set_view_more">View More</div>
         <!-- <video #postImage controls class="video_set_size" *ngFor="let image of images;">
           <source [src]="image" type="video/mp4">
@@ -62,8 +62,8 @@
   <br/>
   <input type="file" style="display:none" #file class="btn btn-primary" (change)="openNewDialog($event)" multiple="" />
   <div style="border: 1px solid #000000; border-radius: 6px; margin: 5px 20px 10px 0px; padding: 5px;" (click)="file.click();">
-    <img src='/assets/images/photos.png' style="width: 5%; float: right;" class="create_post_photo_icon" />
-    <h6>Upload Photos/Videos</h6>
+    <img src='/assets/images/photos.png' style="width: 5%; float: right; margin-top: -2px;" class="create_post_photo_icon" />
+    <h6 style="margin-bottom: 0px; ">Upload Photos/Videos</h6>
   </div>
   <div style="margin-right: 20px;">
     <button type="button" class="btn btn-primary" style="width: 100%" (click)="postSave()">Post</button>
