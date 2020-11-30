@@ -16,9 +16,6 @@ export class WorkComponent implements OnInit {
     public router: Router,
     public authService: AuthService
   ) {
-    console.log("-=-=-=-=-=-friendId")
-    console.log(localStorage.getItem('friendId'))
-    console.log("-=-=-=-=-=-friendId")
     if(localStorage.getItem('friendId')){
       this.authService.getFriendData(localStorage.getItem('friendId')).subscribe(res => {
         // console.log("--=-=-=-=-=-=-res", res)

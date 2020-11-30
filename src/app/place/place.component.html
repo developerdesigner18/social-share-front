@@ -10,7 +10,7 @@
     <div class="col-md-5" style="font-size: 14px">
       <!-- <span style="font-weight: 500;">{{u_city}}, {{u_state}}</span> -->
       <div>Current City</div>
-      <div style="margin-bottom: 10px;" (click)="newCurrent()">
+      <div class="add-city" (click)="newCurrent()">
         <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add your current city</a>
       </div>
       <div class="current" *ngIf="current">

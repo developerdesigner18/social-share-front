@@ -13,7 +13,11 @@ export class OverviewComponent implements OnInit {
   u_state = '';
   u_country = '';
   u_city = '';
-
+  u_number ='';
+  u_address = '';
+  u_website = '';
+  u_religious = '';
+  u_status = '';
 
   f_designation = '';
   f_state = '';
@@ -27,9 +31,7 @@ export class OverviewComponent implements OnInit {
     public router: Router
   ) {
     let id = this.activatedRoute.parent.parent.params['value']['id'];
-
     if(this.router.url == '/friends/' + this.activatedRoute.parent.parent.params['value']['id'] + '/about/overview'){
-    // if(localStorage.getItem('friendId')){
       this.authService.getProfileForFriend(localStorage.getItem('friendId')).subscribe(res => {
         this.u_designation =  res.data.designation
         this.u_country =  res.data.country
@@ -43,6 +45,16 @@ export class OverviewComponent implements OnInit {
         this.u_country =  res.data.country
         this.u_state =  res.data.state
         this.u_city =  res.data.city
+      })
+
+      this.authService.getAllData(id).subscribe(res => {
+        if(res.userData[0] !== undefined) {
+          this.u_number = res.userData[0].mobileNumber;
+          this.u_address = res.userData[0].address;
+          this.u_website = res.userData[0].website;
+          this.u_religious = res.userData[0].basicInfo;
+          this.u_status = res.userData[0].relationshipStatus;
+        }
       })
     }
 

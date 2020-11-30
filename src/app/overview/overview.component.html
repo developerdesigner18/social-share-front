@@ -14,4 +14,39 @@
       <ng-template #no_country>Not mention location</ng-template>
     </div>
 	</div>
+  <div class="overview_tab">
+		<i class="fas fa-phone"></i>
+    <div>
+  		<div *ngIf="u_number; else no_number"><span>Phone Number <b>{{u_number}}</b></span></div>
+      <ng-template #no_number>Not mention number</ng-template>
+    </div>
+  </div>
+  <div class="overview_tab">
+		<i class="fas fa-envelope"></i>
+    <div>
+  		<div *ngIf="u_address; else no_address"><span>Address <b>{{u_address}}</b></span></div>
+      <ng-template #no_address>Not mention address</ng-template>
+    </div>
+  </div>
+  <div class="overview_tab">
+		<i class="fas fa-link"></i>
+    <div>
+  		<div *ngIf="u_website; else no_website"><span>Website <b>{{u_website}}</b></span></div>
+      <ng-template #no_website>Not mention website</ng-template>
+    </div>
+  </div>
+  <div class="overview_tab">
+		<i class="fas fa-pray"></i>
+    <div>
+  		<div *ngIf="u_religious; else no_religious"><span>Religious <b>{{u_religious}}</b></span></div>
+      <ng-template #no_religious>Not mention religious</ng-template>
+    </div>
+  </div>
+  <div class="overview_tab">
+		<i class="fas fa-handshake-o"></i>
+    <div>
+  		<div *ngIf="u_status; else no_status"><span>Relationship Status <b>{{u_status}}</b></span></div>
+      <ng-template #no_status>Not mention status</ng-template>
+    </div>
+  </div>
 </div>

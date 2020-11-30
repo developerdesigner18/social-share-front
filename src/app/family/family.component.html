@@ -2,12 +2,30 @@
   <div class="work_tab">
     <h6>Relationship</h6>
   </div>
-  <div (click)="newStatus()">
+  <div class="relationShip" (click)="newStatus()" *ngIf="shows5">
     <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add relationship status</a>
   </div>
-  <div class="status" *ngIf="status">
+
+  <div *ngIf="display5" class="relationship-update">
+    <div class="relation-status">
+      <i class="fas fa-handshake-o handshake-d"> </i>
+      <p>{{relationshipStatus}}</p>
+    </div>
+    <!-- <button type="button" name="button" (click)="updateStatus(relationshipStatus)">Update</button> -->
+    <div (click)="updateStatus(relationshipStatus)">
+      <i class="pencil-icon fa fa-pencil"></i>
+    </div>
+  </div>
+
+  <!-- <div class="status" *ngIf="status">
     <input type="text" name="" value="" placeholder="Add your relationship status">
     <button type="button" name="button" (click)="Cancel()">Cancel</button>
+  </div> -->
+
+  <div class="mobile" *ngIf="status">
+    <input type="text" [(ngModel)]="relationshipStatus"  name="relationship" id="relationship" value="" placeholder="Add relationship status">
+    <button type="button" name="button" (click)="Cancel()">Cancel</button>
+    <button type="button" name="button" (click)="addStatus(relationshipStatus)">Save</button>
   </div>
   <br/>
   <div class="work_tab">
@@ -16,8 +34,8 @@
   <div (click)="newFamily()">
     <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add family member</a>
   </div>
-  <div class="family" *ngIf="family">
+  <!-- <div class="family" *ngIf="family">
     <input type="text" name="" value="" placeholder="Add family members">
     <button type="button" name="button" (click)="Cancel()">Cancel</button>
-  </div>
+  </div> -->
 </div>

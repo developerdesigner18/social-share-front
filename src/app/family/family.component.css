@@ -20,3 +20,30 @@ button{
     height: 38px;
     padding: 0px 9px;
 }
+
+.relationship-update{
+  width: 95%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 16px !important;
+}
+
+.pencil-icon{
+  background: #f0f8ff;
+  padding: 5px;
+  color: #043458;
+}
+
+.relation-status {
+  display: flex;
+  align-items: center;
+}
+
+.relation-status p {
+    margin-bottom: 0;
+}
+
+.handshake-d{
+  margin-right: 10px;
+}

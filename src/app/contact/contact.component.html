@@ -2,32 +2,49 @@
   <div class="work_tab">
     <h6>Conatct info</h6>
   </div>
-  <div style="margin-bottom: 10px;" (click)="newMobile()">
+  <!-- Mobile Number -->
+  <div class="mobile" style="margin-bottom: 10px;" (click)="newMobile()" *ngIf="shows">
     <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add mobile phone</a>
   </div>
-  <div class="mobile" *ngIf="mobile">
-    <input type="text" name="" value="" placeholder="Add mobile number">
-    <button type="button" name="button" (click)="Cancel()">Cancel</button>
+  <div  *ngIf="display1">
+    <i class="fa fa-phone"> </i> &nbsp;{{number}}
+    <button type="button" name="button" (click)="updateNumber(number)">Update</button>
   </div>
-  <div style="margin-bottom: 10px;" (click)="newAddress()">
+  <div class="mobile" *ngIf="mobile">
+    <input type="text" [(ngModel)]="number"  name="number" id="number" value="" placeholder="Add mobile number">
+    <button type="button" name="button" (click)="Cancel()">Cancel</button>
+    <button type="button" name="button" (click)="addNumber(number)">Save</button>
+  </div>
+  <!-- Address -->
+  <div class="address" style="margin-bottom: 10px;" (click)="newAddress()" *ngIf="shows1">
     <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add your address</a>
   </div>
+  <div  *ngIf="display2">
+    <i class="fa fa-envelope"> </i> &nbsp;{{location}}
+    <button type="button" name="button" (click)="updateAddress(location)">Update</button>
+  </div>
   <div class="address" *ngIf="address">
-    <input type="text" name="" value="" placeholder="Add your address">
+    <input type="text"  [(ngModel)]="location" name="location" value="" placeholder="Add your address">
     <button type="button" name="button" (click)="Cancel()">Cancel</button>
+    <button type="button" name="button" (click)="addAddress(location)">Save</button>
   </div>
-  <div *ngIf="u_email" style="margin-bottom: 25px;">
+  <!-- <div *ngIf="u_email" style="margin-bottom: 25px;">
     <i class="fa fa-envelope"></i> &nbsp;{{u_email}}
-  </div>
+  </div> -->
   <div class="work_tab">
     <h6>Website and social links</h6>
   </div>
-  <div style="margin-bottom: 10px;" (click)="newWebsites()">
+  <div class="website" style="margin-bottom: 10px;" (click)="newWebsites()" *ngIf="shows2">
     <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add a Websites</a>
   </div>
+  <div  *ngIf="display3">
+    <i class="fa fa-link"> </i> &nbsp;{{link}}
+    <button type="button" name="button" (click)="updateWebsite(link)">Update</button>
+  </div>
   <div class="website" *ngIf="website">
-    <input type="text" name="" value="" placeholder="Add a Websites">
+    <input type="text" [(ngModel)]="link" name="link" value="" placeholder="Add a Websites">
     <button type="button" name="button" (click)="Cancel()">Cancel</button>
+    <button type="button" name="button" (click)="addWebsite(link)">Save</button>
   </div>
   <!-- <div style="margin-bottom: 10px;">
     <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add a social link</a>
@@ -35,14 +52,22 @@
   <div *ngIf="u_website" style="margin-bottom: 25px;">
     <i class="fa fa-share-alt-square"></i> &nbsp;<a href="{{u_website}}" target="_blank">www.socialshare.com</a>
   </div> -->
-  <div class="work_tab">
+  <div class="work_tab" >
     <h6>Basic info</h6>
 	</div>
-  <div (click)="newReligious()">
+  <div (click)="newReligious()" *ngIf="shows3">
     <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add your religious views</a>
   </div>
-  <div class="religious" *ngIf="religious">
-    <input type="text" name="" value="" placeholder="Add new quotes">
-    <button type="button" name="button" (click)="Cancel()">Cancel</button>
+  <div  *ngIf="display4">
+    <i class="fas fa-pray"> </i> &nbsp;{{caste}}
+    <button type="button" name="button" (click)="updateBasicInfo(caste)">Update</button>
   </div>
+  <div class="religious"  *ngIf="religious">
+    <input type="text" [(ngModel)]="caste" name="" value="" placeholder="Add new quotes">
+    <button type="button" name="button" (click)="Cancel()">Cancel</button>
+    <button type="button" name="button" (click)="addBasicInfo(caste)">Save</button>
+  </div>
+  <!-- <div>
+    <p> {{u_number}} </p>
+  </div> -->
 </div>
