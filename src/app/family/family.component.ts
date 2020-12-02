@@ -17,6 +17,7 @@ export class FamilyComponent implements OnInit {
 
   display5: any
   relationshipStatus: any
+  u_status: any
 
   constructor(
     private authService: AuthService,
@@ -26,7 +27,9 @@ export class FamilyComponent implements OnInit {
 
     this.authService.getAllData(id).subscribe(res => {
 
-      if (res.userData[0].relationshipStatus == null) {
+      if (res.userData[0] == null) {
+        this.shows5 = true
+      } else if (res.userData[0].relationshipStatus == null) {
         this.shows5 = true
         this.relationshipStatus = res.userData[0].relationshipStatus
       } else {
@@ -44,6 +47,7 @@ export class FamilyComponent implements OnInit {
   addStatus(relationshipStatus: any){
     this.authService.addStatus(relationshipStatus).subscribe(res => {
       if (res['success']) {
+        this.u_status = false
         this.status = false
         $(`.relationShip`).css('display','none');
         this.display5 = true
@@ -54,8 +58,19 @@ export class FamilyComponent implements OnInit {
   updateStatus(relationshipStatus: any){
     this.authService.addStatus(relationshipStatus).subscribe(res => {
       if (res['success']) {
-        this.status = true
+        this.u_status = true
         $(`.relationShip`).css('display','none');
+        this.display5 = false
+      }
+    })
+  }
+
+  deleteStatus(relationshipStatus: any){
+    this.authService.deleteStatus(relationshipStatus).subscribe(res => {
+      if (res['success']) {
+        this.u_status = false
+        this.shows5 = true
+        $(`.relationShip`).css('display','block');
         this.display5 = false
       }
     })
@@ -73,6 +88,11 @@ export class FamilyComponent implements OnInit {
     this.display5 = true
     this.status = false
     this.family = false
+  }
+
+  u_cancel(){
+    this.u_status = false
+    this.display5 = true
   }
 
 }

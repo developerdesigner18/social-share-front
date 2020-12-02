@@ -18,6 +18,7 @@ export class OverviewComponent implements OnInit {
   u_website = '';
   u_religious = '';
   u_status = '';
+  u_gender = '';
 
   f_designation = '';
   f_state = '';
@@ -54,6 +55,7 @@ export class OverviewComponent implements OnInit {
           this.u_website = res.userData[0].website;
           this.u_religious = res.userData[0].basicInfo;
           this.u_status = res.userData[0].relationshipStatus;
+          this.u_gender = res.userData[0].gender;
         }
       })
     }

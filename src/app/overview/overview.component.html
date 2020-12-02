@@ -24,8 +24,8 @@
   <div class="overview_tab">
 		<i class="fas fa-envelope"></i>
     <div>
-  		<div *ngIf="u_address; else no_address"><span>Address <b>{{u_address}}</b></span></div>
-      <ng-template #no_address>Not mention address</ng-template>
+  		<div *ngIf="u_address; else no_address"><span>Email Address <b>{{u_address}}</b></span></div>
+      <ng-template #no_address>Not mention email address</ng-template>
     </div>
   </div>
   <div class="overview_tab">
@@ -47,6 +47,13 @@
     <div>
   		<div *ngIf="u_status; else no_status"><span>Relationship Status <b>{{u_status}}</b></span></div>
       <ng-template #no_status>Not mention status</ng-template>
+    </div>
+  </div>
+  <div class="overview_tab">
+		<i class="fas fa-user"></i>
+    <div>
+  		<div *ngIf="u_gender; else no_gender"><span>Gender <b>{{u_gender}}</b></span></div>
+      <ng-template #no_gender>Not mention gender</ng-template>
     </div>
   </div>
 </div>

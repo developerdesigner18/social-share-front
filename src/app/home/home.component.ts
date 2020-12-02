@@ -99,7 +99,6 @@ export class HomeComponent implements OnInit {
         console.log("-=-=-=-=-Welcome to social share")
       }else{
         this.datas = res.posts
-        console.log("=-=-=-=-=-=this.datas", this.datas)
         const { image, thumbImage, alt, title } = res.posts;
         for(let i = 0; i < this.datas.length; i++){
           const images = []
@@ -107,6 +106,8 @@ export class HomeComponent implements OnInit {
           this.likes = this.datas[i].like
           this.comments = this.datas[i].comment.length
           this.url.push(this.datas[i].imageUrl)
+          this.datas[i].state =  (this.datas[i].state === undefined) ? 'Not mention' : this.datas[i].state
+          this.datas[i].city =  (this.datas[i].city === undefined) ? 'Not mention' : this.datas[i].city
           // this.datas[i].imageUrl.image = this.datas[i].imageUrl
           // this.datas[i].imageUrl.thumbImage = this.datas[i].imageUrl
           // this.postImageData = this.datas[i].imageUrl.reduce(
@@ -158,26 +159,14 @@ export class HomeComponent implements OnInit {
             }
             this.postlikeuserId = Array.from(new Set(this.postlikeuserId)) //For Uniquee fecth
           }
-          // console.log("=-=-=-this.datas[i].imageUrl.length", this.datas[i].imageUrl.length)
-          // if(this.datas[i].imageUrl.length > 4){
-          //   this.showMore = true
-          //   $('#viewMore').html("<h3>View More</h3>")
-          // }
+
           if(this.datas[i].imageUrl.length == 2){
             this.twoimg = true
           }
         }
-        // console.log("=-=-=-=-this.imageObject", this.imageObject)
-        // this.ngOnInit()
         return this.datas
       }
     })
-
-    // this.authService.getUserProfile(this.activatedRoute.snapshot.paramMap.get('id')).subscribe(res => {
-    //   this.u_country =  res.data.country
-    //   this.u_state =  res.data.state
-    //   // this.u_city =  res.data.city
-    // })
 
     this.authService.getAllFriends(localStorage.getItem("token")).subscribe(res => {
       this.allUsers = res.AllUser[0]

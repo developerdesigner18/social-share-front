@@ -11,20 +11,22 @@
       <i class="fas fa-handshake-o handshake-d"> </i>
       <p>{{relationshipStatus}}</p>
     </div>
-    <!-- <button type="button" name="button" (click)="updateStatus(relationshipStatus)">Update</button> -->
     <div (click)="updateStatus(relationshipStatus)">
       <i class="pencil-icon fa fa-pencil"></i>
     </div>
+    <div (click)="deleteStatus(relationshipStatus)">
+      <i class="pencil-icon fa fa-trash"></i>
+    </div>
   </div>
-
-  <!-- <div class="status" *ngIf="status">
-    <input type="text" name="" value="" placeholder="Add your relationship status">
-    <button type="button" name="button" (click)="Cancel()">Cancel</button>
-  </div> -->
 
   <div class="mobile" *ngIf="status">
     <input type="text" [(ngModel)]="relationshipStatus"  name="relationship" id="relationship" value="" placeholder="Add relationship status">
     <button type="button" name="button" (click)="Cancel()">Cancel</button>
+    <button type="button" name="button" (click)="addStatus(relationshipStatus)">Save</button>
+  </div>
+  <div class="u_relationship" *ngIf="u_status">
+    <input type="text" [(ngModel)]="relationshipStatus"  name="relationship" id="relationship" value="" placeholder="Add relationship status">
+    <button type="button" name="button" (click)="u_cancel()">Cancel</button>
     <button type="button" name="button" (click)="addStatus(relationshipStatus)">Save</button>
   </div>
   <br/>

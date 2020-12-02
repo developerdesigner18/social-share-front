@@ -33,6 +33,7 @@ button{
   background: #f0f8ff;
   padding: 5px;
   color: #043458;
+  border-radius: 50%;
 }
 
 .relation-status {

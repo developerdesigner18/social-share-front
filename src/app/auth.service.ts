@@ -322,7 +322,7 @@ export class AuthService {
 
   getAllFriendPost(u_token): Observable<any> {
     this.headers.append('token', u_token)
-    return this.httpClient.get(`${environment.apiUrl}/api/photos/homePost`, { headers: {token: u_token}}).pipe(
+    return this.httpClient.get(`${environment.apiUrl}/api/photos/homePagePost`, { headers: {token: u_token}}).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -419,6 +419,124 @@ export class AuthService {
   addStatus(relationshipStatus: any): Observable<any>{
     let u_token = localStorage.getItem('token')
     return this.httpClient.post(`${environment.apiUrl}/api/about/updateAbout`, {relationshipStatus: relationshipStatus}, { headers: {token: u_token}}).pipe(
+      map((res: Response) => {
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  //AboutYourSelf
+  addDetails(aboutYourself: any): Observable<any>{
+    let u_token = localStorage.getItem('token')
+    return this.httpClient.post(`${environment.apiUrl}/api/about/updateAbout`, {aboutYourself: aboutYourself}, { headers: {token: u_token}}).pipe(
+      map((res: Response) => {
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  //Add pronunciation
+  addPronunciation(pronunciation: any): Observable<any>{
+    let u_token = localStorage.getItem('token')
+    return this.httpClient.post(`${environment.apiUrl}/api/about/updateAbout`, {pronunciation: pronunciation}, { headers: {token: u_token}}).pipe(
+      map((res: Response) => {
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  //Add nickname
+  addNickname(otherName: any): Observable<any>{
+    let u_token = localStorage.getItem('token')
+    return this.httpClient.post(`${environment.apiUrl}/api/about/updateAbout`, {otherName: otherName}, { headers: {token: u_token}}).pipe(
+      map((res: Response) => {
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  //Add Quotes
+  addQuotes(quote: any): Observable<any>{
+    let u_token = localStorage.getItem('token')
+    return this.httpClient.post(`${environment.apiUrl}/api/about/updateAbout`, {quote: quote}, { headers: {token: u_token}}).pipe(
+      map((res: Response) => {
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  //Delete Data
+  deleteNumber(mobileNumber): Observable<any>{
+    let u_token = localStorage.getItem('token')
+    return this.httpClient.post(`${environment.apiUrl}/api/about/deleteAbout`,{ mobileNumber: mobileNumber }, { headers: {token: u_token}}).pipe(
+      map((res: Response) => {
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  deleteAddress(address): Observable<any>{
+    let u_token = localStorage.getItem('token')
+    return this.httpClient.post(`${environment.apiUrl}/api/about/deleteAbout`,{ address: address }, { headers: {token: u_token}}).pipe(
+      map((res: Response) => {
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  deleteWebsite(website): Observable<any>{
+    let u_token = localStorage.getItem('token')
+    return this.httpClient.post(`${environment.apiUrl}/api/about/deleteAbout`,{ website: website }, { headers: {token: u_token}}).pipe(
+      map((res: Response) => {
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  deleteBasicInfo(basicInfo): Observable<any>{
+    let u_token = localStorage.getItem('token')
+    return this.httpClient.post(`${environment.apiUrl}/api/about/deleteAbout`,{ basicInfo: basicInfo }, { headers: {token: u_token}}).pipe(
+      map((res: Response) => {
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  deleteStatus(relationshipStatus): Observable<any>{
+    let u_token = localStorage.getItem('token')
+    return this.httpClient.post(`${environment.apiUrl}/api/about/deleteAbout`,{ relationshipStatus: relationshipStatus }, { headers: {token: u_token}}).pipe(
+      map((res: Response) => {
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  // Add Gender
+  addGender(gender: any): Observable<any>{
+    let u_token = localStorage.getItem('token')
+    return this.httpClient.post(`${environment.apiUrl}/api/about/updateAbout`, {gender: gender}, { headers: {token: u_token}}).pipe(
+      map((res: Response) => {
+        console.log("-=-=-=-=-=-=-=-= gender", res);
+
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  deleteGender(gender): Observable<any>{
+    let u_token = localStorage.getItem('token')
+    return this.httpClient.post(`${environment.apiUrl}/api/about/deleteAbout`,{ gender: gender }, { headers: {token: u_token}}).pipe(
       map((res: Response) => {
         return res || {}
       }),

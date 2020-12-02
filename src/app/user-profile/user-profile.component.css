@@ -1277,3 +1277,7 @@ button.owl-next span {
   border-radius: 50%;
 	object-fit: cover;
 }
+
+.say_words.timeline {
+    margin-top: 0;
+}

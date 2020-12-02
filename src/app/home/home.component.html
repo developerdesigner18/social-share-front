@@ -106,7 +106,7 @@
                     <a href="profile/{{data.userId}}" (mouseover)="showbasicProfile2[i]=true" ><div class="profile_name_of_poster">{{data.post_user}}</div></a>
                     <div class="province d-flex align-items-center">
                         <img src="assets/images/add_ob.png">
-                        <div>{{u_city}}, {{u_state}}</div>
+                        <div>{{data.city}}, {{data.state}}</div>
                     </div>
                     <div class="basic_info" *ngIf="showbasicProfile2[i]" (mouseleave)="showbasicProfile2[i]=false">
                         <div class="d-flex">
