@@ -20,7 +20,7 @@
     <input type="text" [(ngModel)]="number" maxlength="10" inputmode="numeric"  name="numbers" id="number" value="" placeholder="Add mobile number" required>
     <button type="button" name="button" (click)="Cancel()">Cancel</button>
     <button type="button" name="button" (click)="addNumber(number)">Save</button>
-    <div *ngIf="Required"><p style="color: red;">Please Filled Out Your Mobile Number</p></div>
+    <div *ngIf="Required"><p style="color: red;">Please Filled Out Your Mobile Numbers</p></div>
   </div>
   <div class="u_mobile" *ngIf="u_fill_mobile_no">
     <input type="text" [(ngModel)]="mobile_number" maxlength="10" name="number" id="number" value="" placeholder="Add your mobile number">
