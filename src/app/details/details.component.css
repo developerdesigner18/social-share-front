@@ -20,3 +20,36 @@ button{
     height: 38px;
     padding: 0px 9px;
 }
+
+.overview-main a {
+  color: #ff9000;
+  font-size: 14px;
+}
+
+.pencil-icon{
+  background: #efefef;
+  padding: 5px;
+  color: #ff9000;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.icons-pencil > i:not(:last-child) {
+  margin-right: 10px;
+}
+.update-list{
+  width: 95%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 16px !important;
+}
+
+.update-display{
+  display: flex;
+  align-items: center;
+}
+
+.update-display p{
+  margin-bottom: 0;
+}

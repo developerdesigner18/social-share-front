@@ -6,130 +6,167 @@
   <div class="mobile" style="margin-bottom: 10px;" (click)="newMobile()" *ngIf="mobile === false && fill_mobile_no === false">
     <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add mobile phone</a>
   </div>
-  <div *ngIf="show_mobile">
+  <div *ngIf="show_mobile" class="update-list">
+    <div class="update-display">
     <i class="fa fa-phone"> </i> &nbsp;{{mobile_number}}
-    <button type="button" name="button" (click)="updateNumber(mobile_number)">Update</button>
-    <button type="button" name="button" (click)="delNumber(mobile_number)">Delete</button>
   </div>
+    <div class="icons-pencil" *ngIf="icons">
+      <i (click)="updateNumber(mobile_number)" class="pencil-icon fa fa-pencil"></i>
+      <i (click)="delNumber(mobile_number)" class="pencil-icon fa fa-trash"></i>
+    </div>
+  </div>
+  <div class="no_mention" *ngIf="not_mention_number"><i class="fa fa-phone"> </i>&nbsp; Not mention Number</div>
   <div class="mobile" *ngIf="fill_mobile_no">
-    <input type="text" [(ngModel)]="number"  name="numbers" id="number" value="" placeholder="Add mobile number" required>
+    <input type="text" [(ngModel)]="number" maxlength="10" inputmode="numeric"  name="numbers" id="number" value="" placeholder="Add mobile number" required>
     <button type="button" name="button" (click)="Cancel()">Cancel</button>
     <button type="button" name="button" (click)="addNumber(number)">Save</button>
     <div *ngIf="Required"><p style="color: red;">Please Filled Out Your Mobile Number</p></div>
   </div>
   <div class="u_mobile" *ngIf="u_fill_mobile_no">
-    <input type="text" [(ngModel)]="mobile_number" name="number" id="number" value="" placeholder="Add your mobile number">
+    <input type="text" [(ngModel)]="mobile_number" maxlength="10" name="number" id="number" value="" placeholder="Add your mobile number">
     <button type="button" name="button" (click)="u_cancel()">Cancel</button>
     <button type="button" name="button" (click)="editNumber(mobile_number)">Save</button>
-    <!-- <button type="button" name="button" (click)="delNumber(number)">Delete</button> -->
   </div>
   <!-- Address -->
-  <div class="address" style="margin-bottom: 10px;" (click)="newAddress()" *ngIf="!email_address">
+  <div class="address" style="margin-bottom: 10px;" (click)="newAddress()" *ngIf="email === false && fill_email === false">
     <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add your email address</a>
   </div>
-  <div  *ngIf="email_address">
+  <div  *ngIf="show_email" class="update-list">
+    <div class="update-display">
     <i class="fa fa-envelope"> </i> &nbsp;{{email_address}}
-    <button type="button" name="button" (click)="updateAddress(location)">Update</button>
-    <button type="button" name="button" (click)="delAddress(location)">Delete</button>
   </div>
-  <div class="address" *ngIf="address">
-    <input type="text"  [(ngModel)]="location" name="location" value="" placeholder="Add your email address">
+    <div class="icons-pencil" *ngIf="icons">
+      <i (click)="updateAddress(email_address)" class="pencil-icon fa fa-pencil"></i>
+      <i (click)="delAddress(email_address)" class="pencil-icon fa fa-trash"></i>
+    </div>
+  </div>
+  <div class="no_mention" *ngIf="not_mention_address"><i class="fa fa-envelope"> </i>&nbsp; Not mention Address</div>
+  <div class="address" *ngIf="fill_email">
+    <input type="email"  [(ngModel)]="location" inputmode="email" name="location" value="" placeholder="Add your email address">
     <button type="button" name="a_button" (click)="A_Cancel()">Cancel</button>
     <button type="button" name="button" (click)="addAddress(location)">Save</button>
     <div *ngIf="Required1"><p style="color: red;">Please Filled Out Your Email Address</p></div>
   </div>
-  <div class="u_address" *ngIf="u_address">
-    <input type="text"  [(ngModel)]="location" name="location" value="" placeholder="Add your email address">
+  <div class="u_address" *ngIf="u_fill_email">
+    <input type="text"  [(ngModel)]="email_address" inputmode="email" name="location" value="" placeholder="Add your email address">
     <button type="button" name="button" (click)="u_cancel1()">Cancel</button>
-    <button type="button" name="button" (click)="addAddress(location)">Save</button>
-    <button type="button" name="button" (click)="delAddress(location)">Delete</button>
+    <button type="button" name="button" (click)="editAddress(email_address)">Save</button>
   </div>
-  <!-- <div *ngIf="u_email" style="margin-bottom: 25px;">
-    <i class="fa fa-envelope"></i> &nbsp;{{u_email}}
-  </div> -->
   <div class="work_tab">
     <h6>Website and social links</h6>
   </div>
-  <div class="website" style="margin-bottom: 10px;" (click)="newWebsites()" *ngIf="!website_link">
+  <div class="website" style="margin-bottom: 10px;" (click)="newWebsites()" *ngIf="link === false && fill_link === false">
     <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add a Websites</a>
   </div>
-  <div  *ngIf="website_link">
+  <div  *ngIf="show_link" class="update-list">
+    <div class="update-display">
     <i class="fa fa-link"> </i> &nbsp;{{website_link}}
-    <button type="button" name="button" (click)="updateWebsite(link)">Update</button>
-    <button type="button" name="button" (click)="delWebsite(link)">Delete</button>
+    </div>
+    <div class="icons-pencil" *ngIf="icons">
+      <i (click)="updateWebsite(website_link)" class="pencil-icon fa fa-pencil"></i>
+      <i (click)="delWebsite(website_link)" class="pencil-icon fa fa-trash"></i>
+    </div>
   </div>
-  <div class="website" *ngIf="website">
-    <input type="text" [(ngModel)]="link" name="link" value="" placeholder="Add your Websites">
+  <div class="no_mention" *ngIf="not_mention_website"><i class="fa fa-link"> </i>&nbsp; Not mention Website</div>
+  <div class="website" *ngIf="fill_link">
+    <input type="text" [(ngModel)]="website_link" name="link" value="" placeholder="Add your Websites">
     <button type="button" name="button" (click)="W_Cancel()">Cancel</button>
-    <button type="button" name="button" (click)="addWebsite(link)">Save</button>
+    <button type="button" name="button" (click)="addWebsite(website_link)">Save</button>
     <div *ngIf="Required2"><p style="color: red;">Please Filled Out Your Website</p></div>
   </div>
-  <div class="u_website" *ngIf="u_website">
-    <input type="text" [(ngModel)]="link" name="link" value="" placeholder="Add your Websites">
+  <div class="u_website" *ngIf="u_fill_link">
+    <input type="text" [(ngModel)]="website_link" name="link" value="" placeholder="Add your Websites">
     <button type="button" name="button" (click)="u_cancel2()">Cancel</button>
-    <button type="button" name="button" (click)="addWebsite(link)">Save</button>
-    <button type="button" name="button" (click)="delWebsite(link)">Delete</button>
+    <button type="button" name="button" (click)="editWebsite(website_link)">Save</button>
   </div>
-  <!-- <div style="margin-bottom: 10px;">
-    <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add a social link</a>
-  </div>
-  <div *ngIf="u_website" style="margin-bottom: 25px;">
-    <i class="fa fa-share-alt-square"></i> &nbsp;<a href="{{u_website}}" target="_blank">www.socialshare.com</a>
-  </div> -->
   <div class="work_tab" >
     <h6>Basic info</h6>
 	</div>
-  <div (click)="newReligious()" *ngIf="!religious">
+  <div (click)="newReligious()" *ngIf="religious === false && fil_caste === false">
     <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add your religious views</a>
   </div>
-  <div  *ngIf="religious">
-    <i class="fas fa-pray"> </i> &nbsp;{{religious}}
-    <button type="button" name="button" (click)="updateBasicInfo(caste)">Update</button>
-    <button type="button" name="button" (click)="delBasicInfo(caste)">Delete</button>
+  <div  *ngIf="show_caste" class="update-list">
+    <div class="update-display">
+    <i class="fas fa-pray"> </i> &nbsp;{{religious_value}}
+    </div>
+    <div class="icons-pencil" *ngIf="icons">
+      <i (click)="updateBasicInfo(religious_value)" class="pencil-icon fa fa-pencil"></i>
+      <i (click)="delBasicInfo(religious_value)" class="pencil-icon fa fa-trash"></i>
+    </div>
   </div>
-  <div class="religious"  *ngIf="religious">
-    <input type="text" [(ngModel)]="caste" name="" value="" placeholder="Add your religious">
+  <div class="no_mention" *ngIf="not_mention_religious"><i class="fas fa-pray"> </i>&nbsp; Not mention Religious</div>
+  <div class="religious"  *ngIf="fil_caste">
+    <input type="text" [(ngModel)]="religious_value" name="" value="" placeholder="Add your religious">
     <button type="button" name="button" (click)="R_Cancel()">Cancel</button>
-    <button type="button" name="button" (click)="addBasicInfo(caste)">Save</button>
+    <button type="button" name="button" (click)="addBasicInfo(religious_value)">Save</button>
     <div *ngIf="Required3"><p style="color: red;">Please Filled Out Your Religious</p></div>
   </div>
-  <div class="u_religious"  *ngIf="u_religious">
-    <input type="text" [(ngModel)]="caste" name="" value="" placeholder="Add your religious">
+  <div class="u_religious"  *ngIf="u_fill_caste">
+    <input type="text" [(ngModel)]="religious_value" name="" value="" placeholder="Add your religious">
     <button type="button" name="button" (click)="u_cancel3()">Cancel</button>
-    <button type="button" name="button" (click)="addBasicInfo(caste)">Save</button>
-    <button type="button" name="button" (click)="delBasicInfo(caste)">Delete</button>
+    <button type="button" name="button" (click)="editBasicInfo(religious_value)">Save</button>
   </div>
 
   <!-- Gender Section -->
-  <div (click)="newGender()" *ngIf="!gender_value">
+  <div (click)="newGender()" *ngIf="genders === false && fill_gender === false">
     <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add your gender</a>
   </div>
-  <div *ngIf="gender_value">
+  <div *ngIf="show_gender" class="update-list">
+    <div class="update-display"> 
     <i class="fas fa-venus-mars"> </i> &nbsp;{{gender_value}}
-    <button type="button" name="button" (click)="updateGender(value)">Update</button>
-    <button type="button" name="button" (click)="delGender(value)">Delete</button>
+    </div>
+    <div class="icons-pencil" *ngIf="icons">
+      <i (click)="updateGender(gender_value)" class="pencil-icon fa fa-pencil"></i>
+      <i (click)="delGender(gender_value)" class="pencil-icon fa fa-trash"></i>
+    </div>
   </div>
-  <div class="gender" *ngIf="genders">
-    <select name="gender" [(ngModel)]="value">
+  <div class="no_mention" *ngIf="not_mention_gender"><i class="fa fa-venus-mars"> </i>&nbsp; Not mention Gender</div>
+  <div class="gender" *ngIf="fill_gender">
+    <select name="gender" value="gender" [(ngModel)]="gender_value"> Gender
       <option value="Male">Male</option>
       <option value="Female">Female</option>
       <option>Custom</option>
     </select>
     <button type="button" name="button" (click)="G_Cancel()">Cancel</button>
-    <button type="button" name="button" (click)="addGender(value)">Save</button>
+    <button type="button" name="button" (click)="addGender(gender_value)">Save</button>
     <div *ngIf="Required4"><p style="color: red;">Please Filled Out Your Gender</p></div>
   </div>
-  <div class="u_gender"  *ngIf="u_gender">
-    <select name="gender" [(ngModel)]="value">
+  <div class="u_gender"  *ngIf="u_fill_gender">
+    <select name="gender" value="gender_value" [(ngModel)]="gender_value">
       <option value="Male">Male</option>
       <option value="Female">Female</option>
       <option>Custom</option>
     </select>
     <button type="button" name="button" (click)="u_cancel4()">Cancel</button>
-    <button type="button" name="button" (click)="addGender(value)">Save</button>
-    <button type="button" name="button" (click)="delGender(value)">Delete</button>
+    <button type="button" name="button" (click)="editGender(gender_value)">Save</button>
   </div>
-  <!-- <div>
-    <p> {{u_number}} </p>
-  </div> -->
+   <!-- Date Section -->
+   <div (click)="newBirthDate()" *ngIf="birth === false && fill_birth === false">
+    <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add your Birth Date</a>
+  </div>
+  <div *ngIf="show_birth" class="update-list">
+    <div class="update-display"> 
+    <i class="fa fa-birthday-cake"> </i> &nbsp;{{birth_value | date}}
+    </div>
+    <div class="icons-pencil" *ngIf="icons">
+      <i (click)="updateBirth(birth_value)" class="pencil-icon fa fa-pencil"></i>
+      <i (click)="delBirth(birth_value)" class="pencil-icon fa fa-trash"></i>
+    </div>
+  </div>
+  <div class="no_mention" *ngIf="not_mention_birth"><i class="fa fa-birthday-cake"> </i>&nbsp; Not mention Birthdate</div>
+  <div *ngIf="fill_birth">
+    <br>
+    <input class="birth_date" [matDatepicker]="picker" [(ngModel)]="birth_value" type="text" name="" id="">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    <button type="button" name="button" (click)="B_Cancel()">Cancel</button>
+    <button type="button" name="button" (click)="addBirthDate(birth_value)">Save</button>
+  </div>
+  <div class="u_birth"  *ngIf="u_fill_birth">
+    <input class="birth_date" [matDatepicker]="picker" [(ngModel)]="birth_value" type="text" name="" id="">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    <button type="button" name="button" (click)="u_cancel5()">Cancel</button>
+    <button type="button" name="button" (click)="editBirth(birth_value)">Save</button>
+  </div>
 </div>

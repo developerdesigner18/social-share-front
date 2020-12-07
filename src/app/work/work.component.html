@@ -2,9 +2,10 @@
   <div class="work_tab">
     <h6>Work</h6>
   </div>
-  <div (click)="newWork()">
+  <div (click)="newWork()" *ngIf="current_user_profile; else not_mention_work">
     <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add Work Place</a>
   </div>
+  <ng-template #not_mention_work>Not mention Work Place</ng-template>
   <div class="work" *ngIf="work">
     <input type="text" name="" value="" placeholder="Add work place">
     <button type="button" name="button" (click)="Cancel()">Cancel</button>
@@ -13,9 +14,10 @@
   <div class="work_tab">
     <h6>University</h6>
   </div>
-  <div (click)="newUniversity()">
+  <div (click)="newUniversity()" *ngIf="current_user_profile; else not_mention_university">
     <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add university</a>
   </div>
+  <ng-template #not_mention_university>Not mention University</ng-template>
   <div class="university" *ngIf="university">
     <input type="text" name="" value="" placeholder="Add university">
     <button type="button" name="button" (click)="Cancel()">Cancel</button>
@@ -24,9 +26,10 @@
   <div class="work_tab">
     <h6>High School</h6>
 	</div>
-  <div (click)="newSchool()">
+  <div (click)="newSchool()" *ngIf="current_user_profile; else not_mention_school">
     <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add high school</a>
   </div>
+  <ng-template #not_mention_school>Not mention School</ng-template>
   <div class="school" *ngIf="school">
     <input type="text" name="" value="" placeholder="Add high school">
     <button type="button" name="button" (click)="Cancel()">Cancel</button>

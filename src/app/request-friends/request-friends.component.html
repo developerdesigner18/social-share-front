@@ -111,14 +111,12 @@
           </div>
         </div>
         <div class="slider_bid_like-share d-flex flex-column" style="width: 100%" id="slider-owl-carousel-load">
-          <div class="owl-carousel owl-theme" id="owl-demo" *ngIf="data.imageUrl.length > 0">
+          <!-- <div class="owl-carousel owl-theme" id="owl-demo" *ngIf="data.imageUrl.length > 0"> -->
             <div class="item" *ngFor="let imageurl of data.imageUrl">
-              <img class="slider_image" [src]="imageurl" [attr.data-slide-to]="i" *ngIf="imageurl.split('.').pop() !== 'mp4'">
-              <video controls class="slider_video" *ngIf="imageurl.split('.').pop() == 'mp4'" disablePictureInPicture controlsList="nodownload">
-                <source [src]="imageurl" type="video/mp4">
-              </video>
+              <ng-image-slider [imageSize]="{width: '100%', height: '320px'}" [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
+              
             </div>
-          </div>
+          <!-- </div> -->
           <div class="take_action">
             <button class="showLikes" (click)="likeIt(data._id, data.like.length);">
               <i class="fa" id="{{data._id}}" [ngClass]="postlikeId.includes(data._id) ? 'fa-thumbs-up': 'fa-thumbs-o-up'"></i>

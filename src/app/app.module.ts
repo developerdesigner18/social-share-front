@@ -9,6 +9,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { NgImageSliderModule } from 'ng-image-slider';
 
+
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthInterceptor } from './auth.interceptor';
@@ -40,6 +41,12 @@ import { LifeComponent } from './life/life.component';
 import { PostModalComponent } from './post-modal/post-modal.component';
 import { RequestFriendsComponent } from './request-friends/request-friends.component';
 import { PeopleKnowComponent } from './people-know/people-know.component';
+import { NgxGalleryModule } from 'ngx-gallery-9';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatFormFieldModule } from '@angular/material/form-field';
+import {MatIconModule} from '@angular/material/icon';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -85,8 +92,14 @@ import { PeopleKnowComponent } from './people-know/people-know.component';
     MatToolbarModule,
     ImageCropperModule,
     AutocompleteLibModule,
-    NgImageSliderModule
-  ],
+    NgImageSliderModule,
+    NgxGalleryModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatNativeDateModule,
+    MatInputModule
+    ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

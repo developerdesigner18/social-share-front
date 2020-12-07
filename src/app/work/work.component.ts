@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -11,15 +11,22 @@ export class WorkComponent implements OnInit {
   work: boolean;
   university: boolean;
   school: boolean;
+  current_user_profile = true;
 
   constructor(
     public router: Router,
-    public authService: AuthService
+    public authService: AuthService,
+    private activatedRoute: ActivatedRoute,
   ) {
+    const id = this.activatedRoute.parent.parent.params['value']['id'];
     if(localStorage.getItem('friendId')){
       this.authService.getFriendData(localStorage.getItem('friendId')).subscribe(res => {
-        // console.log("--=-=-=-=-=-=-res", res)
       })
+    }
+
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if(currentUser.data._id !== id){
+      this.current_user_profile = false
     }
   }
 

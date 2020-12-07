@@ -70,8 +70,6 @@ export class UserProfileComponent implements OnInit {
       if(this.imageCov == undefined){
         this.imageCov = 'assets/images/bg.jpg'
       }
-
-      // this.owlcarouselSet()
     })
 
     if(this.router.url !== '/friends/' + this.activatedRoute.snapshot.paramMap.get('id'))
@@ -96,73 +94,10 @@ export class UserProfileComponent implements OnInit {
         this.notAnyFrd = res.message
       }
     })
-
-    this.authService.getProfilePost(id).subscribe(res => {
-      if(res.length > 0){
-
-        for(let i = 0; i < res.length; i++){
-          for(let j = 0; j < res[i].imageUrl.length; j++){
-            if(res[i].imageUrl[j].split('.').pop() !== 'mp4'){
-              this.onlyImg.push(res[i].imageUrl[j])
-            }
-          }
-        }
-      }else{
-        this.notfound = res.code
-      }
-    })
   }
 
   ngOnInit(): void {
-    $(window).on('load', function(){
-      $(document).ready(function(){
-        $('.owl-carousel').owlCarousel({
-      		nav:true,
-      		items:1,
-          autoWidth: true,
-          video:true,
-          lazyLoad: true
-      	})
-      });
-    });
-    $(document).ready(function(){
-      $('.owl-carousel').owlCarousel({
-        nav:true,
-        items:1,
-        autoWidth: true,
-        video:true,
-        lazyLoad: true
-      })
-      // $('.owl-video-play-icon').remove();
-    })
-    // $('.owl-carousel').owlCarousel({
-    //   nav:true,
-    //   items:1,
-    //   autoWidth: true,
-    //   video:true,
-    //   lazyLoad: true
-    // })
-    // $('.owl-carousel').owlCarousel({
-    //   nav:true,
-    //   items:1,
-    //   autoWidth: true,
-    //   video:true,
-    //   videoHeight: 300,
-    //   videoWidth: 600
-    // })
-    // this.owlcarouselSet()
-
-
   }
-
-  // myFunction() {
-  //   var x = document.getElementById("myTopnav");
-  //   if (x.className === "topnav") {
-  //     x.className += " responsive";
-  //   } else {
-  //     x.className = "topnav";
-  //   }
-  // }
 
   show = true
   resetModel(){
@@ -295,21 +230,4 @@ export class UserProfileComponent implements OnInit {
         )
         return this.fileCovToReturn.name;
     }
-
-    // owlcarouselSet(){
-    //   console.log("-=-=-=-=-=-call")
-    //   $('.owl-carousel').trigger('refresh.owl.carousel');
-      // $(document).ready(function(){
-      //   $('.owl-carousel').owlCarousel({
-      //     nav:true,
-      //     items:1,
-      //     autoWidth: true
-      //   })
-      // })
-    // }
-
-    // openComments(postId){
-    //   console.log("-=-=-=-=-=-==-=-toggle")
-    //   $('.comments_container').toggle();
-    // }
 }

@@ -74,7 +74,7 @@ export class PhotosComponent implements OnInit {
 
   showSlides(n) {
   	var i;
-  	var slides = document.getElementsByClassName("mySlides");
+  	var slides = document.getElementsByClassName("mySlides") as HTMLCollectionOf<HTMLElement>;
   	var dots = document.getElementsByClassName("demo");
   	var captionText = document.getElementById("caption");
   	if (n > slides.length) {this.slideIndex = 1}

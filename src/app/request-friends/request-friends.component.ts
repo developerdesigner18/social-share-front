@@ -151,6 +151,7 @@ export class RequestFriendsComponent implements OnInit {
 
     this.authService.getFriendPost(localStorage.getItem('friendId')).subscribe(res => {
       this.frd_datas = res
+      const { image, thumbImage, alt, title } = res;
       for(let i = 0; i < this.frd_datas.length; i++){
         this.likes = this.frd_datas[i].like
         if(this.likes.length > 0){
@@ -197,7 +198,6 @@ export class RequestFriendsComponent implements OnInit {
       {
         $(`#add_${reject_id}`).attr('style', 'display: inline !important');
       }else{
-
         $(`.cancel_friend_${reject_id}`).css('display','none');
         $(`.add_friend_${reject_id}`).attr('style', 'display: inline !important');
         $(`.remove_friend_${reject_id}`).attr('style', 'display: inline !important');

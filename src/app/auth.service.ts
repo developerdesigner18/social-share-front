@@ -374,7 +374,7 @@ export class AuthService {
   //GetAllData from AboutData
   getAllData(userId): Observable<any>{
     let u_token = localStorage.getItem('token')
-    return this.httpClient.get(`${environment.apiUrl}/api/about/getAboutData?userId=${userId}`, { headers: {token: u_token}}).pipe(
+    return this.httpClient.get(`${environment.apiUrl}/api/about/getAboutData?userId=${userId}`, { headers: this.headers}).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -526,8 +526,6 @@ export class AuthService {
     let u_token = localStorage.getItem('token')
     return this.httpClient.post(`${environment.apiUrl}/api/about/updateAbout`, {gender: gender}, { headers: {token: u_token}}).pipe(
       map((res: Response) => {
-        console.log("-=-=-=-=-=-=-=-= gender", res);
-
         return res || {}
       }),
       catchError(this.handleError)
@@ -537,6 +535,88 @@ export class AuthService {
   deleteGender(gender): Observable<any>{
     let u_token = localStorage.getItem('token')
     return this.httpClient.post(`${environment.apiUrl}/api/about/deleteAbout`,{ gender: gender }, { headers: {token: u_token}}).pipe(
+      map((res: Response) => {
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  deleteDetails(aboutYourself): Observable<any>{
+    let u_token = localStorage.getItem('token')
+    return this.httpClient.post(`${environment.apiUrl}/api/about/deleteAbout`,{ aboutYourself: aboutYourself }, { headers: {token: u_token}}).pipe(
+      map((res: Response) => {
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  deletePronunciation(pronunciation): Observable<any>{
+    let u_token = localStorage.getItem('token')
+    return this.httpClient.post(`${environment.apiUrl}/api/about/deleteAbout`,{ pronunciation: pronunciation }, { headers: {token: u_token}}).pipe(
+      map((res: Response) => {
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  deleteNickname(otherName): Observable<any>{
+    let u_token = localStorage.getItem('token')
+    return this.httpClient.post(`${environment.apiUrl}/api/about/deleteAbout`,{ otherName: otherName }, { headers: {token: u_token}}).pipe(
+      map((res: Response) => {
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  deleteQuotes(quote): Observable<any>{
+    let u_token = localStorage.getItem('token')
+    return this.httpClient.post(`${environment.apiUrl}/api/about/deleteAbout`,{ quote: quote }, { headers: {token: u_token}}).pipe(
+      map((res: Response) => {
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  // Add Birthdate
+  addBirthDate(birthDate: any): Observable<any>{
+    let u_token = localStorage.getItem('token')
+    return this.httpClient.post(`${environment.apiUrl}/api/about/updateAbout`, {birthDate: birthDate}, { headers: {token: u_token}}).pipe(
+      map((res: Response) => {
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  deleteBirthdate(birthDate): Observable<any>{
+    let u_token = localStorage.getItem('token')
+    return this.httpClient.post(`${environment.apiUrl}/api/about/deleteAbout`,{ birthDate: birthDate }, { headers: {token: u_token}}).pipe(
+      map((res: Response) => {
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  // Add Home town
+  addHomeTown(homeTown: any): Observable<any> {
+    let u_token = localStorage.getItem('token')
+    return this.httpClient.post(`${environment.apiUrl}/api/about/updateAbout`, { homeTown: homeTown }, { headers: { token: u_token } }).pipe(
+      map((res: Response) => {
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  deleteHomeTown(homeTown): Observable<any>{
+    let u_token = localStorage.getItem('token')
+    return this.httpClient.post(`${environment.apiUrl}/api/about/deleteAbout`,{ homeTown: homeTown }, { headers: {token: u_token}}).pipe(
       map((res: Response) => {
         return res || {}
       }),

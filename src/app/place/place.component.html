@@ -4,37 +4,61 @@
   </div>
   <br/>
   <div class="row">
-    <div class="col-md-1">
+    <div class="col-md-1 place">
       <img width="40" height="40" src='assets/images/safe_image.jpeg' style="border-radius: 50%;" />
     </div>
-    <div class="col-md-5" style="font-size: 14px">
+    <div class="col-md-5" style="font-size: 14px; margin-left: 15px;">
       <!-- <span style="font-weight: 500;">{{u_city}}, {{u_state}}</span> -->
       <div>Current City</div>
-      <div class="add-city" (click)="newCurrent()">
+      <div *ngIf="show_city">
+      <i class="fas fa-city"></i>&nbsp; {{u_city}}
+    </div>
+    
+      <div class="no_mention" *ngIf="not_mention_city"><i class="fas fa-city"> </i>&nbsp; Not mention City</div>
+    
+      <!-- <div class="add-city" (click)="newCurrent()">
         <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add your current city</a>
       </div>
       <div class="current" *ngIf="current">
         <input type="text" name="" value="" placeholder="Add your current city">
         <button type="button" name="button" (click)="Cancel()">Cancel</button>
-      </div>
+      </div> -->
     </div>
   </div>
   <br/>
 
   <div class="row">
-    <div class="col-md-1">
+    <div class="col-md-1 place">
       <img width="40" height="40" src='assets/images/safe_image.jpeg' style="border-radius: 50%;" />
     </div>
-    <div class="col-md-5" style="font-size: 14px">
+    <div class="col-md-5" style="font-size: 14px; margin-left: 15px;">
       <!-- <span style="font-weight: 500;">{{u_city}}, {{u_state}}</span> -->
       <div>Home Town</div>
-      <div style="margin-bottom: 10px;" (click)="newHome()">
+      <div class="add-city"  (click)="newHome()" *ngIf="home === false && fill_home === false">
         <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add your home town</a>
       </div>
-      <div class="home" *ngIf="home">
-        <input type="text" name="" value="" placeholder="Add your home town">
-        <button type="button" name="button" (click)="Cancel()">Cancel</button>
+      <div *ngIf="show_home" class="update-list">
+        <div class="update-display">
+        <i class="fa fa-home"> </i> &nbsp;{{home_town}}
+      </div>
+        <div class="icons-pencil" *ngIf="icons">
+          <i (click)="updateHome(home_town)" class="pencil-icon fa fa-pencil"></i>
+          <i (click)="delHome(home_town)" class="pencil-icon fa fa-trash"></i>
+        </div>
+      </div>
+      <div class="no_mention" *ngIf="not_mention_home"><i class="fa fa-home"> </i>&nbsp; Not mention Home</div>
+      <div class="home" *ngIf="fill_home">
+        <input type="text" [(ngModel)]="home_town"   name="home_town" id="home_town" value="" placeholder="Add your home town" required>
+        <button type="button" name="button" (click)="Cancel1()">Cancel</button>
+        <button type="button" name="button" (click)="addHome(home_town)">Save</button>
+        <div *ngIf="Required"><p style="color: red;">Please Filled Out Your Home Town</p></div>
+      </div>
+      <div class="u_home" *ngIf="u_fill_home">
+        <input type="text" [(ngModel)]="home_town" name="home_town" id="home_town" value="" placeholder="Add your home town">
+        <button type="button" name="button" (click)="u_cancel()">Cancel</button>
+        <button type="button" name="button" (click)="editHome(home_town)">Save</button>
       </div>
     </div>
   </div>
 </div>
+

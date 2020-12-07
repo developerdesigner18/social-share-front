@@ -30,10 +30,11 @@ button{
 }
 
 .pencil-icon{
-  background: #f0f8ff;
+  background: #efefef;
   padding: 5px;
-  color: #043458;
+  color: #ff9000;
   border-radius: 50%;
+  cursor: pointer;
 }
 
 .relation-status {
@@ -47,4 +48,12 @@ button{
 
 .handshake-d{
   margin-right: 10px;
+}
+.icons-pencil > i:not(:last-child) {
+  margin-right: 10px;
+}
+
+.overview-main a {
+  color: #ff9000;
+  font-size: 14px;
 }

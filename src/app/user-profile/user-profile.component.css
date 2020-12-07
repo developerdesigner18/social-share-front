@@ -316,6 +316,9 @@ body .profile_pic_main_tabs_sec .actions {
     bottom: -11px;
     left: -29px;
 }
+.item img{
+    cursor: pointer;
+}
 .say_words button {
     background-color: #003459;
     border: 0;
@@ -351,10 +354,10 @@ body .profile_pic_main_tabs_sec .actions {
 }
 .province div {
     color: #003459;
-    font-size: 14px;
+    font-size: 12px;
 }
 .province img {
-    width: 25px;
+    width: 23px;
     margin-right: 10px;
 }
 .name_and_desc {
@@ -502,7 +505,7 @@ button.owl-next span {
     background-color: #ecedee;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    padding: 5px;
+    padding: 5px 10px;
     margin-top: 15px;
     border-radius: 4px;
 }
@@ -710,7 +713,7 @@ button.owl-next span {
   display: flex !important;
   align-items: center;
   justify-content: center;
-  background-color: white;
+  background-color: #0f1b31d9;
   color: #FF9000;
   box-shadow: 0 0 8px 3px #B8B8B8;
 }
@@ -741,7 +744,9 @@ button.owl-next span {
 		background-color: #0f1b31;
 		color: #ffffff;
 		border-radius: 4px;
-		height: 35px;
+        height: 35px;
+        width: 90% !important;
+        font-size: 15px;
 }
 .preview_circle{
 	border-radius: 50%;
@@ -807,20 +812,22 @@ button.owl-next span {
     color: #ff9000;
 }
 
-.title-about{
-	padding-left: 10px;
-	margin-bottom: 25px;
+.title-about {
+    padding-left: 10px;
+    margin-bottom: 25px;
+    color: #003459;
 }
 
 .overview_tab i {
     margin-right: 10px;
-    color: #00345959;
-    font-size: 18px;
+    color: #003459;
+    font-size: 16px;
 }
 .overview_tab {
     display: flex;
     align-items: center;
     margin-bottom: 15px;
+    color: #003459;
 }
 .overview_tab div {
     font-size: 14px;
@@ -859,6 +866,9 @@ button.owl-next span {
 		z-index: 1;
 } */
 
+button.edit-button {
+    border: 0;
+}
 
 .basic_info{
 	position: absolute;
@@ -1280,4 +1290,40 @@ button.owl-next span {
 
 .say_words.timeline {
     margin-top: 0;
+}
+
+.a_friend div {
+    text-transform: capitalize;
+}
+
+.slider_image_2 > div > div > div >.main-inner > div:nth-child(2) {
+    display: none !important;
+}
+.slider_image_4 > div > div > div >.main-inner > div:nth-child(1), .slider_image_5 > div > div > div >.main-inner > div:nth-child(1) {
+    display: none !important;
+}
+.slider_image_4 > div > div > div >.main-inner > div:nth-child(2), .slider_image_5 > div > div > div >.main-inner > div:nth-child(2) {
+    display: none !important;
+}
+.slider_image_4 > div > div > div >.main-inner > div:nth-child(3), .slider_image_5 > div > div > div >.main-inner > div:nth-child(3) {
+    width: 204px !important;
+}
+.ng-image-fullscreen-view .lightbox-wrapper .lightbox-div .next, .ng-image-fullscreen-view .lightbox-wrapper .lightbox-div .prev {
+	padding-top: 0px !important;
+}
+
+.slider_image_5 > div > div > div >.main-inner > div:nth-child(5):before {
+    content: "View More";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    color: #ffffff;
+    z-index: 9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 10px;
+    font-size: 25px;
 }

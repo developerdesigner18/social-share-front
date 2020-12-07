@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog} from  '@angular/material/dialog';
 import { PostModalComponent } from '../post-modal/post-modal.component';
 import { AuthService } from '../auth.service';
+import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery-9';
 declare var jQuery: any;
 declare var $: any;
 
@@ -43,13 +44,18 @@ export class TimelineComponent implements OnInit {
   viewImgdatas = [];
   viewImg = [];
   public slideIndex = 1;
+  galleryOptions: NgxGalleryOptions[];
+  postImageData = {}
 
   @ViewChild('textmsgPost') postMesssgeElement: any;
 
+  galleryImages: NgxGalleryImage[];
+  
   public datas;
   u_country: any;
   u_state: any;
   u_city: any;
+  image_all = [];
   constructor(
     public  dialog:  MatDialog,
     private activatedRoute: ActivatedRoute,
@@ -63,11 +69,7 @@ export class TimelineComponent implements OnInit {
       this.profileImg =  res.data.profileImgURl
       this.u_name =  res.data.name
       this.u_designation =  res.data.designation
-      this.u_email =  res.data.emailId
-    })
-
-    this.authService.getUserProfile(this.id).subscribe(res => {
-      // this.u_country =  res.data.country
+      this.u_email = res.data.emailId
       this.u_state =  res.data.state
       this.u_city =  res.data.city
     })
@@ -75,18 +77,22 @@ export class TimelineComponent implements OnInit {
     this.authService.getProfilePost(this.id).subscribe(res => {
       if(res.length > 0){
         this.datas = res
+        const { image, thumbImage, alt, title } = res;
         for(let i = 0; i < this.datas.length; i++){
           this.description = this.datas[i].description;
           this.urls.push(this.datas[i].imageUrl)
           this.likes = this.datas[i].like
-          for(let j = 0; j < this.datas[i].comment.length; j++){
+
+          for (let j = 0; j < this.datas[i].comment.length; j++){
             this.authService.getHomePostProfile(this.datas[i].comment[j].userId).subscribe(res => {
               this.datas[i].post_profileImg = res.data.profileImgURl
               this.datas[i].post_user = res.data.name
               this.datas[i].post_user_designation = res.data.designation
               this.datas[i].post_user_email = res.data.emailId
+              
             })
           }
+          
           if(this.likes.length > 0){
             this.postlikeId.push(this.datas[i]._id)
           }
@@ -229,53 +235,6 @@ export class TimelineComponent implements OnInit {
     })
     this.commentsForm.reset()
   }
-
-  // Open the Modal
-  openModal(id: any){
-    this.authService.getAllFriendPost(this.token).subscribe(res => {
-      this.viewImgdatas = res.posts
-      let onlyMatch = this.viewImgdatas.find(({_id}) => _id === id)
-      this.totalImg = onlyMatch.imageUrl.length
-      this.viewImg = onlyMatch.imageUrl
-    })
-    this.modalProfopen = false
-    const body = document.body;
-    body.style.height = '100vh';
-    body.style.overflowY = 'hidden';
-  }
-
-  // Close the Modal
-	closeModal() {
-    this.modalProfopen = true
-    window.location.replace(`profile/${this.id}`)
-	}
-
-  // Next/previous controls
-  plusSlides(n) {
-    this.next_img = true
-		this.showImgSlides(this.slideIndex += n);
-	}
-
-	// Thumbnail image controls
-	currentSlide(n) {
-		this.showImgSlides(this.slideIndex = n);
-	}
-
-  showImgSlides(n) {
-    var i;
-    var slides = document.getElementsByClassName("mySlides");
-    if (n > slides.length) {this.slideIndex = 1}
-    if (n < 1) {this.slideIndex = slides.length}
-    for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";
-    }
-    console.log("=-=-=slides[this.slideIndex-1]", slides[this.slideIndex-1])
-    if(slides[this.slideIndex-1] !== undefined)
-    {
-      slides[this.slideIndex-1].style.display = "block";
-      slides[this.slideIndex-1].style.background = "#000000";
-    }
-  };
 
   showProfile(){
     this.router.navigate([`profile/${this.id}`])

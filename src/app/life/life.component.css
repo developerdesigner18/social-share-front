@@ -21,3 +21,7 @@ button{
     height: 38px;
     padding: 0px 9px;
 }
+.overview-main a {
+  color: #ff9000;
+  font-size: 14px;
+}

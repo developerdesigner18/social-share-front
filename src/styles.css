@@ -116,7 +116,7 @@ img.connecting_image {
 .form_of_sign_up input {
 		color: white;
 		background-color: #ffffff00;
-		border: 1px solid #191919
+		border: 1px solid #ffffff
 }
 .form_of_sign_up input:focus {
 	background: transparent;
@@ -134,13 +134,14 @@ img.connecting_image {
     margin-top: 25px;
 }
 .form_of_sign_up button {
-    border: 2px solid #ff9000;
-    color: #003459;
+    border: 2px solid #1f314b;
+    color: #1f314b;
     padding: 7px 0;
-    background-color: #ff9000;
+    background-color: #ffffffcf;
     font-weight: 600;
     text-transform: uppercase;
     margin-top: 15px;
+    border-radius: 4px;
 }
 .privacy_aggrement {
     margin-top: 30px;
@@ -254,3 +255,5 @@ img.connecting_image {
 .text-spaces{
 	margin-bottom: 15px;
 }
+
+

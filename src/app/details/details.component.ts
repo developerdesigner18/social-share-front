@@ -11,9 +11,9 @@ declare var $: any;
 })
 export class DetailsComponent implements OnInit {
 
-  about: boolean
-  nickname: boolean;
-  quotes: boolean;
+  // about: boolean
+  nickname: any;
+  quotes: any;
   shows6: any
   display7: any
   u_about: any
@@ -31,94 +31,189 @@ export class DetailsComponent implements OnInit {
   display10: any
   u_quotes: any
   quote: any
+  //Changes
   Required = false
   Required1 = false
   Required2 = false
   Required3 = false
+  show_details: boolean
+  fill_details = false
+  details_about: any
+  u_fill_details: any
+  about: any
+  pronun_value: any;
+  show_pronun: boolean;
+  fill_pronun = false
+  u_fill_pronun: boolean;
+  show_nickname: boolean;
+  fill_nickname = false;
+  u_fill_nickname: boolean;
+  quote_value: any;
+  show_quotes: boolean;
+  fill_quotes = false;
+  u_fill_quotes: boolean;
+  not_mention_about = false;
+  not_mention_quotes = false;
+  not_mention_nickname = false;
+  not_mention_pronun = false;
+  icons: boolean
   constructor(
     public authService: AuthService,
     private activatedRoute: ActivatedRoute
   ) {
     let id = this.activatedRoute.parent.parent.params['value']['id'];
+    const current_login_User = JSON.parse(localStorage.getItem('currentUser'));
 
-    this.authService.getAllData(id).subscribe(res => {
+    if (current_login_User.data._id !== id) {
+      this.icons = false
+      this.authService.getProfileforAbout(id).subscribe(res => { 
+        if (res.data == null) {
 
-      if (res.userData[0] == null) {
-        this.shows6 = true
-        this.shows7 = true
-        this.shows8 = true
-        this.shows9 = true
-      } else if(res.userData[0].aboutYourself == null){
-        this.shows6 = true
-        this.shows7 = true
-        this.shows8 = true
-        this.shows9 = true
-        this.details = res.userData[0].aboutYourself
-      } else if(res.userData[0].pronunciation == null){
-        this.shows7 = true
-        this.shows8 = true
-        this.shows9 = true
-        this.display7 = true
-        this.details = res.userData[0].aboutYourself
-      } else if(res.userData[0].otherName == null){
-        this.shows8 = true
-        this.shows9 = true
-        this.display7 = true
-        this.display8 = true
-        this.details = res.userData[0].aboutYourself
-        this.pronun = res.userData[0].pronunciation
-      }
-      else if(res.userData[0].quote == null){
-        this.shows9 = true
-        this.display7 = true
-        this.display8 = true
-        this.display9 = true
-        this.details = res.userData[0].aboutYourself
-        this.pronun = res.userData[0].pronunciation
-        this.nick = res.userData[0].otherName
-      }
-      else{
-        this.shows6 = false
-        this.display7 = true
-        this.details = res.userData[0].aboutYourself
-        this.shows7 = false
-        this.display8 = true
-        this.pronun = res.userData[0].pronunciation
-        this.shows8 = false
-        this.display9 = true
-        this.nick = res.userData[0].otherName
-        this.shows9 = false
-        this.display10 = true
-        this.quote = res.userData[0].quote
-      }
+        } else if (res.data.aboutYourself !== undefined) {
+          this.details_about = res.data.aboutYourself
+          this.show_details = true
+        } else {
+          this.not_mention_about = true
+        }
 
-    })
+        if (res.data == null) {
+
+        } else if (res.data.pronunciation !== undefined) {
+          this.pronun_value = res.data.pronunciation
+          this.show_pronun = true
+        } else {
+          this.not_mention_pronun = true
+        }
+
+        if (res.data == null) {
+
+        } else if (res.data.otherName !== undefined) {
+          this.nickname = res.data.otherName
+          this.show_nickname = true
+        } else {
+          this.not_mention_nickname = true
+        }
+
+        if (res.data == null) {
+        } else if (res.data.quote !== undefined) {
+          this.quote_value = res.data.quote
+          this.show_quotes = true
+        } else {
+          this.not_mention_quotes = true
+        }
+
+      })
+      this.authService.getAllData(id).subscribe(res => {
+
+        if (res.userData[0] == null) {
+          
+        } else if (res.userData[0].aboutYourself !== undefined) {
+          this.details_about = res.userData[0].aboutYourself
+          this.show_details = true
+        } else {
+          this.details = false
+        }
+
+        if (res.userData[0] == null) {
+
+        } else if (res.userData[0].pronunciation !== undefined) {
+          this.pronun_value = res.userData[0].pronunciation
+          this.show_pronun = true
+        } else {
+          this.pronun = false
+        }
+
+        if (res.userData[0] == null) {
+
+        } else if (res.userData[0].otherName !== undefined) {
+          this.nickname = res.userData[0].otherName
+          this.show_nickname = true
+        } else {
+          this.nick = false
+        }
+
+        if (res.userData[0] == null) {
+  
+        } else if (res.userData[0].quote !== undefined) {
+          this.quote_value = res.userData[0].quote
+          this.show_quotes = true
+        } else {
+          this.quote = false
+        }
+
+      })
+    } else {
+      this.icons = true
+      this.authService.getAllData(id).subscribe(res => {
+
+        if (res.userData[0] == null) {
+          this.details = false  
+        } else if (res.userData[0].aboutYourself !== undefined) {
+          this.details_about = res.userData[0].aboutYourself
+          this.show_details = true
+        } else {
+          this.details = false
+        }
+
+        if (res.userData[0] == null) {
+          this.pronun = false
+        } else if (res.userData[0].pronunciation !== undefined) {
+          this.pronun_value = res.userData[0].pronunciation
+          this.show_pronun = true
+        } else {
+          this.pronun = false
+        }
+
+        if (res.userData[0] == null) {
+          this.nick = false
+        } else if (res.userData[0].otherName !== undefined) {
+          this.nickname = res.userData[0].otherName
+          this.show_nickname = true
+        } else {
+          this.nick = false
+        }
+
+        if (res.userData[0] == null) {
+          this.quote = false
+        } else if (res.userData[0].quote !== undefined) {
+          this.quote_value = res.userData[0].quote
+          this.show_quotes = true
+        } else {
+          this.quote = false
+        }
+
+      })
+    }
   }
 
   ngOnInit(): void {
   }
 
-  addDetails(details: any){
-    this.authService.addDetails(details).subscribe(res => {
-     if(this.details == null){
-      this.Required = true
-      this.display7 = false
-     } else if(res['success']){
-        this.about = false
-        this.shows6 = false
-        $(`.about`).css('display','none');
-        this.display7 = true
-      }
-      else{
-        console.log("error");
-        this.display7 = false;
+  addDetails(about: any){
+    this.authService.addDetails(about).subscribe(res => {
+     if (res['success']) {
+       this.details_about = about
+       this.show_details = true
+       this.details = true
+       this.fill_details = false
+     }
+    })
+  }
+  
+  editDetails(about: any) {
+    this.authService.addNewNumber(about).subscribe(res => {
+      if (res['success']) {
+        this.show_details = true
+        this.u_fill_details = false
       }
     })
+  }
 
-   }
-
-   updateDetails(details: any){
-    this.authService.addDetails(details).subscribe(res => {
+  updateDetails(about: any) {
+    this.details_about = about
+    this.show_details = false
+    this.u_fill_details = true
+    this.authService.addDetails(about).subscribe(res => {
       if(res['success']){
         this.u_about = true
         this.display7 = false
@@ -128,28 +223,49 @@ export class DetailsComponent implements OnInit {
         this.display7 = false;
       }
     })
-   }
+  }
 
-   addPronunciation(pronun: any){
-    this.authService.addPronunciation(pronun).subscribe(res => {
-     if(this.pronun == null){
-      this.Required1 = true
-      this.display8 = false
-     } else if(res['success']){
-        this.pronunciation = false
-        this.shows7 = false
-        $(`.pronunciation`).css('display','none');
-        this.display8 = true
-      }
-      else{
+  delDetails(about: any) {
+    this.details = false;
+    this.fill_details = false;
+    this.show_details = false;
+    this.authService.deleteDetails(about).subscribe(res => {
+      if (res['success']) {
+        this.shows6 = true
+        $(`.details`).css('display', 'block');
+        this.display7 = false
+      } else {
         console.log("error");
-        this.display8 = false;
+        this.display7 = true;
       }
     })
-   }
+  }
 
-   updatePronunciation(pronun: any){
-    this.authService.addPronunciation(pronun).subscribe(res => {
+   addPronunciation(words: any){
+    this.authService.addPronunciation(words).subscribe(res => {
+     if (res['success']) {
+       this.pronun_value = words
+       this.show_pronun = true
+       this.pronun = true
+       this.fill_pronun = false
+     }
+    })
+  }
+  
+  editPronunciation(words: any) {
+    this.authService.addPronunciation(words).subscribe(res => {
+      if (res['success']) {
+        this.show_pronun = true
+        this.u_fill_pronun = false
+      }
+    })
+  }
+
+  updatePronunciation(words: any) {
+    this.pronun_value = words
+    this.show_pronun = false
+    this.u_fill_pronun = true
+    this.authService.addPronunciation(words).subscribe(res => {
       if(res['success']){
         this.u_pronunciation = true
         this.display8 = false
@@ -159,28 +275,49 @@ export class DetailsComponent implements OnInit {
         this.display8 = false;
       }
     })
-   }
-
-   addNickname(nick: any){
-    this.authService.addNickname(nick).subscribe(res => {
-     if(this.nick == null){
-      this.Required2 = true
-      this.display9 = false
-     } else if(res['success']){
-        this.nickname = false
-        this.shows8 = false
-        $(`.nickname`).css('display','none');
-        this.display9 = true
-      }
-      else{
+  }
+  
+  deletePronunciation(words: any) {
+    this.pronun = false;
+    this.fill_pronun = false;
+    this.show_pronun = false;
+    this.authService.deletePronunciation(words).subscribe(res => {
+      if (res['success']) {
+        this.shows7 = true
+        $(`.mobile`).css('display', 'block');
+        this.display8 = false
+      } else {
         console.log("error");
-        this.display9 = false;
+        this.display8 = true;
       }
     })
-   }
+  }
 
-   updateNickname(nick: any){
-    this.authService.addNickname(nick).subscribe(res => {
+   addNickname(nickname: any){
+    this.authService.addNickname(nickname).subscribe(res => {
+     if (res['success']) {
+       this.nickname = nickname
+       this.show_nickname = true
+       this.nick = true
+       this.fill_nickname = false
+     }
+    })
+  }
+  
+  editNickname(nickname: any) {
+    this.authService.addNickname(nickname).subscribe(res => {
+      if (res['success']) {
+        this.show_nickname = true
+        this.u_fill_nickname = false
+      }
+    })
+  }
+
+  updateNickname(nickname: any) {
+    this.nickname = nickname
+    this.show_nickname = false
+    this.u_fill_nickname = true;
+    this.authService.addNickname(nickname).subscribe(res => {
       if(res['success']){
         this.u_nickname = true
         this.display9 = false
@@ -190,28 +327,48 @@ export class DetailsComponent implements OnInit {
         this.display9 = false;
       }
     })
-   }
-
-   addQuotes(quote: any){
-    this.authService.addQuotes(quote).subscribe(res => {
-     if(this.quote == null){
-      this.Required3 = true
-      this.display10 = false
-     } else if(res['success']){
-        this.quotes = false
-        this.shows9 = false
-        $(`.quotes`).css('display','none');
-        this.display10 = true
-      }
-      else{
+  }
+  deleteNickname(nickname: any) {
+    this.nick = false;
+    this.fill_nickname = false;
+    this.show_nickname = false;
+    this.authService.deleteNickname(nickname).subscribe(res => {
+      if (res['success']) {
+        this.shows8 = true
+        $(`.nickname`).css('display', 'block');
+        this.display9 = false
+      } else {
         console.log("error");
-        this.display10 = false;
+        this.display9 = true;
       }
     })
-   }
+  }
 
-   updateQuotes(quote: any){
-    this.authService.addQuotes(quote).subscribe(res => {
+   addQuotes(quote_value: any){
+    this.authService.addQuotes(quote_value).subscribe(res => {
+     if (res['success']) {
+       this.quote_value = quote_value
+       this.show_quotes = true
+       this.quote = true
+       this.fill_quotes = false
+     }
+    })
+  }
+  
+  editQuotes(quote_value: any) {
+    this.authService.addQuotes(quote_value).subscribe(res => {
+      if (res['success']) {
+        this.show_quotes = true
+        this.u_fill_quotes = false
+      }
+    })
+  }
+
+  updateQuotes(quote_value: any) {
+    this.quote_value = quote_value
+    this.show_quotes = false
+    this.u_fill_quotes = true
+    this.authService.addQuotes(quote_value).subscribe(res => {
       if(res['success']){
         this.u_quotes = true
         this.display10 = false
@@ -221,61 +378,85 @@ export class DetailsComponent implements OnInit {
         this.display10 = false;
       }
     })
-   }
-
-  newPronunciation(){
-    this.pronunciation = true
+  }
+  
+  deleteQuotes(quote_value: any) {
+    this.quote = false;
+    this.fill_quotes = false;
+    this.show_quotes = false;
+    this.authService.deleteQuotes(quote_value).subscribe(res => {
+      if (res['success']) {
+        this.shows9 = true
+        $(`.quote`).css('display', 'block');
+        this.display10 = false
+      } else {
+        console.log("error");
+        this.display10 = true;
+      }
+    })
   }
 
-  aboutDetails(){
-    this.about = true
+  newPronunciation() {
+    this.fill_pronun = true
+    this.pronun = false
   }
 
-  newNickname(){
-    this.nickname = true
+  aboutDetails() {
+    this.fill_details = true
+    this.details = false
   }
 
-  newQuotes(){
-    this.quotes = true
+  newNickname() {
+    this.fill_nickname = true
+    this.nick = false
+  }
+
+  newQuotes() {
+    this.fill_quotes = true
+    this.quote = false
   }
 
   Cancel(){
-    this.about = false
+    this.details = false
+    this.fill_details = false
     this.Required = false
   }
 
   Cancel1(){
-    this.pronunciation = false
+    this.pronun = false
+    this.fill_pronun = false
     this.Required1 = false
   }
 
   Cancel2(){
-    this.nickname = false
+    this.nick = false
+    this.fill_nickname = false
     this.Required2 = false
   }
 
-  Cancel3(){
-    this.quotes = false
+  Cancel3() {
+    this.fill_quotes = false
+    this.quote = false
     this.Required3 = false
   }
 
   cancel1(){
-    this.display7 = true
-    this.u_about = false
+    this.show_details = true
+    this.u_fill_details = false
   }
 
   cancel2(){
-    this.display8 = true
-    this.u_pronunciation = false
+    this.show_pronun = true
+    this.u_fill_pronun = false
   }
 
   cancel3(){
-    this.display9 = true
-    this.u_nickname = false
+    this.show_nickname = true
+    this.u_fill_nickname = false
   }
 
   cancel4(){
-    this.display10 = true
-    this.u_quotes = false
+    this.show_quotes = true
+    this.u_fill_quotes = false
   }
 }
