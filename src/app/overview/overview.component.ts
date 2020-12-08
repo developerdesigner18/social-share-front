@@ -19,59 +19,64 @@ export class OverviewComponent implements OnInit {
   u_religious = '';
   u_status = '';
   u_gender = '';
-  
+  id: string;
+
   constructor(
     public authService: AuthService,
     private activatedRoute: ActivatedRoute,
     public router: Router
   ) {
-    let id = this.activatedRoute.parent.parent.params['value']['id'];
+    // let id = this.activatedRoute.parent.parent.params['value']['id'];
     if (this.router.url == '/friends/' + this.activatedRoute.parent.parent.params['value']['id'] + '/about/overview') {
-      this.authService.getProfileForFriend(localStorage.getItem('friendId')).subscribe(res => {
+      this.id = localStorage.getItem('friendId')
+      // this.authService.getProfileForFriend(localStorage.getItem('friendId')).subscribe(res => {
+      //   this.u_designation = res.data.designation
+      //   this.u_country = res.data.country
+      //   this.u_state = res.data.state
+      //   this.u_city = res.data.city
+      // })
+    } else {
+      localStorage.removeItem('friendId')
+      this.id = this.activatedRoute.parent.parent.params['value']['id'];
+    }
+      const current_login_User = JSON.parse(localStorage.getItem('currentUser'));
+      if (current_login_User.data._id !== this.id) {
+        // this.authService.getProfileforAbout(this.id).subscribe(res => {
+        //   this.u_designation = res.data.designation
+        //   this.u_country = res.data.country
+        //   this.u_state = res.data.state
+        //   this.u_city = res.data.city
+            // this.authService.getAllData(id).subscribe(other_res => {
+            //   if (other_res.userData[0] !== undefined) {
+            //     this.u_number = other_res.userData[0].mobileNumber;
+            //     this.u_address = other_res.userData[0].address;
+            //     this.u_website = other_res.userData[0].website;
+            //     this.u_religious = other_res.userData[0].basicInfo;
+            //     this.u_status = other_res.userData[0].relationshipStatus;
+            //     this.u_gender = other_res.userData[0].gender;
+            //   }
+            // })
+        // })
+      } else {
+        this.id = current_login_User.data._id
+      }
+
+      this.authService.getProfileforAbout(this.id).subscribe(res => {
         this.u_designation = res.data.designation
         this.u_country = res.data.country
         this.u_state = res.data.state
         this.u_city = res.data.city
+        // this.authService.getAllData(this.id).subscribe(res => {
+        //   if (res.userData[0] !== undefined) {
+        //     this.u_number = res.userData[0].mobileNumber;
+        //     this.u_address = res.userData[0].address;
+        //     this.u_website = res.userData[0].website;
+        //     this.u_religious = res.userData[0].basicInfo;
+        //     this.u_status = res.userData[0].relationshipStatus;
+        //     this.u_gender = res.userData[0].gender;
+        //   }
+        // })
       })
-    } else {
-      const current_login_User = JSON.parse(localStorage.getItem('currentUser'));
-      localStorage.removeItem('friendId')      
-      if (current_login_User.data._id !== id) {
-        this.authService.getProfileforAbout(id).subscribe(res => {
-          this.u_designation = res.data.designation
-          this.u_country = res.data.country
-          this.u_state = res.data.state
-          this.u_city = res.data.city
-            this.authService.getAllData(id).subscribe(other_res => {
-              if (other_res.userData[0] !== undefined) {
-                this.u_number = other_res.userData[0].mobileNumber;
-                this.u_address = other_res.userData[0].address;
-                this.u_website = other_res.userData[0].website;
-                this.u_religious = other_res.userData[0].basicInfo;
-                this.u_status = other_res.userData[0].relationshipStatus;
-                this.u_gender = other_res.userData[0].gender;
-              }
-            })
-        })
-      } else {
-        this.authService.getProfileforAbout(id).subscribe(res => {
-          this.u_designation = res.data.designation
-          this.u_country = res.data.country
-          this.u_state = res.data.state
-          this.u_city = res.data.city
-          this.authService.getAllData(id).subscribe(res => {
-            if (res.userData[0] !== undefined) {
-              this.u_number = res.userData[0].mobileNumber;
-              this.u_address = res.userData[0].address;
-              this.u_website = res.userData[0].website;
-              this.u_religious = res.userData[0].basicInfo;
-              this.u_status = res.userData[0].relationshipStatus;
-              this.u_gender = res.userData[0].gender;
-            }
-          })
-        })
-      }
-    }
   }
 
   ngOnInit(): void {

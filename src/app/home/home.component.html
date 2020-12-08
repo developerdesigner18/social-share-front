@@ -73,74 +73,74 @@
 
 			<div class="main_post_contents d-flex flex-column">
 				<div class="d-flex show_basic_info" style="width: 100%" (mouseleave)="showbasicProfile2[i]=false">
-		<div class="profile_pic_profile position-relative-img">
-			<img [src]="data.post_profileImg" onerror="this.src='/assets/images/default_user.jpg';">
-			<div class="basic_info" *ngIf="showbasicProfile[i]" >
-				<div class="d-flex">
-					<img [src]="data.post_profileImg" onerror="this.src='/assets/images/default_user.jpg';" class="hover-info-img">
-					<div style="padding: 10px;">
-						<a href="profile/{{data.userId}}"><div class="profile_basic_info set_redirect_link">{{data.post_user}}</div></a>
-						<div class="profile_basic_info">{{data.post_user_designation}}</div>
-						<div class="profile_basic_info">{{data.post_user_email}}</div>
-					</div>
-				</div>
-				<div class="full-width-50" *ngIf="current_user['data']._id !== data.userId">
-					<i class="fa fa-comments-o" style="margin: 0px 11px 0px 23px"></i><div style="display: contents;">Message</div>
-				</div>
-				<div class="full-width-50" *ngIf="current_user['data']._id == data.userId">
-					<i class="fa fa-comments-o" style="margin: 0px 11px 0px 23px"></i><div style="display: contents;">Edit Profile</div>
-				</div>
-				<div class="full-width-20" *ngIf="current_user['data']._id !== data.userId">
-					<i class="fas fa-user-check" style="margin-left: 18px"></i>
-				</div>
-				<div class="full-width-20" *ngIf="current_user['data']._id == data.userId" (click)="showProfile()" title="View as">
-					<i class="fas fa-eye" style="margin-left: 18px"></i>
-				</div>
-				<div class="full-width-20">
-					<i class="fas fa-ellipsis-h" style="margin-left: 18px"></i>
-				</div>
-			</div>
-		</div>
-		<div class="name_and_desc" style="width: 100%">
-			<div class="d-flex justify-content-between align-items-center">
-				<a href="profile/{{data.userId}}" (mouseover)="showbasicProfile2[i]=true" ><div class="profile_name_of_poster">{{data.post_user}}</div></a>
-				<div class="province d-flex align-items-center">
-					<img src="assets/images/add_ob.png">
-					<div>{{data.city}}, {{data.state}}</div>
-				</div>
-				<div class="basic_info" *ngIf="showbasicProfile2[i]" (mouseleave)="showbasicProfile2[i]=false">
-					<div class="d-flex">
-						<img [src]="data.post_profileImg" onerror="this.src='/assets/images/default_user.jpg';" class="hover-info-img2">
-						<div style="padding: 10px;">
-							<a href="profile/{{data.userId}}"><div class="profile_basic_info set_redirect_link">{{data.post_user}}</div></a>
-						<div class="profile_basic_info"><i class="fas fa-user-tie" style="margin-right: 10px"></i>{{data.post_user_designation}}</div>
-							<div class="profile_basic_info"><i class="fas fa-envelope" style="margin-right: 10px"></i>{{data.post_user_email}}</div>
+					<div class="profile_pic_profile position-relative-img">
+						<img [src]="data.post_profileImg" onerror="this.src='/assets/images/default_user.jpg';">
+						<div class="basic_info" *ngIf="showbasicProfile[i]" >
+							<div class="d-flex">
+								<img [src]="data.post_profileImg" onerror="this.src='/assets/images/default_user.jpg';" class="hover-info-img">
+								<div style="padding: 10px;">
+									<a href="profile/{{data.userId}}"><div class="profile_basic_info set_redirect_link">{{data.post_user}}</div></a>
+									<div class="profile_basic_info">{{data.post_user_designation}}</div>
+									<div class="profile_basic_info">{{data.post_user_email}}</div>
+								</div>
+							</div>
+							<div class="full-width-50" *ngIf="current_user['data']._id !== data.userId">
+								<i class="fa fa-comments-o" style="margin: 0px 11px 0px 23px"></i><div style="display: contents;">Message</div>
+							</div>
+							<div class="full-width-50" *ngIf="current_user['data']._id == data.userId">
+								<i class="fa fa-comments-o" style="margin: 0px 11px 0px 23px"></i><div style="display: contents;">Edit Profile</div>
+							</div>
+							<div class="full-width-20" *ngIf="current_user['data']._id !== data.userId">
+								<i class="fas fa-user-check" style="margin-left: 18px"></i>
+							</div>
+							<div class="full-width-20" *ngIf="current_user['data']._id == data.userId" (click)="showProfile()" title="View as">
+								<i class="fas fa-eye" style="margin-left: 18px"></i>
+							</div>
+							<div class="full-width-20">
+								<i class="fas fa-ellipsis-h" style="margin-left: 18px"></i>
+							</div>
 						</div>
 					</div>
-					<div class="full-width-50" *ngIf="current_user['data']._id !== data.userId">
-						<i class="fa fa-comments-o" style="margin: 0px 11px 0px 23px"></i><div style="display: contents;">Message</div>
-					</div>
-					<div class="full-width-50" *ngIf="current_user['data']._id == data.userId">
-						<i class="fa fa-comments-o" style="margin: 0px 11px 0px 10px"></i><div style="display: contents; font-size: 15px;">Edit Profile</div>
-					</div>
-					<div class="full-width-20" *ngIf="current_user['data']._id !== data.userId">
-						<i class="fas fa-user-check" style="margin-left: 15px"></i>
-					</div>
-					<div class="full-width-20" *ngIf="current_user['data']._id == data.userId" (click)="showProfile()" title="View as">
-						<i class="fas fa-eye" style="margin-left: 15px"></i>
-					</div>
-					<div class="full-width-20">
-						<i class="fas fa-ellipsis-h" style="margin-left: 15px"></i>
+					<div class="name_and_desc" style="width: 100%">
+						<div class="d-flex justify-content-between align-items-center">
+							<a href="profile/{{data.userId}}" (mouseover)="showbasicProfile2[i]=true" ><div class="profile_name_of_poster">{{data.post_user}}</div></a>
+							<div class="province d-flex align-items-center">
+								<img src="assets/images/add_ob.png">
+								<div>{{data.city}}, {{data.state}}</div>
+							</div>
+							<div class="basic_info" *ngIf="showbasicProfile2[i]" (mouseleave)="showbasicProfile2[i]=false">
+								<div class="d-flex">
+									<img [src]="data.post_profileImg" onerror="this.src='/assets/images/default_user.jpg';" class="hover-info-img2">
+									<div style="padding: 10px;">
+										<a href="profile/{{data.userId}}"><div class="profile_basic_info set_redirect_link">{{data.post_user}}</div></a>
+									<div class="profile_basic_info"><i class="fas fa-user-tie" style="margin-right: 10px"></i>{{data.post_user_designation}}</div>
+										<div class="profile_basic_info"><i class="fas fa-envelope" style="margin-right: 10px"></i>{{data.post_user_email}}</div>
+									</div>
+								</div>
+								<div class="full-width-50" *ngIf="current_user['data']._id !== data.userId">
+									<i class="fa fa-comments-o" style="margin: 0px 11px 0px 23px"></i><div style="display: contents;">Message</div>
+								</div>
+								<div class="full-width-50" *ngIf="current_user['data']._id == data.userId">
+									<i class="fa fa-comments-o" style="margin: 0px 11px 0px 10px"></i><div style="display: contents; font-size: 15px;">Edit Profile</div>
+								</div>
+								<div class="full-width-20" *ngIf="current_user['data']._id !== data.userId">
+									<i class="fas fa-user-check" style="margin-left: 15px"></i>
+								</div>
+								<div class="full-width-20" *ngIf="current_user['data']._id == data.userId" (click)="showProfile()" title="View as">
+									<i class="fas fa-eye" style="margin-left: 15px"></i>
+								</div>
+								<div class="full-width-20">
+									<i class="fas fa-ellipsis-h" style="margin-left: 15px"></i>
+								</div>
+							</div>
+						</div>
+						<div class="item_desc mt-3" style="width: 100%">{{data.description}}</div>
 					</div>
 				</div>
-			</div>
-			<div class="item_desc mt-3" style="width: 100%">{{data.description}}</div>
-		</div>
-	</div>
 
 				<div class="slider_bid_like-share d-flex flex-column" style="width: 100%">
 					<div *ngIf="data.imageUrl.length == 1">
-						<ng-image-slider [imageSize]="{width: '100%', height: '320px'}" [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
+						<ng-image-slider [imageSize]="{width: '100%', height: '320px'}"  [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
 					</div>
 					<div *ngIf="data.imageUrl.length == 2">
 						<div class="item" >
@@ -149,7 +149,7 @@
 					</div>
 					<div *ngIf="data.imageUrl.length == 3">
 						<div class="item" *ngIf="data.imageUrl[0].size == 100">
-							<ng-image-slider [imageSize]="{width: (data.imageUrl[0].size == 100) ? '100%' : '50%'}" [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
+							<ng-image-slider [imageSize]="{width: (data.imageUrl[0].size == 100) ? '100%' : '50%'}" animationSpeed=0.1 [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
 							<ng-image-slider [infinite]=true [autoSlide]=0 [imageSize]="{width: '50%', height: 200}" [showArrow]=false class="slider_image_2" [images]="data.imageUrl" #nav></ng-image-slider>
 						</div>
 					</div>

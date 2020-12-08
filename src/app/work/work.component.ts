@@ -19,20 +19,21 @@ export class WorkComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
   ) {
     const id = this.activatedRoute.parent.parent.params['value']['id'];
-    if(localStorage.getItem('friendId')){
+    if (this.router.url == '/friends/' + id + '/about/work_and_education') {
       this.authService.getFriendData(localStorage.getItem('friendId')).subscribe(res => {
+        this.current_user_profile = false
       })
-    }
-
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    if(currentUser.data._id !== id){
-      this.current_user_profile = false
+    }else{
+      const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+      localStorage.removeItem('friendId')
+      if(currentUser.data._id !== id){
+        this.current_user_profile = false
+      }
     }
   }
 
   ngOnInit(): void {
   }
-
 
   newWork(){
     this.work = true

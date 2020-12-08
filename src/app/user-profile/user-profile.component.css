@@ -220,6 +220,11 @@ body .profile_pic_main_tabs_sec .actions {
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 10px;
 }
+.photos_container_all{
+    display: contents;
+    grid-gap: 10px;
+		margin-top: 10px;
+}
 .photos_container img {
     width: 100%;
     height: 80px;
@@ -1326,4 +1331,8 @@ button.edit-button {
     align-items: center;
     padding: 5px 10px;
     font-size: 25px;
+}
+
+.see-all-button{
+		margin-top: 10px;
 }

@@ -94,6 +94,22 @@ export class UserProfileComponent implements OnInit {
         this.notAnyFrd = res.message
       }
     })
+
+    this.authService.getProfilePost(id).subscribe(res => {
+      console.log("-=-=-=-=-=response are", res.imageUrl)
+      if(res.length > 0){
+
+        for(let i = 0; i < res.length; i++){
+          for(let j = 0; j < res[i].imageUrl.length; j++){
+            if(res[i].imageUrl[j].image.split('.').pop() !== 'mp4'){
+              this.onlyImg.push(res[i].imageUrl[j].image)
+            }
+          }
+        }
+      }else{
+        this.notfound = res.code
+      }
+    })
   }
 
   ngOnInit(): void {

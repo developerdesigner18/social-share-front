@@ -66,16 +66,19 @@
 				<div>Joined on {{newDate | date:"dd MMMM yyyy"}}</div>
 			</div>
 			<!-- <div class="info_container w_90 d-flex align-items-center" *ngIf="current_user_profile">
-				
+
 			</div> -->
 			<button class="edit-button" (click)="openDialog()" *ngIf="current_user_profile">Edit Details</button>
 		</div>
 		<div class="photos">
 			<div class="left_title w_90">Photos</div>
 			<div class="photos_container w_90" *ngIf="onlyImg">
-				<div *ngFor="let img of onlyImg">
+				<div *ngFor="let img of onlyImg | slice:0:10;">
 					<img [src]="img">
 				</div>
+			</div>
+			<div class="photos_container_all w_100 see-all-images" *ngIf="onlyImg">
+				<button class="edit-button see-all-button">See All</button>
 			</div>
 			<div *ngIf="notfound == 404" style="color: #003459">
 				<h6>Not any photos</h6>

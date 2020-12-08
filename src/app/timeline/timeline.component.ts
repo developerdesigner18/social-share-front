@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog} from  '@angular/material/dialog';
 import { PostModalComponent } from '../post-modal/post-modal.component';
 import { AuthService } from '../auth.service';
-import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery-9';
+import { NgImageSliderComponent } from 'ng-image-slider';
 declare var jQuery: any;
 declare var $: any;
 
@@ -44,13 +44,12 @@ export class TimelineComponent implements OnInit {
   viewImgdatas = [];
   viewImg = [];
   public slideIndex = 1;
-  galleryOptions: NgxGalleryOptions[];
+
   postImageData = {}
 
   @ViewChild('textmsgPost') postMesssgeElement: any;
+  @ViewChild('nav') slider: NgImageSliderComponent;
 
-  galleryImages: NgxGalleryImage[];
-  
   public datas;
   u_country: any;
   u_state: any;
@@ -89,10 +88,8 @@ export class TimelineComponent implements OnInit {
               this.datas[i].post_user = res.data.name
               this.datas[i].post_user_designation = res.data.designation
               this.datas[i].post_user_email = res.data.emailId
-              
             })
           }
-          
           if(this.likes.length > 0){
             this.postlikeId.push(this.datas[i]._id)
           }
