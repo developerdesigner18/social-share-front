@@ -96,7 +96,6 @@ export class UserProfileComponent implements OnInit {
     })
 
     this.authService.getProfilePost(id).subscribe(res => {
-      console.log("-=-=-=-=-=response are", res.imageUrl)
       if(res.length > 0){
 
         for(let i = 0; i < res.length; i++){

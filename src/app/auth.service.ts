@@ -374,7 +374,7 @@ export class AuthService {
   //GetAllData from AboutData
   getAllData(userId): Observable<any>{
     let u_token = localStorage.getItem('token')
-    return this.httpClient.get(`${environment.apiUrl}/api/about/getAboutData?userId=${userId}`, { headers: this.headers}).pipe(
+    return this.httpClient.get(`${environment.apiUrl}/api/about/getAboutData?userid=${userId}`, { headers: this.headers}).pipe(
       map((res: Response) => {
         return res || {}
       }),
