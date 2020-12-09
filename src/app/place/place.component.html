@@ -34,8 +34,8 @@
     <div class="col-md-5" style="font-size: 14px; margin-left: 15px;">
       <!-- <span style="font-weight: 500;">{{u_city}}, {{u_state}}</span> -->
       <div>Home Town</div>
-      <div class="add-city"  (click)="newHome()" *ngIf="home === false && fill_home === false">
-        <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add your home town</a>
+      <div (click)="newHome()" *ngIf="home === false && fill_home === false">
+        <i class="fa fa-plus-circle"></i> &nbsp;<a class="add-city" [routerLink]="">Add your home town</a>
       </div>
       <div *ngIf="show_home" class="update-list">
         <div class="update-display">

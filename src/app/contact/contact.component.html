@@ -125,7 +125,7 @@
     <select name="gender" value="gender" [(ngModel)]="gender_value"> Gender
       <option value="Male">Male</option>
       <option value="Female">Female</option>
-      <option>Custom</option>
+      <option value="Others">Others</option>
     </select>
     <button type="button" name="button" (click)="G_Cancel()">Cancel</button>
     <button type="button" name="button" (click)="addGender(gender_value)">Save</button>
@@ -135,7 +135,7 @@
     <select name="gender" value="gender_value" [(ngModel)]="gender_value">
       <option value="Male">Male</option>
       <option value="Female">Female</option>
-      <option>Custom</option>
+      <option value="Others">Others</option>
     </select>
     <button type="button" name="button" (click)="u_cancel4()">Cancel</button>
     <button type="button" name="button" (click)="editGender(gender_value)">Save</button>

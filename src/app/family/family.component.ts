@@ -29,16 +29,16 @@ export class FamilyComponent implements OnInit {
     
     if (current_login_User.data._id !== id) {
       this.icons = false
-      this.authService.getProfileforAbout(id).subscribe(res => {
-        if (res.data == null) {
+      // this.authService.getProfileforAbout(id).subscribe(res => {
+      //   if (res.data == null) {
 
-        } else if (res.data.relationshipStatus !== undefined) {
-          this.display5 = true
-          this.relationshipStatus = res.data.relationshipStatus
-        } else {
-          this.not_mention_relationship = true
-        }
-      })
+      //   } else if (res.data.relationshipStatus !== undefined) {
+      //     this.display5 = true
+      //     this.relationshipStatus = res.data.relationshipStatus
+      //   } else {
+      //     this.not_mention_relationship = true
+      //   }
+      // })
       this.authService.getAllData(id).subscribe(res => {
         if (res.userData[0] == null) {
         } else if (res.userData[0].relationshipStatus !== undefined) {
@@ -47,7 +47,6 @@ export class FamilyComponent implements OnInit {
         } else {
           this.not_mention_relationship = true
         }
-
       })
     } else {
       this.icons = true

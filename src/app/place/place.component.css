@@ -24,6 +24,7 @@ button{
 .add-city{
   margin-top: 5px;
   margin-bottom: 0 !important;
+  color: #ff9000;
 }
 .add-city * {
   color: #ff9000;

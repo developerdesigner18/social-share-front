@@ -56,4 +56,11 @@
       <ng-template #no_gender>Not mention gender</ng-template>
     </div>
   </div>
+  <div class="overview_tab">
+		<i class="fa fa-birthday-cake"></i>
+    <div>
+  		<div *ngIf="u_birthdate; else no_birthdate"><span>BirthDate <b>{{u_birthdate | date}}</b></span></div>
+      <ng-template #no_birthdate>Not mention birthdate</ng-template>
+    </div>
+  </div>
 </div>

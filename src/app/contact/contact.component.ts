@@ -96,78 +96,10 @@ export class ContactComponent implements OnInit {
       const current_login_User = JSON.parse(localStorage.getItem('currentUser'));
       if (current_login_User.data._id !== id) {
         this.icons = false
-        this.authService.getProfileforAbout(id).subscribe(res => {
-          if (res.data == null) {
         
-          }
-          else if (res.data.mobileNumber !== undefined) {
-            this.mobile_number = res.data.mobileNumber
-            this.show_mobile = true
-            this.mobile = true
-          } else {
-            this.not_mention_number = true
-          }
-
-          if (res.data == null) {
-          }
-          else if (res.data.address !== undefined) {
-            this.email_address = res.data.address
-            this.show_email = true
-            this.email = true
-          } else {
-            this.not_mention_address = true
-          }
-
-          if (res.data == null) {
-          
-          }
-          else if (res.data.website !== undefined) {
-            this.website_link = res.data.website
-            this.show_link = true
-            this.link = true
-          } else {
-            this.not_mention_website = true
-          }
-
-          if (res.data == null) {
-            
-          }
-          else if (res.data.basicInfo !== undefined) {
-            this.religious_value = res.data.basicInfo
-            this.show_caste = true
-            this.religious = true
-          } else {
-            this.not_mention_religious = true
-          }
-
-          if (res.data == null) {
-            
-          }
-          else if (res.data.gender !== undefined) {
-            this.gender_value = res.data.gender
-            this.show_gender = true
-            this.genders = true
-          } else {
-            this.not_mention_gender = true
-          }
-
-          if (res.data == null) {
-            
-          }
-          else if (res.data.birthDate !== undefined) {
-            this.birth_value = res.data.birthDate
-            this.show_birth = true
-            this.birth = true
-          } else {
-            this.not_mention_birth = true
-          }
-        })
           this.authService.getAllData(id).subscribe(res => {
 
-            if (res.userData[0] == null) {
-    
-            }
-            else if (res.userData[0].mobileNumber !== undefined) {
+            if (res.userData[0].mobileNumber !== undefined && res.userData[0] !== null) {
               this.mobile_number = res.userData[0].mobileNumber
               this.show_mobile = true
               this.mobile = true
@@ -175,10 +107,7 @@ export class ContactComponent implements OnInit {
             this.not_mention_number = true
             }
   
-            if (res.userData[0] == null) {
-              
-            }
-            else if (res.userData[0].address !== undefined) {
+            if (res.userData[0].address !== undefined && res.userData[0] !== null) {
               this.email_address = res.userData[0].address
               this.show_email = true
               this.email = true
@@ -186,10 +115,7 @@ export class ContactComponent implements OnInit {
               this.not_mention_address = true
             }
   
-            if (res.userData[0] == null) {
-              
-            }
-            else if (res.userData[0].website !== undefined) {
+            if (res.userData[0].website !== undefined && res.userData[0] !== null) {
               this.website_link = res.userData[0].website
               this.show_link = true
               this.link = true
@@ -197,10 +123,7 @@ export class ContactComponent implements OnInit {
               this.not_mention_website = true
             }
   
-            if (res.userData[0] == null) {
-             
-            }
-            else if (res.userData[0].basicInfo !== undefined) {
+            if (res.userData[0].basicInfo !== undefined && res.userData[0] !== null) {
               this.religious_value = res.userData[0].basicInfo
               this.show_caste = true
               this.religious = true
@@ -208,10 +131,7 @@ export class ContactComponent implements OnInit {
               this.not_mention_religious = true
             }
   
-            if (res.userData[0] == null) {
-              
-            }
-            else if (res.userData[0].gender !== undefined) {
+            if (res.userData[0].gender !== undefined && res.userData[0] !== null) {
               this.gender_value = res.userData[0].gender
               this.show_gender = true
               this.genders = true
@@ -219,10 +139,7 @@ export class ContactComponent implements OnInit {
               this.not_mention_gender = true
             }
 
-            if (res.userData[0] == null) {
-            
-            }
-            else if (res.userData[0].birthDate !== undefined) {
+            if (res.userData[0].birthDate !== undefined && res.userData[0] !== null) {
               this.birth_value = res.userData[0].birthDate
               this.show_birth = true
               this.birth = true
