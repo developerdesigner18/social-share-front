@@ -83,18 +83,14 @@ export class DetailsComponent implements OnInit {
           this.not_mention_pronun = true
         }
 
-        if (res.userData[0] == null) {
-
-        } else if (res.userData[0].otherName !== undefined) {
+        if (res.userData[0].otherName !== undefined && res.userData[0] !== null) {
           this.nickname = res.userData[0].otherName
           this.show_nickname = true
         } else {
           this.not_mention_nickname = true
         }
 
-        if (res.userData[0] == null) {
-  
-        } else if (res.userData[0].quote !== undefined) {
+        if (res.userData[0].quote !== undefined && res.userData[0] !== null) {
           this.quote_value = res.userData[0].quote
           this.show_quotes = true
         } else {
