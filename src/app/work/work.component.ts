@@ -128,16 +128,23 @@ export class WorkComponent implements OnInit {
   }
 
   delWork(dataId: any) {
-    this.work = false;
-    this.fill_work = false;
-    this.show_work = false;
+    
     this.authService.deleteWork(this.id, dataId, this.works).subscribe(res => {
       if (res['success']) {
+        this.work = false;
+        this.fill_work = false;
+        this.show_work = false;
         this.authService.getAllData(this.id).subscribe(res => {
-          if (res.userData[0].work !== undefined) {
-            this.get_works = res.userData[0].work
+          if (res.userData[0] == null) {
           }
-         })
+          else if (res.userData[0].work !== undefined) {
+            this.get_works = res.userData[0].work
+            this.show_work = true
+            this.work = true
+          } else {
+            this.work = false
+          }
+        })
       } else {
         console.log("error");
         // this.display1 = true;
