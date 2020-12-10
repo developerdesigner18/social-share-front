@@ -2,13 +2,31 @@
   <div class="work_tab">
     <h6>Work</h6>
   </div>
-  <div (click)="newWork()" *ngIf="current_user_profile; else not_mention_work">
+  <div (click)="newWork()">
     <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add Work Place</a>
   </div>
-  <ng-template #not_mention_work>Not mention Work Place</ng-template>
-  <div class="work" *ngIf="work">
-    <input type="text" name="" value="" placeholder="Add work place">
+  <div *ngIf="show_work" class="update-list">
+    <div *ngFor="let works_data of get_works" class="work-record">
+      <div class="update-display" >
+        <i class="fas fa-briefcase"><i class=""></i> </i> &nbsp;{{works_data.name}}
+        <!-- <i class="fa fa-phone"> </i> &nbsp;{{get_works}} -->
+      </div>
+      <div class="icons-pencil" *ngIf="icons">
+        <i (click)="updateWork(works_data._id, works_data.name)" class="pencil-icon fa fa-pencil"></i>
+        <i (click)="delWork(works_data._id)" class="pencil-icon fa fa-trash"></i>
+      </div>
+    </div>
+  </div>
+  <div class="no_mention" *ngIf="not_mention_work"><i class="fas fa-briefcase"> </i>&nbsp; Not mention Work</div>
+  <div class="work" *ngIf="fill_work">
+    <input type="text" [(ngModel)]="event" name="" value="" placeholder="Add work place">
+    <button type="button" name="button" (click)="save_add_work(event)">Save</button>
     <button type="button" name="button" (click)="Cancel()">Cancel</button>
+  </div>
+  <div class="u_mobile" *ngIf="u_fill_work">
+    <input type="text" [(ngModel)]="event" name="" value="" placeholder="Add work place">
+    <button type="button" name="button" (click)="u_cancel()">Cancel</button>
+    <button type="button" name="button" (click)="editWork(event)">Save</button>
   </div>
   <br/>
   <div class="work_tab">

@@ -624,6 +624,40 @@ export class AuthService {
     )
   }
 
+    //Add Work Data
+    addWork(userId, name, work): Observable<any> {
+      let u_token = localStorage.getItem('token')
+      return this.httpClient.post(`${environment.apiUrl}/api/about/addSingleArray`, {userId: userId, name: name, fieldName: work }, { headers: { token: u_token } }).pipe(
+        map((res: Response) => {
+          console.log("-=-=-=-=-=-=-=-=- res",res);
+          return res || {}
+        }),
+        catchError(this.handleError)
+      )
+  }
+  
+  updateWork(userId, name, dataId, work): Observable<any> {
+    console.log("userId", userId, "dataId", dataId, "name", name);
+    return this.httpClient.post(`${environment.apiUrl}/api/about/updateSingleArray`, {userId: userId, name: name, dataId: dataId, fieldName: work } ).pipe(
+      map((res: Response) => {
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  deleteWork(userId, dataId, work): Observable<any>{
+    console.log("userId",userId,"dataId",dataId);
+    
+    return this.httpClient.post(`${environment.apiUrl}/api/about/deleteSingleArray`,{ userId: userId, dataId: dataId, fieldName: work }).pipe(
+      map((res: Response) => {
+        console.log("-=-=-=-=-=-=-=-=-res", res);
+        
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
   private handleError(error: HttpErrorResponse) {
     let msg = '';
     if(error.error.message == 'friend request already sent or recive either you are already friends'){

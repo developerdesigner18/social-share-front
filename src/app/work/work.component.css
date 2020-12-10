@@ -25,3 +25,8 @@ button{
   color: #ff9000;
   font-size: 14px;
 }
+
+.work-record{
+  display: flex;
+  justify-content: space-between;
+}
