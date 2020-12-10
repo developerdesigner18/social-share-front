@@ -1014,7 +1014,7 @@ button.edit-button {
 	.about_action_tabs 	> ul{
 		flex-direction: row !important;
 		justify-content: left !important;
-		border-bottom: 1px solid #000000;
+		border-bottom: 1px dashed #000000;
 	}
 	header {
 	    width: 100%;
