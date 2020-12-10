@@ -21,9 +21,6 @@
 			<a [routerLink]="['photos']"><button>Photos</button></a>
 			<a [routerLink]="['friends']"><button>Friends</button></a>
 			<a [routerLink]="['more']"><button>More</button></a>
-			<!-- <a href="javascript:void(0);" class="icon" (click)="myFunction()">
-		    <i class="fa fa-bars"></i>
-		  </a> -->
 		</div>
 		<div class="main_action"></div>
 	</div>
@@ -77,7 +74,7 @@
 					<img [src]="img">
 				</div>
 			</div>
-			<div class="photos_container_all w_100 see-all-images" *ngIf="onlyImg">
+			<div class="photos_container_all w_100 see-all-images" *ngIf="onlyImg.length > 10">
 				<button class="edit-button see-all-button">See All</button>
 			</div>
 			<div *ngIf="notfound == 404" style="color: #003459">

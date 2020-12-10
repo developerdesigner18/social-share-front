@@ -969,27 +969,79 @@ button.edit-button {
 	}
 }
 
-@media (min-width: 321px) and (max-width: 767px){
+@media (min-width: 280px) and (max-width: 767px){
 
 	.main {
 	    display: block !important;
+	}
+	.about_container{
+	    flex-direction: column !important;
+	}
+	.cover_pic {
+    	height: 250px;
+	}
+	.profile_pic img {
+    width: 150px;
+    height: 150px;
+    margin-top: -150px;
+	}
+	.profile_edit i {
+	    bottom: 24px;
+	    right: 32px;
+	}
+	.profile_pic_main_tabs_sec {
+	    flex-direction: column;
+	}
+	body .profile_pic_main_tabs_sec .actions {
+	    margin-top: 10px;
+	    margin-bottom: 10px;
+	}
+	div#myTopnav > a {
+	    margin: 10px 0;
+	}
+	#myTopnav {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+	button.cover-set {
+	    position: absolute;
+	    top: 40px;
+	    left: 0;
+	    right: 0;
+	    margin: auto;
+	}
+	.about_action_tabs 	> ul{
+		flex-direction: row !important;
+		justify-content: left !important;
+		border-bottom: 1px solid #000000;
 	}
 	header {
 	    width: 100%;
 	}
 	.header_alignment {
-	    display: block !important;
+	  display: flex !important;
+	  flex-wrap: wrap;
+	}
+	.header_alignment > .logo {
+	    flex-basis: 50%;
+	    order: 1;
+			text-align: left;
 	}
 	.logo {
 	    margin: 0 auto;
 	    text-align: center;
-	    width: 56%;
+	    width: 95%;
 	}
 	header .ads {
 	    margin-top: 15px;
+			flex-basis: 100%;
+			order: 3;
 	}
 	.login_container {
-	    justify-content: center !important;
+			flex-basis: 50%;
+			order: 2;
+			margin-top: 0;
 	}
 	.login_container button {
 	    margin: 0 !important;
@@ -1048,30 +1100,30 @@ button.edit-button {
     width: 45px;
     height: 45px;
 }
-	.actions {
-	    display: flex;
-	}
-	.bid_now button {
-	    padding: 10px 9px;
-	    font-size: 15px;
-	}
-	.a_friend img {
-    height: 170px;
+.actions {
+    display: flex;
+}
+.bid_now button {
+    padding: 10px 9px;
+    font-size: 15px;
+}
+.a_friend img {
+  height: 170px;
 }
 
-	.timeline {
-		margin: 22px 0px;
-	}
-	.province{
-		padding: 5px 5px;
-	}
+.timeline {
+	margin: 22px 0px;
+}
+.province{
+	padding: 5px 5px;
+}
 
-	.main.d-flex {
-    display: flex !important;
-    flex-wrap: wrap !important;
-	}
-	.main_area {
-    order: 3;
+.main.d-flex {
+  display: flex !important;
+  flex-wrap: wrap !important;
+}
+.main_area {
+  order: 3;
 }
 .right_sidebar {
     order: 2;
