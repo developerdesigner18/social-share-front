@@ -30,3 +30,34 @@ button{
   display: flex;
   justify-content: space-between;
 }
+.pencil-icon{
+  background: #efefef;
+  padding: 5px;
+  color: #ff9000;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.icons-pencil{
+  padding: 4px 0;
+}
+
+.icons-pencil > i:not(:last-child) {
+  margin-right: 10px;
+}
+.update-list{
+  width: 95%;
+  /* display: flex; */
+  /* justify-content: space-between; */
+  align-items: center;
+  margin-right: 16px !important;
+}
+
+.update-display{
+  display: flex;
+  align-items: center;
+}
+
+.update-display p{
+  margin-bottom: 0;
+}

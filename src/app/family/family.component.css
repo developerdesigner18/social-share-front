@@ -35,6 +35,7 @@ button{
   color: #ff9000;
   border-radius: 50%;
   cursor: pointer;
+  margin-right: 15px;
 }
 
 .relation-status {
@@ -56,4 +57,17 @@ button{
 .overview-main a {
   color: #ff9000;
   font-size: 14px;
+}
+
+select{
+  border: 2px solid #ff9000;
+}
+p{
+  padding-left: 48px;
+  margin-top: -8px;
+  font-size: 0.8em;
+}
+.work-record{
+  display: flex;
+  justify-content: space-between;
 }

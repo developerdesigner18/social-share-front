@@ -2,11 +2,29 @@
   <div class="work_tab">
     <h6>Life events</h6>
   </div>
-  <div style="margin-bottom: 20px;" (click)="newLifeEvent()">
+  <div style="margin-bottom: 20px;" (click)="newLifeEvent()" *ngIf="life_show">
     <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add life event</a>
   </div>
-  <div class="life" *ngIf="life">
-    <textarea name="life" placeholder="Enter Your Life Event"></textarea>
-    <button type="button" name="button" (click)="Cancel()">Cancel</button>
+  <div *ngIf="show_life" class="update-list">
+    <div *ngFor="let life_data of get_life" class="work-record">
+      <div class="update-display" >
+        <i class="fas fa-star-of-life"><i class=""></i> </i> &nbsp;{{life_data.name}}
+      </div>
+      <div class="icons-pencil" *ngIf="icons">
+        <i (click)="updateLife(life_data._id, life_data.name)" class="pencil-icon fa fa-pencil"></i>
+        <i (click)="delLife(life_data._id)" class="pencil-icon fa fa-trash"></i>
+      </div>
+    </div>
+  </div>
+  <div class="no_mention" *ngIf="not_mention_life"><i class="fas fa-star-of-life"> </i>&nbsp; Not mention any life events</div>
+  <div class="work" *ngIf="fill_life">
+    <input type="text" [(ngModel)]="life" name="" value="" placeholder="Add life event">
+    <button type="button" name="button" (click)="save_add_life(life)">Save</button>
+    <button type="button" name="button" (click)="Life_Cancel()">Cancel</button>
+  </div>
+  <div class="u_mobile" *ngIf="u_fill_life">
+    <input type="text" [(ngModel)]="life" name="" value="" placeholder="Add life event">
+    <button type="button" name="button" (click)="l_cancel()">Cancel</button>
+    <button type="button" name="button" (click)="editLife(life)">Save</button>
   </div>
 </div>

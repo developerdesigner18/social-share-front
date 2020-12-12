@@ -625,7 +625,7 @@ export class AuthService {
   }
 
     //Add Work Data
-    addWork(userId, name, work): Observable<any> {
+  addWork(userId, name, work): Observable<any> {
       let u_token = localStorage.getItem('token')
       return this.httpClient.post(`${environment.apiUrl}/api/about/addSingleArray`, {userId: userId, name: name, fieldName: work }, { headers: { token: u_token } }).pipe(
         map((res: Response) => {
@@ -658,6 +658,164 @@ export class AuthService {
       catchError(this.handleError)
     )
   }
+
+   //Add University
+   addUniversity(userId, name, university): Observable<any> {
+    let u_token = localStorage.getItem('token')
+    return this.httpClient.post(`${environment.apiUrl}/api/about/addSingleArray`, {userId: userId, name: name, fieldName: university }, { headers: { token: u_token } }).pipe(
+      map((res: Response) => {
+        console.log("-=-=-=-=-=-=-=-=- res",res);
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  updateUniversity(userId, name, dataId, university): Observable<any> {
+    console.log("userId", userId, "dataId", dataId, "name", name);
+    return this.httpClient.post(`${environment.apiUrl}/api/about/updateSingleArray`, {userId: userId, name: name, dataId: dataId, fieldName: university } ).pipe(
+      map((res: Response) => {
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  deleteUniversity(userId, dataId, university): Observable<any>{
+    console.log("userId",userId,"dataId",dataId);
+    
+    return this.httpClient.post(`${environment.apiUrl}/api/about/deleteSingleArray`,{ userId: userId, dataId: dataId, fieldName: university }).pipe(
+      map((res: Response) => {
+        console.log("-=-=-=-=-=-=-=-=-res", res);
+        
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  //Add School
+  addSchool(userId, name, school): Observable<any> {
+    let u_token = localStorage.getItem('token')
+    return this.httpClient.post(`${environment.apiUrl}/api/about/addSingleArray`, {userId: userId, name: name, fieldName: school }, { headers: { token: u_token } }).pipe(
+      map((res: Response) => {
+        console.log("-=-=-=-=-=-=-=-=- res",res);
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  updateSchool(userId, name, dataId, school): Observable<any> {
+    console.log("userId", userId, "dataId", dataId, "name", name);
+    return this.httpClient.post(`${environment.apiUrl}/api/about/updateSingleArray`, {userId: userId, name: name, dataId: dataId, fieldName: school } ).pipe(
+      map((res: Response) => {
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  deleteSchool(userId, dataId, school): Observable<any>{
+    console.log("userId",userId,"dataId",dataId);
+    return this.httpClient.post(`${environment.apiUrl}/api/about/deleteSingleArray`,{ userId: userId, dataId: dataId, fieldName: school }).pipe(
+      map((res: Response) => {
+        console.log("-=-=-=-=-=-=-=-=-res", res);      
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+   //Add Language
+   addLanguage(userId, name, language): Observable<any> {
+    let u_token = localStorage.getItem('token')
+    return this.httpClient.post(`${environment.apiUrl}/api/about/addSingleArray`, {userId: userId, name: name, fieldName: language }, { headers: { token: u_token } }).pipe(
+      map((res: Response) => {
+        console.log("-=-=-=-=-=-=-=-=- res",res);
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  deleteLanguage(userId, dataId, language): Observable<any>{
+    console.log("userId",userId,"dataId",dataId);
+    return this.httpClient.post(`${environment.apiUrl}/api/about/deleteSingleArray`,{ userId: userId, dataId: dataId, fieldName: language }).pipe(
+      map((res: Response) => {
+        console.log("-=-=-=-=-=-=-=-=-res", res);      
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  //Add Life Event
+  addLifeEvent(userId, name, lifeEvents): Observable<any> {
+    let u_token = localStorage.getItem('token')
+    return this.httpClient.post(`${environment.apiUrl}/api/about/addSingleArray`, {userId: userId, name: name, fieldName: lifeEvents }, { headers: { token: u_token } }).pipe(
+      map((res: Response) => {
+        console.log("-=-=-=-=-=-=-=-=- res",res);
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  updateLifeEvent(userId, name, dataId, lifeEvents): Observable<any> {
+    console.log("userId", userId, "dataId", dataId, "name", name);
+    return this.httpClient.post(`${environment.apiUrl}/api/about/updateSingleArray`, {userId: userId, name: name, dataId: dataId, fieldName: lifeEvents } ).pipe(
+      map((res: Response) => {
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  deleteLifeEvent(userId, dataId, lifeEvents): Observable<any>{
+    console.log("userId",userId,"dataId",dataId);
+    return this.httpClient.post(`${environment.apiUrl}/api/about/deleteSingleArray`,{ userId: userId, dataId: dataId, fieldName: lifeEvents }).pipe(
+      map((res: Response) => {
+        console.log("-=-=-=-=-=-=-=-=-res", res);      
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  //Add family member
+  addFamily(userId, family, relationship): Observable<any> {
+    let u_token = localStorage.getItem('token')
+    return this.httpClient.post(`${environment.apiUrl}/api/about/addFamilyMember`, {userId: userId, name: family, relationship: relationship }, { headers: { token: u_token } }).pipe(
+      map((res: Response) => {
+        console.log("-=-=-=-=-=-=-=-=- res",res);
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  updateFamily(userId, family, dataId, relationship): Observable<any> {
+    console.log("userId", userId, "dataId", dataId, "family", family);
+    return this.httpClient.post(`${environment.apiUrl}/api/about/updateFamilyMember`, {userId: userId, name: family, dataId: dataId, relationship: relationship } ).pipe(
+      map((res: Response) => {
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  deleteFamily(userId, dataId): Observable<any>{
+    console.log("userId",userId,"dataId",dataId);
+    return this.httpClient.post(`${environment.apiUrl}/api/about/deleteFamilyMember`,{ userId: userId, dataId: dataId }).pipe(
+      map((res: Response) => {
+        console.log("-=-=-=-=-=-=-=-=-res", res);      
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
   private handleError(error: HttpErrorResponse) {
     let msg = '';
     if(error.error.message == 'friend request already sent or recive either you are already friends'){

@@ -78,10 +78,20 @@ export class ContactComponent implements OnInit {
   not_mention_religious = false;
   not_mention_gender = false;
   not_mention_birth = false;
+  not_mention_langugae = false;
   show_birth: boolean;
   u_fill_birth: boolean;
-  
+  show_langugae: boolean;
+  fill_langugae = false;
+  u_fill_language: boolean;
+  language: any
+  get_langugae: any
+  Language = 'language';
+  data_id: any;
 
+   dataid = this.activatedRoute.parent.parent.params['value']['id'];
+  languages = true;
+  text_language = false;
   constructor(
     public authService: AuthService,
     private activatedRoute: ActivatedRoute
@@ -145,6 +155,17 @@ export class ContactComponent implements OnInit {
               this.birth = true
             } else {
               this.not_mention_birth = true
+            }
+
+            if (res.userData[0].language.length > 0) {   
+              this.get_langugae = res.userData[0].language
+              this.show_langugae = true 
+              this.languages = false
+              this.text_language = true
+            } else {
+              this.languages = false
+              this.text_language = false
+              this.not_mention_langugae = true
             }
          
         })
@@ -217,6 +238,15 @@ export class ContactComponent implements OnInit {
             this.birth = false
           }
 
+          if (res.userData[0] == null) {
+            
+          }
+          else if (res.userData[0].language !== undefined) {   
+            this.get_langugae = res.userData[0].language
+            this.show_langugae = true 
+          } else {
+            
+          }
         })
       }
       
@@ -226,8 +256,12 @@ export class ContactComponent implements OnInit {
       }else{
         this.current_user_profile = false
       }
+
+      
     }
+    
   }
+  
   
   addNumber(number: any) {
     this.authService.addNewNumber(number).subscribe(res => {
@@ -555,6 +589,48 @@ export class ContactComponent implements OnInit {
     })
   }
 
+  // Language
+  save_add_langugae(language: any) {
+    this.authService.addLanguage(this.dataid, language, this.Language).subscribe(res => {
+      if (res['success']) {
+        this.language = language
+        this.show_langugae = true
+        // this. = true;
+        this.fill_langugae = false
+        this.authService.getAllData(this.dataid).subscribe(res => {
+          if (res.userData[0].language !== undefined) {
+            this.get_langugae = res.userData[0].language
+          }
+         })
+      }
+    })
+  }
+
+  delLangugae(dataId: any) { 
+    this.authService.deleteLanguage(this.dataid, dataId, this.Language).subscribe(res => {
+      if (res['success']) {
+        // this.work = false;
+        this.fill_langugae = false;
+        this.show_langugae = false;
+        this.authService.getAllData(this.dataid).subscribe(res => {
+          if (res.userData[0] == null) {
+          }
+          else if (res.userData[0].language !== undefined) {
+            this.get_langugae = res.userData[0].language
+            this.show_langugae = true
+            // this.work = true
+          } else {
+            // this.work = false
+          }
+        })
+      } else {
+        console.log("error");
+        // this.display1 = true;
+      }
+    })
+
+  }
+
   ngOnInit(): void {
   }
 
@@ -586,6 +662,10 @@ export class ContactComponent implements OnInit {
   newBirthDate() {
     this.fill_birth = true
     this.birth = false
+  }
+
+  newLanguage() { 
+    this.fill_langugae = true
   }
 
   Cancel() {
@@ -623,6 +703,10 @@ export class ContactComponent implements OnInit {
     this.fill_birth = false
   }
 
+  language_Cancel() {
+    this.fill_langugae = false
+  }
+
   u_cancel() {
     this.show_mobile = true;
     this.u_fill_mobile_no = false;
@@ -652,5 +736,4 @@ export class ContactComponent implements OnInit {
     this.show_birth = true
     this.u_fill_birth = false
   }
-
 }

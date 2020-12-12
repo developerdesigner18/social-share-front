@@ -11,7 +11,7 @@ declare var $: any;
 })
 export class FamilyComponent implements OnInit {
   status: boolean;
-  family: boolean;
+  family: any;
 
   shows5: any;
 
@@ -20,6 +20,16 @@ export class FamilyComponent implements OnInit {
   u_status: any
   not_mention_relationship = false;
   icons: boolean;
+  family_show = true
+  show_family: boolean
+  not_mention_family = false
+  fill_family = false
+  u_fill_family: boolean
+  get_family = []
+  relation: any
+
+  id = this.activatedRoute.parent.parent.params['value']['id'];
+  data_id: any;
   constructor(
     private authService: AuthService,
     private activatedRoute: ActivatedRoute
@@ -29,16 +39,7 @@ export class FamilyComponent implements OnInit {
     
     if (current_login_User.data._id !== id) {
       this.icons = false
-      // this.authService.getProfileforAbout(id).subscribe(res => {
-      //   if (res.data == null) {
-
-      //   } else if (res.data.relationshipStatus !== undefined) {
-      //     this.display5 = true
-      //     this.relationshipStatus = res.data.relationshipStatus
-      //   } else {
-      //     this.not_mention_relationship = true
-      //   }
-      // })
+      
       this.authService.getAllData(id).subscribe(res => {
         if (res.userData[0] == null) {
         } else if (res.userData[0].relationshipStatus !== undefined) {
@@ -46,6 +47,15 @@ export class FamilyComponent implements OnInit {
           this.relationshipStatus = res.userData[0].relationshipStatus
         } else {
           this.not_mention_relationship = true
+        }
+
+        if (res.userData[0].family.length > 0) {
+          this.get_family = res.userData[0].family
+          this.show_family = true
+          this.family_show = false
+        } else {
+          this.family_show = false
+          this.not_mention_family = true
         }
       })
     } else {
@@ -63,6 +73,17 @@ export class FamilyComponent implements OnInit {
           this.relationshipStatus = res.userData[0].relationshipStatus
         }
 
+        if (res.userData[0] == null) {
+          // this.work = false
+          // console.log("-=-=-=-=-=-=-=-=-=--res", res.userData);
+        }
+        else if (res.userData[0].family !== undefined) {
+          console.log("-=-=-=-=-=-=-=-=-=-family", res.userData[0].family);
+          this.get_family = res.userData[0].family
+          this.show_family = true
+        } else {
+          // this.work = false
+        }
       })
     }
   }
@@ -102,12 +123,84 @@ export class FamilyComponent implements OnInit {
     })
   }
 
+  addFamily(family, relation) {
+    this.authService.addFamily(this.id, family, relation).subscribe(res => {
+      if (res['success']) {
+        this.family = family
+        this.relation = relation
+        this.show_family = true
+        // this.work = true;
+        this.fill_family = false
+        this.authService.getAllData(this.id).subscribe(res => {
+          if (res.userData[0].family !== undefined) {
+            this.get_family = res.userData[0].family
+          }
+         })
+      }
+    })
+  }
+
+  editFamily(family, relation) {
+    this.authService.updateFamily(this.id , family, this.data_id, relation).subscribe(res => {
+      if (res['success']) {
+        this.show_family = true
+        this.u_fill_family = false
+        this.authService.getAllData(this.id).subscribe(res => {
+          if (res.userData[0].family !== undefined) {
+            this.get_family = res.userData[0].family
+          }
+         })
+      }
+    })
+  }
+
+  updateFamily(dataId, family, relation) {
+    this.family = family;
+    this.relation = relation
+    this.show_family = false;
+    this.u_fill_family = true;
+    this.data_id = dataId
+    this.authService.updateFamily(this.id , family, dataId, relation).subscribe(res => {
+      if (res['success']) {
+        // this.u_mobile = true
+        // this.display1 = false
+      } else {
+        console.log("error");
+        // this.display1 = true;
+      }
+    })
+  }
+
+  delFamily(dataId: any) {
+    this.authService.deleteFamily(this.id, dataId).subscribe(res => {
+      if (res['success']) {
+        // this.work = false;
+        this.fill_family = false;
+        this.show_family = false;
+        this.authService.getAllData(this.id).subscribe(res => {
+          if (res.userData[0] == null) {
+          }
+          else if (res.userData[0].family !== undefined) {
+            this.get_family = res.userData[0].family
+            this.show_family = true
+            // this.work = true
+          } else {
+            // this.work = false
+          }
+        })
+      } else {
+        console.log("error");
+        // this.display1 = true;
+      }
+    })
+  }
+
   newStatus() {
     this.status = true
   }
 
   newFamily(){
-    this.family = true
+    this.fill_family = true
   }
 
   Cancel(){
@@ -116,9 +209,18 @@ export class FamilyComponent implements OnInit {
     this.family = false
   }
 
+  F_Cancel(){
+    this.fill_family = false
+  }
+
   u_cancel(){
     this.u_status = false
     this.display5 = true
+  }
+
+  f_cancel(){
+    this.show_family = true
+    this.u_fill_family = false
   }
 
 }

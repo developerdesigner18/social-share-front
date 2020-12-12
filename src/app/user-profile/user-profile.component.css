@@ -976,7 +976,16 @@ button.edit-button {
 	}
 	.about_container{
 	    flex-direction: column !important;
-	}
+    }
+    .about_container > div {
+        padding-left: 10px;
+        width: 100%;
+        border-right: 0;
+        margin-left: 0;
+    }
+    .overview-main {
+        margin-top: 20px;
+    }
 	.cover_pic {
     	height: 250px;
 	}
@@ -1012,8 +1021,8 @@ button.edit-button {
 	    margin: auto;
 	}
 	.about_action_tabs 	> ul{
-		flex-direction: row !important;
-		justify-content: left !important;
+		/* flex-direction: row !important;
+		justify-content: left !important; */
 		border-bottom: 1px dashed #000000;
 	}
 	header {
