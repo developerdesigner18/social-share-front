@@ -216,7 +216,6 @@ export class AuthService {
   acceptFriendRequest(userId, confirmId): Observable<any> {
     return this.httpClient.post(`${environment.apiUrl}/api/friend/accept`, {userId: userId, requestId: confirmId}, {headers: this.headers}).pipe(
       map((res: Response) => {
-        console.log("=-=-=-=-=-=res", res)
         return res || {}
       }),
       catchError(this.handleError)
@@ -226,7 +225,6 @@ export class AuthService {
   rejectFriendRequest(userId, rejectId): Observable<any> {
     return this.httpClient.post(`${environment.apiUrl}/api/friend/reject`, {userId: userId, requestId: rejectId}, {headers: this.headers}).pipe(
       map((res: Response) => {
-        console.log("=-=-=-=-=-=res", res)
         return res || {}
       }),
       catchError(this.handleError)
@@ -274,7 +272,6 @@ export class AuthService {
 
   getAllFriends(u_token): Observable<any> {
     this.headers.append('token', u_token)
-    // return this.httpClient.get<any>(`${environment.apiUrl}/api/friend`, { headers: {token: u_token}}).pipe(
     return this.httpClient.get(`${environment.apiUrl}/api/friend/allfriendList`, { headers: {token: u_token}}).pipe(
       map((res: Response) => {
         return res || {}
@@ -629,7 +626,6 @@ export class AuthService {
       let u_token = localStorage.getItem('token')
       return this.httpClient.post(`${environment.apiUrl}/api/about/addSingleArray`, {userId: userId, name: name, fieldName: work }, { headers: { token: u_token } }).pipe(
         map((res: Response) => {
-          console.log("-=-=-=-=-=-=-=-=- res",res);
           return res || {}
         }),
         catchError(this.handleError)
@@ -637,7 +633,6 @@ export class AuthService {
   }
   
   updateWork(userId, name, dataId, work): Observable<any> {
-    console.log("userId", userId, "dataId", dataId, "name", name);
     return this.httpClient.post(`${environment.apiUrl}/api/about/updateSingleArray`, {userId: userId, name: name, dataId: dataId, fieldName: work } ).pipe(
       map((res: Response) => {
         return res || {}
@@ -647,11 +642,8 @@ export class AuthService {
   }
 
   deleteWork(userId, dataId, work): Observable<any>{
-    console.log("userId",userId,"dataId",dataId);
-    
     return this.httpClient.post(`${environment.apiUrl}/api/about/deleteSingleArray`,{ userId: userId, dataId: dataId, fieldName: work }).pipe(
       map((res: Response) => {
-        console.log("-=-=-=-=-=-=-=-=-res", res);
         
         return res || {}
       }),
@@ -664,7 +656,6 @@ export class AuthService {
     let u_token = localStorage.getItem('token')
     return this.httpClient.post(`${environment.apiUrl}/api/about/addSingleArray`, {userId: userId, name: name, fieldName: university }, { headers: { token: u_token } }).pipe(
       map((res: Response) => {
-        console.log("-=-=-=-=-=-=-=-=- res",res);
         return res || {}
       }),
       catchError(this.handleError)
@@ -672,7 +663,6 @@ export class AuthService {
   }
 
   updateUniversity(userId, name, dataId, university): Observable<any> {
-    console.log("userId", userId, "dataId", dataId, "name", name);
     return this.httpClient.post(`${environment.apiUrl}/api/about/updateSingleArray`, {userId: userId, name: name, dataId: dataId, fieldName: university } ).pipe(
       map((res: Response) => {
         return res || {}
@@ -682,12 +672,8 @@ export class AuthService {
   }
 
   deleteUniversity(userId, dataId, university): Observable<any>{
-    console.log("userId",userId,"dataId",dataId);
-    
     return this.httpClient.post(`${environment.apiUrl}/api/about/deleteSingleArray`,{ userId: userId, dataId: dataId, fieldName: university }).pipe(
       map((res: Response) => {
-        console.log("-=-=-=-=-=-=-=-=-res", res);
-        
         return res || {}
       }),
       catchError(this.handleError)
@@ -699,7 +685,6 @@ export class AuthService {
     let u_token = localStorage.getItem('token')
     return this.httpClient.post(`${environment.apiUrl}/api/about/addSingleArray`, {userId: userId, name: name, fieldName: school }, { headers: { token: u_token } }).pipe(
       map((res: Response) => {
-        console.log("-=-=-=-=-=-=-=-=- res",res);
         return res || {}
       }),
       catchError(this.handleError)
@@ -707,7 +692,6 @@ export class AuthService {
   }
 
   updateSchool(userId, name, dataId, school): Observable<any> {
-    console.log("userId", userId, "dataId", dataId, "name", name);
     return this.httpClient.post(`${environment.apiUrl}/api/about/updateSingleArray`, {userId: userId, name: name, dataId: dataId, fieldName: school } ).pipe(
       map((res: Response) => {
         return res || {}
@@ -717,10 +701,8 @@ export class AuthService {
   }
 
   deleteSchool(userId, dataId, school): Observable<any>{
-    console.log("userId",userId,"dataId",dataId);
     return this.httpClient.post(`${environment.apiUrl}/api/about/deleteSingleArray`,{ userId: userId, dataId: dataId, fieldName: school }).pipe(
-      map((res: Response) => {
-        console.log("-=-=-=-=-=-=-=-=-res", res);      
+      map((res: Response) => {      
         return res || {}
       }),
       catchError(this.handleError)
@@ -732,7 +714,6 @@ export class AuthService {
     let u_token = localStorage.getItem('token')
     return this.httpClient.post(`${environment.apiUrl}/api/about/addSingleArray`, {userId: userId, name: name, fieldName: language }, { headers: { token: u_token } }).pipe(
       map((res: Response) => {
-        console.log("-=-=-=-=-=-=-=-=- res",res);
         return res || {}
       }),
       catchError(this.handleError)
@@ -740,10 +721,8 @@ export class AuthService {
   }
 
   deleteLanguage(userId, dataId, language): Observable<any>{
-    console.log("userId",userId,"dataId",dataId);
     return this.httpClient.post(`${environment.apiUrl}/api/about/deleteSingleArray`,{ userId: userId, dataId: dataId, fieldName: language }).pipe(
       map((res: Response) => {
-        console.log("-=-=-=-=-=-=-=-=-res", res);      
         return res || {}
       }),
       catchError(this.handleError)
@@ -755,7 +734,6 @@ export class AuthService {
     let u_token = localStorage.getItem('token')
     return this.httpClient.post(`${environment.apiUrl}/api/about/addSingleArray`, {userId: userId, name: name, fieldName: lifeEvents }, { headers: { token: u_token } }).pipe(
       map((res: Response) => {
-        console.log("-=-=-=-=-=-=-=-=- res",res);
         return res || {}
       }),
       catchError(this.handleError)
@@ -763,7 +741,6 @@ export class AuthService {
   }
 
   updateLifeEvent(userId, name, dataId, lifeEvents): Observable<any> {
-    console.log("userId", userId, "dataId", dataId, "name", name);
     return this.httpClient.post(`${environment.apiUrl}/api/about/updateSingleArray`, {userId: userId, name: name, dataId: dataId, fieldName: lifeEvents } ).pipe(
       map((res: Response) => {
         return res || {}
@@ -773,10 +750,8 @@ export class AuthService {
   }
 
   deleteLifeEvent(userId, dataId, lifeEvents): Observable<any>{
-    console.log("userId",userId,"dataId",dataId);
     return this.httpClient.post(`${environment.apiUrl}/api/about/deleteSingleArray`,{ userId: userId, dataId: dataId, fieldName: lifeEvents }).pipe(
       map((res: Response) => {
-        console.log("-=-=-=-=-=-=-=-=-res", res);      
         return res || {}
       }),
       catchError(this.handleError)
@@ -788,7 +763,6 @@ export class AuthService {
     let u_token = localStorage.getItem('token')
     return this.httpClient.post(`${environment.apiUrl}/api/about/addFamilyMember`, {userId: userId, name: family, relationship: relationship }, { headers: { token: u_token } }).pipe(
       map((res: Response) => {
-        console.log("-=-=-=-=-=-=-=-=- res",res);
         return res || {}
       }),
       catchError(this.handleError)
@@ -796,7 +770,6 @@ export class AuthService {
   }
 
   updateFamily(userId, family, dataId, relationship): Observable<any> {
-    console.log("userId", userId, "dataId", dataId, "family", family);
     return this.httpClient.post(`${environment.apiUrl}/api/about/updateFamilyMember`, {userId: userId, name: family, dataId: dataId, relationship: relationship } ).pipe(
       map((res: Response) => {
         return res || {}
@@ -806,10 +779,8 @@ export class AuthService {
   }
 
   deleteFamily(userId, dataId): Observable<any>{
-    console.log("userId",userId,"dataId",dataId);
     return this.httpClient.post(`${environment.apiUrl}/api/about/deleteFamilyMember`,{ userId: userId, dataId: dataId }).pipe(
-      map((res: Response) => {
-        console.log("-=-=-=-=-=-=-=-=-res", res);      
+      map((res: Response) => {    
         return res || {}
       }),
       catchError(this.handleError)

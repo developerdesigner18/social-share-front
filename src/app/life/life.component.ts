@@ -47,16 +47,9 @@ export class LifeComponent implements OnInit {
       } else {
         this.authService.getAllData(id).subscribe(res => {
           this.icons = true
-          if (res.userData[0] == null) {
-            // this.work = false
-            // console.log("-=-=-=-=-=-=-=-=-=--res", res.userData);
-          }
-          else if (res.userData[0].lifeEvents !== undefined) {
-            // this.get_works = res.userData[0].work.map((name) => name.name)
+          if (res.userData[0].lifeEvents !== undefined && res.userData[0] !== null) {
             this.get_life = res.userData[0].lifeEvents
-            // this.dataId = res.userData[0].work.map((_id) => _id._id[0])
             this.show_life = true
-            // this.work = true
           } else {
             // this.work = false
           }
@@ -73,7 +66,6 @@ export class LifeComponent implements OnInit {
       if (res['success']) {
         this.life = life
         this.show_life = true
-        // this.work = true;
         this.fill_life = false
         this.authService.getAllData(this.id).subscribe(res => {
           if (res.userData[0].lifeEvents !== undefined) {
@@ -105,35 +97,23 @@ export class LifeComponent implements OnInit {
     this.data_id = dataId
     this.authService.updateLifeEvent(this.id , life, dataId, this.lifes).subscribe(res => {
       if (res['success']) {
-        // this.u_mobile = true
-        // this.display1 = false
-      } else {
-        console.log("error");
-        // this.display1 = true;
-      }
+      } 
     })
   }
 
   delLife(dataId: any) {
     this.authService.deleteLifeEvent(this.id, dataId, this.lifes).subscribe(res => {
       if (res['success']) {
-        // this.work = false;
         this.fill_life = false;
         this.show_life = false;
         this.authService.getAllData(this.id).subscribe(res => {
-          if (res.userData[0] == null) {
-          }
-          else if (res.userData[0].lifeEvents !== undefined) {
+          if (res.userData[0].lifeEvents !== undefined && res.userData[0] !== null) {
             this.get_life = res.userData[0].lifeEvents
             this.show_life = true
-            // this.work = true
           } else {
             // this.work = false
           }
         })
-      } else {
-        console.log("error");
-        // this.display1 = true;
       }
     })
   }
@@ -141,7 +121,6 @@ export class LifeComponent implements OnInit {
   newLifeEvent(){
     this.fill_life = true
   }
-
 
   Life_Cancel() {
     this.fill_life = false

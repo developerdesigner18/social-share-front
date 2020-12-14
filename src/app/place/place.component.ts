@@ -39,9 +39,7 @@ export class PlaceComponent implements OnInit {
       if (current_login_User.data._id !== this.id) {
         this.icons = false
         this.authService.getProfileforAbout(this.id).subscribe(res => {
-          if (res.data == null) {
-            
-          } else if(res.data.city !== undefined) {
+          if(res.data.city !== undefined && res.data !== null) {
             this.u_city = res.data.city
             this.show_city = true
           } else {
@@ -49,9 +47,7 @@ export class PlaceComponent implements OnInit {
             this.not_mention_city = true
           }
 
-          if (res.data == null) {
-          }
-          else if (res.data.homeTown !== undefined) {
+          if (res.data.homeTown !== undefined && res.data !== null) {
             this.home_town = res.data.homeTown
             this.show_home = true
             this.home = true
@@ -59,18 +55,7 @@ export class PlaceComponent implements OnInit {
             this.not_mention_home = true
           }
         })
-          // this.authService.getAllData(this.id).subscribe(res => {
-          //   if (res.userData[0] == null) {
-    
-          //   }
-          //   else if (res.userData[0].homeTown !== undefined) {
-          //     this.home_town = res.userData[0].homeTown
-          //     this.show_home = true
-          //     this.home = true
-          //   } else {
-          //     this.not_mention_home = true
-          //   }
-          // })
+          
       } else {
         this.id = current_login_User.data._id
         this.icons = true
@@ -125,12 +110,7 @@ export class PlaceComponent implements OnInit {
     this.show_home = false
     this.u_fill_home = true
     this.authService.addHomeTown(home_town).subscribe(res => {
-      if (res['success']) {
       
-      }
-      else {
-        console.log("error");
-      }
     })
   }
 

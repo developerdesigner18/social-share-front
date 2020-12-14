@@ -3,7 +3,6 @@
     <i class="fas fa-briefcase"></i>
     <div>
       <span *ngIf="u_designation; else no_designation">works as <b>{{u_designation}}</b></span>
-      <!-- <span *ngIf="f_designation; else no_designation">{{f_designation}}</span> -->
       <ng-template #no_designation>Not mention work</ng-template>
     </div>
   </div>

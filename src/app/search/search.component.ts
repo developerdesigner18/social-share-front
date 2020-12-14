@@ -96,7 +96,6 @@ export class SearchComponent implements OnInit {
   reject_request(reject_id){
     // let userId = this.activatedRoute.snapshot.paramMap.get('id');
     this.authService.rejectFriendRequest(this.id, reject_id).subscribe(res => {
-      console.log("=-=-=-=-=- reject req", res)
     })
   }
 }

@@ -65,7 +65,7 @@ export class PeopleKnowComponent implements OnInit {
           // this.mutulFrd = res.userInfo.map(n => n.name)
         })
       }
-      // console.log("=-=-=-=-=-=-=", this.mutulFrd)
+    
     })
   }
 
@@ -78,7 +78,7 @@ export class PeopleKnowComponent implements OnInit {
 
   reject_request(reject_id){
     this.authService.rejectFriendRequest(this.id, reject_id).subscribe(res => {
-      // console.log("=-=-=-=-=- reject req", res)
+
     })
   }
 

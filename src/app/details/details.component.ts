@@ -66,7 +66,6 @@ export class DetailsComponent implements OnInit {
 
     if (current_login_User.data._id !== id) {
       this.icons = false
-      
       this.authService.getAllData(id).subscribe(res => {
 
          if (res.userData[0].aboutYourself !== undefined && res.userData[0] !== null) {
@@ -175,7 +174,6 @@ export class DetailsComponent implements OnInit {
         this.display7 = false
       }
       else{
-        console.log("error");
         this.display7 = false;
       }
     })
@@ -191,7 +189,6 @@ export class DetailsComponent implements OnInit {
         $(`.details`).css('display', 'block');
         this.display7 = false
       } else {
-        console.log("error");
         this.display7 = true;
       }
     })
@@ -227,7 +224,6 @@ export class DetailsComponent implements OnInit {
         this.display8 = false
       }
       else{
-        console.log("error");
         this.display8 = false;
       }
     })
@@ -243,7 +239,6 @@ export class DetailsComponent implements OnInit {
         $(`.mobile`).css('display', 'block');
         this.display8 = false
       } else {
-        console.log("error");
         this.display8 = true;
       }
     })
@@ -279,7 +274,6 @@ export class DetailsComponent implements OnInit {
         this.display9 = false
       }
       else{
-        console.log("error");
         this.display9 = false;
       }
     })
@@ -294,7 +288,6 @@ export class DetailsComponent implements OnInit {
         $(`.nickname`).css('display', 'block');
         this.display9 = false
       } else {
-        console.log("error");
         this.display9 = true;
       }
     })
@@ -330,7 +323,6 @@ export class DetailsComponent implements OnInit {
         this.display10 = false
       }
       else{
-        console.log("error");
         this.display10 = false;
       }
     })
@@ -346,7 +338,6 @@ export class DetailsComponent implements OnInit {
         $(`.quote`).css('display', 'block');
         this.display10 = false
       } else {
-        console.log("error");
         this.display10 = true;
       }
     })

@@ -13,27 +13,21 @@ declare var $: any;
 })
 export class ContactComponent implements OnInit {
   u_email = '';
-  u_number = '';
   mobile: any;
   email: any;
   website: any;
   number: any;
   address: any
-  display1: any;
-  display2: any;
   shows: any;
   shows1: any;
   shows2: any;
-  display3: any;
   shows3: any;
-  display4: any;
   u_mobile: any
   u_address: any
   u_website: any
   u_religious: any
   shows4: any
   genders: any
-  display5: any
   u_gender: any
   birth: boolean
   fill_birth = false
@@ -89,7 +83,7 @@ export class ContactComponent implements OnInit {
   Language = 'language';
   data_id: any;
 
-   dataid = this.activatedRoute.parent.parent.params['value']['id'];
+  dataid = this.activatedRoute.parent.parent.params['value']['id'];
   languages = true;
   text_language = false;
   constructor(
@@ -290,10 +284,7 @@ export class ContactComponent implements OnInit {
     this.authService.addNewNumber(number).subscribe(res => {
       if (res['success']) {
         this.u_mobile = true
-        this.display1 = false
       } else {
-        console.log("error");
-        this.display1 = true;
       }
     })
   }
@@ -307,10 +298,7 @@ export class ContactComponent implements OnInit {
         this.shows = true
         $(`.mobile`).css('display', 'block');
         this.u_mobile = false
-        this.display1 = false
       } else {
-        console.log("error");
-        this.display1 = true;
       }
     })
   }
@@ -342,11 +330,8 @@ export class ContactComponent implements OnInit {
     this.authService.addNewAddress(location).subscribe(res => {
       if (res['success']) {
         this.u_address = true
-        this.display2 = false
       }
-      else {
-        console.log("error");
-        this.display2 = false;
+      else {;
       }
     })
   }
@@ -360,11 +345,8 @@ export class ContactComponent implements OnInit {
         this.shows1 = true
         $(`.address`).css('display', 'block');
         this.u_address = false
-        this.display2 = false
       }
       else {
-        console.log("error");
-        this.display2 = true;
       }
     })
   }
@@ -397,11 +379,10 @@ export class ContactComponent implements OnInit {
     this.authService.addNewWebsite(website).subscribe(res => {
       if (res['success']) {
         this.u_website = true
-        this.display3 = false
+
       }
       else {
-        console.log("error");
-        this.display3 = false;
+;
       }
     })
   }
@@ -415,11 +396,9 @@ export class ContactComponent implements OnInit {
         this.shows2 = true
         $(`.website`).css('display', 'block');
         this.u_website = false
-        this.display3 = false
       }
       else {
-        console.log("error");
-        this.display3 = true;
+
       }
     })
   }
@@ -451,12 +430,8 @@ export class ContactComponent implements OnInit {
     this.u_fill_caste = true
     this.authService.addBasicInfo(caste).subscribe(res => {
       if (res['success']) {
-        this.u_religious = true
-        this.display4 = false
-      }
+        this.u_religious = true      }
       else {
-        console.log("error");
-        this.display4 = false;
       }
     })
   }
@@ -469,13 +444,8 @@ export class ContactComponent implements OnInit {
       if (res['success']) {
         this.shows3 = true
         $(`.religious`).css('display', 'block');
-        this.u_religious = false
-        this.display4 = false
-      }
-      else {
-        console.log("error");
-        this.display4 = true;
-      }
+        this.u_religious = false      }
+      else {      }
     })
   }
 
@@ -507,11 +477,9 @@ export class ContactComponent implements OnInit {
     this.authService.addGender(value).subscribe(res => {
       if (res['success']) {
         this.u_gender = true
-        this.display5 = false
       }
       else {
-        console.log("error");
-        this.display5 = false;
+
       }
     })
   }
@@ -525,11 +493,8 @@ export class ContactComponent implements OnInit {
         this.shows4 = true
         $(`.gender`).css('display', 'block');
         this.u_gender = false
-        this.display5 = false
       }
       else {
-        console.log("error");
-        this.display5 = true;
       }
     })
   }
@@ -562,11 +527,10 @@ export class ContactComponent implements OnInit {
     this.authService.addBirthDate(birth_value).subscribe(res => {
       if (res['success']) {
         this.u_website = true
-        this.display3 = false
+
       }
       else {
-        console.log("error");
-        this.display3 = false;
+;
       }
     })
   }
@@ -580,11 +544,9 @@ export class ContactComponent implements OnInit {
         this.shows2 = true
         $(`.website`).css('display', 'block');
         this.u_website = false
-        this.display3 = false
       }
       else {
-        console.log("error");
-        this.display3 = true;
+
       }
     })
   }
@@ -624,8 +586,6 @@ export class ContactComponent implements OnInit {
           }
         })
       } else {
-        console.log("error");
-        // this.display1 = true;
       }
     })
 

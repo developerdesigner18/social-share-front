@@ -41,8 +41,7 @@ export class FamilyComponent implements OnInit {
       this.icons = false
       
       this.authService.getAllData(id).subscribe(res => {
-        if (res.userData[0] == null) {
-        } else if (res.userData[0].relationshipStatus !== undefined) {
+        if (res.userData[0].relationshipStatus !== undefined && res.userData[0] !== null) {
           this.display5 = true
           this.relationshipStatus = res.userData[0].relationshipStatus
         } else {
@@ -73,12 +72,7 @@ export class FamilyComponent implements OnInit {
           this.relationshipStatus = res.userData[0].relationshipStatus
         }
 
-        if (res.userData[0] == null) {
-          // this.work = false
-          // console.log("-=-=-=-=-=-=-=-=-=--res", res.userData);
-        }
-        else if (res.userData[0].family !== undefined) {
-          console.log("-=-=-=-=-=-=-=-=-=-family", res.userData[0].family);
+        if (res.userData[0].family !== undefined && res.userData[0] !== null) {
           this.get_family = res.userData[0].family
           this.show_family = true
         } else {
@@ -165,7 +159,6 @@ export class FamilyComponent implements OnInit {
         // this.u_mobile = true
         // this.display1 = false
       } else {
-        console.log("error");
         // this.display1 = true;
       }
     })
@@ -189,7 +182,6 @@ export class FamilyComponent implements OnInit {
           }
         })
       } else {
-        console.log("error");
         // this.display1 = true;
       }
     })

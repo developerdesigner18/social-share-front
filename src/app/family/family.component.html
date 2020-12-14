@@ -16,7 +16,6 @@
   </div>
   <div class="no_mention" *ngIf="not_mention_relationship"><i class="fas fa-handshake-o handshake-d "> </i>&nbsp; Not mention RelationShip</div>
   <div class="mobile" *ngIf="status">
-    <!-- <input type="text" [(ngModel)]="relationshipStatus"  name="relationship" id="relationship" value="" placeholder="Add relationship status"> -->
     <select name="relationship" value="Status" [(ngModel)]="relationshipStatus">
       <option value="Single">Single</option>
       <option value="In a RelationShip">In a Relationship</option>
@@ -27,7 +26,6 @@
     <button type="button" name="button" (click)="addStatus(relationshipStatus)">Save</button>
   </div>
   <div class="u_relationship" *ngIf="u_status">
-    <!-- <input type="text" [(ngModel)]="relationshipStatus"  name="relationship" id="relationship" value="" placeholder="Add relationship status"> -->
     <select name="relationship" value="Status" [(ngModel)]="relationshipStatus">
       <option value="Single">Single</option>
       <option value="In a RelationShip">In a Relationship</option>
@@ -43,17 +41,6 @@
   </div>
   <div (click)="newFamily()" *ngIf="family_show">
     <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add family member</a>
-  </div>
-  <div *ngIf="show_family" class="update-list">
-    <div *ngFor="let family_data of get_family" class="work-record">
-      <div class="update-display" >
-        <img width="40" height="40" src="../../assets/images/default_user.jpg"onerror="this.src='/assets/images/default_user.jpg';" style="border-radius: 50%;" /> &nbsp;{{family_data.name}} <p>{{family_data.relationship}}</p>
-      </div>
-      <div class="icons-pencil" *ngIf="icons">
-        <i (click)="updateFamily(family_data._id, family_data.name, family_data.relationship)" class="pencil-icon fa fa-pencil"></i>
-        <i (click)="delFamily(family_data._id)" class="pencil-icon fa fa-trash"></i>
-      </div>
-    </div>
   </div>
   <div class="no_mention" *ngIf="not_mention_family"><i class="fas fa-child"> </i>&nbsp; Not mention Family Member</div>
   <div class="mobile" *ngIf="fill_family">
@@ -77,6 +64,17 @@
     </select>
     <button type="button" name="button" (click)="f_cancel()">Cancel</button>
     <button type="button" name="button" (click)="editFamily(family, relation)">Save</button>
+  </div>
+  <div *ngIf="show_family" class="update-list">
+    <div *ngFor="let family_data of get_family.slice().reverse()" class="work-record">
+      <div class="update-display" >
+        <img width="40" height="40" src="../../assets/images/default_user.jpg"onerror="this.src='/assets/images/default_user.jpg';" style="border-radius: 50%;" /> &nbsp;{{family_data.name}} <p>{{family_data.relationship}}</p>
+      </div>
+      <div class="icons-pencil" *ngIf="icons">
+        <i (click)="updateFamily(family_data._id, family_data.name, family_data.relationship)" class="pencil-icon fa fa-pencil"></i>
+        <i (click)="delFamily(family_data._id)" class="pencil-icon fa fa-trash"></i>
+      </div>
+    </div>
   </div>
   
 </div>

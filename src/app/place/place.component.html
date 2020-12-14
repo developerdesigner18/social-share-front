@@ -13,9 +13,7 @@
       <div *ngIf="show_city">
         <i class="fas fa-city"></i>&nbsp; {{u_city}}
       </div>
-
       <div class="no_mention" *ngIf="not_mention_city"><i class="fas fa-city"> </i>&nbsp; Not mention City</div>
-
       <!-- <div class="add-city" (click)="newCurrent()">
         <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add your current city</a>
       </div>
@@ -46,7 +44,7 @@
           <i (click)="delHome(home_town)" class="pencil-icon fa fa-trash"></i>
         </div>
       </div>
-      <div class="no_mention" *ngIf="not_mention_home"><i class="fa fa-home"> </i>&nbsp; Not mention Home</div>
+      <div class="no_mention" *ngIf="not_mention_home"><i class="fa fa-home"> </i>&nbsp; Not mention Home Town</div>
       <div class="home" *ngIf="fill_home">
         <input type="text" [(ngModel)]="home_town"   name="home_town" id="home_town" value="" placeholder="Add your home town" required>
         <button type="button" name="button" (click)="Cancel1()">Cancel</button>

@@ -5,18 +5,6 @@
   <div (click)="newWork()" *ngIf="working">
     <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add Work Place</a>
   </div>
-  <div *ngIf="show_work" class="update-list">
-    <div *ngFor="let works_data of get_works" class="work-record">
-      <div class="update-display" >
-        <i class="fas fa-briefcase"><i class=""></i> </i> &nbsp;{{works_data.name}}
-        <!-- <i class="fa fa-phone"> </i> &nbsp;{{get_works}} -->
-      </div>
-      <div class="icons-pencil" *ngIf="icons">
-        <i (click)="updateWork(works_data._id, works_data.name)" class="pencil-icon fa fa-pencil"></i>
-        <i (click)="delWork(works_data._id)" class="pencil-icon fa fa-trash"></i>
-      </div>
-    </div>
-  </div>
   <div class="no_mention" *ngIf="not_mention_work"><i class="fas fa-briefcase"> </i>&nbsp; Not mention Work</div>
   <div class="work" *ngIf="fill_work">
     <input type="text" [(ngModel)]="event" name="" value="" placeholder="Add work place">
@@ -28,6 +16,17 @@
     <button type="button" name="button" (click)="w_cancel()">Cancel</button>
     <button type="button" name="button" (click)="editWork(event)">Save</button>
   </div>
+  <div *ngIf="show_work" class="update-list">
+    <div *ngFor="let works_data of get_works.slice().reverse()" class="work-record">
+      <div class="update-display" >
+        <i class="fas fa-briefcase"><i class=""></i> </i> &nbsp;{{works_data.name}}
+      </div>
+      <div class="icons-pencil" *ngIf="icons">
+        <i (click)="updateWork(works_data._id, works_data.name)" class="pencil-icon fa fa-pencil"></i>
+        <i (click)="delWork(works_data._id)" class="pencil-icon fa fa-trash"></i>
+      </div>
+    </div>
+  </div>
   <br/>
   <div class="work_tab">
     <h6>University</h6>
@@ -35,28 +34,27 @@
   <div (click)="newUniversity()" *ngIf="university_show">
     <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add university</a>
   </div>
+  <div class="no_mention" *ngIf="not_mention_university"><i class="fa fa-university"> </i>&nbsp; Not mention University</div>
+  <div class="work" *ngIf="fill_university">
+    <input type="text" [(ngModel)]="university" name="" value="" placeholder="Add university">
+    <button type="button" name="button" (click)="save_add_university(university)">Save</button>
+    <button type="button" name="button" (click)="Uni_Cancel()">Cancel</button>
+  </div>
+  <div class="u_mobile" *ngIf="u_fill_university">
+    <input type="text" [(ngModel)]="university" name="" value="" placeholder="Add university">
+    <button type="button" name="button" (click)="u_cancel()">Cancel</button>
+    <button type="button" name="button" (click)="editUniversity(university)">Save</button>
+  </div>
   <div *ngIf="show_university" class="update-list">
-    <div *ngFor="let university_data of get_university" class="work-record">
+    <div *ngFor="let university_data of get_university.slice().reverse()" class="work-record">
       <div class="update-display" >
         <i class="fa fa-university"><i class=""></i> </i> &nbsp;{{university_data.name}}
-        <!-- <i class="fa fa-phone"> </i> &nbsp;{{get_works}} -->
       </div>
       <div class="icons-pencil" *ngIf="icons">
         <i (click)="updateUniversity(university_data._id, university_data.name)" class="pencil-icon fa fa-pencil"></i>
         <i (click)="delUniversity(university_data._id)" class="pencil-icon fa fa-trash"></i>
       </div>
     </div>
-  </div>
-  <div class="no_mention" *ngIf="not_mention_university"><i class="fa fa-university"> </i>&nbsp; Not mention University</div>
-  <div class="work" *ngIf="fill_university">
-    <input type="text" [(ngModel)]="university" name="" value="" placeholder="Add work place">
-    <button type="button" name="button" (click)="save_add_university(university)">Save</button>
-    <button type="button" name="button" (click)="Uni_Cancel()">Cancel</button>
-  </div>
-  <div class="u_mobile" *ngIf="u_fill_university">
-    <input type="text" [(ngModel)]="university" name="" value="" placeholder="Add work place">
-    <button type="button" name="button" (click)="u_cancel()">Cancel</button>
-    <button type="button" name="button" (click)="editUniversity(university)">Save</button>
   </div>
   <br/>
   <div class="work_tab">
@@ -65,27 +63,26 @@
   <div (click)="newSchool()" *ngIf="school_show">
     <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add high school</a>
   </div>
+  <div class="no_mention" *ngIf="not_mention_school"><i class="fas fa-school"> </i>&nbsp; Not mention School</div>
+  <div class="work" *ngIf="fill_school">
+    <input type="text" [(ngModel)]="school" name="" value="" placeholder="Add high school">
+    <button type="button" name="button" (click)="save_add_school(school)">Save</button>
+    <button type="button" name="button" (click)="School_Cancel()">Cancel</button>
+  </div>
+  <div class="u_mobile" *ngIf="u_fill_school">
+    <input type="text" [(ngModel)]="school" name="" value="" placeholder="Add high school">
+    <button type="button" name="button" (click)="s_cancel()">Cancel</button>
+    <button type="button" name="button" (click)="editSchool(school)">Save</button>
+  </div>
   <div *ngIf="show_school" class="update-list">
-    <div *ngFor="let school_data of get_school" class="work-record">
+    <div *ngFor="let school_data of get_school.slice().reverse()" class="work-record">
       <div class="update-display" >
         <i class="fas fa-school"><i class=""></i> </i> &nbsp;{{school_data.name}}
-        <!-- <i class="fa fa-phone"> </i> &nbsp;{{get_works}} -->
       </div>
       <div class="icons-pencil" *ngIf="icons">
         <i (click)="updateSchool(school_data._id, school_data.name)" class="pencil-icon fa fa-pencil"></i>
         <i (click)="delSchool(school_data._id)" class="pencil-icon fa fa-trash"></i>
       </div>
     </div>
-  </div>
-  <div class="no_mention" *ngIf="not_mention_school"><i class="fas fa-school"> </i>&nbsp; Not mention School</div>
-  <div class="work" *ngIf="fill_school">
-    <input type="text" [(ngModel)]="school" name="" value="" placeholder="Add work place">
-    <button type="button" name="button" (click)="save_add_school(school)">Save</button>
-    <button type="button" name="button" (click)="School_Cancel()">Cancel</button>
-  </div>
-  <div class="u_mobile" *ngIf="u_fill_school">
-    <input type="text" [(ngModel)]="school" name="" value="" placeholder="Add work place">
-    <button type="button" name="button" (click)="s_cancel()">Cancel</button>
-    <button type="button" name="button" (click)="editSchool(school)">Save</button>
   </div>
 </div>
