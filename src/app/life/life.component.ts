@@ -20,15 +20,30 @@ export class LifeComponent implements OnInit {
 
   id = this.activatedRoute.parent.parent.params['value']['id'];
   data_id: any;
+  friendid: string;
   constructor(
     public router: Router,
     public authService: AuthService,
     private activatedRoute: ActivatedRoute,
   ) {
     const id = this.activatedRoute.parent.parent.params['value']['id'];
-    if (this.router.url == '/friends/' + id + '/about/work_and_education') {
-      this.authService.getFriendData(localStorage.getItem('friendId')).subscribe(res => {
-      })
+    if (localStorage.getItem('friendId')) {
+      this.friendid = localStorage.getItem('friendId')
+      this.icons = false
+        this.authService.getAllData(this.friendid).subscribe(res => {
+          if (res.userData[0] == null) {
+            this.not_mention_life = true
+            this.life_show = false
+          } else if (res.userData[0].lifeEvents.length > 0) {
+            this.get_life = res.userData[0].lifeEvents
+            this.show_life = true
+            this.life_show = false
+          } else {
+            this.life_show = false
+            this.not_mention_life = true
+          }
+        })
+      
     } else {
       const currentUser = JSON.parse(localStorage.getItem('currentUser'));
       localStorage.removeItem('friendId')

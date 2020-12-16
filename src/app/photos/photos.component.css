@@ -1,7 +1,7 @@
 .photos_sec {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 25px;
+    /* display: grid; */
+    /* grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 25px; */
     background-color: transparent;
     box-shadow: none;
     padding: 0;

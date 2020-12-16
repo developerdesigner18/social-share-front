@@ -86,15 +86,95 @@ export class ContactComponent implements OnInit {
   dataid = this.activatedRoute.parent.parent.params['value']['id'];
   languages = true;
   text_language = false;
+  id: string;
+  friendid: string;
   constructor(
     public authService: AuthService,
     private activatedRoute: ActivatedRoute
   ) {
     let id = this.activatedRoute.parent.parent.params['value']['id'];
-    
     if (localStorage.getItem('friendId')) {
-      this.authService.getProfileForFriend(localStorage.getItem('friendId')).subscribe(res => {
-        this.u_email = res.data.emailId
+      this.friendid = localStorage.getItem('friendId')
+      this.icons = false
+      this.authService.getProfileForFriend(this.friendid).subscribe(res => {
+        this.authService.getAllData(this.friendid).subscribe(res => {
+
+          if (res.userData[0] == null) { 
+            this.not_mention_number = true
+          }else if (res.userData[0].mobileNumber !== undefined ) {
+            this.mobile_number = res.userData[0].mobileNumber
+            this.show_mobile = true
+            this.mobile = true
+          } else {
+          this.not_mention_number = true
+          }
+
+          if (res.userData[0] == null) {
+            this.not_mention_address = true
+          } else if (res.userData[0].address !== undefined && res.userData[0] !== null) {
+            this.email_address = res.userData[0].address
+            this.show_email = true
+            this.email = true
+          } else {
+            this.not_mention_address = true
+          }
+
+          if (res.userData[0] == null) {
+            this.not_mention_website = true
+          } else if (res.userData[0].website !== undefined && res.userData[0] !== null) {
+            this.website_link = res.userData[0].website
+            this.show_link = true
+            this.link = true
+          } else {
+            this.not_mention_website = true
+          }
+
+          if (res.userData[0] == null) {
+            this.not_mention_religious = true
+          } else if (res.userData[0].basicInfo !== undefined && res.userData[0] !== null) {
+            this.religious_value = res.userData[0].basicInfo
+            this.show_caste = true
+            this.religious = true
+          } else {
+            this.not_mention_religious = true
+          }
+
+          if (res.userData[0] == null) {
+            this.not_mention_gender = true
+          } else if (res.userData[0].gender !== undefined && res.userData[0] !== null) {
+            this.gender_value = res.userData[0].gender
+            this.show_gender = true
+            this.genders = true
+          } else {
+            this.not_mention_gender = true
+          }
+
+          if (res.userData[0] == null) {
+            this.not_mention_birth = true
+          } else if (res.userData[0].birthDate !== undefined && res.userData[0] !== null) {
+            this.birth_value = res.userData[0].birthDate
+            this.show_birth = true
+            this.birth = true
+          } else {
+            this.not_mention_birth = true
+          }
+
+          if (res.userData[0] == null) {
+            this.not_mention_langugae = true
+            this.languages = false
+            this.text_language = false
+          } else if (res.userData[0].language.length > 0) {   
+            this.get_langugae = res.userData[0].language
+            this.show_langugae = true 
+            this.languages = false
+            this.text_language = true
+          } else {
+            this.languages = false
+            this.text_language = false
+            this.not_mention_langugae = true
+          }
+       
+      })
       })
     } else {
       const current_login_User = JSON.parse(localStorage.getItem('currentUser'));

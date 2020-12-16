@@ -714,6 +714,13 @@ button.comment_sec {
 .ng-image-slider .ng-image-slider-container .main .main-inner .img-div img, .ng-image-slider .ng-image-slider-container .main .main-inner .img-div video{
 	object-fit: cover;
 }
+
+.slider_image_photos .ng-image-slider .ng-image-slider-container .main{
+    display: flex !important;
+    overflow: unset !important;
+    width: 40em;
+    margin-left: -10px;
+}
 @media (max-width: 767px){
 	.viewProfile {
     display: none;

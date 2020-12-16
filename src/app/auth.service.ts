@@ -204,6 +204,16 @@ export class AuthService {
     )
   }
 
+  getAllPhotos(id): Observable<any> {
+    // this.headers.append('token', u_token)
+    return this.httpClient.get(`${environment.apiUrl}/api/photos/showAllphotosOnly?id=${id}`, { headers: this.headers}).pipe(
+      map((res: Response) => {
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
   sendFriendRequest(userId, requestId): Observable<any> {
     return this.httpClient.post(`${environment.apiUrl}/api/friend/send`, {userId: userId, requestId: requestId}, {headers: this.headers}).pipe(
       map((res: Response) => {

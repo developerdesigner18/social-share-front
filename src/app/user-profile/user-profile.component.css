@@ -165,6 +165,7 @@ body .profile_pic_main_tabs_sec .actions {
 .main_area {
     flex: 2.5;
     margin: 0 25px;
+    
 }
 .left_sidebar > div, .right_sidebar > div, .main_area > div, .main_area > app-timeline > div, .main_area > app-about > div > div, .main_area > app-photos > div, .main_area > app-friends > div {
 /* .left_sidebar > div, .right_sidebar > div, .main_area > div > app-timeline > div, .main_area > div > app-about > div, .main_area > div > app-photos > div, .main_area > div > app-friends > div { */
@@ -1396,4 +1397,14 @@ button.edit-button {
 
 .see-all-button{
 		margin-top: 10px;
+}
+
+.slider_image_photos .ng-image-slider .ng-image-slider-container .main{
+    display: flex !important;
+    overflow: unset !important;
+    height: 150px !important;
+}
+
+.slider_image_photos{
+    padding-left: 15px;
 }

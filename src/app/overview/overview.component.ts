@@ -21,6 +21,7 @@ export class OverviewComponent implements OnInit {
   u_gender = '';
   u_birthdate = '';
   id: string;
+  friendid: string;
 
   constructor(
     public authService: AuthService,
@@ -29,7 +30,24 @@ export class OverviewComponent implements OnInit {
   ) {
     // let id = this.activatedRoute.parent.parent.params['value']['id'];
     if (this.router.url == '/friends/' + this.activatedRoute.parent.parent.params['value']['id'] + '/about/overview') {
-      this.id = localStorage.getItem('friendId')
+      this.friendid = localStorage.getItem('friendId')
+      this.authService.getProfileforAbout(this.friendid).subscribe(res => {
+        this.u_designation = res.data.designation
+        this.u_country = res.data.country
+        this.u_state = res.data.state
+        this.u_city = res.data.city
+          this.authService.getAllData(this.friendid).subscribe(other_res => {
+            if (other_res.userData[0] !== undefined) {
+              this.u_number = other_res.userData[0].mobileNumber;
+              this.u_address = other_res.userData[0].address;
+              this.u_website = other_res.userData[0].website;
+              this.u_religious = other_res.userData[0].basicInfo;
+              this.u_status = other_res.userData[0].relationshipStatus;
+              this.u_gender = other_res.userData[0].gender;
+              this.u_birthdate = other_res.userData[0].birthDate
+            }
+          })
+      })
       
     } else {
       localStorage.removeItem('friendId')

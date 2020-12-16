@@ -40,20 +40,61 @@ export class WorkComponent implements OnInit {
   school_id: any;
   university_show = true;
   school_show = true;
+  friendid: string;
 
-
-  
   constructor(
     public router: Router,
     public authService: AuthService,
     private activatedRoute: ActivatedRoute,
   ) {
-    const id = this.activatedRoute.parent.parent.params['value']['id'];
-    if (this.router.url == '/friends/' + id + '/about/work_and_education') {
-      this.authService.getFriendData(localStorage.getItem('friendId')).subscribe(res => {
+    if (localStorage.getItem('friendId')) {
+      this.friendid = localStorage.getItem('friendId')
+      this.authService.getFriendData(this.friendid).subscribe(res => {
         this.current_user_profile = false
+        this.icons = false
+        this.authService.getAllData(this.friendid).subscribe(res => { 
+          console.log("-=-=-=-=-=-=-=- Friend ID", this.friendid);
+          
+          if (res.userData[0] == null) {
+            this.not_mention_work = true
+            this.working = false
+          } else if (res.userData[0].work.length > 0) {   
+            this.get_works = res.userData[0].work
+            this.show_work = true 
+            this.working = false
+          } else {
+            this.working = false
+            this.not_mention_work = true
+          }
+
+          if (res.userData[0] == null) {
+            this.university_show = false
+            this.not_mention_university = true
+          } else if (res.userData[0].university.length > 0) {   
+            this.get_university = res.userData[0].university
+            this.show_university = true 
+            this.university_show = false
+          } else {
+            this.university_show = false
+            this.not_mention_university = true
+          }
+
+          if (res.userData[0] == null) {
+            this.school_show = false
+            this.not_mention_school = true
+          } else if (res.userData[0].highSchool.length > 0) {   
+            this.get_school = res.userData[0].highSchool
+            this.show_school = true 
+            this.school_show = false
+          } else {
+            this.school_show = false
+            this.not_mention_school = true
+          }
+        })
       })
-    }else{
+    } else {
+    const id = this.activatedRoute.parent.parent.params['value']['id'];
+      
       const currentUser = JSON.parse(localStorage.getItem('currentUser'));
       localStorage.removeItem('friendId')
       if(currentUser.data._id !== id){

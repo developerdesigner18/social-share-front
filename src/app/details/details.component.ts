@@ -57,87 +57,132 @@ export class DetailsComponent implements OnInit {
   not_mention_nickname = false;
   not_mention_pronun = false;
   icons: boolean
+  id: string;
+  friendid: string;
   constructor(
     public authService: AuthService,
     private activatedRoute: ActivatedRoute
   ) {
     let id = this.activatedRoute.parent.parent.params['value']['id'];
-    const current_login_User = JSON.parse(localStorage.getItem('currentUser'));
-
-    if (current_login_User.data._id !== id) {
+    if (localStorage.getItem('friendId')) {
+      this.friendid = localStorage.getItem('friendId')
       this.icons = false
-      this.authService.getAllData(id).subscribe(res => {
+      this.authService.getAllData(this.friendid).subscribe(res => {
 
-         if (res.userData[0].aboutYourself !== undefined && res.userData[0] !== null) {
+        if (res.userData[0] == null) {
+          this.not_mention_about = true
+        } else if (res.userData[0].aboutYourself !== undefined) {
           this.details_about = res.userData[0].aboutYourself
           this.show_details = true
         } else {
-          this.not_mention_about = true           
+          this.not_mention_about = true
         }
 
-        if (res.userData[0].pronunciation !== undefined && res.userData[0] !== null) {
+        if (res.userData[0] == null) {
+          this.not_mention_pronun = true
+        } else if (res.userData[0].pronunciation !== undefined) {
           this.pronun_value = res.userData[0].pronunciation
           this.show_pronun = true
         } else {
           this.not_mention_pronun = true
         }
 
-        if (res.userData[0].otherName !== undefined && res.userData[0] !== null) {
+        if (res.userData[0] == null) {
+          this.not_mention_nickname = true
+        } else if (res.userData[0].otherName !== undefined) {
           this.nickname = res.userData[0].otherName
           this.show_nickname = true
         } else {
           this.not_mention_nickname = true
         }
 
-        if (res.userData[0].quote !== undefined && res.userData[0] !== null) {
+        if (res.userData[0] == null) {
+          this.not_mention_quotes = true
+        } else if (res.userData[0].quote !== undefined) {
           this.quote_value = res.userData[0].quote
           this.show_quotes = true
         } else {
           this.not_mention_quotes = true
         }
-
       })
-    } else {
-      this.icons = true
-      this.authService.getAllData(id).subscribe(res => {
+     } else {
+      const current_login_User = JSON.parse(localStorage.getItem('currentUser'));
 
-        if (res.userData[0] == null) {
-          this.details = false  
-        } else if (res.userData[0].aboutYourself !== undefined) {
-          this.details_about = res.userData[0].aboutYourself
-          this.show_details = true
-        } else {
-          this.details = false
-        }
+      if (current_login_User.data._id !== id) {
+        this.icons = false
+        this.authService.getAllData(id).subscribe(res => {
 
-        if (res.userData[0] == null) {
-          this.pronun = false
-        } else if (res.userData[0].pronunciation !== undefined) {
-          this.pronun_value = res.userData[0].pronunciation
-          this.show_pronun = true
-        } else {
-          this.pronun = false
-        }
+          if (res.userData[0].aboutYourself !== undefined && res.userData[0] !== null) {
+            this.details_about = res.userData[0].aboutYourself
+            this.show_details = true
+          } else {
+            this.not_mention_about = true
+          }
 
-        if (res.userData[0] == null) {
-          this.nick = false
-        } else if (res.userData[0].otherName !== undefined) {
-          this.nickname = res.userData[0].otherName
-          this.show_nickname = true
-        } else {
-          this.nick = false
-        }
+          if (res.userData[0].pronunciation !== undefined && res.userData[0] !== null) {
+            this.pronun_value = res.userData[0].pronunciation
+            this.show_pronun = true
+          } else {
+            this.not_mention_pronun = true
+          }
 
-        if (res.userData[0] == null) {
-          this.quote = false
-        } else if (res.userData[0].quote !== undefined) {
-          this.quote_value = res.userData[0].quote
-          this.show_quotes = true
-        } else {
-          this.quote = false
-        }
+          if (res.userData[0].otherName !== undefined && res.userData[0] !== null) {
+            this.nickname = res.userData[0].otherName
+            this.show_nickname = true
+          } else {
+            this.not_mention_nickname = true
+          }
 
-      })
+          if (res.userData[0].quote !== undefined && res.userData[0] !== null) {
+            this.quote_value = res.userData[0].quote
+            this.show_quotes = true
+          } else {
+            this.not_mention_quotes = true
+          }
+
+        })
+      } else {
+        this.icons = true
+        this.authService.getAllData(id).subscribe(res => {
+
+          if (res.userData[0] == null) {
+            this.details = false
+          } else if (res.userData[0].aboutYourself !== undefined) {
+            this.details_about = res.userData[0].aboutYourself
+            this.show_details = true
+          } else {
+            this.details = false
+          }
+
+          if (res.userData[0] == null) {
+            this.pronun = false
+          } else if (res.userData[0].pronunciation !== undefined) {
+            this.pronun_value = res.userData[0].pronunciation
+            this.show_pronun = true
+          } else {
+            this.pronun = false
+          }
+
+          if (res.userData[0] == null) {
+            this.nick = false
+          } else if (res.userData[0].otherName !== undefined) {
+            this.nickname = res.userData[0].otherName
+            this.show_nickname = true
+          } else {
+            this.nick = false
+          }
+
+          if (res.userData[0] == null) {
+            this.quote = false
+          } else if (res.userData[0].quote !== undefined) {
+            this.quote_value = res.userData[0].quote
+            this.show_quotes = true
+          } else {
+            this.quote = false
+          }
+
+        })
+      }
     }
   }
 

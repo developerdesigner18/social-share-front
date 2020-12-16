@@ -15,7 +15,7 @@
 			<div class="profile_name">{{name}}</div>
 		</div>
 
-		<div class="actions" id="myTopnav">
+		<div name="top" class="actions" id="myTopnav">
 			<a [routerLink]="['timeline']"><button>Timeline</button></a>
 			<a [routerLink]="['about']"><button>About</button></a>
 			<a [routerLink]="['photos']"><button>Photos</button></a>
@@ -70,12 +70,12 @@
 		<div class="photos">
 			<div class="left_title w_90">Photos</div>
 			<div class="photos_container w_90" *ngIf="onlyImg">
-				<div *ngFor="let img of onlyImg | slice:0:10;">
+				<div *ngFor="let img of onlyImg | slice:0:12;">
 					<img [src]="img">
 				</div>
 			</div>
 			<div class="photos_container_all w_100 see-all-images" *ngIf="onlyImg.length > 10">
-				<button class="edit-button see-all-button">See All</button>
+				<button onclick="document.body.scrollTop=500;document.documentElement.scrollTop=500;event.preventDefault()" class="edit-button see-all-button" [routerLink]="['photos']">See All</button>
 			</div>
 			<div *ngIf="notfound == 404" style="color: #003459">
 				<h6>Not any photos</h6>

@@ -30,25 +30,29 @@ export class FamilyComponent implements OnInit {
 
   id = this.activatedRoute.parent.parent.params['value']['id'];
   data_id: any;
+  friendid: string;
   constructor(
     private authService: AuthService,
     private activatedRoute: ActivatedRoute
   ) {
     let id = this.activatedRoute.parent.parent.params['value']['id'];
-    const current_login_User = JSON.parse(localStorage.getItem('currentUser'));
-    
-    if (current_login_User.data._id !== id) {
+    if (localStorage.getItem('friendId')) { 
+      this.friendid = localStorage.getItem('friendId')
       this.icons = false
-      
-      this.authService.getAllData(id).subscribe(res => {
-        if (res.userData[0].relationshipStatus !== undefined && res.userData[0] !== null) {
+      this.authService.getAllData(this.friendid).subscribe(res => {
+        if (res.userData[0] == null) {
+          this.not_mention_relationship = true
+        } else if (res.userData[0].relationshipStatus !== undefined) {
           this.display5 = true
           this.relationshipStatus = res.userData[0].relationshipStatus
         } else {
           this.not_mention_relationship = true
         }
 
-        if (res.userData[0].family.length > 0) {
+        if (res.userData[0] == null) {
+          this.not_mention_family = true
+          this.family_show = false
+        } else if (res.userData[0].family.length > 0) {
           this.get_family = res.userData[0].family
           this.show_family = true
           this.family_show = false
@@ -58,27 +62,51 @@ export class FamilyComponent implements OnInit {
         }
       })
     } else {
-      this.icons = true
-      this.authService.getAllData(id).subscribe(res => {
+      const current_login_User = JSON.parse(localStorage.getItem('currentUser'));
+    
+      if (current_login_User.data._id !== id) {
+        this.icons = false
+        
+        this.authService.getAllData(id).subscribe(res => {
+          if (res.userData[0].relationshipStatus !== undefined && res.userData[0] !== null) {
+            this.display5 = true
+            this.relationshipStatus = res.userData[0].relationshipStatus
+          } else {
+            this.not_mention_relationship = true
+          }
 
-        if (res.userData[0] == null) {
-          this.shows5 = true
-        } else if (res.userData[0].relationshipStatus == null) {
-          this.shows5 = true
-          this.relationshipStatus = res.userData[0].relationshipStatus
-        } else {
-          this.shows5 = false
-          this.display5 = true
-          this.relationshipStatus = res.userData[0].relationshipStatus
-        }
+          if (res.userData[0].family.length > 0) {
+            this.get_family = res.userData[0].family
+            this.show_family = true
+            this.family_show = false
+          } else {
+            this.family_show = false
+            this.not_mention_family = true
+          }
+        })
+      } else {
+        this.icons = true
+        this.authService.getAllData(id).subscribe(res => {
 
-        if (res.userData[0].family !== undefined && res.userData[0] !== null) {
-          this.get_family = res.userData[0].family
-          this.show_family = true
-        } else {
-          // this.work = false
-        }
-      })
+          if (res.userData[0] == null) {
+            this.shows5 = true
+          } else if (res.userData[0].relationshipStatus == null) {
+            this.shows5 = true
+            this.relationshipStatus = res.userData[0].relationshipStatus
+          } else {
+            this.shows5 = false
+            this.display5 = true
+            this.relationshipStatus = res.userData[0].relationshipStatus
+          }
+
+          if (res.userData[0].family !== undefined && res.userData[0] !== null) {
+            this.get_family = res.userData[0].family
+            this.show_family = true
+          } else {
+            // this.work = false
+          }
+        })
+      }
     }
   }
 

@@ -23,6 +23,7 @@ export class PlaceComponent implements OnInit {
   not_mention_city = false
   show_city: boolean
   id: string;
+  friendid: string;
 
   constructor(
     public router: Router,
@@ -30,16 +31,39 @@ export class PlaceComponent implements OnInit {
     private activatedRoute: ActivatedRoute
   ) {
     if (this.router.url == '/friends/' + this.activatedRoute.parent.parent.params['value']['id'] + '/about/place') {
-      this.id = localStorage.getItem('friendId')
+      this.friendid = localStorage.getItem('friendId')
+      this.icons = false
+      this.authService.getProfileforAbout(this.friendid).subscribe(res => {
+        if (res.data.city !== undefined && res.data !== null) {
+          this.u_city = res.data.city
+          this.show_city = true
+        } else {
+          this.show_city = false
+          this.not_mention_city = true
+        }
+
+      })
+      this.authService.getAllData(this.friendid).subscribe(res => {
+        if (res.userData[0] == null) {
+          this.not_mention_home = true
+        } else if (res.userData[0].homeTown !== undefined) {
+          this.home_town = res.userData[0].homeTown
+          this.show_home = true
+          this.home = true
+        } else {
+          this.not_mention_home = true
+        }
+      })
+
     } else {
       localStorage.removeItem('friendId')
       this.id = this.activatedRoute.parent.parent.params['value']['id'];
-    }
+    
       const current_login_User = JSON.parse(localStorage.getItem('currentUser'));
       if (current_login_User.data._id !== this.id) {
         this.icons = false
         this.authService.getProfileforAbout(this.id).subscribe(res => {
-          if(res.data.city !== undefined && res.data !== null) {
+          if (res.data.city !== undefined && res.data !== null) {
             this.u_city = res.data.city
             this.show_city = true
           } else {
@@ -47,8 +71,20 @@ export class PlaceComponent implements OnInit {
             this.not_mention_city = true
           }
 
-          if (res.data.homeTown !== undefined && res.data !== null) {
-            this.home_town = res.data.homeTown
+          // if (res.data.homeTown !== undefined && res.data !== null) {
+          //   this.home_town = res.data.homeTown
+          //   this.show_home = true
+          //   this.home = true
+          // } else {
+          //   this.not_mention_home = true
+          // }
+        })
+        this.authService.getAllData(this.id).subscribe(res => {
+          if (res.userData[0] == null) {
+            this.not_mention_home = true
+          }
+          else if (res.userData[0].homeTown !== undefined) {
+            this.home_town = res.userData[0].homeTown
             this.show_home = true
             this.home = true
           } else {
@@ -82,7 +118,7 @@ export class PlaceComponent implements OnInit {
           }
         })
       }
-      
+    }
   }
 
   addHome(home_town: any) {
