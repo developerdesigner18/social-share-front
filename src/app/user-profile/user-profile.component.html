@@ -86,7 +86,7 @@
 			<div class="friends_container w_90" *ngIf="frdDetails">
 				<div class="a_friend" *ngFor="let frddetail of frdDetails; let i = index">
 					<img [src]="frddetail.profileImgURl" onerror="this.src='/assets/images/default_user.jpg';">
-					<div>{{frddetail.name}}</div>
+					<a href="profile/{{frddetail._id}}"> <div>{{frddetail.name}}</div></a>
 				</div>
 			</div>
 			<div *ngIf="notAnyFrd">

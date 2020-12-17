@@ -101,7 +101,10 @@ export class WorkComponent implements OnInit {
         this.current_user_profile = false
         this.icons = false
         this.authService.getAllData(id).subscribe(res => { 
-          if (res.userData[0].work.length > 0) {   
+          if (res.userData[0] == null) {
+            this.working = false
+            this.not_mention_work = true
+          } else if (res.userData[0].work.length > 0) {   
             this.get_works = res.userData[0].work
             this.show_work = true 
             this.working = false
@@ -110,7 +113,10 @@ export class WorkComponent implements OnInit {
             this.not_mention_work = true
           }
 
-          if (res.userData[0].university.length > 0) {   
+          if (res.userData[0] == null) {
+            this.university_show = false
+            this.not_mention_university = true
+          } else if (res.userData[0].university.length > 0) {   
             this.get_university = res.userData[0].university
             this.show_university = true 
             this.university_show = false
@@ -119,7 +125,10 @@ export class WorkComponent implements OnInit {
             this.not_mention_university = true
           }
 
-          if (res.userData[0].highSchool.length > 0) {   
+          if (res.userData[0] == null) {
+            this.school_show = false
+            this.not_mention_school = true
+          } else if (res.userData[0].highSchool.length > 0) {   
             this.get_school = res.userData[0].highSchool
             this.show_school = true 
             this.school_show = false

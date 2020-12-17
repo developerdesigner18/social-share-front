@@ -14,6 +14,9 @@ export class FriendsComponent implements OnInit {
   frdDetails = [];
   notAnyFrd = '';
   friend_id = '';
+  allUsers = [];
+  keyword = 'name';
+  
 
   constructor(
     public authService: AuthService,
@@ -25,6 +28,12 @@ export class FriendsComponent implements OnInit {
 
       this.profileImg =  res.data.profileImgURl
       this.u_name =  res.data.name
+    })
+
+    this.authService.getFriends(id).subscribe(res => {
+      console.log("-=-=-=-=-=-=-=-=-=- getAllFriends", res.userInfo);
+      this.allUsers = res.userInfo
+      
     })
 
     this.friend_id =  '/profile/'+id+'/friends'

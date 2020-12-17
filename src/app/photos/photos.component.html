@@ -45,22 +45,32 @@
     </div>
   </div>
 </div> -->
-
-<div class="photos_sec">
-  <!-- <div class="item" *ngFor="let url of urls"> -->
-  <div class="item">
-    <!-- <div class="item" > -->
-    
-      <ng-image-slider [showArrow]=false class="slider_image_photos" [images]="urls"></ng-image-slider>
- 
-      <!-- <ng-image-slider [imageSize]="{width: '33.67%'}"  [showArrow]=false class="slider_image" [images]="urls"></ng-image-slider> -->
-    <!-- </div> -->
-    <!-- <ng-image-slider [imageSize]="{width: '33.67%'}" [showArrow]=false class="slider_image" [images]="url"></ng-image-slider>
-    <ng-image-slider [imageSize]="{width: '33.67%'}" [showArrow]=false class="slider_image" [images]="url"></ng-image-slider>
-    <ng-image-slider [imageSize]="{width: '100%'}" [showArrow]=false class="slider_image" [images]="url"></ng-image-slider> -->
-
-    <!-- <ng-image-slider [showArrow]=false class="slider_image" [images]="url"></ng-image-slider> -->
+<ng-container *ngIf="urls.length !== 0">
+<div class="img-bg">
+  <div>
+    <!-- <div class="item" *ngFor="let url of urls"> -->
+    <div class="item">
+      <!-- <div class="item" > -->
+      
+        <ng-image-slider [showArrow]=false class="slider_image_photos" [images]="urls"></ng-image-slider>
+   
+        <!-- <ng-image-slider [imageSize]="{width: '33.67%'}"  [showArrow]=false class="slider_image" [images]="urls"></ng-image-slider> -->
+      <!-- </div> -->
+      <!-- <ng-image-slider [imageSize]="{width: '33.67%'}" [showArrow]=false class="slider_image" [images]="url"></ng-image-slider>
+      <ng-image-slider [imageSize]="{width: '33.67%'}" [showArrow]=false class="slider_image" [images]="url"></ng-image-slider>
+      <ng-image-slider [imageSize]="{width: '100%'}" [showArrow]=false class="slider_image" [images]="url"></ng-image-slider> -->
+  
+      <!-- <ng-image-slider [showArrow]=false class="slider_image" [images]="url"></ng-image-slider> -->
+    </div>
   </div>
-</div>
+  </div>
+</ng-container>
+
+  <ng-container *ngIf="urls.length == 0">
+    <div class="main_post_content d-flex flex-column" style="color: #003459">
+      <h6>Sorry but user not uploaded any photos</h6>
+    </div>
+  </ng-container>
+
 
 

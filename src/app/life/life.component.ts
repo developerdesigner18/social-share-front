@@ -50,7 +50,10 @@ export class LifeComponent implements OnInit {
       if (currentUser.data._id !== id) {
         this.icons = false
         this.authService.getAllData(id).subscribe(res => {
-          if (res.userData[0].lifeEvents.length > 0) {
+          if (res.userData[0] == null) {
+            this.life_show = false
+            this.not_mention_life = true
+          } else if (res.userData[0].lifeEvents.length > 0) {
             this.get_life = res.userData[0].lifeEvents
             this.show_life = true
             this.life_show = false

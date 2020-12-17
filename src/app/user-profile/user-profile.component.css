@@ -1087,7 +1087,12 @@ button.edit-button {
 	}
 	.province{
 		padding: 5px 5px;
-	}
+    }
+    
+    .img-bg .img-div.image-popup {
+        width: 95px !important;
+        height: 80px !important;
+    }
 }
 @media (min-width: 768px) and (max-width: 1023px){
 	.logo img {
@@ -1146,6 +1151,11 @@ button.edit-button {
 }
 .left_sidebar, .right_sidebar {
     flex: auto;
+}
+
+.img-bg .img-div.image-popup {
+    width: 110px !important;
+    height: 90px !important;
 }
 
 }
@@ -1402,9 +1412,20 @@ button.edit-button {
 .slider_image_photos .ng-image-slider .ng-image-slider-container .main{
     display: flex !important;
     overflow: unset !important;
-    height: 150px !important;
 }
+
+/* .slider_image_photos .ng-image-slider .ng-image-slider-container .main{
+    display: flex;
+    flex-wrap: wrap;
+    height: 100% !important;
+} */
 
 .slider_image_photos{
     padding-left: 15px;
+}
+
+.img-bg {
+    display: block !important;
+    background: transparent !important;
+    box-shadow: none !important;
 }

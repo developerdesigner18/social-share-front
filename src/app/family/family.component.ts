@@ -68,14 +68,19 @@ export class FamilyComponent implements OnInit {
         this.icons = false
         
         this.authService.getAllData(id).subscribe(res => {
-          if (res.userData[0].relationshipStatus !== undefined && res.userData[0] !== null) {
+          if (res.userData[0] == null) {
+            this.not_mention_relationship = true
+          } else if (res.userData[0].relationshipStatus !== undefined) {
             this.display5 = true
             this.relationshipStatus = res.userData[0].relationshipStatus
           } else {
             this.not_mention_relationship = true
           }
 
-          if (res.userData[0].family.length > 0) {
+          if (res.userData[0] == null) {
+            this.family_show = false
+            this.not_mention_family = true
+          } else if (res.userData[0].family.length > 0) {
             this.get_family = res.userData[0].family
             this.show_family = true
             this.family_show = false
