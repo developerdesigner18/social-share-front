@@ -176,7 +176,7 @@
   <div class="no_mention" *ngIf="not_mention_langugae"><i class="fas fa-language"> </i>&nbsp; Not mention Language</div>
   <div *ngIf="text_language"><h6 style="padding-top: 5px;">Languages</h6></div>
   <div class="work" *ngIf="fill_langugae">
-    <input type="text" [(ngModel)]="language" name="" value="" placeholder="Add langugae">
+    <input type="text" maxlength="30" [(ngModel)]="language" name="" value="" placeholder="Add langugae">
     <button type="button" name="button" (click)="save_add_langugae(language)">Save</button>
     <button type="button" name="button" (click)="language_Cancel()">Cancel</button>
   </div>

@@ -28,17 +28,17 @@
 				</ng-template>
 			</div>
     </div>
-    <div class="col-md-3" *ngIf="router.url === friend_id">
+    <div  *ngIf="user === url_id">
       <!-- <a [routerLink]="['/friends/', id]" style="padding: 10px; color: #003459;">Friends requests</a> -->
-      <a style="padding: 10px; color: #003459;" class="my_post_links" href="friends/{{id}}">
-          <div class="badges_for_fr position-relative">Friend Requests</div>
+      <a style="color: #003459;" class="my_post_links" href="friends/{{id}}">
+          <div style="font-weight: 600;" class="badges_for_fr position-relative">Friend Requests</div>
       </a>
-      <a style="padding: 10px; color: #003459;" class="my_post_links" href="peopleknow/{{id}}">
-          <div class="badges_for_pymk position-relative">Find Friends</div>
+      <a style="color: #003459;" class="my_post_links" href="peopleknow/{{id}}">
+          <div style="font-weight: 600;" class="badges_for_pymk position-relative">Find Friends</div>
       </a>
     </div>
-    <div class="col-md-3">
-    </div>
+    <!-- <div class="col-md-3">
+    </div> -->
   </div>
   <div class="about_description tab-content">
     All Friends
@@ -65,3 +65,18 @@
     </div>
   </div>
 </div>
+
+<!-- <ng-container *ngIf="urls.length !== 0">
+<div class="say_words position-relative" style="align-items: unset">
+  <div class="about_sec col-md-4" style="display: block; flex-grow: 1">
+    <h5 class="title-about" style="display: block;">Videos</h5>
+  </div>
+  <ng-image-slider [showArrow]=false class="slider_image_photos" [images]="urls"></ng-image-slider>
+</div>
+</ng-container>
+
+<ng-container *ngIf="urls.length == 0">
+  <div class="main_post_content d-flex flex-column" style="color: #003459">
+    <h6>User not uploaded any videos</h6>
+  </div>
+</ng-container> -->

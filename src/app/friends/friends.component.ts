@@ -15,7 +15,11 @@ export class FriendsComponent implements OnInit {
   notAnyFrd = '';
   friend_id = '';
   allUsers = [];
+  user = ''
   keyword = 'name';
+  url_id: any;
+  urls = [];
+  friendId: string;
   
 
   constructor(
@@ -24,19 +28,45 @@ export class FriendsComponent implements OnInit {
     public router: Router
   ) {
     let id = this.activatedRoute.parent.params['value']['id'];
-    this.authService.getUsersFriends(id).subscribe(res => {
+    this.url_id = this.activatedRoute.parent.params['value']['id'];
+  
+    
 
-      this.profileImg =  res.data.profileImgURl
-      this.u_name =  res.data.name
-    })
-
-    this.authService.getFriends(id).subscribe(res => {
-      console.log("-=-=-=-=-=-=-=-=-=- getAllFriends", res.userInfo);
-      this.allUsers = res.userInfo
-      
-    })
-
-    this.friend_id =  '/profile/'+id+'/friends'
+    if (localStorage.getItem('friendId')) {
+      this.friendId = localStorage.getItem('friendId')
+      this.authService.getAllPhotos(this.friendId).subscribe(res => {
+        for (let i = 0; i < res.data.length; i++) {
+          if (res.data[i].image.split('.').pop() !== 'jpg') {
+            this.urls.push(res.data[i])
+          }
+        }
+      })
+      this.authService.getFriends(this.friendId).subscribe(res => {
+        this.allUsers = res.userInfo
+      })
+      this.authService.getUsersFriends(this.friendId).subscribe(res => {
+        this.profileImg = res.data.profileImgURl
+        this.u_name = res.data.name
+      })
+    } else {
+      this.authService.getAllPhotos(id).subscribe(res => {
+        for (let i = 0; i < res.data.length; i++) {
+          if (res.data[i].image.split('.').pop() !== 'jpg') {
+            this.urls.push(res.data[i])
+          }
+        }
+      })
+      this.authService.getFriends(id).subscribe(res => {
+        this.allUsers = res.userInfo
+      })
+      this.authService.getUsersFriends(id).subscribe(res => {
+        this.profileImg = res.data.profileImgURl
+        this.u_name = res.data.name
+      })
+    }
+    
+    this.friend_id = '/profile/' + id + '/friends'
+    
     if(router.url === '/profile/'+id+'/friends'){
       this.authService.getFriends(id).subscribe(res => {
         if(res.success)
@@ -62,10 +92,13 @@ export class FriendsComponent implements OnInit {
         }
       })
     }
+
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.user = currentUser.data._id 
   }
 
   ngOnInit(): void {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    this.id = currentUser.data._id
+    this.id = currentUser.data._id    
   }
 }

@@ -55,6 +55,7 @@ export class TimelineComponent implements OnInit {
   u_state: any;
   u_city: any;
   image_all = [];
+  url_id: string;
   constructor(
     public  dialog:  MatDialog,
     private activatedRoute: ActivatedRoute,
@@ -62,8 +63,21 @@ export class TimelineComponent implements OnInit {
     public router: Router,
     public formBuilder: FormBuilder
   ) {
+    // pending work 
+    // this.url_id = '/profile/' + this.id + '/timeline'
+    // if (localStorage.getItem('currentUser') == this.url_id) {
+      
+    // } else {
+      
+    // }
+    
+    // let id = this.activatedRoute.parent.params['value']['id'];
+    // this.url_id = this.activatedRoute.parent.params['value']['id'];
+
     this.token = localStorage.getItem('token')
     this.id = this.activatedRoute.parent.params['value']['id'];
+    console.log("-=-=-=-=-=-=-=- id", this.id);
+    
     this.authService.getUserProfile(this.id).subscribe(res => {
       this.profileImg =  res.data.profileImgURl
       this.u_name =  res.data.name
