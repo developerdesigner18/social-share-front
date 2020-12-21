@@ -23,6 +23,7 @@ import { RequestFriendsComponent } from './request-friends/request-friends.compo
 import { PeopleKnowComponent } from './people-know/people-know.component';
 
 import { AuthGuard } from "./auth.guard";
+import { VideosComponent } from './videos/videos.component';
 
 const routes: Routes = [
   { path: '', component: AuthComponent },
@@ -43,6 +44,7 @@ const routes: Routes = [
         ]
       },
       { path: 'photos', component: PhotosComponent },
+      { path: 'videos', component: VideosComponent },
       { path: 'friends', component: FriendsComponent },
       { path: '', redirectTo:'timeline', pathMatch:"full" }
     ]
@@ -63,6 +65,7 @@ const routes: Routes = [
         ]
       },
       { path: 'photos', component: PhotosComponent },
+      { path: 'videos', component: VideosComponent },
       { path: 'friends', component: FriendsComponent }
       // { path: '', redirectTo:'friends/:id', pathMatch:"full" }
     ]

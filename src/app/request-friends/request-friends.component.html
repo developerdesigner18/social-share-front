@@ -72,7 +72,8 @@
   		<div class="actions">
   			<a [routerLink]="['/friends/', login_id]" (click)="timeline_hide = true; owlcarouselSet()"><button>Timeline</button></a>
   			<a [routerLink]="['about']" (click)="timeline_hide = false"><button>About</button></a>
-  			<a [routerLink]="['photos']" (click)="timeline_hide = false"><button>Photos</button></a>
+        <a [routerLink]="['photos']" (click)="timeline_hide = false"><button>Photos</button></a>
+  			<a [routerLink]="['videos']" (click)="timeline_hide = false"><button>Videos</button></a>
   			<a [routerLink]="['friends']" (click)="timeline_hide = false"><button>Friends</button></a>
   			<a [routerLink]="['more']" (click)="timeline_hide = false"><button>More</button></a>
   		</div>

@@ -64,7 +64,10 @@ export class TimelineComponent implements OnInit {
     public formBuilder: FormBuilder
   ) {
     // pending work 
-    // this.url_id = '/profile/' + this.id + '/timeline'
+    const user = JSON.parse(localStorage.getItem('currentUser'));
+    this.url_id = user.data._id
+    console.log("-=--=-==-=- url_id", this.url_id);
+    
     // if (localStorage.getItem('currentUser') == this.url_id) {
       
     // } else {

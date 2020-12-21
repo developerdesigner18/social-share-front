@@ -42,6 +42,7 @@ export class HomeComponent implements OnInit {
   keyword = 'name';
   showbasicProfile = [];
   showbasicProfile2 = [];
+  showbasicProfile3 = [];
   showLikes = [];
 
   checkPostsId: any;
@@ -65,6 +66,8 @@ export class HomeComponent implements OnInit {
   u_city: any;
 
   @ViewChild('nav') slider: NgImageSliderComponent;
+  count_cmt: any;
+  check_temp: boolean;
 
   constructor(
     public authService: AuthService,
@@ -89,6 +92,8 @@ export class HomeComponent implements OnInit {
         console.log("-=-=-=-=-Welcome to social share")
       }else{
         this.datas = res.posts
+        console.log("-=-=-=-=-=- res", res);
+        
         const { image, thumbImage, alt, title } = res.posts;
         for(let i = 0; i < this.datas.length; i++){
           const images = []
@@ -283,14 +288,19 @@ export class HomeComponent implements OnInit {
   addComments(postId, userName, profilePic){
     this.objVal = Object.keys(this.commentsForm.value).map(key => ({type: key, value: this.commentsForm.value[key]}))
     this.authService.sendPostComment(postId, this.objVal[0].value).subscribe(res => {
-      if(res['success']){
-        $(`.comments_container_${postId}`).css('display','block');
-        if(this.datas.map((id) => id._id).includes(postId)){
+      if (res['success']) {
+        console.log("=-=-=-=-this count comment", this.count_cmt);
+        
+        $(`.comments_container_${postId}`).css('display', 'block');
+        if (this.datas.map((id) => id._id).includes(postId)) {
+          this.check_temp = true
           this.tempName = userName
           this.tempProfile = profilePic
           this.tempPostId = postId
           this.checkTem = true
           this.temCmnt.push(this.objVal[0].value)
+          console.log("=-=-=-=-=-thu temp", this.temCmnt);
+          this.count_cmt = res['data']
         }
       }
     })

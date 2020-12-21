@@ -1,0 +1,19 @@
+<div class="say_words position-relative" style="align-items: unset">
+    <div >
+      <div class="about_sec col-md-4" style="display: block; flex-grow: 1">
+        <h5 class="title-about" style="display: block;">Videos</h5>
+    </div>
+</div>
+</div>
+    
+<ng-container *ngIf="urls.length !== 0">
+    <div class="item">
+        <ng-image-slider [showArrow]=false class="slider_image_photos" [images]="urls"></ng-image-slider>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="urls.length === 0">
+    <div class="main_post_content d-flex flex-column" style="color: #003459">
+      <h6>Sorry but user not uploaded any photos</h6>
+    </div>
+  </ng-container>

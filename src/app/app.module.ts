@@ -48,6 +48,7 @@ import {MatFormFieldModule } from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatInputModule} from '@angular/material/input';
+import { VideosComponent } from './videos/videos.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,8 @@ import {MatInputModule} from '@angular/material/input';
     LifeComponent,
     PostModalComponent,
     RequestFriendsComponent,
-    PeopleKnowComponent
+    PeopleKnowComponent,
+    VideosComponent
   ],
   entryComponents: [DialogBodyComponent],
   imports: [
