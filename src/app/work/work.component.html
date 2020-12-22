@@ -7,12 +7,12 @@
   </div>
   <div class="no_mention" *ngIf="not_mention_work"><i class="fas fa-briefcase"> </i>&nbsp; Not mention Work</div>
   <div class="work" *ngIf="fill_work">
-    <input type="text" [(ngModel)]="event" name="" value="" placeholder="Add work place">
+    <input (keyup.enter)="save_add_work(event)" type="text" [(ngModel)]="event" name="" value="" placeholder="Add work place">
     <button type="button" name="button" (click)="save_add_work(event)">Save</button>
     <button type="button" name="button" (click)="work_Cancel()">Cancel</button>
   </div>
   <div class="u_mobile" *ngIf="u_fill_work">
-    <input type="text" [(ngModel)]="event" name="" value="" placeholder="Add work place">
+    <input (keyup.enter)="editWork(event)" type="text" [(ngModel)]="event" name="" value="" placeholder="Add work place">
     <button type="button" name="button" (click)="w_cancel()">Cancel</button>
     <button type="button" name="button" (click)="editWork(event)">Save</button>
   </div>
@@ -36,12 +36,12 @@
   </div>
   <div class="no_mention" *ngIf="not_mention_university"><i class="fa fa-university"> </i>&nbsp; Not mention University</div>
   <div class="work" *ngIf="fill_university">
-    <input type="text" [(ngModel)]="university" name="" value="" placeholder="Add university">
+    <input (keyup.enter)="save_add_university(university)" type="text" [(ngModel)]="university" name="" value="" placeholder="Add university">
     <button type="button" name="button" (click)="save_add_university(university)">Save</button>
     <button type="button" name="button" (click)="Uni_Cancel()">Cancel</button>
   </div>
   <div class="u_mobile" *ngIf="u_fill_university">
-    <input type="text" [(ngModel)]="university" name="" value="" placeholder="Add university">
+    <input (keyup.enter)="editUniversity(university)" type="text" [(ngModel)]="university" name="" value="" placeholder="Add university">
     <button type="button" name="button" (click)="u_cancel()">Cancel</button>
     <button type="button" name="button" (click)="editUniversity(university)">Save</button>
   </div>
@@ -65,12 +65,12 @@
   </div>
   <div class="no_mention" *ngIf="not_mention_school"><i class="fas fa-school"> </i>&nbsp; Not mention School</div>
   <div class="work" *ngIf="fill_school">
-    <input type="text" [(ngModel)]="school" name="" value="" placeholder="Add high school">
+    <input (keyup.enter)="save_add_school(school)" type="text" [(ngModel)]="school" name="" value="" placeholder="Add high school">
     <button type="button" name="button" (click)="save_add_school(school)">Save</button>
     <button type="button" name="button" (click)="School_Cancel()">Cancel</button>
   </div>
   <div class="u_mobile" *ngIf="u_fill_school">
-    <input type="text" [(ngModel)]="school" name="" value="" placeholder="Add high school">
+    <input (keyup.enter)="editSchool(school)" type="text" [(ngModel)]="school" name="" value="" placeholder="Add high school">
     <button type="button" name="button" (click)="s_cancel()">Cancel</button>
     <button type="button" name="button" (click)="editSchool(school)">Save</button>
   </div>

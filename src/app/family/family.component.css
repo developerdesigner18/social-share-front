@@ -71,3 +71,7 @@ p{
   display: flex;
   justify-content: space-between;
 }
+
+.update-display{
+  line-break: anywhere;
+}

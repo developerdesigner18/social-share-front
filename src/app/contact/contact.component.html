@@ -17,13 +17,13 @@
   </div>
   <div class="no_mention" *ngIf="not_mention_number"><i class="fa fa-phone"> </i>&nbsp; Not mention Number</div>
   <div class="mobile" *ngIf="fill_mobile_no">
-    <input type="text" [(ngModel)]="number" maxlength="10" inputmode="numeric"  name="numbers" id="number" value="" placeholder="Add mobile number" required>
+    <input (keyup.enter)="addNumber(number)" type="text" [(ngModel)]="number" maxlength="10" inputmode="numeric"  name="numbers" id="number" value="" placeholder="Add mobile number" required>
     <button type="button" name="button" (click)="Cancel()">Cancel</button>
     <button type="button" name="button" (click)="addNumber(number)">Save</button>
     <div *ngIf="Required"><p style="color: red;">Please Filled Out Your Mobile Number</p></div>
   </div>
   <div class="u_mobile" *ngIf="u_fill_mobile_no">
-    <input type="text" [(ngModel)]="mobile_number" maxlength="10" name="number" id="number" value="" placeholder="Add your mobile number">
+    <input (keyup.enter)="editNumber(mobile_number)" type="text" [(ngModel)]="mobile_number" maxlength="10" name="number" id="number" value="" placeholder="Add your mobile number">
     <button type="button" name="button" (click)="u_cancel()">Cancel</button>
     <button type="button" name="button" (click)="editNumber(mobile_number)">Save</button>
   </div>
@@ -42,13 +42,13 @@
   </div>
   <div class="no_mention" *ngIf="not_mention_address"><i class="fa fa-envelope"> </i>&nbsp; Not mention Address</div>
   <div class="address" *ngIf="fill_email">
-    <input type="email"  [(ngModel)]="location" inputmode="email" name="location" value="" placeholder="Add your email address">
+    <input (keyup.enter)="addAddress(location)" type="email"  [(ngModel)]="location" inputmode="email" name="location" value="" placeholder="Add your email address">
     <button type="button" name="a_button" (click)="A_Cancel()">Cancel</button>
     <button type="button" name="button" (click)="addAddress(location)">Save</button>
     <div *ngIf="Required1"><p style="color: red;">Please Filled Out Your Email Address</p></div>
   </div>
   <div class="u_address" *ngIf="u_fill_email">
-    <input type="text"  [(ngModel)]="email_address" inputmode="email" name="location" value="" placeholder="Add your email address">
+    <input (keyup.enter)="editAddress(email_address)" type="text"  [(ngModel)]="email_address" inputmode="email" name="location" value="" placeholder="Add your email address">
     <button type="button" name="button" (click)="u_cancel1()">Cancel</button>
     <button type="button" name="button" (click)="editAddress(email_address)">Save</button>
   </div>
@@ -69,13 +69,13 @@
   </div>
   <div class="no_mention" *ngIf="not_mention_website"><i class="fa fa-link"> </i>&nbsp; Not mention Website</div>
   <div class="website" *ngIf="fill_link">
-    <input type="text" [(ngModel)]="website_link" name="link" value="" placeholder="Add your Websites">
+    <input (keyup.enter)="addWebsite(website_link)" type="text" [(ngModel)]="website_link" name="link" value="" placeholder="Add your Websites">
     <button type="button" name="button" (click)="W_Cancel()">Cancel</button>
     <button type="button" name="button" (click)="addWebsite(website_link)">Save</button>
     <div *ngIf="Required2"><p style="color: red;">Please Filled Out Your Website</p></div>
   </div>
   <div class="u_website" *ngIf="u_fill_link">
-    <input type="text" [(ngModel)]="website_link" name="link" value="" placeholder="Add your Websites">
+    <input (keyup.enter)="editWebsite(website_link)" type="text" [(ngModel)]="website_link" name="link" value="" placeholder="Add your Websites">
     <button type="button" name="button" (click)="u_cancel2()">Cancel</button>
     <button type="button" name="button" (click)="editWebsite(website_link)">Save</button>
   </div>
@@ -96,13 +96,13 @@
   </div>
   <div class="no_mention" *ngIf="not_mention_religious"><i class="fas fa-pray"> </i>&nbsp; Not mention Religious</div>
   <div class="religious"  *ngIf="fil_caste">
-    <input type="text" [(ngModel)]="religious_value" name="" value="" placeholder="Add your religious">
+    <input (keyup.enter)="addBasicInfo(religious_value)" type="text" [(ngModel)]="religious_value" name="" value="" placeholder="Add your religious">
     <button type="button" name="button" (click)="R_Cancel()">Cancel</button>
     <button type="button" name="button" (click)="addBasicInfo(religious_value)">Save</button>
     <div *ngIf="Required3"><p style="color: red;">Please Filled Out Your Religious</p></div>
   </div>
   <div class="u_religious"  *ngIf="u_fill_caste">
-    <input type="text" [(ngModel)]="religious_value" name="" value="" placeholder="Add your religious">
+    <input (keyup.enter)="editBasicInfo(religious_value)" type="text" [(ngModel)]="religious_value" name="" value="" placeholder="Add your religious">
     <button type="button" name="button" (click)="u_cancel3()">Cancel</button>
     <button type="button" name="button" (click)="editBasicInfo(religious_value)">Save</button>
   </div>
@@ -156,14 +156,14 @@
   <div class="no_mention" *ngIf="not_mention_birth"><i class="fa fa-birthday-cake"> </i>&nbsp; Not mention Birthdate</div>
   <div *ngIf="fill_birth">
     <br>
-    <input class="birth_date" [matDatepicker]="picker" [(ngModel)]="birth_value" type="text" name="" id="">
+    <input (keyup.enter)="addBirthDate(birth_value)" class="birth_date" [matDatepicker]="picker" [(ngModel)]="birth_value" type="text" name="" id="">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
     <button type="button" name="button" (click)="B_Cancel()">Cancel</button>
     <button type="button" name="button" (click)="addBirthDate(birth_value)">Save</button>
   </div>
   <div class="u_birth"  *ngIf="u_fill_birth">
-    <input class="birth_date" [matDatepicker]="picker" [(ngModel)]="birth_value" type="text" name="" id="">
+    <input (keyup.enter)="editBasicInfo(birth_value)" class="birth_date" [matDatepicker]="picker" [(ngModel)]="birth_value" type="text" name="" id="">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
     <button type="button" name="button" (click)="u_cancel5()">Cancel</button>
@@ -171,12 +171,12 @@
   </div>
   <!-- Laungage Section -->
   <div (click)="newLanguage()" *ngIf="languages" >
-    <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add your Language</a>
+    <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add your language</a>
   </div>
-  <div class="no_mention" *ngIf="not_mention_langugae"><i class="fas fa-language"> </i>&nbsp; Not mention Language</div>
+  <div class="no_mention" *ngIf="not_mention_langugae"><i class="fas fa-language"> </i>&nbsp; Not mention language</div>
   <div *ngIf="text_language"><h6 style="padding-top: 5px;">Languages</h6></div>
   <div class="work" *ngIf="fill_langugae">
-    <input type="text" maxlength="30" [(ngModel)]="language" name="" value="" placeholder="Add langugae">
+    <input (keyup.enter)="save_add_langugae(language)" type="text" maxlength="30" [(ngModel)]="language" name="" value="" placeholder="Add language">
     <button type="button" name="button" (click)="save_add_langugae(language)">Save</button>
     <button type="button" name="button" (click)="language_Cancel()">Cancel</button>
   </div>

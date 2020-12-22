@@ -43,8 +43,8 @@
     <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add family member</a>
   </div>
   <div class="no_mention" *ngIf="not_mention_family"><i class="fas fa-child"> </i>&nbsp; Not mention Family Member</div>
-  <div class="mobile" *ngIf="fill_family">
-    <input type="text" maxlength="30" [(ngModel)]="family"  name="family" id="relationship" value="" placeholder="Add family member"><br>
+  <div class="family" *ngIf="fill_family">
+    <input type="text" [(ngModel)]="family"  name="family" id="relationship" value="" placeholder="Add family member"><br>
     <select name="family" value="Family" [(ngModel)]="relation">
       <option value="Father">Father</option>
       <option value="Mother">Mother</option>

@@ -362,7 +362,9 @@ export class ContactComponent implements OnInit {
         this.fill_mobile_no = false
       }
     })
+    
   }
+  
 
   editNumber(number: any) {
     this.authService.addNewNumber(number).subscribe(res => {
@@ -685,6 +687,8 @@ export class ContactComponent implements OnInit {
       }
     })
 
+   
+
   }
 
   ngOnInit(): void {
@@ -792,4 +796,6 @@ export class ContactComponent implements OnInit {
     this.show_birth = true
     this.u_fill_birth = false
   }
+  
 }
+

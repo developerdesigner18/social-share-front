@@ -14,15 +14,15 @@
       <i (click)="delDetails(details_about)" class="pencil-icon fa fa-trash"></i>
     </div>
   </div>
-  <div class="no_mention" *ngIf="not_mention_about"><i class="fa fa-link"> </i>&nbsp; Not mention About</div>
+  <div class="no_mention" *ngIf="not_mention_about"><i class="fa fa-info-circle"> </i>&nbsp; Not mention About</div>
   <div class="details" *ngIf="fill_details">
-    <textarea type="text" [(ngModel)]="details_about" name="" value="" placeholder="Write your details"></textarea>
+    <textarea (keyup.enter)="addDetails(details_about)" type="text" [(ngModel)]="details_about" name="" value="" placeholder="Write your details"></textarea>
     <button type="button" name="button" (click)="Cancel()">Cancel</button>
     <button type="button" name="button" (click)="addDetails(details_about)">Save</button>
     <div *ngIf="Required"><p style="color: red;">Please Filled Out Your Details</p></div>
   </div>
   <div class="u_details" *ngIf="u_fill_details">
-    <textarea type="text" [(ngModel)]="details_about" name="" value="" placeholder="Write your details"></textarea>
+    <textarea (keyup.enter)="editDetails(details_about)" type="text" [(ngModel)]="details_about" name="" value="" placeholder="Write your details"></textarea>
     <button type="button" name="button" (click)="cancel1()">Cancel</button>
     <button type="button" name="button" (click)="editDetails(details_about)">Save</button>
   </div>
@@ -42,15 +42,15 @@
       <i (click)="deletePronunciation(pronun_value)" class="pencil-icon fa fa-trash"></i>
     </div>
   </div>
-  <div class="no_mention" *ngIf="not_mention_pronun"><i class="fa fa-link"> </i>&nbsp; Not mention Pronunciation</div>
+  <div class="no_mention" *ngIf="not_mention_pronun"><i class="fa fa-language"> </i>&nbsp; Not mention Pronunciation</div>
   <div class="pronunciation" *ngIf="fill_pronun">
-    <input type="text" [(ngModel)]="pronun_value" name="" value="" placeholder="Add a new pronunciation">
+    <input (keyup.enter)="addPronunciation(pronun_value)" type="text" [(ngModel)]="pronun_value" name="" value="" placeholder="Add a new pronunciation">
     <button type="button" name="button" (click)="Cancel1()">Cancel</button>
     <button type="button" name="button" (click)="addPronunciation(pronun_value)">Save</button>
     <div *ngIf="Required1"><p style="color: red;">Please Filled Out Your Pronunciation</p></div>
   </div>
   <div class="pronunciation" *ngIf="u_fill_pronun">
-    <input type="text" [(ngModel)]="pronun_value" name="" value="" placeholder="Add a new pronunciation">
+    <input (keyup.enter)="editPronunciation(pronun_value)" type="text" [(ngModel)]="pronun_value" name="" value="" placeholder="Add a new pronunciation">
     <button type="button" name="button" (click)="cancel2()">Cancel</button>
     <button type="button" name="button" (click)="editPronunciation(pronun_value)">Save</button>
   </div>
@@ -69,15 +69,15 @@
       <i (click)="deleteNickname(nickname)" class="pencil-icon fa fa-trash"></i>
     </div>
   </div>
-  <div class="no_mention" *ngIf="not_mention_nickname"><i class="fa fa-link"> </i>&nbsp; Not mention Nickname</div>
+  <div class="no_mention" *ngIf="not_mention_nickname"><i class="fa fa-user"> </i>&nbsp; Not mention Nickname</div>
   <div class="nickname" *ngIf="fill_nickname">
-    <input type="text" [(ngModel)]="nickname" name="" value="" placeholder="Add your nickname">
+    <input (keyup.enter)="addNickname(nickname)" type="text" [(ngModel)]="nickname" name="" value="" placeholder="Add your nickname">
     <button type="button" name="button" (click)="Cancel2()">Cancel</button>
     <button type="button" name="button" (click)="addNickname(nickname)">Save</button>
     <div *ngIf="Required2"><p style="color: red;">Please Filled Out Your Nickname</p></div>
   </div>
   <div class="nickname" *ngIf="u_fill_nickname">
-    <input type="text" [(ngModel)]="nickname" name="" value="" placeholder="Add your nickname">
+    <input (keyup.enter)="editNickname(nickname)" type="text" [(ngModel)]="nickname" name="" value="" placeholder="Add your nickname">
     <button type="button" name="button" (click)="cancel3()">Cancel</button>
     <button type="button" name="button" (click)="editNickname(nickname)">Save</button>
   </div>
@@ -96,15 +96,15 @@
       <i (click)="deleteQuotes(quote_value)" class="pencil-icon fa fa-trash"></i>
     </div>
   </div>
-  <div class="no_mention" *ngIf="not_mention_quotes"><i class="fa fa-link"> </i>&nbsp; Not mention Quotes</div>
+  <div class="no_mention" *ngIf="not_mention_quotes"><i class="fa fa-quote-left"> </i>&nbsp; Not mention Quotes</div>
   <div class="quotes" *ngIf="fill_quotes">
-    <input type="text" [(ngModel)]="quote_value" name="" value="" placeholder="Add new quotes">
+    <input (keyup.enter)="addQuotes(quote_value)" type="text" [(ngModel)]="quote_value" name="" value="" placeholder="Add new quotes">
     <button type="button" name="button" (click)="Cancel3()">Cancel</button>
     <button type="button" name="button" (click)="addQuotes(quote_value)">Save</button>
     <div *ngIf="Required3"><p style="color: red;">Please Filled Out Your Quotes</p></div>
   </div>
   <div class="u_quotes" *ngIf="u_fill_quotes">
-    <input type="text" [(ngModel)]="quote_value" name="" value="" placeholder="Add new quotes">
+    <input (keyup.enter)="editQuotes(quote_value)" type="text" [(ngModel)]="quote_value" name="" value="" placeholder="Add new quotes">
     <button type="button" name="button" (click)="cancel4()">Cancel</button>
     <button type="button" name="button" (click)="editQuotes(quote_value)">Save</button>
   </div>

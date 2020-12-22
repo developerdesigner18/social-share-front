@@ -63,6 +63,7 @@ img{
 .update-display{
   display: flex;
   align-items: center;
+  line-break: anywhere;
 }
 
 .update-display p{
@@ -72,4 +73,16 @@ img{
 .birth_date {
   width: 7em;
   padding: 0 15px;
+}
+
+i{
+  padding: 0px 10px 0px 0px;
+}
+
+@media (min-width: 321px) and (max-width: 767px){
+  .location{
+    font-size: 14px;
+    margin: 0 !important;
+  }
+
 }

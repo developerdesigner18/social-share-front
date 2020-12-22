@@ -51,6 +51,7 @@ button{
 .update-display{
   display: flex;
   align-items: center;
+  line-break: anywhere;
 }
 
 .update-display p{
@@ -78,4 +79,8 @@ select{
   display: flex;
   justify-content: space-between;
   
+}
+
+i{
+  padding: 0px 10px 0px 0px;
 }
