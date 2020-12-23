@@ -39,7 +39,8 @@ button{
 }
 
 .icons-pencil{
-  padding: 4px 0;
+  /* padding: 4px 0; */
+  display: flex;
 }
 
 .icons-pencil > i:not(:last-child) {
@@ -56,7 +57,8 @@ button{
 .update-display{
   display: flex;
   align-items: center;
-  line-break: anywhere;
+  /* line-break: anywhere; */
+  word-wrap: break-word;
 }
 
 .update-display p{

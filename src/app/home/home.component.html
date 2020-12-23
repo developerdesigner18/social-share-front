@@ -181,7 +181,7 @@
 							<i class="far fa-comment-dots"></i>
 							<!-- <div>Comment<span>{{data.comment.length !== 0 ? checkTem ? data.comment.length  : data.comment.length : temCmnt.length === 0 ? '' : temCmnt.length}}</span></div> -->
 							<!-- <div>Comment<span>{{data.comment.length !== 0 ? checkTem ? data.comment.length  : data.comment.length : temCmnt.length === 0 ? '' : temCmnt.length}}</span></div> -->
-							<div>Comment<span>{{data.comment.length !== 0 ? data.comment.length + temCmnt.length : ''}}</span></div>
+							<div>Comment<span>{{data.comment.length !== 0 ? (data._id === tempPostId) ? data.comment.length + temCmnt.length : data.comment.length : ''}}</span></div>
 						</button>
 						<button class="share_sec" *ngIf="current_user['data']._id !== data.userId">
 							<i class="far fa-share"></i>
@@ -210,13 +210,10 @@
 							<img [src]="comnt.profile" onerror="this.src='/assets/images/default_user.jpg';">
 							<div>
 								<a href="profile/{{comnt.userId}}" (mouseover)="!showbasicProfile3[i]=true"><div class="commenter">{{comnt.name}}</div></a>
-								<div class="comment_here">{{comnt.newcomment}}</div>
-							</div>
-						
-					
-					<div class="d-flex show_basic_info" style="width: 100%" (mouseleave)="showbasicProfile3[i]=false">
-						
-							<div class="basic_info" *ngIf="showbasicProfile3[i]" >
+							<div class="comment_here">{{comnt.newcomment}}</div>
+						</div>		
+						<div (mouseleave)="showbasicProfile3[i]=false">
+							<div class="basic_info2" *ngIf="showbasicProfile3[i]" >
 								<div class="d-flex">
 									<img [src]="comnt.profile" onerror="this.src='/assets/images/default_user.jpg';" class="hover-info-img">
 									<div style="padding: 10px;">

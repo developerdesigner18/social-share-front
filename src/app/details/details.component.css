@@ -37,6 +37,10 @@ button{
 .icons-pencil > i:not(:last-child) {
   margin-right: 10px;
 }
+
+.icons-pencil {
+  display: flex;
+}
 .update-list{
   width: 95%;
   display: flex;
@@ -49,6 +53,12 @@ button{
   display: flex;
   align-items: center;
   line-break: anywhere;
+}
+
+.update-display2{
+  display: flex;
+  align-items: center;
+  word-wrap: break-word;
 }
 
 .update-display p{

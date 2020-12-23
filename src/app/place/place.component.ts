@@ -111,6 +111,7 @@ export class PlaceComponent implements OnInit {
           }
           else if (res.userData[0].homeTown !== undefined) {
             this.home_town = res.userData[0].homeTown
+            console.log("-=-=-=-=-=- home town", res.userData[0]);
             this.show_home = true
             this.home = true
           } else {
@@ -125,6 +126,8 @@ export class PlaceComponent implements OnInit {
     this.authService.addHomeTown(home_town).subscribe(res => {
       if (res['success']) {
         this.home_town = home_town
+        console.log("-=-=-=-=- home town", this.home_town);
+        
         this.show_home = true
         this.home = true
         this.fill_home = false

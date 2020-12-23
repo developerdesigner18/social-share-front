@@ -13,7 +13,7 @@
 </div>
 <ng-container *ngIf="notfound !== 404">
 <div *ngFor="let data of datas; let i = index" class="main_post_content d-flex flex-column timeline" >
-  <div class="d-flex" style="width: 100%" (mouseleave)="showbasicProfile2[i]=false">
+  <div class="d-flex show_basic_info" style="width: 100%" (mouseleave)="showbasicProfile2[i]=false">
     <div class="profile_pic_profile position-relative">
       <img [src]="profileImg" onerror="this.src='/assets/images/default_user.jpg';">
     </div>

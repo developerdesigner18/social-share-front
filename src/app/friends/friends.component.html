@@ -2,8 +2,9 @@
   <div class="row">
     <div class="about_sec col-md-4" style="display: block; flex-grow: 1">
       <h5 class="title-about" style="display: block;">Friends</h5>
-  	</div>
-    <div class="col-md-5" style="bottom: 5px;">
+    </div>
+    <div class="friend_div">
+    <div style="bottom: 5px;">
       <!-- <i class="fa fa-search" style="position: absolute; padding: 12px; min-width: 40px;"></i><input id="searchFrd" class="form-control" type="text" placeholder="Search" style="max-width: max-content;border-radius: 20px;height: 40px;padding-left: 40px;"> -->
       <div class="cat_search position-relative">
 				<ng-autocomplete class="autocomplete-container" #searchText [data]="allUsers" placeHolder="Search your friend's" value="" [searchKeyword]="keyword" [itemTemplate]="itemTemplate"
@@ -28,7 +29,7 @@
 				</ng-template>
 			</div>
     </div>
-    <div  *ngIf="user === url_id">
+    <div class="display_friends" *ngIf="user === url_id">
       <!-- <a [routerLink]="['/friends/', id]" style="padding: 10px; color: #003459;">Friends requests</a> -->
       <a style="color: #003459;" class="my_post_links" href="friends/{{id}}">
           <div style="font-weight: 600;" class="badges_for_fr position-relative">Friend Requests</div>
@@ -37,6 +38,7 @@
           <div style="font-weight: 600;" class="badges_for_pymk position-relative">Find Friends</div>
       </a>
     </div>
+  </div>
     <!-- <div class="col-md-3">
     </div> -->
   </div>
@@ -49,7 +51,7 @@
       <img width="40" height="40" [src]="frddetail.profileImgURl" onerror="this.src='/assets/images/default_user.jpg';" style="border-radius: 50%;" /> {{frddetail.name}}
       <a href="profile/{{frddetail._id}}"><button type="button" name="button">Friends</button></a>
     </div>
-    <div class="col-md-6" *ngIf="notAnyFrd" style="text-align: center; margin-left: 25%;">
+    <div class="col-md-12 no_friend_show" *ngIf="notAnyFrd" style="text-align: center; ">
       {{notAnyFrd}}
     </div>
   </div>
