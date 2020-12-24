@@ -151,6 +151,7 @@ export class RequestFriendsComponent implements OnInit {
 
     this.authService.getFriendPost(localStorage.getItem('friendId')).subscribe(res => {
       this.frd_datas = res
+      
       const { image, thumbImage, alt, title } = res;
       for(let i = 0; i < this.frd_datas.length; i++){
         this.likes = this.frd_datas[i].like
@@ -274,3 +275,5 @@ export class RequestFriendsComponent implements OnInit {
     $(`.remove_people_${people_id}`).parent().css('display','none');
   }
 }
+
+

@@ -16,11 +16,11 @@
 		</div>
 
 		<div name="top" class="actions" id="myTopnav">
-			<a [routerLink]="['timeline']"><button id="timeline" class="active_tabs">Timeline</button></a>
-			<a [routerLink]="['about']"><button id="about">About</button></a>
-			<a [routerLink]="['photos']"><button id="photos">Photos</button></a>
-			<a [routerLink]="['videos']"><button id="videos">Videos</button></a>
-			<a [routerLink]="['friends']"><button id="friends">Friends</button></a>
+			<a [routerLink]="['timeline']"><button id="timeline" [routerLinkActive]="['active_tabs']">Timeline</button></a>
+			<a [routerLink]="['about']"><button id="about" [routerLinkActive]="['active_tabs']">About</button></a>
+			<a [routerLink]="['photos']"><button id="photos" [routerLinkActive]="['active_tabs']">Photos</button></a>
+			<a [routerLink]="['videos']"><button id="videos" [routerLinkActive]="['active_tabs']">Videos</button></a>
+			<a [routerLink]="['friends']"><button id="friends" [routerLinkActive]="['active_tabs']">Friends</button></a>
 			<a [routerLink]="['more']"><button>More</button></a>
 		</div>
 		<div class="main_action"></div>

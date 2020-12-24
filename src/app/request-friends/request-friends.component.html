@@ -23,23 +23,25 @@
     <h6 class="people_title">People you may know</h6>
   </div>
   <div class="row" style="padding: 10px;" *ngFor="let data of datas;let i = index">
-    <div class="col-md-12 remove_people_{{data._id}}" (click)="openProfile(data._id);">
+    <div class="col-md-12 remove_people remove_people_{{data._id}}" (click)="openProfile(data._id);">
       <img width="60" height="60" [src]="data.profileImgURl" onerror="this.src='/assets/images/default_user.jpg';" style="border-radius: 50%;" />
-      <label style="color: #ffffff;margin-left: 10px;position: absolute;">{{data.name}}</label>
+      <div class="request_shows">
+      <label >{{data.name}}</label>
       <!-- <label style="color: #ffffff">{{data._id}}</label> -->
+      <div class="remove_people_{{data._id}}">
+        <button type="button" *ngIf="friend_id.includes(data._id) != true" class="btn btn-primary add_friend_btn add_friend_{{data._id}}" [hidden]="hideme[i]" (click)="sendRequest(data._id);hideme[i] = !hideme[i];">Add Friend</button>
+        <button type="button" class="btn btn-secondary show_add_friend show_add_friend_{{data._id}}" *ngIf="hideme[i] || friend_id.includes(data._id)" (click)="remove_send_request(data._id);hideme[i] = hideme[i];">Cancel Request</button>
+        <button type="button" class="btn btn-secondary remove_friend_btn remove_friend_{{data._id}}" [hidden]="hideme[i]" *ngIf="friend_id.includes(data._id) != true" (click)="remove_people(data._id)">Remove</button>
+  
+        <!-- <button type="button" id="add_{{data._id}}" class="btn btn-primary add_friend_btn add_friend_{{data._id}}" (click)="sendRequest(data._id);">Add Friends</button>
+        <button type="button" class="btn btn-secondary cancel_friend_{{data._id}}" *ngIf="hide_cancel_req != true" (click)="remove_send_request(data._id);">Cancel Request</button>
+        <button type="button" class="btn btn-secondary remove_friend_btn remove_friend_{{data._id}}" (click)="remove_people(data._id)">Remove</button> -->
+  
+        <!-- <button type="button" style="background-color: #1e4a6b;border-color:#1e4a6b;" class="btn btn-primary add_friend_{{data._id}}" (click)="sendRequest(data._id);">Add Friends</button>
+        <button type="button" class="btn btn-secondary show_add_friend_{{data._id}}" (click)="remove_send_request(data._id);">Cancel Request</button>
+        <button type="button" style="margin-left: 15px;" class="btn btn-secondary remove_friend_{{data._id}}" (click)="remove_people(data._id)">Remove</button> -->
+      </div>
     </div>
-    <div class="col-md-12 remove_people_{{data._id}}" style="margin-left: 70px;bottom: 15px;">
-      <button type="button" *ngIf="friend_id.includes(data._id) != true" class="btn btn-primary add_friend_btn add_friend_{{data._id}}" [hidden]="hideme[i]" (click)="sendRequest(data._id);hideme[i] = !hideme[i];">Add Friends</button>
-      <button type="button" class="btn btn-secondary show_add_friend_{{data._id}}" *ngIf="hideme[i] || friend_id.includes(data._id)" (click)="remove_send_request(data._id);hideme[i] = hideme[i];">Cancel Request</button>
-      <button type="button" class="btn btn-secondary remove_friend_btn remove_friend_{{data._id}}" [hidden]="hideme[i]" *ngIf="friend_id.includes(data._id) != true" (click)="remove_people(data._id)">Remove</button>
-
-      <!-- <button type="button" id="add_{{data._id}}" class="btn btn-primary add_friend_btn add_friend_{{data._id}}" (click)="sendRequest(data._id);">Add Friends</button>
-      <button type="button" class="btn btn-secondary cancel_friend_{{data._id}}" *ngIf="hide_cancel_req != true" (click)="remove_send_request(data._id);">Cancel Request</button>
-      <button type="button" class="btn btn-secondary remove_friend_btn remove_friend_{{data._id}}" (click)="remove_people(data._id)">Remove</button> -->
-
-      <!-- <button type="button" style="background-color: #1e4a6b;border-color:#1e4a6b;" class="btn btn-primary add_friend_{{data._id}}" (click)="sendRequest(data._id);">Add Friends</button>
-      <button type="button" class="btn btn-secondary show_add_friend_{{data._id}}" (click)="remove_send_request(data._id);">Cancel Request</button>
-      <button type="button" style="margin-left: 15px;" class="btn btn-secondary remove_friend_{{data._id}}" (click)="remove_people(data._id)">Remove</button> -->
     </div>
   </div>
 </div>
@@ -69,12 +71,12 @@
 			  <div class="profile_name">{{name}}</div>
   		</div>
 
-  		<div class="actions">
-  			<a [routerLink]="['/friends/', login_id]" (click)="timeline_hide = true; owlcarouselSet()"><button>Timeline</button></a>
-  			<a [routerLink]="['about']" (click)="timeline_hide = false"><button>About</button></a>
-        <a [routerLink]="['photos']" (click)="timeline_hide = false"><button>Photos</button></a>
-  			<a [routerLink]="['videos']" (click)="timeline_hide = false"><button>Videos</button></a>
-  			<a [routerLink]="['friends']" (click)="timeline_hide = false"><button>Friends</button></a>
+  		<div name="top" class="actions" id="myTopnav">
+  			<a [routerLink]="['/friends/', login_id]" (click)="timeline_hide = true; owlcarouselSet()" ><button id="timeline" [routerLinkActive]="['active_tabs']">Timeline</button></a>
+  			<a [routerLink]="['about']" (click)="timeline_hide = false"><button id="about" [routerLinkActive]="['active_tabs']">About</button></a>
+        <a [routerLink]="['photos']" (click)="timeline_hide = false"><button id="photos" [routerLinkActive]="['active_tabs']">Photos</button></a>
+  			<a [routerLink]="['videos']" (click)="timeline_hide = false"><button id="videos" [routerLinkActive]="['active_tabs']">Videos</button></a>
+  			<a [routerLink]="['friends']" (click)="timeline_hide = false"><button id="friends" [routerLinkActive]="['active_tabs']">Friends</button></a>
   			<a [routerLink]="['more']" (click)="timeline_hide = false"><button>More</button></a>
   		</div>
   		<div class="main_action"></div>
@@ -85,7 +87,7 @@
     <div class="main_area load_area">
       <ng-container *ngIf="timeline_hide">
       <div *ngFor="let data of frd_datas; let i = index;" class="main_post_content d-flex flex-column">
-        <div class="d-flex" style="width: 100%">
+        <div class="d-flex" style="width: 100%; margin-bottom: 15px;" (mouseleave)="showbasicProfile[i]=false">
           <div class="profile_pic_profile position-relative" (mouseover)="showbasicProfile[i]=true">
             <img [src]="profileImg" onerror="this.src='/assets/images/default_user.jpg';">
 
@@ -94,8 +96,8 @@
                 <img [src]="profileImg" onerror="this.src='/assets/images/default_user.jpg';">
                 <div style="padding: 10px;">
                   <a href="profile/{{data.userId}}"><div class="profile_basic_info set_redirect_link">{{name}}</div></a>
-                  <div class="profile_basic_info">{{u_designation}}</div>
-                  <div class="profile_basic_info">{{u_email}}</div>
+                  <div class="profile_basic_info"><i class="fas fa-user-tie" style="margin-right: 10px"></i>{{u_designation}}</div>
+                  <div class="profile_basic_info"><i class="fas fa-envelope" style="margin-right: 10px"></i>{{u_email}}</div>
                 </div>
               </div>
             </div>
@@ -105,7 +107,7 @@
               <a href="profile/{{u_id}}"><div class="profile_name_of_poster">{{u_name}}</div></a>
               <div class="province d-flex align-items-center">
                 <img src="assets/images/add_ob.png">
-                <div>Pulshar, MB</div>
+                <div>{{this.u_city}}, {{this.u_state}} </div>
               </div>
             </div>
             <div class="item_desc mt-3" style="width: 100%">{{data.description}}</div>
@@ -155,7 +157,7 @@
 
             <button class="comment_sec_{{data._id}} comment_sec" (click)="open_comments(data._id)">
               <i class="far fa-comment-dots"></i>
-              <div>Comment<span>{{data.comment.length !== 0 ? checkTem ? data.comment.length + temCmnt.length : data.comment.length : temCmnt.length === 0 ? '' : temCmnt.length}}</span></div>
+              <div>Comment<span>{{data.comment.length !== 0 ? (data._id === tempPostId) ? data.comment.length + temCmnt.length : data.comment.length : ''}}</span></div>
             </button>
             <button class="share_sec">
               <i class="far fa-share"></i>
@@ -190,9 +192,14 @@
         </div>
       </div>
       <div *ngIf="frd_datas.length == 0">
-        Not time line avalible for this friend
+        No Posts avalible for this friend
       </div>
       </ng-container>
+      <!-- <ng-container *ngIf="frd_datas.length == 0">
+        <div class="main_post_content d-flex flex-column" style="color: #003459">
+          <h6>Not time line avalible for this friend</h6>
+        </div>
+      </ng-container> -->
 
       <ng-container *ngIf="!timeline_hide">
         <router-outlet></router-outlet>

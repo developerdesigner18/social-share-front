@@ -247,42 +247,42 @@ export class UserProfileComponent implements OnInit {
     }
   }
   
-  $(document).ready(function(){
-    var i = 0;//get from storrage
-    $("#myTopnav a button").eq(0).click(function () {
-      $("#myTopnav a button").eq(0).addClass('active_tabs');
-      $("#myTopnav a button").eq(1).removeClass('active_tabs');
-      $("#myTopnav a button").eq(2).removeClass('active_tabs');
-      $("#myTopnav a button").eq(3).removeClass('active_tabs');
-      $("#myTopnav a button").eq(4).removeClass('active_tabs');
-    })
-    $("#myTopnav a button").eq(1).click(function () {
-      $("#myTopnav a button").eq(1).addClass('active_tabs');
-      $("#myTopnav a button").eq(0).removeClass('active_tabs');
-      $("#myTopnav a button").eq(2).removeClass('active_tabs');
-      $("#myTopnav a button").eq(3).removeClass('active_tabs');
-      $("#myTopnav a button").eq(4).removeClass('active_tabs');
-    })
-    $("#myTopnav a button").eq(2).click(function () {
-      $("#myTopnav a button").eq(2).addClass('active_tabs');
-      $("#myTopnav a button").eq(0).removeClass('active_tabs');
-      $("#myTopnav a button").eq(1).removeClass('active_tabs');
-      $("#myTopnav a button").eq(3).removeClass('active_tabs');
-      $("#myTopnav a button").eq(4).removeClass('active_tabs');
-    })
-    $("#myTopnav a button").eq(3).click(function () {
-      $("#myTopnav a button").eq(3).addClass('active_tabs');
-      $("#myTopnav a button").eq(0).removeClass('active_tabs');
-      $("#myTopnav a button").eq(1).removeClass('active_tabs');
-      $("#myTopnav a button").eq(2).removeClass('active_tabs');
-      $("#myTopnav a button").eq(4).removeClass('active_tabs');
-    })
-    $("#myTopnav a button").eq(4).click(function () {
-      $("#myTopnav a button").eq(4).addClass('active_tabs');
-      $("#myTopnav a button").eq(0).removeClass('active_tabs');
-      $("#myTopnav a button").eq(1).removeClass('active_tabs');
-      $("#myTopnav a button").eq(2).removeClass('active_tabs');
-      $("#myTopnav a button").eq(3).removeClass('active_tabs');
-    })
-    });
+  // $(document).ready(function(){
+  //   var i = 0;//get from storrage
+  //   $("#myTopnav a button").eq(0).click(function () {
+  //     $("#myTopnav a button").eq(0).addClass('active_tabs');
+  //     $("#myTopnav a button").eq(1).removeClass('active_tabs');
+  //     $("#myTopnav a button").eq(2).removeClass('active_tabs');
+  //     $("#myTopnav a button").eq(3).removeClass('active_tabs');
+  //     $("#myTopnav a button").eq(4).removeClass('active_tabs');
+  //   })
+  //   $("#myTopnav a button").eq(1).click(function () {
+  //     $("#myTopnav a button").eq(1).addClass('active_tabs');
+  //     $("#myTopnav a button").eq(0).removeClass('active_tabs');
+  //     $("#myTopnav a button").eq(2).removeClass('active_tabs');
+  //     $("#myTopnav a button").eq(3).removeClass('active_tabs');
+  //     $("#myTopnav a button").eq(4).removeClass('active_tabs');
+  //   })
+  //   $("#myTopnav a button").eq(2).click(function () {
+  //     $("#myTopnav a button").eq(2).addClass('active_tabs');
+  //     $("#myTopnav a button").eq(0).removeClass('active_tabs');
+  //     $("#myTopnav a button").eq(1).removeClass('active_tabs');
+  //     $("#myTopnav a button").eq(3).removeClass('active_tabs');
+  //     $("#myTopnav a button").eq(4).removeClass('active_tabs');
+  //   })
+  //   $("#myTopnav a button").eq(3).click(function () {
+  //     $("#myTopnav a button").eq(3).addClass('active_tabs');
+  //     $("#myTopnav a button").eq(0).removeClass('active_tabs');
+  //     $("#myTopnav a button").eq(1).removeClass('active_tabs');
+  //     $("#myTopnav a button").eq(2).removeClass('active_tabs');
+  //     $("#myTopnav a button").eq(4).removeClass('active_tabs');
+  //   })
+  //   $("#myTopnav a button").eq(4).click(function () {
+  //     $("#myTopnav a button").eq(4).addClass('active_tabs');
+  //     $("#myTopnav a button").eq(0).removeClass('active_tabs');
+  //     $("#myTopnav a button").eq(1).removeClass('active_tabs');
+  //     $("#myTopnav a button").eq(2).removeClass('active_tabs');
+  //     $("#myTopnav a button").eq(3).removeClass('active_tabs');
+  //   })
+  //   });
   

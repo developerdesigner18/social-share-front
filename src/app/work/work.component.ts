@@ -97,7 +97,7 @@ export class WorkComponent implements OnInit {
       
       const currentUser = JSON.parse(localStorage.getItem('currentUser'));
       localStorage.removeItem('friendId')
-      if(currentUser.data._id !== id){
+      if (currentUser.data._id !== id) {
         this.current_user_profile = false
         this.icons = false
         this.authService.getAllData(id).subscribe(res => { 
