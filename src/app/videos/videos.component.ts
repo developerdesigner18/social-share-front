@@ -23,7 +23,7 @@ export class VideosComponent implements OnInit {
       this.authService.getAllPhotos(localStorage.getItem('friendId')).subscribe(res => {
        
         for (let i = 0; i < res.data.length; i++){ 
-            if (res.data[i].image.split('.').pop() !== 'jpg') { 
+            if (res.data[i].image.split('.').pop() !== 'jpg' || 'png') { 
               this.urls.push(res.data[i])
             }
           }

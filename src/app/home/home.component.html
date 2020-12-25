@@ -5,7 +5,7 @@
 		<div class="profile_image">
 			<img [src]="profileImg" onerror="this.src='/assets/images/default_user.jpg';">
 		</div>
-		<div class="profile_name">{{name | uppercase}}</div>
+		<div class="profile_name">{{name}}</div>
 		<div class="friends_Posts d-flex align-items-center">
 			<div class="total_friends_of_user d-flex align-items-center">
 				<div class="my_friends">Friends</div>
@@ -212,14 +212,17 @@
 								<a href="profile/{{comnt.userId}}" (mouseover)="!showbasicProfile3[i]=true"><div class="commenter">{{comnt.name}}</div></a>
 							<div class="comment_here">{{comnt.newcomment}}</div>
 						</div>		
-						<div (mouseleave)="showbasicProfile3[i]=false">
-							<div class="basic_info2" *ngIf="showbasicProfile3[i]" >
+						<div class="show_basic_info_card" (mouseleave)="showbasicProfile3[i]=false">
+							<div class="basic_info2" *ngIf="showbasicProfile3[i]">
+								
 								<div class="d-flex">
 									<img [src]="comnt.profile" onerror="this.src='/assets/images/default_user.jpg';" class="hover-info-img">
-									<div style="padding: 10px;">
+									<div class="basic_profile_icons">
 										<a href="profile/{{comnt.userId}}"><div class="profile_basic_info set_redirect_link">{{comnt.name}}</div></a>
+										<div class="icons_showing_card">
 										<div class="profile_basic_info"><i class="fas fa-user-tie" style="margin-right: 10px">{{comnt.designation}}</i></div>
 										<div class="profile_basic_info"><i class="fas fa-envelope" style="margin-right: 10px">{{comnt.email}}</i></div>
+									</div>	
 									</div>
 								</div>
 							</div>

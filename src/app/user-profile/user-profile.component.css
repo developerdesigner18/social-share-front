@@ -133,6 +133,7 @@ img.logout {
     position: relative;
     /* top: 10px; */
     font-weight: 500;
+    text-transform: capitalize;
 }
 .profile_pic_main_tabs_sec > div {
     flex: 1;
@@ -751,7 +752,7 @@ button.owl-next span {
 
 .cover-set {
 	top: 330px;
-	right: 10px;
+	right: 30px;
 }
 
 .edit-button{
