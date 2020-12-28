@@ -95,6 +95,8 @@ export class RequestFriendsComponent implements OnInit {
     })
   }
 
+  
+
   open_comments(postId){
     $(`.comments_container_${postId}`).toggle();
   }
@@ -159,7 +161,7 @@ export class RequestFriendsComponent implements OnInit {
           this.postlikeId.push(this.frd_datas[i]._id)
         }
       }
-      this.owlcarouselSet()
+      
     })
 
     this.authService.getProfileforAbout(this.activatedRoute.snapshot.paramMap.get('id')).subscribe(res => {
@@ -188,6 +190,9 @@ export class RequestFriendsComponent implements OnInit {
 
   reject_request(reject_id){
     let userId = this.activatedRoute.snapshot.paramMap.get('id');
+    console.log("-=-=-=-= userId",userId);
+    console.log("-==-=-=-=-=- reject_id", reject_id);
+    
     this.authService.rejectFriendRequest(userId, reject_id).subscribe(res => {})
   }
 
@@ -238,16 +243,16 @@ export class RequestFriendsComponent implements OnInit {
     })
   }
 
-  owlcarouselSet(){
-    jQuery(document).ready(function(){
-      $('.owl-carousel').owlCarousel({
-        nav:true,
-        items:1,
-        autoWidth: true,
-        video: true
-      })
-    })
-  }
+  // owlcarouselSet(){
+  //   jQuery(document).ready(function(){
+  //     $('.owl-carousel').owlCarousel({
+  //       nav:true,
+  //       items:1,
+  //       autoWidth: true,
+  //       video: true
+  //     })
+  //   })
+  // }
 
   temCmnt = [];
   tempPostId = '';
@@ -274,6 +279,7 @@ export class RequestFriendsComponent implements OnInit {
   remove_people(people_id){
     $(`.remove_people_${people_id}`).parent().css('display','none');
   }
+
 }
 
 

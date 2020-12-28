@@ -21,6 +21,10 @@ header{
 	background-color: #0f1b31;
 	padding: 15px 0;
 }
+.left_sidebar {
+    width: 290px !important;
+    flex: inherit !important;
+}
 .logo {
     width: 60%;
 }
@@ -36,6 +40,17 @@ header{
 	color: #ffffff;
 	font-size: 14px;
 	margin-left: 20px;
+}
+.name_and_desc .profile_name_of_poster {
+    font-size: 16px;
+    text-transform: capitalize;
+}
+.search_display {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    grid-gap: 25px;
+    padding: 0 20px;
 }
 header .ads {
     flex: 2.5;
@@ -60,8 +75,7 @@ header .logo, .login_container, .icon_container {
 .icon_container {
 	/* padding-bottom: 25px; */
 	text-align: right;
-	height: 26px;
-	margin-top: 16px;
+	/* margin-top: 16px; */
 }
 .login_container div {
     display: inline-flex;
@@ -140,6 +154,7 @@ a.my_post_links{
     font-weight: 500;
     color: #003459;
     font-size: 22px;
+    text-transform: capitalize;
 }
 .badges {
     position: relative;
@@ -186,6 +201,7 @@ a.my_post_links{
 }
 .main_area {
     margin-left: 25px;
+    width: calc(100% - 320px) !important;
 }
 .post {
     display: flex;
@@ -236,10 +252,10 @@ a.my_post_links{
 .timeline {
     margin: 25px 0;
     overflow: hidden;
+    padding-bottom: 25px;
 }
 .name_and_desc {
     margin-left: 20px;
-		margin-top: 12px;
 }
 .item_desc {
     font-size: 14px;
@@ -283,9 +299,10 @@ a.my_post_links{
 }
 .profile_name_of_poster {
     font-weight: 500;
-    font-size: 20px;
+    font-size: 16px;
     color: #003459;
     line-height: 1;
+    text-transform: capitalize;
 }
 .post_by_user_second .profile_pic:before {
     content: "";
@@ -317,9 +334,9 @@ a.my_post_links:hover div > div {
 	.login_container{
 		margin: unset;
 	}
-	.position-relative{
+	/* .position-relative{ */
 		/* height: 32px; */
-	}
+	/* } */
 	.profile_name {
 		color: #ffffff;
 	}
@@ -355,14 +372,22 @@ a.my_post_links:hover div > div {
 		padding: unset;
 	}
 }
-
-.allusers_set{
-	border-bottom: 1px solid #e5e5e5;
-	padding: 12px 0px 12px 0px;
+.Send_request_icon {
+    background: #ffffff;
+    padding-left: 3px;
+    cursor: pointer;
+    height: 34px;
+    width: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-
-.Send_request_icon{
-	border: 1px solid #000000;
-	background: #043458;
-	padding-left: 5px;
+.icon_container i{
+    color: #FF9000;
+}
+.allusers_set {
+    padding: 10px;
+    background-color: aliceblue;
+    border-radius: 4px;
+    align-items: center;
 }

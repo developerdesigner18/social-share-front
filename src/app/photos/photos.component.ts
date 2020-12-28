@@ -27,7 +27,7 @@ export class PhotosComponent implements OnInit {
       this.authService.getAllPhotos(localStorage.getItem('friendId')).subscribe(res => {
        
         for (let i = 0; i < res.data.length; i++){ 
-            if (res.data[i].image.split('.').pop() !== 'mp4') { 
+            if (res.data[i].image.split('.').pop() !== 'mp4' && 'mkv') { 
               this.urls.push(res.data[i])
             }
           }

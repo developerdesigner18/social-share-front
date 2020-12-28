@@ -1,6 +1,6 @@
 <div class="say_words position-relative" style="align-items: unset">
-  <div class="row">
-    <div class="about_sec col-md-4" style="display: block; flex-grow: 1">
+  <div class="row display_friend">
+    <div class="about_sec" style="display: block;">
       <h5 class="title-about" style="display: block;">Friends</h5>
     </div>
     <div class="friend_div">
@@ -62,7 +62,7 @@
       <img width="40" height="40" [src]="frddetail.profileImgURl" onerror="this.src='/assets/images/default_user.jpg';" style="border-radius: 50%;" /> {{frddetail.name}}
       <a href="profile/{{frddetail._id}}"><button type="button" name="button">Friends</button></a>
     </div>
-    <div class="col-md-6" *ngIf="notAnyFrd" style="text-align: center; margin-left: 25%;">
+    <div class="col-md-6 no_friend_show" *ngIf="notAnyFrd" style="text-align: center; margin-left: 25%;">
       {{notAnyFrd}}
     </div>
   </div>

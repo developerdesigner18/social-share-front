@@ -175,3 +175,9 @@
 .item {
     height: 100%;
 }
+.main_post_content h6{
+    font-size: 18px;
+    font-weight: 400;
+    color: #ff9204;
+    text-align: center;
+}

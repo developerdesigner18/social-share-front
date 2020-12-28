@@ -78,15 +78,16 @@
 			</div>
 			<div class="main_area_content timeline">
 				<div class="main_post_content d-flex flex-column">
-          <div class="d-flex">
+         		    <div class="d-flex">
 						<div class="d-flex justify-content-between">
 							<div class="profile_name_of_poster">Peoples</div>
 						</div>
 					</div>
-          <hr/>
+		  <hr/>	</div>
+		  <div class="search_display">
 					<ng-container *ngIf="search_by_name == false">
 						<div class="d-flex allusers_set" *ngFor="let user of allUsers;let i = index">
-	            <div class="profile_pic position-relative">
+	            		<div class="profile_pic position-relative">
 								<img [src]="user.profileImgURl" onerror="this.src='/assets/images/default_user.jpg';">
 							</div>
 							<div class="name_and_desc">
@@ -96,12 +97,13 @@
 							</div>
 							<div class="icon_container d-flex justify-content-end">
 								<div class="position-relative Send_request_icon">
-									<i class="fas fa-user-plus" style="color: #ffffff;" [hidden]="hideme[i]" (click)="sendRequest(user._id);hideme[i] = !hideme[i]" title="Add Friend"></i>
-									<i class="fas fa-user-times" style="color: #ffffff;" [hidden]="!hideme[i]" (click)="reject_request(user._id);hideme[i] = hideme[i]" title="Cancel Friend Request"></i>
+									<i class="fas fa-user-plus" [hidden]="hideme[i]" (click)="sendRequest(user._id);hideme[i] = !hideme[i]" title="Add Friend"></i>
+									<i class="fas fa-user-times" [hidden]="!hideme[i]" (click)="reject_request(user._id);hideme[i] = !hideme[i]" title="Cancel Friend Request"></i>
 								</div>
 							</div>
 						</div>
 					</ng-container>
+				</div>
 					<ng-container *ngIf="search_by_name == true">
 						<div class="d-flex allusers_set" *ngFor="let dt_name of search_data">
 	            <div class="profile_pic position-relative">
@@ -121,4 +123,4 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	<!-- </div> -->

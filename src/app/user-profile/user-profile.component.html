@@ -78,7 +78,7 @@
 			<div class="photos_container_all w_100 see-all-images" *ngIf="onlyImg.length > 10">
 				<button onclick="document.body.scrollTop=500;document.documentElement.scrollTop=500;event.preventDefault()" class="edit-button see-all-button" [routerLink]="['photos']">See All</button>
 			</div>
-			<div *ngIf="notfound == 404" style="color: #003459">
+			<div class="a_photos" *ngIf="notfound == 404" style="color: #003459">
 				<h6>Not any photos</h6>
 			</div>
 		</div>

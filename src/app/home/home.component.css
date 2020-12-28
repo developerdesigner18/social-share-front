@@ -10,6 +10,9 @@ html{
 button, input {
     outline: none !important;
 }
+.left_content img {
+    width: 20px;
+}
 a:hover{
     text-decoration: none;
 }
@@ -194,6 +197,8 @@ a.my_post_links{
     bottom: 0;
     margin: auto;
 }
+/* Hide videos control */
+
 .badges_for_pymk:before {
     content: attr(data-content);
     position: absolute;

@@ -235,6 +235,8 @@ export class AuthService {
   rejectFriendRequest(userId, rejectId): Observable<any> {
     return this.httpClient.post(`${environment.apiUrl}/api/friend/reject`, {userId: userId, requestId: rejectId}, {headers: this.headers}).pipe(
       map((res: Response) => {
+        console.log("-=-=-=-=-=-=-=-=-=-res", res);
+        
         return res || {}
       }),
       catchError(this.handleError)
