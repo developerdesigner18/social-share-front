@@ -372,6 +372,11 @@ a.my_post_links:hover div > div {
 		padding: unset;
 	}
 }
+@media (max-width: 576px){
+    .search_display {
+        grid-template-columns: 1fr;
+    }
+}
 .Send_request_icon {
     background: #ffffff;
     padding-left: 3px;

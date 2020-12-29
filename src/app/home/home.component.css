@@ -61,7 +61,6 @@ header .ads {
 }
 .basic_info2 > div {
     margin-left: 0 !important;
-    text-transform: capitalize;
     align-items: center;
 }
 .profile_basic_info.set_redirect_link {

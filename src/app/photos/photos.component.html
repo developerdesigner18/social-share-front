@@ -1,76 +1,17 @@
-<!-- <div class="photos_sec">
-  <div (click)="openModal();currentSlide(1)" class="pics_cat position-relative" *ngFor="let url of urls"> -->
-    <!-- <img src="assets/images/gal_1.jpg"> -->
-    <!-- <div *ngFor="let url of urls"> -->
-      <!-- <img src="{{url}}" *ngIf="urls"> -->
-    <!-- </div> -->
-    <!-- <div class="pic_cat"> -->
-      <!-- <div>Sports</div> -->
-      <!-- <img class="plus_icon" src="assets/images/plus.png">
-    </div>
-  </div>
-  <div (click)="openModal();currentSlide(2)" class="pics_cat position-relative">
-    <img src="assets/images/gal_2.jpg">
-    <div class="pic_cat">
-      <div>Switzerland</div>
-      <img class="plus_icon" src="assets/images/plus.png">
-    </div>
-  </div>
-  <div (click)="openModal();currentSlide(3)" class="pics_cat position-relative">
-    <img src="assets/images/gal_3.jpg">
-    <div class="pic_cat">
-      <div>Outdoor</div>
-      <img class="plus_icon" src="assets/images/plus.png">
-    </div>
-  </div>
-  <div (click)="openModal();currentSlide(4)" class="pics_cat position-relative">
-    <img src="assets/images/gal_4.jpg">
-    <div class="pic_cat">
-      <div>Home</div>
-      <img class="plus_icon" src="assets/images/plus.png">
-    </div>
-  </div>
-  <div (click)="openModal();currentSlide(5)" class="pics_cat position-relative">
-    <img src="assets/images/gal_5.jpg">
-    <div class="pic_cat">
-      <div>Love</div>
-      <img class="plus_icon" src="assets/images/plus.png">
-    </div>
-  </div>
-  <div (click)="openModal();currentSlide(6)" class="pics_cat position-relative">
-    <img src="assets/images/gal_6.jpg">
-    <div class="pic_cat">
-      <div>Uploads</div>
-      <img class="plus_icon" src="assets/images/plus.png">
-    </div>
-  </div>
-</div> -->
 <ng-container *ngIf="urls.length !== 0">
 <div class="img-bg">
   <div>
-    <!-- <div class="item" *ngFor="let url of urls"> -->
     <div class="item">
-      <!-- <div class="item" > -->
-      
-        <ng-image-slider [showArrow]=false class="slider_image_photos" [images]="urls"></ng-image-slider>
-   
-        <!-- <ng-image-slider [imageSize]="{width: '33.67%'}"  [showArrow]=false class="slider_image" [images]="urls"></ng-image-slider> -->
-      <!-- </div> -->
-      <!-- <ng-image-slider [imageSize]="{width: '33.67%'}" [showArrow]=false class="slider_image" [images]="url"></ng-image-slider>
-      <ng-image-slider [imageSize]="{width: '33.67%'}" [showArrow]=false class="slider_image" [images]="url"></ng-image-slider>
-      <ng-image-slider [imageSize]="{width: '100%'}" [showArrow]=false class="slider_image" [images]="url"></ng-image-slider> -->
-  
-      <!-- <ng-image-slider [showArrow]=false class="slider_image" [images]="url"></ng-image-slider> -->
+      <ng-image-slider [showArrow]=false class="slider_image_photos" [images]="urls"></ng-image-slider>
     </div>
   </div>
   </div>
 </ng-container>
-
-  <ng-container *ngIf="urls.length == 0">
-    <div class="main_post_content d-flex flex-column" style="color: #003459">
-      <h6>Sorry but user not uploaded any photos</h6>
-    </div>
-  </ng-container>
+<ng-container *ngIf="urls.length == 0">
+  <div class="main_post_content d-flex flex-column" style="color: #003459">
+    <h6>Sorry but user not uploaded any photos</h6>
+  </div>
+</ng-container>
 
 
 

@@ -107,7 +107,9 @@
 							<a href="profile/{{data.userId}}" (mouseover)="showbasicProfile2[i]=true" ><div class="profile_name_of_poster">{{data.post_user}}</div></a>
 							<div class="province d-flex align-items-center">
 								<img src="assets/images/add_ob.png">
-								<div>{{data.city}}, {{data.state}}</div>
+								<!-- <div>{{data.city}}, {{data.state}}</div> -->
+								<div *ngIf="data.city !== null && data.state !== null">{{data.city}} {{data.state}}</div>
+          						<div *ngIf="data.city === undefined && data.state === undefined">Not Mention</div>
 							</div>
 							<div class="basic_info" *ngIf="showbasicProfile2[i]" (mouseleave)="showbasicProfile2[i]=false">
 								<div class="d-flex">
@@ -150,7 +152,7 @@
 					</div>
 					<div *ngIf="data.imageUrl.length == 3">
 						<div class="item" *ngIf="data.imageUrl[0].size == 100">
-							<ng-image-slider [imageSize]="{width: (data.imageUrl[0].size == 100) ? '100%' : '50%'}" animationSpeed=0.1 [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
+							<ng-image-slider  [imageSize]="{width: (data.imageUrl[0].size == 100) ? '100%' : '50%'}" animationSpeed=0.1 [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
 							<ng-image-slider [infinite]=true [autoSlide]=0 [imageSize]="{width: '50%', height: 200}" [showArrow]=false class="slider_image_2" [images]="data.imageUrl" #nav></ng-image-slider>
 						</div>
 					</div>
@@ -180,9 +182,8 @@
 
 						<button class="comment_sec_{{data._id}} comment_sec" (click)="open_comments(data._id)">
 							<i class="far fa-comment-dots"></i>
-							<!-- <div>Comment<span>{{data.comment.length !== 0 ? checkTem ? data.comment.length  : data.comment.length : temCmnt.length === 0 ? '' : temCmnt.length}}</span></div> -->
-							<!-- <div>Comment<span>{{data.comment.length !== 0 ? checkTem ? data.comment.length  : data.comment.length : temCmnt.length === 0 ? '' : temCmnt.length}}</span></div> -->
-							<div>Comment<span>{{data.comment.length !== 0 ? (data._id === tempPostId) ? data.comment.length + temCmnt.length : data.comment.length : ''}}</span></div>
+							<div *ngIf="data.comment.length !== 0">Comment<span>{{data.comment.length !== 0 ? (data._id === tempPostId) ? data.comment.length + temCmnt.length : data.comment.length : ''}}</span></div>
+							<div *ngIf="data.comment.length === 0">Comment<span>{{data.comment.length === 0 ? (data._id === tempPostId) ? data.comment.length + temCmnt.length : '' :data.comment.length }}</span></div>
 						</button>
 						<button class="share_sec" *ngIf="current_user['data']._id !== data.userId">
 							<i class="far fa-share"></i>
@@ -195,7 +196,7 @@
 					<input type="text" placeholder=" Write a comment...!" formControlName="newcomment">
 					</form>
 				</div>
-					<div class="comments_container_{{data._id}} comments_container" style="display: none;" *ngIf="data.comment.length > 0">
+					<div class="comments_container_{{data._id}} comments_container" style="display: none;" *ngIf="data.comment.length > 0 || temCmnt.length > 0">
 						<div class="comment_title">Comments:</div>
 						<ng-container *ngIf="checkTem && tempPostId === data._id">
 							<div class="comment_user d-flex" *ngFor="let temp of temCmnt.slice().reverse(); let i = index">
@@ -214,21 +215,19 @@
 							<div class="comment_here">{{comnt.newcomment}}</div>
 						</div>		
 						<div class="show_basic_info_card" (mouseleave)="showbasicProfile3[i]=false">
-							<div class="basic_info2" *ngIf="showbasicProfile3[i]">
-								
+							<div class="basic_info2" *ngIf="showbasicProfile3[i]">	
 								<div class="d-flex">
 									<img [src]="comnt.profile" onerror="this.src='/assets/images/default_user.jpg';" class="hover-info-img">
 									<div class="basic_profile_icons">
-										<a href="profile/{{comnt.userId}}"><div class="profile_basic_info set_redirect_link">{{comnt.name}}</div></a>
+										<a href="profile/{{comnt.userId}}"><div style="text-transform: capitalize;" class="profile_basic_info set_redirect_link">{{comnt.name}}</div></a>
 										<div class="icons_showing_card">
-										<div class="profile_basic_info"><i class="fas fa-user-tie" style="margin-right: 10px">{{comnt.designation}}</i></div>
-										<div class="profile_basic_info"><i class="fas fa-envelope" style="margin-right: 10px">{{comnt.email}}</i></div>
+										<div class="profile_basic_info"><i class="fas fa-user-tie" style="padding-right: 10px"></i>{{comnt.designation}}</div>
+										<div class="profile_basic_info"><i class="fas fa-envelope" style="margin-right: 10px"></i>{{comnt.email}}</div>
 									</div>	
 									</div>
 								</div>
 							</div>
 						</div>
-					
 					</div>
 					</div>
 				</div>

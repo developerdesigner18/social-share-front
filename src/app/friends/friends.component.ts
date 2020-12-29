@@ -20,6 +20,7 @@ export class FriendsComponent implements OnInit {
   url_id: any;
   urls = [];
   friendId: string;
+  show_friends = false
   
 
   constructor(
@@ -34,6 +35,8 @@ export class FriendsComponent implements OnInit {
 
     if (localStorage.getItem('friendId')) {
       this.friendId = localStorage.getItem('friendId')
+      console.log("-=-=-=-=-=- friend id", this.friendId);
+      this.show_friends = false
       this.authService.getAllPhotos(this.friendId).subscribe(res => {
         for (let i = 0; i < res.data.length; i++) {
           if (res.data[i].image.split('.').pop() !== 'jpg') {
@@ -49,6 +52,7 @@ export class FriendsComponent implements OnInit {
         this.u_name = res.data.name
       })
     } else {
+      // this.show_friends = true
       this.authService.getAllPhotos(id).subscribe(res => {
         for (let i = 0; i < res.data.length; i++) {
           if (res.data[i].image.split('.').pop() !== 'jpg') {
@@ -67,7 +71,8 @@ export class FriendsComponent implements OnInit {
     
     this.friend_id = '/profile/' + id + '/friends'
     
-    if(router.url === '/profile/'+id+'/friends'){
+    if (router.url === '/profile/' + id + '/friends') {
+      this.show_friends = true
       this.authService.getFriends(id).subscribe(res => {
         if(res.success)
         {

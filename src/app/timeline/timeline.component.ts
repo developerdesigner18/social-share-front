@@ -40,6 +40,7 @@ export class TimelineComponent implements OnInit {
   commentsForm: FormGroup;
   showbasicProfile = [];
   showbasicProfile2 = [];
+  showbasicProfile3 = [];
 
   viewImgdatas = [];
   viewImg = [];
@@ -81,7 +82,10 @@ export class TimelineComponent implements OnInit {
     this.id = this.activatedRoute.parent.params['value']['id'];
     console.log("-=-=-=-=-=-=-=- id", this.id);
     
+    
     this.authService.getUserProfile(this.id).subscribe(res => {
+      console.log("-===-==-userprofile", res);
+      
       this.profileImg =  res.data.profileImgURl
       this.u_name =  res.data.name
       this.u_designation =  res.data.designation

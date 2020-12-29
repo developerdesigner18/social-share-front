@@ -100,10 +100,11 @@ export class HomeComponent implements OnInit {
           this.description = this.datas[i].description;
           this.likes = this.datas[i].like
           this.comments = this.datas[i].comment.length
+          console.log("-=-==-- image res", this.datas[i].imageUrl);
           this.url.push(this.datas[i].imageUrl)
+          
           this.datas[i].state =  (this.datas[i].state === undefined) ? 'Not mention' : this.datas[i].state
           this.datas[i].city = (this.datas[i].city === undefined) ? 'Not mention' : this.datas[i].city
-          this.datas[i].imageUrl.title = "more"
           this.authService.getHomePostProfile(this.datas[i].userId).subscribe(res => {
             this.datas[i].post_user_designation = res.data.designation
             this.datas[i].post_user_email = res.data.emailId

@@ -50,6 +50,57 @@ header .ads {
     color: #f0f8ff;
     height: 70px;
 }
+.basic_info2{
+	position: absolute;
+	z-index: 9;
+	top: 15px;
+	background-color: #ffffff;
+	box-shadow: 0px 1px 15px 0px rgba(0, 52, 89, 0.58);
+	display: block !important;
+	padding: 15px;
+}
+
+
+.profile_basic_info{
+	font-weight: 500;
+    font-size: 20px;
+    color: #003459;
+    line-height: 1;
+	margin-bottom: 12px;
+	font-size: 16px;
+}
+
+.icons_showing_card {
+    margin-left: 0 !important;
+}
+.icons_showing_card i {
+    font-size: 16px;
+}
+.icons_showing_card .profile_basic_info:first-child{
+    margin-bottom: 15px;
+}
+.icons_showing_card > div {
+    margin-bottom: 0;
+}
+.show_basic_info_card {
+    position: absolute !important;
+    margin-left: 40px !important;
+}
+
+.basic_info2 > div {
+    margin-left: 0 !important;
+    align-items: center;
+}
+
+.basic_info2{
+    position: absolute;
+    z-index: 9;
+    /* bottom: 75px; */
+    background-color: #ffffff;
+	box-shadow: 0px 1px 15px 0px rgba(0, 52, 89, 0.58);
+    display: flex !important;
+    padding: 10px;
+}
 header .logo, .login_container {
     flex: 1;
 }
@@ -397,6 +448,7 @@ body .profile_pic_main_tabs_sec .actions {
     font-size: 20px;
     color: #003459;
     line-height: 1;
+    text-transform: capitalize;
 }
 .province {
     padding: 5px 10px;

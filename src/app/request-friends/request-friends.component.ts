@@ -60,6 +60,7 @@ export class RequestFriendsComponent implements OnInit {
   cmntuprofile = '';
   friend_id:any = []
   showbasicProfile = [];
+  showbasicProfile3 = [];
 
   constructor(
     public authService: AuthService,
@@ -129,6 +130,8 @@ export class RequestFriendsComponent implements OnInit {
     this.showView = true
 
     this.authService.getProfileForFriend(id).subscribe(res => {
+      console.log("-=-=-=-=-=- friend data", res);
+      
       this.u_id = res.data._id
       this.name = res.data.name
       this.u_designation =  res.data.designation

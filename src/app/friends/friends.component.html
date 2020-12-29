@@ -29,7 +29,7 @@
 				</ng-template>
 			</div>
     </div>
-    <div class="display_friends" *ngIf="user === url_id">
+    <div class="display_friends" *ngIf="show_friends && user === url_id">
       <!-- <a [routerLink]="['/friends/', id]" style="padding: 10px; color: #003459;">Friends requests</a> -->
       <a style="color: #003459;" class="my_post_links" href="friends/{{id}}">
           <div style="font-weight: 600;" class="badges_for_fr position-relative">Friend Requests</div>

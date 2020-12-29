@@ -108,7 +108,8 @@
               <a href="profile/{{u_id}}"><div class="profile_name_of_poster">{{u_name}}</div></a>
               <div class="province d-flex align-items-center">
                 <img src="assets/images/add_ob.png">
-                <div>{{this.u_city}}, {{this.u_state}} </div>
+                <div *ngIf="u_city !== null && u_state !== null">{{u_city}} {{u_state}}</div>
+                <div *ngIf="u_city === undefined && u_state === undefined">Not Mention</div>
               </div>
             </div>
             <div class="item_desc mt-3" style="width: 100%">{{data.description}}</div>
@@ -158,7 +159,8 @@
 
             <button class="comment_sec_{{data._id}} comment_sec" (click)="open_comments(data._id)">
               <i class="far fa-comment-dots"></i>
-              <div>Comment<span>{{data.comment.length !== 0 ? (data._id === tempPostId) ? data.comment.length + temCmnt.length : data.comment.length : ''}}</span></div>
+              <div *ngIf="data.comment.length !== 0">Comment<span>{{data.comment.length !== 0 ? (data._id === tempPostId) ? data.comment.length + temCmnt.length : data.comment.length : ''}}</span></div>
+              <div *ngIf="data.comment.length === 0">Comment<span>{{data.comment.length === 0 ? (data._id === tempPostId) ? data.comment.length + temCmnt.length : '' :data.comment.length }}</span></div>
             </button>
             <button class="share_sec">
               <i class="far fa-share"></i>
@@ -170,7 +172,7 @@
               <input type="text" placeholder=" Write a comment...!" formControlName="newcomment">
             </form>
           </div>
-          <div class="comments_container_{{data._id}} comments_container" style="display: none;" *ngIf="data.comment.length > 0">
+          <div class="comments_container_{{data._id}} comments_container" style="display: none;" *ngIf="data.comment.length > 0 || temCmnt.length > 0">
             <div class="comment_title">Comments:</div>
             <ng-container *ngIf="checkTem && tempPostId === data._id">
               <div class="comment_user d-flex"  *ngFor="let temp of temCmnt.slice().reverse()">
@@ -182,12 +184,26 @@
               </div>
             </ng-container>
 
-            <div class="comment_user d-flex" *ngFor="let comnt of data.comment.slice().reverse();">
-              <img [src]="comnt.profile" onerror="this.src='/assets/images/default_user.jpg';">
-              <div>
-                <div class="commenter">{{comnt.name}}</div>
-                <div class="comment_here">{{comnt.newcomment}}</div>
-              </div>
+            <div (mouseleave)="!showbasicProfile3[i]=false" class="comment_user d-flex" *ngFor="let comnt of data.comment.slice().reverse(); let i = index">
+							<img [src]="comnt.profile" onerror="this.src='/assets/images/default_user.jpg';">
+							<div>
+								<a href="profile/{{comnt.userId}}" (mouseover)="!showbasicProfile3[i]=true"><div class="commenter">{{comnt.name}}</div></a>
+							<div class="comment_here">{{comnt.newcomment}}</div>
+						</div>		
+						<div class="show_basic_info_card" (mouseleave)="showbasicProfile3[i]=false">
+							<div class="basic_info2" *ngIf="showbasicProfile3[i]">	
+								<div class="d-flex">
+									<img [src]="comnt.profile" onerror="this.src='/assets/images/default_user.jpg';" class="hover-info-img">
+									<div class="basic_profile_icons">
+										<a href="profile/{{comnt.userId}}"><div style="text-transform: capitalize;" class="profile_basic_info set_redirect_link">{{comnt.name}}</div></a>
+										<div class="icons_showing_card">
+										<div class="profile_basic_info"><i class="fas fa-user-tie" style="padding-right: 10px"></i>{{comnt.designation}}</div>
+										<div class="profile_basic_info"><i class="fas fa-envelope" style="margin-right: 10px"></i>{{comnt.email}}</div>
+									</div>	
+									</div>
+								</div>
+							</div>
+            </div>
             </div>
           </div>
         </div>
