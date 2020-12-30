@@ -57,23 +57,26 @@
 					</div>
           <hr/>
 					<!-- <ng-container *ngIf="search_by_name == false"> -->
+					<div class="search_display">
 						<div class="d-flex allusers_set" *ngFor="let user of allUsers;let i = index">
-	            <div class="profile_pic position-relative">
+	            			<div class="profile_pic position-relative">
 								<img [src]="user.profileImgURl" onerror="this.src='/assets/images/default_user.jpg';">
 							</div>
 							<div class="name_and_desc">
 								<div class="d-flex justify-content-between align-items-center">
 									<a href="profile/{{user._id}}"><div class="profile_name_of_poster">{{user.name}}</div></a>
-                  <span *ngIf="mutulFrdcount" class="mutual_frd">{{mutulFrdcount}} mutual friends</span>
+                 					 <span *ngIf="mutulFrdcount" class="mutual_frd">{{mutulFrdcount}} mutual friends</span>
 								</div>
 							</div>
 							<div class="icon_container d-flex justify-content-end">
 								<div class="position-relative Send_request_icon">
 									<i class="fas fa-user-plus" style="color: #ffffff;" [hidden]="hideme[i]" (click)="sendRequest(user._id);hideme[i] = !hideme[i]" title="Add Friend"></i>
-									<i class="fas fa-user-times" style="color: #ffffff;" [hidden]="!hideme[i]" (click)="reject_request(user._id);hideme[i] = hideme[i]" title="Cancel Friend Request"></i>
+									<i class="fas fa-user-times" style="color: #ffffff;" [hidden]="!hideme[i]" (click)="reject_request(user._id);hideme[i] = !hideme[i]" title="Cancel Friend Request"></i>
 								</div>
 							</div>
 						</div>
+						
+					</div>
 					<!-- </ng-container> -->
 					<!-- <ng-container *ngIf="search_by_name == true">
 						<div class="d-flex allusers_set" *ngFor="let dt_name of search_data">

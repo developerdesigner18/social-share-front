@@ -243,6 +243,16 @@ export class AuthService {
     )
   }
 
+  unFriendRequest(userId, rejectId): Observable<any> {
+    return this.httpClient.post(`${environment.apiUrl}/api/friend/unFriend`, {userId: userId, requestId: rejectId}, {headers: this.headers}).pipe(
+      map((res: Response) => {
+        console.log("-=-=-=-=-=-=-=-=-=-res", res);
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
   removeSendRequest(userId, rejectId): Observable<any> {
     return this.httpClient.post(`${environment.apiUrl}/api/friend/removeRequest`, {userId: userId, requestId: rejectId}, {headers: this.headers}).pipe(
       map((res: Response) => {

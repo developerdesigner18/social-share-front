@@ -67,7 +67,6 @@ export class TimelineComponent implements OnInit {
     // pending work 
     const user = JSON.parse(localStorage.getItem('currentUser'));
     this.url_id = user.data._id
-    console.log("-=--=-==-=- url_id", this.url_id);
     
     // if (localStorage.getItem('currentUser') == this.url_id) {
       
@@ -80,11 +79,8 @@ export class TimelineComponent implements OnInit {
 
     this.token = localStorage.getItem('token')
     this.id = this.activatedRoute.parent.params['value']['id'];
-    console.log("-=-=-=-=-=-=-=- id", this.id);
-    
     
     this.authService.getUserProfile(this.id).subscribe(res => {
-      console.log("-===-==-userprofile", res);
       
       this.profileImg =  res.data.profileImgURl
       this.u_name =  res.data.name

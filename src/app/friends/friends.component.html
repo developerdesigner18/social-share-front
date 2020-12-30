@@ -1,8 +1,8 @@
 <div class="say_words position-relative" style="align-items: unset">
   <div class="row display_friend">
-    <div class="about_sec" style="display: block;">
+    <!-- <div class="about_sec" style="display: block;">
       <h5 class="title-about" style="display: block;">Friends</h5>
-    </div>
+    </div> -->
     <div class="friend_div">
     <div style="bottom: 5px;">
       <!-- <i class="fa fa-search" style="position: absolute; padding: 12px; min-width: 40px;"></i><input id="searchFrd" class="form-control" type="text" placeholder="Search" style="max-width: max-content;border-radius: 20px;height: 40px;padding-left: 40px;"> -->
@@ -45,19 +45,28 @@
   <div class="about_description tab-content">
     All Friends
   </div>
-  <div class="row" *ngIf="router.url === friend_id">
-    <div class="col-md-6" style="padding: 25px; border: 1px solid #ececec;border-radius: 8px;" *ngFor="let frddetail of frdDetails; let i = index">
+  <div class="row friends_display" *ngIf="router.url === friend_id">
+    <div class="user_friend" style="padding: 25px; border: 1px solid #ececec;border-radius: 8px;" *ngFor="let frddetail of frdDetails; let i = index">
       <!-- <img width="40" height="40" [src]="profileImg" onerror="this.src='/assets/images/default_user.jpg';" style="border-radius: 50%;" /> {{u_name}} -->
-      <img width="40" height="40" [src]="frddetail.profileImgURl" onerror="this.src='/assets/images/default_user.jpg';" style="border-radius: 50%;" /> {{frddetail.name}}
-      <a href="profile/{{frddetail._id}}"><button type="button" name="button">Friends</button></a>
+      <div class="unfriend_details">
+      <img width="40" height="40" [src]="frddetail.profileImgURl" onerror="this.src='/assets/images/default_user.jpg';" style="border-radius: 50%;" /> 
+      <div class="unfriend_image">
+        {{frddetail.name}}
+      </div>
+    </div>
+      <!-- <button type="button" name="button">Friends</button> -->
+      <!-- <i class="fas fa-user-plus" style="color: #ffffff;" [hidden]="hideme[i]" (click)="sendRequest(frddetail._id);hideme[i] = !hideme[i]" title="Add Friend"></i> -->
+      <div class="unfriend_btn">
+			  <i class="unfriend" style="color: #ff9000;" [hidden]="hideme[i]" (click)="reject_request(frddetail._id);hideme[i] = !hideme[i]" title="UnFriend your Friend"><img src="../../assets/images/unfriend.png" alt="unfriend"></i>
+      </div>
     </div>
     <div class="col-md-12 no_friend_show" *ngIf="notAnyFrd" style="text-align: center; ">
       {{notAnyFrd}}
     </div>
   </div>
 
-  <div class="row" *ngIf="router.url !== friend_id">
-    <div class="col-md-6" style="padding: 25px; border: 1px solid #ececec;border-radius: 8px;" *ngFor="let frddetail of frdDetails; let i = index">
+  <div class="row friends_display" *ngIf="router.url !== friend_id">
+    <div class="user_friend" style="padding: 25px; border: 1px solid #ececec;border-radius: 8px;" *ngFor="let frddetail of frdDetails; let i = index">
       <!-- <img width="40" height="40" [src]="profileImg" onerror="this.src='/assets/images/default_user.jpg';" style="border-radius: 50%;" /> {{u_name}} -->
       <img width="40" height="40" [src]="frddetail.profileImgURl" onerror="this.src='/assets/images/default_user.jpg';" style="border-radius: 50%;" /> {{frddetail.name}}
       <a href="profile/{{frddetail._id}}"><button type="button" name="button">Friends</button></a>

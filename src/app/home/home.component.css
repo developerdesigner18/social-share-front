@@ -4,6 +4,11 @@
 	box-sizing: border-box;
 	font-family: 'Roboto Slab', serif;
 }
+.write_words input::placeholder {
+    color: #616161 !important;
+    font-size: 14px !important;
+    font-weight: 400;
+}
 html{
 	background-color: #F1F1F1;
 }
@@ -890,7 +895,7 @@ a.my_post_links:hover div > div {
 }
 .write_words {
     width: 100%;
-    padding: 20px !important;
+    padding: 25px 15px !important;
 }
 
 .write_words input {
@@ -899,7 +904,7 @@ a.my_post_links:hover div > div {
     padding: 5px 10px;
     width: 100%;
     border-radius: 4px;
-    height: 55px;
+    height: 50px;
     color: #003459;
     font-size: 13px;
     padding: 10px;

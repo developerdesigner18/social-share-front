@@ -15,6 +15,7 @@ export class FriendsComponent implements OnInit {
   notAnyFrd = '';
   friend_id = '';
   allUsers = [];
+  hideme = [];
   user = ''
   keyword = 'name';
   url_id: any;
@@ -101,9 +102,16 @@ export class FriendsComponent implements OnInit {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.user = currentUser.data._id 
   }
+  
 
   ngOnInit(): void {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.id = currentUser.data._id    
+  }
+
+  
+  reject_request(reject_id) {
+    this.authService.unFriendRequest(reject_id, this.id).subscribe(res => {
+    })
   }
 }

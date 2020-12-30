@@ -77,7 +77,7 @@ export class PeopleKnowComponent implements OnInit {
   }
 
   reject_request(reject_id){
-    this.authService.rejectFriendRequest(this.id, reject_id).subscribe(res => {
+    this.authService.rejectFriendRequest(reject_id, this.id).subscribe(res => {
 
     })
   }

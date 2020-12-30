@@ -14,7 +14,48 @@ html{
     background: #003459;
     color: #f0f8ff;
 }
-
+.user_friend img {
+    height: 50px;
+    width: 50px;
+}
+.user_friend {
+    padding: 10px !important;
+    background-color: aliceblue;
+    border-radius: 4px;
+    align-items: center;
+    border: 0 !important;
+    display: flex;
+    justify-content: space-between;
+}
+i.unfriend img {
+    width: 21px;
+    height: auto;
+}
+.unfriend_btn {
+    padding: 5px;
+    background: #ffffff;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.unfriend_details > img {
+    margin-right: 10px;
+}
+.unfriend_details {
+    display: flex;
+    align-items: center;
+}
+.unfriend_image {
+    font-size: 15px;
+    text-transform: capitalize;
+    font-weight: 500;
+}
+.row.friends_display {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    grid-gap: 25px;
+    margin-top: 25px;
+}
 button, input {
     outline: none !important;
 }
@@ -407,7 +448,7 @@ body .profile_pic_main_tabs_sec .actions {
 .owl-carousel .item-video { height: 300px; }
 .item, .item-video {
     margin: auto;
-    width: 96%;
+    width: 100%;
 }
 img.slider_image {
     border-radius: 4px;
@@ -1532,7 +1573,7 @@ button.edit-button {
 }
 .friend_div {
     display: flex;
-    align-items: center;
+    align-items: unset;
 }
 .friend_div .cat_search {
     width: 100% !important;

@@ -62,3 +62,13 @@ a.my_post_links:hover div > div {
 a.my_post_links{
     width: 90%;
 }
+
+@media (max-width: 576px){
+    .row.friends_display {
+        display: grid;
+        grid-template-columns: 1fr;
+        width: 100%;
+        grid-gap: 25px;
+        margin-top: 25px;
+    }
+}

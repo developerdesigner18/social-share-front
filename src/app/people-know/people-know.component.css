@@ -10,12 +10,25 @@ html{
 button, input {
     outline: none !important;
 }
+.main_area > div {
+    margin-top: 0;
+}
 a:hover{
     text-decoration: none;
+}
+.name_and_desc > div {
+    flex-direction: column;
+    align-items: baseline !important;
 }
 body {
     background-color: #F1F1F1;
     background-image: none !important;
+}
+.search_display {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    grid-gap: 25px;
 }
 header{
 	background-color: #003459;
@@ -57,12 +70,6 @@ header .logo, .login_container, .icon_container {
     text-align: right;
 }
 
-.icon_container {
-	/* padding-bottom: 25px; */
-	text-align: right;
-	height: 26px;
-	margin-top: 16px;
-}
 .login_container div {
     display: inline-flex;
     position: relative;
@@ -232,7 +239,6 @@ a.my_post_links{
 }
 .name_and_desc {
     margin-left: 20px;
-		margin-top: 12px;
 }
 .item_desc {
     font-size: 14px;
@@ -276,9 +282,16 @@ a.my_post_links{
 }
 .profile_name_of_poster {
     font-weight: 500;
-    font-size: 20px;
+    font-size: 18px;
     color: #003459;
     line-height: 1;
+    text-transform: capitalize;
+}
+span.mutual_frd {
+    margin-top: 5px;
+    color: #808080;
+    font-size: 13px;
+    text-transform: capitalize;
 }
 .post_by_user_second .profile_pic:before {
     content: "";
@@ -349,18 +362,22 @@ a.my_post_links:hover div > div {
 	}
 }
 
-.allusers_set{
-	border-bottom: 1px solid #e5e5e5;
-	padding: 12px 0px 12px 0px;
+.allusers_set {
+    padding: 10px;
+    background-color: aliceblue;
+    border-radius: 4px;
+    align-items: center;
 }
-
+i.fas.fa-user-plus {
+    color: #FF9000 !important;
+}
 .Send_request_icon{
-	border: 1px solid #000000;
-	background: #043458;
-	padding-left: 5px;
-}
-
-.mutual_frd{
-  position: absolute;
-  margin-top: 40px;
+    background: #ffffff;
+    padding-left: 3px;
+    cursor: pointer;
+    height: 34px;
+    width: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
