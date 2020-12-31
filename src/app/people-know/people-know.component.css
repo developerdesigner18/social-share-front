@@ -323,9 +323,9 @@ a.my_post_links:hover div > div {
 	.login_container{
 		margin: unset;
 	}
-	.position-relative{
+	/* .position-relative{
 		/* height: 32px; */
-	}
+	/* } */
 	.profile_name {
 		color: #ffffff;
 	}
@@ -368,7 +368,7 @@ a.my_post_links:hover div > div {
     border-radius: 4px;
     align-items: center;
 }
-i.fas.fa-user-plus {
+.position-relative i {
     color: #FF9000 !important;
 }
 .Send_request_icon{

@@ -450,6 +450,41 @@ body .profile_pic_main_tabs_sec .actions {
     line-height: 1;
     text-transform: capitalize;
 }
+.user_friend img {
+    height: 50px;
+    width: 50px;
+}
+.user_friend {
+    padding: 10px !important;
+    background-color: aliceblue;
+    border-radius: 4px;
+    align-items: center;
+    border: 0 !important;
+    display: flex;
+    justify-content: space-between;
+}
+.unfriend_details > img {
+    margin-right: 10px;
+}
+.unfriend_details {
+    display: flex;
+    align-items: center;
+}
+.unfriend_image {
+    font-size: 15px;
+    text-transform: capitalize;
+    font-weight: 500;
+}
+.unfriend_image a {
+    color: #003459;
+}
+.row.friends_display {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    grid-gap: 25px;
+    margin-top: 25px;
+}
 .province {
     padding: 5px 10px;
     box-shadow: 0 0 4px #003459;

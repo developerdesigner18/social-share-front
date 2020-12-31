@@ -16,13 +16,13 @@
   </div>
   <div class="no_mention" *ngIf="not_mention_about"><i class="fa fa-info-circle"> </i>&nbsp; Not mention About</div>
   <div class="details" *ngIf="fill_details">
-    <textarea (keyup.enter)="addDetails(details_about)" type="text" [(ngModel)]="details_about" name="" value="" placeholder="Write your details"></textarea>
+    <textarea class="text-area" (keyup.enter)="addDetails(details_about)" type="text" [(ngModel)]="details_about" name="" value="" placeholder="Write your details"></textarea>
     <button type="button" name="button" (click)="Cancel()">Cancel</button>
     <button type="button" name="button" (click)="addDetails(details_about)">Save</button>
     <div *ngIf="Required"><p style="color: red;">Please Filled Out Your Details</p></div>
   </div>
   <div class="u_details" *ngIf="u_fill_details">
-    <textarea (keyup.enter)="editDetails(details_about)" type="text" [(ngModel)]="details_about" name="" value="" placeholder="Write your details"></textarea>
+    <textarea class="text-area" (keyup.enter)="editDetails(details_about)" type="text" [(ngModel)]="details_about" name="" value="" placeholder="Write your details"></textarea>
     <button type="button" name="button" (click)="cancel1()">Cancel</button>
     <button type="button" name="button" (click)="editDetails(details_about)">Save</button>
   </div>

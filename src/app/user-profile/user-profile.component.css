@@ -49,12 +49,19 @@ i.unfriend img {
     text-transform: capitalize;
     font-weight: 500;
 }
+.update-list2 {
+    overflow-y: auto;
+    height: 40vh;
+}
 .row.friends_display {
     display: grid;
     grid-template-columns: 1fr 1fr;
     width: 100%;
     grid-gap: 25px;
     margin-top: 25px;
+}
+.unfriend_image a {
+    color: #003459;
 }
 button, input {
     outline: none !important;
@@ -1552,7 +1559,7 @@ button.edit-button {
 
 .ng-image-slider .ng-image-slider-container .main .main-inner .img-div img{
     border-radius: 5px;
-    box-shadow: 0px 1px 15px 0px rgb(167 167 167);
+    /* box-shadow: 0px 1px 15px 0px rgb(167 167 167); */
     object-fit: cover;
 }
 

@@ -1,3 +1,11 @@
 .overview-main{
   padding-bottom: 32px;
 }
+
+.overview_tab img {
+  /* font-size: 10px !important; */
+  width: 17px;
+  color: #003459;
+  /* background-color: #003459; */
+  margin-right: 5px;
+}

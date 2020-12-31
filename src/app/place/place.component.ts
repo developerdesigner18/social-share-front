@@ -111,7 +111,6 @@ export class PlaceComponent implements OnInit {
           }
           else if (res.userData[0].homeTown !== undefined) {
             this.home_town = res.userData[0].homeTown
-            console.log("-=-=-=-=-=- home town", res.userData[0]);
             this.show_home = true
             this.home = true
           } else {

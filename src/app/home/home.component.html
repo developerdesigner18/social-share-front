@@ -142,7 +142,7 @@
 				</div>
 
 				<div class="slider_bid_like-share d-flex flex-column" style="width: 100%">
-					<div *ngIf="data.imageUrl.length == 1">
+					<div class="one_image" *ngIf="data.imageUrl.length == 1">
 						<ng-image-slider [imageSize]="{width: '100%', height: '320px'}"  [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
 					</div>
 					<div *ngIf="data.imageUrl.length == 2">

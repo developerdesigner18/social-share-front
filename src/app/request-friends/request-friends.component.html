@@ -9,7 +9,7 @@
     <div class="row" style="padding: 10px;" *ngFor="let frdProfile of frd_profile_datas;let i = index">
       <div class="col-md-12" (click)="openProfile(frdProfile._id);">
         <img width="60" height="60" [src]="frdProfile.profileImgURl" onerror="this.src='/assets/images/default_user.jpg';" style="border-radius: 50%;" />
-        <label style="color: #ffffff;margin-left: 10px;position: absolute;">{{frdProfile.name}}</label>
+        <label style="color: #ffffff;margin-left: 10px;position: absolute;text-transform: capitalize;">{{frdProfile.name}}</label>
       </div>
       <div class="col-md-12" style="margin-left: 70px;bottom: 15px;">
         <button type="button" name="button" style="background-color: #1e4a6b;border-color:#1e4a6b;" [hidden]="accept_hideme[i] || hideme[i]" class="btn btn-primary" (click)="confirm_request(frdProfile._id);accept_hideme[i] = !accept_hideme[i];hideme[i] = hideme[i];">Confirm</button>

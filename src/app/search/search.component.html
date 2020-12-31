@@ -31,7 +31,7 @@
 			<a class="my_post_links" href="friends/{{id}}">
 				<div class="left_content">
 					<i class="fas fa-user-plus"></i>
-					<div class="badges_for_fr position-relative" [attr.data-content]="frd_request_count">Friend Requests</div>
+					<div class="badges_for_fr position-relative" [attr.data-content]="frd_request_count !== 0 ? frd_request_count : ''">Friend Requests</div>
 				</div>
 			</a>
 			<a class="my_post_links" href="peopleknow/{{id}}">
@@ -97,8 +97,10 @@
 							</div>
 							<div class="icon_container d-flex justify-content-end">
 								<div class="position-relative Send_request_icon">
-									<i class="fas fa-user-plus" [hidden]="hideme[i]" (click)="sendRequest(user._id);hideme[i] = !hideme[i]" title="Add Friend"></i>
-									<i class="fas fa-user-times" [hidden]="!hideme[i]" (click)="reject_request(user._id);hideme[i] = !hideme[i]" title="Cancel Friend Request"></i>
+									<!-- <i class="fas fa-user-plus" [hidden]="hideme[i]" (click)="sendRequest(user._id);hideme[i] = !hideme[i];" title="Add Friend"></i>
+									<i class="fas fa-user-times" [hidden]="!hideme[i]" (click)="reject_request(user._id);!hideme[i] = hideme[i];" title="Cancel Friend Request"></i> -->
+									<i class="fas fa-user-plus" [hidden]="hideme[i]" (click)="sendRequest(user._id);hideme[i] = !hideme[i];" title="Add Friend"></i>
+									<i class="fas fa-user-times" [hidden]="!hideme[i]" (click)="reject_request(user._id);!hideme[i] = hideme[i];" title="Cancel Friend Request"></i>
 								</div>
 							</div>
 						</div>

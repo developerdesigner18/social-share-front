@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { DatePipe } from '@angular/common'
 
 @Component({
   selector: 'app-life',
   templateUrl: './life.component.html',
-  styleUrls: ['./life.component.css']
+  styleUrls: ['./life.component.css'],
+  providers: [DatePipe]
 })
 export class LifeComponent implements OnInit {
   life: any;
@@ -21,11 +23,14 @@ export class LifeComponent implements OnInit {
   id = this.activatedRoute.parent.parent.params['value']['id'];
   data_id: any;
   friendid: string;
+  myDate: any = new Date();
   constructor(
     public router: Router,
     public authService: AuthService,
     private activatedRoute: ActivatedRoute,
+    private datePipe: DatePipe
   ) {
+
     const id = this.activatedRoute.parent.parent.params['value']['id'];
     if (localStorage.getItem('friendId')) {
       this.friendid = localStorage.getItem('friendId')
@@ -38,6 +43,7 @@ export class LifeComponent implements OnInit {
             this.get_life = res.userData[0].lifeEvents
             this.show_life = true
             this.life_show = false
+            this.myDate = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
           } else {
             this.life_show = false
             this.not_mention_life = true
@@ -57,6 +63,7 @@ export class LifeComponent implements OnInit {
             this.get_life = res.userData[0].lifeEvents
             this.show_life = true
             this.life_show = false
+            this.myDate = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
           } else {
             this.life_show = false
             this.not_mention_life = true
@@ -67,7 +74,10 @@ export class LifeComponent implements OnInit {
           this.icons = true
           if (res.userData[0].lifeEvents !== undefined && res.userData[0] !== null) {
             this.get_life = res.userData[0].lifeEvents
+            console.log("-=-=-=-res lifeEvents", res.userData[0]);
+            
             this.show_life = true
+            this.myDate = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
           } else {
             // this.work = false
           }
@@ -79,6 +89,7 @@ export class LifeComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  
   save_add_life(life: any) {
     this.authService.addLifeEvent(this.id, life, this.lifes).subscribe(res => {
       if (res['success']) {
@@ -148,5 +159,6 @@ export class LifeComponent implements OnInit {
     this.show_life = true
     this.u_fill_life = false
   }
+  
 
 }

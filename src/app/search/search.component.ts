@@ -16,6 +16,7 @@ export class SearchComponent implements OnInit {
   profileImg = '';
   user_profile = '';
   allUsers = [];
+  friend_id:any = []
   search_by_name = false;
   search_data: Array<any> = [];
   frd_request_count = 0;
@@ -90,7 +91,9 @@ export class SearchComponent implements OnInit {
 
   sendRequest(requestId){
     // let userId = this.activatedRoute.snapshot.paramMap.get('id');
-    this.authService.sendFriendRequest(this.id, requestId).subscribe(res => {})
+    this.authService.sendFriendRequest(this.id, requestId).subscribe(res => {
+      
+    })
   }
 
   reject_request(reject_id){

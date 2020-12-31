@@ -7,7 +7,8 @@
   </div>
   <div *ngIf="display5" class="relationship-update">
     <div class="relation-status">
-      <i class="fas fa-handshake-o handshake-d"> </i>{{relationshipStatus}}
+      <!-- <i class="fas fa-handshake-o handshake-d"> </i>{{relationshipStatus}} -->
+      <img src="../../assets/images/love.png" alt="Relationship status">{{relationshipStatus}}
     </div>
     <div class="icons-pencil" *ngIf="icons">
       <i (click)="updateStatus(relationshipStatus)" class="pencil-icon fa fa-pencil"></i>
@@ -65,7 +66,7 @@
     <button type="button" name="button" (click)="f_cancel()">Cancel</button>
     <button type="button" name="button" (click)="editFamily(family, relation)">Save</button>
   </div>
-  <div *ngIf="show_family" class="update-list">
+  <div *ngIf="show_family" class="update-list2">
     <div *ngFor="let family_data of get_family.slice().reverse()" class="work-record">
       <div class="update-display" >
         <img width="40" height="40" src="../../assets/images/default_user.jpg"onerror="this.src='/assets/images/default_user.jpg';" style="border-radius: 50%;" /> &nbsp;{{family_data.name}} <p>{{family_data.relationship}}</p>

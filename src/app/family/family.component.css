@@ -75,3 +75,8 @@ p{
 .update-display{
   line-break: anywhere;
 }
+.relation-status img {
+  width: 17px;
+  margin-right: 10px;
+  color: #003459;
+}

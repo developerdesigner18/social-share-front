@@ -52,7 +52,8 @@
 .search_somenone_profile{
 	font-size: 15px;
 	color: #003459;
-	line-height: 1;
+    line-height: 1;
+    text-transform: capitalize;
 }
 
 a.my_post_links:hover div > div {

@@ -31,7 +31,7 @@
 			<a class="my_post_links" href="friends/{{id}}">
 				<div class="left_content">
 					<i class="fas fa-user-plus"></i>
-					<div class="badges_for_fr position-relative" [attr.data-content]="frd_request_count">Friend Requests</div>
+					<div class="badges_for_fr position-relative" [attr.data-content]="frd_request_count !== 0 ? frd_request_count : ''">Friend Requests</div>
 				</div>
 			</a>
       <a class="my_post_links" href="search/{{id}}">

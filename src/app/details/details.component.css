@@ -37,7 +37,11 @@ button{
 .icons-pencil > i:not(:last-child) {
   margin-right: 10px;
 }
-
+textarea.text-area {
+  height: 100% !important;
+  min-height: 50px;
+  max-height: 50px;
+}
 .icons-pencil {
   display: flex;
 }

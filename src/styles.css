@@ -47,7 +47,12 @@ header{
 	width: 17%;
 	margin-left: 0px;
 }
-
+.ng-image-slider .ng-image-slider-container .main .main-inner .img-div img, .ng-image-slider .ng-image-slider-container .main .main-inner .img-div video {
+    border-radius: 0px !important;
+}
+.img-div.image-popup:nth-child(odd) {
+    margin-left: 0px !important;
+}
 .login_container{
   display: flex;
   flex-direction: row;

@@ -45,19 +45,19 @@
   <div class="about_description tab-content">
     All Friends
   </div>
-  <div class="row friends_display" *ngIf="router.url === friend_id">
+  <div class="row friends_display" *ngIf="show_friends && user === url_id">
     <div class="user_friend" style="padding: 25px; border: 1px solid #ececec;border-radius: 8px;" *ngFor="let frddetail of frdDetails; let i = index">
       <!-- <img width="40" height="40" [src]="profileImg" onerror="this.src='/assets/images/default_user.jpg';" style="border-radius: 50%;" /> {{u_name}} -->
       <div class="unfriend_details">
       <img width="40" height="40" [src]="frddetail.profileImgURl" onerror="this.src='/assets/images/default_user.jpg';" style="border-radius: 50%;" /> 
       <div class="unfriend_image">
-        {{frddetail.name}}
+        <a href="profile/{{frddetail._id}}"> {{frddetail.name}} </a>
       </div>
     </div>
       <!-- <button type="button" name="button">Friends</button> -->
       <!-- <i class="fas fa-user-plus" style="color: #ffffff;" [hidden]="hideme[i]" (click)="sendRequest(frddetail._id);hideme[i] = !hideme[i]" title="Add Friend"></i> -->
       <div class="unfriend_btn">
-			  <i class="unfriend" style="color: #ff9000;" [hidden]="hideme[i]" (click)="reject_request(frddetail._id);hideme[i] = !hideme[i]" title="UnFriend your Friend"><img src="../../assets/images/unfriend.png" alt="unfriend"></i>
+			  <i class="unfriend" style="color: #ff9000;" [hidden]="hideme[i]" (click)="reject_request(frddetail._id);hideme[i] = !hideme[i]" title="UnFriend"><img src="../../assets/images/unfriend.png" alt="unfriend"></i>
       </div>
     </div>
     <div class="col-md-12 no_friend_show" *ngIf="notAnyFrd" style="text-align: center; ">
@@ -65,16 +65,21 @@
     </div>
   </div>
 
-  <div class="row friends_display" *ngIf="router.url !== friend_id">
+  <div class="row friends_display" *ngIf="show_friends && user !== url_id || router.url !== friend_id">
     <div class="user_friend" style="padding: 25px; border: 1px solid #ececec;border-radius: 8px;" *ngFor="let frddetail of frdDetails; let i = index">
       <!-- <img width="40" height="40" [src]="profileImg" onerror="this.src='/assets/images/default_user.jpg';" style="border-radius: 50%;" /> {{u_name}} -->
-      <img width="40" height="40" [src]="frddetail.profileImgURl" onerror="this.src='/assets/images/default_user.jpg';" style="border-radius: 50%;" /> {{frddetail.name}}
-      <a href="profile/{{frddetail._id}}"><button type="button" name="button">Friends</button></a>
+      <div class="unfriend_details">
+        <img width="40" height="40" [src]="frddetail.profileImgURl" onerror="this.src='/assets/images/default_user.jpg';" style="border-radius: 50%;" /> 
+        <div class="unfriend_image">
+          <a href="profile/{{frddetail._id}}"> {{frddetail.name}} </a>
+        </div>
+      </div>
     </div>
     <div class="col-md-6 no_friend_show" *ngIf="notAnyFrd" style="text-align: center; margin-left: 25%;">
       {{notAnyFrd}}
     </div>
   </div>
+  
 </div>
 
 <!-- <ng-container *ngIf="urls.length !== 0">
