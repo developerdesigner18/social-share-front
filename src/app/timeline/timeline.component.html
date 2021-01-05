@@ -54,25 +54,25 @@
     </div>
     <div *ngIf="data.imageUrl.length == 2">
       <div class="item" >
-        <ng-image-slider [infinite]=true [autoSlide]=0 [imageSize]="{width: '50%'}" [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
+        <ng-image-slider [autoSlide]=0 [imageSize]="{width: '50%'}" [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
       </div>
     </div>
     <div *ngIf="data.imageUrl.length == 3">
       <div class="item" *ngIf="data.imageUrl[0].size == 100">
-        <ng-image-slider [imageSize]="{width: (data.imageUrl[0].size == 100) ? '100%' : '50%'}" [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
-        <ng-image-slider [infinite]=true [autoSlide]=0 [imageSize]="{width: '50%', height: 200}" [showArrow]=false class="slider_image_2" [images]="data.imageUrl" #nav></ng-image-slider>
+        <ng-image-slider [autoSlide]=0 [imageSize]="{width: (data.imageUrl[0].size == 100) ? '100%' : '50%'}" [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
+        <ng-image-slider [autoSlide]=0 [imageSize]="{width: '50%', height: 200}" [showArrow]=false class="slider_image_2" [images]="data.imageUrl" #nav></ng-image-slider>
       </div>
     </div>
     <div *ngIf="data.imageUrl.length == 4">
       <div class="item">
-        <ng-image-slider [imageSize]="{width: '50%'}" [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
-        <ng-image-slider [infinite]=true [autoSlide]=0 [imageSize]="{width: '50%', height: 238}" [showArrow]=false class="slider_image_4" [images]="data.imageUrl" #nav></ng-image-slider>
+        <ng-image-slider [autoSlide]=0 [imageSize]="{width: '50%'}" [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
+        <ng-image-slider [autoSlide]=0 [imageSize]="{width: '50%', height: 238}" [showArrow]=false class="slider_image_4" [images]="data.imageUrl" #nav></ng-image-slider>
       </div>
     </div>
     <div *ngIf="data.imageUrl.length > 4">
       <div class="item">
-        <ng-image-slider [imageSize]="{width: '50%'}" [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
-        <ng-image-slider [infinite]=true [autoSlide]=0 [imageSize]="{width: '50%', height: 238}" [showArrow]=false class="slider_image_5" [images]="data.imageUrl" title="more" #nav></ng-image-slider>
+        <ng-image-slider [autoSlide]=0 [imageSize]="{width: '50%'}" [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
+        <ng-image-slider [autoSlide]=0 [imageSize]="{width: '50%', height: 238}" [showArrow]=false class="slider_image_5" [images]="data.imageUrl" title="more" #nav></ng-image-slider>
       </div>
     </div>
     <div [ngClass]="current_user_profile ? 'no_share_action' : 'take_action'">

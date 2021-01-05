@@ -134,6 +134,10 @@ img.logout {
     border-radius: 4px;
 }
 
+.left_sidebars {
+    top: -25px !important;
+}
+
 .main_area_contents{
 	margin: 0px 80px 20px 80px;
 }
@@ -181,7 +185,28 @@ a.my_post_links{
 .badges {
     position: relative;
 }
-.badges_for_fr:before {
+/* .badges_for_fr:before {
+    content: attr(data-content);
+    position: absolute;
+    right: -30px !important;
+    font-size: 9px;
+    width: 20px;
+    height: 20px;
+    background-color: #ff9000;
+    border-radius: 50%;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99 !important;
+    font-weight: 500;
+    font-size: 12px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    display: none;
+} */
+.show_count::before {
     content: attr(data-content);
     position: absolute;
     right: -30px !important;
@@ -203,10 +228,30 @@ a.my_post_links{
 }
 /* Hide videos control */
 
-.badges_for_pymk:before {
+/* .badges_for_pymk:before {
     content: attr(data-content);
     position: absolute;
     right: -23px !important;
+    font-size: 9px;
+    width: 20px;
+    height: 20px;
+    background-color: #ff9000;
+    border-radius: 50%;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99 !important;
+    font-weight: 500;
+    font-size: 12px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+} */
+.show_know_friend::before {
+    content: attr(data-content);
+    position: absolute;
+    right: -32px !important;
     font-size: 9px;
     width: 20px;
     height: 20px;
@@ -1457,9 +1502,9 @@ body.modal {
 .slider_image_4 > div > div > div >.main-inner > div:nth-child(2), .slider_image_5 > div > div > div >.main-inner > div:nth-child(2) {
     display: none !important;
 }
-.slider_image_4 > div > div > div >.main-inner > div:nth-child(3), .slider_image_5 > div > div > div >.main-inner > div:nth-child(3) {
+/* .slider_image_4 > div > div > div >.main-inner > div:nth-child(3), .slider_image_5 > div > div > div >.main-inner > div:nth-child(3) {
     width: 204px !important;
-}
+} */
 .ng-image-fullscreen-view .lightbox-wrapper .lightbox-div .next, .ng-image-fullscreen-view .lightbox-wrapper .lightbox-div .prev {
 	padding-top: 0px !important;
 }

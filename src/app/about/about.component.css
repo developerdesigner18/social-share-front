@@ -1,3 +1,13 @@
 .about_container{
     padding-bottom: 0;
 }
+
+@media (max-width: 767px){
+    .about_container {
+        flex-direction: column !important;
+    }
+    ul.nav.nav-pills {
+        flex-direction: row !important;
+        justify-content: end;
+    }
+}

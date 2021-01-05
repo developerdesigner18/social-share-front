@@ -46,7 +46,7 @@
   </div>
 </div>
 
-<div class="viewProfile" style="justify-content: center;display: flex;height:100%" *ngIf="showView != true">
+<div class="viewProfile show_View" style="justify-content: center;display: flex;height:100%" *ngIf="showView != true">
   <div class="container" style="position: relative;">
     <div class="vertical-center" style="position: inherit;top: 50%;transform: translateY(-50%);text-align: center;">
       <div>
@@ -59,8 +59,12 @@
   </div>
 </div>
 
-<div class="viewProfile" style="margin-left: 20.0rem;padding-top: 101px;" *ngIf="showView">
-  <button (click)="view_friend_list()" class="mobile_btn">Back</button>
+<div class="viewProfile" style="padding-top: 101px;" *ngIf="showView">
+  <div class="friend_page_shows">
+  <button (click)="view_friend_list()" class="mobile_btn">
+    <img src="/assets/images/back_btn.png" alt="Back-Track"> 
+    <div class="back_btn">Go Back</div>
+  </button>
   <div class="cover_pic" [ngStyle]="{ 'background-image': 'url(' + imageCov + ')'}"></div>
 
   <div class="bg-white profile_navbar">
@@ -124,25 +128,25 @@
   					</div>
   					<div *ngIf="data.imageUrl.length == 2">
   						<div class="item" >
-  							<ng-image-slider [infinite]=true [autoSlide]=0 [imageSize]="{width: '50%'}" [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
+  							<ng-image-slider [autoSlide]=0 [imageSize]="{width: '50%'}" [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
   						</div>
   					</div>
   					<div *ngIf="data.imageUrl.length == 3">
   						<div class="item" *ngIf="data.imageUrl[0].size == 100">
-  							<ng-image-slider [imageSize]="{width: (data.imageUrl[0].size == 100) ? '100%' : '50%'}" animationSpeed=0.1 [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
-  							<ng-image-slider [infinite]=true [autoSlide]=0 [imageSize]="{width: '50%', height: 200}" [showArrow]=false class="slider_image_2" [images]="data.imageUrl" #nav></ng-image-slider>
+  							<ng-image-slider [autoSlide]=0 [imageSize]="{width: (data.imageUrl[0].size == 100) ? '100%' : '50%'}" animationSpeed=0.1 [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
+  							<ng-image-slider [autoSlide]=0 [imageSize]="{width: '50%', height: 200}" [showArrow]=false class="slider_image_2" [images]="data.imageUrl" #nav></ng-image-slider>
   						</div>
   					</div>
   					<div *ngIf="data.imageUrl.length == 4">
   						<div class="item">
-  							<ng-image-slider [imageSize]="{width: '50%'}" [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
-  							<ng-image-slider [infinite]=true [autoSlide]=0 [imageSize]="{width: '50%', height: 238}" [showArrow]=false class="slider_image_4" [images]="data.imageUrl" #nav></ng-image-slider>
+  							<ng-image-slider [autoSlide]=0 [imageSize]="{width: '50%'}" [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
+  							<ng-image-slider [autoSlide]=0 [imageSize]="{width: '50%', height: 238}" [showArrow]=false class="slider_image_4" [images]="data.imageUrl" #nav></ng-image-slider>
   						</div>
   					</div>
   					<div *ngIf="data.imageUrl.length > 4">
   						<div class="item">
-  							<ng-image-slider [imageSize]="{width: '50%'}" [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
-  							<ng-image-slider [infinite]=true [autoSlide]=0 [imageSize]="{width: '50%', height: 238}" [showArrow]=false class="slider_image_5" [images]="data.imageUrl" title="more" #nav></ng-image-slider>
+  							<ng-image-slider [autoSlide]=0 [imageSize]="{width: '50%'}" [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
+  							<ng-image-slider [autoSlide]=0 [imageSize]="{width: '50%', height: 238}" [showArrow]=false class="slider_image_5" [images]="data.imageUrl" title="more" #nav></ng-image-slider>
   						</div>
   					</div>
           <!-- </div> -->
@@ -224,4 +228,5 @@
       </ng-container>
   	</div>
   </div>
+</div>
 </div>

@@ -159,7 +159,7 @@ a.my_post_links{
 .badges {
     position: relative;
 }
-.badges_for_fr:before {
+/* .badges_for_fr:before {
     content: attr(data-content);
     position: absolute;
     right: -30px;
@@ -178,11 +178,52 @@ a.my_post_links{
     top: 0;
     bottom: 0;
     margin: auto;
-}
-.badges_for_pymk:before {
+} */
+/* .badges_for_pymk:before {
     content: attr(data-content);
     position: absolute;
     right: -30px;
+    font-size: 9px;
+    width: 20px;
+    height: 20px;
+    background-color: #ff9000;
+    border-radius: 50%;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99 !important;
+    font-weight: 500;
+    font-size: 12px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+} */
+
+.show_count::before {
+    content: attr(data-content);
+    position: absolute;
+    right: -30px !important;
+    font-size: 9px;
+    width: 20px;
+    height: 20px;
+    background-color: #ff9000;
+    border-radius: 50%;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99 !important;
+    font-weight: 500;
+    font-size: 12px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+.show_know_friend::before {
+    content: attr(data-content);
+    position: absolute;
+    right: -32px !important;
     font-size: 9px;
     width: 20px;
     height: 20px;

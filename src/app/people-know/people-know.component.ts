@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 declare var jQuery: any;
+declare var $: any;
 
 @Component({
   selector: 'app-people-know',
@@ -41,6 +42,12 @@ export class PeopleKnowComponent implements OnInit {
 
     this.authService.getFriendData(this.id).subscribe(res => {
       this.frd_request_count = res.list.length
+      if (this.frd_request_count === 0) {  
+        console.log("-=-=-=-=-=-= testing", this.frd_request_count);
+      } else {
+        console.log("-=-=-=-=-=-= testing", this.frd_request_count);
+        $(".badges_for_fr").addClass("show_count");
+      }
     })
 
     this.authService.getProfilePost(this.id).subscribe(res => {

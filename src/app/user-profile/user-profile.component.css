@@ -131,7 +131,7 @@ img.logout {
     background-position: center;
 } */
 .main{
-    /* width: 95vw; */
+    width: 95vw;
     margin: auto;
 }
 .cover_pic {
@@ -1496,9 +1496,9 @@ button.edit-button {
 .slider_image_4 > div > div > div >.main-inner > div:nth-child(2), .slider_image_5 > div > div > div >.main-inner > div:nth-child(2) {
     display: none !important;
 }
-.slider_image_4 > div > div > div >.main-inner > div:nth-child(3), .slider_image_5 > div > div > div >.main-inner > div:nth-child(3) {
+/* .slider_image_4 > div > div > div >.main-inner > div:nth-child(3), .slider_image_5 > div > div > div >.main-inner > div:nth-child(3) {
     width: 204px !important;
-}
+} */
 .ng-image-fullscreen-view .lightbox-wrapper .lightbox-div .next, .ng-image-fullscreen-view .lightbox-wrapper .lightbox-div .prev {
 	padding-top: 0px !important;
 }

@@ -10,6 +10,10 @@ html{
 button, input {
     outline: none !important;
 }
+.friend_page_shows {
+    max-width: 1375px;
+    margin: auto;
+}
 a:hover{
     text-decoration: none;
 }
@@ -156,7 +160,7 @@ img.logout {
 .viewProfile{
     padding-top: 100px;
     width: calc(100% - 320px);
-    margin-left: auto;
+    margin-left: auto !important;
 }
 
 
@@ -917,19 +921,20 @@ button.comment_sec {
 }
 
 .slider_image_5 > div > div > div >.main-inner > div:nth-child(5):before {
-		content: "View More";
-	 	position: absolute;
-	 	top: 0;
-	 	left: 0;
-	 	right: 0;
-	 	bottom: 0;
-	 	color: #ffffff;
-	 	z-index: 9;
-	 	display: flex;
-	 	justify-content: center;
-	 	align-items: center;
-	 	padding: 5px 10px;
-	 	font-size: 25px;
+    content: "View More";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    color: #ffffff;
+    z-index: 9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 10px;
+    font-size: 18px;
+    text-shadow: 0 0 3px #00000030;
 }
 
 .work_tab, .place_tab {
@@ -945,7 +950,7 @@ button.comment_sec {
 .slider_image_photos .ng-image-slider .ng-image-slider-container .main{
     display: flex !important;
     overflow: unset !important;
-    width: 40em;
+    width: 100%;
     margin-left: -10px;
 }
 
@@ -964,6 +969,12 @@ button.comment_sec {
 .mobile_btn{
     display: none;
 }
+
+.update-list2{
+    height: 60vh;
+    overflow-y: auto;
+}
+
 @media (max-width: 767px){
 	/* .viewProfile {
     display: none;
@@ -971,6 +982,77 @@ button.comment_sec {
 	.left {
     position: static;
     width: 100%;
+}
+.update-list2{
+    height: 60vh;
+    overflow-y: auto;
+}
+.no_friend_show{
+    margin-left: 0 !important;
+}
+.update-list{
+    /* height: 60vh; */
+    overflow-y: auto;
+}
+.slider_image_5 > div > div > div >.main-inner > div:nth-child(5):before {
+    font-size: 18px;
+}
+button.mobile_btn img {
+    width: 25px;
+}
+.take_action > button span {
+    font-size: 14px;
+}
+.take_action > button div {
+    font-size: 12px;
+}
+.take_action > button i {
+    font-size: 16px;
+}
+.profile_pic_main_tabs_sec {
+    flex-direction: column;
+}
+div#myTopnav button {
+    margin-top: 10px;
+}
+button.mobile_btn {
+    border: 0;
+    margin: 20px 5px;
+    display: flex;
+    align-items: center;
+}
+.profile_pic img {
+    width: 150px;
+    height: 150px;
+}
+.back_btn {
+    padding-left: 5px;
+    color: #0f1b31;
+    cursor: pointer;
+}
+.take_action > button {
+    padding-left: 2px;
+    padding-right: 2px;
+}
+.load_area {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+.name_and_desc > div {
+    flex-direction: column !important;
+    align-items: baseline !important;
+}
+.province img {
+    width: 20px;
+}
+.province div {
+    font-size: 12px;
+}
+.province {
+    margin-top: 10px;
+}
+.profile_name_of_poster {
+    font-size: 16px;
 }
 header {
     position: static;
@@ -1007,7 +1089,7 @@ header .ads {
 }
 .viewProfile {
     margin-left: 0 !important;
-    padding-top: 50px !important;
+    padding-top: 0px !important;
     width: 100%;
     padding-bottom: 50px;
 }
@@ -1016,5 +1098,9 @@ header .ads {
 }
 .mobile_btn{
     display: block;
+}
+.viewProfile.show_View {
+    margin-top: 25px;
+    padding-bottom: 25px;
 }
 }

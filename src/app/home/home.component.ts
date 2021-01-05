@@ -133,7 +133,14 @@ export class HomeComponent implements OnInit {
 
     this.authService.getFriendData(id).subscribe(res => {
       this.frd_request_count = res.list.length
-      
+
+      if (this.frd_request_count === 0) {  
+        console.log("-=-=-=-=-=-= testing", this.frd_request_count);
+      } else {
+        console.log("-=-=-=-=-=-= testing", this.frd_request_count);
+        $(".badges_for_fr").addClass("show_count");
+      }
+
     })
 
     this.authService.getProfilePost(id).subscribe(res => {
@@ -152,6 +159,12 @@ export class HomeComponent implements OnInit {
 
     this.authService.getSuggestUser(id).subscribe(res => {
       this.countSuggest = res['data'].length
+      if (this.countSuggest === 0) { 
+        console.log("-=-=-=-=-=-= testing", this.countSuggest);
+      } else {
+        console.log("-=-=-=-=-=-= testing", this.countSuggest);
+        $(".badges_for_pymk").addClass("show_know_friend");
+      }
     })
 
     this.commentsForm= this.formBuilder.group({

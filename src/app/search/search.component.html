@@ -37,7 +37,7 @@
 			<a class="my_post_links" href="peopleknow/{{id}}">
 				<div class="left_content">
 					<i class="fas fa-users"></i>
-					<div class="badges_for_pymk position-relative" [attr.data-content]="countSuggest">People you may know</div>
+					<div class="badges_for_pymk position-relative" [attr.data-content]="countSuggest === 0 ? '' : countSuggest">People you may know</div>
 				</div>
 			</a>
 			<a class="my_post_links" href="#">
