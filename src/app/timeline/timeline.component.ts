@@ -238,6 +238,9 @@ export class TimelineComponent implements OnInit {
   addComments(postId, userName, profilePic){
     this.objVal = Object.keys(this.commentsForm.value).map(key => ({type: key, value: this.commentsForm.value[key]}))
     this.authService.sendPostComment(postId, this.objVal[0].value).subscribe(res => {
+      console.log("-=-=-=-=--=- send comment", postId);
+      console.log("-=-=-=-=--=- value comment", this.objVal[0].value);
+      
       if(res['success']){
         $(`.comments_container_${postId}`).css('display','block');
         if(this.datas.map((id) => id._id).includes(postId)){

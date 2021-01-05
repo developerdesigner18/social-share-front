@@ -133,6 +133,7 @@ export class HomeComponent implements OnInit {
 
     this.authService.getFriendData(id).subscribe(res => {
       this.frd_request_count = res.list.length
+      
     })
 
     this.authService.getProfilePost(id).subscribe(res => {

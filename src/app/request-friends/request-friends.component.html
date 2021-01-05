@@ -60,6 +60,7 @@
 </div>
 
 <div class="viewProfile" style="margin-left: 20.0rem;padding-top: 101px;" *ngIf="showView">
+  <button (click)="view_friend_list()" class="mobile_btn">Back</button>
   <div class="cover_pic" [ngStyle]="{ 'background-image': 'url(' + imageCov + ')'}"></div>
 
   <div class="bg-white profile_navbar">
@@ -72,7 +73,7 @@
   		</div>
 
   		<div name="top" class="actions" id="myTopnav">
-  			<a [routerLink]="['/friends/', login_id]" (click)="timeline_hide = true"><button id="timeline" [routerLinkActive]="['active_tabs']">Timeline</button></a>
+  			<a [routerLink]="['/friends/', login_id]" (click)="timeline_hide = true"><button id="timeline" [routerLinkActive]="['active_tabs']" [routerLinkActiveOptions]="{exact: true}">Timeline</button></a>
   			<!-- <a [routerLink]="['/friends/', login_id]" (click)="timeline_hide = false" *ngIf="timeline_hide"><button id="timeline" [routerLinkActive]="['active_tabs']">Timeline</button></a> -->
   			<a [routerLink]="['about']" (click)="timeline_hide = false"><button id="about" [routerLinkActive]="['active_tabs']">About</button></a>
         <a [routerLink]="['photos']" (click)="timeline_hide = false"><button id="photos" [routerLinkActive]="['active_tabs']">Photos</button></a>

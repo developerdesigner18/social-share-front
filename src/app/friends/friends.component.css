@@ -73,3 +73,11 @@ a.my_post_links{
         margin-top: 25px;
     }
 }
+
+@media (min-width: 768px){
+    .no_friend_show{
+        margin-left: 50% !important;
+        margin-top: 0 !important;
+        max-width: 200px !important;
+    }
+}

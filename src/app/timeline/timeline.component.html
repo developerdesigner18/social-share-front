@@ -105,10 +105,10 @@
     <div class="comments_container_{{data._id}} comments_container" style="display: none;" *ngIf="data.comment.length > 0 || temCmnt.length > 0">
       <div class="comment_title">Comments:</div>
       <ng-container *ngIf="checkTem && tempPostId === data._id">
-      <div class="comment_user d-flex" *ngFor="let temp of temCmnt.slice().reverse()">
+      <div (mouseleave)="!showbasicProfile3[i]=false" class="comment_user d-flex" *ngFor="let temp of temCmnt.slice().reverse()">
         <img [src]="profileImg" onerror="this.src='/assets/images/default_user.jpg';">
         <div>
-          <div class="commenter">{{u_name}}</div>
+          <a href="profile/{{temp.userId}}" (mouseover)="!showbasicProfile3[i]=true"></a><div class="commenter">{{u_name}}</div>
           <div class="comment_here">{{temp}}</div>
         </div>
       </div>

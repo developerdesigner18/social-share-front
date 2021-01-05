@@ -114,6 +114,8 @@ export class PostModalComponent implements OnInit {
 
       reader.onload = (_event) => {
         this.authService.newPost(this.token, this.postMesssgeElement.nativeElement.value, this.fileCovToReturn).subscribe((res) => {
+          console.log("-=-=-=-token", this.token);
+          
           if(window.location.href.split('/')[3] == "home"){
             window.location.replace('home/' + window.location.href.split('/')[4]);
           }else{

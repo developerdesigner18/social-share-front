@@ -125,9 +125,17 @@ export class RequestFriendsComponent implements OnInit {
     }
   }
 
+  view_friend_list() {
+    this.showView = false
+    $(".left").removeClass("mobile_view");
+    $(".viewProfile").addClass("mobile_view");
+  }
+
   openProfile(id){
     this.checkclick += 1
     this.showView = true
+
+    $(".left").addClass("mobile_view");
 
     this.authService.getProfileForFriend(id).subscribe(res => {
       console.log("-=-=-=-=-=- friend data", res);

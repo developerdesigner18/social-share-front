@@ -219,6 +219,10 @@ img.logout {
     background: #003459 !important;
     color: #f0f8ff !important;
 }
+.permanent_tabs{
+    background: #ff9000 !important;
+    color: #f0f8ff !important;
+}
 .friend_list h3 {
     font-size: 22px;
     color: aliceblue;
@@ -345,7 +349,7 @@ body button.btn.remove_friend_btn {
     flex: 1;
 }
 body .profile_pic_main_tabs_sec .actions {
-    flex: 2.5;
+    flex: 5.5 !important;
     text-align: center;
 }
 .actions button {
@@ -956,10 +960,14 @@ button.comment_sec {
 .ng-image-fullscreen-view .lightbox-wrapper .lightbox-div .prev{
     left: 15px !important;
 }
-@media (max-width: 767px){
-	.viewProfile {
+
+.mobile_btn{
     display: none;
-	}
+}
+@media (max-width: 767px){
+	/* .viewProfile {
+    display: none;
+	} */
 	.left {
     position: static;
     width: 100%;
@@ -998,8 +1006,15 @@ header .ads {
     margin-left: 20px !important;
 }
 .viewProfile {
-    padding-top: 50px;
+    margin-left: 0 !important;
+    padding-top: 50px !important;
     width: 100%;
     padding-bottom: 50px;
+}
+.mobile_view{
+    display: none !important;
+}
+.mobile_btn{
+    display: block;
 }
 }
