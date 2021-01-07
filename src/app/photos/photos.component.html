@@ -1,13 +1,13 @@
-<ng-container *ngIf="urls.length !== 0">
+<ng-container *ngIf="shows">
 <div class="img-bg">
   <div>
-    <div class="item">
-      <ng-image-slider [showArrow]=false class="slider_image_photos" [images]="urls"></ng-image-slider>
+    <div class="item photos_section">
+      <ng-image-slider [imageSize]="{width: '100%', height: '100%', space: 3}" [animationSpeed]="0.5"  [showArrow]=false class="slider_image_photos" [images]="urls"></ng-image-slider>
     </div>
   </div>
   </div>
 </ng-container>
-<ng-container *ngIf="urls.length == 0">
+<ng-container *ngIf="!shows">
   <div class="main_post_content d-flex flex-column" style="color: #003459">
     <h6>Sorry but user not uploaded any photos</h6>
   </div>

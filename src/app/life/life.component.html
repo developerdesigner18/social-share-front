@@ -19,7 +19,10 @@
   <div *ngIf="show_life" class="update-list">
     <div *ngFor="let life_data of get_life.slice().reverse()" class="work-record">
       <div class="update-display" >
-        <i class="fas fa-star-of-life"><i class=""></i> </i> {{life_data.name}}
+        <img src="../../assets/images/event.png" alt="life events"> 
+        <div class="life_event_shows">
+          {{life_data.name}}
+        </div>
       </div>
       <div class="icons-pencil" *ngIf="icons">
         <i (click)="updateLife(life_data._id, life_data.name)" class="pencil-icon fa fa-pencil"></i>

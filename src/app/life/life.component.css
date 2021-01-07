@@ -11,7 +11,12 @@ textarea{
     padding-left: 15px;
     padding-top: 9px;
 }
-
+.life_event_shows {
+  position: relative;
+  top: -8px;
+  margin-left: 10px;
+  font-size: 13px;
+}
 button{
   border: 1px solid #f0f8ff;
     background-color: #f0f8ff;
@@ -61,13 +66,17 @@ textarea.text-area {
   height: 50vh;
   overflow-y: auto
 }
+.update-display img{
+    width: 20px;
+    object-fit: contain;
+}
 
 .update-display{
   display: flex;
-  align-items: center;
+  align-items: baseline;
   /* line-break: anywhere; */
   word-wrap: break-word;
-  margin-top: 5px;
+  margin-top: 10px;
 }
 
 .update-display p{

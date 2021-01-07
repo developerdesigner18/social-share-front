@@ -26,6 +26,8 @@ export class PeopleKnowComponent implements OnInit {
   accept_hideme=[]
   mutulFrdcount = [];
   mutulFrd = [];
+  friend_id:any = []
+  shows: boolean = true
 
   @ViewChild('searchText') searchTextElement: any;
 
@@ -66,6 +68,9 @@ export class PeopleKnowComponent implements OnInit {
 
     this.authService.getSuggestUser(this.id).subscribe(res => {
       this.allUsers = res['data']
+      if (this.allUsers.length === 0) {
+        this.shows = false
+      }
       for(let i = 0; i < res['data'].length; i++){
         this.authService.getFriends(res['data'][i]._id).subscribe(res => {
           this.mutulFrdcount = res.userInfo.length
@@ -74,6 +79,11 @@ export class PeopleKnowComponent implements OnInit {
       }
     
     })
+
+    this.authService.setRequestSend(localStorage.getItem('token')).subscribe(res => {
+      this.friend_id = res.list.map((id) => id.friendId)
+    })
+
   }
 
   ngOnInit(): void {

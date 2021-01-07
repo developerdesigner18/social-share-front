@@ -305,8 +305,19 @@ a.my_post_links{
     line-height: 1;
     text-transform: capitalize;
 }
+h4.friends_shows {
+    text-align: center;
+    color: #ff9000;
+}
+p.make_friends {
+    text-align: center;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+}
 span.mutual_frd {
-    margin-top: 5px;
+    position: absolute;
+    margin-top: 32px;
     color: #808080;
     font-size: 13px;
     text-transform: capitalize;

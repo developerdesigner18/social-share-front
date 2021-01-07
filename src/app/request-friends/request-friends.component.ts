@@ -201,9 +201,6 @@ export class RequestFriendsComponent implements OnInit {
 
   reject_request(reject_id){
     let userId = this.activatedRoute.snapshot.paramMap.get('id');
-    console.log("-=-=-=-= userId",userId);
-    console.log("-==-=-=-=-=- reject_id", reject_id);
-    
     this.authService.rejectFriendRequest(userId, reject_id).subscribe(res => {})
   }
 

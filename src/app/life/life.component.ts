@@ -74,8 +74,6 @@ export class LifeComponent implements OnInit {
           this.icons = true
           if (res.userData[0].lifeEvents !== undefined && res.userData[0] !== null) {
             this.get_life = res.userData[0].lifeEvents
-            console.log("-=-=-=-res lifeEvents", res.userData[0]);
-            
             this.show_life = true
             this.myDate = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
           } else {

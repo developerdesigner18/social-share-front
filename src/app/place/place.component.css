@@ -35,7 +35,19 @@ button{
 }
 img{
   border-radius: 50%;
-  border: 2px solid #f1f1f1;
+  border: 1px solid #0f1b31;
+  padding: 1px;
+}
+.text_placed {
+  font-size: 14px;
+  font-weight: 500;
+}
+.location {
+  font-size: 13px !important;
+}
+.place img {
+  width: 33px;
+  height: 33px;
 }
 .pencil-icon{
   background: #efefef;

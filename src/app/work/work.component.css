@@ -11,6 +11,15 @@ input{
     padding-left: 15px;
 }
 
+.works_shows {
+  font-size: 13px;
+}
+.no_mention > i {
+  margin-right: 5px;
+}
+.no_mention {
+  display: flex;
+}
 button{
   border: 1px solid #f0f8ff;
     background-color: #f0f8ff;

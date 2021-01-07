@@ -10,7 +10,9 @@ input{
     font-size: 14px;
     padding-left: 15px;
 }
-
+.details_show {
+  font-size: 13px;
+}
 button{
   border: 1px solid #f0f8ff;
     background-color: #f0f8ff;

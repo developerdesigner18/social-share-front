@@ -100,7 +100,7 @@
 									<!-- <i class="fas fa-user-plus" [hidden]="hideme[i]" (click)="sendRequest(user._id);hideme[i] = !hideme[i];" title="Add Friend"></i>
 									<i class="fas fa-user-times" [hidden]="!hideme[i]" (click)="reject_request(user._id);!hideme[i] = hideme[i];" title="Cancel Friend Request"></i> -->
 									<i class="fas fa-user-plus" [hidden]="hideme[i]" (click)="sendRequest(user._id);hideme[i] = !hideme[i];" title="Add Friend"></i>
-									<i class="fas fa-user-times" [hidden]="!hideme[i]" (click)="reject_request(user._id);!hideme[i] = hideme[i];" title="Cancel Friend Request"></i>
+									<i class="fas fa-user-times" *ngIf="hideme[i]" (click)="reject_request(user._id);hideme[i] = hideme[i];" title="Cancel Friend Request"></i>
 								</div>
 							</div>
 						</div>

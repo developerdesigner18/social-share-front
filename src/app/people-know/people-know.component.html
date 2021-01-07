@@ -57,7 +57,7 @@
 					</div>
           <hr/>
 					<!-- <ng-container *ngIf="search_by_name == false"> -->
-					<div class="search_display">
+					<div class="search_display" *ngIf="shows">
 						<div class="d-flex allusers_set" *ngFor="let user of allUsers;let i = index">
 	            			<div class="profile_pic position-relative">
 								<img [src]="user.profileImgURl" onerror="this.src='/assets/images/default_user.jpg';">
@@ -70,12 +70,15 @@
 							</div>
 							<div class="icon_container d-flex justify-content-end">
 								<div class="position-relative Send_request_icon">
-									<i class="fas fa-user-plus" style="color: #ffffff;" [hidden]="hideme[i]" (click)="sendRequest(user._id);hideme[i] = !hideme[i]" title="Add Friend"></i>
-									<i class="fas fa-user-times" style="color: #ffffff;" [hidden]="!hideme[i]" (click)="reject_request(user._id);hideme[i] = !hideme[i]" title="Cancel Friend Request"></i>
+									<i class="fas fa-user-plus" style="color: #ffffff;" *ngIf="friend_id.includes(user._id) != true" [hidden]="hideme[i]" (click)="sendRequest(user._id);hideme[i] = !hideme[i]" title="Add Friend"></i>
+									<i class="fas fa-user-times" style="color: #ffffff;" *ngIf="hideme[i] || friend_id.includes(user._id)" (click)="reject_request(user._id);hideme[i] = hideme[i]" title="Cancel Friend Request"></i>
 								</div>
 							</div>
 						</div>
-						
+					</div>
+					<div style="display: flex;flex-direction: column;" *ngIf="!shows">
+						<h4 class="friends_shows">Oops no friends suggestion</h4>
+						<p class="make_friends">Please make some friends first</p>
 					</div>
 					<!-- </ng-container> -->
 					<!-- <ng-container *ngIf="search_by_name == true">

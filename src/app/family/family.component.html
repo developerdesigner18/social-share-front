@@ -66,10 +66,10 @@
     <button type="button" name="button" (click)="f_cancel()">Cancel</button>
     <button type="button" name="button" (click)="editFamily(family, relation)">Save</button>
   </div>
-  <div *ngIf="show_family" class="update-list2">
+  <div *ngIf="show_family" class="update-list2 family-list">
     <div *ngFor="let family_data of get_family.slice().reverse()" class="work-record">
       <div class="update-display" >
-        <img width="40" height="40" src="../../assets/images/default_user.jpg"onerror="this.src='/assets/images/default_user.jpg';" style="border-radius: 50%;" /> &nbsp;{{family_data.name}} <p>{{family_data.relationship}}</p>
+        <img width="40" height="40" src="../../assets/images/default_user.jpg"onerror="this.src='/assets/images/default_user.jpg';" style="border-radius: 50%;" /> <div class="family_shows"> {{family_data.name}} </div> <p>{{family_data.relationship}}</p>
       </div>
       <div class="icons-pencil" *ngIf="icons">
         <i (click)="updateFamily(family_data._id, family_data.name, family_data.relationship)" class="pencil-icon fa fa-pencil"></i>

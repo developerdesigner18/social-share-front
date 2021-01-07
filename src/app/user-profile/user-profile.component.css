@@ -27,6 +27,30 @@ html{
     display: flex;
     justify-content: space-between;
 }
+.photos_section .ng-image-slider .ng-image-slider-container .main .main-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 10px;
+    width: 100% !important;
+    background-color: #ffffff;
+    box-shadow: 0px 1px 15px 0px rgba(0, 52, 89, 0.58);
+    padding: 25px 15px !important;
+    border-radius: 5px;
+}
+.photos_section .ng-image-slider .ng-image-slider-container .main {
+    position: static !important;
+    height: 100% !important;
+}
+.photos_section .ng-image-slider .ng-image-slider-container .main .main-inner .img-div.image-popup {
+    width: 100% !important;
+    height: 225px !important;
+    margin-left: 0px!important;
+    margin-right: 0px!important;
+}
+.photos_section .ng-image-slider .ng-image-slider-container .main .main-inner .img-div img.ratio, .ng-image-slider .ng-image-slider-container .main .main-inner .img-div video.ratio {
+    width: 100%!important;
+    height: 100%!important;
+}
 i.unfriend img {
     width: 21px;
     height: auto;
@@ -1088,7 +1112,14 @@ button.edit-button {
 
 	.main {
 	    display: block !important;
-	}
+    }
+    .photos_section .ng-image-slider .ng-image-slider-container .main .main-inner {
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 10px;
+    }
+    .photos_section .ng-image-slider .ng-image-slider-container .main .main-inner .img-div.image-popup {
+        height: 170px !important;
+    }
 	.about_container{
 	    flex-direction: column !important;
     }
@@ -1533,18 +1564,18 @@ button.edit-button {
     flex-wrap: wrap;
     height: 100% !important;
 } */
-
-.slider_image_photos{
+/* .slider_image_photos{
     padding-left: 15px;
-}
-
+} */
 .img-bg {
     display: block !important;
     background: transparent !important;
     box-shadow: none !important;
     padding: 0 !important;
 }
-
+.photos_section .ng-image-slider .ng-image-slider-container .main .main-inner .img-div img{
+    border-radius: 4px !important;
+}
 .ng-image-fullscreen-view .lightbox-wrapper .close {
     filter: invert(1) !important;
 }
