@@ -1,0 +1,77 @@
+.cdk-overlay-pane.my-dialog {
+    position: relative!important;
+  }
+  .close.mat-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 5px;
+    line-height: 14px;
+    min-width: auto;
+  }
+  
+  button.close{
+    padding: 10px;
+  }
+  
+  
+  .video_set_size{
+    height: 290px;
+    width: 100%;
+    object-fit: cover;
+  }
+  
+  .image_set_size{
+    /* height: 100%; */
+    /* width: 100%; */
+  }
+  
+  .second_image_set_size{
+    height: 290px;
+    width: 50%;
+    text-align: unset !important;
+  }
+  
+  @media (max-width: 320px){
+    .create_post_photo_icon{
+      width: 9% !important;
+    }
+  }
+  
+  @media (min-width: 321px) and (max-width: 767px){
+    .create_post_photo_icon{
+      width: 9% !important;
+    }
+  }
+  
+  @media (min-width: 768px) and (max-width: 1023px){
+    .create_post_photo_icon{
+      width: 9% !important;
+    }
+  }
+  
+  @media (max-width: 1024px){
+    .create_post_photo_icon{
+      width: 9% !important;
+    }
+  }
+  
+  .change_width{
+    border: 2px solid #0b1222;
+  }
+  
+  .hidden_last_img{
+    display: none;
+  }
+  
+  .set_view_more{
+    position: absolute;
+    top: 75%;
+    left: 75%;
+    transform: translate(-50%, -50%);
+    font-size: 21px;
+    color: #ffffff;
+    bottom: auto;
+    right: auto;
+  }
+  

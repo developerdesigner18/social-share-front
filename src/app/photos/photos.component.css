@@ -215,3 +215,44 @@
     color: #ff9204;
     text-align: center;
 }
+
+.contain .nav{
+    width: 100%;
+}
+
+.contain .tab-content{
+    width: 100%;
+}
+.show_images{
+    border: 1px solid #ff9000;
+    width: 150px;
+    height: 150px;
+    margin-top: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nav-tabs {
+    border-bottom: 0 !important;
+}
+
+.contain ul li {
+    padding: 15px;
+}
+
+.contain li .active {
+    border-bottom: 2px solid #ff9000;
+    color: #ff9000;
+}
+
+.write_words > div {
+    margin: 10px;
+}
+
+.contain li a {
+    color: #000000;
+    font-weight: 500;
+}

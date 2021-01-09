@@ -49,6 +49,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatInputModule} from '@angular/material/input';
 import { VideosComponent } from './videos/videos.component';
+import { AlbumsComponent } from './albums/albums.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +82,8 @@ import { VideosComponent } from './videos/videos.component';
     PostModalComponent,
     RequestFriendsComponent,
     PeopleKnowComponent,
-    VideosComponent
+    VideosComponent,
+    AlbumsComponent
   ],
   entryComponents: [DialogBodyComponent],
   imports: [
