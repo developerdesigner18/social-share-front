@@ -1,7 +1,7 @@
 <div class="contain">
   <ul id="myTab" class="nav nav-tabs">
-    <li class="active"><a href="#home" data-toggle="tab" class="active ? '' : active">Your Photos</a></li>
-    <li class=""><a href="#album" data-toggle="tab">Albums</a></li>
+    <li ><a href="#home" data-toggle="tab" class="active ? '' : active">Your Photos</a></li>
+    <li ><a href="#album" data-toggle="tab">Albums</a></li>
   </ul>
   <div id="myTabContent" class="tab-content">
     <div class="tab-pane fade active in show" id="home">
@@ -22,46 +22,19 @@
     </div>
     <div class="tab-pane fade" id="album">
       <div class="container">
-        <!-- <form method="POST" name="form-example-1" id="form-example-1" enctype="multipart/form-data">
-
-          <div class="input-field">
-              <input type="text" name="name-1" id="name-1">
-              <label for="name-1">Name</label>
-          </div>
-      
-          <div class="input-field">
-              <input type="text" name="description-1" id="description-1">
-              <label for="description-1">Description</label>
-          </div>
-      
-          <div class="input-field">
-              <label class="active">Photos</label>
-              <div class="input-images-1" style="padding-top: .5rem;"></div>
-          </div>
-      
-          <button>Submit and display data</button>
-      
-      </form> -->
       
       <div class="main_area_contents">
-        <div class="write_words position-relative" style="padding-bottom: 10px !important;display: flex;flex-direction: row;">
+        <div class="album_nulls" *ngIf="div_shows"> <p>Oops User doesn't have any albums</p> </div>
+        <div class="write_words position-relative" >
           <!-- <input #textmsgPost type="text" placeholder="What is going on in your gaming world today !" (click)="openTextDialog($event)"> -->
-          <div class="show_images" (click)="openTextDialog($event)">
-            <img src="../../assets/images/plus.png" width="40px" height="40px" alt="add images" title="upload images" style="position: relative;top: 55px;">
+          <div *ngIf="album_show" class="show_images" (click)="openTextDialog($event)">
+            <img style="position: relative;top: 34%;" src="../../assets/images/plus.png" width="40px" height="40px" alt="add images" title="upload images" >
           </div>
-          <div class="show_images">
-            <img src="../../assets/images/town.png" width="120px" alt="test">
-            <p>Test</p>
+          <div class="show_album_images" *ngFor="let data of album_urls">
+            <ng-image-slider [animationSpeed]="0.3" [imageSize]="{width: '40%', height: '20%'}" [showArrow]=false class="slider_image_photos" [images]="data.imageUrl"></ng-image-slider>
+            <i (click)="delAlbum(data._id, data.name)" class="pencil-icon fa fa-trash" title="Delete Album"></i>
+            <p class="album_names" >{{data.name}} </p>
           </div>
-          <!-- <div class="slider_bid_like-share d-flex flex-column">
-          <input type="file" style="display:none" #file class="btn btn-primary" (change)="openDialog($event)" multiple="" />
-          <div class="take_action post_take_action" (click)="file.click();" title="Photos/Videos">
-            <button class="like_sec" style="display: contents;">
-            <i class="fa fa-camera"></i>
-            <div>Photos/Videos</div>
-            </button>
-          </div>
-          </div> -->
         </div>
       </div>
     </div>

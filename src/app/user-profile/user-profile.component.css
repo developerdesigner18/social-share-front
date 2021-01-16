@@ -33,10 +33,12 @@ html{
     grid-gap: 10px;
     width: 100% !important;
     background-color: #ffffff;
-    box-shadow: 0px 1px 15px 0px rgba(0, 52, 89, 0.58);
+    /* box-shadow: 0px 1px 15px 0px rgba(0, 52, 89, 0.58); */
     padding: 25px 15px !important;
     border-radius: 5px;
+    
 }
+
 .photos_section .ng-image-slider .ng-image-slider-container .main {
     position: static !important;
     height: 100% !important;
@@ -909,6 +911,14 @@ button.owl-next span {
 	margin-left: 10px;
 	width: 100%
 }
+.ng-image-slider .ng-image-slider-error {
+    height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
 
 .about-menu{
 	border: 0;
@@ -969,15 +979,28 @@ button.owl-next span {
     font-weight: 500;
 }
 
+.show_album_images .ng-image-slider .ng-image-slider-container .main .main-inner .img-div{
+    width: 142px !important;
+}
+.show_album_images .ng-image-slider .ng-image-slider-container .main .main-inner .img-div video{
+    width: 124%;
+    top: 6px ;
+    border-radius: 5px !important;
+}
+
+.show_album_images .ng-image-slider .ng-image-slider-container .main .main-inner .img-div .youtube-icon{
+    display: none !important;
+}
+
 .work_tab, .place_tab{
 	display: flex;
 	align-items: center;
 	margin-top: 15px;
 }
 
-.nav li{
+/* .nav li{
 	margin-bottom: 10px;
-}
+} */
 
 .custom-dialog-container .mat-dialog-container {
 	padding: 0 !important;
@@ -1113,6 +1136,29 @@ button.edit-button {
 	.main {
 	    display: block !important;
     }
+
+    .show_album_images .ng-image-slider .ng-image-slider-container .main .main-inner .img-div {
+        width: 100% !important;
+        height: 142px;
+    }
+    .show_album_images .ng-image-slider .ng-image-slider-container .main .main-inner .img-div video{
+        width: 94% !important;
+    }
+    .show_album_images p {
+        margin-bottom: -11px;
+        /* margin-top: 35px; */
+    }
+    .show_album_images .ng-image-slider .ng-image-slider-container .main .main-inner .img-div img {
+        width: 94% !important;
+        height: 130px;
+        margin: 0;
+        left: -6px !important;
+    }
+    .show_album_images .ng-image-slider .ng-image-slider-container .main .main-inner {
+        width: 100% !important;
+    }
+    
+      
     .photos_section .ng-image-slider .ng-image-slider-container .main .main-inner {
         grid-template-columns: 1fr 1fr;
         grid-gap: 10px;
@@ -1589,10 +1635,34 @@ button.edit-button {
 }
 
 .ng-image-slider .ng-image-slider-container .main .main-inner .img-div img{
-    border-radius: 5px;
+    border-radius: 5px !important;
     /* box-shadow: 0px 1px 15px 0px rgb(167 167 167); */
     object-fit: cover;
 }
+.show_album_images .ng-image-slider .ng-image-slider-container .main .main-inner .img-div img{
+    top: 6px !important;
+    left: 5px !important;
+    width: auto;
+}
+.show_album_images .img-div {
+    display: none !important;
+}
+.show_album_images .img-div:first-child {
+    display: block !important;
+}
+.show_album_images{
+    position: relative;
+}
+.show_album_images i.pencil-icon.fa.fa-trash {
+    position: absolute;
+    right: 7px;
+    top: 3px;
+    background-color: rgb(0 0 0 / 30%);
+    color: #f3efef;
+    padding: 5px;
+    border-radius: 4px;
+}
+
 
 .a_friend h6 {
     font-size: 14px;

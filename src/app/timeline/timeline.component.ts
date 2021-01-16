@@ -93,10 +93,12 @@ export class TimelineComponent implements OnInit {
     this.authService.getProfilePost(this.id).subscribe(res => {
       if(res.length > 0){
         this.datas = res
-        const { image, thumbImage, alt, title } = res;
+        const { image, thumbImage, alt, title, name, description } = res;
         for(let i = 0; i < this.datas.length; i++){
           this.description = this.datas[i].description;
           this.urls.push(this.datas[i].imageUrl)
+          // console.log(this.urls);
+          
           this.likes = this.datas[i].like
 
           for (let j = 0; j < this.datas[i].comment.length; j++){

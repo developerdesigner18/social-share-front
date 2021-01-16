@@ -171,6 +171,19 @@ export class AuthService {
   }
 
   // new post save
+  newAlbumPost(u_token, name, msg, imgUrl): Observable<any> {
+    const formData: any = new FormData();
+    formData.append('description', msg);
+    formData.append('name', name);
+    for(let i=0; i < imgUrl.length; i++){
+      formData.append('Url', imgUrl[i]);
+    }
+
+    return this.httpClient.post(`${environment.apiUrl}/api/photos/newPosts`, formData, {headers: {token: u_token}}).pipe(
+        catchError(this.handleError)
+    )
+  }
+
   newPost(u_token, msg, imgUrl): Observable<any> {
     const formData: any = new FormData();
     formData.append('description', msg);
@@ -207,6 +220,24 @@ export class AuthService {
   getAllPhotos(id): Observable<any> {
     // this.headers.append('token', u_token)
     return this.httpClient.get(`${environment.apiUrl}/api/photos/showAllphotosOnly?id=${id}`, { headers: this.headers}).pipe(
+      map((res: Response) => {
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+  getAllAlbumsPhotos(id): Observable<any> {
+    // this.headers.append('token', u_token)
+    return this.httpClient.get(`${environment.apiUrl}/api/photos/showalbum?userId=${id}`, { headers: this.headers}).pipe(
+      map((res: Response) => {
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  DeleteAlbum(id): Observable<any> {
+    return this.httpClient.post(`${environment.apiUrl}/api/photos/deleteAlbum`, { id: id }).pipe(
       map((res: Response) => {
         return res || {}
       }),

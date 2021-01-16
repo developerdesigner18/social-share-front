@@ -28,6 +28,7 @@ button, input {
     padding: 25px 15px !important;
     /* padding-right: 5px !important; */
     border-radius: 5px;
+    margin-top: 15px;
 }
 .photos_section .ng-image-slider .ng-image-slider-container .main {
     position: static !important;
@@ -45,6 +46,11 @@ button, input {
 }
 .photos_section .ng-image-slider .ng-image-slider-container .main .main-inner .img-div img{
     border-radius: 4px !important;
+}
+
+.contain{
+    background-color: transparent !important;
+    box-shadow: none !important;
 }
 
 a:hover{

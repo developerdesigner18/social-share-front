@@ -16,8 +16,13 @@ export class PhotosComponent implements OnInit {
   slideIndex = 1
   token = '';
   urls = [];
+  album_urls = [];
   totalImg = 0;
   id = '';
+  album_id: any;
+  album_name: String;
+  album_show: boolean;
+  div_shows: boolean = false;
   shows: boolean = true
   public frd_datas: any = [];
 
@@ -31,7 +36,8 @@ export class PhotosComponent implements OnInit {
   ) {
     this.token = localStorage.getItem('token')
     this.id = this.activatedRoute.parent.params['value']['id'];
-    if(this.router.url === '/friends/' + this.activatedRoute.parent.params['value']['id'] + '/photos'){
+    if (this.router.url === '/friends/' + this.activatedRoute.parent.params['value']['id'] + '/photos') {
+      this.album_show = false
       this.authService.getAllPhotos(localStorage.getItem('friendId')).subscribe(res => {
         if (res.data.length === 0) {
           console.log(res.data.length);
@@ -39,19 +45,26 @@ export class PhotosComponent implements OnInit {
           
           this.shows = false
         } else {
-          console.log(res.data.length);
-        
-        
         for (let i = 0; i < res.data.length; i++){ 
             if (res.data[i].image.split('.').pop() !== 'mp4' && 'mkv') { 
               this.urls.push(res.data[i])
             }
           }
         }
-        })
-      
+      })
+      this.authService.getAllAlbumsPhotos(localStorage.getItem('friendId')).subscribe(res => {
+        if (res['success']) {
+          this.div_shows = false
+          for (let i = 0; i < res.data.length; i++){        
+            this.album_urls.push(res.data[i])
+          }
+        } else {
+          this.div_shows = true
+        }
+    })      
     }else{
       localStorage.removeItem('friendId')
+      this.album_show = true
       this.authService.getAllPhotos(this.id).subscribe(res => {
         if (res.data.length === 0) {
           console.log(res.data.length);
@@ -63,11 +76,31 @@ export class PhotosComponent implements OnInit {
             this.urls.push(res.data[i])
           }
         }
-
+      })
+      this.authService.getAllAlbumsPhotos(this.id).subscribe(res => {
+        if (res['success']) {
+          this.div_shows = false
+          for (let i = 0; i < res.data.length; i++){        
+            this.album_urls.push(res.data[i])
+          }
+        } else {
+          this.div_shows = true
+        }
       })
     }
   }
-
+  
+  delAlbum(album_id, album_name) {
+    if (confirm(`Are you sure you want to delete this ${album_name} album ?`)) {
+      this.authService.DeleteAlbum(album_id).subscribe(res => {
+        location.reload();
+        console.log("Deleted Successfully");
+      }) 
+    } else {
+      console.log("Deleted Unsuccessfully");
+      
+    }
+  }
 
   openTextDialog(event: any){
 

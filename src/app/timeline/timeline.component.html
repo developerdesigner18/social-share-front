@@ -25,27 +25,9 @@
           <div *ngIf="u_city !== null && u_state !== null">{{u_city}} {{u_state}}</div>
           <div *ngIf="u_city === undefined && u_state === undefined">Not Mention</div>
         </div>
-        <!-- <div class="basic_info2" *ngIf="showbasicProfile2[i]" (mouseleave)="showbasicProfile2[i]=false">
-          <div class="d-flex">
-            <img [src]="profileImg" onerror="this.src='/assets/images/default_user.jpg';" class="hover-info-img2">
-            <div style="padding: 10px;">
-              <div class="profile_basic_info">{{u_name}}</div>
-              <div class="profile_basic_info"><i class="fas fa-user-tie" style="margin-right: 10px"></i>{{u_designation}}</div>
-              <div class="profile_basic_info"><i class="fas fa-envelope" style="margin-right: 10px"></i>{{u_email}}</div>
-            </div>
-          </div>
-          <div class="full-width-50">
-            <i class="fa fa-comments-o" style="margin: 0px 11px 0px 18px"></i><div style="display: contents;">Edit Profile</div>
-          </div>
-          <div class="full-width-20" (click)="showProfile()" title="View as">
-            <i class="fas fa-eye" style="margin-left: 15px"></i>
-          </div>
-          <div class="full-width-20">
-            <i class="fas fa-ellipsis-h" style="margin-left: 15px"></i>
-          </div>
-        </div> -->
       </div>
-      <div class="item_desc mt-3" style="width: 100%">{{data.description}}</div>
+      <div style="color: #003459;font-size: 14px;" *ngIf="data.name !== undefined">Album: {{data.name}} </div>
+      <div class="item_desc mt-2" style="width: 100%;word-wrap: break-word;">{{data.description}}</div>
     </div>
   </div>
   <div class="slider_bid_like-share d-flex flex-column" style="width: 100%">
@@ -108,7 +90,7 @@
       <div (mouseleave)="!showbasicProfile3[i]=false" class="comment_user d-flex" *ngFor="let temp of temCmnt.slice().reverse()">
         <img [src]="profileImg" onerror="this.src='/assets/images/default_user.jpg';">
         <div>
-          <a href="profile/{{temp.userId}}" (mouseover)="!showbasicProfile3[i]=true"></a><div class="commenter">{{u_name}}</div>
+          <a href="profile/{{temp.userId}}" (mouseover)="!showbasicProfile3[i]=true"></a><div class="commenter">{{u_name | titlecase}}</div>
           <div class="comment_here">{{temp}}</div>
         </div>
       </div>
@@ -117,7 +99,7 @@
       <div (mouseleave)="!showbasicProfile3[i]=false" class="comment_user d-flex" *ngFor="let comnt of data.comment.slice().reverse(); let i = index">
         <img [src]="comnt.profile" onerror="this.src='/assets/images/default_user.jpg';">
         <div>
-          <a href="profile/{{comnt.userId}}" (mouseover)="!showbasicProfile3[i]=true"><div class="commenter">{{comnt.name}}</div></a>
+          <a href="profile/{{comnt.userId}}" (mouseover)="!showbasicProfile3[i]=true"><div class="commenter">{{comnt.name | titlecase}}</div></a>
         <div class="comment_here">{{comnt.newcomment}}</div>
       </div>		
       <div class="show_basic_info_card" (mouseleave)="showbasicProfile3[i]=false">

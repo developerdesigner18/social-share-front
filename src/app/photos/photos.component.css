@@ -187,6 +187,10 @@
   background-color: #ffffff;
 }
 
+.contain ul#myTab {
+    padding-left: 15px;
+}
+
 /* The Close Button */
 .close {
     color: #e6e6e6;
@@ -225,14 +229,19 @@
 }
 .show_images{
     border: 1px solid #ff9000;
-    width: 150px;
-    height: 150px;
-    margin-top: 20px;
+    /* margin-top: 20px; */
     border-radius: 10px;
     cursor: pointer;
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
+}
+.show_album_images{
+    border: 1px solid #ff9000;
+    margin-top: 20px;
+    border-radius: 10px;
+    cursor: pointer;
 }
 
 .nav-tabs {
@@ -243,16 +252,69 @@
     padding: 15px;
 }
 
-.contain li .active {
-    border-bottom: 2px solid #ff9000;
-    color: #ff9000;
-}
-
 .write_words > div {
     margin: 10px;
 }
-
 .contain li a {
-    color: #000000;
+    color: #003459 !important;
+    font-size: 14px;
     font-weight: 500;
+    background-color: aliceblue;
+    padding: 6px;
+    border-radius: 4px;
+}
+.contain li {
+    padding: 5px 10px !important;
+    border-radius: 4px;
+}
+/* .contain li:not(:last-child) {
+    margin-right: 15px;
+} */
+.contain ul li.active a {
+   color: aliceblue!important;
+}
+.contain ul li.active{
+    background-color: #003459!important;
+}
+
+.contain ul li a.active {
+    background: #003459 !important;
+    color: #fff !important;
+}
+.write_words {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 25px;
+    margin-top: 15px;
+}
+.album_names{
+    text-align: center;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #003459;
+    word-wrap: break-word;
+    margin-bottom: 0 ;
+}
+/* .show_album_images {
+    height: 100%;
+} */
+
+/* @media (max-width: 320px){
+    .show_album_images i.pencil-icon.fa.fa-trash {
+        right: 6px !important;
+    }
+} */
+
+@media (max-width: 767px){
+    .write_words{
+        grid-template-columns: 1fr;
+    }
+    .show_album_images i.pencil-icon.fa.fa-trash {
+        top: 7px;
+        right: 11px;
+    }
+    .show_images img {
+        margin: 35px;
+    }
 }

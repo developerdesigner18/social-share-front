@@ -138,7 +138,6 @@ export class RequestFriendsComponent implements OnInit {
     $(".left").addClass("mobile_view");
 
     this.authService.getProfileForFriend(id).subscribe(res => {
-      console.log("-=-=-=-=-=- friend data", res);
       
       this.u_id = res.data._id
       this.name = res.data.name

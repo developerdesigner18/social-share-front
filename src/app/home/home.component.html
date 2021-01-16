@@ -137,7 +137,8 @@
 								</div>
 							</div>
 						</div>
-						<div class="item_desc mt-3" style="width: 100%">{{data.description}}</div>
+						<div style="color: #003459;font-size: 14px;" *ngIf="data.name !== undefined">Album: {{data.name}} </div>
+						<div class="item_desc mt-2" style="width: 100%">{{data.description}}</div>
 					</div>
 				</div>
 
@@ -202,7 +203,7 @@
 							<div class="comment_user d-flex" *ngFor="let temp of temCmnt.slice().reverse(); let i = index">
 								<img [src]="tempProfile" onerror="this.src='/assets/images/default_user.jpg';">
 								<div>
-									<div class="commenter">{{tempName}}</div>
+									<div class="commenter">{{tempName | titlecase}}</div>
 									<div class="comment_here">{{temp}}</div>
 								</div>
 							</div>
@@ -211,7 +212,7 @@
 						<div (mouseleave)="!showbasicProfile3[i]=false" class="comment_user d-flex" *ngFor="let comnt of data.comment.slice().reverse(); let i = index">
 							<img [src]="comnt.profile" onerror="this.src='/assets/images/default_user.jpg';">
 							<div>
-								<a href="profile/{{comnt.userId}}" (mouseover)="!showbasicProfile3[i]=true"><div class="commenter">{{comnt.name}}</div></a>
+								<a href="profile/{{comnt.userId}}" (mouseover)="!showbasicProfile3[i]=true"><div class="commenter">{{comnt.name | titlecase}}</div></a>
 							<div class="comment_here">{{comnt.newcomment}}</div>
 						</div>		
 						<div class="show_basic_info_card" (mouseleave)="showbasicProfile3[i]=false">

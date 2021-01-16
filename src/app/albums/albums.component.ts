@@ -35,6 +35,7 @@ export class AlbumsComponent implements OnInit {
   closeDialog = false;
 
   @ViewChild('postMsg') postMesssgeElement: any;
+  @ViewChild('postName') postNameElement: any;
   @ViewChildren('postImage') postImageElement: QueryList<ElementRef>;
   textOnlylength: number;
 
@@ -112,18 +113,23 @@ export class AlbumsComponent implements OnInit {
           var reader = new FileReader();
           reader.readAsDataURL(this.fileCovToReturn[i]);
         }
-  
-        reader.onload = (_event) => {
-          this.authService.newPost(this.token, this.postMesssgeElement.nativeElement.value, this.fileCovToReturn).subscribe((res) => {
-            console.log("-=-=-=-token", this.token);
-            
-            if(window.location.href.split('/')[3] == "home"){
-              window.location.replace('home/' + window.location.href.split('/')[4]);
-            }else{
-              window.location.replace('profile/' + window.location.href.split('/')[4]);
-            }
-          })
+        
+        if (this.postNameElement.nativeElement.value === '') {
+          alert("Please Fill the Album Name")
+        } else {
+          reader.onload = (_event) => {
+            this.authService.newAlbumPost(this.token, this.postNameElement.nativeElement.value ,this.postMesssgeElement.nativeElement.value, this.fileCovToReturn).subscribe((res) => {
+              console.log("-=-=-=-postMessageElement", this.postMesssgeElement.nativeElement.value);
+              
+              if(window.location.href.split('/')[3] == "home"){
+                window.location.replace('home/' + window.location.href.split('/')[4]);
+              }else{
+                window.location.replace('profile/' + window.location.href.split('/')[4]);
+              }
+            })
+          }
         }
+  
       }else{
         if(this.postMesssgeElement.nativeElement.value == ''){
           console.log("You are not set description")
