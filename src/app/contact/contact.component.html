@@ -170,17 +170,17 @@
     <button type="button" name="button" (click)="editBirth(birth_value)">Save</button>
   </div>
   <!-- Laungage Section -->
-  <div (click)="newLanguage()" *ngIf="languages" >
+  <div style="margin-bottom: 10px;" (click)="newLanguage()" *ngIf="languages" >
     <i class="fa fa-plus-circle"></i> <a [routerLink]="">Add your language</a>
   </div>
-  <div class="no_mention" *ngIf="not_mention_langugae"><i class="fas fa-language"> </i> Not mention language</div>
+  <div style="margin-bottom: 10px;" class="no_mention" *ngIf="not_mention_langugae"><i class="fas fa-language"> </i> Not mention language</div>
   <div *ngIf="text_language"><h6 style="padding-top: 5px;">Languages</h6></div>
   <div class="work" *ngIf="fill_langugae">
     <input (keyup.enter)="save_add_langugae(language)" type="text" maxlength="30" [(ngModel)]="language" name="" value="" placeholder="Add language">
     <button type="button" name="button" (click)="save_add_langugae(language)">Save</button>
     <button type="button" name="button" (click)="language_Cancel()">Cancel</button>
   </div>
-  <div *ngIf="show_langugae" class="langauge-list">
+  <div style="margin-bottom: 10px;" *ngIf="show_langugae" class="langauge-list">
     <div *ngFor="let langugae_data of get_langugae.slice().reverse()" class="work-record">
       <div class="update-display" >
         <i class="fas fa-language"></i> {{langugae_data.name}}

@@ -27,7 +27,7 @@
         <div class="album_nulls" *ngIf="div_shows"> <p>Oops User doesn't have any albums</p> </div>
         <div class="write_words position-relative" >
           <!-- <input #textmsgPost type="text" placeholder="What is going on in your gaming world today !" (click)="openTextDialog($event)"> -->
-          <div *ngIf="album_show" class="show_images" (click)="openTextDialog($event)">
+          <div *ngIf="album_show  && user === id" class="show_images" (click)="openTextDialog($event)">
             <img style="position: relative;top: 34%;" src="../../assets/images/plus.png" width="40px" height="40px" alt="add images" title="upload images" >
           </div>
           <div class="show_album_images" *ngFor="let data of album_urls">

@@ -64,7 +64,7 @@
 								</div>
 								<div>
 									<div class="d-flex justify-content-between align-items-center">
-										<a href="profile/{{item._id}}"><div class="profile_name_of_poster">{{item.name}}</div></a>
+										<a href="profile/{{item._id}}"><div class="profile_name_of_poster" [innerHTML]="item.name"></div></a>
 									</div>
 								</div>
 							</div>

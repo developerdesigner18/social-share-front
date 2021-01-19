@@ -530,7 +530,7 @@ body .profile_pic_main_tabs_sec .actions {
     grid-template-columns: 1fr 1fr;
     width: 100%;
     grid-gap: 25px;
-    margin-top: 25px;
+    margin-top: 15px;
 }
 .province {
     padding: 5px 10px;
@@ -1010,7 +1010,7 @@ button.comment_sec {
 }
 
 .update-list2{
-    height: 60vh;
+    height: 38vh;
     overflow-y: auto;
 }
 
@@ -1025,6 +1025,7 @@ button.comment_sec {
 .photos_section .ng-image-slider .ng-image-slider-container .main .main-inner {
     grid-template-columns: 1fr 1fr;
     grid-gap: 10px;
+    margin-left: 20px !important;
 }
 .photos_section .ng-image-slider .ng-image-slider-container .main .main-inner .img-div.image-popup {
     height: 170px !important;
@@ -1090,9 +1091,13 @@ button.mobile_btn {
     margin-left: 0px;
     margin-right: 0px;
 }
-.name_and_desc > div {
+/* .name_and_desc > div {
     flex-direction: column !important;
     align-items: baseline !important;
+} */
+
+.name_and_desc > div {
+    margin-bottom: 10px !important;
 }
 .province img {
     width: 20px;
@@ -1143,7 +1148,7 @@ header .ads {
     margin-left: 0 !important;
     padding-top: 0px !important;
     width: 100%;
-    padding-bottom: 50px;
+    /* padding-bottom: 50px; */
 }
 .mobile_view{
     display: none !important;

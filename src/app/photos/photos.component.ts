@@ -19,6 +19,7 @@ export class PhotosComponent implements OnInit {
   album_urls = [];
   totalImg = 0;
   id = '';
+  user = '';
   album_id: any;
   album_name: String;
   album_show: boolean;
@@ -34,8 +35,15 @@ export class PhotosComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     public  dialog:  MatDialog,
   ) {
-    this.token = localStorage.getItem('token')
+    this.token = localStorage.getItem('currentUser')
     this.id = this.activatedRoute.parent.params['value']['id'];
+    
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.user = currentUser.data._id 
+    // if (this.router.url === '/profile/' + this.activatedRoute.parent.params['value']['id'] + '/photos') {
+    //   this.album_show = false
+    // }
+
     if (this.router.url === '/friends/' + this.activatedRoute.parent.params['value']['id'] + '/photos') {
       this.album_show = false
       this.authService.getAllPhotos(localStorage.getItem('friendId')).subscribe(res => {
@@ -66,11 +74,6 @@ export class PhotosComponent implements OnInit {
       localStorage.removeItem('friendId')
       this.album_show = true
       this.authService.getAllPhotos(this.id).subscribe(res => {
-        if (res.data.length === 0) {
-          console.log(res.data.length);
-          this.shows = false
-        }
-        
         for (let i = 0; i < res.data.length; i++){ 
           if (res.data[i].image.split('.').pop() !== 'mp4') { 
             this.urls.push(res.data[i])
@@ -83,9 +86,7 @@ export class PhotosComponent implements OnInit {
           for (let i = 0; i < res.data.length; i++){        
             this.album_urls.push(res.data[i])
           }
-        } else {
-          this.div_shows = true
-        }
+        } 
       })
     }
   }

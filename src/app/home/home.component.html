@@ -249,7 +249,7 @@
 						</div>
 						<div>
 							<div class="d-flex justify-content-between align-items-center">
-								<a href="profile/{{item._id}}"><div class="search_somenone_profile">{{item.name}}</div></a>
+								<a href="profile/{{item._id}}"><div class="search_somenone_profile" [innerHTML]="item.name | titlecase"></div></a>
 							</div>
 						</div>
 					</div>

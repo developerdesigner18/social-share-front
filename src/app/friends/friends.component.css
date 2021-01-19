@@ -53,7 +53,8 @@
 	font-size: 15px;
 	color: #003459;
     line-height: 1;
-    text-transform: capitalize;
+    /* text-transform: capitalize; */
+    margin-top: -5px;
 }
 
 a.my_post_links:hover div > div {
@@ -70,13 +71,13 @@ a.my_post_links{
         grid-template-columns: 1fr;
         width: 100%;
         grid-gap: 25px;
-        margin-top: 25px;
+        margin-top: 15px;
     }
 }
 
 @media (min-width: 768px){
     .no_friend_show{
-        margin-left: 50% !important;
+        margin-left: 75% !important;
         margin-top: 0 !important;
         max-width: 200px !important;
     }

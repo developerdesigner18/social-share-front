@@ -77,7 +77,8 @@ i.unfriend img {
 }
 .update-list2 {
     overflow-y: auto;
-    height: 40vh;
+    height: 25vh;
+    margin-top: 10px;
 }
 .row.friends_display {
     display: grid;
@@ -1067,6 +1068,25 @@ button.edit-button {
 }
 .icons_showing_card > div {
     margin-bottom: 0;
+}
+
+.album_nulls {
+    display: flex;
+    justify-content: center;
+    background-color: #ffffff;
+    box-shadow: 0px 1px 15px 0px rgba(0, 52, 89, 0.58);
+    position: relative;
+    top: 25px;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 4px;
+    padding: 25px 0;
+}
+
+.album_nulls p {
+    font-size: 16px;
+    font-weight: 500;
+    color: #ff9000;
 }
 
 /** responsive css */

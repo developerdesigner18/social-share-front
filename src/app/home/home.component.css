@@ -1173,7 +1173,10 @@ a.my_post_links:hover div > div {
 	}
 	.left_sidebars {
 	    position: unset !important;
-	}
+    }
+    .name_and_desc > div {
+        margin-bottom: 10px !important;
+    }
 
 	.left_sidebars {
 	    top: 0;

@@ -117,7 +117,9 @@
                 <div *ngIf="u_city === undefined && u_state === undefined">Not Mention</div>
               </div>
             </div>
-            <div class="item_desc mt-3" style="width: 100%">{{data.description}}</div>
+            <!-- <div class="item_desc mt-3" style="width: 100%">{{data.description}}</div> -->
+            <div style="color: #003459;font-size: 14px;" *ngIf="data.name !== undefined">Album: {{data.name}} </div>
+            <div class="item_desc mt-2" style="width: 100%;word-wrap: break-word;">{{data.description}}</div>
           </div>
         </div>
         <div class="slider_bid_like-share d-flex flex-column" style="width: 100%" id="slider-owl-carousel-load">

@@ -22,24 +22,30 @@ export class VideosComponent implements OnInit {
     this.id = this.activatedRoute.parent.params['value']['id'];
     if(this.router.url === '/friends/' + this.activatedRoute.parent.params['value']['id'] + '/videos'){
       this.authService.getAllPhotos(localStorage.getItem('friendId')).subscribe(res => {
-       if (res.data.length === 0) {
-         this.shows = false
-       }
+      //  if (res.data.length !== 0) {
+      //    this.shows = false
+      //  }
         for (let i = 0; i < res.data.length; i++){ 
-            if (res.data[i].image.split('.').pop() !== 'jpg' && 'png' && 'jpeg' && 'undefined') { 
+          if (res.data[i].image.split('.').pop() !== 'jpg' && res.data[i].image.split('.').pop() !== 'png' && res.data[i].image.split('.').pop() !== 'jpeg' && res.data[i].image.split('.').pop() !== 'undefined') { 
               this.urls.push(res.data[i])
+              if (this.urls.length > 0) {
+                this.shows = false
+              }
             }
           }
       })
     }else{
       localStorage.removeItem('friendId')
       this.authService.getAllPhotos(this.id).subscribe(res => {
-        if (res.data.length === 0) {
-          this.shows = false
-        }
+        // if (res.data.length !== 0) {
+        //   this.shows = false
+        // }
         for (let i = 0; i < res.data.length; i++){ 
-          if (res.data[i].image.split('.').pop() !== 'jpg' && 'png' && 'jpeg' && 'undefined') { 
+          if (res.data[i].image.split('.').pop() !== 'jpg' && res.data[i].image.split('.').pop() !== 'png' && res.data[i].image.split('.').pop() !== 'jpeg' && res.data[i].image.split('.').pop() !== 'undefined') { 
             this.urls.push(res.data[i])
+            if (this.urls.length > 0) {
+              this.shows = false
+            }
           }
         }
       })
