@@ -180,9 +180,7 @@ export class ContactComponent implements OnInit {
       const current_login_User = JSON.parse(localStorage.getItem('currentUser'));
       if (current_login_User.data._id !== id) {
         this.icons = false
-        
           this.authService.getAllData(id).subscribe(res => {
-
             if (res.userData[0] == null) {
               this.not_mention_number = true
             } else if (res.userData[0].mobileNumber !== undefined) {
@@ -346,12 +344,8 @@ export class ContactComponent implements OnInit {
       }else{
         this.current_user_profile = false
       }
-
-      
     }
-    
   }
-  
   
   addNumber(number: any) {
     this.authService.addNewNumber(number).subscribe(res => {
@@ -361,10 +355,8 @@ export class ContactComponent implements OnInit {
         this.mobile = true;
         this.fill_mobile_no = false
       }
-    })
-    
+    }) 
   }
-  
 
   editNumber(number: any) {
     this.authService.addNewNumber(number).subscribe(res => {
@@ -382,7 +374,6 @@ export class ContactComponent implements OnInit {
     this.authService.addNewNumber(number).subscribe(res => {
       if (res['success']) {
         this.u_mobile = true
-      } else {
       }
     })
   }
@@ -396,7 +387,6 @@ export class ContactComponent implements OnInit {
         this.shows = true
         $(`.mobile`).css('display', 'block');
         this.u_mobile = false
-      } else {
       }
     })
   }
@@ -429,8 +419,6 @@ export class ContactComponent implements OnInit {
       if (res['success']) {
         this.u_address = true
       }
-      else {;
-      }
     })
   }
 
@@ -443,8 +431,6 @@ export class ContactComponent implements OnInit {
         this.shows1 = true
         $(`.address`).css('display', 'block');
         this.u_address = false
-      }
-      else {
       }
     })
   }
@@ -477,10 +463,6 @@ export class ContactComponent implements OnInit {
     this.authService.addNewWebsite(website).subscribe(res => {
       if (res['success']) {
         this.u_website = true
-
-      }
-      else {
-;
       }
     })
   }
@@ -494,9 +476,6 @@ export class ContactComponent implements OnInit {
         this.shows2 = true
         $(`.website`).css('display', 'block');
         this.u_website = false
-      }
-      else {
-
       }
     })
   }
@@ -529,8 +508,6 @@ export class ContactComponent implements OnInit {
     this.authService.addBasicInfo(caste).subscribe(res => {
       if (res['success']) {
         this.u_religious = true      }
-      else {
-      }
     })
   }
 
@@ -543,7 +520,6 @@ export class ContactComponent implements OnInit {
         this.shows3 = true
         $(`.religious`).css('display', 'block');
         this.u_religious = false      }
-      else {      }
     })
   }
 
@@ -576,9 +552,6 @@ export class ContactComponent implements OnInit {
       if (res['success']) {
         this.u_gender = true
       }
-      else {
-
-      }
     })
   }
 
@@ -591,8 +564,6 @@ export class ContactComponent implements OnInit {
         this.shows4 = true
         $(`.gender`).css('display', 'block');
         this.u_gender = false
-      }
-      else {
       }
     })
   }
@@ -627,9 +598,6 @@ export class ContactComponent implements OnInit {
         this.u_website = true
 
       }
-      else {
-;
-      }
     })
   }
 
@@ -643,9 +611,6 @@ export class ContactComponent implements OnInit {
         $(`.website`).css('display', 'block');
         this.u_website = false
       }
-      else {
-
-      }
     })
   }
 
@@ -655,7 +620,6 @@ export class ContactComponent implements OnInit {
       if (res['success']) {
         this.language = language
         this.show_langugae = true
-        // this. = true;
         this.fill_langugae = false
         this.authService.getAllData(this.dataid).subscribe(res => {
           if (res.userData[0].language !== undefined) {
@@ -669,7 +633,6 @@ export class ContactComponent implements OnInit {
   delLangugae(dataId: any) { 
     this.authService.deleteLanguage(this.dataid, dataId, this.Language).subscribe(res => {
       if (res['success']) {
-        // this.work = false;
         this.fill_langugae = false;
         this.show_langugae = false;
         this.authService.getAllData(this.dataid).subscribe(res => {
@@ -678,12 +641,8 @@ export class ContactComponent implements OnInit {
           else if (res.userData[0].language !== undefined) {
             this.get_langugae = res.userData[0].language
             this.show_langugae = true
-            // this.work = true
-          } else {
-            // this.work = false
           }
         })
-      } else {
       }
     })
 

@@ -28,7 +28,6 @@ export class OverviewComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     public router: Router
   ) {
-    // let id = this.activatedRoute.parent.parent.params['value']['id'];
     if (this.router.url == '/friends/' + this.activatedRoute.parent.parent.params['value']['id'] + '/about/overview') {
       this.friendid = localStorage.getItem('friendId')
       this.authService.getProfileforAbout(this.friendid).subscribe(res => {
@@ -47,8 +46,7 @@ export class OverviewComponent implements OnInit {
               this.u_birthdate = other_res.userData[0].birthDate
             }
           })
-      })
-      
+      })  
     } else {
       localStorage.removeItem('friendId')
       this.id = this.activatedRoute.parent.parent.params['value']['id'];

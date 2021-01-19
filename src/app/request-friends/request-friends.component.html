@@ -32,14 +32,6 @@
         <button type="button" *ngIf="friend_id.includes(data._id) != true" class="btn btn-primary add_friend_btn add_friend_{{data._id}}" [hidden]="hideme[i]" (click)="sendRequest(data._id);hideme[i] = !hideme[i];">Add Friend</button>
         <button type="button" class="btn btn-secondary show_add_friend show_add_friend_{{data._id}}" *ngIf="hideme[i] || friend_id.includes(data._id)" (click)="remove_send_request(data._id);hideme[i] = hideme[i];">Cancel Request</button>
         <button type="button" class="btn btn-secondary remove_friend_btn remove_friend_{{data._id}}" [hidden]="hideme[i]" *ngIf="friend_id.includes(data._id) != true" (click)="remove_people(data._id)">Remove</button>
-  
-        <!-- <button type="button" id="add_{{data._id}}" class="btn btn-primary add_friend_btn add_friend_{{data._id}}" (click)="sendRequest(data._id);">Add Friends</button>
-        <button type="button" class="btn btn-secondary cancel_friend_{{data._id}}" *ngIf="hide_cancel_req != true" (click)="remove_send_request(data._id);">Cancel Request</button>
-        <button type="button" class="btn btn-secondary remove_friend_btn remove_friend_{{data._id}}" (click)="remove_people(data._id)">Remove</button> -->
-  
-        <!-- <button type="button" style="background-color: #1e4a6b;border-color:#1e4a6b;" class="btn btn-primary add_friend_{{data._id}}" (click)="sendRequest(data._id);">Add Friends</button>
-        <button type="button" class="btn btn-secondary show_add_friend_{{data._id}}" (click)="remove_send_request(data._id);">Cancel Request</button>
-        <button type="button" style="margin-left: 15px;" class="btn btn-secondary remove_friend_{{data._id}}" (click)="remove_people(data._id)">Remove</button> -->
       </div>
     </div>
     </div>

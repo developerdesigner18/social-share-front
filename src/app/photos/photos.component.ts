@@ -40,17 +40,10 @@ export class PhotosComponent implements OnInit {
     
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.user = currentUser.data._id 
-    // if (this.router.url === '/profile/' + this.activatedRoute.parent.params['value']['id'] + '/photos') {
-    //   this.album_show = false
-    // }
-
     if (this.router.url === '/friends/' + this.activatedRoute.parent.params['value']['id'] + '/photos') {
       this.album_show = false
       this.authService.getAllPhotos(localStorage.getItem('friendId')).subscribe(res => {
-        if (res.data.length === 0) {
-          console.log(res.data.length);
-          console.log("-=-=-=-=",res.data);
-          
+        if (res.data.length === 0) {          
           this.shows = false
         } else {
         for (let i = 0; i < res.data.length; i++){ 
@@ -95,11 +88,7 @@ export class PhotosComponent implements OnInit {
     if (confirm(`Are you sure you want to delete this ${album_name} album ?`)) {
       this.authService.DeleteAlbum(album_id).subscribe(res => {
         location.reload();
-        console.log("Deleted Successfully");
       }) 
-    } else {
-      console.log("Deleted Unsuccessfully");
-      
     }
   }
 

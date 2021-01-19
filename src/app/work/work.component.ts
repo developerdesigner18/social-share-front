@@ -53,8 +53,6 @@ export class WorkComponent implements OnInit {
         this.current_user_profile = false
         this.icons = false
         this.authService.getAllData(this.friendid).subscribe(res => { 
-          console.log("-=-=-=-=-=-=-=- Friend ID", this.friendid);
-          
           if (res.userData[0] == null) {
             this.not_mention_work = true
             this.working = false
@@ -151,7 +149,6 @@ export class WorkComponent implements OnInit {
           }
           
           if (res.userData[0].university !== undefined && res.userData[0] !== null) {
-            // this.get_works = res.userData[0].work.map((name) => name.name)
             this.get_university = res.userData[0].university
             this.dataId = res.userData[0].university.map((_id) => _id._id[0])
             this.show_university = true
@@ -160,7 +157,6 @@ export class WorkComponent implements OnInit {
           }
           
           if (res.userData[0].highSchool !== undefined && res.userData[0] !== null) {
-            // this.get_works = res.userData[0].work.map((name) => name.name)
             this.get_school = res.userData[0].highSchool
             this.dataId = res.userData[0].highSchool.map((_id) => _id._id[0])
             this.show_school = true

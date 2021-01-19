@@ -105,11 +105,6 @@ export class AlbumsComponent implements OnInit {
             arrayRemoveNull[i].name,
           ))
   
-          // var mimeType = this.fileCovToReturn[i].type;
-          // if (mimeType.match(/image\/*/) == null) {
-          //   return;
-          // }
-  
           var reader = new FileReader();
           reader.readAsDataURL(this.fileCovToReturn[i]);
         }
@@ -118,9 +113,7 @@ export class AlbumsComponent implements OnInit {
           alert("Please Fill the Album Name")
         } else {
           reader.onload = (_event) => {
-            this.authService.newAlbumPost(this.token, this.postNameElement.nativeElement.value ,this.postMesssgeElement.nativeElement.value, this.fileCovToReturn).subscribe((res) => {
-              console.log("-=-=-=-postMessageElement", this.postMesssgeElement.nativeElement.value);
-              
+            this.authService.newAlbumPost(this.token, this.postNameElement.nativeElement.value ,this.postMesssgeElement.nativeElement.value, this.fileCovToReturn).subscribe((res) => {              
               if(window.location.href.split('/')[3] == "home"){
                 window.location.replace('home/' + window.location.href.split('/')[4]);
               }else{
@@ -132,7 +125,6 @@ export class AlbumsComponent implements OnInit {
   
       }else{
         if(this.postMesssgeElement.nativeElement.value == ''){
-          console.log("You are not set description")
         }else if(this.postMesssgeElement.nativeElement.value.valid !== ''){
           this.authService.newtextPost(this.token, this.postMesssgeElement.nativeElement.value).subscribe((res) => {
             if(window.location.href.split('/')[3] == "home"){

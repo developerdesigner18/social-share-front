@@ -64,24 +64,12 @@ export class TimelineComponent implements OnInit {
     public router: Router,
     public formBuilder: FormBuilder
   ) {
-    // pending work 
     const user = JSON.parse(localStorage.getItem('currentUser'));
     this.url_id = user.data._id
-    
-    // if (localStorage.getItem('currentUser') == this.url_id) {
-      
-    // } else {
-      
-    // }
-    
-    // let id = this.activatedRoute.parent.params['value']['id'];
-    // this.url_id = this.activatedRoute.parent.params['value']['id'];
-
     this.token = localStorage.getItem('token')
     this.id = this.activatedRoute.parent.params['value']['id'];
     
-    this.authService.getUserProfile(this.id).subscribe(res => {
-      
+    this.authService.getUserProfile(this.id).subscribe(res => { 
       this.profileImg =  res.data.profileImgURl
       this.u_name =  res.data.name
       this.u_designation =  res.data.designation
@@ -97,10 +85,7 @@ export class TimelineComponent implements OnInit {
         for(let i = 0; i < this.datas.length; i++){
           this.description = this.datas[i].description;
           this.urls.push(this.datas[i].imageUrl)
-          // console.log(this.urls);
-          
           this.likes = this.datas[i].like
-
           for (let j = 0; j < this.datas[i].comment.length; j++){
             this.authService.getHomePostProfile(this.datas[i].comment[j].userId).subscribe(res => {
               this.datas[i].post_profileImg = res.data.profileImgURl
@@ -147,7 +132,6 @@ export class TimelineComponent implements OnInit {
       var filesAmount = event.target.files.length;
       for (let i = 0; i < filesAmount; i++) {
         var reader = new FileReader();
-
         reader.onload = (event:any) => {
            this.images.push(event.target.result);
         }
@@ -178,7 +162,6 @@ export class TimelineComponent implements OnInit {
         var filesAmount = event.target.files.length;
         for (let i = 0; i < filesAmount; i++) {
           var reader = new FileReader();
-
           reader.onload = (event:any) => {
             this.images.push(event.target.result);
           }
@@ -221,7 +204,6 @@ export class TimelineComponent implements OnInit {
           if(likeCount < 1){
             this.temLike = this.temLike - 1
           }
-
           if(this.temLike >= 2){
             this.temLike = this.temLike - 1
           }else{

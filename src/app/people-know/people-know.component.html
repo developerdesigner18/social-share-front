@@ -63,15 +63,15 @@
 								<img [src]="user.profileImgURl" onerror="this.src='/assets/images/default_user.jpg';">
 							</div>
 							<div class="name_and_desc">
-								<div class="d-flex justify-content-between align-items-center">
+								<div class="d-flex justify-content-between">
 									<a href="profile/{{user._id}}"><div class="profile_name_of_poster">{{user.name}}</div></a>
                  					 <span *ngIf="mutulFrdcount" class="mutual_frd">{{mutulFrdcount}} mutual friends</span>
 								</div>
 							</div>
 							<div class="icon_container d-flex justify-content-end">
 								<div class="position-relative Send_request_icon">
-									<i class="fas fa-user-plus" style="color: #ffffff;" *ngIf="friend_id.includes(user._id) != true" [hidden]="hideme[i]" (click)="sendRequest(user._id);hideme[i] = !hideme[i]" title="Add Friend"></i>
-									<i class="fas fa-user-times" style="color: #ffffff;" *ngIf="hideme[i] || friend_id.includes(user._id)" (click)="reject_request(user._id);hideme[i] = hideme[i]" title="Cancel Friend Request"></i>
+									<i class="fas fa-user-plus" id="open" *ngIf="friend_id.includes(user._id) !== true" [hidden]="hideme[i]" (click)="sendRequest(user._id);hideme[i] = !hideme[i]" title="Send Request"></i>
+									<i class="fas fa-user-times" id="close" *ngIf="hideme[i] || friend_id.includes(user._id)" (click)="reject_request(user._id);hideme[i] = !hideme[i]" title="Cancel Request"></i>
 								</div>
 							</div>
 						</div>

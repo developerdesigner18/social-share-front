@@ -19,7 +19,6 @@ export class LifeComponent implements OnInit {
   not_mention_life = false;
   get_life: any
   lifes = 'lifeEvents';
-
   id = this.activatedRoute.parent.parent.params['value']['id'];
   data_id: any;
   friendid: string;
@@ -30,7 +29,6 @@ export class LifeComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private datePipe: DatePipe
   ) {
-
     const id = this.activatedRoute.parent.parent.params['value']['id'];
     if (localStorage.getItem('friendId')) {
       this.friendid = localStorage.getItem('friendId')
@@ -49,7 +47,6 @@ export class LifeComponent implements OnInit {
             this.not_mention_life = true
           }
         })
-      
     } else {
       const currentUser = JSON.parse(localStorage.getItem('currentUser'));
       localStorage.removeItem('friendId')
@@ -76,8 +73,6 @@ export class LifeComponent implements OnInit {
             this.get_life = res.userData[0].lifeEvents
             this.show_life = true
             this.myDate = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
-          } else {
-            // this.work = false
           }
         })
       }
@@ -122,10 +117,7 @@ export class LifeComponent implements OnInit {
     this.show_life = false;
     this.u_fill_life = true;
     this.data_id = dataId
-    this.authService.updateLifeEvent(this.id , life, dataId, this.lifes).subscribe(res => {
-      if (res['success']) {
-      } 
-    })
+    this.authService.updateLifeEvent(this.id , life, dataId, this.lifes).subscribe(res => { })
   }
 
   delLife(dataId: any) {
@@ -137,8 +129,6 @@ export class LifeComponent implements OnInit {
           if (res.userData[0].lifeEvents !== undefined && res.userData[0] !== null) {
             this.get_life = res.userData[0].lifeEvents
             this.show_life = true
-          } else {
-            // this.work = false
           }
         })
       }
@@ -157,6 +147,4 @@ export class LifeComponent implements OnInit {
     this.show_life = true
     this.u_fill_life = false
   }
-  
-
 }

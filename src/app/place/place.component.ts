@@ -41,7 +41,6 @@ export class PlaceComponent implements OnInit {
           this.show_city = false
           this.not_mention_city = true
         }
-
       })
       this.authService.getAllData(this.friendid).subscribe(res => {
         if (res.userData[0] == null) {
@@ -58,7 +57,6 @@ export class PlaceComponent implements OnInit {
     } else {
       localStorage.removeItem('friendId')
       this.id = this.activatedRoute.parent.parent.params['value']['id'];
-    
       const current_login_User = JSON.parse(localStorage.getItem('currentUser'));
       if (current_login_User.data._id !== this.id) {
         this.icons = false
@@ -70,14 +68,6 @@ export class PlaceComponent implements OnInit {
             this.show_city = false
             this.not_mention_city = true
           }
-
-          // if (res.data.homeTown !== undefined && res.data !== null) {
-          //   this.home_town = res.data.homeTown
-          //   this.show_home = true
-          //   this.home = true
-          // } else {
-          //   this.not_mention_home = true
-          // }
         })
         this.authService.getAllData(this.id).subscribe(res => {
           if (res.userData[0] == null) {
@@ -90,8 +80,7 @@ export class PlaceComponent implements OnInit {
           } else {
             this.not_mention_home = true
           }
-        })
-          
+        })      
       } else {
         this.id = current_login_User.data._id
         this.icons = true
@@ -104,8 +93,7 @@ export class PlaceComponent implements OnInit {
             this.not_mention_city = true
           }
         })
-        this.authService.getAllData(this.id).subscribe(res => {
-          
+        this.authService.getAllData(this.id).subscribe(res => {          
           if (res.userData[0] == null) {
             this.home = false
           }
@@ -124,9 +112,7 @@ export class PlaceComponent implements OnInit {
   addHome(home_town: any) {
     this.authService.addHomeTown(home_town).subscribe(res => {
       if (res['success']) {
-        this.home_town = home_town
-        console.log("-=-=-=-=- home town", this.home_town);
-        
+        this.home_town = home_town        
         this.show_home = true
         this.home = true
         this.fill_home = false
@@ -147,9 +133,7 @@ export class PlaceComponent implements OnInit {
     this.home_town = home_town
     this.show_home = false
     this.u_fill_home = true
-    this.authService.addHomeTown(home_town).subscribe(res => {
-      
-    })
+    this.authService.addHomeTown(home_town).subscribe(res => {})
   }
 
   delHome(home_town: any) {
@@ -157,8 +141,6 @@ export class PlaceComponent implements OnInit {
     this.fill_home = false
     this.show_home = false
     this.authService.deleteHomeTown(home_town).subscribe(res => {
-      if (res['success']) {
-      }
     })
   }
 

@@ -28,7 +28,6 @@ export class UserProfileComponent implements OnInit {
   current_user_profile = true
   frdDetails = [];
   notAnyFrd = '';
-
   user_post = '';
   user_city = '';
   user_state = '';
@@ -55,14 +54,12 @@ export class UserProfileComponent implements OnInit {
   ) {
     let id = this.activatedRoute.snapshot.paramMap.get('id');
     this.authService.getUserProfile(id).subscribe(res => {
-
       this.name =  res.data.name
       this.u_designation =  res.data.designation
       this.u_country =  res.data.country
       this.u_state =  res.data.state
       this.u_city =  res.data.city
       this.u_hobbies =  res.data.hobbies
-
       this.newDate= new Date(res.data.createdAt);
       this.previewUrl = res.data.profileImgURl
       this.imageCov = res.data.coverImgURl
@@ -97,7 +94,6 @@ export class UserProfileComponent implements OnInit {
 
     this.authService.getProfilePost(id).subscribe(res => {
       if(res.length > 0){
-
         for(let i = 0; i < res.length; i++){
           for(let j = 0; j < res[i].imageUrl.length; j++){
             if(res[i].imageUrl[j].image.split('.').pop() !== 'mp4'){
@@ -129,7 +125,6 @@ export class UserProfileComponent implements OnInit {
     this.user_state = (this.stateElement !== undefined) ? this.stateElement.nativeElement.textContent : this.user_state;
     this.user_country = (this.countryElement !== undefined) ? this.countryElement.nativeElement.textContent : this.user_country;
     this.user_hobbies = (this.hobbiesElement !== undefined) ? this.hobbiesElement.nativeElement.textContent : this.user_hobbies;
-
     this.authService.openDialog(this.user_post, this.user_city, this.user_state, this.user_country, this.user_hobbies)
   }
 
@@ -140,13 +135,11 @@ export class UserProfileComponent implements OnInit {
     }
 
     this.token = localStorage.getItem('token')
-
     var reader = new FileReader();
     reader.readAsDataURL(this.fileToReturn);
     reader.onload = (_event) => {
     this.croppedImage = reader.result.toString();
       this.token = localStorage.getItem('token')
-
       this.authService.setProfile(this.token, this.fileToReturn).subscribe((res) => {
         if (!res.result) {
           const dialogRefSuc = this.dialog.open(DialogEditSuccessComponent, {
@@ -166,12 +159,10 @@ export class UserProfileComponent implements OnInit {
     if (mimeType.match(/image\/*/) == null) {
       return;
     }
-
     var reader = new FileReader();
     reader.readAsDataURL(this.fileCovToReturn);
     reader.onload = (_event) => {
       this.token = localStorage.getItem('token')
-
       this.authService.setCover(this.token, this.fileCovToReturn).subscribe((res) => {
         if (!res.result) {
           const dialogRefSuc = this.dialog.open(DialogEditSuccessComponent, {
@@ -192,7 +183,6 @@ export class UserProfileComponent implements OnInit {
     fileToReturn: File = null;
     fileCovToReturn: File = null;
     imgeDiv = false;
-
 
     // For Profile Photo Preview
     fileChangeEvent(event: any): void {
@@ -224,11 +214,9 @@ export class UserProfileComponent implements OnInit {
        const bstr = atob(arr[1]);
        let n = bstr.length;
        let u8arr = new Uint8Array(n);
-
        while(n--){
            u8arr[n] = bstr.charCodeAt(n);
        }
-
        return new File([u8arr], filename, { type: mime });
     }
 
@@ -246,43 +234,4 @@ export class UserProfileComponent implements OnInit {
         return this.fileCovToReturn.name;
     }
   }
-  
-  // $(document).ready(function(){
-  //   var i = 0;//get from storrage
-  //   $("#myTopnav a button").eq(0).click(function () {
-  //     $("#myTopnav a button").eq(0).addClass('active_tabs');
-  //     $("#myTopnav a button").eq(1).removeClass('active_tabs');
-  //     $("#myTopnav a button").eq(2).removeClass('active_tabs');
-  //     $("#myTopnav a button").eq(3).removeClass('active_tabs');
-  //     $("#myTopnav a button").eq(4).removeClass('active_tabs');
-  //   })
-  //   $("#myTopnav a button").eq(1).click(function () {
-  //     $("#myTopnav a button").eq(1).addClass('active_tabs');
-  //     $("#myTopnav a button").eq(0).removeClass('active_tabs');
-  //     $("#myTopnav a button").eq(2).removeClass('active_tabs');
-  //     $("#myTopnav a button").eq(3).removeClass('active_tabs');
-  //     $("#myTopnav a button").eq(4).removeClass('active_tabs');
-  //   })
-  //   $("#myTopnav a button").eq(2).click(function () {
-  //     $("#myTopnav a button").eq(2).addClass('active_tabs');
-  //     $("#myTopnav a button").eq(0).removeClass('active_tabs');
-  //     $("#myTopnav a button").eq(1).removeClass('active_tabs');
-  //     $("#myTopnav a button").eq(3).removeClass('active_tabs');
-  //     $("#myTopnav a button").eq(4).removeClass('active_tabs');
-  //   })
-  //   $("#myTopnav a button").eq(3).click(function () {
-  //     $("#myTopnav a button").eq(3).addClass('active_tabs');
-  //     $("#myTopnav a button").eq(0).removeClass('active_tabs');
-  //     $("#myTopnav a button").eq(1).removeClass('active_tabs');
-  //     $("#myTopnav a button").eq(2).removeClass('active_tabs');
-  //     $("#myTopnav a button").eq(4).removeClass('active_tabs');
-  //   })
-  //   $("#myTopnav a button").eq(4).click(function () {
-  //     $("#myTopnav a button").eq(4).addClass('active_tabs');
-  //     $("#myTopnav a button").eq(0).removeClass('active_tabs');
-  //     $("#myTopnav a button").eq(1).removeClass('active_tabs');
-  //     $("#myTopnav a button").eq(2).removeClass('active_tabs');
-  //     $("#myTopnav a button").eq(3).removeClass('active_tabs');
-  //   })
-  //   });
   

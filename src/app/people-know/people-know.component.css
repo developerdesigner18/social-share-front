@@ -4,6 +4,10 @@
 	box-sizing: border-box;
 	font-family: 'Roboto Slab', serif;
 }
+.name_and_desc > div {
+    flex-direction: column;
+    align-items: baseline !important;
+}
 html{
 	background-color: #F1F1F1;
 }
@@ -28,7 +32,6 @@ body {
     grid-gap: 25px;
 }
 header{
-	background-color: #003459;
 	padding: 15px 0;
 }
 .logo {
@@ -96,6 +99,10 @@ img.logout {
 .main_area {
     flex: 2.5;
 }
+.left_sidebar {
+    width: 290px !important;
+    flex: inherit !important;
+}
 .left_sidebar, .main_area_content{
     display: flex;
     justify-content: center;
@@ -106,6 +113,7 @@ img.logout {
     flex-direction: column;
     align-items: center;
     border-radius: 4px;
+    margin-bottom: 25px;
 }
 .left_content {
     display: flex;
@@ -316,8 +324,7 @@ p.make_friends {
     font-weight: 400;
 }
 span.mutual_frd {
-    position: absolute;
-    margin-top: 32px;
+    margin-top: 5px;
     color: #808080;
     font-size: 13px;
     text-transform: capitalize;
@@ -340,15 +347,10 @@ a.my_post_links:hover div > div {
 	header{
 		width: 100%;
 		padding: 0;
-	}
-	.justify-content-center{
-			height: auto !important;
-	}
-
-	.logo{
-		width: 70%;
-	}
-
+    }
+    img.logo {
+        width: 100%;
+    }
 	.login_container{
 		margin: unset;
 	}
@@ -358,11 +360,6 @@ a.my_post_links:hover div > div {
 	.profile_name {
 		color: #ffffff;
 	}
-
-	.position-relative{
-		width: 100%;
-	}
-
 	.badges_for_pymk:before{
 		right: 165px;
 	}
@@ -377,12 +374,10 @@ a.my_post_links:hover div > div {
 
 	.left_sidebar { display: none; }
 
-	img.logout {
-		width: 6%;
-	}
-
 	.login_container button{
-		margin: 5px 160px !important;
+		padding-left: 13px;
+        margin: 0 !important;
+        margin-left: 20px !important;
 	}
 
 	.logo{
@@ -395,6 +390,37 @@ a.my_post_links:hover div > div {
 	}
 }
 
+@media (max-width: 800px){
+    .search_display {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media (max-width: 767px){
+    .header_alignment {
+        display: flex !important;
+        flex-wrap: wrap;
+        padding: 15px 0;
+    }
+    .ads {
+        margin-top: 15px;
+        flex-basis: 100%;
+        order: 3;
+    }
+    .logo {
+        flex-basis: 50% !important;
+        order: 1;
+        text-align: left;
+    }
+    .login_container{
+        flex-basis: 50% !important;
+        order: 2;
+        margin-top: 0;
+    }
+    }
+
+
 .allusers_set {
     padding: 10px;
     background-color: aliceblue;
@@ -402,9 +428,9 @@ a.my_post_links:hover div > div {
     align-items: center;
 }
 .position-relative i {
-    color: #FF9000 !important;
+    color: #003459 !important;
 }
-.Send_request_icon{
+.Send_request_icon {
     background: #ffffff;
     padding-left: 3px;
     cursor: pointer;
@@ -413,4 +439,5 @@ a.my_post_links:hover div > div {
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 0 7px 0px #00345975;
 }

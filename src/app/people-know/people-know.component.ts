@@ -28,7 +28,8 @@ export class PeopleKnowComponent implements OnInit {
   mutulFrd = [];
   friend_id:any = []
   shows: boolean = true
-
+  open_show: boolean = true
+  close_show: boolean
   @ViewChild('searchText') searchTextElement: any;
 
   constructor(
@@ -44,10 +45,7 @@ export class PeopleKnowComponent implements OnInit {
 
     this.authService.getFriendData(this.id).subscribe(res => {
       this.frd_request_count = res.list.length
-      if (this.frd_request_count === 0) {  
-        console.log("-=-=-=-=-=-= testing", this.frd_request_count);
-      } else {
-        console.log("-=-=-=-=-=-= testing", this.frd_request_count);
+      if (this.frd_request_count !== 0) {  
         $(".badges_for_fr").addClass("show_count");
       }
     })
@@ -74,7 +72,6 @@ export class PeopleKnowComponent implements OnInit {
       for(let i = 0; i < res['data'].length; i++){
         this.authService.getFriends(res['data'][i]._id).subscribe(res => {
           this.mutulFrdcount = res.userInfo.length
-          // this.mutulFrd = res.userInfo.map(n => n.name)
         })
       }
     
@@ -89,14 +86,16 @@ export class PeopleKnowComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  sendRequest(requestId){
+  sendRequest(requestId) {
     this.authService.sendFriendRequest(this.id, requestId).subscribe(res => {})
   }
 
-  reject_request(reject_id){
-    this.authService.rejectFriendRequest(reject_id, this.id).subscribe(res => {
-
-    })
+  reject_request(reject_id) {
+    if (confirm('Are you sure you want to cancel this request ?')) {
+      this.authService.rejectFriendRequest(reject_id, this.id).subscribe(res => {
+      })
+      location.reload();
+  }
   }
 
 }

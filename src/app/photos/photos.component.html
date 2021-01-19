@@ -24,7 +24,7 @@
       <div class="container">
       
       <div class="main_area_contents">
-        <div class="album_nulls" *ngIf="div_shows"> <p>Oops User doesn't have any albums</p> </div>
+        <div class="album_nulls" *ngIf="div_shows || user !== id"> <p>Oops User doesn't have any albums</p> </div>
         <div class="write_words position-relative" >
           <!-- <input #textmsgPost type="text" placeholder="What is going on in your gaming world today !" (click)="openTextDialog($event)"> -->
           <div *ngIf="album_show  && user === id" class="show_images" (click)="openTextDialog($event)">

@@ -12,9 +12,7 @@ declare var $: any;
 export class FamilyComponent implements OnInit {
   status: boolean;
   family: any;
-
   shows5: any;
-
   display5: any
   relationshipStatus: any
   u_status: any
@@ -63,10 +61,8 @@ export class FamilyComponent implements OnInit {
       })
     } else {
       const current_login_User = JSON.parse(localStorage.getItem('currentUser'));
-    
       if (current_login_User.data._id !== id) {
         this.icons = false
-        
         this.authService.getAllData(id).subscribe(res => {
           if (res.userData[0] == null) {
             this.not_mention_relationship = true
@@ -107,8 +103,6 @@ export class FamilyComponent implements OnInit {
           if (res.userData[0].family !== undefined && res.userData[0] !== null) {
             this.get_family = res.userData[0].family
             this.show_family = true
-          } else {
-            // this.work = false
           }
         })
       }
@@ -156,7 +150,6 @@ export class FamilyComponent implements OnInit {
         this.family = family
         this.relation = relation
         this.show_family = true
-        // this.work = true;
         this.fill_family = false
         this.authService.getAllData(this.id).subscribe(res => {
           if (res.userData[0].family !== undefined) {
@@ -188,19 +181,13 @@ export class FamilyComponent implements OnInit {
     this.u_fill_family = true;
     this.data_id = dataId
     this.authService.updateFamily(this.id , family, dataId, relation).subscribe(res => {
-      if (res['success']) {
-        // this.u_mobile = true
-        // this.display1 = false
-      } else {
-        // this.display1 = true;
-      }
+      
     })
   }
 
   delFamily(dataId: any) {
     this.authService.deleteFamily(this.id, dataId).subscribe(res => {
       if (res['success']) {
-        // this.work = false;
         this.fill_family = false;
         this.show_family = false;
         this.authService.getAllData(this.id).subscribe(res => {
@@ -208,14 +195,8 @@ export class FamilyComponent implements OnInit {
           }
           else if (res.userData[0].family !== undefined) {
             this.get_family = res.userData[0].family
-            this.show_family = true
-            // this.work = true
-          } else {
-            // this.work = false
-          }
+            this.show_family = true}
         })
-      } else {
-        // this.display1 = true;
       }
     })
   }

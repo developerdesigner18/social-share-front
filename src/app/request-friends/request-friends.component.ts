@@ -39,10 +39,8 @@ export class RequestFriendsComponent implements OnInit {
   token = '';
   checkclick = 0;
   timeline_hide = true
-
   clicked = true
   friend_req_hidden = true
-
   frd_req_get_count = 0
 
   public datas: any = [];
@@ -71,11 +69,9 @@ export class RequestFriendsComponent implements OnInit {
   ) {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.login_id = currentUser.data._id
-
     this.commentsForm= this.formBuilder.group({
       newcomment: ['']
     })
-
     let current_id = this.activatedRoute.snapshot.paramMap.get('id');
     this.authService.getFriendRequest(current_id).subscribe(res => {
       if(res.message == "Not any friend request avilable")
@@ -95,8 +91,6 @@ export class RequestFriendsComponent implements OnInit {
       }
     })
   }
-
-  
 
   open_comments(postId){
     $(`.comments_container_${postId}`).toggle();
@@ -134,11 +128,8 @@ export class RequestFriendsComponent implements OnInit {
   openProfile(id){
     this.checkclick += 1
     this.showView = true
-
     $(".left").addClass("mobile_view");
-
     this.authService.getProfileForFriend(id).subscribe(res => {
-      
       this.u_id = res.data._id
       this.name = res.data.name
       this.u_designation =  res.data.designation
@@ -149,21 +140,17 @@ export class RequestFriendsComponent implements OnInit {
       this.profileImg =  res.data.profileImgURl
       this.u_name =  res.data.name
       this.u_email =  res.data.emailId
-
       this.newDate= new Date(res.data.createdAt);
       this.previewUrl = res.data.profileImgURl
       this.imageCov = res.data.coverImgURl
-
       if(this.imageCov == undefined){
         this.imageCov = 'assets/images/bg.jpg'
       }
     })
 
     localStorage.setItem('friendId', id)
-
     this.authService.getFriendPost(localStorage.getItem('friendId')).subscribe(res => {
       this.frd_datas = res
-      
       const { image, thumbImage, alt, title } = res;
       for(let i = 0; i < this.frd_datas.length; i++){
         this.likes = this.frd_datas[i].like
@@ -171,11 +158,9 @@ export class RequestFriendsComponent implements OnInit {
           this.postlikeId.push(this.frd_datas[i]._id)
         }
       }
-      
     })
 
     this.authService.getProfileforAbout(this.activatedRoute.snapshot.paramMap.get('id')).subscribe(res => {
-      // this.id = res.data._id
       this.cmntuname =  res.data.name
       this.cmntuprofile = res.data.profileImgURl
     })
@@ -206,22 +191,24 @@ export class RequestFriendsComponent implements OnInit {
   //Reject for it's own request for already send
   remove_send_request(reject_id){
     let userId = this.activatedRoute.snapshot.paramMap.get('id');
-    this.authService.removeSendRequest(userId, reject_id).subscribe(res => {
-      if($(`.show_add_friend_${reject_id}`).is(":visible"))
-      {
-        $(`#add_${reject_id}`).attr('style', 'display: inline !important');
-      }else{
-        $(`.cancel_friend_${reject_id}`).css('display','none');
-        $(`.add_friend_${reject_id}`).attr('style', 'display: inline !important');
-        $(`.remove_friend_${reject_id}`).attr('style', 'display: inline !important');
-      }
-    })
+    if (confirm('Are you sure you want to cancel this request ?')) { 
+      this.authService.removeSendRequest(userId, reject_id).subscribe(res => {
+        if($(`.show_add_friend_${reject_id}`).is(":visible"))
+        {
+          $(`#add_${reject_id}`).attr('style', 'display: inline !important');
+        }else{
+          $(`.cancel_friend_${reject_id}`).css('display','none');
+          $(`.add_friend_${reject_id}`).attr('style', 'display: inline !important');
+          $(`.remove_friend_${reject_id}`).attr('style', 'display: inline !important');
+        }
+      })
+      location.reload();
+  }
   }
 
   temLike = 0;
   checkTem =  false
   likeIt(postId, likeCount){
-
     this.authService.sendLikePost(postId).subscribe(res => {
       if(res['success'])
       {
@@ -238,7 +225,6 @@ export class RequestFriendsComponent implements OnInit {
           if(likeCount < 1){
             this.temLike = this.temLike - 1
           }
-
           if(this.temLike >= 2){
             this.temLike = this.temLike - 1
           }else{
@@ -249,17 +235,6 @@ export class RequestFriendsComponent implements OnInit {
       }
     })
   }
-
-  // owlcarouselSet(){
-  //   jQuery(document).ready(function(){
-  //     $('.owl-carousel').owlCarousel({
-  //       nav:true,
-  //       items:1,
-  //       autoWidth: true,
-  //       video: true
-  //     })
-  //   })
-  // }
 
   temCmnt = [];
   tempPostId = '';

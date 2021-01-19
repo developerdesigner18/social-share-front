@@ -31,20 +31,9 @@ export class FriendsComponent implements OnInit {
   ) {
     let id = this.activatedRoute.parent.params['value']['id'];
     this.url_id = this.activatedRoute.parent.params['value']['id'];
-  
-    
-
     if (localStorage.getItem('friendId')) {
       this.friendId = localStorage.getItem('friendId')
-      console.log("-=-=-=-=-=- friend id", this.friendId);
       this.show_friends = false
-      this.authService.getAllPhotos(this.friendId).subscribe(res => {
-        for (let i = 0; i < res.data.length; i++) {
-          if (res.data[i].image.split('.').pop() !== 'jpg') {
-            this.urls.push(res.data[i])
-          }
-        }
-      })
       this.authService.getFriends(this.friendId).subscribe(res => {
         this.allUsers = res.userInfo
       })
@@ -53,14 +42,6 @@ export class FriendsComponent implements OnInit {
         this.u_name = res.data.name
       })
     } else {
-      // this.show_friends = true
-      this.authService.getAllPhotos(id).subscribe(res => {
-        for (let i = 0; i < res.data.length; i++) {
-          if (res.data[i].image.split('.').pop() !== 'jpg') {
-            this.urls.push(res.data[i])
-          }
-        }
-      })
       this.authService.getFriends(id).subscribe(res => {
         this.allUsers = res.userInfo
       })
@@ -98,18 +79,15 @@ export class FriendsComponent implements OnInit {
         }
       })
     }
-
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.user = currentUser.data._id 
   }
   
-
   ngOnInit(): void {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.id = currentUser.data._id    
   }
 
-  
   reject_request(reject_id) {
     this.authService.unFriendRequest(reject_id, this.id).subscribe(res => {
     })

@@ -21,14 +21,12 @@ export class SearchComponent implements OnInit {
   search_by_name = false;
   search_data: Array<any> = [];
   frd_request_count = 0;
-  // cancel_request = false;
   hideme=[]
   user_post = 0;
   count_frd = 0;
   accept_hideme=[]
   noRecord = '';
   countSuggest = 0
-
   keyword = 'name';
 
   @ViewChild('searchText') searchTextElement: any;
@@ -43,18 +41,15 @@ export class SearchComponent implements OnInit {
       this.name = res.data.name
       this.user_profile = res.data.profileImgURl
     })
-
     this.authService.getAllFriends(localStorage.getItem("token")).subscribe(res => {
       this.allUsers = res.AllUser[0]
     })
-
     this.authService.getFriendData(this.id).subscribe(res => {
       this.frd_request_count = res.list.length
       if (this.frd_request_count !== 0) {  
         $(".badges_for_fr").addClass("show_count");
       } 
     })
-
     this.authService.getProfilePost(this.id).subscribe(res => {
       if(res.code == 404){
         this.user_post = 0
@@ -62,30 +57,29 @@ export class SearchComponent implements OnInit {
         this.user_post = res.length
       }
     })
-
     this.authService.getFriends(this.id).subscribe(res => {
       if(res['success']){
         this.count_frd = res.userInfo.length
       }
     })
-
     this.authService.getSuggestUser(this.id).subscribe(res => {
       this.countSuggest = res['data'].length
       if (this.countSuggest === 0) { 
         $(".badges_for_pymk").addClass("show_know_friend");
       } 
     })
+    this.authService.setRequestSend(localStorage.getItem('token')).subscribe(res => {
+      this.friend_id = res.list.map((id) => id.friendId)
+    })
   }
 
   ngOnInit(): void {
   }
-
   searchFrd(){
     if(this.searchTextElement.nativeElement.value === ''){
       this.search_by_name = false
     }else{
       this.search_by_name = true
-
       this.authService.getSearchUser(this.searchTextElement.nativeElement.value).subscribe(res => {
         if(res['success'] == true){
           this.search_data = res.data;
@@ -96,15 +90,15 @@ export class SearchComponent implements OnInit {
     }
   }
 
-  sendRequest(requestId){
-    // let userId = this.activatedRoute.snapshot.paramMap.get('id');
-    this.authService.sendFriendRequest(this.id, requestId).subscribe(res => {
-      
-    })
+  sendRequest(requestId) {
+    this.authService.sendFriendRequest(this.id, requestId).subscribe(res => {})
   }
 
-  reject_request(reject_id){
-    // let userId = this.activatedRoute.snapshot.paramMap.get('id');
-    this.authService.rejectFriendRequest(reject_id, this.id).subscribe(res => {})
+  reject_request(reject_id) {
+    if (confirm('Are you sure you want to cancel this request ?')) {
+      this.authService.rejectFriendRequest(reject_id, this.id).subscribe(res => {
+      })
+      location.reload();
+    }
   }
 }

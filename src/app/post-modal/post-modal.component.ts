@@ -45,9 +45,7 @@ export class PostModalComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     public router: Router,
   ) {
-    // let id = this.activatedRoute.snapshot.paramMap.get('id');
     this.authService.getProfileforAbout(data.id).subscribe(res => {
-      // this.userId = data.id
       this.name =  res.data.name
       this.smallProfile = res.data.profileImgURl
     })
@@ -102,20 +100,12 @@ export class PostModalComponent implements OnInit {
           this.images[i],
           arrayRemoveNull[i].name,
         ))
-
-        // var mimeType = this.fileCovToReturn[i].type;
-        // if (mimeType.match(/image\/*/) == null) {
-        //   return;
-        // }
-
         var reader = new FileReader();
         reader.readAsDataURL(this.fileCovToReturn[i]);
       }
 
       reader.onload = (_event) => {
         this.authService.newPost(this.token, this.postMesssgeElement.nativeElement.value, this.fileCovToReturn).subscribe((res) => {
-          console.log("-=-=-=-token", this.token);
-          
           if(window.location.href.split('/')[3] == "home"){
             window.location.replace('home/' + window.location.href.split('/')[4]);
           }else{
@@ -144,11 +134,9 @@ export class PostModalComponent implements OnInit {
      const bstr = atob(arr[1]);
      let n = bstr.length;
      let u8arr = new Uint8Array(n);
-
      while(n--){
          u8arr[n] = bstr.charCodeAt(n);
      }
-
      return new File([u8arr], filename, { type: mime });
   }
 

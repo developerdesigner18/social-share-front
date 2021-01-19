@@ -133,14 +133,9 @@ export class HomeComponent implements OnInit {
 
     this.authService.getFriendData(id).subscribe(res => {
       this.frd_request_count = res.list.length
-
-      if (this.frd_request_count === 0) {  
-        console.log("-=-=-=-=-=-= testing", this.frd_request_count);
-      } else {
-        console.log("-=-=-=-=-=-= testing", this.frd_request_count);
+      if (this.frd_request_count !== 0) {  
         $(".badges_for_fr").addClass("show_count");
-      }
-
+      } 
     })
 
     this.authService.getProfilePost(id).subscribe(res => {
@@ -159,10 +154,7 @@ export class HomeComponent implements OnInit {
 
     this.authService.getSuggestUser(id).subscribe(res => {
       this.countSuggest = res['data'].length
-      if (this.countSuggest === 0) { 
-        console.log("-=-=-=-=-=-= testing", this.countSuggest);
-      } else {
-        console.log("-=-=-=-=-=-= testing", this.countSuggest);
+      if (this.countSuggest !== 0) { 
         $(".badges_for_pymk").addClass("show_know_friend");
       }
     })
@@ -171,7 +163,6 @@ export class HomeComponent implements OnInit {
       newcomment: ['']
     })
   }
-
   get formControls() { return this.commentsForm.controls }
 
   ngOnInit(): void {
@@ -300,9 +291,7 @@ export class HomeComponent implements OnInit {
   addComments(postId, userName, profilePic){
     this.objVal = Object.keys(this.commentsForm.value).map(key => ({type: key, value: this.commentsForm.value[key]}))
     this.authService.sendPostComment(postId, this.objVal[0].value).subscribe(res => {
-      if (res['success']) {
-        console.log("=-=-=-=-this count comment", this.count_cmt);
-        
+      if (res['success']) {        
         $(`.comments_container_${postId}`).css('display', 'block');
         if (this.datas.map((id) => id._id).includes(postId)) {
           this.check_temp = true
@@ -311,7 +300,6 @@ export class HomeComponent implements OnInit {
           this.tempPostId = postId
           this.checkTem = true
           this.temCmnt.push(this.objVal[0].value)
-          console.log("=-=-=-=-=-thu temp", this.temCmnt);
           this.count_cmt = res['data']
         }
       }

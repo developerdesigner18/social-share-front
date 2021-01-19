@@ -99,8 +99,8 @@
 								<div class="position-relative Send_request_icon">
 									<!-- <i class="fas fa-user-plus" [hidden]="hideme[i]" (click)="sendRequest(user._id);hideme[i] = !hideme[i];" title="Add Friend"></i>
 									<i class="fas fa-user-times" [hidden]="!hideme[i]" (click)="reject_request(user._id);!hideme[i] = hideme[i];" title="Cancel Friend Request"></i> -->
-									<i class="fas fa-user-plus" [hidden]="hideme[i]" (click)="sendRequest(user._id);hideme[i] = !hideme[i];" title="Add Friend"></i>
-									<i class="fas fa-user-times" *ngIf="hideme[i]" (click)="reject_request(user._id);hideme[i] = hideme[i];" title="Cancel Friend Request"></i>
+									<i class="fas fa-user-plus" id="open" *ngIf="friend_id.includes(user._id) != true" [hidden]="hideme[i]" (click)="sendRequest(user._id);hideme[i] = !hideme[i]" title="Send Request"></i>
+									<i class="fas fa-user-times" id="close" *ngIf="hideme[i] || friend_id.includes(user._id)" (click)="reject_request(user._id);hideme[i] = !hideme[i]" title="Cancel Request"></i>
 								</div>
 							</div>
 						</div>
