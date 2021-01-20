@@ -50,6 +50,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {MatInputModule} from '@angular/material/input';
 import { VideosComponent } from './videos/videos.component';
 import { AlbumsComponent } from './albums/albums.component';
+// import { TimeAgoPipe } from 'time-ago-pipe';
+import { TimeagoModule } from 'ngx-timeago';
+
 
 @NgModule({
   declarations: [
@@ -83,7 +86,8 @@ import { AlbumsComponent } from './albums/albums.component';
     RequestFriendsComponent,
     PeopleKnowComponent,
     VideosComponent,
-    AlbumsComponent
+    AlbumsComponent,
+    // TimeAgoPipe
   ],
   entryComponents: [DialogBodyComponent],
   imports: [
@@ -103,7 +107,8 @@ import { AlbumsComponent } from './albums/albums.component';
     MatFormFieldModule,
     MatIconModule,
     MatNativeDateModule,
-    MatInputModule
+    MatInputModule,
+    TimeagoModule.forRoot()
     ],
   providers: [
     {

@@ -4,6 +4,7 @@ import { MatDialog } from  '@angular/material/dialog';
 import { AuthService } from '../auth.service';
 import { DialogEditSuccessComponent } from '../dialog-edit-success/dialog-edit-success.component';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
+import { TimeAgoPipe } from 'time-ago-pipe';
 declare var jQuery: any;
 declare var $: any;
 
@@ -37,6 +38,7 @@ export class UserProfileComponent implements OnInit {
   urls = [];
   datas = [];
   onlyImg = [];
+  notif_data: any = [];
 
   @ViewChild('designation') designationElement: any;
   @ViewChild('city') cityElement: any;
@@ -104,6 +106,18 @@ export class UserProfileComponent implements OnInit {
       }else{
         this.notfound = res.code
       }
+    })
+
+    this.authService.getNotifications(id).subscribe(res => {
+      console.log("res-=-=-=-=-=-=-=-=-=", res['message'].length);
+      
+      if (res['message'].length > 0) {
+        this.notif_data = res['message']
+        console.log("res data", this.notif_data);
+      } else {
+        
+      }
+
     })
   }
 

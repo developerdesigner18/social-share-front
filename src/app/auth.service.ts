@@ -244,6 +244,7 @@ export class AuthService {
       catchError(this.handleError)
     )
   }
+ 
 
   sendFriendRequest(userId, requestId): Observable<any> {
     return this.httpClient.post(`${environment.apiUrl}/api/friend/send`, {userId: userId, requestId: requestId}, {headers: this.headers}).pipe(
@@ -381,6 +382,15 @@ export class AuthService {
     return this.httpClient.post(`${environment.apiUrl}/api/friend/suggest`, {userId: userId }, { headers: this.headers}).pipe(
       map((res: Response) => {
         return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+  getNotifications(userId){
+    return this.httpClient.post(`${environment.apiUrl}/api/notification/getnotify`, {userId: userId }, { headers: this.headers}).pipe(
+      map((res: Response) => {
+        return res || {}
+        console.log("res.......", res);     
       }),
       catchError(this.handleError)
     )
