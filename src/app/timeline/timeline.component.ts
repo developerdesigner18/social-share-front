@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, ViewChild} from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild, HostListener} from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog} from  '@angular/material/dialog';
@@ -35,6 +35,7 @@ export class TimelineComponent implements OnInit {
   likes = [];
   removelike = 0;
   objVal = [];
+  totalDisplayed: any;
 
   postlikeId = [];
   commentsForm: FormGroup;
@@ -44,9 +45,22 @@ export class TimelineComponent implements OnInit {
 
   viewImgdatas = [];
   viewImg = [];
+  count = 1;
   public slideIndex = 1;
 
   postImageData = {}
+
+  // @HostListener("window:scroll", [])
+  // onScroll(): void {
+  //   if (this.bottomReached()) {
+  //     this.datas = [...this.datas, this.count++];
+  //     console.log("this.datas", this.datas)
+  //   }
+  // }
+
+  // bottomReached(): boolean {
+  //   return (window.innerHeight + window.scrollY) >= document.body.offsetHeight;
+  // }
 
   @ViewChild('textmsgPost') postMesssgeElement: any;
   @ViewChild('nav') slider: NgImageSliderComponent;
@@ -64,6 +78,11 @@ export class TimelineComponent implements OnInit {
     public router: Router,
     public formBuilder: FormBuilder
   ) {
+
+    this.totalDisplayed = 10;
+
+   
+
     const user = JSON.parse(localStorage.getItem('currentUser'));
     this.url_id = user.data._id
     this.token = localStorage.getItem('token')
@@ -125,6 +144,11 @@ export class TimelineComponent implements OnInit {
   open_comments(postId){
     $(`.comments_container_${postId}`).toggle();
   }
+
+  loadMore() {
+    this.totalDisplayed += 10;  
+    console.log("this.totalDisplayed", this.totalDisplayed  )
+  };
 
   openTextDialog(event: any){
     //Multipul Image upload
@@ -237,4 +261,7 @@ export class TimelineComponent implements OnInit {
   showProfile(){
     this.router.navigate([`profile/${this.id}`])
   }
+
+
+
 }

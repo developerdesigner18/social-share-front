@@ -52,6 +52,7 @@ import { VideosComponent } from './videos/videos.component';
 import { AlbumsComponent } from './albums/albums.component';
 // import { TimeAgoPipe } from 'time-ago-pipe';
 import { TimeagoModule } from 'ngx-timeago';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 
 @NgModule({
@@ -87,6 +88,7 @@ import { TimeagoModule } from 'ngx-timeago';
     PeopleKnowComponent,
     VideosComponent,
     AlbumsComponent,
+    NotificationsComponent,
     // TimeAgoPipe
   ],
   entryComponents: [DialogBodyComponent],

@@ -31,11 +31,11 @@
 			</div>
     </div>
     <div class="display_friends" *ngIf="show_friends && user === url_id">
-      <!-- <a [routerLink]="['/friends/', id]" style="padding: 10px; color: #003459;">Friends requests</a> -->
-      <a style="color: #003459;" class="my_post_links" href="friends/{{id}}">
+      <!-- <a [routerLink]="['/friends/', id]" style="padding: 10px; color: #0F1B31;">Friends requests</a> -->
+      <a style="color: #0F1B31;" class="my_post_links" href="friends/{{id}}">
           <div style="font-weight: 600;" class="badges_for_fr position-relative">Friend Requests</div>
       </a>
-      <a style="color: #003459;" class="my_post_links" href="peopleknow/{{id}}">
+      <a style="color: #0F1B31;" class="my_post_links" href="peopleknow/{{id}}">
           <div style="font-weight: 600;" class="badges_for_pymk position-relative">Find Friends</div>
       </a>
     </div>
@@ -58,7 +58,7 @@
       <!-- <button type="button" name="button">Friends</button> -->
       <!-- <i class="fas fa-user-plus" style="color: #ffffff;" [hidden]="hideme[i]" (click)="sendRequest(frddetail._id);hideme[i] = !hideme[i]" title="Add Friend"></i> -->
       <div class="unfriend_btn">
-			  <i class="unfriend" style="color: #ff9000;" [hidden]="hideme[i]" (click)="reject_request(frddetail._id);hideme[i] = !hideme[i]" title="UnFriend"><img src="../../assets/images/unfriend.png" alt="unfriend"></i>
+			  <i class="unfriend" style="color: #ff9000;" [hidden]="hideme[i]" (click)="reject_request(frddetail._id, frddetail.name);hideme[i] = !hideme[i]" title="UnFriend"><img src="../../assets/images/unfriend.png" alt="unfriend"></i>
       </div>
     </div>
     <div class="col-md-12 no_friend_show" *ngIf="notAnyFrd" style="text-align: center; ">
@@ -93,7 +93,7 @@
 </ng-container>
 
 <ng-container *ngIf="urls.length == 0">
-  <div class="main_post_content d-flex flex-column" style="color: #003459">
+  <div class="main_post_content d-flex flex-column" style="color: #0F1B31">
     <h6>User not uploaded any videos</h6>
   </div>
 </ng-container> -->

@@ -35,16 +35,20 @@ export class UserProfileComponent implements OnInit {
   user_country = '';
   user_hobbies = '';
   notfound = 0;
+  ids = '';
+  cur_user = '';
   urls = [];
   datas = [];
   onlyImg = [];
   notif_data: any = [];
+  display: boolean = true;
 
   @ViewChild('designation') designationElement: any;
   @ViewChild('city') cityElement: any;
   @ViewChild('state') stateElement: any;
   @ViewChild('country') countryElement: any;
   @ViewChild('hobbies') hobbiesElement: any;
+  
 
   // public datas;
   constructor(
@@ -55,6 +59,9 @@ export class UserProfileComponent implements OnInit {
     public elRef: ElementRef
   ) {
     let id = this.activatedRoute.snapshot.paramMap.get('id');
+
+    this.ids = this.activatedRoute.snapshot.paramMap.get('id');
+    
     this.authService.getUserProfile(id).subscribe(res => {
       this.name =  res.data.name
       this.u_designation =  res.data.designation
@@ -76,7 +83,17 @@ export class UserProfileComponent implements OnInit {
       localStorage.removeItem('friendId')
     }
 
+    if(this.router.url === '/profile/' + this.activatedRoute.snapshot.paramMap.get('id') + '/notifications')
+    {
+      console.log("-=-=-=-=-=-=-timepass")
+      this.display = false
+    }
+
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    console.log("-=-=-=-current user", currentUser);
+
+    this.cur_user = currentUser.data._id;
+    
     if(currentUser.data._id == id){
       this.current_user_profile = true
     }else{
@@ -109,11 +126,8 @@ export class UserProfileComponent implements OnInit {
     })
 
     this.authService.getNotifications(id).subscribe(res => {
-      console.log("res-=-=-=-=-=-=-=-=-=", res['message'].length);
-      
       if (res['message'].length > 0) {
         this.notif_data = res['message']
-        console.log("res data", this.notif_data);
       } else {
         
       }

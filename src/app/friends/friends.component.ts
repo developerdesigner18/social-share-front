@@ -88,8 +88,12 @@ export class FriendsComponent implements OnInit {
     this.id = currentUser.data._id    
   }
 
-  reject_request(reject_id) {
-    this.authService.unFriendRequest(reject_id, this.id).subscribe(res => {
-    })
+  reject_request(reject_id, friend_name) {
+    if (confirm(`Are you sure you want to unfriend ${friend_name} ?`)) {
+      this.authService.unFriendRequest(reject_id, this.id).subscribe(res => {
+        location.reload();
+      })
+    }
+    
   }
 }

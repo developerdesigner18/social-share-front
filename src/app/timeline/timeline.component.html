@@ -12,7 +12,8 @@
   </div>
 </div>
 <ng-container *ngIf="notfound !== 404">
-<div *ngFor="let data of datas; let i = index" class="main_post_content d-flex flex-column timeline" >
+<div *ngFor="let data of datas | slice:0:totalDisplayed; let i = index" class="main_post_content d-flex flex-column timeline" >
+<!-- <div *ngFor="let data of datas; let i = index" class="main_post_content d-flex flex-column timeline" > -->
   <div class="d-flex show_basic_info" style="width: 100%" >
     <div class="profile_pic_profile position-relative">
       <img [src]="profileImg" onerror="this.src='/assets/images/default_user.jpg';">
@@ -26,7 +27,7 @@
           <div *ngIf="u_city === undefined && u_state === undefined">Not Mention</div>
         </div>
       </div>
-      <div style="color: #003459;font-size: 14px;" *ngIf="data.name !== undefined">Album: {{data.name}} </div>
+      <div style="color: #0F1B31;font-size: 14px;" *ngIf="data.name !== undefined">Album: {{data.name}} </div>
       <div class="item_desc mt-2" style="width: 100%;word-wrap: break-word;">{{data.description}}</div>
     </div>
   </div>
@@ -120,6 +121,7 @@
     </div>
   </div>
 </div>
+<button class="load_btn" (click)="loadMore()">Load more</button>
 </ng-container>
 <ng-container *ngIf="notfound == 404">
   <div class="main_post_content d-flex flex-column">

@@ -2,7 +2,7 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	font-family: 'Roboto Slab', serif;
+    /* font-family: 'Roboto Slab', serif; */
 }
 .write_words input::placeholder {
     color: #616161 !important;
@@ -134,9 +134,6 @@ img.logout {
     border-radius: 4px;
 }
 
-.left_sidebars {
-    top: -25px !important;
-}
 
 .main_area_contents{
 	margin: 0px 80px 20px 80px;
@@ -154,10 +151,9 @@ a.my_post_links{
     width: 90% !important;
 }
 .left_content div {
-    color: #003459;
+    color: #0F1B31;
     margin-left: 10px;
-    font-weight: 400;
-    font-size: 15px;
+    font-size: 14px;
 }
 .profile_image img {
     width: 130px;
@@ -173,14 +169,19 @@ a.my_post_links{
     margin-bottom: 10px;
 }
 .left_content i {
-    color: #003459;
+    color: #0F1B31;
     font-size: 18px;
 }
 .profile_name {
-    font-weight: 500;
-    color: #003459;
-    font-size: 22px;
+    font-weight: 400;
+    color: #0F1B31;
+    font-size: 20px;
     text-transform: capitalize;
+    font-family: 'Josefin Sans', sans-serif;
+}
+.friends_Posts div {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 400;
 }
 .badges {
     position: relative;
@@ -279,7 +280,7 @@ a.premium_upgrade {
     display: flex;
     justify-content: center;
     width: 100%;
-    color: #003459;
+    color: #0F1B31;
 }
 .upgrade_premium div {
     font-weight: 500;
@@ -302,7 +303,7 @@ a.premium_upgrade {
     margin: 0 !important;
 }
 .cat_search i {
-    color: #003459;
+    color: #0F1B31;
     position: absolute;
     right: 10px;
     top: 0;
@@ -318,13 +319,13 @@ a.premium_upgrade {
 }
 .posts input::placeholder {
     font-size: 15px;
-    color: #003459a1;
+    color: #0F1B31a1;
 }
 .put_ads_here {
     margin: 25px 0 0;
     width: 90%;
     height: 300px;
-    background-color: #003459;
+    background-color: #0F1B31;
     color: #ffffff;
     display: flex;
     justify-content: center;
@@ -335,7 +336,7 @@ a.premium_upgrade {
     margin-top: 25px;
 }
 .chat_title {
-    color: #003459;
+    color: #0F1B31;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -356,12 +357,13 @@ a.premium_upgrade {
     align-items: center;
 }
 .chat_title div {
-    color: #003459;
+    color: #0F1B31;
     font-size: 18px;
-    font-weight: 500;
+    font-weight: 400;
+    font-family: 'Josefin Sans', sans-serif;
 }
 .online_title {
-    color: #003459;
+    color: #0F1B31;
     font-weight: 500;
     margin-top: 20px;
     padding-left: 25px;
@@ -370,6 +372,7 @@ a.premium_upgrade {
     border-bottom: 1px solid;
     padding-bottom: 10px;
     border-color: #ff9000;
+    font-family: 'Josefin Sans', sans-serif;
 }
 .online_title:before {
     content: "";
@@ -400,7 +403,7 @@ a.premium_upgrade {
 .online_user div {
     margin-left: 10px;
     font-size: 14px;
-    color: #003459;
+    color: #0F1B31;
 }
 .offline_sec .online_title:before {
     content: "";
@@ -428,12 +431,12 @@ a.premium_upgrade {
     border-radius: 4px;
     height: 55px;
     padding-right: 12.6%;
-    color: #003459;
+    color: #0F1B31;
     font-size: 14px;
     padding-left: 15px;
 }
 .posts button {
-    background-color: #003459;
+    background-color: #0F1B31;
     border: 0;
     color: #ffffff;
     padding: 7px 18px;
@@ -471,7 +474,7 @@ a.premium_upgrade {
 }
 .item_desc {
     font-size: 14px;
-    color: #003459;
+    color: #0F1B31;
     margin-top: -15px;
 }
 .profile_pics:before {
@@ -520,7 +523,7 @@ img.slider_image {
     display: flex;
     justify-content: center;
     margin-top: 15px;
-    color: #003459;
+    color: #0F1B31;
     font-size: 18px;
 }
 .bid_section{
@@ -530,7 +533,7 @@ img.slider_image {
     background-color: aliceblue;
     padding: 5px 15px;
     margin-left: 10px;
-    color: #003459;
+    color: #0F1B31;
     font-size: 20px;
     font-weight: 500;
     border-radius: 4px;
@@ -574,7 +577,7 @@ img.slider_image {
 		text-align: center;
     font-size: 14px;
     font-weight: 500;
-    color: #003459;
+    color: #0F1B31;
 }
 
 .no_share_action > button {
@@ -586,7 +589,7 @@ img.slider_image {
 		text-align: center;
     font-size: 14px;
     font-weight: 500;
-    color: #003459;
+    color: #0F1B31;
 }
 
 .take_action > button i {
@@ -617,12 +620,17 @@ img.slider_image {
 .no_share_action > button span {
     color: #ff9000;
     padding-left: 5px;
-    font-weight: 500;
+    font-weight: 600;
     font-size: 16px;
+}
+.data_desc {
+    color: #0F1B31;
+    font-size: 14px;
 }
 .no_share_action > button div {
     display: flex;
     align-items: center;
+    font-weight: 600;
 }
 
 .take_action > button.comment_sec {
@@ -648,7 +656,7 @@ img.slider_image {
     margin-top: 15px;
     font-size: 15px;
     padding: 10px;
-    color: #003459;
+    color: #0F1B31;
     background-color: aliceblue;
     border-radius: 4px;
 }
@@ -659,7 +667,7 @@ img.slider_image {
     font-size: 16px;
     margin-left: 5px;
     font-weight: 500;
-    color: #003459;
+    color: #0F1B31;
 }
 .friends_Posts > div {
     justify-content: center;
@@ -670,19 +678,20 @@ img.slider_image {
 .profile_name_of_poster {
     font-weight: 500;
     font-size: 20px;
-    color: #003459;
+    color: #0F1B31;
     line-height: 1;
 }
 .search_somenone_profile{
 	font-size: 15px;
-	color: #003459;
+	color: #0F1B31;
 	line-height: 1;
 }
 .autocomplete-container{
 	box-shadow: none !important;
 }
-.autocomplete-container .input-container input{
-	background-color: #f1f1f1 !important;
+.autocomplete-container .input-container input {
+    background-color: #0f1b31 !important;
+    font-family: 'Josefin Sans', sans-serif;
 }
 .owl-stage {
 		display: -webkit-box;
@@ -711,7 +720,7 @@ img.slider_image {
 button.owl-prev span {
     position: absolute;
     font-size: 34px;
-    color: #003459;
+    color: #0F1B31;
     top: -6px;
     bottom: 0;
     margin: auto;
@@ -724,7 +733,7 @@ button.owl-prev span {
 button.owl-next span {
     position: absolute;
     font-size: 34px;
-    color: #003459;
+    color: #0F1B31;
     top: -6px;
     bottom: 0;
     margin: auto;
@@ -747,7 +756,7 @@ button.owl-prev, .owl-next {
     height: 30px;
     width: 30px;
     border-radius: 50% !important;
-    box-shadow: 0 0 6px 0px #003459;
+    box-shadow: 0 0 6px 0px #0F1B31;
 }
 .post_by_user_second .profile_pics:before {
     content: "";
@@ -762,9 +771,9 @@ button.owl-prev, .owl-next {
 }
 .upgrade_premium {
     padding: 7px;
-    border: 2px solid #003459db;
+    border: 2px solid #0F1B31db;
     border-radius: 4px;
-    color: #003459;
+    color: #0F1B31;
     display: flex;
     align-items: center;
 }
@@ -804,7 +813,7 @@ a.my_post_links:hover div > div {
     background-color: #f0f8ff;
     border-radius: 4px;
     margin-top: 15px;
-    color: #003459;
+    color: #0F1B31;
     padding: 15px;
 }
 .comment_title {
@@ -853,16 +862,16 @@ a.my_post_links:hover div > div {
     margin-right: 10px;
 }
 .province div {
-    color: #003459;
+    color: #0F1B31;
     font-size: 13px;
 }
 .province {
     padding: 5px 10px;
-    box-shadow: 0 0 4px #003459;
+    box-shadow: 0 0 4px #0F1B31;
     border-radius: 4px;
 }
 .cat_bid {
-    color: #003459;
+    color: #0F1B31;
 }
 .category {
     background-color: #ecedee;
@@ -953,7 +962,7 @@ a.my_post_links:hover div > div {
     width: 100%;
     border-radius: 4px;
     height: 50px;
-    color: #003459;
+    color: #0F1B31;
     font-size: 13px;
     padding: 10px;
     margin-bottom: 0;
@@ -963,8 +972,10 @@ a.my_post_links:hover div > div {
     padding-right: 7px;
 }
 .write_words input::placeholder {
-    color: #868686;
-    letter-spacing: 0.48px;
+    color: #0F1B31 !important;
+    letter-spacing: normal;
+    font-size: 15px;
+    font-family: 'Josefin Sans', sans-serif;
 }
 .write_words div {
 	align-items: center;
@@ -972,7 +983,7 @@ a.my_post_links:hover div > div {
 }
 
 /* .write_words button {
-    background-color: #003459;
+    background-color: #0F1B31;
     border: 0;
     color: #ffffff;
     padding: 7px 18px;
@@ -1074,7 +1085,7 @@ a.my_post_links:hover div > div {
 .profile_basic_info{
 	font-weight: 500;
     font-size: 20px;
-    color: #003459;
+    color: #0F1B31;
     line-height: 1;
 	margin-bottom: 12px;
 	font-size: 16px;
@@ -1082,10 +1093,11 @@ a.my_post_links:hover div > div {
 
 /*-----------------------rcss---------------------------*/
 
-	.profile_name_of_poster {
-	    margin-right: 10px;
-			text-transform: capitalize;
-	}
+.profile_name_of_poster {
+    margin-right: 10px;
+    text-transform: capitalize;
+    font-family: 'Josefin Sans', sans-serif;
+}
 
 
 @media (max-width: 320px){
@@ -1384,7 +1396,7 @@ a.my_post_links:hover div > div {
     padding: 5px 15px;
     border-radius: 50%;
     font-weight: 500;
-    color: #003459 !important;
+    color: #0F1B31 !important;
     opacity: 0.5;
 }
 .prev:hover{
@@ -1512,7 +1524,7 @@ body.modal {
 	padding-top: 0px !important;
 }
 
-.slider_image_5 > div > div > div >.main-inner > div:nth-child(5):before {
+.slider_image_5 > div > div > div >.main-inner > div:nth-child(4):before {
 		content: "View More";
 	 	position: absolute;
 	 	top: 0;

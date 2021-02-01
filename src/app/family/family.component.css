@@ -6,7 +6,7 @@ input{
     border-radius: 4px;
     height: 40px;
     padding-right: 12.6%;
-    color: #003459;
+    color: #0F1B31;
     font-size: 14px;
     padding-left: 15px;
 }
@@ -73,7 +73,7 @@ select{
 .family_shows > div {
   font-size: 14px;
   font-weight: 500;
-  color: #003459;
+  color: #0F1B31;
 }
 .work-record{
   display: flex;
@@ -86,5 +86,5 @@ select{
 .relation-status img {
   width: 17px;
   margin-right: 10px;
-  color: #003459;
+  color: #0F1B31;
 }

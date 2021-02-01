@@ -10,7 +10,7 @@
     border-radius: 4px;
 }
 .cat_search i {
-    color: #003459;
+    color: #0F1B31;
     position: absolute;
     right: 10px;
     top: 0;
@@ -18,6 +18,9 @@
     margin: auto;
     display: flex;
     align-items: center;
+}
+a.my_post_links > div {
+    text-decoration: underline;
 }
 .cat_search input::placeholder {
     font-size: 14px;
@@ -51,7 +54,7 @@
 
 .search_somenone_profile{
 	font-size: 15px;
-	color: #003459;
+	color: #0F1B31;
     line-height: 1;
     /* text-transform: capitalize; */
     margin-top: -5px;

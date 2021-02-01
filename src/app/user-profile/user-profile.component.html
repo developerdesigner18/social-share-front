@@ -78,7 +78,7 @@
 			<div class="photos_container_all w_100 see-all-images" *ngIf="onlyImg.length > 10">
 				<button onclick="document.body.scrollTop=500;document.documentElement.scrollTop=500;event.preventDefault()" class="edit-button see-all-button" [routerLink]="['photos']">See All</button>
 			</div>
-			<div class="a_photos" *ngIf="notfound == 404" style="color: #003459">
+			<div class="a_photos" *ngIf="notfound == 404" style="color: #0F1B31">
 				<h6>No photos</h6>
 			</div>
 		</div>
@@ -102,13 +102,13 @@
 		<router-outlet></router-outlet>
 	</div>
 
-	<div class="right_sidebar">
+	<div *ngIf="cur_user === ids && display" class="right_sidebar">
 		<div class="notification_sec" >
 			<div class="right_title w_90">Recent Notification</div>
 			
 			<div class="all_notification w_90" *ngFor="let data of notif_data | slice:0:5;">
 				<div class="notifiy w_90 d-flex flex-column">
-					<div class="d-flex align-items-center">
+					<div class="d-flex">
 						<img [src]="data.userprofile" onerror="this.src='../../assets/images/default_user.jpg'" >
 						<div class="notify_content">{{data.content | titlecase}}</div>
 					</div>
@@ -136,6 +136,7 @@
 					<div class="time_ago">1 Day ago.</div>
 				</div> -->
 			</div> 
+			<button *ngIf="notif_data.length > 5" class="show_more_notifications" [routerLink]="['notifications']">Show More Notifications</button>
 		</div>
 	</div>
 </div>

@@ -7,12 +7,23 @@ html{
 	background-color: #F1F1F1;
 }
 #myTopnav button.active_tabs {
-    background: #003459;
+    background: #0F1B31;
     color: #f0f8ff;
 }
 .active_tabs{
-    background: #003459;
+    background: #0F1B31;
     color: #f0f8ff;
+}
+button.load_btn {
+    font-family: 'Josefin Sans', sans-serif;
+    width: 100%;
+    border-radius: 4px;
+    padding: 3px;
+    margin-top: 15px;
+    border: 0;
+    background: #0f1b31;
+    color: white;
+    margin-bottom: 20px;
 }
 .user_friend img {
     height: 50px;
@@ -85,10 +96,24 @@ i.unfriend img {
     grid-template-columns: 1fr 1fr;
     width: 100%;
     grid-gap: 25px;
-    margin-top: 25px;
+    margin-top: 15px;
+}
+.edit_formGroup > input{
+    color: #0a1221;
+    background-color: aliceblue;
+    border: 0;
 }
 .unfriend_image a {
-    color: #003459;
+    color: #0F1B31;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 600;
+}
+.edit_formGroup .form-control:focus {
+    color: inherit;
+    background-color: inherit;
+    border-color: none;
+    outline: 0;
+    box-shadow: none;
 }
 button, input {
     outline: none !important;
@@ -172,10 +197,12 @@ img.logout {
 		background-position: center;
 }
 .profile_pic img {
-    width: 200px;
+    width: 180px;
     border-radius: 50%;
-    height: 200px;
+    height: 180px;
+    -o-object-fit: cover;
     object-fit: cover;
+    -o-object-position: top;
     object-position: top;
     position: static !important;
     top: -190px;
@@ -183,7 +210,7 @@ img.logout {
     border: 5px solid #ffffff;
     right: 0;
     margin: auto;
-		margin-top: -190px;
+    margin-top: -170px;
 }
 .profile_pic_main_tabs_sec {
     background-color: #ffffff;
@@ -203,12 +230,13 @@ img.logout {
 }
 .profile_name {
     text-align: center;
-    color: #003459;
+    color: #0F1B31;
     font-size: 22px;
     position: relative;
     /* top: 10px; */
-    font-weight: 500;
+    font-weight: 600;
     text-transform: capitalize;
+    font-family: 'Josefin Sans', sans-serif;
 }
 .profile_pic_main_tabs_sec > div {
     flex: 1;
@@ -221,13 +249,13 @@ body .profile_pic_main_tabs_sec .actions {
     margin: 0 15px;
     border: 0;
     background: none;
-    color: #003459;
+    color: #0F1B31;
     padding: 6px 10px;
     background-color: aliceblue;
     border-radius: 4px;
     font-size: 13px;
     text-transform: uppercase;
-    font-weight: 500;
+    font-weight: 600;
 }
 .main_action {
     display: flex;
@@ -269,27 +297,28 @@ body .profile_pic_main_tabs_sec .actions {
     width: 90%;
 }
 .some_words {
-    color: #003459;
+    color: #0F1B31;
     font-size: 14px;
     font-style: italic;
+    font-weight: 500;
     margin-bottom: 15px;
 }
-.left_title,.right_title {
+.left_title, .right_title {
     margin: 0px 0 15px;
     font-size: 20px;
-    color: #003459;
-    font-weight: 500;
+    color: #0F1B31;
     line-height: 1;
+    font-family: 'Josefin Sans', sans-serif;
 }
 .info_container i {
-    color: #003459;
+    color: #0F1B31;
     padding-right: 10px;
     font-size: 18px;
     padding-left: 5px;
 }
 .info_container {
     margin: 0 0 10px;
-    color: #003459;
+    color: #0F1B31;
     font-size: 15px;
     background-color: #f1f1f1;
     border-radius: 4px;
@@ -332,7 +361,7 @@ body .profile_pic_main_tabs_sec .actions {
     text-align: center;
     margin-top: 5px;
     font-weight: 500;
-    color: #003459;
+    color: #0F1B31;
 }
 .a_photos h6{
     font-size: 14px;
@@ -345,24 +374,21 @@ body .profile_pic_main_tabs_sec .actions {
     border-radius: 50%;
 }
 .notifiy > div:first-child div {
-    font-size: 14px;
-    color: #003459;
+    font-size: 13px;
+    color: #0F1B31;
     padding-left: 10px;
-    font-weight: 400;
     position: relative;
 }
 .time_ago {
-    font-size: 11px;
-    color: #636363;
+    font-size: 14px;
+    color: #5a5a5a;
     margin-top: 5px;
+    font-family: 'Josefin Sans', sans-serif;
 }
 .notifiy {
-    border-bottom: 1px dashed #003459;
+    border-bottom: 1px dashed #0F1B31;
     padding: 10px 0;
     margin: auto;
-}
-.notifiy:last-child {
-    border-bottom: 0;
 }
 .notifiy > div:first-child div:before {
     position: absolute;
@@ -372,8 +398,8 @@ body .profile_pic_main_tabs_sec .actions {
     border: 2px solid #FF9000;
     background-color: transparent;
     border-radius: 50%;
-    bottom: 3px;
     left: -11px;
+    top: 20px;
 }
 .all_notification {
     background-color: aliceblue;
@@ -392,7 +418,7 @@ body .profile_pic_main_tabs_sec .actions {
     border-radius: 4px;
     height: 55px;
     padding-right: 12.6%;
-    color: #003459;
+    color: #0F1B31;
     font-size: 14px;
     padding-left: 15px;
 }
@@ -415,7 +441,7 @@ body .profile_pic_main_tabs_sec .actions {
     cursor: pointer;
 }
 .say_words button {
-    background-color: #003459;
+    background-color: #0F1B31;
     border: 0;
     color: #ffffff;
     padding: 7px 18px;
@@ -444,18 +470,21 @@ body .profile_pic_main_tabs_sec .actions {
 .profile_name_of_poster {
     font-weight: 500;
     font-size: 20px;
-    color: #003459;
+    color: #0F1B31;
     line-height: 1;
     text-transform: capitalize;
+    font-family: 'Josefin Sans', sans-serif;
 }
 .province {
     padding: 5px 10px;
-    box-shadow: 0 0 4px #003459;
+    box-shadow: 0 0 4px #0F1B31;
     border-radius: 4px;
 }
 .province div {
-    color: #003459;
-    font-size: 12px;
+    color: #0F1B31;
+    font-size: 13px;
+    font-weight: 500;
+    /* font-family: 'Josefin Sans', sans-serif; */
 }
 .province img {
     width: 23px;
@@ -466,7 +495,7 @@ body .profile_pic_main_tabs_sec .actions {
 }
 .item_desc {
     font-size: 14px;
-    color: #003459;
+    color: #0F1B31;
     margin-top: -15px;
 }
 .owl-stage {
@@ -516,7 +545,7 @@ button.owl-prev, .owl-next {
     height: 30px;
     width: 30px;
     border-radius: 50% !important;
-    box-shadow: 0 0 6px 0px #003459;
+    box-shadow: 0 0 6px 0px #0F1B31;
 }
 button.owl-prev {
     position: relative;
@@ -529,7 +558,7 @@ button.owl-next {
 button.owl-prev span {
     position: absolute;
     font-size: 34px;
-    color: #003459;
+    color: #0F1B31;
     top: -6px;
     bottom: 0;
     margin: auto;
@@ -542,7 +571,7 @@ button.owl-prev span {
 button.owl-next span {
     position: absolute;
     font-size: 34px;
-    color: #003459;
+    color: #0F1B31;
     top: -6px;
     bottom: 0;
     margin: auto;
@@ -556,7 +585,7 @@ button.owl-next span {
     display: none;
 }
 .cat_bid {
-    color: #003459;
+    color: #0F1B31;
 }
 .category {
     background-color: #ecedee;
@@ -582,14 +611,14 @@ button.owl-next span {
     display: flex;
     justify-content: center;
     margin-top: 15px;
-    color: #003459;
+    color: #0F1B31;
     font-size: 18px;
 }
 .main-price {
     background-color: aliceblue;
     padding: 5px 15px;
     margin-left: 10px;
-    color: #003459;
+    color: #0F1B31;
     font-size: 20px;
     font-weight: 500;
     border-radius: 4px;
@@ -632,7 +661,7 @@ button.owl-next span {
 		text-align: center;
     font-size: 14px;
     font-weight: 500;
-    color: #003459;
+    color: #0F1B31;
 }
 
 .no_share_action > button {
@@ -644,7 +673,7 @@ button.owl-next span {
 		text-align: center;
     font-size: 14px;
     font-weight: 500;
-    color: #003459;
+    color: #0F1B31;
 }
 
 .take_action > button i {
@@ -662,6 +691,7 @@ button.owl-next span {
 .take_action > button div {
     display: flex;
     align-items: center;
+    font-family: 'Josefin Sans', sans-serif;
 }
 .take_action > button span {
     color: #ff9000;
@@ -713,7 +743,7 @@ button.owl-next span {
     background-color: #f0f8ff;
     border-radius: 4px;
     margin-top: 15px;
-    color: #003459;
+    color: #0F1B31;
     padding: 15px;
 }
 .comment_title {
@@ -817,6 +847,7 @@ button.owl-next span {
   background-color: #0f1b31d9;
   color: #FF9000;
   box-shadow: 0 0 8px 3px #B8B8B8;
+  cursor: pointer;
 }
 
 .basic_profile_icons {
@@ -875,14 +906,15 @@ button.owl-next span {
     display: flex !important;
     padding: 10px;
 }
-.edit-button{
-		width: 100%;
-		background-color: #003459;
-		color: #ffffff;
-		border-radius: 4px;
-        height: 35px;
-        width: 90% !important;
-        font-size: 15px;
+.edit-button {
+    width: 100%;
+    background-color: #0F1B31;
+    color: #ffffff;
+    border-radius: 4px;
+    height: 35px;
+    width: 90% !important;
+    font-size: 15px;
+    font-weight: 500;
 }
 .preview_circle{
 	border-radius: 50%;
@@ -924,7 +956,7 @@ button.owl-next span {
 .about-menu{
 	border: 0;
 	background: none;
-	color: #003459;
+	color: #0F1B31;
 	text-decoration: none;
 	padding: 6px 10px;
 	border-radius: 4px;
@@ -959,19 +991,20 @@ button.owl-next span {
 .title-about {
     padding-left: 10px;
     margin-bottom: 25px;
-    color: #003459;
+    color: #0F1B31;
+    font-family: 'Josefin Sans', sans-serif;
 }
 
 .overview_tab i {
     margin-right: 10px;
-    color: #003459;
+    color: #0F1B31;
     font-size: 16px;
 }
 .overview_tab {
     display: flex;
     align-items: center;
     margin-bottom: 15px;
-    color: #003459;
+    color: #0F1B31;
 }
 .overview_tab div {
     font-size: 14px;
@@ -1025,8 +1058,22 @@ button.owl-next span {
 
 button.edit-button {
     border: 0;
+    font-family: 'Josefin Sans', sans-serif;
 }
-
+button.show_more_notifications {
+    font-family: 'Josefin Sans', sans-serif;
+    width: 90%;
+    border-radius: 4px;
+    padding: 3px;
+    margin-top: 15px;
+    border: 0;
+    background: #0f1b31;
+    color: white;
+}
+.info_container div {
+    font-weight: 500;
+    font-size: 14px;
+}
 .basic_info{
 	position: absolute;
 	z-index: 9;
@@ -1051,7 +1098,7 @@ button.edit-button {
 .profile_basic_info{
 	font-weight: 500;
     font-size: 20px;
-    color: #003459;
+    color: #0F1B31;
     line-height: 1;
 	margin-bottom: 12px;
 	font-size: 16px;
@@ -1503,7 +1550,7 @@ button.edit-button {
     padding: 5px 15px;
     border-radius: 50%;
     font-weight: 500;
-    color: #003459 !important;
+    color: #0F1B31 !important;
     opacity: 0.5;
 }
 .prev:hover{
@@ -1600,7 +1647,7 @@ button.edit-button {
 	padding-top: 0px !important;
 }
 
-.slider_image_5 > div > div > div >.main-inner > div:nth-child(5):before {
+.item .slider_image_5 > div > div > div >.main-inner > div:nth-child(4):before {
     content: "View More";
     position: absolute;
     top: 0;
@@ -1685,8 +1732,9 @@ button.edit-button {
 
 
 .a_friend h6 {
-    font-size: 14px;
+    font-size: 15px;
     color: #ff9204;
+    font-weight: 500;
 }
 
 .ng-image-slider .ng-image-slider-container .main .main-inner .img-div video{
@@ -1702,6 +1750,7 @@ button.edit-button {
 .friend_div {
     display: flex;
     align-items: unset;
+    width: 100%;
 }
 .friend_div .cat_search {
     width: 100% !important;
@@ -1733,9 +1782,10 @@ button.edit-button {
     font-weight: 500;
 }
 .about_description.tab-content {
-    margin-top: 15px;
-    color: #003459;
-    font-weight: 400;
+    margin-top: 25px;
+    font-size: 18px;
+    color: #0F1B31;
+    font-weight: 600;
 }
 a.my_post_links {
     width: auto !important;

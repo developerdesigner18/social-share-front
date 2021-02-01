@@ -1,0 +1,19 @@
+<div class="container">
+    <!-- <div class="noti_header">
+        <p>Notifications</p>
+    </div> -->
+    <div class="noti_body">
+            <p>Notifications</p>
+            <div class="noti_scroll">
+			<div class="all_notification" *ngFor="let data of notif_data">
+				<div class="notifiy d-flex flex-column">
+					<div class="d-flex align-items-center">
+						<img [src]="data.userprofile" onerror="this.src='../../assets/images/default_user.jpg'" >
+						<div class="notify_content">{{data.content | titlecase }}</div>
+					</div>
+					<div class="time_ago">{{data.date | timeago}}</div>
+				</div>
+			</div> 
+        </div>
+    </div>
+</div>

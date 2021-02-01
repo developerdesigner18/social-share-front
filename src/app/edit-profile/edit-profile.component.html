@@ -1,6 +1,6 @@
 <h2 mat-dialog-title>Edit Details</h2>
 <mat-dialog-content>
-  <form [formGroup]="profileForm" (ngSubmit)="updateProfile()" style="display: contents;">
+  <form class="edit_formGroup" [formGroup]="profileForm" (ngSubmit)="updateProfile()" style="display: contents;">
     <input id="designation" formControlName="designation" class="form-control text-spaces" type="text" placeholder="Enter Designation" value="{{data.postition}}">
 
       <input id="country" formControlName="country" class="form-control text-spaces" type="text" placeholder="Enter Country" value="{{countryList}}">
