@@ -29,6 +29,25 @@ button.load_btn {
     height: 50px;
     width: 50px;
 }
+.load_btn {
+    padding: 10px !important;
+    margin-top: 0 !important;
+}
+.loads_btn {
+    margin: 20px 80px 20px 80px;
+    background: none !important;
+    box-shadow: none !important;
+}
+button.btn.cancel_btn {
+    border: 1px solid #0F1B31;
+    color: #0f1b31;
+    font-weight: 500;
+}
+
+button.btn.save_btn {
+    background: #0F1B31;
+    color: aliceblue;
+}
 .user_friend {
     padding: 10px !important;
     background-color: aliceblue;
@@ -374,7 +393,7 @@ body .profile_pic_main_tabs_sec .actions {
     border-radius: 50%;
 }
 .notifiy > div:first-child div {
-    font-size: 13px;
+    font-size: 14px;
     color: #0F1B31;
     padding-left: 10px;
     position: relative;
@@ -1644,7 +1663,7 @@ button.show_more_notifications {
     width: 204px !important;
 } */
 .ng-image-fullscreen-view .lightbox-wrapper .lightbox-div .next, .ng-image-fullscreen-view .lightbox-wrapper .lightbox-div .prev {
-	padding-top: 0px !important;
+    padding: 5px !important;
 }
 
 .item .slider_image_5 > div > div > div >.main-inner > div:nth-child(4):before {
@@ -1689,9 +1708,9 @@ button.show_more_notifications {
 .photos_section .ng-image-slider .ng-image-slider-container .main .main-inner .img-div img{
     border-radius: 4px !important;
 }
-.ng-image-fullscreen-view .lightbox-wrapper .close {
+/* .ng-image-fullscreen-view .lightbox-wrapper .close {
     filter: invert(1) !important;
-}
+} */
 
 .ng-image-fullscreen-view .lightbox-wrapper .lightbox-div .next{
     right: 15px !important;

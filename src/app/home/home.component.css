@@ -260,7 +260,7 @@ a.my_post_links{
     border-radius: 50%;
     color: #ffffff;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
     z-index: 99 !important;
     font-weight: 500;
@@ -268,6 +268,52 @@ a.my_post_links{
     top: 0;
     bottom: 0;
     margin: auto;
+}
+.sharing_container {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    right: 0;
+    min-width: 205px;
+    background: aliceblue;
+    border-radius: 4px;
+    z-index: 3;
+    padding: 10px;
+    box-shadow: 0 0 6px 0px #0f1b31;
+}
+.share_users {
+    padding: 10px 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.share_icon i {
+    height: 25px;
+    width: 25px;
+    background: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color: #0f1b31;
+    box-shadow: 0 0 2px 0px #0f1b318f;
+}
+.user_profile img {
+    border-radius: 50%;
+    padding: 2px;
+    border: 1px solid;
+}
+.user_profile {
+    display: flex;
+    align-items: center;
+}
+.user_profile p {
+    margin-bottom: 0;
+    margin-left: 10px;
+    text-transform: capitalize;
+}
+.share_users:not(:last-child) {
+    border-bottom: 1px dashed#ff9000;
 }
 .upgrade_premium i {
     font-size: 20px;
@@ -552,6 +598,7 @@ img.slider_image {
     grid-template-columns: 1fr 1fr 1fr;
     padding: 5px;
     margin-top: 15px;
+    position: relative;
     border-radius: 4px;
 }
 
@@ -844,18 +891,25 @@ a.my_post_links:hover div > div {
     left: -29px;
 }
 .comment_user {
-    margin: 10px 0;
+    padding: 10px;
     position: relative;
+    background: #f1f1f1;
+}
+.comment_user:not(:last-child) {
+    margin-bottom: 10px;
 }
 .commenter {
-    font-size: 16px !important;
+    font-size: 18px !important;
     line-height: 1.2;
+    color: #0f1b31;
 }
 .comment_here {
     background: #ffffff;
     border-radius: 4px;
     margin-top: 10px;
     padding: 5px;
+    font-size: 15px !important;
+    color: #0f1b31;
 }
 .province img {
     width: 23px;
@@ -1230,7 +1284,7 @@ a.my_post_links:hover div > div {
 	}
 	.write_words input {
     margin-top: 14px;
-    padding: 6px 52px !important;
+    padding: 6px 14px !important;
     border-radius: 50px;
     border: 1px solid #ddd;
     margin-bottom: 12px;
@@ -1521,7 +1575,7 @@ body.modal {
     width: 204px !important;
 } */
 .ng-image-fullscreen-view .lightbox-wrapper .lightbox-div .next, .ng-image-fullscreen-view .lightbox-wrapper .lightbox-div .prev {
-	padding-top: 0px !important;
+    padding: 5px !important;
 }
 
 .slider_image_5 > div > div > div >.main-inner > div:nth-child(4):before {

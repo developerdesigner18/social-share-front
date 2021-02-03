@@ -25,7 +25,6 @@ export class NotificationsComponent implements OnInit {
     this.authService.getNotifications(this.id).subscribe(res => {
       if (res['message'].length > 0) {
         this.notif_data = res['message']
-        
       }
 
     })

@@ -31,6 +31,7 @@ export class HomeComponent implements OnInit {
   countSuggest = 0;
   postlikeId = [];
   likes = [];
+  shares = [];
   alreadyLike = '';
   postlikeuserId = [];
   objVal = [];
@@ -38,12 +39,13 @@ export class HomeComponent implements OnInit {
   toggle = [];
   current_user = '';
   allUsers = [];
-
+  friends = [];
   keyword = 'name';
   showbasicProfile = [];
   showbasicProfile2 = [];
   showbasicProfile3 = [];
   showLikes = [];
+  share_display: boolean = false;
 
   checkPostsId: any;
   commentsForm: FormGroup;
@@ -84,6 +86,10 @@ export class HomeComponent implements OnInit {
       this.profileImg = res.data.profileImgURl
     })
 
+    this.authService.getFriends(id).subscribe(res => {
+      this.friends = res.userInfo
+    })
+
     this.token = localStorage.getItem('token')
     this.current_user = JSON.parse(localStorage.getItem('currentUser'))
     this.authService.getAllFriendPost(this.token).subscribe(res => {
@@ -95,6 +101,8 @@ export class HomeComponent implements OnInit {
         const { image, thumbImage, alt, title } = res.posts;
         for(let i = 0; i < this.datas.length; i++){
           const images = []
+          // console.log("-=-=-=-=-=- share", this.datas[i].share.length);
+          this.shares = this.datas[i].share.length
           this.description = this.datas[i].description;
           this.likes = this.datas[i].like
           this.comments = this.datas[i].comment.length
@@ -171,6 +179,10 @@ export class HomeComponent implements OnInit {
 
   open_comments(postId){
     $(`.comments_container_${postId}`).toggle();
+  }
+
+  share(postId) { 
+    $(`.sharing_container_${postId}`).toggle();
   }
 
   logout() {
@@ -278,6 +290,18 @@ export class HomeComponent implements OnInit {
 
   showProfile(){
     window.location.replace('profile/' + this.id);
+  }
+
+  
+
+  sharing(postId, userId, user_name) { 
+    if (confirm("You are sharing post with " + `${user_name}`)) {
+      this.authService.sharingPosts(this.token, postId, userId).subscribe(res => { 
+        console.log("res", res);
+      })
+
+    } else {
+    }
   }
 
   temCmnt = [];

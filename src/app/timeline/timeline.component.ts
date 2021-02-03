@@ -5,6 +5,7 @@ import { MatDialog} from  '@angular/material/dialog';
 import { PostModalComponent } from '../post-modal/post-modal.component';
 import { AuthService } from '../auth.service';
 import { NgImageSliderComponent } from 'ng-image-slider';
+import { ChangeDetectorRef } from '@angular/core';
 declare var jQuery: any;
 declare var $: any;
 
@@ -44,6 +45,7 @@ export class TimelineComponent implements OnInit {
   showbasicProfile3 = [];
 
   viewImgdatas = [];
+  allUsers = [];
   viewImg = [];
   count = 1;
   public slideIndex = 1;
@@ -70,13 +72,16 @@ export class TimelineComponent implements OnInit {
   u_state: any;
   u_city: any;
   image_all = [];
+  postId: any;
   url_id: string;
+  dataas: any;
   constructor(
     public  dialog:  MatDialog,
     private activatedRoute: ActivatedRoute,
     public authService: AuthService,
     public router: Router,
-    public formBuilder: FormBuilder
+    public formBuilder: FormBuilder,
+    private cdr: ChangeDetectorRef,
   ) {
 
     this.totalDisplayed = 10;
@@ -97,14 +102,19 @@ export class TimelineComponent implements OnInit {
       this.u_city =  res.data.city
     })
 
+    this.authService.getFriends(this.id).subscribe(res => {
+      this.allUsers = res.userInfo
+    })
+
     this.authService.getProfilePost(this.id).subscribe(res => {
       if(res.length > 0){
-        this.datas = res
+        this.dataas = res
+        this.datas = [...this.dataas];
         const { image, thumbImage, alt, title, name, description } = res;
         for(let i = 0; i < this.datas.length; i++){
           this.description = this.datas[i].description;
           this.urls.push(this.datas[i].imageUrl)
-          this.likes = this.datas[i].like
+          this.likes = [...this.datas[i].like]
           for (let j = 0; j < this.datas[i].comment.length; j++){
             this.authService.getHomePostProfile(this.datas[i].comment[j].userId).subscribe(res => {
               this.datas[i].post_profileImg = res.data.profileImgURl
@@ -117,6 +127,7 @@ export class TimelineComponent implements OnInit {
             this.postlikeId.push(this.datas[i]._id)
           }
         }
+        this.cdr.detectChanges();
         return this.datas
       }else{
         this.notfound = res.code
@@ -144,11 +155,20 @@ export class TimelineComponent implements OnInit {
   open_comments(postId){
     $(`.comments_container_${postId}`).toggle();
   }
+  trackByFn(index, like) {
+    return like.id;
+  }
 
   loadMore() {
     this.totalDisplayed += 10;  
     console.log("this.totalDisplayed", this.totalDisplayed  )
   };
+
+  sharing(postId) { 
+    this.authService.sharingPosts(this.token, postId, this.id).subscribe(res => { 
+
+    })
+  }
 
   openTextDialog(event: any){
     //Multipul Image upload

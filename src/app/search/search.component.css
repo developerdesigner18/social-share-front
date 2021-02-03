@@ -324,14 +324,38 @@ a.my_post_links:hover div > div {
 	header{
 		width: 100%;
 		padding: 0;
-	}
-	.justify-content-center{
+    }
+    .header_alignment {
+        display: flex !important;
+        flex-wrap: wrap;
+    }
+    header .ads{
+        margin-top: 15px;
+        flex-basis: 100%;
+        order: 3;
+    }
+    .header_alignment > .logo {
+        flex-basis: 50%;
+        order: 1;
+        text-align: left;
+    }
+    .logo {
+        margin: 0 auto;
+        text-align: center;
+        width: 95%;
+    }
+    .login_container {
+        flex-basis: 50%;
+        order: 2;
+        margin-top: 0;
+    }
+    .main_area {
+        margin: 0;
+    }
+	/* .justify-content-center{
 			height: auto !important;
-	}
+	} */
 
-	.logo{
-		width: 70%;
-	}
 
 	.login_container{
 		margin: unset;
@@ -343,9 +367,9 @@ a.my_post_links:hover div > div {
 		color: #ffffff;
 	}
 
-	.position-relative{
+	/* .position-relative{
 		width: 100%;
-	}
+	} */
 
 	.badges_for_pymk:before{
 		right: 165px;
@@ -357,12 +381,10 @@ a.my_post_links:hover div > div {
 
 	.left_sidebar { display: none; }
 
-	img.logout {
-		width: 6%;
-	}
 
 	.login_container button{
-		margin: 5px 160px !important;
+        margin: 0 !important;
+        margin-left: 22px !important;
 	}
 
 	.logo{
@@ -372,11 +394,19 @@ a.my_post_links:hover div > div {
 	.navbar-toggler{
 		font-size: 0.9rem;
 		padding: unset;
-	}
+    }
+    header {
+        width: 100%;
+        background-color: #0f1b31;
+        padding: 15px 0;
+    }
 }
 @media (max-width: 576px){
     .search_display {
         grid-template-columns: 1fr;
+    }
+    .main_area {
+        margin-left: 0px;
     }
 }
 .Send_request_icon {

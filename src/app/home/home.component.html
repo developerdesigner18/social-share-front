@@ -186,11 +186,27 @@
 							<div *ngIf="data.comment.length !== 0">Comment<span>{{data.comment.length !== 0 ? (data._id === tempPostId) ? data.comment.length + temCmnt.length : data.comment.length : ''}}</span></div>
 							<div *ngIf="data.comment.length === 0">Comment<span>{{data.comment.length === 0 ? (data._id === tempPostId) ? data.comment.length + temCmnt.length : '' :data.comment.length }}</span></div>
 						</button>
-						<button class="share_sec" *ngIf="current_user['data']._id !== data.userId">
+						<button class="share_sec_{{data._id}} share_sec" (click)="share(data._id)" *ngIf="current_user['data']._id !== data.userId">
 							<i class="far fa-share"></i>
-							<div>Share<span>7</span></div>
+							<div *ngIf="data.share.length !== 0">Share <span> {{data.share.length}} </span> </div>
+							<div *ngIf="data.share.length === 0">Share</div>
 						</button>
+						<div class="sharing_container_{{data._id}} sharing_container" style="display: none;">
+							<div class="share_users" *ngFor="let friend of friends">
+								<div class="user_profile" (click)="sharing(data._id, friend._id, friend.name)" style="cursor: pointer;">
+									<img [src]="friend.profileImgURl" onerror="this.src='/assets/images/default_user.jpg';" alt="profileImage" width="40px" height="40px">
+									<p>{{friend.name}}</p>
+								</div>
+								<div class="share_icon">
+									<a class="share_sec" (click)="sharing(data._id, friend._id, friend.name)">
+										<i class="fa fa-share"></i>
+									</a>	
+								</div>
+							</div>
+						</div>
 					</div>
+
+
 
 					<div class="write_comments">
 					<form (ngSubmit)="addComments(data._id, name, profileImg)" [(formGroup)]="commentsForm">

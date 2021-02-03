@@ -64,8 +64,9 @@
         <div>Like<span id="count_{{data._id}}">{{data.like.length === 0 ? '' : data.like.length}}</span></div>
       </button>
 
+      <!-- <div class="tooltiptext" *ngIf="data.like.length === 0 ? '' : data.like.length"> -->
       <div class="tooltiptext" *ngIf="data.like.length > 0">
-        <div *ngFor="let like of data.like">
+        <div *ngFor="let like of data.like; let i = index; trackBy: trackByFn" >
           {{like.name}}
         </div>
       </div>
@@ -75,7 +76,7 @@
         <div *ngIf="data.comment.length !== 0">Comment<span>{{data.comment.length !== 0 ? (data._id === tempPostId) ? data.comment.length + temCmnt.length : data.comment.length : ''}}</span></div>
 				<div *ngIf="data.comment.length === 0">Comment<span>{{data.comment.length === 0 ? (data._id === tempPostId) ? data.comment.length + temCmnt.length : '' :data.comment.length }}</span></div>
       </button>
-      <button class="share_sec" *ngIf="!current_user_profile">
+      <button class="share_sec" (click)="sharing(data._id)" *ngIf="!current_user_profile">
         <i class="far fa-share"></i>
         <div>Share<span>7</span></div>
       </button>
@@ -121,7 +122,9 @@
     </div>
   </div>
 </div>
+<div class="loads_btn">
 <button class="load_btn" (click)="loadMore()">Load more</button>
+</div>
 </ng-container>
 <ng-container *ngIf="notfound == 404">
   <div class="main_post_content d-flex flex-column">

@@ -255,6 +255,16 @@ export class AuthService {
     )
   }
 
+  sharingPosts(u_token, postId, receiverId): Observable<any> {
+    return this.httpClient.post(`${environment.apiUrl}/api/photos/share`, {postId: postId, receiverId: receiverId}, {headers: {token: u_token}}).pipe(
+      map((res: Response) => {
+        console.log("res", res);
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
   acceptFriendRequest(userId, confirmId): Observable<any> {
     return this.httpClient.post(`${environment.apiUrl}/api/friend/accept`, {userId: userId, requestId: confirmId}, {headers: this.headers}).pipe(
       map((res: Response) => {
@@ -359,7 +369,7 @@ export class AuthService {
     )
   }
 
-  getFriends(userId): Observable<any> {
+    getFriends(userId): Observable<any> {
     return this.httpClient.get(`${environment.apiUrl}/api/friend/show?userId=${userId}`, { headers: this.headers}).pipe(
       map((res: Response) => {
         return res || {}

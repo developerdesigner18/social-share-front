@@ -88,6 +88,14 @@ header{
 	font-size: 14px;
 }
 
+body .ng-image-fullscreen-view .lightbox-wrapper .lightbox-div .lightbox-image-main .lightbox-image .custom-image-main {
+    background-color: #0F1B31;
+}
+body .ng-image-fullscreen-view .lightbox-wrapper .close {
+    background-image: url(../src/assets/images/close.png);
+	background-color: #0f1b31;
+}
+
 .icon-password {
 	top: 24px;
 	position: absolute !important;
