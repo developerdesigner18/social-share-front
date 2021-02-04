@@ -90,6 +90,9 @@
 					<a href="profile/{{frddetail._id}}"> <div>{{frddetail.name}}</div></a>
 				</div>
 			</div>
+			<div class="photos_container_all w_100 see-all-images" *ngIf="frdDetails.length > 10">
+				<button onclick="document.body.scrollTop=500;document.documentElement.scrollTop=500;event.preventDefault()" class="edit-button see-all-button" [routerLink]="['friends']">See All</button>
+			</div>
 			<div *ngIf="notAnyFrd">
 				<div class="a_friend">
 					<div><h6>No Friends</h6></div>

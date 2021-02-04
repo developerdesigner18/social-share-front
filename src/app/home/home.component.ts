@@ -70,6 +70,8 @@ export class HomeComponent implements OnInit {
   @ViewChild('nav') slider: NgImageSliderComponent;
   count_cmt: any;
   check_temp: boolean;
+  totalDisplayed: any;
+  show_load_more: boolean = true;
 
   constructor(
     public authService: AuthService,
@@ -79,6 +81,27 @@ export class HomeComponent implements OnInit {
     public router: Router,
     private route: ActivatedRoute
   ) {
+    this.totalDisplayed = 10;
+
+    $(document).ready(function(){
+      setTimeout(function(){
+         $(".load_more").show();
+       }, 5000);
+    });
+// bottom to top btn
+    var btn = $('#button_top');
+
+$(window).scroll(function() {
+  if ($(window).scrollTop() > 300) {
+    // btn.addClass('show');
+    $("#button_top").addClass("show");
+  } else {
+    $("#button_top").removeClass('show');
+  }
+});
+
+    // end here
+    
     let id = this.activatedRoute.snapshot.paramMap.get('id');
     this.authService.getUserHome(id).subscribe(res => {
       this.id = res.data._id
@@ -98,6 +121,9 @@ export class HomeComponent implements OnInit {
         console.log("-=-=-=-=-Welcome to social share")
       }else{
         this.datas = res.posts        
+        if (this.datas.length < 10) {
+          this.show_load_more = false
+        }
         const { image, thumbImage, alt, title } = res.posts;
         for(let i = 0; i < this.datas.length; i++){
           const images = []
@@ -134,6 +160,7 @@ export class HomeComponent implements OnInit {
         return this.datas
       }
     })
+
 
     this.authService.getAllFriends(localStorage.getItem("token")).subscribe(res => {
       this.allUsers = res.AllUser[0]
@@ -303,6 +330,15 @@ export class HomeComponent implements OnInit {
     } else {
     }
   }
+
+  loadMore() {
+    this.totalDisplayed += 10;  
+    console.log("this.totalDisplayed", this.totalDisplayed);
+    console.log("this.datas.length", this.datas.length);
+    if (this.totalDisplayed >= this.datas.length) {
+      this.show_load_more = false
+    }
+  };
 
   temCmnt = [];
   tempPostId = '';

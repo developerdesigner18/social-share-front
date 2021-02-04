@@ -17,6 +17,16 @@ button, input {
 .work_tab h6 {
     font-size: 14px;
   }
+.one_image .ng-image-slider .ng-image-slider-container .main .main-inner .img-div img {
+    object-fit: contain;
+    border-radius: 0;
+}
+  .one_image  .ng-image-slider .ng-image-slider-container .main .main-inner .img-div video  {
+    border-radius: 0;
+}
+.one_image .ng-image-slider .ng-image-slider-container .main .main-inner .img-div{
+    box-shadow: none;
+}
 
 .photos_section .ng-image-slider .ng-image-slider-container .main .main-inner {
     display: grid;
@@ -744,7 +754,7 @@ button.comment_sec {
     position: relative;
 }
 .commenter {
-    font-size: 16px !important;
+    font-size: 14px !important;
     line-height: 1.2;
 }
 .comment_user div {
@@ -778,9 +788,13 @@ button.comment_sec {
     position: relative;
 }
 .commenter {
-    font-size: 16px !important;
+    font-size: 14px !important;
     line-height: 1.2;
 }
+
+/* .custom-image-main img {
+    height: auto !important;
+} */
 .comment_user div {
     margin-left: 10px;
     font-size: 13px;
@@ -956,7 +970,7 @@ button.comment_sec {
     width: 204px !important;
 } */
 .ng-image-fullscreen-view .lightbox-wrapper .lightbox-div .next, .ng-image-fullscreen-view .lightbox-wrapper .lightbox-div .prev {
-	padding-top: 0px !important;
+	padding-top: 5px !important;
 }
 
 .slider_image_5 > div > div > div >.main-inner > div:nth-child(4):before {
@@ -972,7 +986,7 @@ button.comment_sec {
     justify-content: center;
     align-items: center;
     padding: 5px 10px;
-    font-size: 18px;
+    font-size: 30px;
     text-shadow: 0 0 3px #00000030;
 }
 

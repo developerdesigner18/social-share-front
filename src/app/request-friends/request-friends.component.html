@@ -118,31 +118,31 @@
           <!-- <div class="owl-carousel owl-theme" id="owl-demo" *ngIf="data.imageUrl.length > 0"> -->
             <!-- <div class="item" *ngFor="let imageurl of data.imageUrl"> -->
             <div *ngIf="data.imageUrl.length == 1">
-              <div class="item timeline_section">
+              <div class="item timeline_section one_image">
   						  <ng-image-slider [imageSize]="{width: '100%', height: '320px'}"  [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
               </div>
             </div>
   					<div *ngIf="data.imageUrl.length == 2">
   						<div class="item timeline_section" >
-  							<ng-image-slider [autoSlide]=0 [imageSize]="{width: '50%'}" [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
+  							<ng-image-slider [autoSlide]=0 [imageSize]="{width: '49.5%'}" [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
   						</div>
   					</div>
   					<div *ngIf="data.imageUrl.length == 3">
   						<div class="item timeline_section" *ngIf="data.imageUrl[0].size == 100">
-  							<ng-image-slider [autoSlide]=0 [imageSize]="{width: (data.imageUrl[0].size == 100) ? '100%' : '50%'}" animationSpeed=0.1 [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
-  							<ng-image-slider [autoSlide]=0 [imageSize]="{width: '50%', height: 200}" [showArrow]=false class="slider_image_2" [images]="data.imageUrl" #nav></ng-image-slider>
+  							<ng-image-slider [autoSlide]=0 [imageSize]="{width: '49.5%'}" animationSpeed=0.1 [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
+  							<ng-image-slider [autoSlide]=0 [imageSize]="{width: '49.5%'}" [showArrow]=false class="slider_image_2" [images]="data.imageUrl" #nav></ng-image-slider>
   						</div>
   					</div>
   					<div *ngIf="data.imageUrl.length == 4">
   						<div class="item timeline_section">
-  							<ng-image-slider [autoSlide]=0 [imageSize]="{width: '50%'}" [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
-  							<ng-image-slider [autoSlide]=0 [imageSize]="{width: '50%', height: 238}" [showArrow]=false class="slider_image_4" [images]="data.imageUrl" #nav></ng-image-slider>
+  							<ng-image-slider [autoSlide]=0 [imageSize]="{width: '49.5%'}" [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
+  							<ng-image-slider [autoSlide]=0 [imageSize]="{width: '49.5%'}" [showArrow]=false class="slider_image_4" [images]="data.imageUrl" #nav></ng-image-slider>
   						</div>
   					</div>
   					<div *ngIf="data.imageUrl.length > 4">
   						<div class="item timeline_section">
-  							<ng-image-slider [autoSlide]=0 [imageSize]="{width: '50%'}" [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
-  							<ng-image-slider [autoSlide]=0 [imageSize]="{width: '50%', height: 238}" [showArrow]=false class="slider_image_5" [images]="data.imageUrl" title="more" #nav></ng-image-slider>
+  							<ng-image-slider [autoSlide]=0 [imageSize]="{width: '49.5%'}" [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
+  							<ng-image-slider [autoSlide]=0 [imageSize]="{width: '49.5%'}" [showArrow]=false class="slider_image_5" [images]="data.imageUrl" title="more" #nav></ng-image-slider>
   						</div>
   					</div>
           <!-- </div> -->

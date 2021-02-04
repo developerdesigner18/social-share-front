@@ -133,6 +133,109 @@ img.logout {
     align-items: center;
     border-radius: 4px;
 }
+button.load_btn {
+    font-family: 'Josefin Sans', sans-serif;
+    width: 100%;
+    border-radius: 4px;
+    padding: 3px;
+    margin-top: 15px;
+    border: 0;
+    background: #0f1b31;
+    color: white;
+    margin-bottom: 20px;
+    display: none;
+}
+.load_btn {
+    padding: 10px !important;
+    margin-top: 0 !important;
+    display: flex;
+    justify-content: center;
+}
+.load_more{
+    overflow: hidden;
+	box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+	transform: translatey(0px);
+    animation: float 2s ease-in-out infinite;
+    cursor: pointer;
+    background: none;
+    display: none;
+    border-radius: 50%;
+    padding: 10px;
+}
+@keyframes float {
+	0% {
+		box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+		transform: translatey(0px);
+	}
+	50% {
+		box-shadow: 0 25px 15px 0px rgba(0,0,0,0.2);
+		transform: translatey(-20px);
+	}
+	100% {
+		box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+		transform: translatey(0px);
+	}
+}
+.loads_btn {
+    margin: 20px 80px 20px 80px;
+    background: none !important;
+    box-shadow: none !important;
+    padding-top: 20px;
+}
+
+.one_image .ng-image-slider .ng-image-slider-container .main .main-inner .img-div img {
+    object-fit: contain;
+}
+.one_image .ng-image-slider .ng-image-slider-container .main .main-inner .img-div{
+    box-shadow: none;
+}
+.two_image .ng-image-slider .ng-image-slider-container .main .main-inner .img-div img, .ng-image-slider .ng-image-slider-container .main .main-inner .img-div video{
+    border-radius: 4px !important;
+}
+.three_image .ng-image-slider .ng-image-slider-container .main .main-inner .img-div img, .ng-image-slider .ng-image-slider-container .main .main-inner .img-div video{
+    border-radius: 4px !important;
+}
+.four_image .ng-image-slider .ng-image-slider-container .main .main-inner .img-div img, .ng-image-slider .ng-image-slider-container .main .main-inner .img-div video{
+    border-radius: 4px !important;
+}
+
+/* Bottom to top button */
+#button_top {
+    display: inline-block;
+    background-color: #0F1B31;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    border-radius: 4px;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    transition: background-color .3s, 
+      opacity .5s, visibility .5s;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1000;
+  }
+  #button_top::after {
+    content: "\f077";
+    font-family: FontAwesome;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 2em;
+    line-height: 50px;
+    color: #fff;
+  }
+  #button_top:hover {
+    cursor: pointer;
+    background-color: #333;
+  }
+  #button_top:active {
+    background-color: #555;
+  }
+  #button_top.show {
+    opacity: 1;
+    visibility: visible;
+  }
 
 
 .main_area_contents{
@@ -899,16 +1002,19 @@ a.my_post_links:hover div > div {
     margin-bottom: 10px;
 }
 .commenter {
-    font-size: 18px !important;
+    font-size: 15px !important;
     line-height: 1.2;
     color: #0f1b31;
 }
+/* .custom-image-main img {
+    height: auto !important;
+} */
 .comment_here {
     background: #ffffff;
     border-radius: 4px;
     margin-top: 10px;
     padding: 5px;
-    font-size: 15px !important;
+    font-size: 14px !important;
     color: #0f1b31;
 }
 .province img {

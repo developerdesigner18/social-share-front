@@ -14,6 +14,11 @@ html{
     background: #0F1B31;
     color: #f0f8ff;
 }
+
+.user_friend img {
+    height: 50px;
+    width: 50px;
+}
 button.load_btn {
     font-family: 'Josefin Sans', sans-serif;
     width: 100%;
@@ -24,19 +29,51 @@ button.load_btn {
     background: #0f1b31;
     color: white;
     margin-bottom: 20px;
-}
-.user_friend img {
-    height: 50px;
-    width: 50px;
+    display: none;
 }
 .load_btn {
     padding: 10px !important;
     margin-top: 0 !important;
+    display: flex;
+    justify-content: center;
+}
+.load_more{
+    overflow: hidden;
+	box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+	transform: translatey(0px);
+    animation: float 2s ease-in-out infinite;
+    cursor: pointer;
+    background: none;
+    display: none;
+    border-radius: 50%;
+    padding: 10px;
+}
+@keyframes float {
+	0% {
+		box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+		transform: translatey(0px);
+	}
+	50% {
+		box-shadow: 0 25px 15px 0px rgba(0,0,0,0.2);
+		transform: translatey(-20px);
+	}
+	100% {
+		box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+		transform: translatey(0px);
+	}
 }
 .loads_btn {
     margin: 20px 80px 20px 80px;
     background: none !important;
     box-shadow: none !important;
+}
+
+.one_image .ng-image-slider .ng-image-slider-container .main .main-inner .img-div img {
+    object-fit: contain;
+}
+.one_image .ng-image-slider .ng-image-slider-container .main .main-inner .img-div{
+    box-shadow: none;
+    border: 0;
 }
 button.btn.cancel_btn {
     border: 1px solid #0F1B31;
@@ -791,7 +828,7 @@ button.owl-next span {
     position: relative;
 }
 .commenter {
-    font-size: 16px !important;
+    font-size: 14px !important;
     line-height: 1.2;
 }
 .comment_user div {
@@ -814,7 +851,7 @@ button.owl-next span {
     border-radius: 50%;
     object-fit: cover;
 }
-.comment_user div {
+/* .comment_user div {
     margin-left: 10px;
     font-size: 13px;
     position: relative;
@@ -823,14 +860,17 @@ button.owl-next span {
     margin-left: 10px;
     font-size: 13px;
     position: relative;
-}
+} */
 .commenter {
     font-size: 16px !important;
     line-height: 1.2;
 }
+/* .custom-image-main img {
+    height: auto !important;
+} */
 .comment_user div {
     margin-left: 10px;
-    font-size: 13px;
+    font-size: 14px;
     position: relative;
 }
 .comment_here {

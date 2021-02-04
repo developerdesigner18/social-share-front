@@ -403,6 +403,9 @@ a.my_post_links:hover div > div {
         flex-wrap: wrap;
         padding: 15px 0;
     }
+    .main_area {
+        margin-left: 0;
+    }
     .ads {
         margin-top: 15px;
         flex-basis: 100%;

@@ -32,30 +32,30 @@
     </div>
   </div>
   <div class="slider_bid_like-share d-flex flex-column" style="width: 100%">
-    <div *ngIf="data.imageUrl.length == 1">
+    <div class="one_image" *ngIf="data.imageUrl.length == 1">
       <ng-image-slider [imageSize]="{width: '100%', height: '320px'}" [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
     </div>
     <div *ngIf="data.imageUrl.length == 2">
       <div class="item" >
-        <ng-image-slider [autoSlide]=0 [imageSize]="{width: '50%'}" [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
+        <ng-image-slider [animationSpeed]="0.3" [autoSlide]=0 [imageSize]="{width: '49%'}" [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
       </div>
     </div>
     <div *ngIf="data.imageUrl.length == 3">
       <div class="item" *ngIf="data.imageUrl[0].size == 100">
-        <ng-image-slider [autoSlide]=0 [imageSize]="{width: (data.imageUrl[0].size == 100) ? '100%' : '50%'}" [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
-        <ng-image-slider [autoSlide]=0 [imageSize]="{width: '50%', height: 200}" [showArrow]=false class="slider_image_2" [images]="data.imageUrl" #nav></ng-image-slider>
+        <ng-image-slider [animationSpeed]="0.3" [autoSlide]=0 [imageSize]="{width: '49%'}" [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
+        <ng-image-slider [animationSpeed]="0.3" [autoSlide]=0 [imageSize]="{width: '49%', height: 200}" [showArrow]=false class="slider_image_2" [images]="data.imageUrl" #nav></ng-image-slider>
       </div>
     </div>
     <div *ngIf="data.imageUrl.length == 4">
       <div class="item">
-        <ng-image-slider [autoSlide]=0 [imageSize]="{width: '50%'}" [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
-        <ng-image-slider [autoSlide]=0 [imageSize]="{width: '50%', height: 238}" [showArrow]=false class="slider_image_4" [images]="data.imageUrl" #nav></ng-image-slider>
+        <ng-image-slider [animationSpeed]="0.3" [autoSlide]=0 [imageSize]="{width: '49%'}" [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
+        <ng-image-slider [animationSpeed]="0.3" [autoSlide]=0 [imageSize]="{width: '49%', height: 238}" [showArrow]=false class="slider_image_4" [images]="data.imageUrl" #nav></ng-image-slider>
       </div>
     </div>
     <div *ngIf="data.imageUrl.length > 4">
       <div class="item">
-        <ng-image-slider [autoSlide]=0 [imageSize]="{width: '50%'}" [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
-        <ng-image-slider [autoSlide]=0 [imageSize]="{width: '50%', height: 238}" [showArrow]=false class="slider_image_5" [images]="data.imageUrl" title="more" #nav></ng-image-slider>
+        <ng-image-slider [animationSpeed]="0.3" [autoSlide]=0 [imageSize]="{width: '49%'}" [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
+        <ng-image-slider [animationSpeed]="0.3" [autoSlide]=0 [imageSize]="{width: '49%', height: 238}" [showArrow]=false class="slider_image_5" [images]="data.imageUrl" title="more" #nav></ng-image-slider>
       </div>
     </div>
     <div [ngClass]="current_user_profile ? 'no_share_action' : 'take_action'">
@@ -123,7 +123,10 @@
   </div>
 </div>
 <div class="loads_btn">
-<button class="load_btn" (click)="loadMore()">Load more</button>
+  <!-- <button *ngIf="show_load_more" class="load_btn" (click)="loadMore()">Load more</button> -->
+  <div *ngIf="show_load_more" class="load_btn" (click)="loadMore()">
+    <img class="load_more" src="../../assets/images/down-arrow.png" width="50px" height="50px" alt="load more" title="load more">
+  </div>
 </div>
 </ng-container>
 <ng-container *ngIf="notfound == 404">

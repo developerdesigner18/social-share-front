@@ -37,6 +37,7 @@ export class TimelineComponent implements OnInit {
   removelike = 0;
   objVal = [];
   totalDisplayed: any;
+  show_load_more: boolean = true;
 
   postlikeId = [];
   commentsForm: FormGroup;
@@ -86,6 +87,11 @@ export class TimelineComponent implements OnInit {
 
     this.totalDisplayed = 10;
 
+    $(document).ready(function(){
+      setTimeout(function(){
+         $(".load_more").show();
+       }, 5000);
+   });
    
 
     const user = JSON.parse(localStorage.getItem('currentUser'));
@@ -109,6 +115,10 @@ export class TimelineComponent implements OnInit {
     this.authService.getProfilePost(this.id).subscribe(res => {
       if(res.length > 0){
         this.dataas = res
+
+        if (this.dataas.length < 10) {
+          this.show_load_more = false
+        }
         this.datas = [...this.dataas];
         const { image, thumbImage, alt, title, name, description } = res;
         for(let i = 0; i < this.datas.length; i++){
@@ -133,6 +143,7 @@ export class TimelineComponent implements OnInit {
         this.notfound = res.code
       }
     })
+
 
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if(currentUser.data._id == this.id){
@@ -161,7 +172,9 @@ export class TimelineComponent implements OnInit {
 
   loadMore() {
     this.totalDisplayed += 10;  
-    console.log("this.totalDisplayed", this.totalDisplayed  )
+    if (this.totalDisplayed >= this.dataas.length) {
+      this.show_load_more = false
+    }
   };
 
   sharing(postId) { 
