@@ -13,6 +13,7 @@ import { User } from './user';
 import { DialogErrorComponent } from './dialog-error/dialog-error.component';
 import { DialogEmailErrorComponent } from './dialog-email-error/dialog-email-error.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,7 @@ export class AuthService {
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   currentUser = {};
 
-  constructor(private httpClient: HttpClient, public router: Router, public dialog: MatDialog, private injector: Injector){ }
+  constructor(private httpClient: HttpClient, public router: Router, public dialog: MatDialog, private injector: Injector, private toastr: ToastrService){ }
 
   redirectUrl: string;
 
@@ -860,7 +861,8 @@ export class AuthService {
   private handleError(error: HttpErrorResponse) {
     let msg = '';
     if(error.error.message == 'friend request already sent or recive either you are already friends'){
-      alert('Request already send')
+      // alert('Request already send')
+      this.toastr.info('Request already send');
     }else if(error.error.success == false && error.error.message == 'email in not registered'){
       this.dialog.open(DialogEmailErrorComponent, {
         width: '500px'
@@ -873,9 +875,7 @@ export class AuthService {
       console.error(`Backend returned code ${error.status}, ` + `body was: ${error.error}`);
       msg = 'Backend returned code ${error.status}, ` + `body was: ${error.error}'
       if(error.status == 500){
-        this.dialog.open(DialogErrorComponent, {
-          width: '420px'
-        })
+        this.toastr.error('Authentication is failed. Please check your email and paswword.');
       }
     }
     return throwError(msg);

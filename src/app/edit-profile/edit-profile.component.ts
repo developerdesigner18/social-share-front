@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA, MatDialog} from  '@angular/material/dial
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { DialogEditSuccessComponent } from '../dialog-edit-success/dialog-edit-success.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-edit-profile',
@@ -40,7 +41,8 @@ export class EditProfileComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public  data:  any,
     public formBuilder: FormBuilder,
     public authService: AuthService,
-    public  dialog:  MatDialog
+    public dialog: MatDialog,
+    public toastr: ToastrService
   ) {
     this.profileForm = this.formBuilder.group({
       userId: window.location.href.split('/')[4],
@@ -75,9 +77,10 @@ export class EditProfileComponent implements OnInit {
     this.authService.profileUpdate(this.profileForm.value).subscribe((res) => {
      if (!res.result) {
        this.dialogRef.close();
-       this.dialog.open(DialogEditSuccessComponent, {
-         width: '400px'
-       })
+      //  this.dialog.open(DialogEditSuccessComponent, {
+      //    width: '400px'
+      //  })
+       this.toastr.success("Your profile has been saved successfully.")
      }
    })
   }

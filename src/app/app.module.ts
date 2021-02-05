@@ -53,6 +53,10 @@ import { AlbumsComponent } from './albums/albums.component';
 // import { TimeAgoPipe } from 'time-ago-pipe';
 import { TimeagoModule } from 'ngx-timeago';
 import { NotificationsComponent } from './notifications/notifications.component';
+// Emoji
+import { PickerModule } from '@ctrl/ngx-emoji-mart'
+// toast message
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -110,7 +114,9 @@ import { NotificationsComponent } from './notifications/notifications.component'
     MatIconModule,
     MatNativeDateModule,
     MatInputModule,
-    TimeagoModule.forRoot()
+    TimeagoModule.forRoot(),
+    PickerModule,
+    ToastrModule.forRoot()
     ],
   providers: [
     {

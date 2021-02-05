@@ -2,6 +2,8 @@ import { Component, OnInit, Inject, ViewChild, ElementRef, QueryList, ViewChildr
 import { MatDialogRef, MAT_DIALOG_DATA } from  '@angular/material/dialog';
 import { AuthService } from '../auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+
 declare var jQuery: any;
 declare var $: any;
 
@@ -44,6 +46,7 @@ export class PostModalComponent implements OnInit {
     public authService: AuthService,
     private activatedRoute: ActivatedRoute,
     public router: Router,
+    public toastr: ToastrService
   ) {
     this.authService.getProfileforAbout(data.id).subscribe(res => {
       this.name =  res.data.name
@@ -87,32 +90,41 @@ export class PostModalComponent implements OnInit {
 
   postSave(){
     this.token = localStorage.getItem('token')
-    if(this.postImageElement){
+    if (this.postImageElement) {        
       if(this.fileData[0] !== undefined)
       {
         this.arrayfile = this.fileData[0]
       }else{
         this.arrayfile = this.fileData
-      }
+        }
+      
       let arrayRemoveNull = this.arrayfile.filter(e => e)
-      for(let i = 0; i < arrayRemoveNull.length; i++){
-        this.fileCovToReturn.push(this.base64ToFile(
-          this.images[i],
-          arrayRemoveNull[i].name,
-        ))
-        var reader = new FileReader();
-        reader.readAsDataURL(this.fileCovToReturn[i]);
-      }
-
-      reader.onload = (_event) => {
-        this.authService.newPost(this.token, this.postMesssgeElement.nativeElement.value, this.fileCovToReturn).subscribe((res) => {
-          if(window.location.href.split('/')[3] == "home"){
-            window.location.replace('home/' + window.location.href.split('/')[4]);
-          }else{
-            window.location.replace('profile/' + window.location.href.split('/')[4]);
+      if (arrayRemoveNull[0].name.split('.').pop() !== 'png') {
+          for (let i = 0; i < arrayRemoveNull.length; i++){
+            console.log("arrayRemoveNull", arrayRemoveNull);
+            this.fileCovToReturn.push(this.base64ToFile(
+              this.images[i],
+              arrayRemoveNull[i].name,
+            ))
+            var reader = new FileReader();
+            reader.readAsDataURL(this.fileCovToReturn[i]);
+            console.log("this.fileCovToReturn", this.fileCovToReturn[i]);  
           }
-        })
-      }
+        } else {
+          // alert("png is not supported");
+        this.toastr.info("png is not supported")
+          window.location.reload()
+        }
+        reader.onload = (_event) => {
+          this.authService.newPost(this.token, this.postMesssgeElement.nativeElement.value, this.fileCovToReturn).subscribe((res) => {
+            if(window.location.href.split('/')[3] == "home"){
+              window.location.replace('home/' + window.location.href.split('/')[4]);
+            }else{
+              window.location.replace('profile/' + window.location.href.split('/')[4]);
+            }
+          })
+        }
+      
     }else{
       if(this.postMesssgeElement.nativeElement.value == ''){
         console.log("You are not set description")

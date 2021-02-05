@@ -8,6 +8,8 @@
   <div class="no_mention" *ngIf="not_mention_life"><i class="fas fa-star-of-life"> </i>&nbsp; Not mention any life events</div>
   <div class="work" *ngIf="fill_life">
     <textarea class="text-area" (keyup.enter)="save_add_life(life)" type="text" [(ngModel)]="life" name="" value="" placeholder="Add life event"></textarea>
+    <button (click) ="toggleEmojiPicker()"> 😀 </button><br>
+<emoji-mart class="emoji-mart" set="{{set}}" *ngIf="showEmojiPicker" (emojiSelect)="addEmoji($event)" title="Pick your emoji…"></emoji-mart>
     <button type="button" name="button" (click)="save_add_life(life)">Save</button>
     <button type="button" name="button" (click)="Life_Cancel()">Cancel</button>
   </div>

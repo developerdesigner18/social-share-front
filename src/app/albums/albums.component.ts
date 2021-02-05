@@ -2,6 +2,7 @@ import { Component, OnInit, Inject, ViewChild, ElementRef, QueryList, ViewChildr
 import { MatDialogRef, MAT_DIALOG_DATA } from  '@angular/material/dialog';
 import { AuthService } from '../auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 declare var jQuery: any;
 declare var $: any;
 
@@ -45,6 +46,7 @@ export class AlbumsComponent implements OnInit {
     public authService: AuthService,
     private activatedRoute: ActivatedRoute,
     public router: Router,
+    private toastr: ToastrService
   ) { 
 
       // let id = this.activatedRoute.snapshot.paramMap.get('id');
@@ -110,7 +112,7 @@ export class AlbumsComponent implements OnInit {
         }
         
         if (this.postNameElement.nativeElement.value === '') {
-          alert("Please Fill the Album Name")
+          this.toastr.error('Please Fill the Album Name');
         } else {
           reader.onload = (_event) => {
             this.authService.newAlbumPost(this.token, this.postNameElement.nativeElement.value ,this.postMesssgeElement.nativeElement.value, this.fileCovToReturn).subscribe((res) => {              

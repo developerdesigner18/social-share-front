@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { DatePipe } from '@angular/common'
+import { Emoji } from '@ctrl/ngx-emoji-mart/ngx-emoji';
+
 
 @Component({
   selector: 'app-life',
@@ -23,6 +25,7 @@ export class LifeComponent implements OnInit {
   data_id: any;
   friendid: string;
   myDate: any = new Date();
+  emojiForm: any;
   constructor(
     public router: Router,
     public authService: AuthService,
@@ -77,9 +80,45 @@ export class LifeComponent implements OnInit {
         })
       }
     }
+    
    }
 
   ngOnInit(): void {
+  }
+  message = '';
+  showEmojiPicker = false;
+  sets = [
+    'native',
+    'google',
+    'twitter',
+    'facebook',
+    'emojione',
+    'apple',
+    'messenger'
+  ]
+  set = 'twitter';
+  toggleEmojiPicker() {
+    console.log(this.showEmojiPicker);
+        this.showEmojiPicker = !this.showEmojiPicker;
+  }
+
+  addEmoji(event) {
+    // console.log(this.life)
+    const { life } = this;
+    // console.log(life);
+    // console.log(`${event.emoji.native}`)
+    const text = `${life}${event.emoji.native}`;
+
+    this.life = text;
+    // this.showEmojiPicker = false;
+  }
+
+  onFocus() {
+    console.log('focus');
+    this.showEmojiPicker = false;
+  }
+  onBlur() {
+    console.log('onblur')
   }
 
   
@@ -134,6 +173,10 @@ export class LifeComponent implements OnInit {
       }
     })
   }
+
+  
+
+
 
   newLifeEvent(){
     this.fill_life = true

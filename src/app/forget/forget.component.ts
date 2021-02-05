@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { MatDialog, MatDialogRef, MatDialogConfig } from  '@angular/material/dialog';
 import { DialogForgetComponent } from '../dialog-forget/dialog-forget.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-forget',
@@ -16,7 +17,8 @@ export class ForgetComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    public  dialog:  MatDialog
+    public dialog: MatDialog,
+    public toastr: ToastrService
   ) {
     this.forgetForm= this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]]
@@ -36,9 +38,10 @@ export class ForgetComponent implements OnInit {
     this.authService.forget(this.forgetForm.value).subscribe((res) => {
      if (!res.result) {
        this.forgetForm.reset()
-       this.dialog.open(DialogForgetComponent, {
-         width: '650px'
-       })
+      //  this.dialog.open(DialogForgetComponent, {
+      //    width: '650px'
+      //  })
+       this.toastr.info("Sent link in your email please check and get back into your account")
      }
      this.isSubmitted = false;
    })

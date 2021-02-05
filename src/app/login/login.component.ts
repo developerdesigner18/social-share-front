@@ -4,6 +4,8 @@ import { AuthService } from '../auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatDialog } from  '@angular/material/dialog';
 import { DialogErrorComponent } from '../dialog-error/dialog-error.component';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-login',
@@ -22,7 +24,8 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private authService: AuthService,
     public router: Router,
-    public dialog:  MatDialog
+    public dialog: MatDialog,
+    public toastr: ToastrService
   ) {
     this.show = false;
   }
@@ -42,9 +45,7 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     if(!this.loginForm.valid){
-      this.dialog.open(DialogErrorComponent, {
-        width: '420px'
-      })
+      this.toastr.error("Authentication is failed. Please check your email and paswword.")
     }
     this.authService.login(this.email.value, this.password.value).subscribe(() => {});
     if (this.authService.isLoggedIn() !== true) {
