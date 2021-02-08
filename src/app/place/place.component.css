@@ -20,6 +20,13 @@ button{
     height: 38px;
     padding: 0px 9px;
 }
+.u_home button {
+  margin: 0 10px;
+}
+.u_home {
+  display: flex;
+  width: 100%;
+}
 
 .add-city{
   margin-top: 5px;

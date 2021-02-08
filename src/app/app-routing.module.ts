@@ -66,7 +66,7 @@ const routes: Routes = [
           { path: '', redirectTo:'overview', pathMatch:"full" }
         ]
       },
-      { path: 'photos', component: PhotosComponent },
+      { path: 'profile/:id/photos', component: PhotosComponent },
       { path: 'videos', component: VideosComponent },
       { path: 'friends', component: FriendsComponent }
       // { path: '', redirectTo:'friends/:id', pathMatch:"full" }
@@ -74,7 +74,7 @@ const routes: Routes = [
   },
   { path: 'home/:id', component: HomeComponent, canActivate:[AuthGuard]},
   { path: 'search/:id', component: SearchComponent, canActivate:[AuthGuard]},
-  { path: 'peopleknow/:id', component: PeopleKnowComponent, canActivate:[AuthGuard]}
+  { path: 'peopleknow/:id', component: PeopleKnowComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

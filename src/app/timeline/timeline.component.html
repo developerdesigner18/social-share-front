@@ -49,13 +49,13 @@
     <div *ngIf="data.imageUrl.length == 4">
       <div class="item">
         <ng-image-slider [animationSpeed]="0.3" [autoSlide]=0 [imageSize]="{width: '49%'}" [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
-        <ng-image-slider [animationSpeed]="0.3" [autoSlide]=0 [imageSize]="{width: '49%', height: 238}" [showArrow]=false class="slider_image_4" [images]="data.imageUrl" #nav></ng-image-slider>
+        <ng-image-slider [animationSpeed]="0.3" [autoSlide]=0 [imageSize]="{width: '49%'}" [showArrow]=false class="slider_image_4" [images]="data.imageUrl" #nav></ng-image-slider>
       </div>
     </div>
     <div *ngIf="data.imageUrl.length > 4">
       <div class="item">
         <ng-image-slider [animationSpeed]="0.3" [autoSlide]=0 [imageSize]="{width: '49%'}" [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
-        <ng-image-slider [animationSpeed]="0.3" [autoSlide]=0 [imageSize]="{width: '49%', height: 238}" [showArrow]=false class="slider_image_5" [images]="data.imageUrl" title="more" #nav></ng-image-slider>
+        <ng-image-slider [animationSpeed]="0.3" [autoSlide]=0 [imageSize]="{width: '49%'}" [showArrow]=false class="slider_image_5" [images]="data.imageUrl" title="more" #nav></ng-image-slider>
       </div>
     </div>
     <div [ngClass]="current_user_profile ? 'no_share_action' : 'take_action'">

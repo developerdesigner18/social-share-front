@@ -28,10 +28,10 @@
         <div class="write_words position-relative" >
           <!-- <input #textmsgPost type="text" placeholder="What is going on in your gaming world today !" (click)="openTextDialog($event)"> -->
           <div *ngIf="album_show  && user === id" class="show_images" (click)="openTextDialog($event)">
-            <img style="position: relative;top: 34%;" src="../../assets/images/plus.png" width="40px" height="40px" alt="add images" title="upload images" >
+            <img style="position: relative;top: 38%;" src="../../assets/images/plus.png" width="40px" height="40px" alt="add images" title="upload images" >
           </div>
           <div class="show_album_images" *ngFor="let data of album_urls">
-            <ng-image-slider [animationSpeed]="0.3" [imageSize]="{width: '40%', height: '20%'}" [showArrow]=false class="slider_image_photos" [images]="data.imageUrl"></ng-image-slider>
+            <ng-image-slider [animationSpeed]="0.3" [videoAutoPlay]="true" [imageSize]="{width: '40%', height: '20%'}" [showArrow]=false class="slider_image_photos" [images]="data.imageUrl"></ng-image-slider>
             <i (click)="delAlbum(data._id, data.name)" class="pencil-icon fa fa-trash" title="Delete Album"></i>
             <p class="album_names" >{{data.name}} </p>
           </div>

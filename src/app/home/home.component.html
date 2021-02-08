@@ -101,6 +101,11 @@
 							</div>
 							<div class="full-width-20">
 								<i class="fas fa-ellipsis-h" style="margin-left: 18px"></i>
+								<div class="dropdown">
+									<a href="#"><div>click here for a scam</div></a>
+									<a href="#"><div>even more scams</div></a>
+									<a href="#"><div>still some money left?</div></a>
+								  </div>
 							</div>
 						</div>
 					</div>
@@ -125,7 +130,7 @@
 								<div class="full-width-50" *ngIf="current_user['data']._id !== data.userId">
 									<i class="fa fa-comments-o" style="margin: 0px 11px 0px 23px"></i><div style="display: contents;">Message</div>
 								</div>
-								<div class="full-width-50" *ngIf="current_user['data']._id == data.userId">
+								<div class="full-width-50" *ngIf="current_user['data']._id == data.userId" (click)="showProfile()">
 									<i class="fa fa-comments-o" style="margin: 0px 11px 0px 10px"></i><div style="display: contents; font-size: 15px;">Edit Profile</div>
 								</div>
 								<div class="full-width-20" *ngIf="current_user['data']._id !== data.userId">
@@ -134,9 +139,17 @@
 								<div class="full-width-20" *ngIf="current_user['data']._id == data.userId" (click)="showProfile()" title="View as">
 									<i class="fas fa-eye" style="margin-left: 15px"></i>
 								</div>
-								<div class="full-width-20">
+								<!-- <div class="full-width-20">
 									<i class="fas fa-ellipsis-h" style="margin-left: 15px"></i>
-								</div>
+								</div> -->
+								<div class="dropdown-container full-width-20" tabindex="-1">
+									<div class="three-dots"></div>
+									<div class="dropdown">
+									  <a href="profile/{{data.userId}}/about"><div>About Me</div></a>
+									  <a href="profile/{{data.userId}}/photos"><div>Photos</div></a>
+									  <a href="profile/{{data.userId}}/videos"><div>Videos</div></a>
+									</div>
+								  </div>
 							</div>
 						</div>
 						<div style="color: #0F1B31;font-size: 14px;" *ngIf="data.name !== undefined">Album: {{data.name}} </div>

@@ -82,6 +82,7 @@ export class HomeComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     this.totalDisplayed = 10;
+    
 
     $(document).ready(function(){
       setTimeout(function(){
@@ -318,8 +319,6 @@ $(window).scroll(function() {
   showProfile(){
     window.location.replace('profile/' + this.id);
   }
-
-  
 
   sharing(postId, userId, user_name) { 
     if (confirm("You are sharing post with " + `${user_name}`)) {

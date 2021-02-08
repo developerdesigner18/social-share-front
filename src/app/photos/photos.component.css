@@ -337,5 +337,6 @@
     }
     .show_images img {
         margin: 35px;
+        top: 20% !important;
     }
 }

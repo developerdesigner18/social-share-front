@@ -103,6 +103,12 @@ header .ads {
     color: #f0f8ff;
     height: 70px;
 }
+.timeline_section .ng-image-slider .ng-image-slider-container .main .main-inner .img-div img, .ng-image-slider .ng-image-slider-container .main .main-inner .img-div video{
+    height: auto;
+}
+.one_image .ng-image-slider .ng-image-slider-container .main .main-inner .img-div img, .ng-image-slider .ng-image-slider-container .main .main-inner .img-div video{
+    height: 100%;
+}
 .basic_info2{
 	position: absolute;
 	z-index: 9;
@@ -1049,9 +1055,9 @@ button.comment_sec {
     display: none !important;
 }
 
-.ng-image-fullscreen-view .lightbox-wrapper .close {
+/* .ng-image-fullscreen-view .lightbox-wrapper .close {
     filter: invert(1) !important;
-}
+} */
 
 .ng-image-fullscreen-view .lightbox-wrapper .lightbox-div .next{
     right: 15px !important;

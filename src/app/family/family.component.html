@@ -17,8 +17,8 @@
   </div>
   <div class="no_mention" *ngIf="not_mention_relationship"><i class="fas fa-handshake-o handshake-d "> </i>&nbsp; Not mention RelationShip</div>
   <div class="mobile" *ngIf="status">
-    <select name="relationship" value="Status" [(ngModel)]="relationshipStatus">
-      <option value="Single">Single</option>
+    <select name="relationship" [(ngModel)]="relationshipStatus">
+      <option value="Single" selected="selected">Single</option>
       <option value="In a RelationShip">In a Relationship</option>
       <option value="Engaged">Engaged</option>
       <option value="Married">Married</option>
