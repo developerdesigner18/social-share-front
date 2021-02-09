@@ -406,7 +406,7 @@ body .profile_pic_main_tabs_sec .actions {
     margin: 25px 0;
 }
 .a_friend img {
-    width: 100%;
+    width: auto;
     height: 80px;
     border-radius: 4px;
     object-fit: cover;
@@ -414,7 +414,7 @@ body .profile_pic_main_tabs_sec .actions {
 }
 .a_friend div {
     font-size: 13px;
-    text-align: center;
+    /* text-align: center; */
     margin-top: 5px;
     font-weight: 500;
     color: #0F1B31;
@@ -890,6 +890,7 @@ button.owl-next span {
     margin-left: 10px;
     font-size: 14px;
     position: relative;
+    color: #0f1b31;
 }
 .notification_sec {
     position: sticky !important;
@@ -1527,7 +1528,7 @@ button.show_more_notifications {
 
 
 .showLikes:hover + .tooltiptext {
-	display: block !important;
+	display: block;
   opacity: 0.5;
 }
 

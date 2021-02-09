@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
-import { ActivatedRoute, Router} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+declare var jQuery: any;
+declare var $: any;
 
 @Component({
   selector: 'app-overview',
@@ -28,6 +30,7 @@ export class OverviewComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     public router: Router
   ) {
+    $(".right_sidebar").css("display", "block");
     if (this.router.url == '/friends/' + this.activatedRoute.parent.parent.params['value']['id'] + '/about/overview') {
       this.friendid = localStorage.getItem('friendId')
       this.authService.getProfileforAbout(this.friendid).subscribe(res => {

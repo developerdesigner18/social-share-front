@@ -666,9 +666,9 @@ img.slider_image {
     color: white;
   }
   
-  a div {
+  /* a div {
     padding: 2px;
-  }
+  } */
   .three-dots {
     display: flex;
     justify-content: center;

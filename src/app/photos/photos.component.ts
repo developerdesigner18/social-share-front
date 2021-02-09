@@ -4,7 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog} from  '@angular/material/dialog';
 import { PostModalComponent } from '../post-modal/post-modal.component';
 import { AlbumsComponent } from '../albums/albums.component';
-
+declare var jQuery: any;
+declare var $: any;
 
 
 @Component({
@@ -35,11 +36,16 @@ export class PhotosComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     public  dialog:  MatDialog,
   ) {
+    $(".right_sidebar").css("display", "block");
     this.token = localStorage.getItem('currentUser')
     this.id = this.activatedRoute.parent.params['value']['id'];
+
+    console.log("-=-=-=-=-=-=-id", this.id);
     
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    this.user = currentUser.data._id 
+    this.user = currentUser.data._id
+    console.log("-=-=-==-=-user id", this.user);
+    
     if (this.router.url === '/friends/' + this.activatedRoute.parent.params['value']['id'] + '/photos') {
       this.album_show = false
       this.authService.getAllPhotos(localStorage.getItem('friendId')).subscribe(res => {

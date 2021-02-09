@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
+declare var jQuery: any;
+declare var $: any;
 
 @Component({
   selector: 'app-videos',
@@ -18,6 +20,7 @@ export class VideosComponent implements OnInit {
     public router: Router,
     private activatedRoute: ActivatedRoute
   ) { 
+    $(".right_sidebar").css("display", "block");
     this.token = localStorage.getItem('token')
     this.id = this.activatedRoute.parent.params['value']['id'];
     if(this.router.url === '/friends/' + this.activatedRoute.parent.params['value']['id'] + '/videos'){

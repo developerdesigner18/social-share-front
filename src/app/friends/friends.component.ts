@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+declare var jQuery: any;
+declare var $: any;
 
 @Component({
   selector: 'app-friends',
@@ -29,6 +31,7 @@ export class FriendsComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     public router: Router
   ) {
+    $(".right_sidebar").css("display", "block");
     let id = this.activatedRoute.parent.params['value']['id'];
     this.url_id = this.activatedRoute.parent.params['value']['id'];
     if (localStorage.getItem('friendId')) {

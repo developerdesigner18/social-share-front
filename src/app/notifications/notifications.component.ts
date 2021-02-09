@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+declare var jQuery: any;
+declare var $: any;
 
 @Component({
   selector: 'app-notifications',
@@ -17,6 +19,7 @@ export class NotificationsComponent implements OnInit {
     public authService: AuthService,
     private activatedRoute: ActivatedRoute,
   ) {
+    $(".right_sidebar").css("display", "none");
     
     // let id = this.activatedRoute.parent.parent.params['value']['id'];
     const current_login_User = JSON.parse(localStorage.getItem('currentUser'));

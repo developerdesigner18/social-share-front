@@ -84,7 +84,8 @@ export class TimelineComponent implements OnInit {
     public formBuilder: FormBuilder,
     private cdr: ChangeDetectorRef,
   ) {
-
+    $(".right_sidebar").css("display", "block");
+    
     this.totalDisplayed = 10;
 
     $(document).ready(function(){
@@ -244,7 +245,8 @@ export class TimelineComponent implements OnInit {
 
   temLike = 0;
   likeIt(postId, likeCount){
-
+    console.log("=-=-=-=-=-=-likeIt", likeCount);
+    
     this.authService.sendLikePost(postId).subscribe(res => {
       if(res['success'])
       {
@@ -254,7 +256,8 @@ export class TimelineComponent implements OnInit {
           document.getElementById(postId).classList.remove('fa-thumbs-up')
           document.getElementById(postId).classList.add('fa-thumbs-o-up')
           this.temLike = likeCount - 1
-          this.temLike <= 0 ? document.getElementById('count_'+postId).innerHTML = '' : document.getElementById('count_'+postId).innerHTML = String(this.temLike);
+          this.temLike <= 0 ? document.getElementById('count_' + postId).innerHTML = '' : document.getElementById('count_' + postId).innerHTML = String(this.temLike);
+        console.log("temlike", this.temLike);
         }else {
           document.getElementById(postId).classList.add('fa-thumbs-up')
           this.temLike = likeCount + 1
@@ -266,7 +269,18 @@ export class TimelineComponent implements OnInit {
           }else{
             this.temLike = this.temLike + 1
           }
-          this.temLike <= 0 ? document.getElementById('count_'+postId).innerHTML = '' : document.getElementById('count_'+postId).innerHTML = String(this.temLike);
+          this.temLike <= 0 ? document.getElementById('count_' + postId).innerHTML = '' : document.getElementById('count_' + postId).innerHTML = String(this.temLike);
+        console.log("temlike", this.temLike);
+        }
+
+        if (this.temLike > 0) {
+          $('.tooltiptexts').css("display", "block");
+          // $('.showLikes:hover + .tooltiptext').css("display", "block");
+          // $(".tooltiptext").css("display", "block");
+        } else {
+          // $(".tooltiptext").css("display", "none");
+          $('.tooltiptexts').css("display", "none");
+          // $('.showLikes:hover + .tooltiptext').css("display", "none");
         }
       }
     })

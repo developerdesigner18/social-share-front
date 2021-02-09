@@ -22,7 +22,7 @@
 			<a [routerLink]="['videos']"><button id="videos" [routerLinkActive]="['active_tabs']">Videos</button></a>
 			<a [routerLink]="['friends']"><button id="friends" [routerLinkActive]="['active_tabs']">Friends</button></a>
 			<!-- <a [routerLink]="['more']"><button>More</button></a> -->
-			<div class="dropdown-container full-width-20" tabindex="-1">
+			<div *ngIf="cur_user === ids" class="dropdown-container full-width-20" tabindex="-1">
 				<div>More</div>
 				<div class="dropdown">
 				  <a [routerLink]="['notifications']"><div>Notifications</div></a>

@@ -65,9 +65,10 @@
       </button>
 
       <!-- <div class="tooltiptext" *ngIf="data.like.length === 0 ? '' : data.like.length"> -->
-      <div class="tooltiptext" *ngIf="data.like.length > 0">
-        <div *ngFor="let like of data.like; let i = index; trackBy: trackByFn" >
+      <div class="tooltiptext" *ngIf="data.like.length > 0 ">
+        <div class="tooltiptexts" *ngFor="let like of data.like; let i = index; trackBy: trackByFn" >
           {{like.name}}
+          <!-- <span [innerText]="like.name"></span> -->
         </div>
       </div>
 

@@ -87,10 +87,10 @@ export class UserProfileComponent implements OnInit {
     {
       console.log("-=-=-=-=-=-=-timepass")
       this.display = false
+      // $(".right_sidebar").css("display", "none");
     }
 
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    console.log("-=-=-=-current user", currentUser);
 
     this.cur_user = currentUser.data._id;
     

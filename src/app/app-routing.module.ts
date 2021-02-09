@@ -66,7 +66,7 @@ const routes: Routes = [
           { path: '', redirectTo:'overview', pathMatch:"full" }
         ]
       },
-      { path: 'profile/:id/photos', component: PhotosComponent },
+      { path: 'photos', component: PhotosComponent },
       { path: 'videos', component: VideosComponent },
       { path: 'friends', component: FriendsComponent }
       // { path: '', redirectTo:'friends/:id', pathMatch:"full" }
