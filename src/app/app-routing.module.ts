@@ -25,6 +25,7 @@ import { PeopleKnowComponent } from './people-know/people-know.component';
 import { AuthGuard } from "./auth.guard";
 import { VideosComponent } from './videos/videos.component';
 import { NotificationsComponent } from './notifications/notifications.component';
+import { AccountSettingComponent } from './account-setting/account-setting.component';
 
 const routes: Routes = [
   { path: '', component: AuthComponent },
@@ -74,7 +75,8 @@ const routes: Routes = [
   },
   { path: 'home/:id', component: HomeComponent, canActivate:[AuthGuard]},
   { path: 'search/:id', component: SearchComponent, canActivate:[AuthGuard]},
-  { path: 'peopleknow/:id', component: PeopleKnowComponent, canActivate: [AuthGuard] }
+  { path: 'peopleknow/:id', component: PeopleKnowComponent, canActivate: [AuthGuard] },
+  { path: 'account/:id', component: AccountSettingComponent}
 ];
 
 @NgModule({

@@ -1,0 +1,59 @@
+<app-header></app-header>
+
+<div class="main_container d-flex align-items-start">
+	<div class="left_sidebars">
+		<div class="profile_image">
+			<h3>Settings</h3>
+		</div>
+		<a class="my_post_links">
+			<div class="left_content">
+				<i class="fas fa-user"></i>
+				<div>General Settings</div>
+			</div>
+		</a>
+		<a class="my_post_links">
+			<div class="left_content">
+				<i class="fas fa-user"></i>
+				<div>Security and Login</div>
+			</div>
+		</a>
+		<a class="my_post_links">
+			<div class="left_content">
+				<i class="fas fa-user"></i>
+				<div>Your SocialShare Information</div>
+			</div>
+		</a>
+		
+	</div>
+    <div class="main_areas">
+        <div class="contain">
+            <div class="header">
+                <p>General Account Settings</p>
+            </div>
+            <div class="body">
+                <div class="setting_details" *ngIf="name_shows">
+                    <p>Name</p>
+                    <div class="name_show"> {{datas.name}} </div>
+                    <button type="button" name="button" (click)="edit_names()">Edit</button>
+                </div>
+                <div class="setting_details_hide" *ngIf="edit_name">
+                    <p>Name</p>
+                    <input #nameText type="text" [(ngModel)]="name" name="" [value]="datas.name">
+                    <button type="button" name="button" (click)="save_names(name)">Save</button>
+                    <button type="button" name="button" (click)="cancel_names()" >Cancel</button>
+                </div>
+                <div class="setting_details">
+                    <p>Username</p>
+                    <div class="username_show"> {{datas.userName}} </div>
+                    <button type="button" name="button">Edit</button>
+                </div>
+                <div class="setting_details">
+                    <p>Email</p>
+                    <div class="email_show"> {{datas.emailId}} </div>
+                    <button type="button" name="button">Edit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="right_sidebar"></div>
+    </div>

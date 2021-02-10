@@ -112,8 +112,10 @@ export class PostModalComponent implements OnInit {
           }
         } else {
           // alert("png is not supported");
-        this.toastr.info("png is not supported")
-          window.location.reload()
+          this.toastr.info("Oops png format is not supported used other format like jpg or jpeg")
+          setTimeout(() => {
+            window.location.reload();
+          }, 2500)
         }
         reader.onload = (_event) => {
           this.authService.newPost(this.token, this.postMesssgeElement.nativeElement.value, this.fileCovToReturn).subscribe((res) => {

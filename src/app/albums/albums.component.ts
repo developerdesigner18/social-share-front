@@ -101,14 +101,23 @@ export class AlbumsComponent implements OnInit {
           this.arrayfile = this.fileData
         }
         let arrayRemoveNull = this.arrayfile.filter(e => e)
-        for(let i = 0; i < arrayRemoveNull.length; i++){
-          this.fileCovToReturn.push(this.base64ToFile(
-            this.images[i],
-            arrayRemoveNull[i].name,
-          ))
-  
-          var reader = new FileReader();
-          reader.readAsDataURL(this.fileCovToReturn[i]);
+      if (arrayRemoveNull[0].name.split('.').pop() !== 'png') {
+          for (let i = 0; i < arrayRemoveNull.length; i++){
+            console.log("arrayRemoveNull", arrayRemoveNull);
+            this.fileCovToReturn.push(this.base64ToFile(
+              this.images[i],
+              arrayRemoveNull[i].name,
+            ))
+            var reader = new FileReader();
+            reader.readAsDataURL(this.fileCovToReturn[i]);
+            console.log("this.fileCovToReturn", this.fileCovToReturn[i]);  
+          }
+        } else {
+          // alert("png is not supported");
+        this.toastr.info("Oops png format is not supported used other format like jpg or jpeg")
+        setTimeout(() => {
+          window.location.reload();
+        }, 2500)
         }
         
         if (this.postNameElement.nativeElement.value === '') {

@@ -57,6 +57,7 @@ import { NotificationsComponent } from './notifications/notifications.component'
 import { PickerModule } from '@ctrl/ngx-emoji-mart'
 // toast message
 import { ToastrModule } from 'ngx-toastr';
+import { AccountSettingComponent } from './account-setting/account-setting.component';
 
 
 @NgModule({
@@ -93,6 +94,7 @@ import { ToastrModule } from 'ngx-toastr';
     VideosComponent,
     AlbumsComponent,
     NotificationsComponent,
+    AccountSettingComponent,
     // TimeAgoPipe
   ],
   entryComponents: [DialogBodyComponent],
