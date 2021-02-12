@@ -120,12 +120,12 @@ export class TimelineComponent implements OnInit {
         if (this.dataas.length < 10) {
           this.show_load_more = false
         }
-        this.datas = [...this.dataas];
+        this.datas = this.dataas
         const { image, thumbImage, alt, title, name, description } = res;
         for(let i = 0; i < this.datas.length; i++){
           this.description = this.datas[i].description;
           this.urls.push(this.datas[i].imageUrl)
-          this.likes = [...this.datas[i].like]
+          this.likes = this.datas[i].like
           for (let j = 0; j < this.datas[i].comment.length; j++){
             this.authService.getHomePostProfile(this.datas[i].comment[j].userId).subscribe(res => {
               this.datas[i].post_profileImg = res.data.profileImgURl
@@ -138,7 +138,6 @@ export class TimelineComponent implements OnInit {
             this.postlikeId.push(this.datas[i]._id)
           }
         }
-        this.cdr.detectChanges();
         return this.datas
       }else{
         this.notfound = res.code
@@ -167,8 +166,8 @@ export class TimelineComponent implements OnInit {
   open_comments(postId){
     $(`.comments_container_${postId}`).toggle();
   }
-  trackByFn(index, like) {
-    return like.id;
+  trackByFn(i, like) {
+    return i;
   }
 
   loadMore() {
@@ -246,6 +245,11 @@ export class TimelineComponent implements OnInit {
   temLike = 0;
   likeIt(postId, likeCount){
     console.log("=-=-=-=-=-=-likeIt", likeCount);
+
+    var trying = document.getElementById('tooltiptexts');
+    let index: any = trying.getAttribute('data-index');
+
+    console.log("index", index)
     
     this.authService.sendLikePost(postId).subscribe(res => {
       if(res['success'])
@@ -257,6 +261,16 @@ export class TimelineComponent implements OnInit {
           document.getElementById(postId).classList.add('fa-thumbs-o-up')
           this.temLike = likeCount - 1
           this.temLike <= 0 ? document.getElementById('count_' + postId).innerHTML = '' : document.getElementById('count_' + postId).innerHTML = String(this.temLike);
+          console.log("document.getElementById('like_' + postId + '_' + index)", document.getElementById('like_' + postId + '_' + index));
+          // for (let i = 0; i < likeCount; i++) { 
+          // console.log("document.getElementById('like_' + postId + '_' + index)", document.getElementById('like_' + postId + '_' + index[i]));
+          // }
+
+          // document.getElementById('like_' + postId + '_' + index).innerHTML = this.u_name ? document.getElementById('like_' + postId + '_' + index).innerHTML = '-' : document.getElementById('like_' + postId + '_' + index).innerHTML = this.u_name;
+          // if (document.getElementById('like_' + postId + '_' + index).innerHTML == 'Nikunds') {
+          //   console.log("-===-=-=-=-=-=-", index);
+          //   document.getElementById('like_' + postId + '_' + index).innerHTML = '-'
+          // }
         console.log("temlike", this.temLike);
         }else {
           document.getElementById(postId).classList.add('fa-thumbs-up')
@@ -270,6 +284,10 @@ export class TimelineComponent implements OnInit {
             this.temLike = this.temLike + 1
           }
           this.temLike <= 0 ? document.getElementById('count_' + postId).innerHTML = '' : document.getElementById('count_' + postId).innerHTML = String(this.temLike);
+          // for (let i = 0; i < likeCount; i++) { 
+          //   console.log("document.getElementById('like_' + postId + '_' + index)", document.getElementById('like_' + postId + '_' + index[i]));
+          //   }
+          // document.getElementById('like_' + postId + '_' + index).innerHTML = this.u_name
         console.log("temlike", this.temLike);
         }
 

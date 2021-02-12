@@ -17,8 +17,11 @@ export class AccountSettingComponent implements OnInit {
   id: any
   datas: any = [];
   name: any;
+  user: any;
   name_shows: boolean = true;
   edit_name: boolean = false;
+  user_shows: boolean = true;
+  edit_user: boolean = false;
 
   @ViewChild('nameText') nameTextElement: any;
   constructor(
@@ -32,11 +35,7 @@ export class AccountSettingComponent implements OnInit {
       this.authService.getProfileforAbout(this.id).subscribe(res => {
         this.datas = res.data;
         this.name = res.data.name
-      })
-    
-      this.profileForm = this.formBuilder.group({
-        userId: window.location.href.split('/')[4],
-        name: [this.nameTextElement]
+        this.user = res.data.userName
       })
     
   }
@@ -48,12 +47,13 @@ export class AccountSettingComponent implements OnInit {
   }
 
   save_names(name) {
-    this.authService.profileUpdate(name).subscribe((res) => {
+    this.authService.updateName(this.id, name).subscribe((res) => {
       if (!res.result) {
-       //  this.dialog.open(DialogEditSuccessComponent, {
-       //    width: '400px'
-       //  })
-        this.toastr.success("Your profile has been saved successfully.")
+        this.edit_name = false
+        this.name_shows = true
+        this.toastr.success("Your name has been updated successfully.");
+      } else {
+        this.toastr.error("Some error occurs. Please try again later.");
       }
     })
   }
@@ -61,6 +61,28 @@ export class AccountSettingComponent implements OnInit {
   cancel_names() { 
     this.edit_name = false;
     this.name_shows = true;
+  }
+
+  edit_users() {
+    this.edit_user = true;
+    this.user_shows = false;
+  }
+
+  save_users(user) {
+    this.authService.updateUsername(this.id, user).subscribe((res) => {
+      if (!res.result) {
+        this.edit_user = false
+        this.user_shows = true
+        this.toastr.success("Your username has been updated successfully.");
+      } else {
+        this.toastr.error("Some error occurs. Please try again later.");
+      }
+    })
+  }
+
+  cancel_users() { 
+    this.edit_user = false;
+    this.user_shows = true;
   }
 
 

@@ -39,12 +39,9 @@ export class PhotosComponent implements OnInit {
     $(".right_sidebar").css("display", "block");
     this.token = localStorage.getItem('currentUser')
     this.id = this.activatedRoute.parent.params['value']['id'];
-
-    console.log("-=-=-=-=-=-=-id", this.id);
     
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.user = currentUser.data._id
-    console.log("-=-=-==-=-user id", this.user);
     
     if (this.router.url === '/friends/' + this.activatedRoute.parent.params['value']['id'] + '/photos') {
       this.album_show = false

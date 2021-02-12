@@ -59,6 +59,7 @@ export class HomeComponent implements OnInit {
   imageObject = []
 
   public datas;
+  public likess;
   u_country: any;
   u_state: any;
   public temp;
@@ -132,6 +133,7 @@ $(window).scroll(function() {
           this.shares = this.datas[i].share.length
           this.description = this.datas[i].description;
           this.likes = this.datas[i].like
+          // console.log("this.likes", this.likes);
           this.comments = this.datas[i].comment.length
           this.url.push(this.datas[i].imageUrl)
           
@@ -154,9 +156,9 @@ $(window).scroll(function() {
             this.postlikeuserId = Array.from(new Set(this.postlikeuserId)) //For Uniquee fecth
           }
 
-          if(this.datas[i].imageUrl.length == 2){
-            this.twoimg = true
-          }
+          // if(this.datas[i].imageUrl.length == 2){
+          //   this.twoimg = true
+          // }
         }
         return this.datas
       }

@@ -446,17 +446,18 @@ body .profile_pic_main_tabs_sec .actions {
     align-items: center;
 }
   
-  .dropdown {
+.dropdown {
     position: absolute;
-    right: 10px;
+    /* right: 10px; */
     background-color: #c5c5c5;
-    box-shadow: 0px 0px 3px 3px #c5c5c5;    
+    box-shadow: 0px 0px 3px 3px #c5c5c5;
     outline: none;
     opacity: 0;
     z-index: -1;
     max-height: 0;
     transition: opacity 0.1s, z-index 0.1s;
-  }
+    margin-top: 10px;
+}
   
   .dropdown-container:focus {
     outline: none;
@@ -1701,7 +1702,7 @@ button.show_more_notifications {
     text-transform: capitalize;
 }
 
-.slider_image_2 > div > div > div >.main-inner > div:nth-child(2) {
+.slider_image_2 > div > div > div >.main-inner > div:nth-child(1) {
     display: none !important;
 }
 .slider_image_4 > div > div > div >.main-inner > div:nth-child(1), .slider_image_5 > div > div > div >.main-inner > div:nth-child(1) {

@@ -1716,7 +1716,7 @@ body.modal {
   overflow: hidden;
 }
 
-.slider_image_2 > div > div > div >.main-inner > div:nth-child(2) {
+.slider_image_2 > div > div > div >.main-inner > div:nth-child(1) {
     display: none !important;
 }
 .slider_image_4 > div > div > div >.main-inner > div:nth-child(1), .slider_image_5 > div > div > div >.main-inner > div:nth-child(1) {

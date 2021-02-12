@@ -93,14 +93,17 @@ export class AlbumsComponent implements OnInit {
   
     postSave(){
       this.token = localStorage.getItem('token')
-      if(this.postImageElement){
+      if (this.postImageElement.length !== 0) {
         if(this.fileData[0] !== undefined)
         {
           this.arrayfile = this.fileData[0]
-        }else{
+        } else {
           this.arrayfile = this.fileData
         }
         let arrayRemoveNull = this.arrayfile.filter(e => e)
+        if (arrayRemoveNull[0 ] === '') {
+          this.toastr.error("Please select one or more images")
+        }
       if (arrayRemoveNull[0].name.split('.').pop() !== 'png') {
           for (let i = 0; i < arrayRemoveNull.length; i++){
             console.log("arrayRemoveNull", arrayRemoveNull);
@@ -134,7 +137,8 @@ export class AlbumsComponent implements OnInit {
           }
         }
   
-      }else{
+      } else {
+        this.toastr.info("Please select one or more images to add in album.")
         if(this.postMesssgeElement.nativeElement.value == ''){
         }else if(this.postMesssgeElement.nativeElement.value.valid !== ''){
           this.authService.newtextPost(this.token, this.postMesssgeElement.nativeElement.value).subscribe((res) => {

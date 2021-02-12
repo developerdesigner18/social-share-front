@@ -33,7 +33,7 @@
             <div class="body">
                 <div class="setting_details" *ngIf="name_shows">
                     <p>Name</p>
-                    <div class="name_show"> {{datas.name}} </div>
+                    <div class="name_show"> {{name}} </div>
                     <button type="button" name="button" (click)="edit_names()">Edit</button>
                 </div>
                 <div class="setting_details_hide" *ngIf="edit_name">
@@ -42,13 +42,19 @@
                     <button type="button" name="button" (click)="save_names(name)">Save</button>
                     <button type="button" name="button" (click)="cancel_names()" >Cancel</button>
                 </div>
-                <div class="setting_details">
+                <div class="setting_details" *ngIf="user_shows">
                     <p>Username</p>
-                    <div class="username_show"> {{datas.userName}} </div>
-                    <button type="button" name="button">Edit</button>
+                    <div class="username_show"> {{user}} </div>
+                    <button type="button" name="button" (click)="edit_users()">Edit</button>
+                </div>
+                <div class="setting_details_hide" *ngIf="edit_user">
+                    <p>Username</p>
+                    <input #nameText type="text" [(ngModel)]="user" name="" [value]="datas.userName">
+                    <button type="button" name="button" (click)="save_users(user)">Save</button>
+                    <button type="button" name="button" (click)="cancel_users()" >Cancel</button>
                 </div>
                 <div class="setting_details">
-                    <p>Email</p>
+                    <p>Contact</p>
                     <div class="email_show"> {{datas.emailId}} </div>
                     <button type="button" name="button">Edit</button>
                 </div>

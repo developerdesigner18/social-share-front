@@ -90,7 +90,7 @@ export class PostModalComponent implements OnInit {
 
   postSave(){
     this.token = localStorage.getItem('token')
-    if (this.postImageElement) {        
+    if (this.postImageElement.length !== 0) {        
       if(this.fileData[0] !== undefined)
       {
         this.arrayfile = this.fileData[0]
@@ -127,7 +127,8 @@ export class PostModalComponent implements OnInit {
           })
         }
       
-    }else{
+    } else {
+      this.toastr.info("Please select one or more images to post in your profile.")
       if(this.postMesssgeElement.nativeElement.value == ''){
         console.log("You are not set description")
       }else if(this.postMesssgeElement.nativeElement.value.valid !== ''){
