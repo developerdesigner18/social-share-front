@@ -39,6 +39,7 @@ export class PostModalComponent implements OnInit {
   @ViewChild('postMsg') postMesssgeElement: any;
   @ViewChildren('postImage') postImageElement: QueryList<ElementRef>;
   textOnlylength: number;
+  frienId: any;
 
   constructor(
     private  dialogRef:  MatDialogRef<PostModalComponent>,
@@ -90,6 +91,7 @@ export class PostModalComponent implements OnInit {
 
   postSave(){
     this.token = localStorage.getItem('token')
+    this.frienId = localStorage.getItem('friendId')
     if (this.postImageElement.length !== 0) {        
       if(this.fileData[0] !== undefined)
       {
@@ -101,14 +103,12 @@ export class PostModalComponent implements OnInit {
       let arrayRemoveNull = this.arrayfile.filter(e => e)
       if (arrayRemoveNull[0].name.split('.').pop() !== 'png') {
           for (let i = 0; i < arrayRemoveNull.length; i++){
-            console.log("arrayRemoveNull", arrayRemoveNull);
             this.fileCovToReturn.push(this.base64ToFile(
               this.images[i],
               arrayRemoveNull[i].name,
             ))
             var reader = new FileReader();
             reader.readAsDataURL(this.fileCovToReturn[i]);
-            console.log("this.fileCovToReturn", this.fileCovToReturn[i]);  
           }
         } else {
           // alert("png is not supported");
@@ -130,7 +130,7 @@ export class PostModalComponent implements OnInit {
     } else {
       this.toastr.info("Please select one or more images to post in your profile.")
       if(this.postMesssgeElement.nativeElement.value == ''){
-        console.log("You are not set description")
+        this.toastr.info("You are not set description!");
       }else if(this.postMesssgeElement.nativeElement.value.valid !== ''){
         this.authService.newtextPost(this.token, this.postMesssgeElement.nativeElement.value).subscribe((res) => {
           if(window.location.href.split('/')[3] == "home"){

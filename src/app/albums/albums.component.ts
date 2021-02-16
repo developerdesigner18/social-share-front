@@ -106,14 +106,12 @@ export class AlbumsComponent implements OnInit {
         }
       if (arrayRemoveNull[0].name.split('.').pop() !== 'png') {
           for (let i = 0; i < arrayRemoveNull.length; i++){
-            console.log("arrayRemoveNull", arrayRemoveNull);
             this.fileCovToReturn.push(this.base64ToFile(
               this.images[i],
               arrayRemoveNull[i].name,
             ))
             var reader = new FileReader();
             reader.readAsDataURL(this.fileCovToReturn[i]);
-            console.log("this.fileCovToReturn", this.fileCovToReturn[i]);  
           }
         } else {
           // alert("png is not supported");

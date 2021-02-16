@@ -74,6 +74,9 @@ header .ads {
 .icons_showing_card > div {
     margin-bottom: 0;
 }
+.dropdown-container.full-width-20 {
+    padding-top: 0px;
+}
 .basic_profile_icons {
     display: flex;
     flex-direction: column;
@@ -85,6 +88,9 @@ header .ads {
     position: absolute !important;
     bottom: -70px;
     margin-left: 40px !important;
+}
+.share_icon {
+    cursor: pointer;
 }
 header .logo, .login_container {
     flex: 1;

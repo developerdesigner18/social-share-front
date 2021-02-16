@@ -85,7 +85,6 @@ export class UserProfileComponent implements OnInit {
 
     if(this.router.url === '/profile/' + this.activatedRoute.snapshot.paramMap.get('id') + '/notifications')
     {
-      console.log("-=-=-=-=-=-=-timepass")
       this.display = false
       // $(".right_sidebar").css("display", "none");
     }

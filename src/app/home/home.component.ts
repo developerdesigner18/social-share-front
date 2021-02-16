@@ -5,6 +5,7 @@ import { MatDialog} from  '@angular/material/dialog';
 import { PostModalComponent } from '../post-modal/post-modal.component';
 import { AuthService } from '../auth.service';
  import { NgImageSliderComponent } from 'ng-image-slider';
+import { ToastrService } from 'ngx-toastr';
 declare var jQuery: any;
 declare var $: any;
 
@@ -73,6 +74,7 @@ export class HomeComponent implements OnInit {
   check_temp: boolean;
   totalDisplayed: any;
   show_load_more: boolean = true;
+  sharess: any;
 
   constructor(
     public authService: AuthService,
@@ -80,7 +82,8 @@ export class HomeComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     public formBuilder: FormBuilder,
     public router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public toastr: ToastrService
   ) {
     this.totalDisplayed = 10;
     
@@ -122,7 +125,7 @@ $(window).scroll(function() {
       {
         console.log("-=-=-=-=-Welcome to social share")
       }else{
-        this.datas = res.posts        
+        this.datas = res.posts
         if (this.datas.length < 10) {
           this.show_load_more = false
         }
@@ -136,7 +139,6 @@ $(window).scroll(function() {
           // console.log("this.likes", this.likes);
           this.comments = this.datas[i].comment.length
           this.url.push(this.datas[i].imageUrl)
-          
           this.datas[i].state =  (this.datas[i].state === undefined) ? 'Not mention' : this.datas[i].state
           this.datas[i].city = (this.datas[i].city === undefined) ? 'Not mention' : this.datas[i].city
           this.authService.getHomePostProfile(this.datas[i].userId).subscribe(res => {
@@ -322,10 +324,11 @@ $(window).scroll(function() {
     window.location.replace('profile/' + this.id);
   }
 
-  sharing(postId, userId, user_name) { 
-    if (confirm("You are sharing post with " + `${user_name}`)) {
-      this.authService.sharingPosts(this.token, postId, userId).subscribe(res => { 
-        console.log("res", res);
+  sharing(postId, post_user) { 
+    if (confirm("You are sharing "+ `${post_user}` +" post with your timeline!")) {
+      this.authService.sharingPosts(this.token, postId, this.id).subscribe(res => { 
+        this.toastr.success("You are successfully shared the post!");
+        window.location.reload();
       })
 
     } else {
@@ -333,9 +336,7 @@ $(window).scroll(function() {
   }
 
   loadMore() {
-    this.totalDisplayed += 10;  
-    console.log("this.totalDisplayed", this.totalDisplayed);
-    console.log("this.datas.length", this.datas.length);
+    this.totalDisplayed += 10;
     if (this.totalDisplayed >= this.datas.length) {
       this.show_load_more = false
     }

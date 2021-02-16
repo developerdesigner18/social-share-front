@@ -98,7 +98,6 @@ export class LifeComponent implements OnInit {
   ]
   set = 'twitter';
   toggleEmojiPicker() {
-    console.log(this.showEmojiPicker);
         this.showEmojiPicker = !this.showEmojiPicker;
   }
 
@@ -114,11 +113,9 @@ export class LifeComponent implements OnInit {
   }
 
   onFocus() {
-    console.log('focus');
     this.showEmojiPicker = false;
   }
   onBlur() {
-    console.log('onblur')
   }
 
   

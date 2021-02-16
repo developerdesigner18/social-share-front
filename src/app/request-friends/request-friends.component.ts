@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { ToastrService } from 'ngx-toastr';
 declare var jQuery: any;
 declare var $: any;
 
@@ -65,10 +66,12 @@ export class RequestFriendsComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private location: Location,
-    public formBuilder: FormBuilder
+    public formBuilder: FormBuilder,
+    public toastr: ToastrService
   ) {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.login_id = currentUser.data._id
+    this.token = localStorage.getItem('token')
     this.commentsForm= this.formBuilder.group({
       newcomment: ['']
     })
@@ -83,9 +86,10 @@ export class RequestFriendsComponent implements OnInit {
         }
         this.authService.getFriendData(current_id).subscribe(res => {
           this.frd_profile_datas = res.list
+          console.log("this.frd_profile_datas", this.frd_profile_datas)
           for(let i = 0; i < this.frd_profile_datas.length; i++){
             this.frd_req_get_count += 1
-            this.datas = this.datas.filter(({ _id }) => _id !== this.frd_profile_datas[i]._id)
+            this.datas = this.datas.filter(({ _id }) => _id !== this.frd_profile_datas[i]._id)            
           }
         })
       }
@@ -177,15 +181,22 @@ export class RequestFriendsComponent implements OnInit {
       $(`.remove_friend_${requestId}`).css('display','none');
     })
   }
+  share(postId) { 
+    $(`.sharing_container_${postId}`).toggle();
+  }
 
   confirm_request(confirm_id){
     let userId = this.activatedRoute.snapshot.paramMap.get('id');
-    this.authService.acceptFriendRequest(userId, confirm_id).subscribe(res => {})
+    this.authService.acceptFriendRequest(userId, confirm_id).subscribe(res => {
+      this.toastr.success("Friends Request is Accepted Successfully!");
+    })
   }
 
   reject_request(reject_id){
     let userId = this.activatedRoute.snapshot.paramMap.get('id');
-    this.authService.rejectFriendRequest(userId, reject_id).subscribe(res => {})
+    this.authService.rejectFriendRequest(userId, reject_id).subscribe(res => {
+      this.toastr.success("Friend Request is Rejected!");
+    })
   }
 
   //Reject for it's own request for already send
@@ -193,6 +204,7 @@ export class RequestFriendsComponent implements OnInit {
     let userId = this.activatedRoute.snapshot.paramMap.get('id');
     if (confirm('Are you sure you want to cancel this request ?')) { 
       this.authService.removeSendRequest(userId, reject_id).subscribe(res => {
+        this.toastr.success("Friend Request is Cancel!");
         if($(`.show_add_friend_${reject_id}`).is(":visible"))
         {
           $(`#add_${reject_id}`).attr('style', 'display: inline !important');
@@ -204,6 +216,17 @@ export class RequestFriendsComponent implements OnInit {
       })
       location.reload();
   }
+  }
+
+  sharing(postId, post_user) { 
+    if (confirm("You are sharing "+ `${post_user}` +" post with your timeline!")) {
+      this.authService.sharingPosts(this.token, postId, this.login_id).subscribe(res => { 
+        this.toastr.success("You are successfully shared the post!");
+        window.location.reload();
+      })
+
+    } else {
+    }
   }
 
   temLike = 0;

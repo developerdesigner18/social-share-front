@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../auth.service';
 declare var jQuery: any;
 declare var $: any;
@@ -29,7 +30,8 @@ export class FriendsComponent implements OnInit {
   constructor(
     public authService: AuthService,
     private activatedRoute: ActivatedRoute,
-    public router: Router
+    public router: Router,
+    public toastr: ToastrService
   ) {
     $(".right_sidebar").css("display", "block");
     let id = this.activatedRoute.parent.params['value']['id'];
@@ -94,8 +96,11 @@ export class FriendsComponent implements OnInit {
   reject_request(reject_id, friend_name) {
     if (confirm(`Are you sure you want to unfriend ${friend_name} ?`)) {
       this.authService.unFriendRequest(reject_id, this.id).subscribe(res => {
+        this.toastr.success("You successfully unfriended " + friend_name + " from your friend list.");
         location.reload();
       })
+    } else {
+      this.toastr.error("Oops some error occur. Please try again later.")
     }
     
   }

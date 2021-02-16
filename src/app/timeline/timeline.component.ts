@@ -6,6 +6,7 @@ import { PostModalComponent } from '../post-modal/post-modal.component';
 import { AuthService } from '../auth.service';
 import { NgImageSliderComponent } from 'ng-image-slider';
 import { ChangeDetectorRef } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 declare var jQuery: any;
 declare var $: any;
 
@@ -75,7 +76,8 @@ export class TimelineComponent implements OnInit {
   image_all = [];
   postId: any;
   url_id: string;
-  dataas: any;
+  shares: any;
+  tool = [];
   constructor(
     public  dialog:  MatDialog,
     private activatedRoute: ActivatedRoute,
@@ -83,6 +85,7 @@ export class TimelineComponent implements OnInit {
     public router: Router,
     public formBuilder: FormBuilder,
     private cdr: ChangeDetectorRef,
+    public toastr: ToastrService
   ) {
     $(".right_sidebar").css("display", "block");
     
@@ -115,12 +118,13 @@ export class TimelineComponent implements OnInit {
 
     this.authService.getProfilePost(this.id).subscribe(res => {
       if(res.length > 0){
-        this.dataas = res
-
-        if (this.dataas.length < 10) {
+        this.datas = res
+        console.log("this.datas", this.datas);
+        
+        if (this.datas.length < 10) {
           this.show_load_more = false
         }
-        this.datas = this.dataas
+        // this.datas = this.dataas
         const { image, thumbImage, alt, title, name, description } = res;
         for(let i = 0; i < this.datas.length; i++){
           this.description = this.datas[i].description;
@@ -172,15 +176,24 @@ export class TimelineComponent implements OnInit {
 
   loadMore() {
     this.totalDisplayed += 10;  
-    if (this.totalDisplayed >= this.dataas.length) {
+    if (this.totalDisplayed >= this.datas.length) {
       this.show_load_more = false
     }
   };
 
-  sharing(postId) { 
-    this.authService.sharingPosts(this.token, postId, this.id).subscribe(res => { 
+  share(postId) { 
+    $(`.sharing_container_${postId}`).toggle();
+  }
 
-    })
+  sharing(postId, post_user) { 
+    if (confirm("You are sharing "+ `${post_user}` +" post with your timeline!")) {
+      this.authService.sharingPosts(this.token, postId, this.id).subscribe(res => { 
+        this.toastr.success("You are successfully shared the post!");
+        window.location.reload();
+      })
+
+    } else {
+    }
   }
 
   openTextDialog(event: any){
@@ -244,12 +257,10 @@ export class TimelineComponent implements OnInit {
 
   temLike = 0;
   likeIt(postId, likeCount){
-    console.log("=-=-=-=-=-=-likeIt", likeCount);
 
     var trying = document.getElementById('tooltiptexts');
     let index: any = trying.getAttribute('data-index');
-
-    console.log("index", index)
+    
     
     this.authService.sendLikePost(postId).subscribe(res => {
       if(res['success'])
@@ -261,17 +272,17 @@ export class TimelineComponent implements OnInit {
           document.getElementById(postId).classList.add('fa-thumbs-o-up')
           this.temLike = likeCount - 1
           this.temLike <= 0 ? document.getElementById('count_' + postId).innerHTML = '' : document.getElementById('count_' + postId).innerHTML = String(this.temLike);
-          console.log("document.getElementById('like_' + postId + '_' + index)", document.getElementById('like_' + postId + '_' + index));
-          // for (let i = 0; i < likeCount; i++) { 
-          // console.log("document.getElementById('like_' + postId + '_' + index)", document.getElementById('like_' + postId + '_' + index[i]));
-          // }
+          this.tool.pop();
+          console.log("this.tool1", this.tool);
+          for (let i = 0; i < likeCount; i++) { 
+          console.log("document.getElementById('like_' + postId + '_' + index)", document.getElementById('like_' + postId + '_' + index[i]));
+          }
 
-          // document.getElementById('like_' + postId + '_' + index).innerHTML = this.u_name ? document.getElementById('like_' + postId + '_' + index).innerHTML = '-' : document.getElementById('like_' + postId + '_' + index).innerHTML = this.u_name;
+           document.getElementById('like_' + postId + '_' + index).innerHTML = this.u_name ? document.getElementById('like_' + postId + '_' + index).innerHTML = '-' : document.getElementById('like_' + postId + '_' + index).innerHTML = this.u_name;
           // if (document.getElementById('like_' + postId + '_' + index).innerHTML == 'Nikunds') {
           //   console.log("-===-=-=-=-=-=-", index);
-          //   document.getElementById('like_' + postId + '_' + index).innerHTML = '-'
+          //    document.getElementById('like_' + postId + '_' + index).innerHTML = '-'
           // }
-        console.log("temlike", this.temLike);
         }else {
           document.getElementById(postId).classList.add('fa-thumbs-up')
           this.temLike = likeCount + 1
@@ -287,19 +298,11 @@ export class TimelineComponent implements OnInit {
           // for (let i = 0; i < likeCount; i++) { 
           //   console.log("document.getElementById('like_' + postId + '_' + index)", document.getElementById('like_' + postId + '_' + index[i]));
           //   }
-          // document.getElementById('like_' + postId + '_' + index).innerHTML = this.u_name
-        console.log("temlike", this.temLike);
+          this.tool.push(this.u_name);
+          console.log("this.tool2", this.tool);
+           document.getElementById('like_' + postId + '_' + index).innerHTML = this.u_name
         }
 
-        if (this.temLike > 0) {
-          $('.tooltiptexts').css("display", "block");
-          // $('.showLikes:hover + .tooltiptext').css("display", "block");
-          // $(".tooltiptext").css("display", "block");
-        } else {
-          // $(".tooltiptext").css("display", "none");
-          $('.tooltiptexts').css("display", "none");
-          // $('.showLikes:hover + .tooltiptext').css("display", "none");
-        }
       }
     })
   }
