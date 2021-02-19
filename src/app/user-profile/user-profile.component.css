@@ -848,6 +848,8 @@ button.owl-next span {
     margin-top: 15px;
     color: #0F1B31;
     padding: 15px;
+    /* height: 40vh;
+    overflow-y: scroll; */
 }
 .comment_title {
     font-weight: 500;
@@ -1872,6 +1874,29 @@ a.my_post_links > div {
 
 .show_basic_info {
     margin-bottom: 15px;
+}
+.title_changes{
+    cursor: pointer;
+}
+.dropdown a {
+    cursor: pointer;
+}
+.title_changes {
+    padding: 5px 20px;
+    background: #0f1b31;
+    color: #fff;
+    border-radius: 4px;
+}
+.more_options .dropdown {
+    background: #f0f8ff;
+    box-shadow: none;
+    text-align: center;
+    font-size: 14px;
+    padding: 8px 18px;
+    margin: 0;
+}
+.more_options .dropdown div {
+    border-bottom: 1px solid #0f1b31;
 }
 
 @media (max-width: 545px){

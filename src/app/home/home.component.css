@@ -1019,6 +1019,8 @@ a.my_post_links:hover div > div {
     margin-top: 15px;
     color: #0F1B31;
     padding: 15px;
+    /* height: 40vh;
+    overflow-y: scroll; */
 }
 .comment_title {
     font-weight: 500;

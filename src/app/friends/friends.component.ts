@@ -26,6 +26,7 @@ export class FriendsComponent implements OnInit {
   friendId: string;
   show_friends = false
   
+  
 
   constructor(
     public authService: AuthService,

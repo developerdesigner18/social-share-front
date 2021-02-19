@@ -18,32 +18,51 @@
       <!-- <img #postImage ng-style="twoimg ? (width: twowidth) : (width: '100%')" [src]="image" *ngFor="let image of images; let i = index;"/> -->
       <!-- <img #postImage class="change_width" style="width: {{(twoimg) ? twowidth : (threeimg && i === 4) ? firstwidth : twowidth}}; height: {{(twoimg) ? height : (threeimg) ? height : height}}" [src]="image" *ngFor="let image of images; let i = index;"/> -->
       <ng-container *ngIf="!twoimg && !threeimg && !fourimg && !fiveimg">
-        <img #postImage class="change_width" style="width: 100%" [src]="image" *ngFor="let image of images; let i = index;"/>
+        <!-- <div *ngFor="let image of images; let i = index;"> -->
+          <a *ngIf="shows" class="cancel_btn" (click)="cancel()"><img src="../../assets/images/cancel.png" width="20px" height="20px" alt=""> </a>
+          <img #postImage class="change_width" style="width: 100%" [src]="image" *ngFor="let image of images; let i = index;"/>
+        <!-- </div> -->
         <!-- <video #postImage controls class="video_set_size" *ngFor="let image of images;">
           <source [src]="image" type="video/mp4">
         </video> -->
       </ng-container>
       <ng-container *ngIf="twoimg && !threeimg && !fiveimg && !fourimg">
-        <img #postImage class="change_width" style="width: 50%; height: 243px; object-fit: cover;" [src]="image" *ngFor="let image of images; let i = index;"/>
+        <!-- <div *ngFor="let image of images; let i = index;"> -->
+          <a *ngIf="shows" class="cancel_btn" (click)="cancel()"><img src="../../assets/images/cancel.png" width="20px" height="20px" alt=""> </a>
+          <img #postImage class="change_width" style="width: 50%; height: 243px; object-fit: cover;" [src]="image" *ngFor="let image of images; let i = index;"/>
+        <!-- </div> -->
+        
         <!-- <video #postImage controls class="video_set_size" *ngFor="let image of images;">
           <source [src]="image" type="video/mp4">
         </video> -->
       </ng-container>
       <ng-container *ngIf="threeimg && !twoimg && !fiveimg && !fourimg">
-        <img #postImage class="change_width" style="width: {{(isFirst) ? '100%' : '50%'}}; height: 243px; object-fit: cover;" [src]="image" *ngFor="let image of images; let i = index; first as isFirst"/>
+        <!-- <div *ngFor="let image of images; let i = index;"> -->
+          <a *ngIf="shows" class="cancel_btn" (click)="cancel()"><img src="../../assets/images/cancel.png" width="20px" height="20px" alt=""> </a>
+          <img #postImage class="change_width" style="width: {{(isFirst) ? '100%' : '50%'}}; height: 243px; object-fit: cover;" [src]="image" *ngFor="let image of images; let i = index; first as isFirst"/>
+        <!-- </div> -->
+        
         <!-- <video #postImage controls class="video_set_size" *ngFor="let image of images;">
           <source [src]="image" type="video/mp4">
         </video> -->
       </ng-container>
       <ng-container *ngIf="fourimg && !twoimg && !threeimg && !fiveimg">
-        <img #postImage class="change_width" style="width: '50%'; height: 243px; object-fit: cover;" [src]="image" *ngFor="let image of images; let i = index;"/>
+        <!-- <div *ngFor="let image of images; let i = index;"> -->
+          <a *ngIf="shows" class="cancel_btn" (click)="cancel()"><img src="../../assets/images/cancel.png" width="20px" height="20px" alt=""> </a>
+          <img #postImage class="change_width" style="width: '50%'; height: 243px; object-fit: cover;" [src]="image" *ngFor="let image of images; let i = index;"/>
+        <!-- </div> -->
+        
         <!-- <video #postImage controls class="video_set_size" *ngFor="let image of images;">
           <source [src]="image" type="video/mp4">
         </video> -->
       </ng-container>
       <ng-container *ngIf="fiveimg && !fourimg && !twoimg && !threeimg">
-        <img #postImage class="{{(i + 1 > 4) ? 'hidden_last_img' : 'change_width'}}" style="width: 50%; height: 243px; object-fit: cover;" [src]="image" *ngFor="let image of images; let i = index; last as isLast"/>
-        <div class="bottom-left set_view_more">View More</div>
+        <!-- <div *ngFor="let image of images; let i = index;"> -->
+          <a *ngIf="shows" class="cancel_btn" (click)="cancel()"><img src="../../assets/images/cancel.png" width="20px" height="20px" alt=""> </a>
+          <img #postImage class="{{(i + 1 > 4) ? 'hidden_last_img' : 'change_width'}}" style="width: 50%; height: 243px; object-fit: cover;" [src]="image" *ngFor="let image of images; let i = index; last as isLast"/>
+          <div class="bottom-left set_view_more">View More</div>
+        <!-- </div> -->
+
         <!-- <video #postImage controls class="video_set_size" *ngFor="let image of images;">
           <source [src]="image" type="video/mp4">
         </video> -->

@@ -86,7 +86,6 @@ export class RequestFriendsComponent implements OnInit {
         }
         this.authService.getFriendData(current_id).subscribe(res => {
           this.frd_profile_datas = res.list
-          console.log("this.frd_profile_datas", this.frd_profile_datas)
           for(let i = 0; i < this.frd_profile_datas.length; i++){
             this.frd_req_get_count += 1
             this.datas = this.datas.filter(({ _id }) => _id !== this.frd_profile_datas[i]._id)            

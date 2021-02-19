@@ -1,6 +1,6 @@
 <app-header></app-header>
 
-<div class="cover_pic" [ngStyle]="{ 'background-image': 'url(' + imageCov + ')'}">
+<div class="cover_pic" [ngStyle]="{ 'background-image': 'url(' + imageCov + ')', 'background-size': 'cover'}">
 		<div class="main_action">
 			<button class="position-relative cover-set" data-toggle="modal" data-target="#covermodel" *ngIf="current_user_profile"><i class="fa fa-camera"></i>Add Cover Photo</button>
 		</div>

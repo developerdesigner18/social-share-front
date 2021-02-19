@@ -35,6 +35,7 @@ export class PostModalComponent implements OnInit {
   fourimg = false;
   fiveimg = false;
   closeDialog = false;
+  shows: boolean = false;
 
   @ViewChild('postMsg') postMesssgeElement: any;
   @ViewChildren('postImage') postImageElement: QueryList<ElementRef>;
@@ -56,7 +57,8 @@ export class PostModalComponent implements OnInit {
     this.fileData.push(data.file)
     this.images = data.images
 
-    if(data.images && data.files != ''){
+    if (data.images && data.files != '') {
+      this.shows = true
       if(Object.keys(this.fileData[0]).length === 2)
       {
         this.twoimg = true
@@ -88,6 +90,16 @@ export class PostModalComponent implements OnInit {
   public Close() {
     this.dialogRef.close();
   }
+  cancel() {
+    while(this.images.length > 0) {
+      this.images.pop();
+  }
+    while(this.data.file.length > 0) {
+      this.data.file.pop();
+    }
+    this.shows = false
+    this.toastr.info("All images are removed. Please select new ones")
+  }
 
   postSave(){
     this.token = localStorage.getItem('token')
@@ -111,8 +123,7 @@ export class PostModalComponent implements OnInit {
             reader.readAsDataURL(this.fileCovToReturn[i]);
           }
         } else {
-          // alert("png is not supported");
-          this.toastr.info("Oops png format is not supported used other format like jpg or jpeg")
+          this.toastr.info("png format is not supported used other format like jpg or jpeg")
           setTimeout(() => {
             window.location.reload();
           }, 2500)
@@ -126,7 +137,6 @@ export class PostModalComponent implements OnInit {
             }
           })
         }
-      
     } else {
       this.toastr.info("Please select one or more images to post in your profile.")
       if(this.postMesssgeElement.nativeElement.value == ''){
@@ -163,6 +173,7 @@ export class PostModalComponent implements OnInit {
         this.textOnlylength = i
       }
     }
+    this.shows = true
 
     if(this.images.length === 1 || this.textOnlylength === 1)
     {
@@ -217,5 +228,9 @@ export class PostModalComponent implements OnInit {
         }
       }
     }
+  }
+
+  trackByFn(index, item) { 
+    return item.id; 
   }
 }

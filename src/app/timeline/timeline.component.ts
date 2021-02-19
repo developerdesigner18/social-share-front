@@ -118,9 +118,7 @@ export class TimelineComponent implements OnInit {
 
     this.authService.getProfilePost(this.id).subscribe(res => {
       if(res.length > 0){
-        this.datas = res
-        console.log("this.datas", this.datas);
-        
+        this.datas = res        
         if (this.datas.length < 10) {
           this.show_load_more = false
         }
@@ -140,6 +138,10 @@ export class TimelineComponent implements OnInit {
           }
           if(this.likes.length > 0){
             this.postlikeId.push(this.datas[i]._id)
+          }
+          if (this.datas[i].comment.length > 4) {
+            $('.comments_container').css('height', '40vh');
+            $('.comments_container').css('overflow-y', 'scroll');
           }
         }
         return this.datas
@@ -165,6 +167,12 @@ export class TimelineComponent implements OnInit {
   get formControls() { return this.commentsForm.controls }
 
   ngOnInit(): void {
+  }
+
+  ngOnChanges(): void {
+    var trying = document.getElementById('tooltiptexts');
+    let index: any = trying.getAttribute('data-index');
+    document.getElementById('like_' + this.postId + '_' + index).innerHTML = this.u_name ? document.getElementById('like_' + this.postId + '_' + index).innerHTML = '-' : document.getElementById('like_' + this.postId + '_' + index).innerHTML = this.u_name;
   }
 
   open_comments(postId){
@@ -193,6 +201,17 @@ export class TimelineComponent implements OnInit {
       })
 
     } else {
+    }
+  }
+
+  DeletePost(postId) {
+    if (confirm("Are you sure you want to delete this post?")) {
+      this.authService.DeletePost(postId).subscribe(res => {
+        this.toastr.success("Post is deleted successfully");
+        window.location.reload()
+      })
+    } else {
+      this.toastr.error("Deleting post is failed.");      
     }
   }
 
@@ -273,16 +292,11 @@ export class TimelineComponent implements OnInit {
           this.temLike = likeCount - 1
           this.temLike <= 0 ? document.getElementById('count_' + postId).innerHTML = '' : document.getElementById('count_' + postId).innerHTML = String(this.temLike);
           this.tool.pop();
-          console.log("this.tool1", this.tool);
           for (let i = 0; i < likeCount; i++) { 
-          console.log("document.getElementById('like_' + postId + '_' + index)", document.getElementById('like_' + postId + '_' + index[i]));
           }
+            document.getElementById('like_' + postId + '_' + index).innerHTML = this.u_name ? document.getElementById('like_' + postId + '_' + index).innerHTML = '-' : document.getElementById('like_' + postId + '_' + index).innerHTML = this.u_name;
+            
 
-           document.getElementById('like_' + postId + '_' + index).innerHTML = this.u_name ? document.getElementById('like_' + postId + '_' + index).innerHTML = '-' : document.getElementById('like_' + postId + '_' + index).innerHTML = this.u_name;
-          // if (document.getElementById('like_' + postId + '_' + index).innerHTML == 'Nikunds') {
-          //   console.log("-===-=-=-=-=-=-", index);
-          //    document.getElementById('like_' + postId + '_' + index).innerHTML = '-'
-          // }
         }else {
           document.getElementById(postId).classList.add('fa-thumbs-up')
           this.temLike = likeCount + 1
@@ -295,12 +309,11 @@ export class TimelineComponent implements OnInit {
             this.temLike = this.temLike + 1
           }
           this.temLike <= 0 ? document.getElementById('count_' + postId).innerHTML = '' : document.getElementById('count_' + postId).innerHTML = String(this.temLike);
-          // for (let i = 0; i < likeCount; i++) { 
-          //   console.log("document.getElementById('like_' + postId + '_' + index)", document.getElementById('like_' + postId + '_' + index[i]));
-          //   }
+          for (let i = 0; i < likeCount; i++) { 
+            }
           this.tool.push(this.u_name);
-          console.log("this.tool2", this.tool);
-           document.getElementById('like_' + postId + '_' + index).innerHTML = this.u_name
+            document.getElementById('like_' + postId + '_' + index).innerHTML = this.u_name
+          
         }
 
       }

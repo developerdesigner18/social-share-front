@@ -48,8 +48,6 @@ export class AlbumsComponent implements OnInit {
     public router: Router,
     private toastr: ToastrService
   ) { 
-
-      // let id = this.activatedRoute.snapshot.paramMap.get('id');
       this.authService.getProfileforAbout(data.id).subscribe(res => {
         // this.userId = data.id
         this.name =  res.data.name
@@ -114,8 +112,7 @@ export class AlbumsComponent implements OnInit {
             reader.readAsDataURL(this.fileCovToReturn[i]);
           }
         } else {
-          // alert("png is not supported");
-        this.toastr.info("Oops png format is not supported used other format like jpg or jpeg")
+        this.toastr.info("png format is not supported use other format like jpg or jpeg")
         setTimeout(() => {
           window.location.reload();
         }, 2500)

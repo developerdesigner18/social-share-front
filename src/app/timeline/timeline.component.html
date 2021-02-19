@@ -21,10 +21,17 @@
     <div class="name_and_desc" style="width: 100%" >
       <div class="d-flex justify-content-between align-items-center">
         <a href="profile/{{data.userId}}"><div class="profile_name_of_poster">{{u_name}}</div></a>
-        <div class="province d-flex align-items-center">
+        <!-- <div class="province d-flex align-items-center">
           <img src="assets/images/add_ob.png">
           <div *ngIf="u_city !== null && u_state !== null">{{u_city}} {{u_state}}</div>
           <div *ngIf="u_city === undefined && u_state === undefined">Not Mention</div>
+        </div> -->
+        <div class="more_options dropdown-container" tabindex="-1">
+          <div class="title_changes">More</div>
+          <div class="dropdown">
+           <div> <a>Edit</a> </div>
+           <div (click)="DeletePost(data._id)"> <a>Delete</a> </div>
+          </div>
         </div>
       </div>
       <div style="color: #0F1B31;font-size: 14px;" *ngIf="data.name !== undefined">Album: {{data.name}} </div>
@@ -68,6 +75,7 @@
       <div class="tooltiptext" *ngIf="data.like.length > 0">
         <div id="tooltiptexts" class="tooltiptexts" *ngFor="let like of data.like.reverse(); let i = index; trackBy: trackByFn" [attr.data-index]="i">
           <!-- {{like.name}} -->
+          <span> {{tool}} </span>
           <span id="like_{{data._id}}_{{i}}" [innerText]="like.name"></span>
         </div>
       </div>

@@ -148,6 +148,12 @@ $(window).scroll(function() {
             this.datas[i].post_user = res.data.name
           })
 
+          if (this.comments > 4) {
+            console.log("-=-=-=-=-=-=-=-=-=-=-");
+            $('.comments_container').css('height', '40vh');
+            $('.comments_container').css('overflow-y', 'scroll');
+          }
+
           if(this.likes.length > 0){
             for(let j = 0; j < this.datas[i].like.length; j++){
               this.postlikeuserId.push(this.datas[i].like[j]['userId'])
@@ -155,7 +161,7 @@ $(window).scroll(function() {
                 this.postlikeId.push(this.datas[i]._id)
               }
             }
-            this.postlikeuserId = Array.from(new Set(this.postlikeuserId)) //For Uniquee fecth
+            this.postlikeuserId = Array.from(new Set(this.postlikeuserId)) //For Uniquee fetch
           }
 
           // if(this.datas[i].imageUrl.length == 2){
@@ -284,9 +290,13 @@ $(window).scroll(function() {
   }
 
   temLike = 0;
-  checkTem =  false
+  checkTem = false
+  
+  
 
-  likeIt(postId, likeCount){
+  likeIt(postId, likeCount) {
+    var trying = document.getElementById('tooltiptexts');
+    let index: any = trying.getAttribute('data-index');
     this.authService.sendLikePost(postId).subscribe(res => {
       if(res['success'])
       {
@@ -296,7 +306,8 @@ $(window).scroll(function() {
             document.getElementById(postId).classList.remove('fa-thumbs-up')
             document.getElementById(postId).classList.add('fa-thumbs-o-up')
             this.temLike = likeCount - 1
-            this.temLike <= 0 ? document.getElementById('count_'+postId).innerHTML = '' : document.getElementById('count_'+postId).innerHTML = String(this.temLike);
+            this.temLike <= 0 ? document.getElementById('count_' + postId).innerHTML = '' : document.getElementById('count_' + postId).innerHTML = String(this.temLike);
+            document.getElementById('like_' + postId + '_' + index).innerHTML = this.name ? document.getElementById('like_' + postId + '_' + index).innerHTML = '-' : document.getElementById('like_' + postId + '_' + index).innerHTML = this.name;
           }else {
             document.getElementById(postId).classList.add('fa-thumbs-up')
             this.temLike = likeCount + 1
@@ -309,7 +320,8 @@ $(window).scroll(function() {
             }else{
               this.temLike = this.temLike + 1
             }
-            this.temLike <= 0 ? document.getElementById('count_'+postId).innerHTML = '' : document.getElementById('count_'+postId).innerHTML = String(this.temLike);
+            this.temLike <= 0 ? document.getElementById('count_' + postId).innerHTML = '' : document.getElementById('count_' + postId).innerHTML = String(this.temLike);
+            document.getElementById('like_' + postId + '_' + index).innerHTML = this.name
           }
       }
     })

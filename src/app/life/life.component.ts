@@ -102,14 +102,9 @@ export class LifeComponent implements OnInit {
   }
 
   addEmoji(event) {
-    // console.log(this.life)
     const { life } = this;
-    // console.log(life);
-    // console.log(`${event.emoji.native}`)
     const text = `${life}${event.emoji.native}`;
-
     this.life = text;
-    // this.showEmojiPicker = false;
   }
 
   onFocus() {

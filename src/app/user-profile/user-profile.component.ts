@@ -5,6 +5,7 @@ import { AuthService } from '../auth.service';
 import { DialogEditSuccessComponent } from '../dialog-edit-success/dialog-edit-success.component';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { TimeAgoPipe } from 'time-ago-pipe';
+import { ToastrService } from 'ngx-toastr';
 declare var jQuery: any;
 declare var $: any;
 
@@ -56,7 +57,8 @@ export class UserProfileComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     public router: Router,
     public  dialog:  MatDialog,
-    public elRef: ElementRef
+    public elRef: ElementRef,
+    public toastr: ToastrService
   ) {
     let id = this.activatedRoute.snapshot.paramMap.get('id');
 
@@ -177,8 +179,10 @@ export class UserProfileComponent implements OnInit {
             window.location.replace('profile/' + window.location.href.split('/')[4]);
           }, 2000)
         }
+        // this.toastr.success("Successfully Uploaded Profile Picture");
       })
     }
+    
   }
 
   uploadCov() {
@@ -200,8 +204,10 @@ export class UserProfileComponent implements OnInit {
             window.location.replace('profile/' + window.location.href.split('/')[4]);
           }, 2000)
         }
+        // this.toastr.success("Successfully Uploaded Cover Photo")
       })
     }
+    
   }
 
     imageChangedEvent: any = '';
