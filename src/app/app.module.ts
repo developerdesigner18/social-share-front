@@ -58,6 +58,16 @@ import { PickerModule } from '@ctrl/ngx-emoji-mart'
 // toast message
 import { ToastrModule } from 'ngx-toastr';
 import { AccountSettingComponent } from './account-setting/account-setting.component';
+import { ThemeComponent } from './theme/theme.component';
+import { SecurityComponent } from './security/security.component';
+import { AccountComponent } from './account/account.component';
+
+// Themes 
+import { ThemeModule } from '../theme/theme.module';
+import { lightTheme } from '../theme/light-theme';
+import { darkTheme } from '../theme/dark-theme';
+import { CookieModule } from 'ngx-cookie';
+import { CookieService } from 'ngx-cookie-service';
 
 
 @NgModule({
@@ -95,6 +105,9 @@ import { AccountSettingComponent } from './account-setting/account-setting.compo
     AlbumsComponent,
     NotificationsComponent,
     AccountSettingComponent,
+    ThemeComponent,
+    SecurityComponent,
+    AccountComponent,
     // TimeAgoPipe
   ],
   entryComponents: [DialogBodyComponent],
@@ -118,14 +131,21 @@ import { AccountSettingComponent } from './account-setting/account-setting.compo
     MatInputModule,
     TimeagoModule.forRoot(),
     PickerModule,
-    ToastrModule.forRoot()
-    ],
+    ToastrModule.forRoot(),
+    ThemeModule.forRoot({
+      themes: [lightTheme, darkTheme],
+      active: 'light'
+    }),
+    CookieModule.forRoot()
+  ],
+  
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
-    }
+    },
+    CookieService
   ],
   bootstrap: [AppComponent]
 })

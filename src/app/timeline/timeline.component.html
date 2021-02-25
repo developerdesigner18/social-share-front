@@ -1,4 +1,5 @@
-<div class="say_words position-relative timeline" style="padding-bottom: 10px !important;">
+
+<div app-theme class="say_words position-relative timeline" style="padding-bottom: 10px !important;">
   <input #textmsgPost type="text" placeholder=" Say something!" (click)="openTextDialog($event)" *ngIf="current_user_profile">
   <input #textmsgPost type="text" placeholder=" Say something to {{u_name}}!" (click)="openTextDialog($event)" *ngIf="!current_user_profile">
   <div class="slider_bid_like-share d-flex flex-column">
@@ -12,7 +13,7 @@
   </div>
 </div>
 <ng-container *ngIf="notfound !== 404">
-<div *ngFor="let data of datas | slice:0:totalDisplayed; let i = index" class="main_post_content d-flex flex-column timeline" >
+<div app-theme *ngFor="let data of datas | slice:0:totalDisplayed; let i = index" class="main_post_content d-flex flex-column timeline" >
 <!-- <div *ngFor="let data of datas; let i = index" class="main_post_content d-flex flex-column timeline" > -->
   <div class="d-flex show_basic_info" style="width: 100%" >
     <div class="profile_pic_profile position-relative">

@@ -34,6 +34,7 @@ export class AlbumsComponent implements OnInit {
   fourimg = false;
   fiveimg = false;
   closeDialog = false;
+  shows: boolean = false;
 
   @ViewChild('postMsg') postMesssgeElement: any;
   @ViewChild('postName') postNameElement: any;
@@ -56,7 +57,8 @@ export class AlbumsComponent implements OnInit {
       this.fileData.push(data.file)
       this.images = data.images
   
-      if(data.images && data.files != ''){
+    if (data.images && data.files != '') {
+      this.shows = true
         if(Object.keys(this.fileData[0]).length === 2)
         {
           this.twoimg = true
@@ -87,6 +89,17 @@ export class AlbumsComponent implements OnInit {
   
     public Close() {
       this.dialogRef.close();
+    }
+  
+    cancel() {
+      while(this.images.length > 0) {
+        this.images.pop();
+    }
+      while(this.data.file.length > 0) {
+        this.data.file.pop();
+      }
+      this.shows = false
+      this.toastr.info("All images are removed. Please select new ones")
     }
   
     postSave(){
@@ -169,7 +182,7 @@ export class AlbumsComponent implements OnInit {
           this.textOnlylength = i
         }
       }
-  
+      this.shows = true
       if(this.images.length === 1 || this.textOnlylength === 1)
       {
         this.twoimg = true

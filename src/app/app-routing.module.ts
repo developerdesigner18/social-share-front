@@ -26,6 +26,9 @@ import { AuthGuard } from "./auth.guard";
 import { VideosComponent } from './videos/videos.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { AccountSettingComponent } from './account-setting/account-setting.component';
+import { ThemeComponent } from './theme/theme.component';
+import { SecurityComponent } from './security/security.component';
+import { AccountComponent } from './account/account.component';
 
 const routes: Routes = [
   { path: '', component: AuthComponent },
@@ -76,7 +79,13 @@ const routes: Routes = [
   { path: 'home/:id', component: HomeComponent, canActivate:[AuthGuard]},
   { path: 'search/:id', component: SearchComponent, canActivate:[AuthGuard]},
   { path: 'peopleknow/:id', component: PeopleKnowComponent, canActivate: [AuthGuard] },
-  { path: 'account/:id', component: AccountSettingComponent}
+  { path: 'account/:id', component: AccountComponent, canActivate:[AuthGuard],
+    children: [
+    { path: 'account-setting', component: AccountSettingComponent },
+    { path: 'security_and_login', component: SecurityComponent}
+  ]
+  },
+  { path: 'theme', component: ThemeComponent }
 ];
 
 @NgModule({

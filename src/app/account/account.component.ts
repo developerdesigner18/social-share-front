@@ -1,18 +1,16 @@
-import { Component, Inject, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../auth.service';
 
 @Component({
-  selector: 'app-account-setting',
-  templateUrl: './account-setting.component.html',
-  styleUrls: ['./account-setting.component.css'],
+  selector: 'app-account',
+  templateUrl: './account.component.html',
+  styleUrls: ['./account.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-  
-export class AccountSettingComponent implements OnInit {
+export class AccountComponent implements OnInit {
   profileForm: FormGroup;
   id: any
   datas: any = [];
@@ -24,7 +22,6 @@ export class AccountSettingComponent implements OnInit {
   edit_user: boolean = false;
 
   @ViewChild('nameText') nameTextElement: any;
-  token: string;
   constructor(
     public authService: AuthService,
     private activatedRoute: ActivatedRoute,
@@ -32,8 +29,7 @@ export class AccountSettingComponent implements OnInit {
     public formBuilder: FormBuilder,
     public toastr: ToastrService
   ) {
-    
-    this.id = this.activatedRoute.parent.params['value']['id'];
+    this.id = this.activatedRoute.snapshot.paramMap.get('id');
       this.authService.getProfileforAbout(this.id).subscribe(res => {
         this.datas = res.data;
         this.name = res.data.name
@@ -89,5 +85,6 @@ export class AccountSettingComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
 
 }

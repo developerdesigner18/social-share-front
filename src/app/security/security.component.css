@@ -116,9 +116,6 @@ a.my_post_links {
 	margin-left: 10px;
 }
 
-.my_post_links{
-	cursor: pointer;
-}
 a:hover{
     text-decoration: none;
 }
@@ -216,7 +213,6 @@ img.logout {
     width: 95vw;
     margin: auto;
 }
-
 .main_areas {
     flex: 2.5;
     margin: 0 25px;

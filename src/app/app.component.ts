@@ -2,6 +2,7 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
+import { ThemeService } from '../theme/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,7 @@ import { AuthService } from './auth.service';
 export class AppComponent {
   title = 'Social Share'
   sessionUser = false;
-  constructor( private titleService: Title, private authService: AuthService, private router: Router) {
+  constructor( private titleService: Title, private authService: AuthService, private router: Router, private themeService: ThemeService) {
 
   }
 

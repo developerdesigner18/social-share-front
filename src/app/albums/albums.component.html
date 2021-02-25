@@ -16,22 +16,27 @@
       <div class="text-center col-md-12 load_new_image" style="margin-top: 50px;" id="load_new_image_id">
   
         <ng-container *ngIf="!twoimg && !threeimg && !fourimg && !fiveimg">
+          <a *ngIf="shows" class="cancel_btn" (click)="cancel()"><img src="../../assets/images/cancel.png" width="20px" height="20px" alt=""> </a>
           <img #postImage class="change_width" style="width: 100%" [src]="image" *ngFor="let image of images; let i = index;"/>
           
         </ng-container>
         <ng-container *ngIf="twoimg && !threeimg && !fiveimg && !fourimg">
+          <a *ngIf="shows" class="cancel_btn" (click)="cancel()"><img src="../../assets/images/cancel.png" width="20px" height="20px" alt=""> </a>
           <img #postImage class="change_width" style="width: 50%; height: 243px; object-fit: cover;" [src]="image" *ngFor="let image of images; let i = index;"/>
           
         </ng-container>
         <ng-container *ngIf="threeimg && !twoimg && !fiveimg && !fourimg">
+          <a *ngIf="shows" class="cancel_btn" (click)="cancel()"><img src="../../assets/images/cancel.png" width="20px" height="20px" alt=""> </a>
           <img #postImage class="change_width" style="width: {{(isFirst) ? '100%' : '50%'}}; height: 243px; object-fit: cover;" [src]="image" *ngFor="let image of images; let i = index; first as isFirst"/>
           
         </ng-container>
         <ng-container *ngIf="fourimg && !twoimg && !threeimg && !fiveimg">
+          <a *ngIf="shows" class="cancel_btn" (click)="cancel()"><img src="../../assets/images/cancel.png" width="20px" height="20px" alt=""> </a>
           <img #postImage class="change_width" style="width: '50%'; height: 243px; object-fit: cover;" [src]="image" *ngFor="let image of images; let i = index;"/>
           
         </ng-container>
         <ng-container *ngIf="fiveimg && !fourimg && !twoimg && !threeimg">
+          <a *ngIf="shows" class="cancel_btn" (click)="cancel()"><img src="../../assets/images/cancel.png" width="20px" height="20px" alt=""> </a>
           <img #postImage class="{{(i + 1 > 4) ? 'hidden_last_img' : 'change_width'}}" style="width: 50%; height: 243px; object-fit: cover;" [src]="image" *ngFor="let image of images; let i = index; last as isLast"/>
           <div class="bottom-left set_view_more">View More</div>
           

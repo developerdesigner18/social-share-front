@@ -89,7 +89,7 @@ export class PhotosComponent implements OnInit {
   
   delAlbum(album_id, album_name) {
     if (confirm(`Are you sure you want to delete this ${album_name} album ?`)) {
-      this.authService.DeleteAlbum(album_id).subscribe(res => {
+      this.authService.DeletePost(album_id).subscribe(res => {
         location.reload();
       }) 
     }

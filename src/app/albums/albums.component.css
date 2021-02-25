@@ -14,17 +14,22 @@
     padding: 10px;
   }
   
-  
+  a.cancel_btn {
+    position: absolute;
+    right: 22px;
+    top: 11px;
+    cursor: pointer;
+  }
   .video_set_size{
     height: 290px;
     width: 100%;
     object-fit: cover;
   }
   
-  .image_set_size{
+  /* .image_set_size{ */
     /* height: 100%; */
     /* width: 100%; */
-  }
+  /* } */
   
   .second_image_set_size{
     height: 290px;
