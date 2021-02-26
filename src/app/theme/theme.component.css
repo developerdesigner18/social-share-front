@@ -1,30 +1,11 @@
-*{
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-    /* font-family: 'Roboto Slab', serif; */
-}
 
-.write_words input::placeholder {
-    color: #616161 !important;
-    font-size: 14px !important;
-    font-weight: 400;
-}
 .main{
-	padding: 25px;
 	background: var(--background);
 	color: var(--on-background);
   }
   .innerdiv{
-	padding: 25px;
-	margin-top:30px;
-	text-align: left;
-	position: relative;
 	background: var(--primary);
 	color: var(--on-primary);
-  }
-  button{
-	margin-top: 20px;
   }
   h1{
 	height: auto;
@@ -44,6 +25,14 @@
   .switch input { 
 	display: none;
   }
+  .left_sidebars, .right_sidebar > div, .main_area_contents, .write_comments, .data_album{
+	background: var(--background);
+	color: var(--on-background);
+  }
+  .profile_name, .profile_name_of_poster, .province > div, .data_desc{
+	color: var(--on-background);
+  }
+
   
   .slider {
 	position: absolute;
@@ -190,36 +179,7 @@ body {
     background-color: #F1F1F1;
     background-image: none !important;
 }
-header{
-	background-color: #0f1b31;
-	padding: 15px 0;
-	position: unset;
-}
-.logo {
-    width: 60%;
-}
-.header_alignment{
-	width: 95vw;
-	margin: auto;
-}
-.login_container button {
-	background: #FF900000;
-	border: 0;
-	padding: 6px 12px;
-	border-radius: 4px;
-	color: #ffffff;
-	font-size: 14px;
-	margin-left: 20px;
-}
-header .ads {
-    flex: 2.5;
-    background-color: #f0f8ff1c;
-    text-align: center;
-    padding: 5px;
-    border-radius: 4px;
-    color: #f0f8ff;
-    height: 70px;
-}
+
 .icons_showing_card {
     margin-left: 0 !important;
 }
@@ -251,23 +211,12 @@ header .ads {
     bottom: -70px;
     margin-left: 40px !important;
 }
-header .logo, .login_container {
-    flex: 1;
-}
+
 .left_sidebars {
     position: sticky !important;
     margin-top: 20px;
 }
-.login_container {
-    text-align: right;
-}
-.login_container div {
-    display: inline-flex;
-    position: relative;
-    background: #FF9000;
-    border-radius: 4px;
-		margin: 10px 0 10px 0;
-}
+
 img.logout {
     width: 18%;
     position: absolute;
@@ -287,17 +236,7 @@ img.logout {
     flex: 2.5;
 		margin: 0 25px;
 }
-.left_sidebars, .right_sidebar > div, .main_area_contents{
-    display: flex;
-    justify-content: center;
-    background-color: #ffffff;
-    box-shadow: 0px 1px 15px 0px rgba(0, 52, 89, 0.58);
-    position: relative;
-    top: 20px;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 4px;
-}
+
 
 @media (max-width: 576px){
 	header{

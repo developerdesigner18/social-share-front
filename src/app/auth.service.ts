@@ -88,7 +88,7 @@ export class AuthService {
     return this.httpClient.get(`${environment.apiUrl}/api/user/profile?id=${id}`, { headers: this.headers }).pipe(
       map((res: Response) => {
         if(res['success'] == true){
-          this.router.navigate([`profile/${id}`])
+          // this.router.navigate([`profile/${id}`])
         }
         return res || {}
       }),

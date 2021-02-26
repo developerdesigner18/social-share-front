@@ -6,6 +6,7 @@ import { PostModalComponent } from '../post-modal/post-modal.component';
 import { AuthService } from '../auth.service';
  import { NgImageSliderComponent } from 'ng-image-slider';
 import { ToastrService } from 'ngx-toastr';
+import { ThemeService } from '../../theme/theme.service';
 declare var jQuery: any;
 declare var $: any;
 
@@ -75,6 +76,7 @@ export class HomeComponent implements OnInit {
   totalDisplayed: any;
   show_load_more: boolean = true;
   sharess: any;
+  cookieValue: string;
 
   constructor(
     public authService: AuthService,
@@ -83,10 +85,15 @@ export class HomeComponent implements OnInit {
     public formBuilder: FormBuilder,
     public router: Router,
     private route: ActivatedRoute,
-    public toastr: ToastrService
+    public toastr: ToastrService,
+    private themeService: ThemeService
   ) {
     this.totalDisplayed = 10;
-    
+    $(".hide_theme").css("display", "none");
+    this.cookieValue = localStorage.getItem('theme');
+    // console.log("this.cookieValue", this.cookieValue);
+    // console.log(this.value)
+    this.themeService.setTheme(this.cookieValue);
 
     $(document).ready(function(){
       setTimeout(function(){

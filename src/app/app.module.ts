@@ -68,6 +68,7 @@ import { lightTheme } from '../theme/light-theme';
 import { darkTheme } from '../theme/dark-theme';
 import { CookieModule } from 'ngx-cookie';
 import { CookieService } from 'ngx-cookie-service';
+import { InformationComponent } from './information/information.component';
 
 
 @NgModule({
@@ -108,6 +109,7 @@ import { CookieService } from 'ngx-cookie-service';
     ThemeComponent,
     SecurityComponent,
     AccountComponent,
+    InformationComponent,
     // TimeAgoPipe
   ],
   entryComponents: [DialogBodyComponent],

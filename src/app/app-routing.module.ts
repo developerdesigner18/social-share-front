@@ -29,6 +29,7 @@ import { AccountSettingComponent } from './account-setting/account-setting.compo
 import { ThemeComponent } from './theme/theme.component';
 import { SecurityComponent } from './security/security.component';
 import { AccountComponent } from './account/account.component';
+import { InformationComponent } from './information/information.component';
 
 const routes: Routes = [
   { path: '', component: AuthComponent },
@@ -55,6 +56,7 @@ const routes: Routes = [
       { path: '', redirectTo:'timeline', pathMatch:"full" }
     ]
   },
+  { path: 'profile/:id/about', component: AboutComponent},
   { path: 'reset', component: ResetComponent},
   { path: 'friends/:id', component: RequestFriendsComponent, canActivate:[AuthGuard],
     children: [
@@ -82,7 +84,9 @@ const routes: Routes = [
   { path: 'account/:id', component: AccountComponent, canActivate:[AuthGuard],
     children: [
     { path: 'account-setting', component: AccountSettingComponent },
-    { path: 'security_and_login', component: SecurityComponent}
+    { path: 'security_and_login', component: SecurityComponent },
+    { path: 'social_information', component: InformationComponent },
+    { path: '', redirectTo:'account-setting', pathMatch:"full" }
   ]
   },
   { path: 'theme', component: ThemeComponent }

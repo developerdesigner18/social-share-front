@@ -19,7 +19,7 @@
 			</div>
 		</div>
 		<div>
-			<app-theme></app-theme>
+			<app-themes></app-themes>
 		</div>
 		<a class="my_post_links" href="profile/{{id}}">
 			<div class="left_content">
@@ -148,14 +148,14 @@
 								<div class="dropdown-container full-width-20" tabindex="-1">
 									<div class="three-dots"></div>
 									<div class="dropdown">
-									  <a href="profile/{{data.userId}}/about"><div>About Me</div></a>
+									  <a href="profile/{{data.userId}}/about" ><div>About Me</div></a>
 									  <a href="profile/{{data.userId}}/photos"><div>Photos</div></a>
 									  <a href="profile/{{data.userId}}/videos"><div>Videos</div></a>
 									</div>
 								  </div>
 							</div>
 						</div>
-						<div style="color: #0F1B31;font-size: 14px;" *ngIf="data.name !== undefined">Album: {{data.name}} </div>
+						<div class="data_album" *ngIf="data.name !== undefined">Album: {{data.name}} </div>
 						<div class="data_desc" style="width: 100%">{{data.description}}</div>
 					</div>
 				</div>

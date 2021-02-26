@@ -4,22 +4,22 @@
 		<div class="profile_image">
 			<h3>Settings</h3>
 		</div>
-		<a class="my_post_links">
-			<div class="left_content">
+		<a class="my_post_links" >
+			<div class="left_content" [routerLink]="['account-setting']" [routerLinkActive]="['active_tabs']">
 				<i class="fas fa-user"></i>
-				<div [routerLink]="['account-setting']">General Settings</div>
+				<div  >General Settings</div>
 			</div>
 		</a>
-		<a class="my_post_links">
-			<div class="left_content">
+		<a class="my_post_links" >
+			<div class="left_content" [routerLink]="['security_and_login']" [routerLinkActive]="['active_tabs']">
 				<i class="fas fa-shield-alt"></i>
-				<div [routerLink]="['security_and_login']">Security and Login</div>
+				<div >Security and Login</div>
 			</div>
 		</a>
 		<a class="my_post_links">
-			<div class="left_content">
+			<div class="left_content" [routerLink]="['social_information']" [routerLinkActive]="['active_tabs']">
 				<i class="fas fa-info-circle"></i>
-				<div>Your SocialShare Information</div>
+				<div >Your SocialShare Information</div>
 			</div>
 		</a>
 		

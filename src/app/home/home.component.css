@@ -18,6 +18,12 @@ button, input {
 .left_content img {
     width: 20px;
 }
+.data_album{
+    color: #0F1B31;font-size: 14px;
+}
+.hide_theme{
+    display: none !important;
+}
 a:hover{
     text-decoration: none;
 }
