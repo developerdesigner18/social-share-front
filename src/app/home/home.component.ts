@@ -299,7 +299,7 @@ $(window).scroll(function() {
   temLike = 0;
   checkTem = false
   
-  
+  view_more(){}
 
   likeIt(postId, likeCount) {
     var trying = document.getElementById('tooltiptexts');

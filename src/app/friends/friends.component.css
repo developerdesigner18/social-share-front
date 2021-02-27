@@ -2,6 +2,9 @@
     margin-top: 25px;
     width: 90%;
 }
+.hide_theme{
+	display: none;
+}
 .cat_search input {
     background-color: #f1f1f1;
     border: 0;

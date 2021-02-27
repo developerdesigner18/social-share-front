@@ -3,6 +3,9 @@
     overflow: hidden;
     margin-top: 25px;
 }
+.hide_theme{
+	display: none;
+}
 /* .ng-image-slider .ng-image-slider-container .main .main-inner {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;

@@ -4,6 +4,9 @@
 	box-sizing: border-box;
     /* font-family: 'Roboto Slab', serif; */
 }
+.hide_theme{
+	display: none;
+}
 .input_section>div {
     margin-left: 20px;
     color: #ff9000;

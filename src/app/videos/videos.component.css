@@ -11,6 +11,9 @@
     border-radius: 4px;
     /* padding: 25px 0; */
 }
+.hide_theme{
+	display: none;
+}
 .item{
     padding-top: 25px;
 }

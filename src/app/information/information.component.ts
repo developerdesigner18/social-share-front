@@ -14,7 +14,6 @@ export class InformationComponent implements OnInit {
   user_post: number;
   constructor(public authService: AuthService,
     private activatedRoute: ActivatedRoute) {
-    // let id = this.activatedRoute.parent.parent.params['value']['id'];
     this.id = this.activatedRoute.parent.params['value']['id'];
     this.authService.getAllData(this.id).subscribe(res => { 
       console.log("res", res)

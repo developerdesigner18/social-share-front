@@ -99,6 +99,7 @@ export class AlbumsComponent implements OnInit {
         this.data.file.pop();
       }
       this.shows = false
+      $(".set_view_more").css('display', 'none');
       this.toastr.info("All images are removed. Please select new ones")
     }
   
@@ -126,9 +127,6 @@ export class AlbumsComponent implements OnInit {
           }
         } else {
         this.toastr.info("png format is not supported use other format like jpg or jpeg")
-        setTimeout(() => {
-          window.location.reload();
-        }, 2500)
         }
         
         if (this.postNameElement.nativeElement.value === '') {

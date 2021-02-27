@@ -4,6 +4,9 @@
 	box-sizing: border-box;
     /* font-family: 'Roboto Slab', serif; */
 }
+.hide_theme{
+	display: none;
+}
 .write_words input::placeholder {
     color: #616161 !important;
     font-size: 14px !important;

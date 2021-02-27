@@ -1,6 +1,9 @@
 .cdk-overlay-pane.my-dialog {
   position: relative!important;
 }
+.hide_theme{
+	display: none;
+}
 .close.mat-button {
   position: absolute;
   top: 0;
@@ -20,11 +23,18 @@ button.close{
   width: 100%;
   object-fit: cover;
 }
+a.cancel_btn:hover {
+  background: black;
+}
+
 a.cancel_btn {
   position: absolute;
   right: 22px;
   top: 11px;
   cursor: pointer;
+  padding: 8px;
+  background: #0000008a;
+  border-radius: 50%;
 }
 
 /* .image_set_size{ */

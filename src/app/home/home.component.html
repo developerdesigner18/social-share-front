@@ -2,7 +2,7 @@
 <app-header></app-header>
 
 <a id="button_top" onclick="window.scrollTo(0, 0);"></a>
-<div app-theme class="main_container d-flex align-items-start">
+<div class="main_container d-flex align-items-start">
 	<div class="left_sidebars">
 		<div class="profile_image">
 			<img [src]="profileImg" onerror="this.src='/assets/images/default_user.jpg';">
@@ -19,7 +19,7 @@
 			</div>
 		</div>
 		<div>
-			<app-themes></app-themes>
+			<!-- <app-themes></app-themes> -->
 		</div>
 		<a class="my_post_links" href="profile/{{id}}">
 			<div class="left_content">
@@ -156,7 +156,9 @@
 							</div>
 						</div>
 						<div class="data_album" *ngIf="data.name !== undefined">Album: {{data.name}} </div>
-						<div class="data_desc" style="width: 100%">{{data.description}}</div>
+						<div *ngIf="data.description.length > 60" class="item_desc mt-2" style="width: 100%;word-wrap: break-word;">{{(data.description | slice:0:60) + '...'}}</div>
+						<div *ngIf="data.description.length < 60" class="item_desc mt-2" style="width: 100%;word-wrap: break-word;">{{data.description}}</div>
+      					<a style="color: #ff9000;" href="" *ngIf="data.description.length > 60" (click)="view_more()">View More</a>
 					</div>
 				</div>
 				

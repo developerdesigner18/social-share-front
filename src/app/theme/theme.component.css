@@ -3,6 +3,10 @@
 	background: var(--background);
 	color: var(--on-background);
   }
+  .contain{
+	background: var(--background) !important;
+	color: var(--on-background);
+  }
   .innerdiv{
 	background: var(--primary);
 	color: var(--on-primary);
@@ -26,7 +30,7 @@
 	display: none;
   }
   .left_sidebars, .right_sidebar > div, .main_area_contents, .write_comments, .data_album{
-	background: var(--background);
+	background: var(--background) !important;
 	color: var(--on-background);
   }
   .profile_name, .profile_name_of_poster, .province > div, .data_desc{

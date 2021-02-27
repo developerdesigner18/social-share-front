@@ -10,6 +10,9 @@ input{
     font-size: 14px;
     padding-left: 15px;
 }
+.hide_theme{
+	display: none;
+}
 
 button{
   border: 1px solid #f0f8ff;
@@ -69,8 +72,6 @@ select{
 
 .langauge-list{
   width: 95%;
-  /* display: flex; */
-  /* justify-content: space-between; */
   align-items: center;
   margin-right: 16px !important;
 }

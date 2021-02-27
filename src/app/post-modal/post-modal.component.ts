@@ -97,6 +97,7 @@ export class PostModalComponent implements OnInit {
     while(this.data.file.length > 0) {
       this.data.file.pop();
     }
+    $(".set_view_more").css('display', 'none');
     this.shows = false
     this.toastr.info("All images are removed. Please select new ones")
   }
@@ -124,9 +125,9 @@ export class PostModalComponent implements OnInit {
           }
         } else {
           this.toastr.info("png format is not supported used other format like jpg or jpeg")
-          setTimeout(() => {
-            window.location.reload();
-          }, 2500)
+          // setTimeout(() => {
+          //   window.location.reload();
+          // }, 2500)
         }
         reader.onload = (_event) => {
           this.authService.newPost(this.token, this.postMesssgeElement.nativeElement.value, this.fileCovToReturn).subscribe((res) => {

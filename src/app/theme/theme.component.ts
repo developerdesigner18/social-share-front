@@ -16,35 +16,12 @@ export class ThemeComponent implements OnInit {
   hide: boolean;
 
   constructor(private themeService: ThemeService, private cookieService: CookieService) {
-    // this.value = 'light'
-    
-    // this.cookieService.set( 'Theme', this.value);
-    // this.cookieValue = this.cookieService.get('Theme');
-
-    // this.active = this.themeService.getActiveTheme();
-    // if (this.active.name === 'light') {
-    //   this.themeService.setTheme('light');
-      // this.value.pop()
-      // this.value.push('dark');
-      // localStorage.setItem("theme", "dark");
-    // } else {
-      // this.themeService.setTheme('dark');
-      // localStorage.setItem("theme", "light");
-      // this.value.pop();
-      // this.value.push('light')
-    // }
-    // this.cookieService.set('Theme', this.value);
-    
     this.cookieValue = localStorage.getItem('theme');
-    // console.log("this.cookieValue", this.cookieValue);
-    // console.log(this.value)
     this.themeService.setTheme(this.cookieValue);
     
   }
   
    toggle() {
-    // const active = this.themeService.getActiveTheme() ;
-    //  console.log("=-=-=-=-=-toogle name", active.name);
     if (this.cookieValue === 'dark') {
       this.hide=!this.hide
     } else {
@@ -60,17 +37,6 @@ export class ThemeComponent implements OnInit {
       localStorage.setItem("theme", "light");
     }
      console.log("active.name", active.name)
-    // if (active.name === 'light') {
-      // this.value.pop()
-      // this.value.push('dark');
-      // localStorage.setItem("theme", "light");
-    // } else {
-      // this.themeService.setTheme('light');
-      // this.value.pop();
-      // localStorage.setItem("theme", "dark");
-      // this.value.push('light')
-    // }
-    // this.cookieService.set( 'Theme', this.value);
   }
 
   ngOnInit(): void {

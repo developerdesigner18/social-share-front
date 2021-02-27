@@ -75,7 +75,7 @@
   <div *ngIf="show_school" class="update-list">
     <div *ngFor="let school_data of get_school.slice().reverse()" class="work-record">
       <div class="update-display" >
-        <i class="fas fa-school"><i class=""></i> </i> <div class="works_shows"> {{school_data.name}} </div>
+        <i class="fas fa-school"></i> <div class="works_shows"> {{school_data.name}} </div>
       </div>
       <div class="icons-pencil" *ngIf="icons">
         <i (click)="updateSchool(school_data._id, school_data.name)" class="pencil-icon fa fa-pencil"></i>

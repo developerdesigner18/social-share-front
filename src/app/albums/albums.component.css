@@ -9,6 +9,12 @@
     line-height: 14px;
     min-width: auto;
   }
+  .hide_theme{
+    display: none;
+  }
+  a.cancel_btn:hover {
+    background: black;
+}
   
   button.close{
     padding: 10px;
@@ -19,6 +25,9 @@
     right: 22px;
     top: 11px;
     cursor: pointer;
+    padding: 8px;
+    background: #0000008a;
+    border-radius: 50%;
   }
   .video_set_size{
     height: 290px;

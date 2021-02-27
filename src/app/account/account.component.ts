@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../auth.service';
+declare var jQuery: any;
+declare var $: any;
 
 @Component({
   selector: 'app-account',
@@ -29,6 +31,8 @@ export class AccountComponent implements OnInit {
     public formBuilder: FormBuilder,
     public toastr: ToastrService
   ) {
+    
+    $(".hide_theme").css("display", "none");
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
       this.authService.getProfileforAbout(this.id).subscribe(res => {
         this.datas = res.data;

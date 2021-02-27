@@ -11,6 +11,9 @@ textarea{
     padding-left: 15px;
     padding-top: 9px;
 }
+.hide_theme{
+	display: none;
+}
 .life_event_shows {
   position: relative;
   top: -8px;

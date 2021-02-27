@@ -8,6 +8,10 @@
     flex-direction: column;
     align-items: baseline !important;
 }
+.hide_theme{
+	display: none;
+}
+
 html{
 	background-color: #F1F1F1;
 }

@@ -178,6 +178,9 @@ export class TimelineComponent implements OnInit {
   open_comments(postId){
     $(`.comments_container_${postId}`).toggle();
   }
+  view_more() {
+    
+  }
   trackByFn(i, like) {
     return i;
   }
@@ -279,8 +282,7 @@ export class TimelineComponent implements OnInit {
 
     var trying = document.getElementById('tooltiptexts');
     let index: any = trying.getAttribute('data-index');
-    
-    
+
     this.authService.sendLikePost(postId).subscribe(res => {
       if(res['success'])
       {

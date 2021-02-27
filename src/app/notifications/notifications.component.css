@@ -7,6 +7,9 @@
     border-radius: 4px;
     padding: 25px 15px;
 }
+.hide_theme{
+	display: none;
+}
 .all_notification{
     padding: 0 10px;
     margin-bottom: 5px;

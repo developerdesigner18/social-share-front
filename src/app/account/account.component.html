@@ -1,8 +1,9 @@
 <app-header></app-header>
-<div class="main_container d-flex align-items-start">
+<div app-theme class="main_container d-flex align-items-start">
 	<div class="left_sidebars">
 		<div class="profile_image">
 			<h3>Settings</h3>
+			<app-themes></app-themes>
 		</div>
 		<a class="my_post_links" >
 			<div class="left_content" [routerLink]="['account-setting']" [routerLinkActive]="['active_tabs']">
@@ -19,10 +20,9 @@
 		<a class="my_post_links">
 			<div class="left_content" [routerLink]="['social_information']" [routerLinkActive]="['active_tabs']">
 				<i class="fas fa-info-circle"></i>
-				<div >Your SocialShare Information</div>
+				<div>Your SocialShare Information</div>
 			</div>
 		</a>
-		
 	</div>
     <div class="main_areas">
 		<router-outlet></router-outlet>
