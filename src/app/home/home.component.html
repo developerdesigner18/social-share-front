@@ -2,7 +2,7 @@
 <app-header></app-header>
 
 <a id="button_top" onclick="window.scrollTo(0, 0);"></a>
-<div class="main_container d-flex align-items-start">
+<div app-theme class="main_container d-flex align-items-start">
 	<div class="left_sidebars">
 		<div class="profile_image">
 			<img [src]="profileImg" onerror="this.src='/assets/images/default_user.jpg';">
@@ -19,7 +19,7 @@
 			</div>
 		</div>
 		<div>
-			<!-- <app-themes></app-themes> -->
+			<app-themes></app-themes>
 		</div>
 		<a class="my_post_links" href="profile/{{id}}">
 			<div class="left_content">
@@ -118,8 +118,8 @@
 							<div class="province d-flex align-items-center">
 								<img src="assets/images/add_ob.png">
 								<!-- <div>{{data.city}}, {{data.state}}</div> -->
-								<div *ngIf="data.city !== null && data.state !== null">{{data.city}} {{data.state}}</div>
-          						<div *ngIf="data.city === undefined && data.state === undefined">Not Mention</div>
+								<div *ngIf="data.city !== null && data.state !== null">{{data.city ? data.city : 'Not Mention'}}, {{data.state ? data.state : 'Not Mention'}}</div>
+          						<!-- <div *ngIf="data.city === undefined && data.state === undefined">Not Mention</div> -->
 							</div>
 							<div class="basic_info" *ngIf="showbasicProfile2[i]" (mouseleave)="showbasicProfile2[i]=false">
 								<div class="d-flex">

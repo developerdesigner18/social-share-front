@@ -90,10 +90,7 @@ export class HomeComponent implements OnInit {
   ) {
     this.totalDisplayed = 10;
     $(".hide_theme").css("display", "none");
-    this.cookieValue = localStorage.getItem('theme');
-    // console.log("this.cookieValue", this.cookieValue);
-    // console.log(this.value)
-    this.themeService.setTheme(this.cookieValue);
+ 
 
     $(document).ready(function(){
       setTimeout(function(){
@@ -105,7 +102,6 @@ export class HomeComponent implements OnInit {
 
 $(window).scroll(function() {
   if ($(window).scrollTop() > 300) {
-    // btn.addClass('show');
     $("#button_top").addClass("show");
   } else {
     $("#button_top").removeClass('show');

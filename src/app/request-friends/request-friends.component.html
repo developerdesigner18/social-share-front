@@ -93,9 +93,9 @@
               <div class="d-flex">
                 <img [src]="profileImg" onerror="this.src='/assets/images/default_user.jpg';">
                 <div style="padding: 10px;">
-                  <a href="profile/{{data.userId}}"><div class="profile_basic_info set_redirect_link">{{name}}</div></a>
-                  <div class="profile_basic_info"><i class="fas fa-user-tie" style="margin-right: 10px"></i>{{u_designation}}</div>
-                  <div class="profile_basic_info"><i class="fas fa-envelope" style="margin-right: 10px"></i>{{u_email}}</div>
+                  <a href="profile/{{data.userId}}"><div class="profile_basic_info set_redirect_link">{{name ? name : 'Not Provided'}}</div></a>
+                  <div class="profile_basic_info"><i class="fas fa-user-tie" style="margin-right: 10px"></i>{{u_designation ? u_designation : 'Not Provided'}}</div>
+                  <div class="profile_basic_info"><i class="fas fa-envelope" style="margin-right: 10px"></i>{{u_email ? u_email : 'Not Provided'}}</div>
                 </div>
               </div>
             </div>
@@ -105,13 +105,12 @@
               <a href="profile/{{u_id}}"><div class="profile_name_of_poster">{{u_name}}</div></a>
               <div class="province d-flex align-items-center">
                 <img src="assets/images/add_ob.png">
-                <div *ngIf="u_city !== null && u_state !== null">{{u_city}} {{u_state}}</div>
-                <div *ngIf="u_city === undefined && u_state === undefined">Not Mention</div>
+                <div *ngIf="u_city !== null && u_state !== null">{{u_city ? u_city : 'Not Mention'}}, {{u_state ? u_state : 'Not Mention'}}</div>
               </div>
             </div>
-            <!-- <div class="item_desc mt-3" style="width: 100%">{{data.description}}</div> -->
+            
             <div style="color: #0F1B31;font-size: 14px;" *ngIf="data.name !== undefined">Album: {{data.name}} </div>
-            <div class="item_desc mt-2" style="width: 100%;word-wrap: break-word;">{{data.description}}</div>
+            <div class="item_desc mt-2" style="width: 100%;word-wrap: break-word;">{{data.description.length > 60 ? (data.description | slice:0:60) + '...': data.description}}</div>
           </div>
         </div>
         <div class="slider_bid_like-share d-flex flex-column" style="width: 100%" id="slider-owl-carousel-load">

@@ -4,6 +4,9 @@
 	box-sizing: border-box;
     /* font-family: 'Roboto Slab', serif; */
 }
+.left_content:focus {
+    outline: none;
+}
 .hide_theme{
 	display: none;
 }

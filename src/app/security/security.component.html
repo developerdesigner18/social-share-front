@@ -38,12 +38,24 @@
                 <button type="button" name="button" >Cancel</button>
             </div>
             </div> -->
-            <div class="setting_details">
+            <div class="setting_details pass">
                 <div class="input_section">
                 <p>Password</p>
-                <div class="email_show">  </div>
+                <!-- <div class="email_show">  </div> -->
+                <input *ngIf="input_pass" type="password" name="pass" id="pass" [(ngModel)]="pass" placeholder="Please enter password">
+                <div class="error_msgs">
+                    <span style="color: red;" *ngIf="pass?.length < 10"> Password should be greater than 10 letters </span>
+                    <span style="color: red;" *ngIf="!pass">Password is required</span>
                 </div>
-                <button type="button" name="button">Change</button>
+                </div>
+                <button *ngIf="enter_pass" type="button" name="button" (click)="enterpass()"> Change</button>
+                <div class="change_button" style="display: flex;" *ngIf="change_pass">
+                    <button type="button" name="button" [disabled]="pass?.length > 10 || !pass" (click)="changePass(pass)">Change</button>
+                    <button type="button" type="button" (click)="cancel_btn()">Cancel</button>
+                </div>
+            </div>
+            <div class="setting_details">
+                <!-- <app-reset></app-reset> -->
             </div>
         </div>
     </div>

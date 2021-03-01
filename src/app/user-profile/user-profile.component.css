@@ -1103,6 +1103,9 @@ button.owl-next span {
     border-radius: 5px !important;
     left: 5px !important;
 }
+ul.nav.nav-pills.flex-column li:focus {
+    outline: none;
+}
 
 .show_album_images .ng-image-slider .ng-image-slider-container .main .main-inner .img-div .youtube-icon{
     display: none !important;

@@ -12,6 +12,9 @@ export class InformationComponent implements OnInit {
   id: number;
   count_frd: any;
   user_post: number;
+  u_country: any;
+  u_state: any;
+  u_city: any;
   constructor(public authService: AuthService,
     private activatedRoute: ActivatedRoute) {
     this.id = this.activatedRoute.parent.params['value']['id'];
@@ -29,6 +32,11 @@ export class InformationComponent implements OnInit {
       }else{
         this.user_post = res.length
       }
+    })
+    this.authService.getUserProfile(this.id).subscribe(res => { 
+      this.u_country =  res.data.country
+      this.u_state =  res.data.state
+      this.u_city =  res.data.city
     })
     }
 

@@ -11,6 +11,18 @@
     margin-left: 20px;
     color: #ff9000;
 }
+.setting_details.pass .input_section {
+    display: flex;
+    flex-direction: column;
+}
+.error_msgs {
+    margin: 0 !important;
+    display: flex;
+    flex-direction: column;
+}
+.setting_details.pass input {
+    margin: 0;
+}
 .input_section {
     display: flex;
 }
@@ -96,6 +108,18 @@ a.my_post_links {
     font-weight: 500;
     width: 10%;
 	border: 0;
+}
+.change_button button {
+    background-color: #0F1B31;
+    color: #ffffff;
+    border-radius: 4px;
+    /* height: 35px; */
+    font-size: 15px;
+    font-weight: 500;
+    width: 100%;
+    border: 0;
+    padding: 8px 15px;
+    margin-left: 10px;
 }
 .setting_details_hide {
     display: flex;

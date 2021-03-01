@@ -7,6 +7,12 @@
 .hide_theme{
 	display: none;
 }
+ul.nav.nav-pills.flex-column li:focus {
+    outline: none;
+}
+ul.nav.nav-pills.flex-column li {
+    cursor: pointer;
+}
 html{
 	background-color: #F1F1F1;
 }

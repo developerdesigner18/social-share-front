@@ -36,8 +36,8 @@
         </div>
       </div>
       <div style="color: #0F1B31;font-size: 14px;" *ngIf="data.name !== undefined">Album: {{data.name}} </div>
-      <div *ngIf="data.description.length < 60" class="item_desc mt-2" style="width: 100%;word-wrap: break-word;"> <p> {{data.description}} </p></div>
-      <div *ngIf="data.description.length > 60" class="item_desc mt-2" style="width: 100%;word-wrap: break-word;"> <p> {{(data.description | slice:0:60) + '...'}} </p></div>
+      <div *ngIf="data.description.length < 60" class="item_desc mt-2" style="width: 100%;word-wrap: break-word;"> <p> {{data.description.length > 60  ? (data.description | slice:0:60) + '...' : data.description}} </p></div>
+      <!-- <div *ngIf="data.description.length > 60" class="item_desc mt-2" style="width: 100%;word-wrap: break-word;"> <p> {{(data.description | slice:0:60) + '...'}} </p></div> -->
       <!-- <p> {{data.description.length}} </p> -->
       <a style="color: #ff9000;" *ngIf="data.description.length > 60" (click)="view_more()">View More</a>
     </div>
