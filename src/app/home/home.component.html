@@ -19,7 +19,7 @@
 			</div>
 		</div>
 		<div>
-			<app-themes></app-themes>
+			<!-- <app-themes></app-themes> -->
 		</div>
 		<a class="my_post_links" href="profile/{{id}}">
 			<div class="left_content">
@@ -104,11 +104,6 @@
 							</div>
 							<div class="full-width-20">
 								<i class="fas fa-ellipsis-h" style="margin-left: 18px"></i>
-								<!-- <div class="dropdown">
-									<a href="#"><div>click here for a scam</div></a>
-									<a href="#"><div>even more scams</div></a>
-									<a href="#"><div>still some money left?</div></a>
-								  </div> -->
 							</div>
 						</div>
 					</div>
@@ -118,7 +113,7 @@
 							<div class="province d-flex align-items-center">
 								<img src="assets/images/add_ob.png">
 								<!-- <div>{{data.city}}, {{data.state}}</div> -->
-								<div *ngIf="data.city !== null && data.state !== null">{{data.city ? data.city : 'Not Mention'}}, {{data.state ? data.state : 'Not Mention'}}</div>
+								<div>{{data.city ? data.city : 'City'}}, {{data.state ? data.state : 'Province'}}</div>
           						<!-- <div *ngIf="data.city === undefined && data.state === undefined">Not Mention</div> -->
 							</div>
 							<div class="basic_info" *ngIf="showbasicProfile2[i]" (mouseleave)="showbasicProfile2[i]=false">
@@ -126,8 +121,8 @@
 									<img [src]="data.post_profileImg" onerror="this.src='/assets/images/default_user.jpg';" class="hover-info-img2">
 									<div style="padding: 10px;">
 										<a href="profile/{{data.userId}}"><div class="profile_basic_info set_redirect_link">{{data.post_user}}</div></a>
-									<div class="profile_basic_info"><i class="fas fa-user-tie" style="margin-right: 10px"></i>{{data.post_user_designation}}</div>
-										<div class="profile_basic_info"><i class="fas fa-envelope" style="margin-right: 10px"></i>{{data.post_user_email}}</div>
+									<div class="profile_basic_info"><i class="fas fa-user-tie" style="margin-right: 10px"></i>{{data.post_user_designation ? data.post_user_designation : 'designation'}}</div>
+										<div class="profile_basic_info"><i class="fas fa-envelope" style="margin-right: 10px"></i>{{data.post_user_email ? data.post_user_email : 'Email'}}</div>
 									</div>
 								</div>
 								<div class="full-width-50" *ngIf="current_user['data']._id !== data.userId">
@@ -142,9 +137,6 @@
 								<div class="full-width-20" *ngIf="current_user['data']._id == data.userId" (click)="showProfile()" title="View as">
 									<i class="fas fa-eye" style="margin-left: 15px"></i>
 								</div>
-								<!-- <div class="full-width-20">
-									<i class="fas fa-ellipsis-h" style="margin-left: 15px"></i>
-								</div> -->
 								<div class="dropdown-container full-width-20" tabindex="-1">
 									<div class="three-dots"></div>
 									<div class="dropdown">
@@ -156,9 +148,9 @@
 							</div>
 						</div>
 						<div class="data_album" *ngIf="data.name !== undefined">Album: {{data.name}} </div>
-						<div *ngIf="data.description.length > 60" class="item_desc mt-2" style="width: 100%;word-wrap: break-word;">{{(data.description | slice:0:60) + '...'}}</div>
-						<div *ngIf="data.description.length < 60" class="item_desc mt-2" style="width: 100%;word-wrap: break-word;">{{data.description}}</div>
-      					<a style="color: #ff9000;" href="" *ngIf="data.description.length > 60" (click)="view_more()">View More</a>
+						<div *ngIf="small_desc" class="item_desc mt-2" style="width: 100%;word-wrap: break-word;">{{data.description.length > 60 ? (data.description | slice:0:60) + '...' : data.description}}</div>
+						<div *ngIf="big_desc" class="item_desc mt-2 desc_contain" style="width: 60%;word-wrap: break-word;">{{data.description}}</div>
+      					<a style="color: #ff9000;cursor: pointer;" *ngIf="data.description.length > 60" (click)="view_more()">View More</a>
 					</div>
 				</div>
 				
@@ -198,7 +190,7 @@
 						<div class="tooltiptext" *ngIf="data.like.length > 0">
 							<div id="tooltiptexts" class="tooltiptexts" *ngFor="let like of data.like.reverse(); let i = index" [attr.data-index]="i">
 							  <!-- {{like.name}} -->
-							  <span id="like_{{data._id}}_{{i}}" [innerText]="like.name"></span>
+							  <span id="like_{{data._id}}_{{i}}" [innerText]="like.name ? like.name : ''"></span>
 							</div>
 						  </div>
 

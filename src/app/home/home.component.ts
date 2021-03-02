@@ -65,6 +65,8 @@ export class HomeComponent implements OnInit {
   u_country: any;
   u_state: any;
   public temp;
+  small_desc: boolean = true;
+  big_desc: boolean = false;
 
   postImageData = {}
   showMore: boolean;
@@ -85,8 +87,7 @@ export class HomeComponent implements OnInit {
     public formBuilder: FormBuilder,
     public router: Router,
     private route: ActivatedRoute,
-    public toastr: ToastrService,
-    private themeService: ThemeService
+    public toastr: ToastrService
   ) {
     this.totalDisplayed = 10;
     $(".hide_theme").css("display", "none");
@@ -135,11 +136,9 @@ $(window).scroll(function() {
         const { image, thumbImage, alt, title } = res.posts;
         for(let i = 0; i < this.datas.length; i++){
           const images = []
-          // console.log("-=-=-=-=-=- share", this.datas[i].share.length);
           this.shares = this.datas[i].share.length
           this.description = this.datas[i].description;
           this.likes = this.datas[i].like
-          // console.log("this.likes", this.likes);
           this.comments = this.datas[i].comment.length
           this.url.push(this.datas[i].imageUrl)
           this.datas[i].state =  (this.datas[i].state === undefined) ? 'Not mention' : this.datas[i].state
@@ -152,7 +151,6 @@ $(window).scroll(function() {
           })
 
           if (this.comments > 4) {
-            console.log("-=-=-=-=-=-=-=-=-=-=-");
             $('.comments_container').css('height', '40vh');
             $('.comments_container').css('overflow-y', 'scroll');
           }
@@ -166,10 +164,6 @@ $(window).scroll(function() {
             }
             this.postlikeuserId = Array.from(new Set(this.postlikeuserId)) //For Uniquee fetch
           }
-
-          // if(this.datas[i].imageUrl.length == 2){
-          //   this.twoimg = true
-          // }
         }
         return this.datas
       }
@@ -295,7 +289,10 @@ $(window).scroll(function() {
   temLike = 0;
   checkTem = false
   
-  view_more(){}
+  view_more() {
+    this.small_desc = false;
+    this.big_desc = true;
+  }
 
   likeIt(postId, likeCount) {
     var trying = document.getElementById('tooltiptexts');

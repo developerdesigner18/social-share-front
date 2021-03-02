@@ -75,7 +75,7 @@
         <a [routerLink]="['photos']" (click)="timeline_hide = false"><button id="photos" [routerLinkActive]="['active_tabs']">Photos</button></a>
   			<a [routerLink]="['videos']" (click)="timeline_hide = false"><button id="videos" [routerLinkActive]="['active_tabs']">Videos</button></a>
   			<a [routerLink]="['friends']" (click)="timeline_hide = false"><button id="friends" [routerLinkActive]="['active_tabs']">Friends</button></a>
-  			<a [routerLink]="['more']" (click)="timeline_hide = false"><button>More</button></a>
+  			<a (click)="timeline_hide = false"><button>More</button></a>
   		</div>
   		<div class="main_action"></div>
   	</div>
@@ -93,9 +93,9 @@
               <div class="d-flex">
                 <img [src]="profileImg" onerror="this.src='/assets/images/default_user.jpg';">
                 <div style="padding: 10px;">
-                  <a href="profile/{{data.userId}}"><div class="profile_basic_info set_redirect_link">{{name ? name : 'Not Provided'}}</div></a>
-                  <div class="profile_basic_info"><i class="fas fa-user-tie" style="margin-right: 10px"></i>{{u_designation ? u_designation : 'Not Provided'}}</div>
-                  <div class="profile_basic_info"><i class="fas fa-envelope" style="margin-right: 10px"></i>{{u_email ? u_email : 'Not Provided'}}</div>
+                  <a href="profile/{{data.userId}}"><div class="profile_basic_info set_redirect_link">{{name ? name : 'Name'}}</div></a>
+                  <div class="profile_basic_info"><i class="fas fa-user-tie" style="margin-right: 10px"></i>{{u_designation ? u_designation : 'Designation'}}</div>
+                  <div class="profile_basic_info"><i class="fas fa-envelope" style="margin-right: 10px"></i>{{u_email ? u_email : 'Email'}}</div>
                 </div>
               </div>
             </div>
@@ -105,7 +105,7 @@
               <a href="profile/{{u_id}}"><div class="profile_name_of_poster">{{u_name}}</div></a>
               <div class="province d-flex align-items-center">
                 <img src="assets/images/add_ob.png">
-                <div *ngIf="u_city !== null && u_state !== null">{{u_city ? u_city : 'Not Mention'}}, {{u_state ? u_state : 'Not Mention'}}</div>
+                <div>{{u_city ? u_city : 'City'}}, {{u_state ? u_state : 'Province'}}</div>
               </div>
             </div>
             

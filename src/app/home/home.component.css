@@ -12,6 +12,9 @@
     font-size: 14px !important;
     font-weight: 400;
 }
+.user_profile p {
+    color: #000;
+}
 html{
 	background-color: #F1F1F1;
 }
