@@ -1,11 +1,7 @@
 <div class="say_words position-relative" style="align-items: unset">
   <div class="row display_friend">
-    <!-- <div class="about_sec" style="display: block;">
-      <h5 class="title-about" style="display: block;">Friends</h5>
-    </div> -->
     <div class="friend_div">
     <div style="bottom: 5px;">
-      <!-- <i class="fa fa-search" style="position: absolute; padding: 12px; min-width: 40px;"></i><input id="searchFrd" class="form-control" type="text" placeholder="Search" style="max-width: max-content;border-radius: 20px;height: 40px;padding-left: 40px;"> -->
       <div class="cat_search position-relative">
 				<ng-autocomplete class="autocomplete-container" #searchText [data]="allUsers" placeHolder="Search your friend's" historyIdentifier="allUsers" [searchKeyword]="keyword" [itemTemplate]="itemTemplate"
 						[notFoundTemplate]="notFoundTemplate">
@@ -18,7 +14,6 @@
 						</div>
 						<div>
 							<div class="d-flex justify-content-between align-items-center">
-								<!-- <a href="profile/{{item._id}}"><div class="search_somenone_profile">{{item.name}}</div></a> -->
 								<a href="profile/{{item._id}}"><div class="search_somenone_profile" [innerHTML]="item.name | titlecase"></div></a>
 							</div>
 						</div>
@@ -31,7 +26,6 @@
 			</div>
     </div>
     <div class="display_friends" *ngIf="show_friends && user === url_id">
-      <!-- <a [routerLink]="['/friends/', id]" style="padding: 10px; color: #0F1B31;">Friends requests</a> -->
       <a style="color: #0F1B31;" class="my_post_links" href="friends/{{id}}">
           <div style="font-weight: 600;" class="badges_for_fr position-relative">Friend Requests</div>
       </a>
@@ -40,23 +34,18 @@
       </a>
     </div>
   </div>
-    <!-- <div class="col-md-3">
-    </div> -->
   </div>
   <div class="about_description tab-content">
     All Friends
   </div>
   <div class="row friends_display" *ngIf="show_friends && user === url_id">
     <div class="user_friend" style="padding: 25px; border: 1px solid #ececec;border-radius: 8px;" *ngFor="let frddetail of frdDetails; let i = index">
-      <!-- <img width="40" height="40" [src]="profileImg" onerror="this.src='/assets/images/default_user.jpg';" style="border-radius: 50%;" /> {{u_name}} -->
       <div class="unfriend_details">
       <img width="40" height="40" [src]="frddetail.profileImgURl" onerror="this.src='/assets/images/default_user.jpg';" style="border-radius: 50%;" /> 
       <div class="unfriend_image">
         <a href="profile/{{frddetail._id}}"> {{frddetail.name}} </a>
       </div>
     </div>
-      <!-- <button type="button" name="button">Friends</button> -->
-      <!-- <i class="fas fa-user-plus" style="color: #ffffff;" [hidden]="hideme[i]" (click)="sendRequest(frddetail._id);hideme[i] = !hideme[i]" title="Add Friend"></i> -->
       <div class="unfriend_btn">
 			  <i class="unfriend" style="color: #ff9000;" [hidden]="hideme[i]" (click)="reject_request(frddetail._id, frddetail.name);hideme[i] = !hideme[i]" title="UnFriend"><img src="../../assets/images/unfriend.png" alt="unfriend"></i>
       </div>
@@ -68,7 +57,6 @@
 
   <div class="row friends_display" *ngIf="show_friends && user !== url_id || router.url !== friend_id">
     <div class="user_friend" style="padding: 25px; border: 1px solid #ececec;border-radius: 8px;" *ngFor="let frddetail of frdDetails; let i = index">
-      <!-- <img width="40" height="40" [src]="profileImg" onerror="this.src='/assets/images/default_user.jpg';" style="border-radius: 50%;" /> {{u_name}} -->
       <div class="unfriend_details">
         <img width="40" height="40" [src]="frddetail.profileImgURl" onerror="this.src='/assets/images/default_user.jpg';" style="border-radius: 50%;" /> 
         <div class="unfriend_image">
@@ -82,18 +70,3 @@
   </div>
   
 </div>
-
-<!-- <ng-container *ngIf="urls.length !== 0">
-<div class="say_words position-relative" style="align-items: unset">
-  <div class="about_sec col-md-4" style="display: block; flex-grow: 1">
-    <h5 class="title-about" style="display: block;">Videos</h5>
-  </div>
-  <ng-image-slider [showArrow]=false class="slider_image_photos" [images]="urls"></ng-image-slider>
-</div>
-</ng-container>
-
-<ng-container *ngIf="urls.length == 0">
-  <div class="main_post_content d-flex flex-column" style="color: #0F1B31">
-    <h6>User not uploaded any videos</h6>
-  </div>
-</ng-container> -->

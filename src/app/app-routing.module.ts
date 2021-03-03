@@ -74,7 +74,8 @@ const routes: Routes = [
       },
       { path: 'photos', component: PhotosComponent },
       { path: 'videos', component: VideosComponent },
-      { path: 'friends', component: FriendsComponent }
+      { path: 'friends', component: FriendsComponent },
+      { path: 'notifications', component: NotificationsComponent }
       // { path: '', redirectTo:'friends/:id', pathMatch:"full" }
     ]
   },

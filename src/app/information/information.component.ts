@@ -15,6 +15,8 @@ export class InformationComponent implements OnInit {
   u_country: any;
   u_state: any;
   u_city: any;
+  designation: any;
+  hobbies: any;
   constructor(public authService: AuthService,
     private activatedRoute: ActivatedRoute) {
     this.id = this.activatedRoute.parent.params['value']['id'];
@@ -36,7 +38,10 @@ export class InformationComponent implements OnInit {
     this.authService.getUserProfile(this.id).subscribe(res => { 
       this.u_country =  res.data.country
       this.u_state =  res.data.state
-      this.u_city =  res.data.city
+      this.u_city = res.data.city
+      this.designation = res.data.designation
+      this.hobbies = res.data.hobbies
+      console.log("User profile", res);
     })
     }
 

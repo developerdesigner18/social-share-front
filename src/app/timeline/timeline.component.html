@@ -14,7 +14,6 @@
 </div>
 <ng-container *ngIf="notfound !== 404">
 <div app-theme *ngFor="let data of datas | slice:0:totalDisplayed; let i = index" class="main_post_content d-flex flex-column timeline" >
-<!-- <div *ngFor="let data of datas; let i = index" class="main_post_content d-flex flex-column timeline" > -->
   <div class="d-flex show_basic_info" style="width: 100%" >
     <div class="profile_pic_profile position-relative">
       <img [src]="profileImg" onerror="this.src='/assets/images/default_user.jpg';">
@@ -22,24 +21,22 @@
     <div class="name_and_desc" style="width: 100%" >
       <div class="d-flex justify-content-between align-items-center">
         <a href="profile/{{data.userId}}"><div class="profile_name_of_poster">{{u_name}}</div></a>
-        <!-- <div class="province d-flex align-items-center">
+         <div *ngIf="url_id !== id" class="province d-flex align-items-center">
           <img src="assets/images/add_ob.png">
-          <div *ngIf="u_city !== null && u_state !== null">{{u_city}} {{u_state}}</div>
-          <div *ngIf="u_city === undefined && u_state === undefined">Not Mention</div>
-        </div> -->
-        <div class="more_options dropdown-container" tabindex="-1">
+          <div>{{u_city ? u_city : 'city'}} {{u_state ? u_state : 'province'}}</div>
+        </div> 
+        <div *ngIf="url_id === id" class="more_options dropdown-container" tabindex="-1">
           <div class="title_changes">More</div>
           <div class="dropdown">
-           <div> <a>Edit</a> </div>
+           <div> <a *ngIf="false">Edit</a> </div>
            <div (click)="DeletePost(data._id)"> <a>Delete</a> </div>
           </div>
         </div>
       </div>
       <div style="color: #0F1B31;font-size: 14px;" *ngIf="data.name !== undefined">Album: {{data.name}} </div>
-      <div *ngIf="data.description.length < 60" class="item_desc mt-2" style="width: 100%;word-wrap: break-word;"> <p> {{data.description.length > 60  ? (data.description | slice:0:60) + '...' : data.description}} </p></div>
-      <!-- <div *ngIf="data.description.length > 60" class="item_desc mt-2" style="width: 100%;word-wrap: break-word;"> <p> {{(data.description | slice:0:60) + '...'}} </p></div> -->
-      <!-- <p> {{data.description.length}} </p> -->
-      <a style="color: #ff9000;" *ngIf="data.description.length > 60" (click)="view_more()">View More</a>
+      <div *ngIf="small_desc" class="item_desc mt-2" style="width: 100%;word-wrap: break-word;">{{data.description.length > 60 ? (data.description | slice:0:60) + '...' : data.description}}</div>
+			<div *ngIf="big_desc" class="item_desc mt-2 desc_contain" style="word-wrap: break-word;">{{data.description}}</div>
+      <a class="view_more" style="color: #ff9000;cursor: pointer;text-decoration: underline;font-size: 14px;" *ngIf="data.description.length > 60" (click)="view_more()">View More</a>
     </div>
   </div>
   <div class="slider_bid_like-share d-flex flex-column" style="width: 100%">
@@ -75,10 +72,8 @@
         <div>Like<span id="count_{{data._id}}">{{data.like.length === 0 ? '' : data.like.length}}</span></div>
       </button>
 
-      <!-- <div class="tooltiptext" *ngIf="data.like.length === 0 ? '' : data.like.length"> -->
       <div class="tooltiptext" *ngIf="data.like.length > 0">
         <div id="tooltiptexts" class="tooltiptexts" *ngFor="let like of data.like.reverse(); let i = index; trackBy: trackByFn" [attr.data-index]="i">
-          <!-- {{like.name}} -->
           <span> {{tool}} </span>
           <span id="like_{{data._id}}_{{i}}" [innerText]="like.name"></span>
         </div>
@@ -91,26 +86,14 @@
       </button>
       <button class="share_sec_{{data._id}} share_sec" (click)="share(data._id)" *ngIf="!current_user_profile">
         <i class="far fa-share"></i>
-        <!-- <div *ngFor="let shar of data.share">
-          <div *ngIf="shar.sharedUser === id">
-          <p> {{data.userId}} </p>
-          </div>
-        </div> -->
-        <div *ngIf="data.share.length !== 0">Share <span> {{data.share.length}} </span> </div>
-        <div *ngIf="data.share.length === 0">Share</div>
+        <div>Share <span> {{data.share.length !== 0 ? data.share.length : ''}} </span> </div>
+        <!-- <div *ngIf="data.share.length === 0">Share</div> -->
       </button>
       <div class="sharing_container_{{data._id}} sharing_container" style="display: none;">
         <div class="share_users">
           <div class="user_profile" (click)="sharing(data._id, u_name)" style="cursor: pointer;">
             <p>Share with me!</p>
-            <!-- <img [src]="friend.profileImgURl" onerror="this.src='/assets/images/default_user.jpg';" alt="profileImage" width="40px" height="40px"> -->
-            <!-- <p>{{friend.name}}</p> -->
           </div>
-          <!-- <div class="share_icon">
-            <a class="share_sec" (click)="sharing(data._id, friend.name, data.post_user)" title="share with your friends">
-              <i class="fa fa-share"></i>
-            </a>	
-          </div> -->
         </div>
       </div>
     </div>
@@ -144,8 +127,8 @@
             <div class="basic_profile_icons">
               <a href="profile/{{comnt.userId}}"><div style="text-transform: capitalize;" class="profile_basic_info set_redirect_link">{{comnt.name}}</div></a>
               <div class="icons_showing_card">
-              <div class="profile_basic_info"><i class="fas fa-user-tie" style="padding-right: 10px"></i>{{comnt.designation}}</div>
-              <div class="profile_basic_info"><i class="fas fa-envelope" style="margin-right: 10px"></i>{{comnt.email}}</div>
+              <div class="profile_basic_info"><i class="fas fa-user-tie" style="padding-right: 10px"></i>{{comnt.designation ? comnt.designation : 'Designation'}}</div>
+              <div class="profile_basic_info"><i class="fas fa-envelope" style="margin-right: 10px"></i>{{comnt.email ? comnt.email : 'Email'}}</div>
             </div>	
             </div>
           </div>
@@ -156,7 +139,6 @@
   </div>
 </div>
 <div class="loads_btn">
-  <!-- <button *ngIf="show_load_more" class="load_btn" (click)="loadMore()">Load more</button> -->
   <div *ngIf="show_load_more" class="load_btn" (click)="loadMore()">
     <img class="load_more" src="../../assets/images/down-arrow.png" width="50px" height="50px" alt="load more" title="load more">
   </div>

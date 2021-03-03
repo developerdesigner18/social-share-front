@@ -40,30 +40,30 @@
 			<div class="some_words w_90">I Do not know how? But i believe that it is possible one day if i stay with my dream all time!</div>
 			<div class="info_container w_90 d-flex align-items-center">
 				<i class="fas fa-briefcase"></i>
-				<div #designation *ngIf="u_designation; else defineDes">{{u_designation}}</div>
-				<ng-template #defineDes>Designation</ng-template>
+				<div #designation>{{u_designation ? u_designation : 'Designation'}}</div>
+				<!-- <ng-template #defineDes>Designation</ng-template> -->
 			</div>
 
 			<div class="info_container w_90 d-flex align-items-center">
 				<i class="fas fa-globe"></i>
-				<div #country *ngIf="u_country; else defineCountry">{{u_country}}</div>
-				<ng-template #defineCountry>Country</ng-template>
+				<div #country>{{u_country ? u_country : 'Country'}}</div>
+				<!-- <ng-template #defineCountry>Country</ng-template> -->
 			</div>
 
 			<div class="info_container w_90 d-flex align-items-center">
 				<i class="fa fa-map"></i>
-				<div #state *ngIf="u_state; else defineState">{{u_state}}</div>
-				<ng-template #defineState>Province</ng-template>
+				<div #state>{{u_state ? u_state : 'Province'}}</div>
+				<!-- <ng-template #defineState>Province</ng-template> -->
 			</div>
 			<div class="info_container w_90 d-flex align-items-center">
 				<i class="fas fa-map-marker-alt"></i>
-				<div #city *ngIf="u_city; else defineCity">{{u_city}}</div>
-				<ng-template #defineCity>City</ng-template>
+				<div #city>{{u_city ? u_city : 'City'}}</div>
+				<!-- <ng-template #defineCity>City</ng-template> -->
 			</div>
 			<div class="info_container w_90 d-flex align-items-center">
 				<i class="fas fa-grin-hearts"></i>
-				<div #hobbies *ngIf="u_hobbies">{{u_hobbies}}</div>
-				<div *ngIf="u_hobbies.length == undefined || u_hobbies.length == 0 || u_hobbies == ''">Hobbies</div>
+				<div #hobbies>{{u_hobbies ? u_hobbies : 'Hobbies'}}</div>
+				<!-- <div *ngIf="u_hobbies.length == undefined || u_hobbies.length == 0 || u_hobbies == ''">Hobbies</div> -->
 			</div>
 			<div class="info_container w_90 d-flex align-items-center">
 				<i class="fas fa-stopwatch"></i>
@@ -123,27 +123,6 @@
 					</div>
 					<div class="time_ago">{{data.date | timeago}}</div>
 				</div>
-				<!-- <div class="notifiy w_90 d-flex flex-column">
-					<div class="d-flex align-items-center">
-						<img src="assets/images/user3.jpg">
-						<div>Your friend likes to see his product 'mercedes car' </div>
-					</div>
-					<div class="time_ago">an hour ago.</div>
-				</div> -->
-				<!-- <div class="notifiy w_90 d-flex flex-column">
-					<div class="d-flex align-items-center">
-						<img src="assets/images/user2.jpg">
-						<div>I have recently sold my painting at 420$</div>
-					</div>
-					<div class="time_ago">3 hours ago.</div>
-				</div>
-				<div class="notifiy w_90 d-flex flex-column">
-					<div class="d-flex align-items-center">
-						<img src="assets/images/user3.jpg">
-						<div>Your friend likes to see his product 'mercedes car' </div>
-					</div>
-					<div class="time_ago">1 Day ago.</div>
-				</div> -->
 			</div> 
 			<button *ngIf="notif_data.length > 5" class="show_more_notifications" [routerLink]="['notifications']">Show More Notifications</button>
 		</div>

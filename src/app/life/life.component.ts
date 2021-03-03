@@ -166,10 +166,6 @@ export class LifeComponent implements OnInit {
     })
   }
 
-  
-
-
-
   newLifeEvent(){
     this.fill_life = true
   }

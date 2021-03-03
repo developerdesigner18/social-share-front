@@ -91,7 +91,6 @@ export class HomeComponent implements OnInit {
   ) {
     this.totalDisplayed = 10;
     $(".hide_theme").css("display", "none");
- 
 
     $(document).ready(function(){
       setTimeout(function(){
@@ -292,6 +291,7 @@ $(window).scroll(function() {
   view_more() {
     this.small_desc = false;
     this.big_desc = true;
+    $('.view_more').css('display', 'none');
   }
 
   likeIt(postId, likeCount) {

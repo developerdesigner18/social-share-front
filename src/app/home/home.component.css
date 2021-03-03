@@ -13,7 +13,12 @@
     font-weight: 400;
 }
 .user_profile p {
-    color: #000;
+    color: #0f1b31;
+    font-size: 14px;
+}
+.share_users:hover {
+    background: #d7edff;
+    cursor: pointer;
 }
 html{
 	background-color: #F1F1F1;
@@ -26,7 +31,9 @@ button, input {
 }
 .data_album{
     color: #0F1B31;font-size: 14px;
+    margin-top: 15px;
 }
+
 .hide_theme{
     display: none !important;
 }
@@ -396,17 +403,19 @@ a.my_post_links{
     left: 0;
     right: 0;
     min-width: 205px;
-    background: aliceblue;
+    background: #f0f8ff;
     border-radius: 4px;
     z-index: 3;
     padding: 10px;
-    box-shadow: 0 0 6px 0px #0f1b31;
 }
 .share_users {
-    padding: 10px 5px;
+    padding: 6px 5px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background: #e2f2ff;
+    border-radius: 4px;
+    transition: 0.2s ease;
 }
 .share_icon i {
     height: 25px;
@@ -677,6 +686,9 @@ img.slider_image {
     font-size: 20px;
     padding: 0 5px;
     transform: rotate(90deg);
+    position: relative;
+    left: -4px;
+    top: 3px;
   }
   
   a {

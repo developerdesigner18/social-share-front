@@ -58,24 +58,28 @@ export class AlbumsComponent implements OnInit {
       this.images = data.images
   
     if (data.images && data.files != '') {
-      this.shows = true
+      // this.shows = true
         if(Object.keys(this.fileData[0]).length === 2)
         {
+          this.shows = true
           this.twoimg = true
           this.threeimg = false
           this.fourimg = false
           this.fiveimg = false
-        }else if(Object.keys(this.fileData[0]).length == 3){
+        } else if (Object.keys(this.fileData[0]).length == 3) {
+          this.shows = true
           this.threeimg = true
           this.twoimg = false
           this.fourimg = false
           this.fiveimg = false
-        }else if(Object.keys(this.fileData[0]).length == 4){
+        } else if (Object.keys(this.fileData[0]).length == 4) {
+          this.shows = true
           this.threeimg = false
           this.twoimg = false
           this.fourimg = true
           this.fiveimg = false
-        }else if(Object.keys(this.fileData[0]).length > 4){
+        } else if (Object.keys(this.fileData[0]).length > 4) {
+          this.shows = true
           this.threeimg = false
           this.twoimg = false
           this.fourimg = false
@@ -180,24 +184,28 @@ export class AlbumsComponent implements OnInit {
           this.textOnlylength = i
         }
       }
-      this.shows = true
+      // this.shows = true
       if(this.images.length === 1 || this.textOnlylength === 1)
       {
+        this.shows = true
         this.twoimg = true
         this.threeimg = false
         this.fourimg = false
         this.fiveimg = false
-      }else if(this.images.length === 2 || this.textOnlylength === 2){
+      } else if (this.images.length === 2 || this.textOnlylength === 2) {
+        this.shows = true
         this.threeimg = true
         this.twoimg = false
         this.fourimg = false
         this.fiveimg = false
-      }else if(this.images.length === 3 || this.textOnlylength === 3){
+      } else if (this.images.length === 3 || this.textOnlylength === 3) {
+        this.shows = true
         this.fourimg = true
         this.threeimg = false
         this.twoimg = false
         this.fiveimg = false
-      }else if(this.images.length >= 4 || this.textOnlylength >= 4){
+      } else if (this.images.length >= 4 || this.textOnlylength >= 4) {
+        this.shows = true
         this.fourimg = false
         this.threeimg = false
         this.twoimg = false

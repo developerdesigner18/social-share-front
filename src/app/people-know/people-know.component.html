@@ -56,7 +56,6 @@
 						</div>
 					</div>
           <hr/>
-					<!-- <ng-container *ngIf="search_by_name == false"> -->
 					<div class="search_display" *ngIf="shows">
 						<div class="d-flex allusers_set" *ngFor="let user of allUsers;let i = index">
 	            			<div class="profile_pic position-relative">
@@ -80,19 +79,6 @@
 						<h4 class="friends_shows">Oops no friends suggestion</h4>
 						<p class="make_friends">Please make some friends first</p>
 					</div>
-					<!-- </ng-container> -->
-					<!-- <ng-container *ngIf="search_by_name == true">
-						<div class="d-flex allusers_set" *ngFor="let dt_name of search_data">
-	            <div class="profile_pic position-relative">
-								<img [src]="dt_name.profileImgURl" onerror="this.src='/assets/images/default_user.jpg';">
-							</div>
-							<div class="name_and_desc">
-								<div class="d-flex justify-content-between align-items-center">
-									<div class="profile_name_of_poster">{{dt_name.name}}</div>
-								</div>
-							</div>
-						</div>
-					</ng-container> -->
 				</div>
 			</div>
 		</div>

@@ -20,8 +20,6 @@ export class NotificationsComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
   ) {
     $(".right_sidebar").css("display", "none");
-    
-    // let id = this.activatedRoute.parent.parent.params['value']['id'];
     const current_login_User = JSON.parse(localStorage.getItem('currentUser'));
     this.id = current_login_User.data._id
 

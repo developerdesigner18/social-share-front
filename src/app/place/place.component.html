@@ -8,19 +8,10 @@
       <img width="40" height="40" src='assets/images/town.png' style="border-radius: 50%;" />
     </div>
     <div class="location" style="font-size: 14px; margin-left: 15px;">
-      <!-- <span style="font-weight: 500;">{{u_city}}, {{u_state}}</span> -->
       <div class="text_placed">Current City</div>
       <div *ngIf="show_city">
-        {{u_city}}
+        {{u_city ? u_city : 'Not mention City'}}
       </div>
-      <div class="no_mention" *ngIf="not_mention_city"> Not mention City</div>
-      <!-- <div class="add-city" (click)="newCurrent()">
-        <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add your current city</a>
-      </div>
-      <div class="current" *ngIf="current">
-        <input type="text" name="" value="" placeholder="Add your current city">
-        <button type="button" name="button" (click)="Cancel()">Cancel</button>
-      </div> -->
     </div>
   </div>
   <br/>

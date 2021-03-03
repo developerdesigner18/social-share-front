@@ -27,7 +27,6 @@
       <img width="60" height="60" [src]="data.profileImgURl" onerror="this.src='/assets/images/default_user.jpg';" style="border-radius: 50%;" />
       <div class="request_shows">
       <label >{{data.name}}</label>
-      <!-- <label style="color: #ffffff">{{data._id}}</label> -->
       <div class="remove_people_{{data._id}}">
         <button type="button" *ngIf="friend_id.includes(data._id) != true" class="btn btn-primary add_friend_btn add_friend_{{data._id}}" [hidden]="hideme[i]" (click)="sendRequest(data._id);hideme[i] = !hideme[i];">Add Friend</button>
         <button type="button" class="btn btn-secondary show_add_friend show_add_friend_{{data._id}}" *ngIf="hideme[i] || friend_id.includes(data._id)" (click)="remove_send_request(data._id);hideme[i] = hideme[i];">Cancel Request</button>
@@ -70,7 +69,6 @@
 
   		<div name="top" class="actions" id="myTopnav">
   			<a [routerLink]="['/friends/', login_id]" (click)="timeline_hide = true"><button id="timeline" [routerLinkActive]="['active_tabs']" [routerLinkActiveOptions]="{exact: true}">Timeline</button></a>
-  			<!-- <a [routerLink]="['/friends/', login_id]" (click)="timeline_hide = false" *ngIf="timeline_hide"><button id="timeline" [routerLinkActive]="['active_tabs']">Timeline</button></a> -->
   			<a [routerLink]="['about']" (click)="timeline_hide = false"><button id="about" [routerLinkActive]="['active_tabs']">About</button></a>
         <a [routerLink]="['photos']" (click)="timeline_hide = false"><button id="photos" [routerLinkActive]="['active_tabs']">Photos</button></a>
   			<a [routerLink]="['videos']" (click)="timeline_hide = false"><button id="videos" [routerLinkActive]="['active_tabs']">Videos</button></a>
@@ -114,8 +112,6 @@
           </div>
         </div>
         <div class="slider_bid_like-share d-flex flex-column" style="width: 100%" id="slider-owl-carousel-load">
-          <!-- <div class="owl-carousel owl-theme" id="owl-demo" *ngIf="data.imageUrl.length > 0"> -->
-            <!-- <div class="item" *ngFor="let imageurl of data.imageUrl"> -->
             <div *ngIf="data.imageUrl.length == 1">
               <div class="item timeline_section one_image">
   						  <ng-image-slider [imageSize]="{width: '100%', height: '320px'}"  [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
@@ -164,8 +160,8 @@
             </button>
             <button class="share_sec_{{data._id}} share_sec" (click)="share(data._id)" *ngIf="login_id !== data.userId">
 							<i class="far fa-share"></i>
-							<div *ngIf="data.share.length !== 0">Share <span> {{data.share.length}} </span> </div>
-							<div *ngIf="data.share.length === 0">Share</div>
+							<div *ngIf="data.share.length !== 0">Share <span> {{data.share.length !== 0 ? data.share.length : ''}} </span> </div>
+							<!-- <div *ngIf="data.share.length === 0">Share</div> -->
 						</button>
             <div class="sharing_container_{{data._id}} sharing_container" style="display: none;">
 							<div class="share_users">
@@ -206,8 +202,8 @@
 									<div class="basic_profile_icons">
 										<a href="profile/{{comnt.userId}}"><div style="text-transform: capitalize;" class="profile_basic_info set_redirect_link">{{comnt.name}}</div></a>
 										<div class="icons_showing_card">
-										<div class="profile_basic_info"><i class="fas fa-user-tie" style="padding-right: 10px"></i>{{comnt.designation}}</div>
-										<div class="profile_basic_info"><i class="fas fa-envelope" style="margin-right: 10px"></i>{{comnt.email}}</div>
+										<div class="profile_basic_info"><i class="fas fa-user-tie" style="padding-right: 10px"></i>{{comnt.designation ? comnt.designation : 'Designation'}}</div>
+										<div class="profile_basic_info"><i class="fas fa-envelope" style="margin-right: 10px"></i>{{comnt.email ? comnt.email : 'Email'}}</div>
 									</div>	
 									</div>
 								</div>

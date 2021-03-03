@@ -78,6 +78,8 @@ export class TimelineComponent implements OnInit {
   url_id: string;
   shares: any;
   tool = [];
+  small_desc: boolean = true;
+  big_desc: boolean = false;
   constructor(
     public  dialog:  MatDialog,
     private activatedRoute: ActivatedRoute,
@@ -179,7 +181,9 @@ export class TimelineComponent implements OnInit {
     $(`.comments_container_${postId}`).toggle();
   }
   view_more() {
-    
+    this.small_desc = false;
+    this.big_desc = true;
+    $('.view_more').css('display', 'none');
   }
   trackByFn(i, like) {
     return i;
