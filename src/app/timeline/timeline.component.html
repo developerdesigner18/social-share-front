@@ -34,9 +34,9 @@
         </div>
       </div>
       <div style="color: #0F1B31;font-size: 14px;" *ngIf="data.name !== undefined">Album: {{data.name}} </div>
-      <div *ngIf="small_desc" class="item_desc mt-2" style="width: 100%;word-wrap: break-word;">{{data.description.length > 60 ? (data.description | slice:0:60) + '...' : data.description}}</div>
-			<div *ngIf="big_desc" class="item_desc mt-2 desc_contain" style="word-wrap: break-word;">{{data.description}}</div>
-      <a class="view_more" style="color: #ff9000;cursor: pointer;text-decoration: underline;font-size: 14px;" *ngIf="data.description.length > 60" (click)="view_more()">View More</a>
+      <div id="sview_{{data._id}}" class="item_desc mt-2" style="width: 100%;word-wrap: break-word;">{{data.description.length > 60 ? (data.description | slice:0:60) + '...' : data.description}}</div>
+			<div id="view_{{data._id}}" class="item_desc mt-2 desc_contain" style="word-wrap: break-word;display: none;">{{data.description}}</div>
+      <a class="view_more_{{data._id}}" id="view_more_{{data._id}}" style="color: #ff9000;cursor: pointer;text-decoration: underline;font-size: 14px;" *ngIf="data.description.length > 60" (click)="view_more(data._id)">View More</a>
     </div>
   </div>
   <div class="slider_bid_like-share d-flex flex-column" style="width: 100%">
@@ -87,7 +87,6 @@
       <button class="share_sec_{{data._id}} share_sec" (click)="share(data._id)" *ngIf="!current_user_profile">
         <i class="far fa-share"></i>
         <div>Share <span> {{data.share.length !== 0 ? data.share.length : ''}} </span> </div>
-        <!-- <div *ngIf="data.share.length === 0">Share</div> -->
       </button>
       <div class="sharing_container_{{data._id}} sharing_container" style="display: none;">
         <div class="share_users">

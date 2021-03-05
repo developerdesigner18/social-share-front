@@ -8,21 +8,19 @@
             <div class="setting_details" >
                 <div class="input_section">
                 <p>User Id</p>
-                <div class="name_show"> {{data.userId}} </div>
+                <div class="name_show"> {{data.userId ? data.userId : 'Not mention'}} </div>
                 </div>
             </div>
             <div class="setting_details" >
                 <div class="input_section">
                 <p>Email</p>
-                <div class="username_show"> {{user_data.emailId}} </div>
+                <div class="username_show"> {{user_data.emailId ? user_data.emailId : 'Not mention'}} </div>
             </div>
-                <button type="button" name="button" >Edit</button>
             </div>
             <div class="setting_details pass">
                 <div class="input_section">
                 <p>Password</p>
-                <!-- <div class="email_show">  </div> -->
-                <input *ngIf="input_pass" type="password" name="pass" id="pass" [(ngModel)]="pass" placeholder="Please enter password">
+                <input *ngIf="input_pass" type="password" name="pass" id="pass" minlength="10" [(ngModel)]="pass" placeholder="Please enter password" ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/">
                 <div *ngIf="change_pass" class="error_msgs">
                     <span style="color: red;" *ngIf="pass?.length < 10"> Password should be greater than 10 letters </span>
                     <span style="color: red;" *ngIf="!pass">Password is required</span>
@@ -30,12 +28,9 @@
                 </div>
                 <button *ngIf="enter_pass" type="button" name="button" (click)="enterpass()"> Change</button>
                 <div class="change_button" style="display: flex;" *ngIf="change_pass">
-                    <button type="button" name="button" [disabled]="pass?.length > 10 && !pass" (click)="changePass(pass)">Change</button>
+                    <button type="button" name="button" [disabled]="!pass || !(pass?.length > 9)" (click)="changePass(pass)">Changes</button>
                     <button type="button" type="button" (click)="cancel_btn()">Cancel</button>
                 </div>
-            </div>
-            <div class="setting_details">
-                <!-- <app-reset></app-reset> -->
             </div>
         </div>
     </div>

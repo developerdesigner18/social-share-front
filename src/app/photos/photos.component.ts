@@ -7,7 +7,6 @@ import { AlbumsComponent } from '../albums/albums.component';
 declare var jQuery: any;
 declare var $: any;
 
-
 @Component({
   selector: 'app-photos',
   templateUrl: './photos.component.html',

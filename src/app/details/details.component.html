@@ -2,6 +2,7 @@
   <div class="work_tab">
     <h6>About You</h6>
   </div>
+  <!-- about -->
   <div class="details" style="margin-bottom: 20px;" (click)="aboutDetails()" *ngIf="details === false && fill_details === false">
     <i class="fa fa-plus-circle"></i> <a [routerLink]="">Write some details about yourself</a>
   </div>
@@ -26,6 +27,7 @@
     <button type="button" name="button" (click)="cancel1()">Cancel</button>
     <button type="button" name="button" (click)="editDetails(details_about)">Save</button>
   </div>
+  <!-- pronunciation -->
   <div class="work_tab">
     <h6>Names pronunciation</h6>
   </div>
@@ -54,6 +56,7 @@
     <button type="button" name="button" (click)="cancel2()">Cancel</button>
     <button type="button" name="button" (click)="editPronunciation(pronun_value)">Save</button>
   </div>
+  <!-- Other Names -->
   <div class="work_tab">
     <h6>Other Names</h6>
   </div>
@@ -81,6 +84,7 @@
     <button type="button" name="button" (click)="cancel3()">Cancel</button>
     <button type="button" name="button" (click)="editNickname(nickname)">Save</button>
   </div>
+  <!-- Favourite Quotes -->
   <div class="work_tab">
     <h6>Favourite Quotes</h6>
   </div>

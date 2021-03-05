@@ -54,18 +54,6 @@ export class TimelineComponent implements OnInit {
 
   postImageData = {}
 
-  // @HostListener("window:scroll", [])
-  // onScroll(): void {
-  //   if (this.bottomReached()) {
-  //     this.datas = [...this.datas, this.count++];
-  //     console.log("this.datas", this.datas)
-  //   }
-  // }
-
-  // bottomReached(): boolean {
-  //   return (window.innerHeight + window.scrollY) >= document.body.offsetHeight;
-  // }
-
   @ViewChild('textmsgPost') postMesssgeElement: any;
   @ViewChild('nav') slider: NgImageSliderComponent;
 
@@ -78,8 +66,6 @@ export class TimelineComponent implements OnInit {
   url_id: string;
   shares: any;
   tool = [];
-  small_desc: boolean = true;
-  big_desc: boolean = false;
   constructor(
     public  dialog:  MatDialog,
     private activatedRoute: ActivatedRoute,
@@ -99,7 +85,6 @@ export class TimelineComponent implements OnInit {
        }, 5000);
    });
    
-
     const user = JSON.parse(localStorage.getItem('currentUser'));
     this.url_id = user.data._id
     this.token = localStorage.getItem('token')
@@ -180,10 +165,10 @@ export class TimelineComponent implements OnInit {
   open_comments(postId){
     $(`.comments_container_${postId}`).toggle();
   }
-  view_more() {
-    this.small_desc = false;
-    this.big_desc = true;
-    $('.view_more').css('display', 'none');
+  view_more(postId) {
+    $(`#view_more_${postId}`).css('display', 'none');
+    $(`#view_${postId}`).css('display', 'block');
+    $(`#sview_${postId}`).css('display', 'none');
   }
   trackByFn(i, like) {
     return i;

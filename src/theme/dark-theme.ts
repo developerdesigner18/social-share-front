@@ -4,8 +4,9 @@ export const darkTheme: Theme = {
   name: 'dark',
   properties: {
     '--background': '#1F2125',
-    '--on-background': '#fff',
+    '--on-background': '#a3a3a3',
     '--primary': 'darkorange',
     '--on-primary': '#fff',
+    '--back': '#000000'
   }
 } 

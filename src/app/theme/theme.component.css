@@ -1,7 +1,8 @@
 
-.main{
+.main, body{
 	background: var(--background);
 	color: var(--on-background);
+	background-color: var(--background);
   }
   .contain{
 	background: var(--background) !important;
@@ -29,10 +30,14 @@
   .switch input { 
 	display: none;
   }
-  .left_sidebars, .right_sidebar > div, .main_area_contents, .write_comments, .data_album{
+  .left_sidebars, .right_sidebar > div, .main_area_contents, .write_comments, .data_album, .item_desc{
 	background: var(--background) !important;
 	color: var(--on-background);
   }
+  /* .put_ads_here{
+	background: var(--back) !important;
+	color: var(--on-background);
+  } */
   .profile_name, .profile_name_of_poster, .province > div, .data_desc{
 	color: var(--on-background);
   }
@@ -179,10 +184,7 @@ a.my_post_links {
 a:hover{
     text-decoration: none;
 }
-body {
-    background-color: #F1F1F1;
-    background-image: none !important;
-}
+
 
 .icons_showing_card {
     margin-left: 0 !important;

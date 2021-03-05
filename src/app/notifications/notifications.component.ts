@@ -28,9 +28,7 @@ export class NotificationsComponent implements OnInit {
         this.notif_data = res['message']
       }
 
-    })
-
-    
+    })  
    }
 
   ngOnInit(): void {

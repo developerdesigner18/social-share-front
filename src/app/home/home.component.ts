@@ -65,8 +65,6 @@ export class HomeComponent implements OnInit {
   u_country: any;
   u_state: any;
   public temp;
-  small_desc: boolean = true;
-  big_desc: boolean = false;
 
   postImageData = {}
   showMore: boolean;
@@ -288,10 +286,10 @@ $(window).scroll(function() {
   temLike = 0;
   checkTem = false
   
-  view_more() {
-    this.small_desc = false;
-    this.big_desc = true;
-    $('.view_more').css('display', 'none');
+  view_more(postId) {
+    $(`#view_more_${postId}`).css('display', 'none');
+    $(`#view_${postId}`).css('display', 'block');
+    $(`#sview_${postId}`).css('display', 'none');
   }
 
   likeIt(postId, likeCount) {

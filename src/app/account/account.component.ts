@@ -42,49 +42,7 @@ export class AccountComponent implements OnInit {
     
   }
 
-  edit_names() {
-    this.edit_name = true;
-    this.name_shows = false;
-  }
 
-  save_names(name) {
-    this.authService.updateName(this.id, name).subscribe((res) => {
-      if (!res.result) {
-        this.edit_name = false
-        this.name_shows = true
-        this.toastr.success("Your name has been updated successfully.");
-      } else {
-        this.toastr.error("Some error occurs. Please try again later.");
-      }
-    })
-  }
-
-  cancel_names() { 
-    this.edit_name = false;
-    this.name_shows = true;
-  }
-
-  edit_users() {
-    this.edit_user = true;
-    this.user_shows = false;
-  }
-
-  save_users(user) {
-    this.authService.updateUsername(this.id, user).subscribe((res) => {
-      if (!res.result) {
-        this.edit_user = false
-        this.user_shows = true
-        this.toastr.success("Your username has been updated successfully.");
-      } else {
-        this.toastr.error("Some error occurs. Please try again later.");
-      }
-    })
-  }
-
-  cancel_users() { 
-    this.edit_user = false;
-    this.user_shows = true;
-  }
 
 
   ngOnInit(): void {

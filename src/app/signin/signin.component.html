@@ -13,7 +13,7 @@
 	            </div>
 	        </div>
 
-					<div class="form-group" [ngClass]="{ 'has-error': isSubmitted && formControls.name.errors }">
+			<div class="form-group" [ngClass]="{ 'has-error': isSubmitted && formControls.name.errors }">
 	            <input formControlName="name" id="name" class="form-control" type="text" placeholder="Full name">
 	            <div *ngIf="isSubmitted && formControls.name.errors">
                 <div *ngIf="formControls.name.errors.required" class="error">Full name is required.</div>
