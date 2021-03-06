@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 declare var jQuery: any;
@@ -8,6 +8,7 @@ declare var $: any;
   selector: 'app-notifications',
   templateUrl: './notifications.component.html',
   styleUrls: ['./notifications.component.css']
+  // encapsulation: ViewEncapsulation.None
 })
 export class NotificationsComponent implements OnInit {
 

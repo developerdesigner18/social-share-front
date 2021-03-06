@@ -27,3 +27,14 @@
 .noti_scroll {
     height: auto;
 }
+.notification_body{
+    padding: 0;
+    margin-left: auto !important;
+    width: 100%;
+    margin: 0;
+}
+.main_area {
+    flex: 3.5;
+    margin: 0 25px;
+    margin-right: 0;
+}
