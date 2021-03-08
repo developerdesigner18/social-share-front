@@ -252,10 +252,10 @@ button.load_btn {
   }
   #button_top:hover {
     cursor: pointer;
-    background-color: #333;
+    background-color: #16243e;
   }
   #button_top:active {
-    background-color: #555;
+    background-color: #16243e;
   }
   #button_top.show {
     opacity: 1;
@@ -1136,6 +1136,19 @@ a.my_post_links:hover div > div {
 		width: 100%;
 		padding: 0;
 	}
+    #button_top {
+        width: 35px;
+        height: 35px;
+      }
+      #button_top::after {
+        content: "\f077";
+        font-family: FontAwesome;
+        font-weight: normal;
+        font-style: normal;
+        font-size: 2em;
+        line-height: 35px;
+        color: #fff;
+      }
 
 	.logo{
 		width: 70%;
@@ -1772,17 +1785,22 @@ body.modal {
 }
 
 .slider_image_5 > div > div > div >.main-inner > div:nth-child(4):before {
-		content: "View More";
-	 	position: absolute;
-	 	top: 0;
-	 	left: 0;
-	 	right: 0;
-	 	bottom: 0;
-	 	color: #ffffff;
-	 	z-index: 9;
-	 	display: flex;
-	 	justify-content: center;
-	 	align-items: center;
-	 	padding: 5px 10px;
-	 	font-size: 25px;
+    content: "View More";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    color: #ffffff;
+    z-index: 9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 10px;
+    font-size: 25px;
+    background: #0f1b31bf;
+}
+
+.slider_image_5 > div > div > div >.main-inner > div:nth-child(4) .custom-image-main .image {
+    filter: blur(5px);
 }

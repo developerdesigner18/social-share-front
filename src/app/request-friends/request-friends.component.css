@@ -844,10 +844,10 @@ button.comment_sec {
 	color: #ffffff;
 }
 
-.friend_list{
-	margin: 0px 16px 8px 12px;
+.friend_list {
+    margin: 0px 16px 15px 12px;
     color: #ffffff;
-    border-bottom: 1px dashed#ff9000;
+    border-bottom: 1px solid #f0f8ff;
 }
 
 .receive_request{

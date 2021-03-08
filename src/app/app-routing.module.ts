@@ -90,7 +90,8 @@ const routes: Routes = [
     { path: '', redirectTo:'account-setting', pathMatch:"full" }
   ]
   },
-  { path: 'theme', component: ThemeComponent }
+  { path: 'theme', component: ThemeComponent },
+  { path: 'notifications', component: NotificationsComponent }
 ];
 
 @NgModule({

@@ -21,7 +21,7 @@ export class InformationComponent implements OnInit {
     private activatedRoute: ActivatedRoute) {
     this.id = this.activatedRoute.parent.params['value']['id'];
     this.authService.getAllData(this.id).subscribe(res => { 
-      console.log("res", res)
+      // console.log("res", res)
     })
     this.authService.getFriends(this.id).subscribe(res => {
       if(res['success']){
@@ -41,7 +41,7 @@ export class InformationComponent implements OnInit {
       this.u_city = res.data.city
       this.designation = res.data.designation
       this.hobbies = res.data.hobbies
-      console.log("User profile", res);
+      // console.log("User profile", res);
     })
     }
 
