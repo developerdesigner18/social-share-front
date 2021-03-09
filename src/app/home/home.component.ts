@@ -77,6 +77,7 @@ export class HomeComponent implements OnInit {
   show_load_more: boolean = true;
   sharess: any;
   cookieValue: string;
+  ids: any;
 
   constructor(
     public authService: AuthService,
@@ -87,6 +88,9 @@ export class HomeComponent implements OnInit {
     private route: ActivatedRoute,
     public toastr: ToastrService
   ) {
+
+    const current_login_User = JSON.parse(localStorage.getItem('currentUser'));
+    this.ids = current_login_User.data._id
     this.totalDisplayed = 10;
     $(".hide_theme").css("display", "none");
 
@@ -109,6 +113,7 @@ $(window).scroll(function() {
     // end here
     
     let id = this.activatedRoute.snapshot.paramMap.get('id');
+    
     this.authService.getUserHome(id).subscribe(res => {
       this.id = res.data._id
       this.name =  res.data.name
@@ -305,7 +310,7 @@ $(window).scroll(function() {
             document.getElementById(postId).classList.add('fa-thumbs-o-up')
             this.temLike = likeCount - 1
             this.temLike <= 0 ? document.getElementById('count_' + postId).innerHTML = '' : document.getElementById('count_' + postId).innerHTML = String(this.temLike);
-            document.getElementById('like_' + postId + '_' + index).innerHTML = this.name ? document.getElementById('like_' + postId + '_' + index).innerHTML = '-' : document.getElementById('like_' + postId + '_' + index).innerHTML = this.name;
+            document.getElementById('like_' + postId + '_' + index).innerHTML = this.name ? document.getElementById('like_' + postId + '_' + index).innerHTML = '' : document.getElementById('like_' + postId + '_' + index).innerHTML = this.name;
           }else {
             document.getElementById(postId).classList.add('fa-thumbs-up')
             this.temLike = likeCount + 1
@@ -340,7 +345,6 @@ $(window).scroll(function() {
         this.toastr.success("You are successfully shared the post!");
         window.location.reload();
       })
-
     } else {
     }
   }

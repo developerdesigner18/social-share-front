@@ -41,7 +41,6 @@
 		</a>
 		<a class="my_post_links" href="search/{{id}}">
 			<div class="left_content">
-				<!-- <i class="fas fa-search-plus"></i> -->
 				<img src="/assets/images/searching.png" alt="search">
 				<div>Search for someone</div>
 			</div>
@@ -74,9 +73,7 @@
 				</div>
 			</div>
 		</div>
-
 		<div class="main_area_contents timeline" *ngFor="let data of datas | slice:0:totalDisplayed;let i = index" id="posts_img">
-
 			<div class="main_post_contents d-flex flex-column">
 				<div class="d-flex show_basic_info" style="width: 100%" (mouseleave)="showbasicProfile2[i]=false">
 					<div class="profile_pic_profile position-relative-img">
@@ -186,14 +183,11 @@
 							<i class="fa" id="{{data._id}}" [ngClass]="postlikeId.includes(data._id) ? 'fa-thumbs-up' : 'fa-thumbs-o-up'"></i>
 							<div>Like<span id="count_{{data._id}}">{{data.like.length === 0 ? '' : data.like.length}}</span></div>
 						</button>
-
 						<div class="tooltiptext" *ngIf="data.like.length > 0">
 							<div id="tooltiptexts" class="tooltiptexts" *ngFor="let like of data.like.reverse(); let i = index" [attr.data-index]="i">
-							  <!-- {{like.name}} -->
 							  <span id="like_{{data._id}}_{{i}}" [innerText]="like.name ? like.name : ''"></span>
 							</div>
 						  </div>
-
 						<button class="comment_sec_{{data._id}} comment_sec" (click)="open_comments(data._id)">
 							<i class="far fa-comment-dots"></i>
 							<div *ngIf="data.comment.length !== 0">Comment<span>{{data.comment.length !== 0 ? (data._id === tempPostId) ? data.comment.length + temCmnt.length : data.comment.length : ''}}</span></div>
@@ -201,11 +195,6 @@
 						</button>
 						<button class="share_sec_{{data._id}} share_sec" (click)="share(data._id)" *ngIf="current_user['data']._id !== data.userId">
 							<i class="far fa-share"></i>
-							<!-- <div *ngFor="let shar of data.share">
-								<div *ngIf="shar.sharedUser === id">
-								<p> {{data.userId}} </p>
-								</div>
-							</div> -->
 							<div *ngIf="data.share.length !== 0">Share <span> {{data.share.length}} </span> </div>
 							<div *ngIf="data.share.length === 0">Share</div>
 						</button>
@@ -213,25 +202,15 @@
 							<div class="share_users">
 								<div class="user_profile" (click)="sharing(data._id, data.post_user)" style="cursor: pointer;">
 									<p>Share with me!</p>
-									<!-- <img [src]="friend.profileImgURl" onerror="this.src='/assets/images/default_user.jpg';" alt="profileImage" width="40px" height="40px"> -->
-									<!-- <p>{{friend.name}}</p> -->
 								</div>
-								<!-- <div class="share_icon">
-									<a class="share_sec" (click)="sharing(data._id, friend.name, data.post_user)" title="share with your friends">
-										<i class="fa fa-share"></i>
-									</a>	
-								</div> -->
 							</div>
 						</div>
 					</div>
-
-
-
 					<div class="write_comments">
 					<form (ngSubmit)="addComments(data._id, name, profileImg)" [(formGroup)]="commentsForm">
 					<input type="text" placeholder=" Write a comment...!" formControlName="newcomment">
 					</form>
-				</div>
+					</div>
 					<div class="comments_container_{{data._id}} comments_container" style="display: none;" *ngIf="data.comment.length > 0 || temCmnt.length > 0">
 						<div class="comment_title">Comments:</div>
 						<ng-container *ngIf="checkTem && tempPostId === data._id">
@@ -268,92 +247,9 @@
 					</div>
 				</div>
 			</div>
-
-			
 		</div>
-		<div class="main_area_contents timeline" *ngFor="let data of datas | slice:0:1" id="posts_img">
-			<div *ngFor="let shar of data.share" class="main_post_contents d-flex flex-column reshare">
-				<div *ngIf="shar.sharedUser === id" class="reshare_content">
-				 <div  class="name_and_desc" style="width: 100%">
-					<div  class="d-flex justify-content-between align-items-center">
-						<a href="profile/{{data.userId}}" ><div class="profile_name_of_poster">{{name}} is with {{data.post_user}}</div></a>
-						<div class="province d-flex align-items-center">
-							<img src="assets/images/add_ob.png">
-							<div *ngIf="data.city !== null && data.state !== null">{{data.city}} {{data.state}}</div>
-							  <div *ngIf="data.city === undefined && data.state === undefined">Not Mention</div>
-						</div>
-						<!-- <div class="basic_info">
-							<div class="d-flex">
-								<img [src]="data.post_profileImg" onerror="this.src='/assets/images/default_user.jpg';" class="hover-info-img2">
-								<div style="padding: 10px;">
-									<a href="profile/{{data.userId}}"><div class="profile_basic_info set_redirect_link">{{data.post_user}}</div></a>
-								<div class="profile_basic_info"><i class="fas fa-user-tie" style="margin-right: 10px"></i>{{data.post_user_designation}}</div>
-									<div class="profile_basic_info"><i class="fas fa-envelope" style="margin-right: 10px"></i>{{data.post_user_email}}</div>
-								</div>
-							</div>
-							<div class="full-width-50" *ngIf="current_user['data']._id !== data.userId">
-								<i class="fa fa-comments-o" style="margin: 0px 11px 0px 23px"></i><div style="display: contents;">Message</div>
-							</div>
-							<div class="full-width-50" *ngIf="current_user['data']._id == data.userId" (click)="showProfile()">
-								<i class="fa fa-comments-o" style="margin: 0px 11px 0px 10px"></i><div style="display: contents; font-size: 15px;">Edit Profile</div>
-							</div>
-							<div class="full-width-20" *ngIf="current_user['data']._id !== data.userId">
-								<i class="fas fa-user-check" style="margin-left: 15px"></i>
-							</div>
-							<div class="full-width-20" *ngIf="current_user['data']._id == data.userId" (click)="showProfile()" title="View as">
-								<i class="fas fa-eye" style="margin-left: 15px"></i>
-							</div>
-							
-							<div class="dropdown-container full-width-20" tabindex="-1">
-								<div class="three-dots"></div>
-								<div class="dropdown">
-								  <a href="profile/{{data.userId}}/about"><div>About Me</div></a>
-								  <a href="profile/{{data.userId}}/photos"><div>Photos</div></a>
-								  <a href="profile/{{data.userId}}/videos"><div>Videos</div></a>
-								</div>
-							  </div>
-						</div> -->
-					</div>
-					<div style="color: #0F1B31;font-size: 14px;" *ngIf="data.name !== undefined">Album: {{data.name}} </div>
-					<div class="data_desc" style="width: 100%">{{data.description}}</div>
-				</div>
-			
-				<!-- Share posts shown -->
-				
-					<div  class="slider_bid_like-share d-flex flex-column" style="width: 100%">
-					<div class="one_image" *ngIf="data.imageUrl.length == 1">
-						<ng-image-slider onerror="this.src='/assets/images/default_user.jpg';" [imageSize]="{width: '100%', height: '320px'}"  [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
-					</div>
-					<div *ngIf="data.imageUrl.length == 2">
-						<div class="item two_image" >
-							<ng-image-slider onerror="this.src='/assets/images/default_user.jpg';" [animationSpeed]="0.3" [autoSlide]=0 [imageSize]="{width: '49%'}" [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
-						</div>
-					</div>
-					<div *ngIf="data.imageUrl.length == 3">
-						<div class="item three_image" *ngIf="data.imageUrl[0].size == 100">
-						<ng-image-slider [animationSpeed]="0.3" [autoSlide]=0 [imageSize]="{width: '99%'}" animationSpeed=0.1 [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
-						<ng-image-slider [animationSpeed]="0.3" [autoSlide]=0 [imageSize]="{width: '49%', height: 200}" [showArrow]=false class="slider_image_2" [images]="data.imageUrl" #nav></ng-image-slider>
-					</div>
-				</div>
-				<div *ngIf="data.imageUrl.length == 4">
-				<div class="item four_image">
-					<ng-image-slider [animationSpeed]="0.3" [autoSlide]=0 [imageSize]="{width: '49%'}" [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
-					<ng-image-slider [animationSpeed]="0.3" [autoSlide]=0 [imageSize]="{width: '49%'}" [showArrow]=false class="slider_image_4" [images]="data.imageUrl" #nav></ng-image-slider>
-				</div>
-				</div>
-				<div *ngIf="data.imageUrl.length > 4">
-				<div class="item four_image">
-					<ng-image-slider [animationSpeed]="0.3" [autoSlide]=0 [imageSize]="{width: '49%'}" [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
-					<ng-image-slider [animationSpeed]="0.3" [autoSlide]=0 [imageSize]="{width: '49%'}" [showArrow]=false class="slider_image_5" [images]="data.imageUrl" title="more" #nav></ng-image-slider>
-				</div>
-				</div>
-				</div>
-			 
-		</div>
-		</div>
-		</div>
+		
 		<div class="loads_btn">
-			<!-- <button *ngIf="show_load_more" class="load_btn" (click)="loadMore()">Load more</button> -->
 			<div *ngIf="show_load_more" class="load_btn" (click)="loadMore()">
 				<img class="load_more" src="../../assets/images/down-arrow.png" width="50px" height="50px" alt="load more" title="load more">
 			</div>

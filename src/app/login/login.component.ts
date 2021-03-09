@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   returnUrl: string;
   error: {};
   loginError: string;
-  show;
+  show:boolean;
 
   constructor(
     private fb: FormBuilder,

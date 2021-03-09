@@ -115,6 +115,7 @@ export class TimelineComponent implements OnInit {
           this.description = this.datas[i].description;
           this.urls.push(this.datas[i].imageUrl)
           this.likes = this.datas[i].like
+          // console.log("likes", this.likes)
           for (let j = 0; j < this.datas[i].comment.length; j++){
             this.authService.getHomePostProfile(this.datas[i].comment[j].userId).subscribe(res => {
               this.datas[i].post_profileImg = res.data.profileImgURl
@@ -283,11 +284,7 @@ export class TimelineComponent implements OnInit {
           this.temLike = likeCount - 1
           this.temLike <= 0 ? document.getElementById('count_' + postId).innerHTML = '' : document.getElementById('count_' + postId).innerHTML = String(this.temLike);
           this.tool.pop();
-          for (let i = 0; i < likeCount; i++) { 
-          }
-            document.getElementById('like_' + postId + '_' + index).innerHTML = this.u_name ? document.getElementById('like_' + postId + '_' + index).innerHTML = '-' : document.getElementById('like_' + postId + '_' + index).innerHTML = this.u_name;
-            
-
+          document.getElementById('like_' + postId + '_' + index).innerHTML = this.u_name ? document.getElementById('like_' + postId + '_' + index).innerHTML = '' : document.getElementById('like_' + postId + '_' + index).innerHTML = this.u_name;
         }else {
           document.getElementById(postId).classList.add('fa-thumbs-up')
           this.temLike = likeCount + 1
@@ -303,10 +300,9 @@ export class TimelineComponent implements OnInit {
           for (let i = 0; i < likeCount; i++) { 
             }
           this.tool.push(this.u_name);
-            document.getElementById('like_' + postId + '_' + index).innerHTML = this.u_name
           
+            document.getElementById('like_' + postId + '_' + index).innerHTML = this.u_name
         }
-
       }
     })
   }
@@ -333,7 +329,5 @@ export class TimelineComponent implements OnInit {
   showProfile(){
     this.router.navigate([`profile/${this.id}`])
   }
-
-
 
 }

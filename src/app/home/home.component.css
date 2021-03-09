@@ -1783,6 +1783,9 @@ body.modal {
 .ng-image-fullscreen-view .lightbox-wrapper .lightbox-div .next, .ng-image-fullscreen-view .lightbox-wrapper .lightbox-div .prev {
     padding: 5px !important;
 }
+.ng-image-slider .ng-image-slider-container .main .main-inner{
+    margin-left: 0 !important;
+}
 
 .slider_image_5 > div > div > div >.main-inner > div:nth-child(4):before {
     content: "View More";

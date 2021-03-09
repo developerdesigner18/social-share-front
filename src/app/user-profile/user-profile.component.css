@@ -150,7 +150,7 @@ i.unfriend img {
 }
 .update-list2 {
     overflow-y: auto;
-    height: 25vh;
+    /* height: 25vh; */
     margin-top: 10px;
 }
 .row.friends_display {
@@ -631,7 +631,9 @@ img.slider_image {
   	margin-top: 25px;
 		vertical-align: unset !important;
 }
-
+.ng-image-slider .ng-image-slider-container .main .main-inner{
+    margin-left: 0 !important;
+}
 .slider_video {
 		height: 238px;
 		margin-top: 25px;

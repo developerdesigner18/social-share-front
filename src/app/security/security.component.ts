@@ -33,15 +33,12 @@ export class SecurityComponent implements OnInit {
   }
 
   changePass(pass) {
-    console.log("pass", pass.length)
-    // this.authService.resetPassword(this.token, pass).subscribe((res) => { 
-    //   console.log("res", res);
-    //   this.toastr.success("Successfully reset password");
-    //   this.enter_pass = true;
-    //   this.input_pass = false;
-    //   this.change_pass = false;
-    // })
-    
+    this.authService.resetPassword(this.token, pass).subscribe((res) => { 
+      this.toastr.success("Successfully reset password");
+      this.enter_pass = true;
+      this.input_pass = false;
+      this.change_pass = false;
+    })
   }
 
   enterpass() {

@@ -41,12 +41,8 @@ export class InformationComponent implements OnInit {
       this.u_city = res.data.city
       this.designation = res.data.designation
       this.hobbies = res.data.hobbies
-      // console.log("User profile", res);
     })
     }
-
-  
-
   ngOnInit(): void {
   }
 

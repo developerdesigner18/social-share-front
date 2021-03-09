@@ -74,9 +74,10 @@
       </button>
 
       <div class="tooltiptext" *ngIf="data.like.length > 0">
-        <div id="tooltiptexts" class="tooltiptexts" *ngFor="let like of data.like.reverse(); let i = index; trackBy: trackByFn" [attr.data-index]="i">
-          <span> {{tool}} </span>
+        <div id="tooltiptexts" class="tooltiptexts" *ngFor="let like of data.like; let i = index; trackBy: trackByFn" [attr.data-index]="i">
+          <!-- <span> {{tool}} </span> -->
           <span id="like_{{data._id}}_{{i}}" [innerText]="like.name"></span>
+          <!-- {{like.name ? like.name : ''}} -->
         </div>
       </div>
 
