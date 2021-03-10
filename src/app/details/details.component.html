@@ -15,7 +15,7 @@
       <i (click)="delDetails(details_about)" class="pencil-icon fa fa-trash"></i>
     </div>
   </div>
-  <div class="no_mention" *ngIf="not_mention_about"><i class="fa fa-info-circle"> </i> Not mention About</div>
+  <div class="no_mention" *ngIf="not_mention_about"><i class="fa fa-info-circle"> </i> Not mention </div>
   <div class="details" *ngIf="fill_details">
     <textarea class="text-area" (keyup.enter)="addDetails(details_about)" type="text" [(ngModel)]="details_about" name="" value="" placeholder="Write your details"></textarea>
     <button type="button" name="button" (click)="Cancel()">Cancel</button>
@@ -44,7 +44,7 @@
       <i (click)="deletePronunciation(pronun_value)" class="pencil-icon fa fa-trash"></i>
     </div>
   </div>
-  <div class="no_mention" *ngIf="not_mention_pronun"><i class="fa fa-language"> </i> Not mention Pronunciation</div>
+  <div class="no_mention" *ngIf="not_mention_pronun"><i class="fa fa-language"> </i> Not mention </div>
   <div class="pronunciation" *ngIf="fill_pronun">
     <input (keyup.enter)="addPronunciation(pronun_value)" type="text" [(ngModel)]="pronun_value" name="" value="" placeholder="Add a new pronunciation">
     <button type="button" name="button" (click)="Cancel1()">Cancel</button>
@@ -72,7 +72,7 @@
       <i (click)="deleteNickname(nickname)" class="pencil-icon fa fa-trash"></i>
     </div>
   </div>
-  <div class="no_mention" *ngIf="not_mention_nickname"><i class="fa fa-user"> </i> Not mention Nickname</div>
+  <div class="no_mention" *ngIf="not_mention_nickname"><i class="fa fa-user"> </i> Not mention </div>
   <div class="nickname" *ngIf="fill_nickname">
     <input (keyup.enter)="addNickname(nickname)" type="text" [(ngModel)]="nickname" name="" value="" placeholder="Add your nickname">
     <button type="button" name="button" (click)="Cancel2()">Cancel</button>
@@ -100,7 +100,7 @@
       <i (click)="deleteQuotes(quote_value)" class="pencil-icon fa fa-trash"></i>
     </div>
   </div>
-  <div class="no_mention" *ngIf="not_mention_quotes"><i class="fa fa-quote-left"> </i> Not mention Quotes</div>
+  <div class="no_mention" *ngIf="not_mention_quotes"><i class="fa fa-quote-left"> </i> Not mention </div>
   <div class="quotes" *ngIf="fill_quotes">
     <input (keyup.enter)="addQuotes(quote_value)" type="text" [(ngModel)]="quote_value" name="" value="" placeholder="Add new quotes">
     <button type="button" name="button" (click)="Cancel3()">Cancel</button>

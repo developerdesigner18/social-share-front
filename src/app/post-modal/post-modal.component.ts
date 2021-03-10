@@ -54,6 +54,7 @@ export class PostModalComponent implements OnInit {
       this.name =  res.data.name
       this.smallProfile = res.data.profileImgURl
     })
+
     this.fileData.push(data.file)
     this.images = data.images
 
@@ -140,7 +141,7 @@ export class PostModalComponent implements OnInit {
           })
         }
     } else {
-      this.toastr.info("Please select one or more images to post in your profile.")
+      this.toastr.info("Please add images to post")
       if(this.postMesssgeElement.nativeElement.value == ''){
         this.toastr.info("You are not set description!");
       }else if(this.postMesssgeElement.nativeElement.value.valid !== ''){

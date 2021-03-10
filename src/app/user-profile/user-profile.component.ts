@@ -129,10 +129,7 @@ export class UserProfileComponent implements OnInit {
     this.authService.getNotifications(id).subscribe(res => {
       if (res['message'].length > 0) {
         this.notif_data = res['message']
-      } else {
-        
       }
-
     })
   }
 

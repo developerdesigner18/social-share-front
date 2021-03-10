@@ -43,7 +43,7 @@ export class AlbumsComponent implements OnInit {
 
   constructor(
     private  dialogRef:  MatDialogRef<AlbumsComponent>,
-    @Inject(MAT_DIALOG_DATA) public  data: any,
+    @Inject(MAT_DIALOG_DATA) public  data: any = [],
     public authService: AuthService,
     private activatedRoute: ActivatedRoute,
     public router: Router,
@@ -54,8 +54,13 @@ export class AlbumsComponent implements OnInit {
         this.name =  res.data.name
         this.smallProfile = res.data.profileImgURl
       })
+      console.log("image elemenet", this.postImageElement);
+    console.log("data", data);
       this.fileData.push(data.file)
-      this.images = data.images
+    this.images = data.images
+    
+    console.log("this.images", this.images);
+    console.log("data.file", data.file)
   
     if (data.images && data.files != '') {
       // this.shows = true
@@ -113,10 +118,12 @@ export class AlbumsComponent implements OnInit {
         if(this.fileData[0] !== undefined)
         {
           this.arrayfile = this.fileData[0]
+          console.log("this.arrayfile", this.arrayfile);
         } else {
           this.arrayfile = this.fileData
         }
         let arrayRemoveNull = this.arrayfile.filter(e => e)
+        console.log("arrayRemoveNull", arrayRemoveNull)
         if (arrayRemoveNull[0 ] === '') {
           this.toastr.error("Please select one or more images")
         }
@@ -136,17 +143,16 @@ export class AlbumsComponent implements OnInit {
         if (this.postNameElement.nativeElement.value === '') {
           this.toastr.error('Please Fill the Album Name');
         } else {
-          reader.onload = (_event) => {
-            this.authService.newAlbumPost(this.token, this.postNameElement.nativeElement.value ,this.postMesssgeElement.nativeElement.value, this.fileCovToReturn).subscribe((res) => {              
-              if(window.location.href.split('/')[3] == "home"){
-                window.location.replace('home/' + window.location.href.split('/')[4]);
-              }else{
-                window.location.replace('profile/' + window.location.href.split('/')[4]);
-              }
-            })
-          }
+          // reader.onload = (_event) => {
+          //   this.authService.newAlbumPost(this.token, this.postNameElement.nativeElement.value ,this.postMesssgeElement.nativeElement.value, this.fileCovToReturn).subscribe((res) => {              
+          //     if(window.location.href.split('/')[3] == "home"){
+          //       window.location.replace('home/' + window.location.href.split('/')[4]);
+          //     }else{
+          //       window.location.replace('profile/' + window.location.href.split('/')[4]);
+          //     }
+          //   })
+          // }
         }
-  
       } else {
         this.toastr.info("Please select one or more images to add in album.")
         if(this.postMesssgeElement.nativeElement.value == ''){

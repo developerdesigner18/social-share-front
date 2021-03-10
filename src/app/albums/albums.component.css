@@ -13,7 +13,7 @@
     display: none;
   }
   a.cancel_btn:hover {
-    background: black;
+    background: aliceblue;
 }
   
   button.close{
@@ -25,9 +25,10 @@
     right: 22px;
     top: 11px;
     cursor: pointer;
-    padding: 8px;
-    background: #0000008a;
+    padding: 0px;
+    background: #ffffff8a;
     border-radius: 50%;
+    padding: 5px;
   }
   .video_set_size{
     height: 290px;

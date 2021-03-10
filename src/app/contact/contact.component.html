@@ -15,7 +15,7 @@
       <i (click)="delNumber(mobile_number)" class="pencil-icon fa fa-trash"></i>
     </div>
   </div>
-  <div class="no_mention" *ngIf="not_mention_number"><i class="fa fa-phone"> </i> Not mention Number</div>
+  <div class="no_mention" *ngIf="not_mention_number"><i class="fa fa-phone"> </i> Not mention </div>
   <div class="mobile" *ngIf="fill_mobile_no">
     <input (keyup.enter)="addNumber(number)" type="text" [(ngModel)]="number" maxlength="10" inputmode="numeric"  name="numbers" id="number" value="" placeholder="Add mobile number" required>
     <button type="button" name="button" (click)="Cancel()">Cancel</button>
@@ -40,7 +40,7 @@
       <i (click)="delAddress(email_address)" class="pencil-icon fa fa-trash"></i>
     </div>
   </div>
-  <div class="no_mention" *ngIf="not_mention_address"><i class="fa fa-envelope"> </i> Not mention Address</div>
+  <div class="no_mention" *ngIf="not_mention_address"><i class="fa fa-envelope"> </i> Not mention </div>
   <div class="address" *ngIf="fill_email">
     <input (keyup.enter)="addAddress(location)" type="email"  [(ngModel)]="location" inputmode="email" name="location" value="" placeholder="Add your email address">
     <button type="button" name="a_button" (click)="A_Cancel()">Cancel</button>
@@ -68,7 +68,7 @@
       <i (click)="delWebsite(website_link)" class="pencil-icon fa fa-trash"></i>
     </div>
   </div>
-  <div class="no_mention" *ngIf="not_mention_website"><i class="fa fa-link"> </i> Not mention Website</div>
+  <div class="no_mention" *ngIf="not_mention_website"><i class="fa fa-link"> </i> Not mention </div>
   <div class="website" *ngIf="fill_link">
     <input (keyup.enter)="addWebsite(website_link)" type="text" [(ngModel)]="website_link" name="link" value="" placeholder="Add your Websites">
     <button type="button" name="button" (click)="W_Cancel()">Cancel</button>
@@ -96,7 +96,7 @@
       <i (click)="delBasicInfo(religious_value)" class="pencil-icon fa fa-trash"></i>
     </div>
   </div>
-  <div class="no_mention" *ngIf="not_mention_religious"><i class="fas fa-pray"> </i> Not mention Religious</div>
+  <div class="no_mention" *ngIf="not_mention_religious"><i class="fas fa-pray"> </i> Not mention </div>
   <div class="religious"  *ngIf="fil_caste">
     <input (keyup.enter)="addBasicInfo(religious_value)" type="text" [(ngModel)]="religious_value" name="" value="" placeholder="Add your religious">
     <button type="button" name="button" (click)="R_Cancel()">Cancel</button>
@@ -122,7 +122,7 @@
       <i (click)="delGender(gender_value)" class="pencil-icon fa fa-trash"></i>
     </div>
   </div>
-  <div class="no_mention" *ngIf="not_mention_gender"><i class="fa fa-venus-mars"> </i>Not mention Gender</div>
+  <div class="no_mention" *ngIf="not_mention_gender"><i class="fa fa-venus-mars"> </i>Not mention </div>
   <div class="gender" *ngIf="fill_gender">
     <select name="gender" value="gender" [(ngModel)]="gender_value"> Gender
       <option value="Male">Male</option>
@@ -155,7 +155,7 @@
       <i (click)="delBirth(birth_value)" class="pencil-icon fa fa-trash"></i>
     </div>
   </div>
-  <div class="no_mention" *ngIf="not_mention_birth"><i class="fa fa-birthday-cake"> </i> Not mention Birthdate</div>
+  <div class="no_mention" *ngIf="not_mention_birth"><i class="fa fa-birthday-cake"> </i> Not mention </div>
   <div *ngIf="fill_birth">
     <br>
     <input (keyup.enter)="addBirthDate(birth_value)" class="birth_date" [matDatepicker]="picker" [(ngModel)]="birth_value" type="text" name="" id="">
@@ -175,7 +175,7 @@
   <div style="margin-bottom: 10px;" (click)="newLanguage()" *ngIf="languages" >
     <i class="fa fa-plus-circle"></i> <a [routerLink]="">Add your language</a>
   </div>
-  <div style="margin-bottom: 10px;" class="no_mention" *ngIf="not_mention_langugae"><i class="fas fa-language"> </i> Not mention language</div>
+  <div style="margin-bottom: 10px;" class="no_mention" *ngIf="not_mention_langugae"><i class="fas fa-language"> </i> Not mention </div>
   <div *ngIf="text_language"><h6 style="padding-top: 5px;">Languages</h6></div>
   <div class="work" *ngIf="fill_langugae">
     <input (keyup.enter)="save_add_langugae(language)" type="text" maxlength="30" [(ngModel)]="language" name="" value="" placeholder="Add language">

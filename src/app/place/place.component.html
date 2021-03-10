@@ -10,7 +10,7 @@
     <div class="location" style="font-size: 14px; margin-left: 15px;">
       <div class="text_placed">Current City</div>
       <div>
-        {{u_city ? u_city : 'Not mention City'}}
+        {{u_city ? u_city : 'Not mention'}}
       </div>
     </div>
   </div>
@@ -34,7 +34,7 @@
           <i (click)="delHome(home_town)" class="pencil-icon fa fa-trash"></i>
         </div>
       </div>
-      <div class="no_mention" *ngIf="not_mention_home"> Not mention Home</div>
+      <div class="no_mention" *ngIf="not_mention_home"> Not mention</div>
       <div class="home" *ngIf="fill_home">
         <input (keyup.enter)="addHome(home_town)" type="text" [(ngModel)]="home_town"   name="home_town" id="home_town" value="" placeholder="Add your home town" required>
         <button type="button" name="button" (click)="Cancel1()">Cancel</button>

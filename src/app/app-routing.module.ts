@@ -75,7 +75,7 @@ const routes: Routes = [
       { path: 'photos', component: PhotosComponent },
       { path: 'videos', component: VideosComponent },
       { path: 'friends', component: FriendsComponent },
-      { path: 'notifications', component: NotificationsComponent }
+      { path: 'notifications', component: NotificationsComponent },
       // { path: '', redirectTo:'friends/:id', pathMatch:"full" }
     ]
   },
@@ -90,8 +90,7 @@ const routes: Routes = [
     { path: '', redirectTo:'account-setting', pathMatch:"full" }
   ]
   },
-  { path: 'theme', component: ThemeComponent },
-  { path: 'notifications', component: NotificationsComponent }
+  { path: 'theme', component: ThemeComponent }
 ];
 
 @NgModule({
