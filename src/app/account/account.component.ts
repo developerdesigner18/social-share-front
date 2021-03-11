@@ -34,11 +34,11 @@ export class AccountComponent implements OnInit {
     
     $(".hide_theme").css("display", "none");
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
-      this.authService.getProfileforAbout(this.id).subscribe(res => {
-        this.datas = res.data;
-        this.name = res.data.name
-        this.user = res.data.userName
-      })
+      // this.authService.getProfileforAbout(this.id).subscribe(res => {
+      //   this.datas = res.data;
+      //   this.name = res.data.name
+      //   this.user = res.data.userName
+      // })
     
   }
 

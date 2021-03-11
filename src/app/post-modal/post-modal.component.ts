@@ -135,7 +135,8 @@ export class PostModalComponent implements OnInit {
           this.authService.newPost(this.token, this.postMesssgeElement.nativeElement.value, this.fileCovToReturn).subscribe((res) => {
             if(window.location.href.split('/')[3] == "home"){
               window.location.replace('home/' + window.location.href.split('/')[4]);
-            }else{
+            } else {
+              this.toastr.error(res);
               window.location.replace('profile/' + window.location.href.split('/')[4]);
             }
           })
@@ -231,7 +232,7 @@ export class PostModalComponent implements OnInit {
              this.images.push(event.target.result);
           }
           reader.readAsDataURL(event.target.files[i]);
-          this.arrayfile.splice(Object.keys(this.fileData[0]).length, 0, event.target.files[0])
+          this.arrayfile.splice(Object.keys(this.fileData[0]).length, 0, event.target.files[i])
         }
       }
     }

@@ -2,7 +2,7 @@ import { Injectable, Injector } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { MatDialog } from  '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { environment } from '../environments/environment';
 // import { environment } from '../environments/environment.prod';
 
@@ -23,44 +23,44 @@ export class AuthService {
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   currentUser = {};
 
-  constructor(private httpClient: HttpClient, public router: Router, public dialog: MatDialog, private injector: Injector, private toastr: ToastrService){ }
+  constructor(private httpClient: HttpClient, public router: Router, public dialog: MatDialog, private injector: Injector, private toastr: ToastrService) { }
 
   redirectUrl: string;
 
   public get currentUserValue(): User {
-        return this.currentUserSubject.value;
+    return this.currentUserSubject.value;
   }
 
   register(user: User): Observable<any> {
 
     return this.httpClient.post(`${environment.apiUrl}/auth/signup`, user).pipe(
-        catchError(this.handleError)
+      catchError(this.handleError)
     )
   }
 
-  login(email: string, password: string){
-    return this.httpClient.post<any>(`${environment.apiUrl}/auth/signin`, {email: email, password: password})
-    .pipe(map(user => {
-      if (user && user.token) {
-        localStorage.setItem('currentUser', JSON.stringify(user));
-        localStorage.setItem('token', user.token);
-        this.getUserHome(user.data._id).subscribe((user) => {
-          this.currentUser = user;
-        })
-      }
-    }),
-    catchError(this.handleError.bind(this))
-    )
+  login(email: string, password: string) {
+    return this.httpClient.post<any>(`${environment.apiUrl}/auth/signin`, { email: email, password: password })
+      .pipe(map(user => {
+        if (user && user.token) {
+          localStorage.setItem('currentUser', JSON.stringify(user));
+          localStorage.setItem('token', user.token);
+          this.getUserHome(user.data._id).subscribe((user) => {
+            this.currentUser = user;
+          })
+        }
+      }),
+        catchError(this.handleError.bind(this))
+      )
   }
 
-  forget(user: User): Observable <any> {
+  forget(user: User): Observable<any> {
     return this.httpClient.post(`${environment.apiUrl}/auth/forgotpassword`, user).pipe(
       catchError(this.handleError.bind(this))
     )
   }
 
-  resetPassword(token: string, password: string){
-    return this.httpClient.post(`${environment.apiUrl}/auth/resetpassword?token=${token}`, {password: password}).pipe(
+  resetPassword(token: string, password: string) {
+    return this.httpClient.post(`${environment.apiUrl}/auth/resetpassword?token=${token}`, { password: password }).pipe(
       catchError(this.handleError)
     )
   }
@@ -87,7 +87,7 @@ export class AuthService {
   getUserProfile(id): Observable<any> {
     return this.httpClient.get(`${environment.apiUrl}/api/user/profile?id=${id}`, { headers: this.headers }).pipe(
       map((res: Response) => {
-        if(res['success'] == true){
+        if (res['success'] == true) {
           // this.router.navigate([`profile/${id}`])
         }
         return res || {}
@@ -108,7 +108,7 @@ export class AuthService {
   getUserHome(id): Observable<any> {
     return this.httpClient.get(`${environment.apiUrl}/api/user/profile?id=${id}`, { headers: this.headers }).pipe(
       map((res: Response) => {
-        if(res['success'] == true){
+        if (res['success'] == true) {
           this.router.navigate([`home/${id}`])
         }
         return res || {}
@@ -129,7 +129,7 @@ export class AuthService {
   getSearchUser(name): Observable<any> {
     return this.httpClient.get(`${environment.apiUrl}/api/friend/search?search=${name}`, { headers: this.headers }).pipe(
       map((res: Response) => {
-        if(res['success'] == true){
+        if (res['success'] == true) {
           this.router.navigate([`search/${res['data'][0]._id}`])
         }
         return res || {}
@@ -141,7 +141,7 @@ export class AuthService {
   openDialog(postition, city, state, country, hobbies): any {
     const dialogRef = this.dialog.open(EditProfileComponent, {
       width: '550px',
-      data: {postition: postition, city: city, state: state, country: country, hobbies: hobbies}
+      data: { postition: postition, city: city, state: state, country: country, hobbies: hobbies }
     });
 
     return dialogRef.afterClosed();
@@ -149,12 +149,12 @@ export class AuthService {
 
   profileUpdate(user: User): Observable<any> {
     return this.httpClient.post(`${environment.apiUrl}/api/user/update`, user).pipe(
-        catchError(this.handleError)
+      catchError(this.handleError)
     )
   }
 
   updateName(userId, name): Observable<any> {
-    return this.httpClient.post(`${environment.apiUrl}/api/user/updateprofile`, {userId: userId, name: name}, {headers: this.headers}).pipe(
+    return this.httpClient.post(`${environment.apiUrl}/api/user/updateprofile`, { userId: userId, name: name }, { headers: this.headers }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -162,7 +162,7 @@ export class AuthService {
     )
   }
   updateUsername(userId, userName): Observable<any> {
-    return this.httpClient.post(`${environment.apiUrl}/api/user/updateprofile`, {userId: userId, userName: userName}, {headers: this.headers}).pipe(
+    return this.httpClient.post(`${environment.apiUrl}/api/user/updateprofile`, { userId: userId, userName: userName }, { headers: this.headers }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -174,8 +174,8 @@ export class AuthService {
     const formData: any = new FormData();
     formData.append('image', profile);
     this.headers.append('token', u_token)
-    return this.httpClient.post(`${environment.apiUrl}/api/user/setprofileimg`, formData, {headers: {token: u_token}}).pipe(
-        catchError(this.handleError)
+    return this.httpClient.post(`${environment.apiUrl}/api/user/setprofileimg`, formData, { headers: { token: u_token } }).pipe(
+      catchError(this.handleError)
     )
   }
 
@@ -183,8 +183,8 @@ export class AuthService {
     const formData: any = new FormData();
     formData.append('image', cover);
     this.headers.append('token', u_token)
-    return this.httpClient.post(`${environment.apiUrl}/api/user/setcoverimg`, formData, {headers: {token: u_token}}).pipe(
-        catchError(this.handleError)
+    return this.httpClient.post(`${environment.apiUrl}/api/user/setcoverimg`, formData, { headers: { token: u_token } }).pipe(
+      catchError(this.handleError)
     )
   }
 
@@ -193,31 +193,31 @@ export class AuthService {
     const formData: any = new FormData();
     formData.append('description', msg);
     formData.append('name', name);
-    for(let i=0; i < imgUrl.length; i++){
+    for (let i = 0; i < imgUrl.length; i++) {
       formData.append('Url', imgUrl[i]);
     }
 
-    return this.httpClient.post(`${environment.apiUrl}/api/photos/newPosts`, formData, {headers: {token: u_token}}).pipe(
-        catchError(this.handleError)
+    return this.httpClient.post(`${environment.apiUrl}/api/photos/newPosts`, formData, { headers: { token: u_token } }).pipe(
+      catchError(this.handleError)
     )
   }
 
   newPost(u_token, msg, imgUrl): Observable<any> {
     const formData: any = new FormData();
     formData.append('description', msg);
-    for(let i=0; i < imgUrl.length; i++){
+    for (let i = 0; i < imgUrl.length; i++) {
       formData.append('Url', imgUrl[i]);
     }
 
-    return this.httpClient.post(`${environment.apiUrl}/api/photos/newPosts`, formData, {headers: {token: u_token}}).pipe(
-        catchError(this.handleError)
+    return this.httpClient.post(`${environment.apiUrl}/api/photos/newPosts`, formData, { headers: { token: u_token } }).pipe(
+      catchError(this.handleError)
     )
   }
 
   newtextPost(u_token, msg): Observable<any> {
     const formData: any = new FormData();
     formData.append('description', msg);
-    return this.httpClient.post(`${environment.apiUrl}/api/photos/newPosts`, formData, {headers: {token: u_token}}).pipe(
+    return this.httpClient.post(`${environment.apiUrl}/api/photos/newPosts`, formData, { headers: { token: u_token } }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -227,7 +227,7 @@ export class AuthService {
 
   getProfilePost(id): Observable<any> {
     // this.headers.append('token', u_token)
-    return this.httpClient.get(`${environment.apiUrl}/api/photos/show?id=${id}`, { headers: this.headers}).pipe(
+    return this.httpClient.get(`${environment.apiUrl}/api/photos/show?id=${id}`, { headers: this.headers }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -237,7 +237,7 @@ export class AuthService {
 
   getAllPhotos(id): Observable<any> {
     // this.headers.append('token', u_token)
-    return this.httpClient.get(`${environment.apiUrl}/api/photos/showAllphotosOnly?id=${id}`, { headers: this.headers}).pipe(
+    return this.httpClient.get(`${environment.apiUrl}/api/photos/showAllphotosOnly?id=${id}`, { headers: this.headers }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -246,7 +246,7 @@ export class AuthService {
   }
   getAllAlbumsPhotos(id): Observable<any> {
     // this.headers.append('token', u_token)
-    return this.httpClient.get(`${environment.apiUrl}/api/photos/showalbum?userId=${id}`, { headers: this.headers}).pipe(
+    return this.httpClient.get(`${environment.apiUrl}/api/photos/showalbum?userId=${id}`, { headers: this.headers }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -262,7 +262,7 @@ export class AuthService {
       catchError(this.handleError)
     )
   }
- 
+
   DeletePost(postId): Observable<any> {
     return this.httpClient.post(`${environment.apiUrl}/api/photos/deletePost`, { postId: postId }).pipe(
       map((res: Response) => {
@@ -273,7 +273,7 @@ export class AuthService {
   }
 
   sendFriendRequest(userId, requestId): Observable<any> {
-    return this.httpClient.post(`${environment.apiUrl}/api/friend/send`, {userId: userId, requestId: requestId}, {headers: this.headers}).pipe(
+    return this.httpClient.post(`${environment.apiUrl}/api/friend/send`, { userId: userId, requestId: requestId }, { headers: this.headers }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -282,7 +282,7 @@ export class AuthService {
   }
 
   sharingPosts(u_token, postId, receiverId): Observable<any> {
-    return this.httpClient.post(`${environment.apiUrl}/api/photos/share`, {postId: postId, receiverId: receiverId}, {headers: {token: u_token}}).pipe(
+    return this.httpClient.post(`${environment.apiUrl}/api/photos/share`, { postId: postId, receiverId: receiverId }, { headers: { token: u_token } }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -291,7 +291,7 @@ export class AuthService {
   }
 
   acceptFriendRequest(userId, confirmId): Observable<any> {
-    return this.httpClient.post(`${environment.apiUrl}/api/friend/accept`, {userId: userId, requestId: confirmId}, {headers: this.headers}).pipe(
+    return this.httpClient.post(`${environment.apiUrl}/api/friend/accept`, { userId: userId, requestId: confirmId }, { headers: this.headers }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -300,7 +300,7 @@ export class AuthService {
   }
 
   rejectFriendRequest(userId, rejectId): Observable<any> {
-    return this.httpClient.post(`${environment.apiUrl}/api/friend/reject`, {userId: userId, requestId: rejectId}, {headers: this.headers}).pipe(
+    return this.httpClient.post(`${environment.apiUrl}/api/friend/reject`, { userId: userId, requestId: rejectId }, { headers: this.headers }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -309,7 +309,7 @@ export class AuthService {
   }
 
   unFriendRequest(userId, rejectId): Observable<any> {
-    return this.httpClient.post(`${environment.apiUrl}/api/friend/unFriend`, {userId: userId, requestId: rejectId}, {headers: this.headers}).pipe(
+    return this.httpClient.post(`${environment.apiUrl}/api/friend/unFriend`, { userId: userId, requestId: rejectId }, { headers: this.headers }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -318,7 +318,7 @@ export class AuthService {
   }
 
   removeSendRequest(userId, rejectId): Observable<any> {
-    return this.httpClient.post(`${environment.apiUrl}/api/friend/removeRequest`, {userId: userId, requestId: rejectId}, {headers: this.headers}).pipe(
+    return this.httpClient.post(`${environment.apiUrl}/api/friend/removeRequest`, { userId: userId, requestId: rejectId }, { headers: this.headers }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -358,7 +358,7 @@ export class AuthService {
 
   getAllFriends(u_token): Observable<any> {
     this.headers.append('token', u_token)
-    return this.httpClient.get(`${environment.apiUrl}/api/friend/allfriendList`, { headers: {token: u_token}}).pipe(
+    return this.httpClient.get(`${environment.apiUrl}/api/friend/allfriendList`, { headers: { token: u_token } }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -368,7 +368,7 @@ export class AuthService {
 
   setRequestSend(u_token): Observable<any> {
     this.headers.append('token', u_token)
-    return this.httpClient.get(`${environment.apiUrl}/api/friend/sentRequests`, { headers: {token: u_token}}).pipe(
+    return this.httpClient.get(`${environment.apiUrl}/api/friend/sentRequests`, { headers: { token: u_token } }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -377,7 +377,7 @@ export class AuthService {
   }
 
   getFriendRequest(id): Observable<any> {
-    return this.httpClient.get(`${environment.apiUrl}/api/friend/requests?id=${id}`, { headers: this.headers}).pipe(
+    return this.httpClient.get(`${environment.apiUrl}/api/friend/requests?id=${id}`, { headers: this.headers }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -386,7 +386,7 @@ export class AuthService {
   }
 
   getFriendData(id): Observable<any> {
-    return this.httpClient.get(`${environment.apiUrl}/api/friend/requestsData?id=${id}`, { headers: this.headers}).pipe(
+    return this.httpClient.get(`${environment.apiUrl}/api/friend/requestsData?id=${id}`, { headers: this.headers }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -394,8 +394,8 @@ export class AuthService {
     )
   }
 
-    getFriends(userId): Observable<any> {
-    return this.httpClient.get(`${environment.apiUrl}/api/friend/show?userId=${userId}`, { headers: this.headers}).pipe(
+  getFriends(userId): Observable<any> {
+    return this.httpClient.get(`${environment.apiUrl}/api/friend/show?userId=${userId}`, { headers: this.headers }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -405,7 +405,7 @@ export class AuthService {
 
   getAllFriendPost(u_token): Observable<any> {
     this.headers.append('token', u_token)
-    return this.httpClient.get(`${environment.apiUrl}/api/photos/homePagePost`, { headers: {token: u_token}}).pipe(
+    return this.httpClient.get(`${environment.apiUrl}/api/photos/homePagePost`, { headers: { token: u_token } }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -413,27 +413,27 @@ export class AuthService {
     )
   }
 
-  getSuggestUser(userId){
-    return this.httpClient.post(`${environment.apiUrl}/api/friend/suggest`, {userId: userId }, { headers: this.headers}).pipe(
+  getSuggestUser(userId) {
+    return this.httpClient.post(`${environment.apiUrl}/api/friend/suggest`, { userId: userId }, { headers: this.headers }).pipe(
       map((res: Response) => {
         return res || {}
       }),
       catchError(this.handleError)
     )
   }
-  getNotifications(userId){
-    return this.httpClient.post(`${environment.apiUrl}/api/notification/getnotify`, {userId: userId }, { headers: this.headers}).pipe(
+  getNotifications(userId) {
+    return this.httpClient.post(`${environment.apiUrl}/api/notification/getnotify`, { userId: userId }, { headers: this.headers }).pipe(
       map((res: Response) => {
         return res || {}
-        console.log("res.......", res);     
+        console.log("res.......", res);
       }),
       catchError(this.handleError)
     )
   }
 
-  sendLikePost(postId){
+  sendLikePost(postId) {
     let u_token = localStorage.getItem('token')
-    return this.httpClient.post(`${environment.apiUrl}/api/photos/like`, {postId: postId }, { headers: {token: u_token}}).pipe(
+    return this.httpClient.post(`${environment.apiUrl}/api/photos/like`, { postId: postId }, { headers: { token: u_token } }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -442,9 +442,9 @@ export class AuthService {
   }
 
   // sendPostComment
-  sendPostComment(postId, commentMsg){
+  sendPostComment(postId, commentMsg) {
     let u_token = localStorage.getItem('token')
-    return this.httpClient.post(`${environment.apiUrl}/api/photos/comment`, {postId: postId, newcomment: commentMsg }, { headers: {token: u_token}}).pipe(
+    return this.httpClient.post(`${environment.apiUrl}/api/photos/comment`, { postId: postId, newcomment: commentMsg }, { headers: { token: u_token } }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -453,9 +453,9 @@ export class AuthService {
   }
 
   // Add new Number in about section
-  addNewNumber(mobileNumber: number): Observable<any>{
+  addNewNumber(mobileNumber: number): Observable<any> {
     let u_token = localStorage.getItem('token')
-    return this.httpClient.post(`${environment.apiUrl}/api/about/updateAbout`, {mobileNumber: mobileNumber}, { headers: {token: u_token}}).pipe(
+    return this.httpClient.post(`${environment.apiUrl}/api/about/updateAbout`, { mobileNumber: mobileNumber }, { headers: { token: u_token } }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -464,9 +464,9 @@ export class AuthService {
   }
 
   //GetAllData from AboutData
-  getAllData(userId): Observable<any>{
+  getAllData(userId): Observable<any> {
     let u_token = localStorage.getItem('token')
-    return this.httpClient.get(`${environment.apiUrl}/api/about/getAboutData?userid=${userId}`, { headers: this.headers}).pipe(
+    return this.httpClient.get(`${environment.apiUrl}/api/about/getAboutData?userid=${userId}`, { headers: this.headers }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -475,9 +475,9 @@ export class AuthService {
   }
 
   // Address
-  addNewAddress(address: any): Observable<any>{
+  addNewAddress(address: any): Observable<any> {
     let u_token = localStorage.getItem('token')
-    return this.httpClient.post(`${environment.apiUrl}/api/about/updateAbout`, {address: address}, { headers: {token: u_token}}).pipe(
+    return this.httpClient.post(`${environment.apiUrl}/api/about/updateAbout`, { address: address }, { headers: { token: u_token } }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -486,9 +486,9 @@ export class AuthService {
   }
 
   //Website
-  addNewWebsite(website: any): Observable<any>{
+  addNewWebsite(website: any): Observable<any> {
     let u_token = localStorage.getItem('token')
-    return this.httpClient.post(`${environment.apiUrl}/api/about/updateAbout`, {website: website}, { headers: {token: u_token}}).pipe(
+    return this.httpClient.post(`${environment.apiUrl}/api/about/updateAbout`, { website: website }, { headers: { token: u_token } }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -499,7 +499,7 @@ export class AuthService {
   //Basic Info
   addBasicInfo(basicInfo: any): Observable<any> {
     let u_token = localStorage.getItem('token')
-    return this.httpClient.post(`${environment.apiUrl}/api/about/updateAbout`, {basicInfo: basicInfo}, { headers: {token: u_token}}).pipe(
+    return this.httpClient.post(`${environment.apiUrl}/api/about/updateAbout`, { basicInfo: basicInfo }, { headers: { token: u_token } }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -508,9 +508,9 @@ export class AuthService {
   }
 
   //RelationShip Status
-  addStatus(relationshipStatus: any): Observable<any>{
+  addStatus(relationshipStatus: any): Observable<any> {
     let u_token = localStorage.getItem('token')
-    return this.httpClient.post(`${environment.apiUrl}/api/about/updateAbout`, {relationshipStatus: relationshipStatus}, { headers: {token: u_token}}).pipe(
+    return this.httpClient.post(`${environment.apiUrl}/api/about/updateAbout`, { relationshipStatus: relationshipStatus }, { headers: { token: u_token } }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -519,9 +519,9 @@ export class AuthService {
   }
 
   //AboutYourSelf
-  addDetails(aboutYourself: any): Observable<any>{
+  addDetails(aboutYourself: any): Observable<any> {
     let u_token = localStorage.getItem('token')
-    return this.httpClient.post(`${environment.apiUrl}/api/about/updateAbout`, {aboutYourself: aboutYourself}, { headers: {token: u_token}}).pipe(
+    return this.httpClient.post(`${environment.apiUrl}/api/about/updateAbout`, { aboutYourself: aboutYourself }, { headers: { token: u_token } }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -530,9 +530,9 @@ export class AuthService {
   }
 
   //Add pronunciation
-  addPronunciation(pronunciation: any): Observable<any>{
+  addPronunciation(pronunciation: any): Observable<any> {
     let u_token = localStorage.getItem('token')
-    return this.httpClient.post(`${environment.apiUrl}/api/about/updateAbout`, {pronunciation: pronunciation}, { headers: {token: u_token}}).pipe(
+    return this.httpClient.post(`${environment.apiUrl}/api/about/updateAbout`, { pronunciation: pronunciation }, { headers: { token: u_token } }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -541,9 +541,9 @@ export class AuthService {
   }
 
   //Add nickname
-  addNickname(otherName: any): Observable<any>{
+  addNickname(otherName: any): Observable<any> {
     let u_token = localStorage.getItem('token')
-    return this.httpClient.post(`${environment.apiUrl}/api/about/updateAbout`, {otherName: otherName}, { headers: {token: u_token}}).pipe(
+    return this.httpClient.post(`${environment.apiUrl}/api/about/updateAbout`, { otherName: otherName }, { headers: { token: u_token } }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -552,9 +552,9 @@ export class AuthService {
   }
 
   //Add Quotes
-  addQuotes(quote: any): Observable<any>{
+  addQuotes(quote: any): Observable<any> {
     let u_token = localStorage.getItem('token')
-    return this.httpClient.post(`${environment.apiUrl}/api/about/updateAbout`, {quote: quote}, { headers: {token: u_token}}).pipe(
+    return this.httpClient.post(`${environment.apiUrl}/api/about/updateAbout`, { quote: quote }, { headers: { token: u_token } }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -563,9 +563,9 @@ export class AuthService {
   }
 
   //Delete Data
-  deleteNumber(mobileNumber): Observable<any>{
+  deleteNumber(mobileNumber): Observable<any> {
     let u_token = localStorage.getItem('token')
-    return this.httpClient.post(`${environment.apiUrl}/api/about/deleteAbout`,{ mobileNumber: mobileNumber }, { headers: {token: u_token}}).pipe(
+    return this.httpClient.post(`${environment.apiUrl}/api/about/deleteAbout`, { mobileNumber: mobileNumber }, { headers: { token: u_token } }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -573,9 +573,9 @@ export class AuthService {
     )
   }
 
-  deleteAddress(address): Observable<any>{
+  deleteAddress(address): Observable<any> {
     let u_token = localStorage.getItem('token')
-    return this.httpClient.post(`${environment.apiUrl}/api/about/deleteAbout`,{ address: address }, { headers: {token: u_token}}).pipe(
+    return this.httpClient.post(`${environment.apiUrl}/api/about/deleteAbout`, { address: address }, { headers: { token: u_token } }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -583,9 +583,9 @@ export class AuthService {
     )
   }
 
-  deleteWebsite(website): Observable<any>{
+  deleteWebsite(website): Observable<any> {
     let u_token = localStorage.getItem('token')
-    return this.httpClient.post(`${environment.apiUrl}/api/about/deleteAbout`,{ website: website }, { headers: {token: u_token}}).pipe(
+    return this.httpClient.post(`${environment.apiUrl}/api/about/deleteAbout`, { website: website }, { headers: { token: u_token } }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -593,9 +593,9 @@ export class AuthService {
     )
   }
 
-  deleteBasicInfo(basicInfo): Observable<any>{
+  deleteBasicInfo(basicInfo): Observable<any> {
     let u_token = localStorage.getItem('token')
-    return this.httpClient.post(`${environment.apiUrl}/api/about/deleteAbout`,{ basicInfo: basicInfo }, { headers: {token: u_token}}).pipe(
+    return this.httpClient.post(`${environment.apiUrl}/api/about/deleteAbout`, { basicInfo: basicInfo }, { headers: { token: u_token } }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -603,9 +603,9 @@ export class AuthService {
     )
   }
 
-  deleteStatus(relationshipStatus): Observable<any>{
+  deleteStatus(relationshipStatus): Observable<any> {
     let u_token = localStorage.getItem('token')
-    return this.httpClient.post(`${environment.apiUrl}/api/about/deleteAbout`,{ relationshipStatus: relationshipStatus }, { headers: {token: u_token}}).pipe(
+    return this.httpClient.post(`${environment.apiUrl}/api/about/deleteAbout`, { relationshipStatus: relationshipStatus }, { headers: { token: u_token } }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -614,9 +614,9 @@ export class AuthService {
   }
 
   // Add Gender
-  addGender(gender: any): Observable<any>{
+  addGender(gender: any): Observable<any> {
     let u_token = localStorage.getItem('token')
-    return this.httpClient.post(`${environment.apiUrl}/api/about/updateAbout`, {gender: gender}, { headers: {token: u_token}}).pipe(
+    return this.httpClient.post(`${environment.apiUrl}/api/about/updateAbout`, { gender: gender }, { headers: { token: u_token } }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -624,9 +624,9 @@ export class AuthService {
     )
   }
 
-  deleteGender(gender): Observable<any>{
+  deleteGender(gender): Observable<any> {
     let u_token = localStorage.getItem('token')
-    return this.httpClient.post(`${environment.apiUrl}/api/about/deleteAbout`,{ gender: gender }, { headers: {token: u_token}}).pipe(
+    return this.httpClient.post(`${environment.apiUrl}/api/about/deleteAbout`, { gender: gender }, { headers: { token: u_token } }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -634,9 +634,9 @@ export class AuthService {
     )
   }
 
-  deleteDetails(aboutYourself): Observable<any>{
+  deleteDetails(aboutYourself): Observable<any> {
     let u_token = localStorage.getItem('token')
-    return this.httpClient.post(`${environment.apiUrl}/api/about/deleteAbout`,{ aboutYourself: aboutYourself }, { headers: {token: u_token}}).pipe(
+    return this.httpClient.post(`${environment.apiUrl}/api/about/deleteAbout`, { aboutYourself: aboutYourself }, { headers: { token: u_token } }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -644,9 +644,9 @@ export class AuthService {
     )
   }
 
-  deletePronunciation(pronunciation): Observable<any>{
+  deletePronunciation(pronunciation): Observable<any> {
     let u_token = localStorage.getItem('token')
-    return this.httpClient.post(`${environment.apiUrl}/api/about/deleteAbout`,{ pronunciation: pronunciation }, { headers: {token: u_token}}).pipe(
+    return this.httpClient.post(`${environment.apiUrl}/api/about/deleteAbout`, { pronunciation: pronunciation }, { headers: { token: u_token } }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -654,9 +654,9 @@ export class AuthService {
     )
   }
 
-  deleteNickname(otherName): Observable<any>{
+  deleteNickname(otherName): Observable<any> {
     let u_token = localStorage.getItem('token')
-    return this.httpClient.post(`${environment.apiUrl}/api/about/deleteAbout`,{ otherName: otherName }, { headers: {token: u_token}}).pipe(
+    return this.httpClient.post(`${environment.apiUrl}/api/about/deleteAbout`, { otherName: otherName }, { headers: { token: u_token } }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -664,9 +664,9 @@ export class AuthService {
     )
   }
 
-  deleteQuotes(quote): Observable<any>{
+  deleteQuotes(quote): Observable<any> {
     let u_token = localStorage.getItem('token')
-    return this.httpClient.post(`${environment.apiUrl}/api/about/deleteAbout`,{ quote: quote }, { headers: {token: u_token}}).pipe(
+    return this.httpClient.post(`${environment.apiUrl}/api/about/deleteAbout`, { quote: quote }, { headers: { token: u_token } }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -675,9 +675,9 @@ export class AuthService {
   }
 
   // Add Birthdate
-  addBirthDate(birthDate: any): Observable<any>{
+  addBirthDate(birthDate: any): Observable<any> {
     let u_token = localStorage.getItem('token')
-    return this.httpClient.post(`${environment.apiUrl}/api/about/updateAbout`, {birthDate: birthDate}, { headers: {token: u_token}}).pipe(
+    return this.httpClient.post(`${environment.apiUrl}/api/about/updateAbout`, { birthDate: birthDate }, { headers: { token: u_token } }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -685,9 +685,9 @@ export class AuthService {
     )
   }
 
-  deleteBirthdate(birthDate): Observable<any>{
+  deleteBirthdate(birthDate): Observable<any> {
     let u_token = localStorage.getItem('token')
-    return this.httpClient.post(`${environment.apiUrl}/api/about/deleteAbout`,{ birthDate: birthDate }, { headers: {token: u_token}}).pipe(
+    return this.httpClient.post(`${environment.apiUrl}/api/about/deleteAbout`, { birthDate: birthDate }, { headers: { token: u_token } }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -706,9 +706,9 @@ export class AuthService {
     )
   }
 
-  deleteHomeTown(homeTown): Observable<any>{
+  deleteHomeTown(homeTown): Observable<any> {
     let u_token = localStorage.getItem('token')
-    return this.httpClient.post(`${environment.apiUrl}/api/about/deleteAbout`,{ homeTown: homeTown }, { headers: {token: u_token}}).pipe(
+    return this.httpClient.post(`${environment.apiUrl}/api/about/deleteAbout`, { homeTown: homeTown }, { headers: { token: u_token } }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -716,40 +716,40 @@ export class AuthService {
     )
   }
 
-    //Add Work Data
+  //Add Work Data
   addWork(userId, name, work): Observable<any> {
-      let u_token = localStorage.getItem('token')
-      return this.httpClient.post(`${environment.apiUrl}/api/about/addSingleArray`, {userId: userId, name: name, fieldName: work }, { headers: { token: u_token } }).pipe(
-        map((res: Response) => {
-          return res || {}
-        }),
-        catchError(this.handleError)
-      )
-  }
-  
-  updateWork(userId, name, dataId, work): Observable<any> {
-    return this.httpClient.post(`${environment.apiUrl}/api/about/updateSingleArray`, {userId: userId, name: name, dataId: dataId, fieldName: work } ).pipe(
-      map((res: Response) => {
-        return res || {}
-      }),
-      catchError(this.handleError)
-    )
-  }
-
-  deleteWork(userId, dataId, work): Observable<any>{
-    return this.httpClient.post(`${environment.apiUrl}/api/about/deleteSingleArray`,{ userId: userId, dataId: dataId, fieldName: work }).pipe(
-      map((res: Response) => {
-        
-        return res || {}
-      }),
-      catchError(this.handleError)
-    )
-  }
-
-   //Add University
-   addUniversity(userId, name, university): Observable<any> {
     let u_token = localStorage.getItem('token')
-    return this.httpClient.post(`${environment.apiUrl}/api/about/addSingleArray`, {userId: userId, name: name, fieldName: university }, { headers: { token: u_token } }).pipe(
+    return this.httpClient.post(`${environment.apiUrl}/api/about/addSingleArray`, { userId: userId, name: name, fieldName: work }, { headers: { token: u_token } }).pipe(
+      map((res: Response) => {
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  updateWork(userId, name, dataId, work): Observable<any> {
+    return this.httpClient.post(`${environment.apiUrl}/api/about/updateSingleArray`, { userId: userId, name: name, dataId: dataId, fieldName: work }).pipe(
+      map((res: Response) => {
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  deleteWork(userId, dataId, work): Observable<any> {
+    return this.httpClient.post(`${environment.apiUrl}/api/about/deleteSingleArray`, { userId: userId, dataId: dataId, fieldName: work }).pipe(
+      map((res: Response) => {
+
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  //Add University
+  addUniversity(userId, name, university): Observable<any> {
+    let u_token = localStorage.getItem('token')
+    return this.httpClient.post(`${environment.apiUrl}/api/about/addSingleArray`, { userId: userId, name: name, fieldName: university }, { headers: { token: u_token } }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -758,7 +758,7 @@ export class AuthService {
   }
 
   updateUniversity(userId, name, dataId, university): Observable<any> {
-    return this.httpClient.post(`${environment.apiUrl}/api/about/updateSingleArray`, {userId: userId, name: name, dataId: dataId, fieldName: university } ).pipe(
+    return this.httpClient.post(`${environment.apiUrl}/api/about/updateSingleArray`, { userId: userId, name: name, dataId: dataId, fieldName: university }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -766,8 +766,8 @@ export class AuthService {
     )
   }
 
-  deleteUniversity(userId, dataId, university): Observable<any>{
-    return this.httpClient.post(`${environment.apiUrl}/api/about/deleteSingleArray`,{ userId: userId, dataId: dataId, fieldName: university }).pipe(
+  deleteUniversity(userId, dataId, university): Observable<any> {
+    return this.httpClient.post(`${environment.apiUrl}/api/about/deleteSingleArray`, { userId: userId, dataId: dataId, fieldName: university }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -778,7 +778,7 @@ export class AuthService {
   //Add School
   addSchool(userId, name, school): Observable<any> {
     let u_token = localStorage.getItem('token')
-    return this.httpClient.post(`${environment.apiUrl}/api/about/addSingleArray`, {userId: userId, name: name, fieldName: school }, { headers: { token: u_token } }).pipe(
+    return this.httpClient.post(`${environment.apiUrl}/api/about/addSingleArray`, { userId: userId, name: name, fieldName: school }, { headers: { token: u_token } }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -787,7 +787,7 @@ export class AuthService {
   }
 
   updateSchool(userId, name, dataId, school): Observable<any> {
-    return this.httpClient.post(`${environment.apiUrl}/api/about/updateSingleArray`, {userId: userId, name: name, dataId: dataId, fieldName: school } ).pipe(
+    return this.httpClient.post(`${environment.apiUrl}/api/about/updateSingleArray`, { userId: userId, name: name, dataId: dataId, fieldName: school }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -795,19 +795,19 @@ export class AuthService {
     )
   }
 
-  deleteSchool(userId, dataId, school): Observable<any>{
-    return this.httpClient.post(`${environment.apiUrl}/api/about/deleteSingleArray`,{ userId: userId, dataId: dataId, fieldName: school }).pipe(
-      map((res: Response) => {      
+  deleteSchool(userId, dataId, school): Observable<any> {
+    return this.httpClient.post(`${environment.apiUrl}/api/about/deleteSingleArray`, { userId: userId, dataId: dataId, fieldName: school }).pipe(
+      map((res: Response) => {
         return res || {}
       }),
       catchError(this.handleError)
     )
   }
 
-   //Add Language
-   addLanguage(userId, name, language): Observable<any> {
+  //Add Language
+  addLanguage(userId, name, language): Observable<any> {
     let u_token = localStorage.getItem('token')
-    return this.httpClient.post(`${environment.apiUrl}/api/about/addSingleArray`, {userId: userId, name: name, fieldName: language }, { headers: { token: u_token } }).pipe(
+    return this.httpClient.post(`${environment.apiUrl}/api/about/addSingleArray`, { userId: userId, name: name, fieldName: language }, { headers: { token: u_token } }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -815,8 +815,8 @@ export class AuthService {
     )
   }
 
-  deleteLanguage(userId, dataId, language): Observable<any>{
-    return this.httpClient.post(`${environment.apiUrl}/api/about/deleteSingleArray`,{ userId: userId, dataId: dataId, fieldName: language }).pipe(
+  deleteLanguage(userId, dataId, language): Observable<any> {
+    return this.httpClient.post(`${environment.apiUrl}/api/about/deleteSingleArray`, { userId: userId, dataId: dataId, fieldName: language }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -827,7 +827,7 @@ export class AuthService {
   //Add Life Event
   addLifeEvent(userId, name, lifeEvents): Observable<any> {
     let u_token = localStorage.getItem('token')
-    return this.httpClient.post(`${environment.apiUrl}/api/about/addSingleArray`, {userId: userId, name: name, fieldName: lifeEvents }, { headers: { token: u_token } }).pipe(
+    return this.httpClient.post(`${environment.apiUrl}/api/about/addSingleArray`, { userId: userId, name: name, fieldName: lifeEvents }, { headers: { token: u_token } }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -836,7 +836,7 @@ export class AuthService {
   }
 
   updateLifeEvent(userId, name, dataId, lifeEvents): Observable<any> {
-    return this.httpClient.post(`${environment.apiUrl}/api/about/updateSingleArray`, {userId: userId, name: name, dataId: dataId, fieldName: lifeEvents } ).pipe(
+    return this.httpClient.post(`${environment.apiUrl}/api/about/updateSingleArray`, { userId: userId, name: name, dataId: dataId, fieldName: lifeEvents }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -844,8 +844,8 @@ export class AuthService {
     )
   }
 
-  deleteLifeEvent(userId, dataId, lifeEvents): Observable<any>{
-    return this.httpClient.post(`${environment.apiUrl}/api/about/deleteSingleArray`,{ userId: userId, dataId: dataId, fieldName: lifeEvents }).pipe(
+  deleteLifeEvent(userId, dataId, lifeEvents): Observable<any> {
+    return this.httpClient.post(`${environment.apiUrl}/api/about/deleteSingleArray`, { userId: userId, dataId: dataId, fieldName: lifeEvents }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -856,7 +856,7 @@ export class AuthService {
   //Add family member
   addFamily(userId, family, relationship): Observable<any> {
     let u_token = localStorage.getItem('token')
-    return this.httpClient.post(`${environment.apiUrl}/api/about/addFamilyMember`, {userId: userId, name: family, relationship: relationship }, { headers: { token: u_token } }).pipe(
+    return this.httpClient.post(`${environment.apiUrl}/api/about/addFamilyMember`, { userId: userId, name: family, relationship: relationship }, { headers: { token: u_token } }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -865,7 +865,7 @@ export class AuthService {
   }
 
   updateFamily(userId, family, dataId, relationship): Observable<any> {
-    return this.httpClient.post(`${environment.apiUrl}/api/about/updateFamilyMember`, {userId: userId, name: family, dataId: dataId, relationship: relationship } ).pipe(
+    return this.httpClient.post(`${environment.apiUrl}/api/about/updateFamilyMember`, { userId: userId, name: family, dataId: dataId, relationship: relationship }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -873,9 +873,9 @@ export class AuthService {
     )
   }
 
-  deleteFamily(userId, dataId): Observable<any>{
-    return this.httpClient.post(`${environment.apiUrl}/api/about/deleteFamilyMember`,{ userId: userId, dataId: dataId }).pipe(
-      map((res: Response) => {    
+  deleteFamily(userId, dataId): Observable<any> {
+    return this.httpClient.post(`${environment.apiUrl}/api/about/deleteFamilyMember`, { userId: userId, dataId: dataId }).pipe(
+      map((res: Response) => {
         return res || {}
       }),
       catchError(this.handleError)
@@ -884,10 +884,10 @@ export class AuthService {
 
   private handleError(error: HttpErrorResponse) {
     let msg = '';
-    if(error.error.message == 'friend request already sent or recive either you are already friends'){
+    if (error.error.message == 'friend request already sent or recive either you are already friends') {
       // alert('Request already send')
       this.toastr.info('Request already send');
-    }else if(error.error.success == false && error.error.message == 'email in not registered'){
+    } else if (error.error.success == false && error.error.message == 'email in not registered') {
       this.dialog.open(DialogEmailErrorComponent, {
         width: '500px'
       })
@@ -898,7 +898,7 @@ export class AuthService {
     } else {
       console.error(`Backend returned code ${error.status}, ` + `body was: ${error.error}`);
       msg = 'Backend returned code ${error.status}, ` + `body was: ${error.error}'
-      if(error.status == 500){
+      if (error.status == 500) {
         this.toastr.error('Authentication is failed. Please check your email and paswword.');
       }
     }

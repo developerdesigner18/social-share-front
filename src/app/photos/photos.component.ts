@@ -107,6 +107,7 @@ export class PhotosComponent implements OnInit {
         }
         reader.readAsDataURL(event.target.files[i]);
         this.files_data.push(event.target.files[i]);
+        console.log(this.files_data);
       }
     }
 
@@ -139,6 +140,7 @@ export class PhotosComponent implements OnInit {
         }
         reader.readAsDataURL(event.target.files[i]);
         this.files_data.push(event.target.files[i]);
+        console.log(this.files_data);
       }
     }
     const dialogRef = this.dialog.open(PostModalComponent, {

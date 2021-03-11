@@ -143,15 +143,15 @@ export class AlbumsComponent implements OnInit {
         if (this.postNameElement.nativeElement.value === '') {
           this.toastr.error('Please Fill the Album Name');
         } else {
-          // reader.onload = (_event) => {
-          //   this.authService.newAlbumPost(this.token, this.postNameElement.nativeElement.value ,this.postMesssgeElement.nativeElement.value, this.fileCovToReturn).subscribe((res) => {              
-          //     if(window.location.href.split('/')[3] == "home"){
-          //       window.location.replace('home/' + window.location.href.split('/')[4]);
-          //     }else{
-          //       window.location.replace('profile/' + window.location.href.split('/')[4]);
-          //     }
-          //   })
-          // }
+          reader.onload = (_event) => {
+            this.authService.newAlbumPost(this.token, this.postNameElement.nativeElement.value ,this.postMesssgeElement.nativeElement.value, this.fileCovToReturn).subscribe((res) => {              
+              if(window.location.href.split('/')[3] == "home"){
+                window.location.replace('home/' + window.location.href.split('/')[4]);
+              }else{
+                window.location.replace('profile/' + window.location.href.split('/')[4]);
+              }
+            })
+          }
         }
       } else {
         this.toastr.info("Please select one or more images to add in album.")
@@ -225,10 +225,12 @@ export class AlbumsComponent implements OnInit {
       // Multipul Image upload
       if (event.target.files && event.target.files[0]) {
         var filesAmount = event.target.files.length;
+        console.log("event.target.files", event.target.files)
         if(this.fileData[0] == undefined || this.fileData[0] == null){
           for (let i = 0; i < filesAmount; i++) {
-            this.fileData.push(event.target.files[0])
-            var reader = new FileReader();
+            this.fileData.push(event.target.files)
+            console.log("this.fileData", this.fileData)
+            let reader = new FileReader();
             reader.onload = (event:any) => {
                 this.images.push(event.target.result);
             }
@@ -237,6 +239,8 @@ export class AlbumsComponent implements OnInit {
           this.arrayfile = this.fileData.filter(item => item)
         }else{
           this.arrayfile = this.fileData[0]
+          // this.arrayfile.push(event.target.files)
+          console.log("this.arrayfile1", this.arrayfile)
           for (let i = 0; i < filesAmount; i++) {
             var reader = new FileReader();
   
@@ -244,7 +248,8 @@ export class AlbumsComponent implements OnInit {
                this.images.push(event.target.result);
             }
             reader.readAsDataURL(event.target.files[i]);
-            this.arrayfile.splice(Object.keys(this.fileData[0]).length, 0, event.target.files[0])
+            this.arrayfile.splice(Object.keys(this.fileData[0]).length, 0, event.target.files[i])
+            console.log("this.arrayfile2", this.arrayfile)
           }
         }
       }
