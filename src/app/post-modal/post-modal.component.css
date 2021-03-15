@@ -14,7 +14,11 @@
 }
 
 button.close{
-  padding: 10px;
+  color: white;
+  font-weight: 400;
+  position: relative;
+  right: 10px;
+  padding: 8px;
 }
 
 

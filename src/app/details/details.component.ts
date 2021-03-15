@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 declare var jQuery: any;
 declare var $: any;
 
@@ -61,7 +62,8 @@ export class DetailsComponent implements OnInit {
   friendid: string;
   constructor(
     public authService: AuthService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    public toastr: ToastrService
   ) {
     let id = this.activatedRoute.parent.parent.params['value']['id'];
     if (localStorage.getItem('friendId')) {
@@ -197,24 +199,34 @@ export class DetailsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  addDetails(about: any){
-    this.authService.addDetails(about).subscribe(res => {
-     if (res['success']) {
-       this.details_about = about
-       this.show_details = true
-       this.details = true
-       this.fill_details = false
-     }
-    })
+  addDetails(about: any) {
+    if (about !== undefined) {
+      this.authService.addDetails(about).subscribe(res => {
+        if (res['success']) {
+         this.toastr.success("Your about info is added successfully")
+         this.details_about = about
+         this.show_details = true
+         this.details = true
+         this.fill_details = false
+       }
+      })
+    } else {
+      this.toastr.error("Please enter your info properly")
+    }
   }
   
   editDetails(about: any) {
-    this.authService.addNewNumber(about).subscribe(res => {
-      if (res['success']) {
-        this.show_details = true
-        this.u_fill_details = false
-      }
-    })
+    if (about !== undefined) {
+      this.authService.addNewNumber(about).subscribe(res => {
+        if (res['success']) {
+          this.toastr.success("Your about info is updated successfully")
+          this.show_details = true
+          this.u_fill_details = false
+        }
+      })
+    } else {
+      this.toastr.error("Please enter your info properly")
+    }
   }
 
   updateDetails(about: any) {
@@ -238,33 +250,45 @@ export class DetailsComponent implements OnInit {
     this.show_details = false;
     this.authService.deleteDetails(about).subscribe(res => {
       if (res['success']) {
+        this.toastr.success("Your basic info is deleted successfully")
         this.shows6 = true
         $(`.details`).css('display', 'block');
         this.display7 = false
       } else {
+        this.toastr.error("Oops some error occur. Please try again later")
         this.display7 = true;
       }
     })
   }
 
-   addPronunciation(words: any){
-    this.authService.addPronunciation(words).subscribe(res => {
-     if (res['success']) {
-       this.pronun_value = words
-       this.show_pronun = true
-       this.pronun = true
-       this.fill_pronun = false
+  addPronunciation(words: any) {
+     if (words !== undefined) {
+       this.authService.addPronunciation(words).subscribe(res => {
+         if (res['success']) {
+          this.toastr.success("Your pronunciation name is added successfully")
+          this.pronun_value = words
+          this.show_pronun = true
+          this.pronun = true
+          this.fill_pronun = false
+        }
+       })
+     } else {
+       this.toastr.error("Please enter your name properly")
      }
-    })
   }
   
   editPronunciation(words: any) {
-    this.authService.addPronunciation(words).subscribe(res => {
-      if (res['success']) {
-        this.show_pronun = true
-        this.u_fill_pronun = false
-      }
-    })
+    if (words !== undefined) {      
+      this.authService.addPronunciation(words).subscribe(res => {
+        if (res['success']) {
+          this.toastr.success("Your pronunciation name is updated successfully")
+          this.show_pronun = true
+          this.u_fill_pronun = false
+        }
+      })
+    } else {
+      this.toastr.error("Please enter your name properly")
+    }
   }
 
   updatePronunciation(words: any) {
@@ -288,33 +312,45 @@ export class DetailsComponent implements OnInit {
     this.show_pronun = false;
     this.authService.deletePronunciation(words).subscribe(res => {
       if (res['success']) {
+        this.toastr.success("Your pronunciation name is deleted successfully")
         this.shows7 = true
         $(`.mobile`).css('display', 'block');
         this.display8 = false
       } else {
+        this.toastr.error("Oops some error occur. Please try again later")
         this.display8 = true;
       }
     })
   }
 
-   addNickname(nickname: any){
-    this.authService.addNickname(nickname).subscribe(res => {
-     if (res['success']) {
-       this.nickname = nickname
-       this.show_nickname = true
-       this.nick = true
-       this.fill_nickname = false
+  addNickname(nickname: any) {
+     if (nickname !== undefined) {
+       this.authService.addNickname(nickname).subscribe(res => {
+         if (res['success']) {
+          this.toastr.success("Your nickname is added successfully")
+          this.nickname = nickname
+          this.show_nickname = true
+          this.nick = true
+          this.fill_nickname = false
+        }
+       })
+     } else {
+       this.toastr.error("Please enter your nickname properly")
      }
-    })
   }
   
   editNickname(nickname: any) {
-    this.authService.addNickname(nickname).subscribe(res => {
-      if (res['success']) {
-        this.show_nickname = true
-        this.u_fill_nickname = false
-      }
-    })
+    if (nickname !== undefined) {
+      this.authService.addNickname(nickname).subscribe(res => {
+        if (res['success']) {
+          this.toastr.success("Your nickname is updated successfully")
+          this.show_nickname = true
+          this.u_fill_nickname = false
+        }
+      })
+    } else {
+      this.toastr.error("Please enter your nickname properly")
+    }
   }
 
   updateNickname(nickname: any) {
@@ -337,33 +373,45 @@ export class DetailsComponent implements OnInit {
     this.show_nickname = false;
     this.authService.deleteNickname(nickname).subscribe(res => {
       if (res['success']) {
+        this.toastr.success("Your nickname is deleted successfully")
         this.shows8 = true
         $(`.nickname`).css('display', 'block');
         this.display9 = false
       } else {
+        this.toastr.error("Oops some error occur. Please try again later")
         this.display9 = true;
       }
     })
   }
 
-   addQuotes(quote_value: any){
-    this.authService.addQuotes(quote_value).subscribe(res => {
-     if (res['success']) {
-       this.quote_value = quote_value
-       this.show_quotes = true
-       this.quote = true
-       this.fill_quotes = false
+  addQuotes(quote_value: any) {
+     if (quote_value !== undefined) {
+       this.authService.addQuotes(quote_value).subscribe(res => {
+         if (res['success']) {
+          this.toastr.success("Your quote is added successfully")
+          this.quote_value = quote_value
+          this.show_quotes = true
+          this.quote = true
+          this.fill_quotes = false
+        }
+       })
+     } else {
+       this.toastr.error("Please enter your quote properly")
      }
-    })
   }
   
   editQuotes(quote_value: any) {
-    this.authService.addQuotes(quote_value).subscribe(res => {
-      if (res['success']) {
-        this.show_quotes = true
-        this.u_fill_quotes = false
-      }
-    })
+    if (quote_value !== undefined) {
+      this.authService.addQuotes(quote_value).subscribe(res => {
+        if (res['success']) {
+          this.toastr.success("Your quote is updated successfully")
+          this.show_quotes = true
+          this.u_fill_quotes = false
+        }
+      })
+    } else {
+      this.toastr.error("Please enter your quote properly")
+    }
   }
 
   updateQuotes(quote_value: any) {
@@ -387,10 +435,12 @@ export class DetailsComponent implements OnInit {
     this.show_quotes = false;
     this.authService.deleteQuotes(quote_value).subscribe(res => {
       if (res['success']) {
+        this.toastr.success("Your quote is deleted successfully")
         this.shows9 = true
         $(`.quote`).css('display', 'block');
         this.display10 = false
       } else {
+        this.toastr.error("Oops some error occur. Please try again later")
         this.display10 = true;
       }
     })

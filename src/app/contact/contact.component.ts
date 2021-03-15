@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 declare var jQuery: any;
 declare var $: any;
 
@@ -88,7 +89,8 @@ export class ContactComponent implements OnInit {
   friendid: string;
   constructor(
     public authService: AuthService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    public toastr: ToastrService
   ) {
     let id = this.activatedRoute.parent.parent.params['value']['id'];
     if (localStorage.getItem('friendId')) {
@@ -183,6 +185,7 @@ export class ContactComponent implements OnInit {
               this.not_mention_number = true
             } else if (res.userData[0].mobileNumber !== undefined) {
               this.mobile_number = res.userData[0].mobileNumber
+              console.log("this.mobile_number upper", this.mobile_number)
               this.show_mobile = true
               this.mobile = true
             } else {
@@ -346,23 +349,37 @@ export class ContactComponent implements OnInit {
   }
   
   addNumber(number: any) {
-    this.authService.addNewNumber(number).subscribe(res => {
-      if (res['success']) {
-        this.mobile_number = number
-        this.show_mobile = true
-        this.mobile = true;
-        this.fill_mobile_no = false
-      }
-    }) 
+    if (number !== undefined) {
+      this.authService.addNewNumber(number).subscribe(res => {
+        if (res['success']) {
+          this.mobile_number = number
+          this.show_mobile = true
+          this.mobile = true;
+          this.fill_mobile_no = false
+          this.toastr.success("Your number is saved successfully");
+        }
+      })
+    } else {
+      this.toastr.error("Please enter your number");
+    }
   }
 
   editNumber(number: any) {
-    this.authService.addNewNumber(number).subscribe(res => {
-      if (res['success']) {
-        this.show_mobile = true
-        this.u_fill_mobile_no = false
-      }
-    })
+    console.log("number", number)
+    console.log("this.mobile_number", this.mobile_number)
+    if (number !== undefined || number != this.mobile_number) {
+      this.authService.addNewNumber(number).subscribe(res => {
+        if (res['success']) {
+          this.show_mobile = true
+          this.u_fill_mobile_no = false
+          this.toastr.success("Your number is updated successfully")
+        }
+      }) 
+    } else if(number === this.mobile_number){
+      this.toastr.info("Please enter your updated number")
+    } else {
+      this.toastr.error("Please enter your number");
+    }
   }
 
   updateNumber(number: any) {
@@ -382,31 +399,44 @@ export class ContactComponent implements OnInit {
     this.show_mobile = false;
     this.authService.deleteNumber(number).subscribe(res => {
       if (res['success']) {
+        this.toastr.success("Your number is deleted successfully");
         this.shows = true
         $(`.mobile`).css('display', 'block');
         this.u_mobile = false
+      } else {
+        this.toastr.error("Oops some error occur. Please try again later")
       }
     })
   }
 
   addAddress(location: any) {
-    this.authService.addNewAddress(location).subscribe(res => {
-      if (res['success']) {
-        this.email_address = location
-        this.show_email = true
-        this.email = true
-        this.fill_email = false
-      }
-    })
+    if (location !== undefined) {
+      this.authService.addNewAddress(location).subscribe(res => {
+        if (res['success']) {
+          this.toastr.success("Your email is added successfully")
+          this.email_address = location
+          this.show_email = true
+          this.email = true
+          this.fill_email = false
+        }
+      })
+    } else {
+      this.toastr.error("Please enter your email properly")
+    }
   }
 
   editAddress(location: any) {
-    this.authService.addNewAddress(location).subscribe(res => {
-      if (res['success']) {
-        this.show_email = true
-        this.u_fill_email = false
-      }
-    })
+    if (location !== undefined) {
+      this.authService.addNewAddress(location).subscribe(res => {
+        if (res['success']) {
+          this.toastr.success("Your email is updated successfully")
+          this.show_email = true
+          this.u_fill_email = false
+        }
+      })
+    } else {
+      this.toastr.error("Your email is not updated")
+    }
   }
 
   updateAddress(location: any) {
@@ -426,32 +456,45 @@ export class ContactComponent implements OnInit {
     this.show_email = false
     this.authService.deleteAddress(location).subscribe(res => {
       if (res['success']) {
+        this.toastr.success("Your email is deleted successfully")
         this.shows1 = true
         $(`.address`).css('display', 'block');
         this.u_address = false
+      } else {
+        this.toastr.error("Oops some error occured. Please try again later")
       }
     })
   }
 
   //  Website
   addWebsite(website: any) {
-    this.authService.addNewWebsite(website).subscribe(res => {
-      if (res['success']) {
-        this.website_link = website
-        this.show_link = true
-        this.link = true
-        this.fill_link = false
-      }
-    })
+    if (website !== undefined) {
+      this.authService.addNewWebsite(website).subscribe(res => {
+        if (res['success']) {
+          this.toastr.success("Your website is added successfully");
+          this.website_link = website
+          this.show_link = true
+          this.link = true
+          this.fill_link = false
+        }
+      })
+    } else {
+      this.toastr.error("Please enter your website properly")
+    }
   }
 
-  editWebsite(website: any){
-    this.authService.addNewWebsite(website).subscribe(res => {
-      if (res['success']) {
-        this.show_link = true
-        this.u_fill_link = false
-      }
-    })
+  editWebsite(website: any) {
+    if (website !== undefined) {
+      this.authService.addNewWebsite(website).subscribe(res => {
+        this.toastr.success("Your website is updated successfully")
+        if (res['success']) {
+          this.show_link = true
+          this.u_fill_link = false
+        }
+      })
+    } else {
+      this.toastr.error("Your website is not updated");
+    }
   }
 
   updateWebsite(website: any) {
@@ -471,32 +514,46 @@ export class ContactComponent implements OnInit {
     this.show_link = false
     this.authService.deleteWebsite(website).subscribe(res => {
       if (res['success']) {
+        this.toastr.success("Your website is deleted successfully")
         this.shows2 = true
         $(`.website`).css('display', 'block');
         this.u_website = false
+      } else {
+        this.toastr.error("Oops some error occur. Please try again later.")
       }
     })
   }
 
   //  Religious
   addBasicInfo(caste: any) {
-    this.authService.addBasicInfo(caste).subscribe(res => {
-      if (res['success']) {
-        this.religious_value = caste
-        this.show_caste = true
-        this.religious = true
-        this.fil_caste = false
-      }
-    })
+    if (caste !== undefined) {
+      this.authService.addBasicInfo(caste).subscribe(res => {
+        if (res['success']) {
+          this.toastr.success("Your religious is added successfully")
+          this.religious_value = caste
+          this.show_caste = true
+          this.religious = true
+          this.fil_caste = false
+        }
+      })
+    }
+    else {
+      this.toastr.error("Please enter your religious properly");
+    }
   }
 
   editBasicInfo(caste: any) {
-    this.authService.addBasicInfo(caste).subscribe(res => {
-      if (res['success']) {
-        this.show_caste = true
-        this.u_fill_caste = false
-      }
-    })
+    if (caste !== undefined) {
+      this.authService.addBasicInfo(caste).subscribe(res => {
+        if (res['success']) {
+          this.toastr.success("Your religious is updated successfully")
+          this.show_caste = true
+          this.u_fill_caste = false
+        }
+      })
+    } else {
+      this.toastr.error("Please enter your religious properly")
+    }
   }
 
   updateBasicInfo(caste: any) {
@@ -515,31 +572,45 @@ export class ContactComponent implements OnInit {
     this.show_caste = false
     this.authService.deleteBasicInfo(caste).subscribe(res => {
       if (res['success']) {
+        this.toastr.success("Your religious is deleted successfully")
         this.shows3 = true
         $(`.religious`).css('display', 'block');
-        this.u_religious = false      }
+        this.u_religious = false
+      } else {
+        this.toastr.error("Oops some error occur. Please try again later")
+      }
     })
   }
 
   //Gender
   addGender(value: any) {
-    this.authService.addGender(value).subscribe(res => {
-      if (res['success']) {
-        this.gender_value = value
-        this.show_gender = true
-        this.genders = true
-        this.fill_gender = false
-      }
-    })
+    if (value !== undefined) {
+      this.authService.addGender(value).subscribe(res => {
+        if (res['success']) {
+          this.toastr.success("Your gender is added successfully");
+          this.gender_value = value
+          this.show_gender = true
+          this.genders = true
+          this.fill_gender = false
+        }
+      })
+    } else {
+      this.toastr.error("Please select your gender");
+    }
   }
 
   editGender(value: any) {
-    this.authService.addGender(value).subscribe(res => {
-      if (res['success']) {
-        this.show_gender = true
-        this.u_fill_gender = false
-      }
-    })
+    if (value !== undefined) {
+      this.authService.addGender(value).subscribe(res => {
+        if (res['success']) {
+          this.toastr.success("Your gender is updated successfully")
+          this.show_gender = true
+          this.u_fill_gender = false
+        }
+      })
+    } else {
+      this.toastr.error("Please select your gender");
+    }
   }
 
   updateGender(value: any) {
@@ -559,32 +630,45 @@ export class ContactComponent implements OnInit {
     this.show_gender = false
     this.authService.deleteGender(value).subscribe(res => {
       if (res['success']) {
+        this.toastr.success("Your gender is deleted successfully")
         this.shows4 = true
         $(`.gender`).css('display', 'block');
         this.u_gender = false
+      } else {
+        this.toastr.error("Oops some error occur. Please try again later")
       }
     })
   }
 
   //Birthdate
   addBirthDate(birth_value: any) {
-    this.authService.addBirthDate(birth_value).subscribe(res => {
-      if (res['success']) {
-        this.birth_value = birth_value
-        this.show_birth = true
-        this.birth = true
-        this.fill_birth = false
-      }
-    })
+    if (birth_value !== undefined) {
+      this.authService.addBirthDate(birth_value).subscribe(res => {
+        if (res['success']) {
+          this.toastr.success("Your birth date is added successfully")
+          this.birth_value = birth_value
+          this.show_birth = true
+          this.birth = true
+          this.fill_birth = false
+        }
+      })
+    } else {
+      this.toastr.error("Please enter your birthdate");
+    }
   }
 
-  editBirth(birth_value: any){
-    this.authService.addBirthDate(birth_value).subscribe(res => {
-      if (res['success']) {
-        this.show_birth = true
-        this.u_fill_birth = false
-      }
-    })
+  editBirth(birth_value: any) {
+    if (birth_value !== undefined) {
+      this.authService.addBirthDate(birth_value).subscribe(res => {
+        if (res['success']) {
+          this.toastr.success("Your birthdate is updated successfully")
+          this.show_birth = true
+          this.u_fill_birth = false
+        }
+      })
+    } else {
+      this.toastr.error("Please enter your birthdate")
+    }
   }
 
   updateBirth(birth_value: any) {
@@ -605,32 +689,41 @@ export class ContactComponent implements OnInit {
     this.show_birth = false
     this.authService.deleteBirthdate(birth_value).subscribe(res => {
       if (res['success']) {
+        this.toastr.success("Your birth date is deleted successfully");
         this.shows2 = true
         $(`.website`).css('display', 'block');
         this.u_website = false
+      } else {
+        this.toastr.error("Oops some error occur. Please try again later")
       }
     })
   }
 
   // Language
   save_add_langugae(language: any) {
-    this.authService.addLanguage(this.dataid, language, this.Language).subscribe(res => {
-      if (res['success']) {
-        this.language = language
-        this.show_langugae = true
-        this.fill_langugae = false
-        this.authService.getAllData(this.dataid).subscribe(res => {
-          if (res.userData[0].language !== undefined) {
-            this.get_langugae = res.userData[0].language
-          }
-         })
-      }
-    })
+    if (language !== undefined) {
+      this.authService.addLanguage(this.dataid, language, this.Language).subscribe(res => {
+        if (res['success']) {
+          this.toastr.success("Your language is added successfully")
+          this.language = language
+          this.show_langugae = true
+          this.fill_langugae = false
+          this.authService.getAllData(this.dataid).subscribe(res => {
+            if (res.userData[0].language !== undefined) {
+              this.get_langugae = res.userData[0].language
+            }
+           })
+        }
+      })
+    } else {
+      this.toastr.error("Please enter your language")
+    }
   }
 
   delLangugae(dataId: any) { 
     this.authService.deleteLanguage(this.dataid, dataId, this.Language).subscribe(res => {
       if (res['success']) {
+        this.toastr.success("Your language is deleted successfully")
         this.fill_langugae = false;
         this.show_langugae = false;
         this.authService.getAllData(this.dataid).subscribe(res => {
@@ -641,6 +734,8 @@ export class ContactComponent implements OnInit {
             this.show_langugae = true
           }
         })
+      } else {
+        this.toastr.error("Oops some error occured");
       }
     })
 
