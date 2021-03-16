@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog} from  '@angular/material/dialog';
 import { PostModalComponent } from '../post-modal/post-modal.component';
 import { AlbumsComponent } from '../albums/albums.component';
+import { ToastrService } from 'ngx-toastr';
 declare var jQuery: any;
 declare var $: any;
 
@@ -33,7 +34,8 @@ export class PhotosComponent implements OnInit {
     public authService: AuthService,
     public router: Router,
     private activatedRoute: ActivatedRoute,
-    public  dialog:  MatDialog,
+    public dialog: MatDialog,
+    public toastr: ToastrService
   ) {
     $(".right_sidebar").css("display", "block");
     this.token = localStorage.getItem('currentUser')
@@ -72,6 +74,7 @@ export class PhotosComponent implements OnInit {
         for (let i = 0; i < res.data.length; i++){ 
           if (res.data[i].image.split('.').pop() !== 'mp4') { 
             this.urls.push(res.data[i])
+            // console.log("this.urls", this.urls[0])
           }
         }
       })
@@ -89,7 +92,12 @@ export class PhotosComponent implements OnInit {
   delAlbum(album_id, album_name) {
     if (confirm(`Are you sure you want to delete this ${album_name} album ?`)) {
       this.authService.DeletePost(album_id).subscribe(res => {
-        location.reload();
+        if (res['success']) {
+          this.toastr.success("Album is deleted successfully")
+          location.reload();
+        } else {
+          this.toastr.error('Oops some error occur. Please try again later')
+        }
       }) 
     }
   }

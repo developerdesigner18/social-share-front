@@ -340,7 +340,7 @@ body .profile_pic_main_tabs_sec .actions {
 .main_area {
     flex: 2.5;
     margin: 0 25px;
-    margin-right: 0;
+    /* margin-right: 0; */
 }
 .left_sidebar > div, .right_sidebar > div, .main_area > div, .main_area > app-timeline > div, .main_area > app-about > div > div, .main_area > app-photos > div, .main_area > app-friends > div {
 /* .left_sidebar > div, .right_sidebar > div, .main_area > div > app-timeline > div, .main_area > div > app-about > div, .main_area > div > app-photos > div, .main_area > div > app-friends > div { */
@@ -564,7 +564,7 @@ body .profile_pic_main_tabs_sec .actions {
 }
 .main_post_content {
     padding: 25px 20px !important;
-    overflow: hidden;
+    /* overflow: hidden; */
     margin-top: 25px;
 }
 .main_post_content h6{

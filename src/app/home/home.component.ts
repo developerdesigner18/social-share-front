@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationStart, NavigationEnd, Event, NavigationCancel, 
+  NavigationError } from '@angular/router';
 import { MatDialog} from  '@angular/material/dialog';
 import { PostModalComponent } from '../post-modal/post-modal.component';
 import { AuthService } from '../auth.service';
@@ -65,6 +66,7 @@ export class HomeComponent implements OnInit {
   u_country: any;
   u_state: any;
   public temp;
+  public showLoadingIndicator: boolean = true;
 
   postImageData = {}
   showMore: boolean;
@@ -88,6 +90,18 @@ export class HomeComponent implements OnInit {
     private route: ActivatedRoute,
     public toastr: ToastrService
   ) {
+
+    this.router.events.subscribe((routerEvent: Event) => {
+      if (routerEvent instanceof NavigationStart) {
+        this.showLoadingIndicator = true;
+      }
+
+      if (routerEvent instanceof NavigationEnd ||
+        routerEvent instanceof NavigationCancel ||
+        routerEvent instanceof NavigationError) {
+        this.showLoadingIndicator = false;
+      }
+    });
 
     const current_login_User = JSON.parse(localStorage.getItem('currentUser'));
     this.ids = current_login_User.data._id

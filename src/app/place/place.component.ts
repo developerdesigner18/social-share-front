@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { ActivatedRoute, Router} from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-place',
@@ -28,7 +29,8 @@ export class PlaceComponent implements OnInit {
   constructor(
     public router: Router,
     public authService: AuthService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    public toastr: ToastrService
   ) {
     if (this.router.url == '/friends/' + this.activatedRoute.parent.parent.params['value']['id'] + '/about/place') {
       this.friendid = localStorage.getItem('friendId')
@@ -110,23 +112,33 @@ export class PlaceComponent implements OnInit {
   }
 
   addHome(home_town: any) {
-    this.authService.addHomeTown(home_town).subscribe(res => {
-      if (res['success']) {
-        this.home_town = home_town        
-        this.show_home = true
-        this.home = true
-        this.fill_home = false
-      }
-    })
+    if (home_town !== undefined) {
+      this.authService.addHomeTown(home_town).subscribe(res => {
+        if (res['success']) {
+          this.toastr.success("Your home town is added successfully")
+          this.home_town = home_town        
+          this.show_home = true
+          this.home = true
+          this.fill_home = false
+        }
+      })
+    } else {
+      this.toastr.error("Please enter your home town properly")
+    }
   }
 
   editHome(home_town: any) {
-    this.authService.addHomeTown(home_town).subscribe(res => {
-      if (res['success']) {
-        this.show_home = true
-        this.u_fill_home = false
-      }
-    })
+    if (home_town !== undefined) {
+      this.authService.addHomeTown(home_town).subscribe(res => {
+        if (res['success']) {
+          this.toastr.success("Your home town is updated successfully")
+          this.show_home = true
+          this.u_fill_home = false
+        }
+      })
+    } else {
+      this.toastr.error("Please enter your home town properly")
+    }
   }
 
   updateHome(home_town: any) {
@@ -141,6 +153,11 @@ export class PlaceComponent implements OnInit {
     this.fill_home = false
     this.show_home = false
     this.authService.deleteHomeTown(home_town).subscribe(res => {
+      if (res['success']) {
+        this.toastr.success("Your home town is deleted successfully")
+      } else {
+        this.toastr.error("Oops some error occur. Please try again later")
+      }
     })
   }
 

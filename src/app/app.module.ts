@@ -70,6 +70,10 @@ import { CookieModule } from 'ngx-cookie';
 import { CookieService } from 'ngx-cookie-service';
 import { InformationComponent } from './information/information.component';
 
+//Lazy loader
+import { LazyLoadImageModule, LAZYLOAD_IMAGE_HOOKS, ScrollHooks } from 'ng-lazyload-image';
+import { NguiInComponent } from './ngui-in/ngui-in.component';
+
 
 @NgModule({
   declarations: [
@@ -110,6 +114,7 @@ import { InformationComponent } from './information/information.component';
     SecurityComponent,
     AccountComponent,
     InformationComponent,
+    NguiInComponent,
     // TimeAgoPipe
   ],
   entryComponents: [DialogBodyComponent],
@@ -138,7 +143,8 @@ import { InformationComponent } from './information/information.component';
       themes: [lightTheme, darkTheme],
       active: 'light'
     }),
-    CookieModule.forRoot()
+    CookieModule.forRoot(),
+    LazyLoadImageModule
   ],
   
   providers: [
@@ -146,6 +152,9 @@ import { InformationComponent } from './information/information.component';
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
+    }, {
+      provide: LAZYLOAD_IMAGE_HOOKS,
+      useClass: ScrollHooks
     },
     CookieService
   ],

@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { DatePipe } from '@angular/common'
 import { Emoji } from '@ctrl/ngx-emoji-mart/ngx-emoji';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -30,7 +31,8 @@ export class LifeComponent implements OnInit {
     public router: Router,
     public authService: AuthService,
     private activatedRoute: ActivatedRoute,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    public toastr: ToastrService
   ) {
     const id = this.activatedRoute.parent.parent.params['value']['id'];
     if (localStorage.getItem('friendId')) {
@@ -115,32 +117,42 @@ export class LifeComponent implements OnInit {
 
   
   save_add_life(life: any) {
-    this.authService.addLifeEvent(this.id, life, this.lifes).subscribe(res => {
-      if (res['success']) {
-        this.life = life
-        this.show_life = true
-        this.fill_life = false
-        this.authService.getAllData(this.id).subscribe(res => {
-          if (res.userData[0].lifeEvents !== undefined) {
-            this.get_life = res.userData[0].lifeEvents
-          }
-         })
-      }
-    })
+    if (life !== undefined) {
+      this.authService.addLifeEvent(this.id, life, this.lifes).subscribe(res => {
+        if (res['success']) {
+          this.toastr.success("Your life event is added successfully")
+          this.life = life
+          this.show_life = true
+          this.fill_life = false
+          this.authService.getAllData(this.id).subscribe(res => {
+            if (res.userData[0].lifeEvents !== undefined) {
+              this.get_life = res.userData[0].lifeEvents
+            }
+           })
+        }
+      })
+    } else {
+      this.toastr.error("Please enter your life event properly")
+    }
   }
 
   editLife(life: any) {
-    this.authService.updateLifeEvent(this.id , life, this.data_id, this.lifes).subscribe(res => {
-      if (res['success']) {
-        this.show_life = true
-        this.u_fill_life = false
-        this.authService.getAllData(this.id).subscribe(res => {
-          if (res.userData[0].lifeEvents !== undefined) {
-            this.get_life = res.userData[0].lifeEvents
-          }
-         })
-      }
-    })
+    if (life !== undefined) {
+      this.authService.updateLifeEvent(this.id , life, this.data_id, this.lifes).subscribe(res => {
+        if (res['success']) {
+          this.toastr.success("Your life event is updated successfully")
+          this.show_life = true
+          this.u_fill_life = false
+          this.authService.getAllData(this.id).subscribe(res => {
+            if (res.userData[0].lifeEvents !== undefined) {
+              this.get_life = res.userData[0].lifeEvents
+            }
+           })
+        }
+      })
+    } else {
+      this.toastr.error("Please enter your life event properly")
+    }
   }
 
   updateLife(dataId: any, life: any) {
@@ -154,6 +166,7 @@ export class LifeComponent implements OnInit {
   delLife(dataId: any) {
     this.authService.deleteLifeEvent(this.id, dataId, this.lifes).subscribe(res => {
       if (res['success']) {
+        this.toastr.success("Your life event is deleted successfully")
         this.fill_life = false;
         this.show_life = false;
         this.authService.getAllData(this.id).subscribe(res => {
@@ -162,6 +175,8 @@ export class LifeComponent implements OnInit {
             this.show_life = true
           }
         })
+      } else {
+        this.toastr.error("Oops some error occur. Please try again later")
       }
     })
   }

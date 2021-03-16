@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -46,6 +47,7 @@ export class WorkComponent implements OnInit {
     public router: Router,
     public authService: AuthService,
     private activatedRoute: ActivatedRoute,
+    public toastr: ToastrService
   ) {
     if (localStorage.getItem('friendId')) {
       this.friendid = localStorage.getItem('friendId')
@@ -186,33 +188,43 @@ export class WorkComponent implements OnInit {
   }
   
   save_add_work(event: any) {
-    this.authService.addWork(this.id, event, this.works).subscribe(res => {
-      if (res['success']) {
-        this.event = event
-        this.show_work = true
-        this.work = true;
-        this.fill_work = false
-        this.authService.getAllData(this.id).subscribe(res => {
-          if (res.userData[0].work !== undefined) {
-            this.get_works = res.userData[0].work
-          }
-         })
-      }
-    })
+    if (event !== undefined) {
+      this.authService.addWork(this.id, event, this.works).subscribe(res => {
+        if (res['success']) {
+          this.toastr.success("Work place is added successfully")
+          this.event = event
+          this.show_work = true
+          this.work = true;
+          this.fill_work = false
+          this.authService.getAllData(this.id).subscribe(res => {
+            if (res.userData[0].work !== undefined) {
+              this.get_works = res.userData[0].work
+            }
+           })
+        }
+      })
+    } else {
+      this.toastr.error("Please enter work place properly")
+    }
   }
 
   editWork(event: any) {
-    this.authService.updateWork(this.id , event, this.data_id, this.works).subscribe(res => {
-      if (res['success']) {
-        this.show_work = true
-        this.u_fill_work = false
-        this.authService.getAllData(this.id).subscribe(res => {
-          if (res.userData[0].work !== undefined) {
-            this.get_works = res.userData[0].work
-          }
-         })
-      }
-    })
+    if (event !== undefined) {
+      this.authService.updateWork(this.id , event, this.data_id, this.works).subscribe(res => {
+        if (res['success']) {
+          this.toastr.success("Work place is updated successfully")
+          this.show_work = true
+          this.u_fill_work = false
+          this.authService.getAllData(this.id).subscribe(res => {
+            if (res.userData[0].work !== undefined) {
+              this.get_works = res.userData[0].work
+            }
+           })
+        }
+      })
+    } else {
+      this.toastr.error("Please enter work place properly")
+    }
   }
 
   updateWork(dataId: any, event: any) {
@@ -229,6 +241,7 @@ export class WorkComponent implements OnInit {
   delWork(dataId: any) {
     this.authService.deleteWork(this.id, dataId, this.works).subscribe(res => {
       if (res['success']) {
+        this.toastr.success("Work place is deleted successfully")
         this.work = false;
         this.fill_work = false;
         this.show_work = false;
@@ -243,37 +256,49 @@ export class WorkComponent implements OnInit {
             this.work = false
           }
         })
+      } else {
+        this.toastr.error("Oops some error occur. Please try again later")
       }
     })
 
   }
   save_add_university(university: any) {
-    this.authService.addUniversity(this.id, university, this.University).subscribe(res => {
-      if (res['success']) {
-        this.university = university
-        this.show_university = true
-        this.fill_university = false
-        this.authService.getAllData(this.id).subscribe(res => {
-          if (res.userData[0].university !== undefined) {
-            this.get_university = res.userData[0].university
-          }
-         })
-      }
-    })
+    if (university !== undefined) {
+      this.authService.addUniversity(this.id, university, this.University).subscribe(res => {
+        if (res['success']) {
+          this.toastr.success("University is added successfully")
+          this.university = university
+          this.show_university = true
+          this.fill_university = false
+          this.authService.getAllData(this.id).subscribe(res => {
+            if (res.userData[0].university !== undefined) {
+              this.get_university = res.userData[0].university
+            }
+           })
+        }
+      })
+    } else {
+      this.toastr.error("Please enter university properly")
+    }
   }
 
   editUniversity(university: any) {
-    this.authService.updateUniversity(this.id , university, this.university_id, this.University).subscribe(res => {
-      if (res['success']) {
-        this.show_university = true
-        this.u_fill_university = false
-        this.authService.getAllData(this.id).subscribe(res => {
-          if (res.userData[0].university !== undefined) {
-            this.get_university = res.userData[0].university
-          }
-         })
-      }
-    })
+    if (university !== undefined) {
+      this.authService.updateUniversity(this.id , university, this.university_id, this.University).subscribe(res => {
+        if (res['success']) {
+          this.toastr.success("University is updated successfully")
+          this.show_university = true
+          this.u_fill_university = false
+          this.authService.getAllData(this.id).subscribe(res => {
+            if (res.userData[0].university !== undefined) {
+              this.get_university = res.userData[0].university
+            }
+           })
+        }
+      })
+    } else {
+      this.toastr.error("Please enter university properly")
+    }
   }
 
   updateUniversity(dataId: any, university: any) {
@@ -290,6 +315,7 @@ export class WorkComponent implements OnInit {
   delUniversity(dataId: any) {
     this.authService.deleteUniversity(this.id, dataId, this.University).subscribe(res => {
       if (res['success']) {
+        this.toastr.success("University is deleted successfully")
         this.fill_university = false;
         this.show_university = false;
         this.authService.getAllData(this.id).subscribe(res => {
@@ -300,38 +326,50 @@ export class WorkComponent implements OnInit {
             this.work = false
           }
         })
+      } else {
+        this.toastr.error("Oops some error occur. Please try again later")
       }
     })
 
   }
 
   save_add_school(school: any) {
-    this.authService.addSchool(this.id, school, this.School).subscribe(res => {
-      if (res['success']) {
-        this.school = school
-        this.show_school = true
-        this.fill_school = false
-        this.authService.getAllData(this.id).subscribe(res => {
-          if (res.userData[0].highSchool !== undefined) {
-            this.get_school = res.userData[0].highSchool
-          }
-         })
-      }
-    })
+    if (school !== undefined) {
+      this.authService.addSchool(this.id, school, this.School).subscribe(res => {
+        if (res['success']) {
+          this.toastr.success("High School is added successfully")
+          this.school = school
+          this.show_school = true
+          this.fill_school = false
+          this.authService.getAllData(this.id).subscribe(res => {
+            if (res.userData[0].highSchool !== undefined) {
+              this.get_school = res.userData[0].highSchool
+            }
+           })
+        }
+      })
+    } else {
+      this.toastr.error("Please enter your detail properly")
+    }
   }
 
   editSchool(school: any) {
-    this.authService.updateSchool(this.id , school, this.school_id, this.School).subscribe(res => {
-      if (res['success']) {
-        this.show_school = true
-        this.u_fill_school = false
-        this.authService.getAllData(this.id).subscribe(res => {
-          if (res.userData[0].highSchool !== undefined) {
-            this.get_school = res.userData[0].highSchool
-          }
-         })
-      }
-    })
+    if (school !== undefined) {
+      this.authService.updateSchool(this.id , school, this.school_id, this.School).subscribe(res => {
+        if (res['success']) {
+          this.toastr.success("High School is updated successfully")
+          this.show_school = true
+          this.u_fill_school = false
+          this.authService.getAllData(this.id).subscribe(res => {
+            if (res.userData[0].highSchool !== undefined) {
+              this.get_school = res.userData[0].highSchool
+            }
+           })
+        }
+      })
+    } else {
+      this.toastr.error("Please enter your detail properly")
+    }
   }
 
   updateSchool(dataId: any, school: any) {
@@ -348,6 +386,7 @@ export class WorkComponent implements OnInit {
   delSchool(dataId: any) {
     this.authService.deleteSchool(this.id, dataId, this.School).subscribe(res => {
       if (res['success']) {
+        this.toastr.success("High School is deleted successfully")
         this.fill_school = false;
         this.show_school = false;
         this.authService.getAllData(this.id).subscribe(res => {
@@ -358,6 +397,8 @@ export class WorkComponent implements OnInit {
             this.work = false
           }
         })
+      } else {
+        this.toastr.error("Oops some error occur. Please try again later")
       } 
     })
   }

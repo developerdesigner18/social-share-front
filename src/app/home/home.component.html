@@ -1,6 +1,6 @@
 
 <app-header></app-header>
-
+<div *ngIf="showLoadingIndicator" class="loading">Loading&#8230;</div>
 <a id="button_top" onclick="window.scrollTo(0, 0);"></a>
 <div app-theme class="main_container d-flex align-items-start">
 	<div class="left_sidebars">
@@ -153,11 +153,15 @@
 				
 				<div class="slider_bid_like-share d-flex flex-column" style="width: 100%">
 					<div class="one_image" *ngIf="data.imageUrl.length == 1">
+						<!-- <app-ngui-in> -->
 						<ng-image-slider onerror="this.src='/assets/images/default_user.jpg';" [imageSize]="{width: '100%', height: '320px'}"  [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
+						<!-- <img *ngIf src="https://picsum.photos/800/300?image={{i}}" height="33%">	 -->
+						<!-- </app-ngui-in> -->
 					</div>
 					<div *ngIf="data.imageUrl.length == 2">
 						<div class="item two_image" >
 							<ng-image-slider onerror="this.src='/assets/images/default_user.jpg';" [animationSpeed]="0.3" [autoSlide]=0 [imageSize]="{width: '49%'}" [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
+							<!-- <img [src]="data.imageUrl" [lazyLoad]="data.imageUrl" alt=""> -->
 						</div>
 					</div>
 					<div *ngIf="data.imageUrl.length == 3">
@@ -251,7 +255,7 @@
 		
 		<div class="loads_btn">
 			<div *ngIf="show_load_more" class="load_btn" (click)="loadMore()">
-				<img class="load_more" src="../../assets/images/down-arrow.png" width="50px" height="50px" alt="load more" title="load more">
+				<img class="load_more" src="../../assets/images/down-arrow.png" style="width: 40px;height: 40px;padding: 8px;" alt="load more" title="load more">
 			</div>
 		</div>
 	</div>

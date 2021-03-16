@@ -9,7 +9,7 @@
   <br/>
   <div style="overflow-y: scroll; max-height: 60vh;">
     <div>
-      <textarea #postMsg name="Text1" cols="40" rows="5" placeholder="What is going on in your gaming world today!" style="width: 100%; height: 100%; border: none; padding: 8px; min-height: 175px; max-height: 175px;" required></textarea>
+      <textarea #postMsg name="Text1" style="resize: none !important;background: aliceblue;" cols="40" rows="5" placeholder="What is going on in your gaming world today!" style="width: 100%; height: 100%; border: none; padding: 8px; min-height: 175px; max-height: 175px;" required></textarea>
     </div>
     <!-- <div class="text-center col-md-12 load_new_image" style="margin-top: 50px;" *ngFor="let image of images; let i = index; last as isLast" id="load_new_image_id">{{ i + 1 }}{{ i }} -->
     <div class="text-center col-md-12 load_new_image" style="margin-top: 50px;" id="load_new_image_id">
@@ -85,6 +85,6 @@
     <h6 style="margin-bottom: 0px; ">Upload Photos/Videos</h6>
   </div>
   <div style="margin-right: 20px;">
-    <button type="button" class="btn btn-primary" style="width: 100%" (click)="postSave()">Post</button>
+    <button type="button" class="btn btn-primary" style="width: 100%;background: #0a1221;border: 0;" (click)="postSave()">Post</button>
   </div>
 </div>
