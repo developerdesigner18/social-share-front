@@ -13,6 +13,12 @@ input{
 .hide_theme{
 	display: none;
 }
+.home button {
+  margin-left: 10px;
+}
+.home {
+  display: flex;
+}
 
 button{
   border: 1px solid #f0f8ff;

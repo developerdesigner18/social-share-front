@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router, NavigationStart, NavigationEnd, Event, NavigationCancel, 
-  NavigationError } from '@angular/router';
+  NavigationError, RouteConfigLoadStart, RouteConfigLoadEnd } from '@angular/router';
 import { MatDialog} from  '@angular/material/dialog';
 import { PostModalComponent } from '../post-modal/post-modal.component';
 import { AuthService } from '../auth.service';
@@ -60,6 +60,7 @@ export class HomeComponent implements OnInit {
   viewImg = [];
   public slideIndex = 1;
   imageObject = []
+  ready = false
 
   public datas;
   public likess;
@@ -71,6 +72,7 @@ export class HomeComponent implements OnInit {
   postImageData = {}
   showMore: boolean;
   u_city: any;
+  loadingRouteConfig: boolean;
 
   @ViewChild('nav') slider: NgImageSliderComponent;
   count_cmt: any;
@@ -114,7 +116,6 @@ export class HomeComponent implements OnInit {
        }, 5000);
     });
 // bottom to top btn
-    var btn = $('#button_top');
 
 $(window).scroll(function() {
   if ($(window).scrollTop() > 300) {
@@ -226,7 +227,15 @@ $(window).scroll(function() {
 
   ngOnInit(): void {
     this.toggle = this.toggle
+    this.router.events.subscribe(event => {
+      if (event instanceof RouteConfigLoadStart) {
+          this.loadingRouteConfig = true;
+      } else if (event instanceof RouteConfigLoadEnd) {
+          this.loadingRouteConfig = false;
+      }
+  });
   }
+  ngAfterViewInit(){ this.ready = true; }
 
   open_comments(postId){
     $(`.comments_container_${postId}`).toggle();

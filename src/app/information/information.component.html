@@ -8,13 +8,13 @@
             <div class="setting_details" >
                 <div class="input_section">
                 <p>Friends</p>
-                <div class="name_show"> {{count_frd}} </div>
+                <div class="name_show"> {{count_frd ? count_frd : 'No friends please make some'}} </div>
                 </div>
             </div>
             <div class="setting_details" >
                 <div class="input_section">
                 <p>Posts</p>
-                <div class="name_show"> {{user_post}} </div>
+                <div class="name_show"> {{user_post ? user_post : 'No posts please upload image/video'}} </div>
                 </div>
             </div>
             <div class="setting_details">

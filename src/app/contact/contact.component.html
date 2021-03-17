@@ -179,8 +179,8 @@
   <div *ngIf="text_language"><h6 style="padding-top: 5px;">Languages</h6></div>
   <div class="work" *ngIf="fill_langugae">
     <input (keyup.enter)="save_add_langugae(language)" type="text" maxlength="30" [(ngModel)]="language" name="" value="" placeholder="Add language">
-    <button type="button" name="button" (click)="save_add_langugae(language)">Save</button>
     <button type="button" name="button" (click)="language_Cancel()">Cancel</button>
+    <button type="button" name="button" (click)="save_add_langugae(language)">Save</button>
   </div>
   <div style="margin-bottom: 10px;" *ngIf="show_langugae" class="langauge-list">
     <div *ngFor="let langugae_data of get_langugae.slice().reverse()" class="work-record">

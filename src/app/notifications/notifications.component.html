@@ -2,7 +2,7 @@
     <div class="noti_body">
             <p>Notifications</p>
             <div class="noti_scroll">
-			<div class="all_notification" *ngFor="let data of notif_data">
+			<div [lazyLoad]="notif_data" class="all_notification" *ngFor="let data of notif_data">
 				<div class="notifiy d-flex flex-column">
 					<div class="d-flex align-items-center">
 						<img [src]="data.userprofile" onerror="this.src='../../assets/images/default_user.jpg'" >

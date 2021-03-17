@@ -20,7 +20,9 @@ ul.nav.nav-pills.flex-column li {
     background: #0F1B31;
     color: #f0f8ff;
 }
-
+.more_options.dropdown-container {
+    cursor: pointer;
+}
 .user_friend img {
     height: 50px;
     width: 50px;
@@ -404,7 +406,7 @@ body .profile_pic_main_tabs_sec .actions {
 }
 .photos_container img {
     width: 100%;
-    height: auto;
+    height: 100%;
     border-radius: 4px;
     object-fit: cover;
 }

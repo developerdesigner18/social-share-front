@@ -73,6 +73,7 @@ import { InformationComponent } from './information/information.component';
 //Lazy loader
 import { LazyLoadImageModule, LAZYLOAD_IMAGE_HOOKS, ScrollHooks } from 'ng-lazyload-image';
 import { NguiInComponent } from './ngui-in/ngui-in.component';
+import { ChatingComponent } from './chating/chating.component';
 
 
 @NgModule({
@@ -115,6 +116,7 @@ import { NguiInComponent } from './ngui-in/ngui-in.component';
     AccountComponent,
     InformationComponent,
     NguiInComponent,
+    ChatingComponent,
     // TimeAgoPipe
   ],
   entryComponents: [DialogBodyComponent],

@@ -93,12 +93,12 @@
 		<div class="Friends">
 			<div class="left_title w_90">Friends</div>
 			<div class="friends_container w_90" *ngIf="frdDetails">
-				<div class="a_friend" *ngFor="let frddetail of frdDetails; let i = index">
+				<div class="a_friend" *ngFor="let frddetail of frdDetails | slice:0:9; let i = index">
 					<img [src]="frddetail.profileImgURl" onerror="this.src='/assets/images/default_user.jpg';">
 					<a href="profile/{{frddetail._id}}"> <div>{{frddetail.name}}</div></a>
 				</div>
 			</div>
-			<div class="photos_container_all w_100 see-all-images" *ngIf="frdDetails.length > 10">
+			<div class="photos_container_all w_100 see-all-images" *ngIf="frdDetails.length > 9">
 				<button onclick="document.body.scrollTop=500;document.documentElement.scrollTop=500;event.preventDefault()" class="edit-button see-all-button" [routerLink]="['friends']">See All</button>
 			</div>
 			<div *ngIf="notAnyFrd">
