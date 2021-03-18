@@ -5,7 +5,7 @@
     <h3>Friends</h3>
   </div>
   <div class="receive_request" *ngIf="friend_req_hidden">
-    {{frd_req_get_count}} friend requests
+    {{frd_req_get_count ? frd_req_get_count : ''}} friend requests
     <div class="row" style="padding: 10px;" *ngFor="let frdProfile of frd_profile_datas;let i = index">
       <div class="col-md-12" (click)="openProfile(frdProfile._id);">
         <img width="60" height="60" [src]="frdProfile.profileImgURl" onerror="this.src='/assets/images/default_user.jpg';" style="border-radius: 50%;" />
@@ -86,14 +86,13 @@
         <div class="d-flex" style="width: 100%; margin-bottom: 15px;" (mouseleave)="showbasicProfile[i]=false">
           <div class="profile_pic_profile position-relative" (mouseover)="showbasicProfile[i]=true">
             <img [src]="profileImg" onerror="this.src='/assets/images/default_user.jpg';">
-
             <div class="basic_info" *ngIf="showbasicProfile[i]" (mouseleave)="showbasicProfile[i]=false">
               <div class="d-flex">
                 <img [src]="profileImg" onerror="this.src='/assets/images/default_user.jpg';">
                 <div style="padding: 10px;">
                   <a href="profile/{{data.userId}}"><div class="profile_basic_info set_redirect_link">{{name ? name : 'Name'}}</div></a>
                   <div class="profile_basic_info"><i class="fas fa-user-tie" style="margin-right: 10px"></i>{{u_designation ? u_designation : 'Designation'}}</div>
-                  <div class="profile_basic_info"><i class="fas fa-envelope" style="margin-right: 10px"></i>{{u_email ? u_email : 'Email'}}</div>
+                  <div style="display: flex;" class="profile_basic_info"><i class="fas fa-envelope" style="margin-right: 10px"></i>{{u_email ? u_email : 'Email'}}</div>
                 </div>
               </div>
             </div>
@@ -106,7 +105,6 @@
                 <div>{{u_city ? u_city : 'City'}}, {{u_state ? u_state : 'Province'}}</div>
               </div>
             </div>
-            
             <div style="color: #0F1B31;font-size: 14px;" *ngIf="data.name !== undefined">Album: {{data.name}} </div>
             <div class="item_desc mt-2" style="width: 100%;word-wrap: break-word;">{{data.description.length > 60 ? (data.description | slice:0:60) + '...': data.description}}</div>
           </div>
@@ -167,8 +165,7 @@
 							<div class="share_users">
 								<div class="user_profile" (click)="sharing(data._id, u_name)" style="cursor: pointer;">
 									<p>Share with me!</p>
-								</div>
-								
+								</div>	
 							</div>
 						</div>
           </div>
@@ -203,7 +200,7 @@
 										<a href="profile/{{comnt.userId}}"><div style="text-transform: capitalize;" class="profile_basic_info set_redirect_link">{{comnt.name}}</div></a>
 										<div class="icons_showing_card">
 										<div class="profile_basic_info"><i class="fas fa-user-tie" style="padding-right: 10px"></i>{{comnt.designation ? comnt.designation : 'Designation'}}</div>
-										<div class="profile_basic_info"><i class="fas fa-envelope" style="margin-right: 10px"></i>{{comnt.email ? comnt.email : 'Email'}}</div>
+										<div style="display: flex;" class="profile_basic_info"><i class="fas fa-envelope" style="margin-right: 10px"></i>{{comnt.email ? comnt.email : 'Email'}}</div>
 									</div>	
 									</div>
 								</div>

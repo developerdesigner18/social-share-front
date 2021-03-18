@@ -37,6 +37,7 @@ const routes: Routes = [
   { path: 'profile/:id', component: UserProfileComponent, canActivate:[AuthGuard],
     children: [
       { path: 'timeline', component: TimelineComponent },
+      // { path: 'timeline', loadChildren: () => import('./timeline/timeline.module').then(m => m.TimelineModule) },
       { path: 'about', component: AboutComponent,
         children: [
           { path: 'overview', component: OverviewComponent },
@@ -59,6 +60,7 @@ const routes: Routes = [
   { path: 'profile/:id/about', component: AboutComponent},
   { path: 'reset', component: ResetComponent},
   { path: 'friends/:id', component: RequestFriendsComponent, canActivate:[AuthGuard],
+  // { path: 'friends/:id', loadChildren: () => import('./request-friends/request-friends.module').then(m => m.RequestFriendsModule), canActivate:[AuthGuard],
     children: [
       { path: 'about', component: AboutComponent,
         children: [
@@ -79,7 +81,8 @@ const routes: Routes = [
       // { path: '', redirectTo:'friends/:id', pathMatch:"full" }
     ]
   },
-  { path: 'home/:id', component: HomeComponent, canActivate:[AuthGuard]},
+  // { path: 'home/:id', component: HomeComponent, canActivate:[AuthGuard]},
+  { path: 'home/:id', loadChildren: () => import('./home/home.module').then(m => m.HomeModule), canActivate:[AuthGuard]},
   { path: 'search/:id', component: SearchComponent, canActivate:[AuthGuard]},
   { path: 'peopleknow/:id', component: PeopleKnowComponent, canActivate: [AuthGuard] },
   { path: 'account/:id', component: AccountComponent, canActivate:[AuthGuard],
