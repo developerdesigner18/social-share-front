@@ -36,7 +36,6 @@ export class ThemeComponent implements OnInit {
       this.themeService.setTheme('light');
       localStorage.setItem("theme", "light");
     }
-     console.log("active.name", active.name)
   }
 
   ngOnInit(): void {

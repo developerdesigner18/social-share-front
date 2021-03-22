@@ -54,13 +54,8 @@ export class AlbumsComponent implements OnInit {
         this.name =  res.data.name
         this.smallProfile = res.data.profileImgURl
       })
-      console.log("image elemenet", this.postImageElement);
-    console.log("data", data);
       this.fileData.push(data.file)
     this.images = data.images
-    
-    console.log("this.images", this.images);
-    console.log("data.file", data.file)
   
     if (data.images && data.files != '') {
       // this.shows = true
@@ -118,12 +113,10 @@ export class AlbumsComponent implements OnInit {
         if(this.fileData[0] !== undefined)
         {
           this.arrayfile = this.fileData[0]
-          console.log("this.arrayfile", this.arrayfile);
         } else {
           this.arrayfile = this.fileData
         }
         let arrayRemoveNull = this.arrayfile.filter(e => e)
-        console.log("arrayRemoveNull", arrayRemoveNull)
         if (arrayRemoveNull[0 ] === '') {
           this.toastr.error("Please select one or more images")
         }
@@ -225,11 +218,9 @@ export class AlbumsComponent implements OnInit {
       // Multipul Image upload
       if (event.target.files && event.target.files[0]) {
         var filesAmount = event.target.files.length;
-        console.log("event.target.files", event.target.files)
         if(this.fileData[0] == undefined || this.fileData[0] == null){
           for (let i = 0; i < filesAmount; i++) {
-            this.fileData.push(event.target.files)
-            console.log("this.fileData", this.fileData)
+            this.fileData.push(event.target.files[0])
             let reader = new FileReader();
             reader.onload = (event:any) => {
                 this.images.push(event.target.result);
@@ -239,8 +230,6 @@ export class AlbumsComponent implements OnInit {
           this.arrayfile = this.fileData.filter(item => item)
         }else{
           this.arrayfile = this.fileData[0]
-          // this.arrayfile.push(event.target.files)
-          console.log("this.arrayfile1", this.arrayfile)
           for (let i = 0; i < filesAmount; i++) {
             var reader = new FileReader();
   
@@ -249,7 +238,6 @@ export class AlbumsComponent implements OnInit {
             }
             reader.readAsDataURL(event.target.files[i]);
             this.arrayfile.splice(Object.keys(this.fileData[0]).length, 0, event.target.files[i])
-            console.log("this.arrayfile2", this.arrayfile)
           }
         }
       }

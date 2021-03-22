@@ -45,6 +45,9 @@ button.load_btn {
     display: flex;
     justify-content: center;
 }
+/* span.youtube-icon{
+    display: none !important;
+} */
 .load_more{
     overflow: hidden;
 	box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);

@@ -33,6 +33,7 @@
     "font-awesome": "^4.7.0",
     "jquery": "^3.5.1",
     "jwt-decode": "^2.2.0",
+    "lighthouse": "^7.3.0",
     "mdbootstrap": "^4.19.2",
     "ng-image-slider": "^2.6.4",
     "ng-lazyload-image": "^9.1.0",

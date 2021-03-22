@@ -7,34 +7,34 @@
         <div class="body">
             <div class="setting_details" >
                 <div class="input_section">
-                <p>Friends</p>
-                <div class="name_show"> {{count_frd ? count_frd : 'No friends please make some'}} </div>
+                    <p>Friends</p>
+                    <div class="name_show"> {{count_frd ? count_frd : 'No friends please make some'}} </div>
                 </div>
             </div>
             <div class="setting_details" >
                 <div class="input_section">
-                <p>Posts</p>
-                <div class="name_show"> {{user_post ? user_post : 'No posts please upload image/video'}} </div>
+                    <p>Posts</p>
+                    <div class="name_show"> {{user_post ? user_post : 'No posts please upload image/video'}} </div>
                 </div>
             </div>
             <div class="setting_details">
                 <div class="input_section">
-                <p>Places</p>
-                <div class="name_show"> {{u_city ? u_city : 'Not Mention'}}, {{u_state ? u_state : 'Not Mention'}}, {{u_country ? u_country : 'Not Mention'}} </div>
+                    <p>Places</p>
+                    <div class="name_show"> {{u_city ? u_city : 'Not Mention'}}, {{u_state ? u_state : 'Not Mention'}}, {{u_country ? u_country : 'Not Mention'}} </div>
                 </div>
             </div>
             <div class="setting_details">
                 <div class="input_section">
-                <p>Designation</p>
-                <div class="name_show"> {{designation ? designation : 'Not Mention'}} </div>
+                    <p>Designation</p>
+                    <div class="name_show"> {{designation ? designation : 'Not Mention'}} </div>
                 </div>
             </div>
             <div class="setting_details">
                 <div class="input_section">
-                <p>Hobbies</p>
-                <div class="name_show" *ngFor="let hobby of hobbies">
-                    <p> {{hobby ? hobby : 'Not Mention'}} </p> 
-                 </div>
+                    <p>Hobbies</p>
+                    <div class="name_show" *ngFor="let hobby of hobbies">
+                        <p> {{hobby ? hobby : 'Not Mention'}} </p> 
+                    </div>
                 </div>
             </div>
         </div>

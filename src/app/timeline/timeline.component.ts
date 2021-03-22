@@ -115,7 +115,6 @@ export class TimelineComponent implements OnInit {
           this.description = this.datas[i].description;
           this.urls.push(this.datas[i].imageUrl)
           this.likes = this.datas[i].like
-          // console.log("likes", this.likes)
           for (let j = 0; j < this.datas[i].comment.length; j++){
             this.authService.getHomePostProfile(this.datas[i].comment[j].userId).subscribe(res => {
               this.datas[i].post_profileImg = res.data.profileImgURl
@@ -219,7 +218,6 @@ export class TimelineComponent implements OnInit {
         }
         reader.readAsDataURL(event.target.files[i]);
         this.files_data.push(event.target.files[i]);
-        console.log('this.files_data', this.files_data)
       }
     }
 
@@ -250,7 +248,6 @@ export class TimelineComponent implements OnInit {
           }
           reader.readAsDataURL(event.target.files[i]);
           this.files_data.push(event.target.files[i]);
-          // console.log('this.files_data', this.files_data)
         }
     }
     const dialogRef = this.dialog.open(PostModalComponent, {

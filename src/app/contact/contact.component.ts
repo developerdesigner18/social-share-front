@@ -185,7 +185,6 @@ export class ContactComponent implements OnInit {
               this.not_mention_number = true
             } else if (res.userData[0].mobileNumber !== undefined) {
               this.mobile_number = res.userData[0].mobileNumber
-              console.log("this.mobile_number upper", this.mobile_number)
               this.show_mobile = true
               this.mobile = true
             } else {
@@ -365,8 +364,6 @@ export class ContactComponent implements OnInit {
   }
 
   editNumber(number: any) {
-    console.log("number", number)
-    console.log("this.mobile_number", this.mobile_number)
     if (number !== undefined || number != this.mobile_number) {
       this.authService.addNewNumber(number).subscribe(res => {
         if (res['success']) {

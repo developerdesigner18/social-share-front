@@ -34,7 +34,7 @@
 					<div class="badges_for_fr position-relative" [attr.data-content]="frd_request_count !== 0 ? frd_request_count : ''">Friend Requests</div>
 				</div>
 			</a>
-      <a class="my_post_links" href="search/{{id}}">
+     		<a class="my_post_links" href="search/{{id}}">
 				<div class="left_content">
 					<i class="fas fa-search-plus"></i>
 					<div>Search for someone</div>
@@ -50,12 +50,12 @@
 		<div class="main_area">
 			<div class="main_area_content timeline">
 				<div class="main_post_content d-flex flex-column">
-          <div class="d-flex">
+          			<div class="d-flex">
 						<div class="d-flex justify-content-between">
 							<div class="profile_name_of_poster">Peoples May You Know</div>
 						</div>
 					</div>
-          <hr/>
+         			<hr/>
 					<div class="search_display" *ngIf="shows">
 						<div class="d-flex allusers_set" *ngFor="let user of allUsers;let i = index">
 	            			<div class="profile_pic position-relative">

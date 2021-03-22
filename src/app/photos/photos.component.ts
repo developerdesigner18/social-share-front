@@ -74,7 +74,6 @@ export class PhotosComponent implements OnInit {
         for (let i = 0; i < res.data.length; i++){ 
           if (res.data[i].image.split('.').pop() !== 'mp4') { 
             this.urls.push(res.data[i])
-            // console.log("this.urls", this.urls[0])
           }
         }
       })
@@ -115,7 +114,6 @@ export class PhotosComponent implements OnInit {
         }
         reader.readAsDataURL(event.target.files[i]);
         this.files_data.push(event.target.files[i]);
-        console.log(this.files_data);
       }
     }
 
@@ -148,7 +146,6 @@ export class PhotosComponent implements OnInit {
         }
         reader.readAsDataURL(event.target.files[i]);
         this.files_data.push(event.target.files[i]);
-        console.log(this.files_data);
       }
     }
     const dialogRef = this.dialog.open(PostModalComponent, {
