@@ -77,9 +77,6 @@ export class EditProfileComponent implements OnInit {
     this.authService.profileUpdate(this.profileForm.value).subscribe((res) => {
      if (!res.result) {
        this.dialogRef.close();
-      //  this.dialog.open(DialogEditSuccessComponent, {
-      //    width: '400px'
-      //  })
        this.toastr.success("Your profile has been saved successfully.")
      }
    })

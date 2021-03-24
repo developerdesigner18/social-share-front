@@ -1,6 +1,5 @@
 
 <app-header></app-header>
-<!-- <div *ngIf="showLoadingIndicator" class="loading">Loading&#8230;</div> -->
 <ng-container *ngIf="loadingRouteConfig">Loading route config...</ng-container>
 <a id="button_top" onclick="window.scrollTo(0, 0);"></a>
 <div app-theme class="main_container d-flex align-items-start">
@@ -110,9 +109,7 @@
 							<a href="profile/{{data.userId}}" (mouseover)="showbasicProfile2[i]=true" ><div class="profile_name_of_poster">{{data.post_user}}</div></a>
 							<div class="province d-flex align-items-center">
 								<img src="assets/images/add_ob.png">
-								<!-- <div>{{data.city}}, {{data.state}}</div> -->
 								<div>{{data.city ? data.city : 'City'}}, {{data.state ? data.state : 'Province'}}</div>
-          						<!-- <div *ngIf="data.city === undefined && data.state === undefined">Not Mention</div> -->
 							</div>
 							<div class="basic_info" *ngIf="showbasicProfile2[i]" (mouseleave)="showbasicProfile2[i]=false">
 								<div class="d-flex">
@@ -154,9 +151,7 @@
 				
 				<div class="slider_bid_like-share d-flex flex-column" style="width: 100%">
 					<div class="one_image" *ngIf="data.imageUrl.length == 1">
-						<!-- <app-ngui-in> -->
 						<ng-image-slider [videoAutoPlay]=true onerror="this.src='/assets/images/default_user.jpg';" [imageSize]="{width: '100%', height: '320px'}"  [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
-						<!-- </app-ngui-in> -->
 					</div>
 					<div *ngIf="data.imageUrl.length == 2">
 						<div class="item two_image" >
@@ -325,6 +320,9 @@
 						<img src="assets/images/user4.jpg">
 						<div>bradd johnson</div>
 					</div>
+				</div>
+				<div>
+					<a href="chating/{{id}}">Chat Panel</a>
 				</div>
 			</div>
 		</div>

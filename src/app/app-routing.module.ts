@@ -30,6 +30,7 @@ import { ThemeComponent } from './theme/theme.component';
 import { SecurityComponent } from './security/security.component';
 import { AccountComponent } from './account/account.component';
 import { InformationComponent } from './information/information.component';
+import { ChatingComponent } from './chating/chating.component';
 
 const routes: Routes = [
   { path: '', component: AuthComponent },
@@ -93,7 +94,8 @@ const routes: Routes = [
     { path: '', redirectTo:'account-setting', pathMatch:"full" }
   ]
   },
-  { path: 'theme', component: ThemeComponent }
+  { path: 'theme', component: ThemeComponent },
+  { path: 'chating/:id', component: ChatingComponent }
 ];
 
 @NgModule({
