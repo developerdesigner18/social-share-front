@@ -50,7 +50,6 @@ export class AlbumsComponent implements OnInit {
     private toastr: ToastrService
   ) { 
       this.authService.getProfileforAbout(data.id).subscribe(res => {
-        // this.userId = data.id
         this.name =  res.data.name
         this.smallProfile = res.data.profileImgURl
       })
@@ -58,7 +57,6 @@ export class AlbumsComponent implements OnInit {
     this.images = data.images
   
     if (data.images && data.files != '') {
-      // this.shows = true
         if(Object.keys(this.fileData[0]).length === 2)
         {
           this.shows = true
@@ -183,7 +181,6 @@ export class AlbumsComponent implements OnInit {
           this.textOnlylength = i
         }
       }
-      // this.shows = true
       if(this.images.length === 1 || this.textOnlylength === 1)
       {
         this.shows = true
@@ -215,7 +212,7 @@ export class AlbumsComponent implements OnInit {
       }else{
         this.images = []
       }
-      // Multipul Image upload
+      // Multiple Image upload
       if (event.target.files && event.target.files[0]) {
         var filesAmount = event.target.files.length;
         if(this.fileData[0] == undefined || this.fileData[0] == null){

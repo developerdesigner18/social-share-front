@@ -28,7 +28,7 @@
                 </div>
                 <button *ngIf="enter_pass" type="button" name="button" (click)="enterpass()"> Change</button>
                 <div class="change_button" style="display: flex;" *ngIf="change_pass">
-                    <button type="button" name="button" [disabled]="!pass || !(pass?.length > 10)" (click)="changePass(pass)">Changes</button>
+                    <button type="button" name="button" [disabled]="!pass || !(pass?.length > 9)" (click)="changePass(pass)">Changes</button>
                     <button type="button" type="button" (click)="cancel_btn()">Cancel</button>
                 </div>
             </div>
