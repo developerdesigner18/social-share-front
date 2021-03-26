@@ -51,8 +51,6 @@ export class UserProfileComponent implements OnInit {
   @ViewChild('country') countryElement: any;
   @ViewChild('hobbies') hobbiesElement: any;
   
-
-  // public datas;
   constructor(
     public authService: AuthService,
     private activatedRoute: ActivatedRoute,
@@ -88,8 +86,7 @@ export class UserProfileComponent implements OnInit {
 
     if(this.router.url === '/profile/' + this.activatedRoute.snapshot.paramMap.get('id') + '/notifications')
     {
-      this.display = false
-      // $(".right_sidebar").css("display", "none");
+      this.display = false;
     }
 
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));

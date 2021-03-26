@@ -57,7 +57,7 @@ export class TimelineComponent implements OnInit {
   @ViewChild('textmsgPost') postMesssgeElement: any;
   @ViewChild('nav') slider: NgImageSliderComponent;
 
-  public datas;
+  public datas: any[];
   u_country: any;
   u_state: any;
   u_city: any;
@@ -170,7 +170,7 @@ export class TimelineComponent implements OnInit {
     $(`#view_${postId}`).css('display', 'block');
     $(`#sview_${postId}`).css('display', 'none');
   }
-  trackByFn(i, like) {
+  trackByFn(i) {
     return i;
   }
 
@@ -191,8 +191,8 @@ export class TimelineComponent implements OnInit {
         this.toastr.success("You are successfully shared the post!");
         window.location.reload();
       })
-
     } else {
+      this.toastr.error("Oops some error occur please try again later")
     }
   }
 
@@ -267,7 +267,7 @@ export class TimelineComponent implements OnInit {
   tempPostId = '';
 
   temLike = 0;
-  likeIt(postId, likeCount){
+  likeIt(postId: string, likeCount: number){
 
     var trying = document.getElementById('tooltiptexts');
     let index: any = trying.getAttribute('data-index');
@@ -310,7 +310,7 @@ export class TimelineComponent implements OnInit {
   modalProfopen = true;
   next_img = false;
 
-  addComments(postId, userName, profilePic){
+  addComments(postId){
     this.objVal = Object.keys(this.commentsForm.value).map(key => ({type: key, value: this.commentsForm.value[key]}))
     this.authService.sendPostComment(postId, this.objVal[0].value).subscribe(res => {
       if(res['success']){

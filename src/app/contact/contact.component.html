@@ -125,7 +125,7 @@
   <div class="no_mention" *ngIf="not_mention_gender"><i class="fa fa-venus-mars"> </i>Not mention </div>
   <div class="gender" *ngIf="fill_gender">
     <select name="gender" value="gender" [(ngModel)]="gender_value"> Gender
-      <option value="Male">Male</option>
+      <option value="Male" selected>Male</option>
       <option value="Female">Female</option>
       <option value="Others">Others</option>
     </select>
@@ -157,7 +157,6 @@
   </div>
   <div class="no_mention" *ngIf="not_mention_birth"><i class="fa fa-birthday-cake"> </i> Not mention </div>
   <div *ngIf="fill_birth">
-    <br>
     <input (keyup.enter)="addBirthDate(birth_value)" class="birth_date" [matDatepicker]="picker" [(ngModel)]="birth_value" type="text" name="" id="">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>

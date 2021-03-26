@@ -233,8 +233,7 @@ export class WorkComponent implements OnInit {
     this.u_fill_work = true;
     this.data_id = dataId
     this.authService.updateWork(this.id , event, dataId, this.works).subscribe(res => {
-      if (res['success']) {
-      }
+      
     })
   }
 
@@ -307,8 +306,7 @@ export class WorkComponent implements OnInit {
     this.u_fill_university = true;
     this.university_id = dataId
     this.authService.updateUniversity(this.id , university, dataId, this.University).subscribe(res => {
-      if (res['success']) {
-      }
+      
     })
   }
 
@@ -378,8 +376,7 @@ export class WorkComponent implements OnInit {
     this.u_fill_school = true;
     this.school_id = dataId
     this.authService.updateSchool(this.id , school, dataId, this.School).subscribe(res => {
-      if (res['success']) {
-      }
+      
     })
   }
 

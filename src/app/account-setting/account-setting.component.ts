@@ -32,14 +32,12 @@ export class AccountSettingComponent implements OnInit {
     public formBuilder: FormBuilder,
     public toastr: ToastrService
   ) {
-    
     this.id = this.activatedRoute.parent.params['value']['id'];
       this.authService.getProfileforAbout(this.id).subscribe(res => {
         this.datas = res.data;
         this.name = res.data.name
         this.user = res.data.userName
       })
-    
   }
 
   edit_names() {

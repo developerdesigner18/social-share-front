@@ -559,7 +559,8 @@ export class ContactComponent implements OnInit {
     this.u_fill_caste = true
     this.authService.addBasicInfo(caste).subscribe(res => {
       if (res['success']) {
-        this.u_religious = true      }
+        this.u_religious = true
+      }
     })
   }
 

@@ -11,10 +11,10 @@
     <button type="button" name="button" (click)="save_add_life(life)">Save</button>
     <button type="button" name="button" (click)="Life_Cancel()">Cancel</button>
   </div>
-  <div class="u_mobile" *ngIf="u_fill_life">
+  <div class="u_mobile" *ngIf="u_fill_life" style="display: flex;">
     <textarea class="text-area" (keyup.enter)="editLife(life)" type="text" [(ngModel)]="life" name="" value="" placeholder="Add life event"></textarea>
-    <button type="button" name="button" (click)="l_cancel()">Cancel</button>
     <button type="button" name="button" (click)="editLife(life)">Save</button>
+    <button type="button" name="button" (click)="l_cancel()">Cancel</button>
   </div>
   <div *ngIf="show_life" class="update-list">
     <div *ngFor="let life_data of get_life.slice().reverse()" class="work-record">

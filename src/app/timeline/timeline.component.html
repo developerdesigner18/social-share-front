@@ -98,7 +98,7 @@
       </div>
     </div>
     <div class="write_comments">
-      <form (ngSubmit)="addComments(data._id, data.post_user, data.post_profileImg)" [formGroup]="commentsForm">
+      <form (ngSubmit)="addComments(data._id)" [formGroup]="commentsForm">
         <input type="text" placeholder=" Write a comment...!" formControlName="newcomment">
       </form>
     </div>

@@ -27,7 +27,7 @@
   </div>
   <div class="u_relationship" *ngIf="u_status">
     <select name="relationship" value="Status" [(ngModel)]="relationshipStatus">
-      <option value="Single">Single</option>
+      <option value="Single" selected>Single</option>
       <option value="In a RelationShip">In a Relationship</option>
       <option value="Engaged">Engaged</option>
       <option value="Married">Married</option>
@@ -45,6 +45,7 @@
   <div class="family" *ngIf="fill_family">
     <input type="text" [(ngModel)]="family"  name="family" id="relationship" value="" placeholder="Add family member"><br>
     <select name="family" value="Family" [(ngModel)]="relation">
+      <!-- <option value="Family" selected="selected">Family</option> -->
       <option value="Father">Father</option>
       <option value="Mother">Mother</option>
       <option value="Brother">Brother</option>
@@ -58,7 +59,7 @@
     <select name="relation" value="relation" [(ngModel)]="relation">
       <option value="Father">Father</option>
       <option value="Mother">Mother</option>
-      <option value="Brother">Brother</option>
+      <option value="Brother" selected>Brother</option>
       <option value="Sister">Sister</option>
     </select>
     <button type="button" name="button" (click)="f_cancel()">Cancel</button>
