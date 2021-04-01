@@ -25,8 +25,6 @@ export class FriendsComponent implements OnInit {
   urls = [];
   friendId: string;
   show_friends = false
-  
-  
 
   constructor(
     public authService: AuthService,
@@ -97,7 +95,7 @@ export class FriendsComponent implements OnInit {
   reject_request(reject_id, friend_name) {
     if (confirm(`Are you sure you want to unfriend ${friend_name} ?`)) {
       this.authService.unFriendRequest(reject_id, this.id).subscribe(res => {
-        this.toastr.success("You successfully unfriended " + friend_name + " from your friend list.");
+        this.toastr.success("You successfully unfriended " + friend_name + " from your friends list.");
         location.reload();
       })
     } else {

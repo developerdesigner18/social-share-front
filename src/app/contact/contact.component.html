@@ -20,7 +20,6 @@
     <input (keyup.enter)="addNumber(number)" type="text" [(ngModel)]="number" maxlength="10" inputmode="numeric"  name="numbers" id="number" value="" placeholder="Add mobile number" required>
     <button type="button" name="button" (click)="Cancel()">Cancel</button>
     <button type="button" name="button" (click)="addNumber(number)">Save</button>
-    <div *ngIf="Required"><p style="color: red;">Please Filled Out Your Mobile Number</p></div>
   </div>
   <div class="u_mobile" *ngIf="u_fill_mobile_no">
     <input (keyup.enter)="editNumber(mobile_number)" type="text" [(ngModel)]="mobile_number" maxlength="10" name="number" id="number" value="" placeholder="Add your mobile number">
@@ -45,7 +44,6 @@
     <input (keyup.enter)="addAddress(location)" type="email"  [(ngModel)]="location" inputmode="email" name="location" value="" placeholder="Add your email address">
     <button type="button" name="a_button" (click)="A_Cancel()">Cancel</button>
     <button type="button" name="button" (click)="addAddress(location)">Save</button>
-    <div *ngIf="Required1"><p style="color: red;">Please Filled Out Your Email Address</p></div>
   </div>
   <div class="u_address" *ngIf="u_fill_email">
     <input (keyup.enter)="editAddress(email_address)" type="text"  [(ngModel)]="email_address" inputmode="email" name="location" value="" placeholder="Add your email address">
@@ -73,7 +71,6 @@
     <input (keyup.enter)="addWebsite(website_link)" type="text" [(ngModel)]="website_link" name="link" value="" placeholder="Add your Websites">
     <button type="button" name="button" (click)="W_Cancel()">Cancel</button>
     <button type="button" name="button" (click)="addWebsite(website_link)">Save</button>
-    <div *ngIf="Required2"><p style="color: red;">Please Filled Out Your Website</p></div>
   </div>
   <div class="u_website" *ngIf="u_fill_link">
     <input (keyup.enter)="editWebsite(website_link)" type="text" [(ngModel)]="website_link" name="link" value="" placeholder="Add your Websites">
@@ -101,7 +98,6 @@
     <input (keyup.enter)="addBasicInfo(religious_value)" type="text" [(ngModel)]="religious_value" name="" value="" placeholder="Add your religious">
     <button type="button" name="button" (click)="R_Cancel()">Cancel</button>
     <button type="button" name="button" (click)="addBasicInfo(religious_value)">Save</button>
-    <div *ngIf="Required3"><p style="color: red;">Please Filled Out Your Religious</p></div>
   </div>
   <div class="u_religious"  *ngIf="u_fill_caste">
     <input (keyup.enter)="editBasicInfo(religious_value)" type="text" [(ngModel)]="religious_value" name="" value="" placeholder="Add your religious">
@@ -131,7 +127,6 @@
     </select>
     <button type="button" name="button" (click)="G_Cancel()">Cancel</button>
     <button type="button" name="button" (click)="addGender(gender_value)">Save</button>
-    <div *ngIf="Required4"><p style="color: red;">Please Filled Out Your Gender</p></div>
   </div>
   <div class="u_gender"  *ngIf="u_fill_gender">
     <select name="gender" value="gender_value" [(ngModel)]="gender_value">

@@ -74,7 +74,7 @@ export class AccountSettingComponent implements OnInit {
         this.user_shows = true
         this.toastr.success("Your username has been updated successfully.");
       } else {
-        this.toastr.error("Some error occurs. Please try again later.");
+        this.toastr.error("Oops error occurs. Please try again later.");
       }
     })
   }
@@ -83,7 +83,6 @@ export class AccountSettingComponent implements OnInit {
     this.edit_user = false;
     this.user_shows = true;
   }
-
 
   ngOnInit(): void {
   }

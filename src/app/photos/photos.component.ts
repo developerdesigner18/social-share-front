@@ -161,7 +161,6 @@ export class PhotosComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.showSlides(this.slideIndex = 1);
   }
 
 }

@@ -8,9 +8,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { NgImageSliderModule } from 'ng-image-slider';
-
-
-
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthInterceptor } from './auth.interceptor';
@@ -50,7 +47,6 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {MatInputModule} from '@angular/material/input';
 import { VideosComponent } from './videos/videos.component';
 import { AlbumsComponent } from './albums/albums.component';
-// import { TimeAgoPipe } from 'time-ago-pipe';
 import { TimeagoModule } from 'ngx-timeago';
 import { NotificationsComponent } from './notifications/notifications.component';
 // Emoji

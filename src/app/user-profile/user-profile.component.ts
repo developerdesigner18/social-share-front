@@ -174,7 +174,6 @@ export class UserProfileComponent implements OnInit {
             window.location.replace('profile/' + window.location.href.split('/')[4]);
           }, 2000)
         }
-        // this.toastr.success("Successfully Uploaded Profile Picture");
       })
     }
     

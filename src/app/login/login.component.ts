@@ -6,7 +6,6 @@ import { MatDialog } from  '@angular/material/dialog';
 import { DialogErrorComponent } from '../dialog-error/dialog-error.component';
 import { ToastrService } from 'ngx-toastr';
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -45,7 +44,7 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     if(!this.loginForm.valid){
-      this.toastr.error("Authentication is failed. Please check your email and paswword.")
+      this.toastr.error("Authentication is failed. Please check your email and password.")
     }
     this.authService.login(this.email.value, this.password.value).subscribe(() => {});
     if (this.authService.isLoggedIn() !== true) {

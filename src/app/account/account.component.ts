@@ -13,15 +13,7 @@ declare var $: any;
   encapsulation: ViewEncapsulation.None
 })
 export class AccountComponent implements OnInit {
-  profileForm: FormGroup;
-  id: any
-  datas: any = [];
-  name: any;
-  user: any;
-  name_shows: boolean = true;
-  edit_name: boolean = false;
-  user_shows: boolean = true;
-  edit_user: boolean = false;
+  id: any;
 
   @ViewChild('nameText') nameTextElement: any;
   constructor(
@@ -31,14 +23,8 @@ export class AccountComponent implements OnInit {
     public formBuilder: FormBuilder,
     public toastr: ToastrService
   ) {
-    
     $(".hide_theme").css("display", "none");
-    this.id = this.activatedRoute.snapshot.paramMap.get('id');
   }
-
-
-
-
   ngOnInit(): void {
   }
 

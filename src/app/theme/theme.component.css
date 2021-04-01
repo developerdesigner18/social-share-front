@@ -27,6 +27,15 @@
 	top: 11px;
 	margin: 0 5px;
   }
+  .sub_theme {
+    display: flex;
+    justify-content: space-between;
+    width: 10%;
+    padding-left: 10px;
+}
+  body{
+	  background-image: none !important;
+  }
   .switch input { 
 	display: none;
   }

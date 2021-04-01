@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ThemeService } from '../../theme/theme.service';
 import { CookieService } from 'ngx-cookie-service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-themes',
@@ -14,11 +15,19 @@ export class ThemeComponent implements OnInit {
   value: any = ['light'];
   active: import("d:/Client Works/workspace/Social-share/src/theme/symbols").Theme;
   hide: boolean;
+  themeChange: any;
+  id: any;
+  data: any = [];
 
-  constructor(private themeService: ThemeService, private cookieService: CookieService) {
+  constructor(private themeService: ThemeService, private cookieService: CookieService, private toastr: ToastrService) {
     this.cookieValue = localStorage.getItem('theme');
     this.themeService.setTheme(this.cookieValue);
-    
+    this.themeChange = localStorage.getItem('theme');
+    this.data = localStorage.getItem('currentUser');
+    const current_login_User = JSON.parse(localStorage.getItem('currentUser'));
+    this.id = current_login_User.data._id;
+    console.log("this.data", current_login_User.data._id);
+    console.log("this.themeChange", this.themeChange);
   }
   
    toggle() {
@@ -31,7 +40,6 @@ export class ThemeComponent implements OnInit {
     if (active.name === 'light') {
       this.themeService.setTheme('dark');
       localStorage.setItem("theme", "dark");
-      
     } else {
       this.themeService.setTheme('light');
       localStorage.setItem("theme", "light");
@@ -39,6 +47,14 @@ export class ThemeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  submit(themeChange) {
+    console.log("themeChange", themeChange)
+    console.log("Hurray this is running");
+    this.toastr.success("Theme is updated successfully");
+    this.themeService.setTheme(themeChange);
+    localStorage.setItem("theme", themeChange);
   }
 
 }

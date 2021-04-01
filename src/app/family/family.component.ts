@@ -40,7 +40,7 @@ export class FamilyComponent implements OnInit {
       this.friendid = localStorage.getItem('friendId')
       this.icons = false
       this.authService.getAllData(this.friendid).subscribe(res => {
-        if (res.userData[0] == null) {
+        if (res.userData[0] === null) {
           this.not_mention_relationship = true
         } else if (res.userData[0].relationshipStatus !== undefined) {
           this.display5 = true
@@ -49,7 +49,7 @@ export class FamilyComponent implements OnInit {
           this.not_mention_relationship = true
         }
 
-        if (res.userData[0] == null) {
+        if (res.userData[0] === null) {
           this.not_mention_family = true
           this.family_show = false
         } else if (res.userData[0].family.length > 0) {
@@ -66,7 +66,7 @@ export class FamilyComponent implements OnInit {
       if (current_login_User.data._id !== id) {
         this.icons = false
         this.authService.getAllData(id).subscribe(res => {
-          if (res.userData[0] == null) {
+          if (res.userData[0] === null) {
             this.not_mention_relationship = true
           } else if (res.userData[0].relationshipStatus !== undefined) {
             this.display5 = true
@@ -75,7 +75,7 @@ export class FamilyComponent implements OnInit {
             this.not_mention_relationship = true
           }
 
-          if (res.userData[0] == null) {
+          if (res.userData[0] === null) {
             this.family_show = false
             this.not_mention_family = true
           } else if (res.userData[0].family.length > 0) {

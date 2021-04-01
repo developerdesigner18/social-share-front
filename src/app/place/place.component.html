@@ -14,9 +14,8 @@
       </div>
     </div>
   </div>
-  <br/>
 
-  <div class="d-flex">
+  <div class="d-flex" style="margin-top: 20px;">
     <div class="place">
       <img width="40" height="40" src='assets/images/town.png' style="border-radius: 50%;" />
     </div>
@@ -27,8 +26,8 @@
       </div>
       <div *ngIf="show_home" class="update-list">
         <div class="update-display">
-        {{home_town}}
-      </div>
+          {{home_town}}
+        </div>
         <div class="icons-pencil" *ngIf="icons">
           <i (click)="updateHome(home_town)" class="pencil-icon fa fa-pencil"></i>
           <i (click)="delHome(home_town)" class="pencil-icon fa fa-trash"></i>

@@ -32,11 +32,6 @@ export class ContactComponent implements OnInit {
   fill_birth = false
 
   //Required
-  Required = false
-  Required1 = false
-  Required2 = false
-  Required3 = false
-  Required4 = false
   fill_mobile_no = false;
   show_mobile: boolean
   mobile_number: string
@@ -181,7 +176,7 @@ export class ContactComponent implements OnInit {
       if (current_login_User.data._id !== id) {
         this.icons = false
           this.authService.getAllData(id).subscribe(res => {
-            if (res.userData[0] == null) {
+            if (res.userData[0] === null) {
               this.not_mention_number = true
             } else if (res.userData[0].mobileNumber !== undefined) {
               this.mobile_number = res.userData[0].mobileNumber
@@ -191,7 +186,7 @@ export class ContactComponent implements OnInit {
             this.not_mention_number = true
             }
   
-            if (res.userData[0] == null) {
+            if (res.userData[0] === null) {
               this.not_mention_address = true
             } else if (res.userData[0].address !== undefined) {
               this.email_address = res.userData[0].address
@@ -201,7 +196,7 @@ export class ContactComponent implements OnInit {
               this.not_mention_address = true
             }
   
-            if (res.userData[0] == null) {
+            if (res.userData[0] === null) {
               this.not_mention_website = true
             } else if (res.userData[0].website !== undefined) {
               this.website_link = res.userData[0].website
@@ -211,7 +206,7 @@ export class ContactComponent implements OnInit {
               this.not_mention_website = true
             }
   
-            if (res.userData[0] == null) {
+            if (res.userData[0] === null) {
               this.not_mention_religious = true
             } else if (res.userData[0].basicInfo !== undefined) {
               this.religious_value = res.userData[0].basicInfo
@@ -221,7 +216,7 @@ export class ContactComponent implements OnInit {
               this.not_mention_religious = true
             }
   
-            if (res.userData[0] == null) {
+            if (res.userData[0] === null) {
               this.not_mention_gender = true
             } else if (res.userData[0].gender !== undefined) {
               this.gender_value = res.userData[0].gender
@@ -231,7 +226,7 @@ export class ContactComponent implements OnInit {
               this.not_mention_gender = true
             }
 
-            if (res.userData[0] == null) {
+            if (res.userData[0] === null) {
               this.not_mention_birth = true
             } else if (res.userData[0].birthDate !== undefined) {
               this.birth_value = res.userData[0].birthDate
@@ -241,7 +236,7 @@ export class ContactComponent implements OnInit {
               this.not_mention_birth = true
             }
 
-            if (res.userData[0] == null) {
+            if (res.userData[0] === null) {
               this.not_mention_langugae = true
               this.languages = false
               this.text_language = false
@@ -260,7 +255,7 @@ export class ContactComponent implements OnInit {
       } else {
         this.authService.getAllData(id).subscribe(res => {
         this.icons = true
-          if (res.userData[0] == null) {
+          if (res.userData[0] === null) {
             this.mobile = false
           }
           else if (res.userData[0].mobileNumber !== undefined) {
@@ -271,7 +266,7 @@ export class ContactComponent implements OnInit {
             this.mobile = false
           }
 
-          if (res.userData[0] == null) {
+          if (res.userData[0] === null) {
             this.email = false
           }
           else if (res.userData[0].address !== undefined) {
@@ -282,7 +277,7 @@ export class ContactComponent implements OnInit {
             this.email = false
           }
 
-          if (res.userData[0] == null) {
+          if (res.userData[0] === null) {
             this.link = false
           }
           else if (res.userData[0].website !== undefined) {
@@ -293,7 +288,7 @@ export class ContactComponent implements OnInit {
             this.link = false
           }
 
-          if (res.userData[0] == null) {
+          if (res.userData[0] === null) {
             this.religious = false
           }
           else if (res.userData[0].basicInfo !== undefined) {
@@ -304,7 +299,7 @@ export class ContactComponent implements OnInit {
             this.religious = false
           }
 
-          if (res.userData[0] == null) {
+          if (res.userData[0] === null) {
             this.genders = false
           }
           else if (res.userData[0].gender !== undefined) {
@@ -315,7 +310,7 @@ export class ContactComponent implements OnInit {
             this.genders = false
           }
         
-          if (res.userData[0] == null) {
+          if (res.userData[0] === null) {
             this.birth = false
           }
           else if (res.userData[0].birthDate !== undefined) {
@@ -326,7 +321,7 @@ export class ContactComponent implements OnInit {
             this.birth = false
           }
 
-          if (res.userData[0] == null) {
+          if (res.userData[0] === null) {
             
           }
           else if (res.userData[0].language !== undefined) {   
@@ -781,30 +776,25 @@ export class ContactComponent implements OnInit {
   Cancel() {
     this.mobile = false;
     this.fill_mobile_no = false;
-    this.Required = false
   }
 
   A_Cancel() {
     this.address = false
-    this.Required1 = false
     this.fill_email = false
   }
 
   W_Cancel() {
     this.website = false
-    this.Required2 = false
     this.fill_link = false
   }
 
   R_Cancel() {
     this.religious = false
-    this.Required3 = false
     this.fil_caste = false
   }
 
   G_Cancel() {
     this.genders = false
-    this.Required4 = false
     this.fill_gender =false
   }
 

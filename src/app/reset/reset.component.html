@@ -22,7 +22,7 @@
         <div class="form-group">
           <input formControlName="confpassword" id="confpassword" class="form-control" type="text" placeholder="Enter Confirm Password">
         </div>
-  			<button [disabled]="!password" class="btn-full">Reset Password</button>
+  			<button [disabled]="!password && !confpassword" class="btn-full">Reset Password</button>
       </form>
 		</div>
 	</div>

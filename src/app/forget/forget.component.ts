@@ -38,9 +38,6 @@ export class ForgetComponent implements OnInit {
     this.authService.forget(this.forgetForm.value).subscribe((res) => {
      if (!res.result) {
        this.forgetForm.reset()
-      //  this.dialog.open(DialogForgetComponent, {
-      //    width: '650px'
-      //  })
        this.toastr.info("Sent link in your email please check and get back into your account")
      }
      this.isSubmitted = false;
