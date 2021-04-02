@@ -46,7 +46,9 @@ export class LoginComponent implements OnInit {
     if(!this.loginForm.valid){
       this.toastr.error("Authentication is failed. Please check your email and password.")
     }
-    this.authService.login(this.email.value, this.password.value).subscribe(() => {});
+    this.authService.login(this.email.value, this.password.value).subscribe(() => {
+      this.toastr.success("Welcome User in Social Share")
+    });
     if (this.authService.isLoggedIn() !== true) {
       this.loginForm.reset();
       this.submitted = false;

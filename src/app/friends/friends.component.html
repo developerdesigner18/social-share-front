@@ -10,7 +10,7 @@
 				<ng-template #itemTemplate let-item>
 					<div class="d-flex allusers_set">
 						<div class="profile_pics position-relative">
-							<img [src]="item.profileImgURl" onerror="this.src='/assets/images/default_user.jpg';">
+							<img [src]="item.profileImgURl" onerror="this.src='/assets/images/character.png';">
 						</div>
 						<div>
 							<div class="d-flex justify-content-between align-items-center">
@@ -41,7 +41,7 @@
   <div class="row friends_display" *ngIf="show_friends && user === url_id">
     <div class="user_friend" style="padding: 25px; border: 1px solid #ececec;border-radius: 8px;" *ngFor="let frddetail of frdDetails; let i = index">
       <div class="unfriend_details">
-      <img width="40" height="40" [src]="frddetail.profileImgURl" onerror="this.src='/assets/images/default_user.jpg';" style="border-radius: 50%;" /> 
+      <img width="40" height="40" [src]="frddetail.profileImgURl" onerror="this.src='/assets/images/character.png';" style="border-radius: 50%;" /> 
       <div class="unfriend_image">
         <a href="profile/{{frddetail._id}}"> {{frddetail.name}} </a>
       </div>
@@ -58,7 +58,7 @@
   <div class="row friends_display" *ngIf="show_friends && user !== url_id || router.url !== friend_id">
     <div class="user_friend" style="padding: 25px; border: 1px solid #ececec;border-radius: 8px;" *ngFor="let frddetail of frdDetails; let i = index">
       <div class="unfriend_details">
-        <img width="40" height="40" [src]="frddetail.profileImgURl" onerror="this.src='/assets/images/default_user.jpg';" style="border-radius: 50%;" /> 
+        <img width="40" height="40" [src]="frddetail.profileImgURl" onerror="this.src='/assets/images/character.png';" style="border-radius: 50%;" /> 
         <div class="unfriend_image">
           <a href="profile/{{frddetail._id}}"> {{frddetail.name}} </a>
         </div>

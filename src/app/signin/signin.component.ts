@@ -4,6 +4,8 @@ import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogRef } from  '@angular/material/dialog';
 import { DialogBodyComponent } from '../dialog-body/dialog-body.component';
+import { ToastrService } from 'ngx-toastr';
+import { ThemeService } from '../../theme/theme.service';
 
 @Component({
   selector: 'app-signin',
@@ -18,7 +20,9 @@ export class SigninComponent implements OnInit {
     public formBuilder: FormBuilder,
     public authService: AuthService,
     public router: Router,
-    public  dialog:  MatDialog
+    public dialog: MatDialog,
+    public toastr: ToastrService,
+    private themeService: ThemeService
   ) {
     this.registerForm= this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -28,8 +32,13 @@ export class SigninComponent implements OnInit {
     })
   }
 
-  ngOnInit(): void { 
-    localStorage.setItem("theme", "light");
+  ngOnInit(): void {
+    const active = this.themeService.getActiveTheme();
+    console.log("active", active)
+    let theme = active.name
+    let themes = localStorage.getItem("theme") ? localStorage.getItem("theme") : theme
+    console.log("themes", themes)
+    localStorage.setItem("theme", themes);
   }
 
   get formControls() { return this.registerForm.controls }
@@ -42,10 +51,13 @@ export class SigninComponent implements OnInit {
     this.authService.register(this.registerForm.value).subscribe((res) => {
      if (!res.result) {
        this.registerForm.reset()
-       this.dialog.open(DialogBodyComponent, {
-         width: '350px'
-       })
+      //  this.dialog.open(DialogBodyComponent, {
+      //    width: '350px'
+      //  })
+       this.toastr.success("Congratulation now you are a member of social share")
        this.isSubmitted = false;
+     } else {
+       this.toastr.error("Oops something is not right. Please try again after some time")
      }
    })
   }

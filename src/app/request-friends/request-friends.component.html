@@ -8,7 +8,7 @@
     {{frd_req_get_count ? frd_req_get_count : ''}} friend requests
     <div class="row" style="padding: 10px;" *ngFor="let frdProfile of frd_profile_datas;let i = index">
       <div class="col-md-12" (click)="openProfile(frdProfile._id);">
-        <img width="60" height="60" [src]="frdProfile.profileImgURl" onerror="this.src='/assets/images/default_user.jpg';" style="border-radius: 50%;" />
+        <img width="60" height="60" [src]="frdProfile.profileImgURl" onerror="this.src='/assets/images/character.png';" style="border-radius: 50%;" />
         <label style="color: #ffffff;margin-left: 10px;position: absolute;text-transform: capitalize;cursor: pointer;">{{frdProfile.name}}</label>
       </div>
       <div class="col-md-12" style="margin-left: 70px;bottom: 15px;">
@@ -24,7 +24,7 @@
   </div>
   <div class="row" style="padding: 10px;" *ngFor="let data of datas;let i = index">
     <div class="col-md-12 remove_people remove_people_{{data._id}}" (click)="openProfile(data._id);">
-      <img width="60" height="60" [src]="data.profileImgURl" onerror="this.src='/assets/images/default_user.jpg';" style="border-radius: 50%;" />
+      <img width="60" height="60" [src]="data.profileImgURl" onerror="this.src='/assets/images/character.png';" style="border-radius: 50%;" />
       <div class="request_shows">
       <label >{{data.name}}</label>
       <div class="remove_people_{{data._id}}">
@@ -62,7 +62,7 @@
   	<div class="profile_pic_main_tabs_sec width_95">
   		<div class="profile_pic position-relative profile_edit">
 				<div class="profile-pic-icon">
-					<img [src]="previewUrl" onerror="this.src='/assets/images/default_user.jpg';">
+					<img [src]="previewUrl" onerror="this.src='/assets/images/character.png';">
 				</div>
 			  <div class="profile_name">{{name}}</div>
   		</div>
@@ -85,10 +85,10 @@
       <div *ngFor="let data of frd_datas; let i = index;" class="main_post_content d-flex flex-column">
         <div class="d-flex" style="width: 100%; margin-bottom: 15px;" (mouseleave)="showbasicProfile[i]=false">
           <div class="profile_pic_profile position-relative" (mouseover)="showbasicProfile[i]=true">
-            <img [src]="profileImg" onerror="this.src='/assets/images/default_user.jpg';">
+            <img [src]="profileImg" onerror="this.src='/assets/images/character.png';">
             <div class="basic_info" *ngIf="showbasicProfile[i]" (mouseleave)="showbasicProfile[i]=false">
               <div class="d-flex">
-                <img [src]="profileImg" onerror="this.src='/assets/images/default_user.jpg';">
+                <img [src]="profileImg" onerror="this.src='/assets/images/character.png';">
                 <div style="padding: 10px;">
                   <a href="profile/{{data.userId}}"><div class="profile_basic_info set_redirect_link">{{name ? name : 'Name'}}</div></a>
                   <div class="profile_basic_info"><i class="fas fa-user-tie" style="margin-right: 10px"></i>{{u_designation ? u_designation : 'Designation'}}</div>
@@ -178,7 +178,7 @@
             <div class="comment_title">Comments:</div>
             <ng-container *ngIf="checkTem && tempPostId === data._id">
               <div class="comment_user d-flex"  *ngFor="let temp of temCmnt.slice().reverse()">
-                <img [src]="tempProfile" onerror="this.src='/assets/images/default_user.jpg';">
+                <img [src]="tempProfile" onerror="this.src='/assets/images/character.png';">
                 <div>
                   <div class="commenter">{{tempName}}</div>
                   <div class="comment_here">{{temp}}</div>
@@ -187,7 +187,7 @@
             </ng-container>
 
             <div (mouseleave)="!showbasicProfile3[i]=false" class="comment_user d-flex" *ngFor="let comnt of data.comment.slice().reverse(); let i = index">
-							<img [src]="comnt.profile" onerror="this.src='/assets/images/default_user.jpg';">
+							<img [src]="comnt.profile" onerror="this.src='/assets/images/character.png';">
 							<div>
 								<a href="profile/{{comnt.userId}}" (mouseover)="!showbasicProfile3[i]=true"><div class="commenter">{{comnt.name}}</div></a>
 							<div class="comment_here">{{comnt.newcomment}}</div>
@@ -195,7 +195,7 @@
 						<div class="show_basic_info_card" (mouseleave)="showbasicProfile3[i]=false">
 							<div class="basic_info2" *ngIf="showbasicProfile3[i]">	
 								<div class="d-flex">
-									<img [src]="comnt.profile" onerror="this.src='/assets/images/default_user.jpg';" class="hover-info-img">
+									<img [src]="comnt.profile" onerror="this.src='/assets/images/character.png';" class="hover-info-img">
 									<div class="basic_profile_icons">
 										<a href="profile/{{comnt.userId}}"><div style="text-transform: capitalize;" class="profile_basic_info set_redirect_link">{{comnt.name}}</div></a>
 										<div class="icons_showing_card">

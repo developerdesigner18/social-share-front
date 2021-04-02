@@ -8,6 +8,7 @@ import { AuthService } from '../auth.service';
 import { MatDialog } from  '@angular/material/dialog';
 import { DialogPasswordChangeComponent } from '../dialog-password-change/dialog-password-change.component';
 import { DialogPassmatchComponent } from '../dialog-passmatch/dialog-passmatch.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-reset',
@@ -25,7 +26,8 @@ export class ResetComponent implements OnInit {
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private authService: AuthService,
-    public dialog:  MatDialog
+    public dialog: MatDialog,
+    public toastr: ToastrService
   ) {}
 
   ngOnInit(){
@@ -53,15 +55,19 @@ export class ResetComponent implements OnInit {
       }
       this.authService.resetPassword(this.token, this.password.value).subscribe(() => {
         if (this.authService.isLoggedIn) {
-          this.dialog.open(DialogPasswordChangeComponent, {
-            width: '420px'
-          })
+          // this.dialog.open(DialogPasswordChangeComponent, {
+          //   width: '420px'
+          // })
+          this.toastr.success("Your password successfully updated. Please login with your new password")
+        } else {
+          this.toastr.error("Oops some error occured. Please try again later")
         }
       })
     }else{
-      this.dialog.open(DialogPassmatchComponent, {
-        width: '420px'
-      })
+      // this.dialog.open(DialogPassmatchComponent, {
+      //   width: '420px'
+      // })
+      this.toastr.info("Password is not matched. Please enter your valid password")
     }
   }
 }

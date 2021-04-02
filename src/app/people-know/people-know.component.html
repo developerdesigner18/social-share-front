@@ -3,7 +3,7 @@
 	<div class="main_container d-flex align-items-start">
 		<div class="left_sidebar">
 			<div class="profile_image">
-				<img [src]="user_profile" onerror="this.src='/assets/images/default_user.jpg';">
+				<img [src]="user_profile" onerror="this.src='/assets/images/character.png';">
 			</div>
 			<div class="profile_name">{{name}}</div>
 			<div class="friends_Posts d-flex align-items-center">
@@ -22,7 +22,7 @@
 					<div>Go to your Profile</div>
 				</div>
 			</a>
-			<a class="my_post_links" href="#">
+			<a class="my_post_links" href="account/{{id}}">
 				<div class="left_content">
 					<i class="fas fa-user-cog"></i>
 					<div>Account Setting</div>
@@ -59,7 +59,7 @@
 					<div class="search_display" *ngIf="shows">
 						<div class="d-flex allusers_set" *ngFor="let user of allUsers;let i = index">
 	            			<div class="profile_pic position-relative">
-								<img [src]="user.profileImgURl" onerror="this.src='/assets/images/default_user.jpg';">
+								<img [src]="user.profileImgURl" onerror="this.src='/assets/images/character.png';">
 							</div>
 							<div class="name_and_desc">
 								<div class="d-flex justify-content-between">

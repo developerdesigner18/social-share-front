@@ -45,7 +45,6 @@
   <div class="family" *ngIf="fill_family">
     <input type="text" [(ngModel)]="family"  name="family" id="relationship" value="" placeholder="Add family member"><br>
     <select name="family" value="Family" [(ngModel)]="relation">
-      <!-- <option value="Family" selected="selected">Family</option> -->
       <option value="Father">Father</option>
       <option value="Mother">Mother</option>
       <option value="Brother">Brother</option>
@@ -68,7 +67,7 @@
   <div *ngIf="show_family" class="update-list2 family-list">
     <div *ngFor="let family_data of get_family.slice().reverse()" class="work-record">
       <div class="update-display" style="display: flex;flex-direction: row;">
-        <img width="40" height="40" src="../../assets/images/default_user.jpg"onerror="this.src='/assets/images/default_user.jpg';" style="border-radius: 50%;" /> <div class="family_shows"> <div> {{family_data.name}} </div> <p>{{family_data.relationship}}</p> </div>
+        <img width="40" height="40" src="../../assets/images/character.png"onerror="this.src='/assets/images/character.png';" style="border-radius: 50%;" /> <div class="family_shows"> <div> {{family_data.name}} </div> <p>{{family_data.relationship}}</p> </div>
       </div>
       <div class="icons-pencil" *ngIf="icons">
         <i (click)="updateFamily(family_data._id, family_data.name, family_data.relationship)" class="pencil-icon fa fa-pencil"></i>

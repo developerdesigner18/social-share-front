@@ -9,7 +9,7 @@
 	<div class="profile_pic_main_tabs_sec width_95">
 		<div class="profile_pic position-relative profile_edit">
 				<div class="profile-pic-icon">
-					<img [src]="previewUrl" onerror="this.src='/assets/images/default_user.jpg';">
+					<img [src]="previewUrl" onerror="this.src='/assets/images/character.png';">
 					<i class="fa fa-camera" title="Upload Profile Photo" id="OpenImgUpload" data-toggle="modal" data-target="#profilemodel" *ngIf="current_user_profile"></i>
 				</div>
 			<div class="profile_name">{{name}}</div>
@@ -68,7 +68,7 @@
 					<img [src]="img">
 				</div>
 			</div>
-			<div class="photos_container_all w_100 see-all-images" *ngIf="onlyImg.length > 10">
+			<div class="photos_container_all w_100 see-all-images" *ngIf="onlyImg.length > 12">
 				<button onclick="document.body.scrollTop=500;document.documentElement.scrollTop=500;event.preventDefault()" class="edit-button see-all-button" [routerLink]="['photos']">See All</button>
 			</div>
 			<div class="a_photos" *ngIf="notfound == 404" style="color: #0F1B31">
@@ -79,7 +79,7 @@
 			<div class="left_title w_90">Friends</div>
 			<div class="friends_container w_90" *ngIf="frdDetails">
 				<div class="a_friend" *ngFor="let frddetail of frdDetails | slice:0:9; let i = index">
-					<img [src]="frddetail.profileImgURl" onerror="this.src='/assets/images/default_user.jpg';">
+					<img [src]="frddetail.profileImgURl" onerror="this.src='/assets/images/character.png';">
 					<a href="profile/{{frddetail._id}}"> <div>{{frddetail.name}}</div></a>
 				</div>
 			</div>
@@ -105,7 +105,7 @@
 			<div class="all_notification w_90" *ngFor="let data of notif_data | slice:0:5;">
 				<div class="notifiy w_90 d-flex flex-column">
 					<div class="d-flex">
-						<img [src]="data.userprofile" onerror="this.src='../../assets/images/default_user.jpg'" >
+						<img [src]="data.userprofile" onerror="this.src='../../assets/images/character.png'" >
 						<div class="notify_content">{{data.content | titlecase}}</div>
 					</div>
 					<div class="time_ago">{{data.date | timeago}}</div>
@@ -144,7 +144,7 @@
 						(loadImageFailed)="loadImageFailed()"></image-cropper>
 				</div>
 				<div class="text-center col-md-6" *ngIf="imgeDiv && show" style="margin-top: 50px;">
-						<img id="croppedimg" [src]="croppedImage" onerror="this.src='/assets/images/default_user.jpg';" class="preview_circle" >
+						<img id="croppedimg" [src]="croppedImage" onerror="this.src='/assets/images/character.png';" class="preview_circle" >
 				</div>
       </div>
       <div class="modal-footer">
@@ -181,7 +181,7 @@
 						(loadImageFailed)="loadImageFailed()"></image-cropper>
 				</div>
 				<div class="text-center col-md-12" *ngIf="imgeDiv" style="margin-top: 50px;">
-						<img [src]="croppedCovImage" onerror="this.src='/assets/images/default_user.jpg';" style="height: 210px; width: 100%;">
+						<img [src]="croppedCovImage" onerror="this.src='/assets/images/character.png';" style="height: 210px; width: 100%;">
 				</div>
       </div>
       <div class="modal-footer">

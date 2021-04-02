@@ -3,7 +3,7 @@
 	<div class="main_container d-flex align-items-start">
 		<div class="left_sidebar">
 			<div class="profile_image">
-				<img [src]="user_profile" onerror="this.src='/assets/images/default_user.jpg';">
+				<img [src]="user_profile" onerror="this.src='/assets/images/character.png';">
 			</div>
 			<div class="profile_name">{{name}}</div>
 			<div class="friends_Posts d-flex align-items-center">
@@ -58,7 +58,7 @@
 						<ng-template #itemTemplate let-item>
 							<div class="d-flex allusers_set" style="padding-left: 15px">
 								<div class="profile_pic position-relative">
-									<img [src]="item.profileImgURl" onerror="this.src='/assets/images/default_user.jpg';">
+									<img [src]="item.profileImgURl" onerror="this.src='/assets/images/character.png';">
 								</div>
 								<div>
 									<div class="d-flex justify-content-between align-items-center">
@@ -86,7 +86,7 @@
 					<ng-container *ngIf="search_by_name == false">
 						<div class="d-flex allusers_set" *ngFor="let user of allUsers;let i = index">
 	            		<div class="profile_pic position-relative">
-								<img [src]="user.profileImgURl" onerror="this.src='/assets/images/default_user.jpg';">
+								<img [src]="user.profileImgURl" onerror="this.src='/assets/images/character.png';">
 							</div>
 							<div class="name_and_desc">
 								<div class="d-flex justify-content-between align-items-center">
@@ -105,7 +105,7 @@
 					<ng-container *ngIf="search_by_name == true">
 						<div class="d-flex allusers_set" *ngFor="let dt_name of search_data">
 	            <div class="profile_pic position-relative">
-								<img [src]="dt_name.profileImgURl" onerror="this.src='/assets/images/default_user.jpg';">
+								<img [src]="dt_name.profileImgURl" onerror="this.src='/assets/images/character.png';">
 							</div>
 							<div class="name_and_desc">
 								<div class="d-flex justify-content-between align-items-center">

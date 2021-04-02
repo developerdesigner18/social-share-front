@@ -731,9 +731,6 @@ export class ContactComponent implements OnInit {
         this.toastr.error("Oops some error occured");
       }
     })
-
-   
-
   }
 
   ngOnInit(): void {

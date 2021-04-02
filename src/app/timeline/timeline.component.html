@@ -74,9 +74,7 @@
 
       <div class="tooltiptext" *ngIf="data.like.length > 0">
         <div id="tooltiptexts" class="tooltiptexts" *ngFor="let like of data.like.slice().reverse(); let i = index; trackBy: trackByFn" [attr.data-index]="i">
-          <!-- <span> {{tool}} </span> -->
           <span id="like_{{data._id}}_{{i}}" [innerText]="like.name"></span>
-          <!-- {{like.name ? like.name : ''}} -->
         </div>
       </div>
 
@@ -106,7 +104,7 @@
       <div class="comment_title">Comments:</div>
       <ng-container *ngIf="checkTem && tempPostId === data._id">
       <div (mouseleave)="!showbasicProfile3[i]=false" class="comment_user d-flex" *ngFor="let temp of temCmnt.slice().reverse()">
-        <img [src]="profileImg" onerror="this.src='/assets/images/default_user.jpg';">
+        <img [src]="profileImg" onerror="this.src='/assets/images/character.png';">
         <div>
           <a href="profile/{{temp.userId}}" (mouseover)="!showbasicProfile3[i]=true"></a><div class="commenter">{{u_name | titlecase}}</div>
           <div class="comment_here">{{temp}}</div>
@@ -115,7 +113,7 @@
       </ng-container>
 
       <div (mouseleave)="!showbasicProfile3[i]=false" class="comment_user d-flex" *ngFor="let comnt of data.comment.slice().reverse(); let i = index">
-        <img [src]="comnt.profile" onerror="this.src='/assets/images/default_user.jpg';">
+        <img [src]="comnt.profile" onerror="this.src='/assets/images/character.png';">
         <div>
           <a href="profile/{{comnt.userId}}" (mouseover)="!showbasicProfile3[i]=true"><div class="commenter">{{comnt.name | titlecase}}</div></a>
         <div class="comment_here">{{comnt.newcomment}}</div>
@@ -123,7 +121,7 @@
       <div class="show_basic_info_card" (mouseleave)="showbasicProfile3[i]=false">
         <div class="basic_info2" *ngIf="showbasicProfile3[i]">	
           <div class="d-flex">
-            <img [src]="comnt.profile" onerror="this.src='/assets/images/default_user.jpg';" class="hover-info-img">
+            <img [src]="comnt.profile" onerror="this.src='/assets/images/character.png';" class="hover-info-img">
             <div class="basic_profile_icons">
               <a href="profile/{{comnt.userId}}"><div style="text-transform: capitalize;" class="profile_basic_info set_redirect_link">{{comnt.name}}</div></a>
               <div class="icons_showing_card">

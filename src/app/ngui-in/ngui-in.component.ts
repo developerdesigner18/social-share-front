@@ -72,7 +72,6 @@ export class NguiInComponent implements OnInit, OnDestroy {
     } else {
        entry.target.style.opacity = 1;
        entry.target.style.filter = 'unset';
-
        this.once50PctVisible = true;
     }
   }

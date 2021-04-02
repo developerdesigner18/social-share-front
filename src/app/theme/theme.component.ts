@@ -26,32 +26,13 @@ export class ThemeComponent implements OnInit {
     this.data = localStorage.getItem('currentUser');
     const current_login_User = JSON.parse(localStorage.getItem('currentUser'));
     this.id = current_login_User.data._id;
-    console.log("this.data", current_login_User.data._id);
-    console.log("this.themeChange", this.themeChange);
   }
   
-   toggle() {
-    if (this.cookieValue === 'dark') {
-      this.hide=!this.hide
-    } else {
-      this.hide=this.hide
-    }
-    const active = this.themeService.getActiveTheme() ;
-    if (active.name === 'light') {
-      this.themeService.setTheme('dark');
-      localStorage.setItem("theme", "dark");
-    } else {
-      this.themeService.setTheme('light');
-      localStorage.setItem("theme", "light");
-    }
-  }
 
   ngOnInit(): void {
   }
 
   submit(themeChange) {
-    console.log("themeChange", themeChange)
-    console.log("Hurray this is running");
     this.toastr.success("Theme is updated successfully");
     this.themeService.setTheme(themeChange);
     localStorage.setItem("theme", themeChange);

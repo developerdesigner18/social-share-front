@@ -218,7 +218,7 @@ export class RequestFriendsComponent implements OnInit {
   }
 
   sharing(postId, post_user) { 
-    if (confirm("You are sharing "+ `${post_user}` +" post with your timeline!")) {
+    if (confirm("You are sharing "+ `${post_user}` +" post with in your timeline!")) {
       this.authService.sharingPosts(this.token, postId, this.login_id).subscribe(res => { 
         this.toastr.success("You are successfully shared the post!");
         window.location.reload();

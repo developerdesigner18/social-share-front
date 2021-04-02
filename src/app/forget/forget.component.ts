@@ -39,6 +39,8 @@ export class ForgetComponent implements OnInit {
      if (!res.result) {
        this.forgetForm.reset()
        this.toastr.info("Sent link in your email please check and get back into your account")
+     } else {
+       this.toastr.error("Email address is not found. Please check your email address")
      }
      this.isSubmitted = false;
    })

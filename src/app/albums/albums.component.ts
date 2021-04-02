@@ -54,7 +54,7 @@ export class AlbumsComponent implements OnInit {
         this.smallProfile = res.data.profileImgURl
       })
       this.fileData.push(data.file)
-    this.images = data.images
+      this.images = data.images
   
     if (data.images && data.files != '') {
         if(Object.keys(this.fileData[0]).length === 2)
@@ -132,7 +132,7 @@ export class AlbumsComponent implements OnInit {
         }
         
         if (this.postNameElement.nativeElement.value === '') {
-          this.toastr.error('Please Fill the Album Name');
+          this.toastr.info('Please Fill the Album Name');
         } else {
           reader.onload = (_event) => {
             this.authService.newAlbumPost(this.token, this.postNameElement.nativeElement.value ,this.postMesssgeElement.nativeElement.value, this.fileCovToReturn).subscribe((res) => {              

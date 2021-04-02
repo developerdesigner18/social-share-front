@@ -9,8 +9,8 @@
           <div class="pass-class">
             <input [type]="show ? 'text' : 'password'" formControlName="password" name="password" id="password" placeholder="Password">
             <div class="input-group icon-password" (click)="passShow($event)">
-                <i *ngIf="show == false" class="fa fa-eye-slash"></i>
-                <i *ngIf="show !== false" class="fa fa-eye"></i>
+                <i [ngClass]="show === false ? 'fa fa-eye-slash' : 'fa fa-eye'"></i>
+                <!-- <i *ngIf="show !== false" class="fa fa-eye"></i> -->
             </div>
             <div>
               <a class="forget-link" href="/forget">Forget Password</a>

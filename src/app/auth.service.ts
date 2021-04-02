@@ -3,14 +3,13 @@ import { Injectable, Injector } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
-// import { environment } from '../environments/environment';
-import { environment } from '../environments/environment.prod';
+import { environment } from '../environments/environment';
+// import { environment } from '../environments/environment.prod';
 
 import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
 import { User } from './user';
-import { DialogErrorComponent } from './dialog-error/dialog-error.component';
 import { DialogEmailErrorComponent } from './dialog-email-error/dialog-email-error.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { ToastrService } from 'ngx-toastr';
