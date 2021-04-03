@@ -30,13 +30,13 @@
 	            <input formControlName="password" id="password" class="form-control" type="password" placeholder="Password">
 	            <div *ngIf="isSubmitted && formControls.password.errors">
 					<div *ngIf="formControls.password.errors.required" class="error">Password is required.</div>
-                	<div *ngIf="formControls.password.errors.minlength" class="error">Password should be greter then 6 character.</div>
+                	<div *ngIf="formControls.password.errors.minlength" class="error">Password should be greter than 6 character.</div>
 	            </div>
 	        </div>
 
 	        <button type="submit" class="btn-full">Sign up</button>
 	    </form>
 		</div>
-		<div class="privacy_aggrement">By signing up, you agree to our Terms, Data Policy and Cookies Policy .</div>
+		<div class="privacy_aggrement">By signing up, you agree to our Terms, Data Policy and Cookies Policy.</div>
 	</div>
 </div>

@@ -40,7 +40,7 @@
 					<div class="badges_for_pymk position-relative" [attr.data-content]="countSuggest === 0 ? '' : countSuggest">People you may know</div>
 				</div>
 			</a>
-			<a class="my_post_links" href="#">
+			<a class="my_post_links" href="theme">
 				<div class="left_content">
 					<i class="fas fa-cog"></i>
 					<div>Customization</div>
@@ -55,7 +55,7 @@
 				        [notFoundTemplate]="notFoundTemplate">
 				    </ng-autocomplete>
 
-						<ng-template #itemTemplate let-item>
+					<ng-template #itemTemplate let-item>
 							<div class="d-flex allusers_set" style="padding-left: 15px">
 								<div class="profile_pic position-relative">
 									<img [src]="item.profileImgURl" onerror="this.src='/assets/images/character.png';">

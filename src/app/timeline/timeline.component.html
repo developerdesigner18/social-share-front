@@ -115,7 +115,8 @@
       <div (mouseleave)="!showbasicProfile3[i]=false" class="comment_user d-flex" *ngFor="let comnt of data.comment.slice().reverse(); let i = index">
         <img [src]="comnt.profile" onerror="this.src='/assets/images/character.png';">
         <div>
-          <a href="profile/{{comnt.userId}}" (mouseover)="!showbasicProfile3[i]=true"><div class="commenter">{{comnt.name | titlecase}}</div></a>
+          <a href="profile/{{comnt.userId}}" *ngIf="url_id === comnt.userId"><div class="commenter">{{comnt.name | titlecase}}</div></a>
+          <a href="profile/{{comnt.userId}}" *ngIf="url_id !== comnt.userId" (mouseover)="!showbasicProfile3[i]=true"><div class="commenter">{{comnt.name | titlecase}}</div></a>
         <div class="comment_here">{{comnt.newcomment}}</div>
       </div>		
       <div class="show_basic_info_card" (mouseleave)="showbasicProfile3[i]=false">

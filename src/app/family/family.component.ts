@@ -244,7 +244,6 @@ export class FamilyComponent implements OnInit {
   Cancel(){
     this.display5 = false
     this.status = false
-    this.family = false
   }
 
   F_Cancel(){

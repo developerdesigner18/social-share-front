@@ -225,7 +225,8 @@
 						<div (mouseleave)="!showbasicProfile3[i]=false" class="comment_user d-flex" *ngFor="let comnt of data.comment.slice().reverse(); let i = index">
 							<img [src]="comnt.profile" onerror="this.src='/assets/images/character.png';">
 							<div>
-								<a href="profile/{{comnt.userId}}" (mouseover)="!showbasicProfile3[i]=true"><div class="commenter">{{comnt.name | titlecase}}</div></a>
+								<a href="profile/{{comnt.userId}}" *ngIf="current_user['data']._id === comnt.userId" ><div class="commenter as">{{comnt.name | titlecase}}</div></a>
+								<a href="profile/{{comnt.userId}}" *ngIf="current_user['data']._id !== comnt.userId" (mouseover)="!showbasicProfile3[i]=true"><div class="commenter sa">{{comnt.name | titlecase}}</div></a>
 							<div class="comment_here">{{comnt.newcomment}}</div>
 						</div>		
 						<div class="show_basic_info_card" (mouseleave)="showbasicProfile3[i]=false">
@@ -235,8 +236,8 @@
 									<div class="basic_profile_icons">
 										<a href="profile/{{comnt.userId}}"><div style="text-transform: capitalize;" class="profile_basic_info set_redirect_link">{{comnt.name}}</div></a>
 										<div class="icons_showing_card">
-										<div class="profile_basic_info"><i class="fas fa-user-tie" style="padding-right: 10px"></i>{{comnt.designation}}</div>
-										<div class="profile_basic_info"><i class="fas fa-envelope" style="margin-right: 10px"></i>{{comnt.email}}</div>
+										<div class="profile_basic_info"><i class="fas fa-user-tie" style="padding-right: 10px"></i>{{comnt.designation ? comnt.designation : 'Not mention'}}</div>
+										<div class="profile_basic_info"><i class="fas fa-envelope" style="margin-right: 10px"></i>{{comnt.email ? comnt.email : 'Not mention'}}</div>
 									</div>	
 									</div>
 								</div>
