@@ -282,7 +282,6 @@ export class TimelineComponent implements OnInit {
           document.getElementById(postId).classList.add('fa-thumbs-o-up')
           this.temLike = likeCount - 1
           this.temLike <= 0 ? document.getElementById('count_' + postId).innerHTML = '' : document.getElementById('count_' + postId).innerHTML = String(this.temLike);
-          this.tool.pop();
           document.getElementById('like_' + postId + '_' + index).innerHTML = this.u_name ? document.getElementById('like_' + postId + '_' + index).innerHTML = '' : document.getElementById('like_' + postId + '_' + index).innerHTML = this.u_name;
         }else {
           document.getElementById(postId).classList.add('fa-thumbs-up')
@@ -296,10 +295,6 @@ export class TimelineComponent implements OnInit {
             this.temLike = this.temLike + 1
           }
           this.temLike <= 0 ? document.getElementById('count_' + postId).innerHTML = '' : document.getElementById('count_' + postId).innerHTML = String(this.temLike);
-          for (let i = 0; i < likeCount; i++) { 
-            }
-          this.tool.push(this.u_name);
-          
             document.getElementById('like_' + postId + '_' + index).innerHTML = this.u_name
         }
       }

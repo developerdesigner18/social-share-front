@@ -50,6 +50,7 @@ textarea.text-area {
   height: 100% !important;
   min-height: 50px;
   max-height: 50px;
+  resize: none;
 }
 .icons-pencil {
   display: flex;
