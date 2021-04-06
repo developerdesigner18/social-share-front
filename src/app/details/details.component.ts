@@ -68,7 +68,7 @@ export class DetailsComponent implements OnInit {
       this.icons = false
       this.authService.getAllData(this.friendid).subscribe(res => {
 
-        if (res.userData[0] === null) {
+        if (res.userData[0] == null) {
           this.not_mention_about = true
         } else if (res.userData[0].aboutYourself !== undefined) {
           this.details_about = res.userData[0].aboutYourself
@@ -77,7 +77,7 @@ export class DetailsComponent implements OnInit {
           this.not_mention_about = true
         }
 
-        if (res.userData[0] === null) {
+        if (res.userData[0] == null) {
           this.not_mention_pronun = true
         } else if (res.userData[0].pronunciation !== undefined) {
           this.pronun_value = res.userData[0].pronunciation
@@ -86,7 +86,7 @@ export class DetailsComponent implements OnInit {
           this.not_mention_pronun = true
         }
 
-        if (res.userData[0] === null) {
+        if (res.userData[0] == null) {
           this.not_mention_nickname = true
         } else if (res.userData[0].otherName !== undefined) {
           this.nickname = res.userData[0].otherName
@@ -95,7 +95,7 @@ export class DetailsComponent implements OnInit {
           this.not_mention_nickname = true
         }
 
-        if (res.userData[0] === null) {
+        if (res.userData[0] == null) {
           this.not_mention_quotes = true
         } else if (res.userData[0].quote !== undefined) {
           this.quote_value = res.userData[0].quote
@@ -111,7 +111,7 @@ export class DetailsComponent implements OnInit {
         this.icons = false
         this.authService.getAllData(id).subscribe(res => {
 
-          if (res.userData[0] === null) {
+          if (res.userData[0] == null) {
             this.not_mention_about = true
           } else if (res.userData[0].aboutYourself !== undefined) {
             this.details_about = res.userData[0].aboutYourself
@@ -120,7 +120,7 @@ export class DetailsComponent implements OnInit {
             this.not_mention_about = true
           }
 
-          if (res.userData[0] === null) {
+          if (res.userData[0] == null) {
             this.not_mention_pronun = true
           } else if (res.userData[0].pronunciation !== undefined) {
             this.pronun_value = res.userData[0].pronunciation
@@ -129,7 +129,7 @@ export class DetailsComponent implements OnInit {
             this.not_mention_pronun = true
           }
 
-          if (res.userData[0] === null) {
+          if (res.userData[0] == null) {
             this.not_mention_nickname = true
           } else if (res.userData[0].otherName !== undefined) {
             this.nickname = res.userData[0].otherName
@@ -138,7 +138,7 @@ export class DetailsComponent implements OnInit {
             this.not_mention_nickname = true
           }
 
-          if (res.userData[0] === null) {
+          if (res.userData[0] == null) {
             this.not_mention_quotes = true
           } else if (res.userData[0].quote !== undefined && res.userData[0] !== null) {
             this.quote_value = res.userData[0].quote
@@ -152,7 +152,7 @@ export class DetailsComponent implements OnInit {
         this.icons = true
         this.authService.getAllData(id).subscribe(res => {
 
-          if (res.userData[0] === null) {
+          if (res.userData[0] == null) {
             this.details = false
           } else if (res.userData[0].aboutYourself !== undefined) {
             this.details_about = res.userData[0].aboutYourself
@@ -161,7 +161,7 @@ export class DetailsComponent implements OnInit {
             this.details = false
           }
 
-          if (res.userData[0] === null) {
+          if (res.userData[0] == null) {
             this.pronun = false
           } else if (res.userData[0].pronunciation !== undefined) {
             this.pronun_value = res.userData[0].pronunciation
@@ -170,7 +170,7 @@ export class DetailsComponent implements OnInit {
             this.pronun = false
           }
 
-          if (res.userData[0] === null) {
+          if (res.userData[0] == null) {
             this.nick = false
           } else if (res.userData[0].otherName !== undefined) {
             this.nickname = res.userData[0].otherName
@@ -179,7 +179,7 @@ export class DetailsComponent implements OnInit {
             this.nick = false
           }
 
-          if (res.userData[0] === null) {
+          if (res.userData[0] == null) {
             this.quote = false
           } else if (res.userData[0].quote !== undefined) {
             this.quote_value = res.userData[0].quote

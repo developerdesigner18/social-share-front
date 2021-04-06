@@ -11,16 +11,21 @@
     border-radius: 4px;
     /* padding: 25px 0; */
 }
-.hide_theme{
-	display: none;
+
+.hide_theme {
+    display: none;
 }
-.item{
+
+.item {
     padding-top: 25px;
 }
 
-.main_post_content h6{
+.main_post_content h6 {
     font-size: 18px;
     font-weight: 400;
     color: #ff9204;
 }
 
+.ng-image-slider {
+    width: 101% !important;
+}

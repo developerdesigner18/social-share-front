@@ -4,7 +4,6 @@ import { MatDialog } from  '@angular/material/dialog';
 import { AuthService } from '../auth.service';
 import { DialogEditSuccessComponent } from '../dialog-edit-success/dialog-edit-success.component';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
-import { TimeAgoPipe } from 'time-ago-pipe';
 import { ToastrService } from 'ngx-toastr';
 declare var jQuery: any;
 declare var $: any;

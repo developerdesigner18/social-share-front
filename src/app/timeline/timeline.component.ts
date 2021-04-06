@@ -5,7 +5,6 @@ import { MatDialog} from  '@angular/material/dialog';
 import { PostModalComponent } from '../post-modal/post-modal.component';
 import { AuthService } from '../auth.service';
 import { NgImageSliderComponent } from 'ng-image-slider';
-import { ChangeDetectorRef } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 declare var jQuery: any;
 declare var $: any;
@@ -72,7 +71,6 @@ export class TimelineComponent implements OnInit {
     public authService: AuthService,
     public router: Router,
     public formBuilder: FormBuilder,
-    private cdr: ChangeDetectorRef,
     public toastr: ToastrService
   ) {
     $(".right_sidebar").css("display", "block");
@@ -109,7 +107,6 @@ export class TimelineComponent implements OnInit {
         if (this.datas.length < 10) {
           this.show_load_more = false
         }
-        // this.datas = this.dataas
         const { image, thumbImage, alt, title, name, description } = res;
         for(let i = 0; i < this.datas.length; i++){
           this.description = this.datas[i].description;

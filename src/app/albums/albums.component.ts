@@ -165,11 +165,9 @@ export class AlbumsComponent implements OnInit {
        const bstr = atob(arr[1]);
        let n = bstr.length;
        let u8arr = new Uint8Array(n);
-  
        while(n--){
            u8arr[n] = bstr.charCodeAt(n);
        }
-  
        return new File([u8arr], filename, { type: mime });
     }
   
@@ -229,7 +227,6 @@ export class AlbumsComponent implements OnInit {
           this.arrayfile = this.fileData[0]
           for (let i = 0; i < filesAmount; i++) {
             var reader = new FileReader();
-  
             reader.onload = (event:any) => {
                this.images.push(event.target.result);
             }

@@ -26,7 +26,7 @@ export class VideosComponent implements OnInit {
     if(this.router.url === '/friends/' + this.activatedRoute.parent.params['value']['id'] + '/videos'){
       this.authService.getAllPhotos(localStorage.getItem('friendId')).subscribe(res => {
         for (let i = 0; i < res.data.length; i++){ 
-          if (res.data[i].image.split('.').pop() !== 'jpg' && res.data[i].image.split('.').pop() !== 'png' && res.data[i].image.split('.').pop() !== 'jpeg' && res.data[i].image.split('.').pop() !== 'undefined') { 
+          if (res.data[i].image.split('.').pop() !== 'jpg' && res.data[i].image.split('.').pop() !== 'png' && res.data[i].image.split('.').pop() !== 'jpeg' && res.data[i].image.split('.').pop() !== 'undefined' && res.data[i].image.split('.').pop() !== 'JPG') { 
               this.urls.push(res.data[i])
               if (this.urls.length > 0) {
                 this.shows = false
@@ -38,7 +38,7 @@ export class VideosComponent implements OnInit {
       localStorage.removeItem('friendId')
       this.authService.getAllPhotos(this.id).subscribe(res => {
         for (let i = 0; i < res.data.length; i++){ 
-          if (res.data[i].image.split('.').pop() !== 'jpg' && res.data[i].image.split('.').pop() !== 'png' && res.data[i].image.split('.').pop() !== 'jpeg' && res.data[i].image.split('.').pop() !== 'undefined') { 
+          if (res.data[i].image.split('.').pop() !== 'jpg' && res.data[i].image.split('.').pop() !== 'png' && res.data[i].image.split('.').pop() !== 'jpeg' && res.data[i].image.split('.').pop() !== 'undefined' && res.data[i].image.split('.').pop() !== 'JPG') { 
             this.urls.push(res.data[i])
             if (this.urls.length > 0) {
               this.shows = false
