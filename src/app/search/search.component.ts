@@ -64,7 +64,7 @@ export class SearchComponent implements OnInit {
     })
     this.authService.getSuggestUser(this.id).subscribe(res => {
       this.countSuggest = res['data'].length
-      if (this.countSuggest === 0) { 
+      if (this.countSuggest !== 0) { 
         $(".badges_for_pymk").addClass("show_know_friend");
       } 
     })

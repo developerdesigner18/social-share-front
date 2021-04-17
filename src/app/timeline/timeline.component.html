@@ -1,150 +1,158 @@
-
 <div *ngIf="url_id === id" app-theme class="say_words position-relative timeline" style="padding-bottom: 10px !important;">
-  <input #textmsgPost type="text" placeholder=" Say something!" (click)="openTextDialog($event)" *ngIf="current_user_profile">
-  <input #textmsgPost type="text" placeholder=" Say something to {{u_name}}!" (click)="openTextDialog($event)" *ngIf="!current_user_profile">
-  <div class="slider_bid_like-share d-flex flex-column">
-    <input type="file" style="display:none" #file class="btn btn-primary" (change)="openDialog($event)" multiple="" />
-    <div class="take_action post_take_action" (click)="file.click();" title="Photos/Videos">
-      <button class="like_sec" style="display: contents;">
+    <input #textmsgPost type="text" placeholder=" Say something!" (click)="openTextDialog($event)" *ngIf="current_user_profile">
+    <input #textmsgPost type="text" placeholder=" Say something to {{u_name}}!" (click)="openTextDialog($event)" *ngIf="!current_user_profile">
+    <div class="slider_bid_like-share d-flex flex-column">
+        <input type="file" style="display:none" #file class="btn btn-primary" (change)="openDialog($event)" multiple="" />
+        <div class="take_action post_take_action" (click)="file.click();" title="Photos/Videos">
+            <button class="like_sec" style="display: contents;">
         <i class="fa fa-camera"></i>
         <div>Photos/Videos</div>
       </button>
+        </div>
     </div>
-  </div>
 </div>
 <ng-container *ngIf="notfound !== 404">
-<div app-theme *ngFor="let data of datas | slice:0:totalDisplayed; let i = index" class="main_post_content d-flex flex-column timeline" >
-  <div class="d-flex show_basic_info" style="width: 100%" >
-    <div class="profile_pic_profile position-relative">
-      <img [src]="profileImg" onerror="this.src='/assets/images/character.png';">
-    </div>
-    <div class="name_and_desc" style="width: 100%" >
-      <div class="d-flex justify-content-between align-items-center">
-        <a href="profile/{{data.userId}}"><div class="profile_name_of_poster">{{u_name}}</div></a>
-         <div *ngIf="url_id !== id" class="province d-flex align-items-center">
-          <img src="assets/images/add_ob.png">
-          <div>{{u_city ? u_city : 'city'}} {{u_state ? u_state : 'province'}}</div>
-        </div> 
-        <div *ngIf="url_id === id" class="more_options dropdown-container" tabindex="-1">
-          <div><i class="fas fa-ellipsis-v"></i></div>
-          <div class="dropdown">
-           <div> <a *ngIf="false">Edit</a> </div>
-           <div (click)="DeletePost(data._id)"> <a>Delete</a> </div>
-          </div>
+    <div app-theme *ngFor="let data of datas | slice:0:totalDisplayed; let i = index" class="main_post_content d-flex flex-column timeline">
+        <div class="d-flex show_basic_info" style="width: 100%">
+            <div class="profile_pic_profile position-relative">
+                <img [src]="profileImg" onerror="this.src='/assets/images/character.png';">
+            </div>
+            <div class="name_and_desc" style="width: 100%">
+                <div class="d-flex justify-content-between align-items-center">
+                    <a href="profile/{{data.userId}}">
+                        <div class="profile_name_of_poster">{{u_name}}</div>
+                    </a>
+                    <div *ngIf="url_id !== id" class="province d-flex align-items-center">
+                        <img src="assets/images/add_ob.png">
+                        <div>{{u_city ? u_city : 'city'}} {{u_state ? u_state : 'province'}}</div>
+                    </div>
+                    <div *ngIf="url_id === id" class="more_options dropdown-container" tabindex="-1">
+                        <div><i class="fas fa-ellipsis-v"></i></div>
+                        <div class="dropdown">
+                            <div> <a *ngIf="false">Edit</a> </div>
+                            <div (click)="DeletePost(data._id)"> <a>Delete</a> </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="color: #0F1B31;font-size: 14px;" *ngIf="data.name !== undefined">Album: {{data.name}} </div>
+                <div id="sview_{{data._id}}" class="item_desc mt-2" style="width: 100%;word-wrap: break-word;">{{data.description.length > 60 ? (data.description | slice:0:60) + '...' : data.description}}</div>
+                <div id="view_{{data._id}}" class="item_desc mt-2 desc_contain" style="word-wrap: break-word;display: none;">{{data.description}}</div>
+                <a class="view_more_{{data._id}}" id="view_more_{{data._id}}" style="color: #ff9000;cursor: pointer;text-decoration: underline;font-size: 14px;" *ngIf="data.description.length > 60" (click)="view_more(data._id)">View More</a>
+            </div>
         </div>
-      </div>
-      <div style="color: #0F1B31;font-size: 14px;" *ngIf="data.name !== undefined">Album: {{data.name}} </div>
-      <div id="sview_{{data._id}}" class="item_desc mt-2" style="width: 100%;word-wrap: break-word;">{{data.description.length > 60 ? (data.description | slice:0:60) + '...' : data.description}}</div>
-			<div id="view_{{data._id}}" class="item_desc mt-2 desc_contain" style="word-wrap: break-word;display: none;">{{data.description}}</div>
-      <a class="view_more_{{data._id}}" id="view_more_{{data._id}}" style="color: #ff9000;cursor: pointer;text-decoration: underline;font-size: 14px;" *ngIf="data.description.length > 60" (click)="view_more(data._id)">View More</a>
-    </div>
-  </div>
-  <div class="slider_bid_like-share d-flex flex-column" style="width: 100%">
-    <div class="one_image" *ngIf="data.imageUrl.length == 1">
-      <ng-image-slider [videoAutoPlay]=true  [imageSize]="{width: '100%', height: '320px'}" [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
-    </div>
-    <div *ngIf="data.imageUrl.length == 2">
-      <div class="item" >
-        <ng-image-slider [videoAutoPlay]=true [lazyLoad]="data.imageUrl" [animationSpeed]="0.3" [autoSlide]=0 [imageSize]="{width: '49%'}" [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
-      </div>
-    </div>
-    <div *ngIf="data.imageUrl.length == 3">
-      <div class="item" *ngIf="data.imageUrl[0].size == 100">
-        <ng-image-slider [videoAutoPlay]=true [lazyLoad]="data.imageUrl" [animationSpeed]="0.3" [autoSlide]=0 [imageSize]="{width: '99%'}" [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
-        <ng-image-slider [videoAutoPlay]=true [animationSpeed]="0.3" [autoSlide]=0 [imageSize]="{width: '49%', height: 200}" [showArrow]=false class="slider_image_2" [images]="data.imageUrl" #nav></ng-image-slider>
-      </div>
-    </div>
-    <div *ngIf="data.imageUrl.length == 4">
-      <div class="item">
-        <ng-image-slider [videoAutoPlay]=true [lazyLoad]="data.imageUrl" [animationSpeed]="0.3" [autoSlide]=0 [imageSize]="{width: '49%'}" [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
-        <ng-image-slider [videoAutoPlay]=true [lazyLoad]="data.imageUrl" [animationSpeed]="0.3" [autoSlide]=0 [imageSize]="{width: '49%'}" [showArrow]=false class="slider_image_4" [images]="data.imageUrl" #nav></ng-image-slider>
-      </div>
-    </div>
-    <div *ngIf="data.imageUrl.length > 4">
-      <div class="item">
-        <ng-image-slider [videoAutoPlay]=true [lazyLoad]="data.imageUrl" [animationSpeed]="0.3" [autoSlide]=0 [imageSize]="{width: '49%'}" [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
-        <ng-image-slider [videoAutoPlay]=true [lazyLoad]="data.imageUrl" [animationSpeed]="0.3" [autoSlide]=0 [imageSize]="{width: '49%'}" [showArrow]=false class="slider_image_5" [images]="data.imageUrl" title="more" #nav></ng-image-slider>
-      </div>
-    </div>
-    <div [ngClass]="current_user_profile ? 'no_share_action' : 'take_action'">
-      <button class="showLikes" (click)="likeIt(data._id, data.like.length);">
+        <div class="slider_bid_like-share d-flex flex-column" style="width: 100%">
+            <div class="one_image" *ngIf="data.imageUrl.length == 1">
+                <ng-image-slider [videoAutoPlay]=true [imageSize]="{width: '100%', height: '320px'}" [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
+            </div>
+            <div *ngIf="data.imageUrl.length == 2">
+                <div class="item">
+                    <ng-image-slider [videoAutoPlay]=true [lazyLoad]="data.imageUrl" [animationSpeed]="0.3" [autoSlide]=0 [imageSize]="{width: '49%'}" [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
+                </div>
+            </div>
+            <div *ngIf="data.imageUrl.length == 3">
+                <div class="item" *ngIf="data.imageUrl[0].size == 100">
+                    <ng-image-slider [videoAutoPlay]=true [lazyLoad]="data.imageUrl" [animationSpeed]="0.3" [autoSlide]=0 [imageSize]="{width: '99%'}" [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
+                    <ng-image-slider [videoAutoPlay]=true [animationSpeed]="0.3" [autoSlide]=0 [imageSize]="{width: '49%', height: 200}" [showArrow]=false class="slider_image_2" [images]="data.imageUrl" #nav></ng-image-slider>
+                </div>
+            </div>
+            <div *ngIf="data.imageUrl.length == 4">
+                <div class="item">
+                    <ng-image-slider [videoAutoPlay]=true [lazyLoad]="data.imageUrl" [animationSpeed]="0.3" [autoSlide]=0 [imageSize]="{width: '49%'}" [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
+                    <ng-image-slider [videoAutoPlay]=true [lazyLoad]="data.imageUrl" [animationSpeed]="0.3" [autoSlide]=0 [imageSize]="{width: '49%'}" [showArrow]=false class="slider_image_4" [images]="data.imageUrl" #nav></ng-image-slider>
+                </div>
+            </div>
+            <div *ngIf="data.imageUrl.length > 4">
+                <div class="item">
+                    <ng-image-slider [videoAutoPlay]=true [lazyLoad]="data.imageUrl" [animationSpeed]="0.3" [autoSlide]=0 [imageSize]="{width: '49%'}" [showArrow]=false class="slider_image" [images]="data.imageUrl" #nav></ng-image-slider>
+                    <ng-image-slider [videoAutoPlay]=true [lazyLoad]="data.imageUrl" [animationSpeed]="0.3" [autoSlide]=0 [imageSize]="{width: '49%'}" [showArrow]=false class="slider_image_5" [images]="data.imageUrl" title="more" #nav></ng-image-slider>
+                </div>
+            </div>
+            <div [ngClass]="current_user_profile ? 'no_share_action' : 'take_action'">
+                <button class="showLikes" (click)="likeIt(data._id, data.like.length);">
         <i class="fa" id="{{data._id}}" [ngClass]="postlikeId.includes(data._id) ? 'fa-thumbs-up': 'fa-thumbs-o-up'"></i>
         <div>Like<span id="count_{{data._id}}">{{data.like.length === 0 ? '' : data.like.length}}</span></div>
       </button>
 
-      <div class="tooltiptext" *ngIf="data.like.length > 0">
-        <div id="tooltiptexts" class="tooltiptexts" *ngFor="let like of data.like.slice().reverse(); let i = index; trackBy: trackByFn" [attr.data-index]="i">
-          <span id="like_{{data._id}}_{{i}}" [innerText]="like.name"></span>
-        </div>
-      </div>
+                <div class="tooltiptext" *ngIf="data.like.length > 0">
+                    <div id="tooltiptexts" class="tooltiptexts" *ngFor="let like of data.like.slice().reverse(); let i = index; trackBy: trackByFn" [attr.data-index]="i">
+                        <span id="like_{{data._id}}_{{i}}" [innerText]="like.name"></span>
+                    </div>
+                </div>
 
-      <button class="comment_sec_{{data._id}} comment_sec" (click)="open_comments(data._id)">
+                <button class="comment_sec_{{data._id}} comment_sec" (click)="open_comments(data._id)">
         <i class="far fa-comment-dots"></i>
         <div *ngIf="data.comment.length !== 0">Comment<span>{{data.comment.length !== 0 ? (data._id === tempPostId) ? data.comment.length + temCmnt.length : data.comment.length : ''}}</span></div>
 				<div *ngIf="data.comment.length === 0">Comment<span>{{data.comment.length === 0 ? (data._id === tempPostId) ? data.comment.length + temCmnt.length : '' :data.comment.length }}</span></div>
       </button>
-      <button class="share_sec_{{data._id}} share_sec" (click)="share(data._id)" *ngIf="!current_user_profile">
+                <button class="share_sec_{{data._id}} share_sec" (click)="share(data._id)" *ngIf="!current_user_profile">
         <i class="far fa-share"></i>
         <div>Share <span> {{data.share.length !== 0 ? data.share.length : ''}} </span> </div>
       </button>
-      <div class="sharing_container_{{data._id}} sharing_container" style="display: none;">
-        <div class="share_users">
-          <div class="user_profile" (click)="sharing(data._id, u_name)" style="cursor: pointer;">
-            <p>Share with me!</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="write_comments">
-      <form (ngSubmit)="addComments(data._id)" [formGroup]="commentsForm">
-        <input type="text" placeholder=" Write a comment...!" formControlName="newcomment">
-      </form>
-    </div>
-    <div class="comments_container_{{data._id}} comments_container" style="display: none;" *ngIf="data.comment.length > 0 || temCmnt.length > 0">
-      <div class="comment_title">Comments:</div>
-      <ng-container *ngIf="checkTem && tempPostId === data._id">
-      <div (mouseleave)="!showbasicProfile3[i]=false" class="comment_user d-flex" *ngFor="let temp of temCmnt.slice().reverse()">
-        <img [src]="profileImg" onerror="this.src='/assets/images/character.png';">
-        <div>
-          <a href="profile/{{temp.userId}}" (mouseover)="!showbasicProfile3[i]=true"></a><div class="commenter">{{u_name | titlecase}}</div>
-          <div class="comment_here">{{temp}}</div>
-        </div>
-      </div>
-      </ng-container>
-
-      <div (mouseleave)="!showbasicProfile3[i]=false" class="comment_user d-flex" *ngFor="let comnt of data.comment.slice().reverse(); let i = index">
-        <img [src]="comnt.profile" onerror="this.src='/assets/images/character.png';">
-        <div>
-          <a href="profile/{{comnt.userId}}" *ngIf="url_id === comnt.userId"><div class="commenter">{{comnt.name | titlecase}}</div></a>
-          <a href="profile/{{comnt.userId}}" *ngIf="url_id !== comnt.userId" (mouseover)="!showbasicProfile3[i]=true"><div class="commenter">{{comnt.name | titlecase}}</div></a>
-        <div class="comment_here">{{comnt.newcomment}}</div>
-      </div>		
-      <div class="show_basic_info_card" (mouseleave)="showbasicProfile3[i]=false">
-        <div class="basic_info2" *ngIf="showbasicProfile3[i]">	
-          <div class="d-flex">
-            <img [src]="comnt.profile" onerror="this.src='/assets/images/character.png';" class="hover-info-img">
-            <div class="basic_profile_icons">
-              <a href="profile/{{comnt.userId}}"><div style="text-transform: capitalize;" class="profile_basic_info set_redirect_link">{{comnt.name}}</div></a>
-              <div class="icons_showing_card">
-              <div class="profile_basic_info"><i class="fas fa-user-tie" style="padding-right: 10px"></i>{{comnt.designation ? comnt.designation : 'Designation'}}</div>
-              <div class="profile_basic_info"><i class="fas fa-envelope" style="margin-right: 10px"></i>{{comnt.email ? comnt.email : 'Email'}}</div>
-            </div>	
+                <div class="sharing_container_{{data._id}} sharing_container" style="display: none;">
+                    <div class="share_users">
+                        <div class="user_profile" (click)="sharing(data._id, u_name)" style="cursor: pointer;">
+                            <p>Share with me!</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
+            <div class="write_comments">
+                <form (ngSubmit)="addComments(data._id)" [formGroup]="commentsForm">
+                    <input type="text" placeholder=" Write a comment...!" formControlName="newcomment">
+                </form>
+            </div>
+            <div class="comments_container_{{data._id}} comments_container" style="display: none;" *ngIf="data.comment.length > 0 || temCmnt.length > 0">
+                <div class="comment_title">Comments:</div>
+                <ng-container *ngIf="checkTem && tempPostId === data._id">
+                    <div (mouseleave)="!showbasicProfile3[i]=false" class="comment_user d-flex" *ngFor="let temp of temCmnt.slice().reverse()">
+                        <img [src]="profileImg" onerror="this.src='/assets/images/character.png';">
+                        <div>
+                            <a href="profile/{{temp.userId}}" (mouseover)="!showbasicProfile3[i]=true"></a>
+                            <div class="commenter">{{u_name | titlecase}}</div>
+                            <div class="comment_here">{{temp}}</div>
+                        </div>
+                    </div>
+                </ng-container>
+
+                <div (mouseleave)="!showbasicProfile3[i]=false" class="comment_user d-flex" *ngFor="let comnt of data.comment.slice().reverse(); let i = index">
+                    <img [src]="comnt.profile" onerror="this.src='/assets/images/character.png';">
+                    <div>
+                        <a href="profile/{{comnt.userId}}" *ngIf="url_id === comnt.userId">
+                            <div class="commenter">{{comnt.name | titlecase}}</div>
+                        </a>
+                        <a href="profile/{{comnt.userId}}" *ngIf="url_id !== comnt.userId" (mouseover)="!showbasicProfile3[i]=true">
+                            <div class="commenter">{{comnt.name | titlecase}}</div>
+                        </a>
+                        <div class="comment_here">{{comnt.newcomment}}</div>
+                    </div>
+                    <div class="show_basic_info_card" (mouseleave)="showbasicProfile3[i]=false">
+                        <div class="basic_info2" *ngIf="showbasicProfile3[i]">
+                            <div class="d-flex">
+                                <img [src]="comnt.profile" onerror="this.src='/assets/images/character.png';" class="hover-info-img">
+                                <div class="basic_profile_icons">
+                                    <a href="profile/{{comnt.userId}}">
+                                        <div style="text-transform: capitalize;" class="profile_basic_info set_redirect_link">{{comnt.name}}</div>
+                                    </a>
+                                    <div class="icons_showing_card">
+                                        <div class="profile_basic_info"><i class="fas fa-user-tie" style="padding-right: 10px"></i>{{comnt.designation ? comnt.designation : 'Designation'}}</div>
+                                        <div class="profile_basic_info"><i class="fas fa-envelope" style="margin-right: 10px"></i>{{comnt.email ? comnt.email : 'Email'}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      </div>
     </div>
-  </div>
-</div>
-<div class="loads_btn">
-  <div *ngIf="show_load_more" class="load_btn" (click)="loadMore()">
-    <img class="load_more" src="../../assets/images/down-arrow.png" width="50px" height="50px" alt="load more" title="load more">
-  </div>
-</div>
+    <div class="loads_btn">
+        <div *ngIf="show_load_more" class="load_btn" (click)="loadMore()">
+            <img class="load_more" src="../../assets/images/down-arrow.png" width="50px" height="50px" alt="load more" title="load more">
+        </div>
+    </div>
 </ng-container>
 <ng-container *ngIf="notfound == 404">
-  <div class="main_post_content d-flex flex-column">
-    <h6>Not Any Posts Found</h6>
-  </div>
+    <div class="main_post_content d-flex flex-column">
+        <h6>Not Any Posts Found</h6>
+    </div>
 </ng-container>

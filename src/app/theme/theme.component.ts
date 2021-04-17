@@ -13,7 +13,7 @@ export class ThemeComponent implements OnInit {
   expiredDate: Date;
   cookieValue: string;
   value: any = ['light'];
-  // active: import("d:/Client Works/workspace/Social-share/src/theme/symbols").Theme;
+  active: import("../../theme/symbols").Theme;
   hide: boolean;
   themeChange: any;
   id: any;

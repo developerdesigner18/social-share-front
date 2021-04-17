@@ -414,7 +414,7 @@ body .profile_pic_main_tabs_sec .actions {
 
 .main_area {
     flex: 2.5;
-    margin: 0 25px;
+    margin: 0 24px;
     /* margin-right: 0; */
 }
 
@@ -620,6 +620,11 @@ a div {
 .all_notification {
     background-color: aliceblue;
     border-radius: 4px;
+    border-bottom: 1px solid #ff9000;
+}
+
+.notifiy>div {
+    align-items: center;
 }
 
 .say_words {
