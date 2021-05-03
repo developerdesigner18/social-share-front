@@ -73,7 +73,7 @@ export class TimelineComponent implements OnInit {
     public formBuilder: FormBuilder,
     public toastr: ToastrService
   ) {
-    $(".right_sidebar").css("display", "block");
+    // $(".right_sidebar").css("display", "block");
     
     this.totalDisplayed = 10;
 

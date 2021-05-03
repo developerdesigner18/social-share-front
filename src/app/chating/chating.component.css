@@ -3,29 +3,37 @@ header {
     padding: 15px 0;
     position: unset;
 }
+
 .header_alignment {
     width: 95vw;
     margin: auto;
 }
-header .logo, .login_container {
+
+header .logo,
+.login_container {
     flex: 1;
 }
+
 .logo {
     width: 60%;
 }
-.main_container{
+
+.main_container {
     width: 100%;
     background: #ffffff;
     margin: 0;
     height: 100%;
 }
+
 .logo {
     margin-left: 0px;
 }
+
 a {
     text-decoration: none;
     color: white;
 }
+
 header .ads {
     flex: 2.5;
     background-color: #f0f8ff1c;
@@ -35,6 +43,7 @@ header .ads {
     color: #f0f8ff;
     height: 70px;
 }
+
 .login_container {
     text-align: right;
 }
@@ -46,6 +55,7 @@ header .ads {
     border-radius: 4px;
     margin: 10px 0 10px 0;
 }
+
 img.logout {
     width: 18%;
     position: absolute;
@@ -54,6 +64,7 @@ img.logout {
     bottom: 0;
     margin: auto;
 }
+
 .login_container button {
     background: #FF900000;
     border: 0;
@@ -63,69 +74,120 @@ img.logout {
     font-size: 14px;
     margin-left: 20px;
 }
-.chat-panel{
+
+.chat-panel {
     display: flex;
 }
+
 .name_section {
     display: block;
     width: 100%;
     padding-right: 20px;
 }
+
 .message_section {
     width: 100%;
     display: block;
 }
+
 .name_section div {
     display: flex;
     align-items: center;
 }
 
+
 /* Chat containers */
+
 .container {
     border: 2px solid #dedede;
     background-color: #f1f1f1;
     border-radius: 5px;
     padding: 10px;
     margin: 10px 0;
-  }
-  
-  /* Darker chat container */
-  .darker {
+}
+
+
+/* Darker chat container */
+
+.darker {
     border-color: #ccc;
     background-color: #ddd;
-  }
-  
-  /* Clear floats */
-  .container::after {
+}
+
+
+/* Clear floats */
+
+.container::after {
     content: "";
     clear: both;
     display: table;
-  }
-  
-  /* Style images */
-  .container img {
+}
+
+
+/* Style images */
+
+.container img {
     float: left;
     max-width: 60px;
     width: 100%;
     margin-right: 20px;
     border-radius: 50%;
-  }
-  
-  /* Style the right image */
-  .container img.right {
+}
+
+
+/* Style the right image */
+
+.container img.right {
     float: right;
     margin-left: 20px;
-    margin-right:0;
-  }
-  
-  /* Style time text */
-  .time-right {
+    margin-right: 0;
+}
+
+
+/* Style time text */
+
+.time-right {
     float: right;
     color: #aaa;
-  }
-  
-  /* Style time text */
-  .time-left {
+}
+
+
+/* Style time text */
+
+.time-left {
     float: left;
     color: #999;
-  }  
+}
+
+.chat-messages-show-container {
+    background: #c3c3c3;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+
+.chat-messages-show-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.chat-messages-create-container {
+    background: #616161;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+.chat-messages-create-input {
+    padding: 12px;
+    margin: 29px 30px;
+    flex: 2
+}
+
+.chat-messages-create-button {
+    height: 50px;
+    margin: auto 40px;
+    width: 100px;
+}

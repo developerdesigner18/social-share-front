@@ -30,7 +30,7 @@ export class OverviewComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     public router: Router
   ) {
-    $(".right_sidebar").css("display", "block");
+    // $(".right_sidebar").css("display", "block");
     if (this.router.url == '/friends/' + this.activatedRoute.parent.parent.params['value']['id'] + '/about/overview') {
       this.friendid = localStorage.getItem('friendId')
       this.authService.getProfileforAbout(this.friendid).subscribe(res => {

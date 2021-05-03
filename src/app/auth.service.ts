@@ -881,6 +881,16 @@ export class AuthService {
     )
   }
 
+  //Insert Messages
+  insertMsg(message, sender, senderID, recieverID): Observable<any> {
+    return this.httpClient.post(`${environment.apiUrl}/api/chat/insertMsg`, { message: message, sender: sender, senderID: senderID, recieverID: recieverID }).pipe(
+      map((res: Response) => {
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
   private handleError(error: HttpErrorResponse) {
     let msg = '';
     if (error.error.message == 'friend request already sent or recive either you are already friends') {

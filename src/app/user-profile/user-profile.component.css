@@ -1444,9 +1444,9 @@ button.show_more_notifications {
         margin: 0 !important;
         margin-left: 22px !important;
     }
-    .main_action button {
+    /* .main_action button {
         display: none;
-    }
+    } */
     .right_sidebar>div {
         display: none;
     }

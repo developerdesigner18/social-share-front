@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog} from  '@angular/material/dialog';
@@ -29,6 +29,7 @@ export class PhotosComponent implements OnInit {
   public frd_datas: any = [];
 
   public datas;
+  totalDisplay: number;
  
   constructor(
     public authService: AuthService,
@@ -37,10 +38,10 @@ export class PhotosComponent implements OnInit {
     public dialog: MatDialog,
     public toastr: ToastrService
   ) {
-    $(".right_sidebar").css("display", "block");
+    // $(".right_sidebar").css("display", "block");
     this.token = localStorage.getItem('currentUser')
     this.id = this.activatedRoute.parent.params['value']['id'];
-    
+    this.totalDisplay = 3;
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.user = currentUser.data._id
     
@@ -71,6 +72,7 @@ export class PhotosComponent implements OnInit {
       localStorage.removeItem('friendId')
       this.album_show = true
       this.authService.getAllPhotos(this.id).subscribe(res => {
+        console.log('res',res);
         for (let i = 0; i < res.data.length; i++){ 
           if (res.data[i].image.split('.').pop() !== 'mp4') { 
             this.urls.push(res.data[i])
@@ -86,6 +88,18 @@ export class PhotosComponent implements OnInit {
         } 
       })
     }
+  }
+
+  @HostListener("window:scroll", [])
+  onScroll(): void {
+    if (this.bottomReached()) {
+      this.totalDisplay += 3;
+      console.log('yup')
+    }
+  }
+
+  bottomReached(): boolean {
+    return (window.innerHeight + window.scrollY) >= document.body.offsetHeight;
   }
   
   delAlbum(album_id: any, album_name: any) {

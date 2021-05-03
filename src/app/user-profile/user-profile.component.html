@@ -1,193 +1,192 @@
 <app-header></app-header>
 
 <div class="cover_pic" [ngStyle]="{ 'background-image': 'url(' + imageCov + ')', 'background-size': 'cover'}">
-		<div class="main_action">
-			<button class="position-relative cover-set" data-toggle="modal" data-target="#covermodel" *ngIf="current_user_profile"><i class="fa fa-camera"></i>Add Cover Photo</button>
-		</div>
+    <div class="main_action">
+        <button class="position-relative cover-set" data-toggle="modal" data-target="#covermodel" *ngIf="current_user_profile"><i class="fa fa-camera"></i>Add Cover Photo</button>
+    </div>
 </div>
 <div class="bg-white profile_navbar">
-	<div class="profile_pic_main_tabs_sec width_95">
-		<div class="profile_pic position-relative profile_edit">
-				<div class="profile-pic-icon">
-					<img [src]="previewUrl" onerror="this.src='/assets/images/character.png';">
-					<i class="fa fa-camera" title="Upload Profile Photo" id="OpenImgUpload" data-toggle="modal" data-target="#profilemodel" *ngIf="current_user_profile"></i>
-				</div>
-			<div class="profile_name">{{name}}</div>
-		</div>
+    <div class="profile_pic_main_tabs_sec width_95">
+        <div class="profile_pic position-relative profile_edit">
+            <div class="profile-pic-icon">
+                <img [src]="previewUrl" onerror="this.src='/assets/images/character.png';">
+                <i class="fa fa-camera" title="Upload Profile Photo" id="OpenImgUpload" data-toggle="modal" data-target="#profilemodel" *ngIf="current_user_profile"></i>
+            </div>
+            <div class="profile_name">{{name}}</div>
+        </div>
 
-		<div name="top" class="actions" id="myTopnav">
-			<a [routerLink]="['timeline']"><button id="timeline" [routerLinkActive]="['active_tabs']">Timeline</button></a>
-			<a [routerLink]="['about']"><button id="about" [routerLinkActive]="['active_tabs']">About</button></a>
-			<a [routerLink]="['photos']"><button id="photos" [routerLinkActive]="['active_tabs']">Photos</button></a>
-			<a [routerLink]="['videos']"><button id="videos" [routerLinkActive]="['active_tabs']">Videos</button></a>
-			<a [routerLink]="['friends']"><button id="friends" [routerLinkActive]="['active_tabs']">Friends</button></a>
-			<a *ngIf="cur_user === ids" [routerLink]="['notifications']"><button id="notifications" [routerLinkActive]="['active_tabs']">Notification</button></a>
-		</div>
-		<div class="main_action"></div>
-	</div>
+        <div name="top" class="actions" id="myTopnav">
+            <a [routerLink]="['timeline']"><button id="timeline" [routerLinkActive]="['active_tabs']">Timeline</button></a>
+            <a [routerLink]="['about']"><button id="about" [routerLinkActive]="['active_tabs']">About</button></a>
+            <a [routerLink]="['photos']"><button id="photos" [routerLinkActive]="['active_tabs']">Photos</button></a>
+            <a [routerLink]="['videos']"><button id="videos" [routerLinkActive]="['active_tabs']">Videos</button></a>
+            <a [routerLink]="['friends']"><button id="friends" [routerLinkActive]="['active_tabs']">Friends</button></a>
+            <a *ngIf="cur_user === ids" [routerLink]="['notifications']"><button id="notifications" [routerLinkActive]="['active_tabs']">Notification</button></a>
+            <a *ngIf="cur_user === ids" href="chating/{{ids}}"><button id="notifications" [routerLinkActive]="['active_tabs']">Messages</button></a>
+
+        </div>
+        <div class="main_action"></div>
+    </div>
 </div>
 
 <div class="main d-flex">
-	<div class="left_sidebar">
-		<div class="intro">
-			<div class="left_title w_90">Intro</div>
-			<div class="some_words w_90">I Do not know how? But i believe that it is possible one day if i stay with my dream all time!</div>
-			<div class="info_container w_90 d-flex align-items-center">
-				<i class="fas fa-briefcase"></i>
-				<div #designation>{{u_designation ? u_designation : 'Designation'}}</div>
-			</div>
+    <div class="left_sidebar">
+        <div class="intro">
+            <div class="left_title w_90">Intro</div>
+            <div class="some_words w_90">I Do not know how? But i believe that it is possible one day if i stay with my dream all time!</div>
+            <div class="info_container w_90 d-flex align-items-center">
+                <i class="fas fa-briefcase"></i>
+                <div #designation>{{u_designation ? u_designation : 'Designation'}}</div>
+            </div>
 
-			<div class="info_container w_90 d-flex align-items-center">
-				<i class="fas fa-globe"></i>
-				<div #country>{{u_country ? u_country : 'Country'}}</div>
-			</div>
+            <div class="info_container w_90 d-flex align-items-center">
+                <i class="fas fa-globe"></i>
+                <div #country>{{u_country ? u_country : 'Country'}}</div>
+            </div>
 
-			<div class="info_container w_90 d-flex align-items-center">
-				<i class="fa fa-map"></i>
-				<div #state>{{u_state ? u_state : 'Province'}}</div>
-			</div>
-			<div class="info_container w_90 d-flex align-items-center">
-				<i class="fas fa-map-marker-alt"></i>
-				<div #city>{{u_city ? u_city : 'City'}}</div>
-			</div>
-			<div class="info_container w_90 d-flex align-items-center">
-				<i class="fas fa-grin-hearts"></i>
-				<div #hobbies>{{u_hobbies ? u_hobbies : 'Hobbies'}}</div>
-				<div *ngIf="u_hobbies.length == undefined || u_hobbies.length == 0 || u_hobbies == ''">Hobbies</div>
-			</div>
-			<div class="info_container w_90 d-flex align-items-center">
-				<i class="fas fa-stopwatch"></i>
-				<div>Joined on {{newDate | date:"dd MMMM yyyy"}}</div>
-			</div>
-			<button class="edit-button" (click)="openDialog()" *ngIf="current_user_profile">Edit Details</button>
-		</div>
-		<div class="photos">
-			<div class="left_title w_90">Photos</div>
-			<div class="photos_container w_90" *ngIf="onlyImg">
-				<div *ngFor="let img of onlyImg | slice:0:12;">
-					<img [src]="img">
-				</div>
-			</div>
-			<div class="photos_container_all w_100 see-all-images" *ngIf="onlyImg.length > 12">
-				<button onclick="document.body.scrollTop=500;document.documentElement.scrollTop=500;event.preventDefault()" class="edit-button see-all-button" [routerLink]="['photos']">See All</button>
-			</div>
-			<div class="a_photos" *ngIf="notfound == 404" style="color: #0F1B31">
-				<h6>No photos</h6>
-			</div>
-		</div>
-		<div class="Friends">
-			<div class="left_title w_90">Friends</div>
-			<div class="friends_container w_90" *ngIf="frdDetails">
-				<div class="a_friend" *ngFor="let frddetail of frdDetails | slice:0:9; let i = index">
-					<img [src]="frddetail.profileImgURl" onerror="this.src='/assets/images/character.png';">
-					<a href="profile/{{frddetail._id}}"> <div>{{frddetail.name}}</div></a>
-				</div>
-			</div>
-			<div class="photos_container_all w_100 see-all-images" *ngIf="frdDetails.length > 9">
-				<button onclick="document.body.scrollTop=500;document.documentElement.scrollTop=500;event.preventDefault()" class="edit-button see-all-button" [routerLink]="['friends']">See All</button>
-			</div>
-			<div *ngIf="notAnyFrd">
-				<div class="a_friend">
-					<div><h6>No Friends</h6></div>
-				</div>
-			</div>
-		</div>
-	</div>
+            <div class="info_container w_90 d-flex align-items-center">
+                <i class="fa fa-map"></i>
+                <div #state>{{u_state ? u_state : 'Province'}}</div>
+            </div>
+            <div class="info_container w_90 d-flex align-items-center">
+                <i class="fas fa-map-marker-alt"></i>
+                <div #city>{{u_city ? u_city : 'City'}}</div>
+            </div>
+            <div class="info_container w_90 d-flex align-items-center">
+                <i class="fas fa-grin-hearts"></i>
+                <div #hobbies>{{u_hobbies ? u_hobbies : 'Hobbies'}}</div>
+                <div *ngIf="u_hobbies.length == undefined || u_hobbies.length == 0 || u_hobbies == ''">Hobbies</div>
+            </div>
+            <div class="info_container w_90 d-flex align-items-center">
+                <i class="fas fa-stopwatch"></i>
+                <div>Joined on {{newDate | date:"dd MMMM yyyy"}}</div>
+            </div>
+            <button class="edit-button" (click)="openDialog()" *ngIf="current_user_profile">Edit Details</button>
+        </div>
+        <div class="photos">
+            <div class="left_title w_90">Photos</div>
+            <div class="photos_container w_90" *ngIf="onlyImg">
+                <div *ngFor="let img of onlyImg | slice:0:12;">
+                    <img [src]="img">
+                </div>
+            </div>
+            <div class="photos_container_all w_100 see-all-images" *ngIf="onlyImg.length > 12">
+                <button onclick="document.body.scrollTop=500;document.documentElement.scrollTop=500;event.preventDefault()" class="edit-button see-all-button" [routerLink]="['photos']">See All</button>
+            </div>
+            <div class="a_photos" *ngIf="notfound == 404" style="color: #0F1B31">
+                <h6>No photos</h6>
+            </div>
+        </div>
+        <div class="Friends">
+            <div class="left_title w_90">Friends</div>
+            <div class="friends_container w_90" *ngIf="frdDetails">
+                <div class="a_friend" *ngFor="let frddetail of frdDetails | slice:0:9; let i = index">
+                    <img [src]="frddetail.profileImgURl" onerror="this.src='/assets/images/character.png';">
+                    <a href="profile/{{frddetail._id}}">
+                        <div>{{frddetail.name}}</div>
+                    </a>
+                </div>
+            </div>
+            <div class="photos_container_all w_100 see-all-images" *ngIf="frdDetails.length > 9">
+                <button onclick="document.body.scrollTop=500;document.documentElement.scrollTop=500;event.preventDefault()" class="edit-button see-all-button" [routerLink]="['friends']">See All</button>
+            </div>
+            <div *ngIf="notAnyFrd">
+                <div class="a_friend">
+                    <div>
+                        <h6>No Friends</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-	<div class="main_area">
-		<router-outlet></router-outlet>
-	</div>
+    <div class="main_area">
+        <router-outlet></router-outlet>
+    </div>
 
-	<div *ngIf="cur_user === ids && display" class="right_sidebar">
-		<div class="notification_sec" >
-			<div class="right_title w_90">Recent Notification</div>
-			
-			<div class="all_notification w_90" *ngFor="let data of notif_data | slice:0:5;">
-				<div class="notifiy w_90 d-flex flex-column">
-					<div class="d-flex">
-						<img [src]="data.userprofile" onerror="this.src='../../assets/images/character.png'" >
-						<div class="notify_content">{{data.content | titlecase}}</div>
-					</div>
-					<div class="time_ago">{{data.date | timeago}}</div>
-				</div>
-			</div> 
-			<button *ngIf="notif_data.length > 5" class="show_more_notifications" [routerLink]="['notifications']">Show More Notifications</button>
-		</div>
-	</div>
+    <div *ngIf="cur_user === ids && display" class="right_sidebar">
+        <div class="notification_sec">
+            <div class="right_title w_90">Recent Notification</div>
+
+            <div class="all_notification w_90" *ngFor="let data of notif_data | slice:0:5;">
+                <div class="notifiy w_90 d-flex flex-column">
+                    <div class="d-flex">
+                        <img [src]="data.userprofile" onerror="this.src='../../assets/images/character.png'">
+                        <div class="notify_content">{{data.content | titlecase}}</div>
+                    </div>
+                    <div class="time_ago">{{data.date | timeago}}</div>
+                </div>
+            </div>
+            <button *ngIf="notif_data.length > 5" class="show_more_notifications" [routerLink]="['notifications']">Show More Notifications</button>
+        </div>
+    </div>
 </div>
 
 
 <!-- Modal For Profile Photo Upload -->
 <div class="modal fade" id="profilemodel" tabindex="-1" role="dialog" aria-labelledby="profilemodelLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document" style="max-width: 60%;">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="profilemodelLabel">Upload Profile Picture</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <div class="modal-dialog" role="document" style="max-width: 60%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="profilemodelLabel">Upload Profile Picture</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-      </div>
-      <div class="modal-body" id="modelBodyImg" style="display: flex; align-items: center !important; margin-bottom: 20px;">
-				<input type="file" style="display:none" #file class="btn btn-primary" (change)="fileChangeEvent($event);showImageCrop()" />
-				<button type="button" class="btn btn-primary" (click)="file.click();" style="position: absolute; top: 10px;">Upload Image</button>
-				<div class="text-center col-md-6" *ngIf="imgeDiv && show" style="margin-top: 50px;">
-						<image-cropper
-						[imageChangedEvent]="imageChangedEvent"
-						[roundCropper]=true
-						[maintainAspectRatio]="true"
-						[aspectRatio]="4 / 4"
-						[resizeToWidth]="256"
-						format="png"
-						(imageCropped)="imageCropped($event)"
-						(imageLoaded)="imageLoaded()"
-						(cropperReady)="cropperReady()"
-						(loadImageFailed)="loadImageFailed()"></image-cropper>
-				</div>
-				<div class="text-center col-md-6" *ngIf="imgeDiv && show" style="margin-top: 50px;">
-						<img id="croppedimg" [src]="croppedImage" onerror="this.src='/assets/images/character.png';" class="preview_circle" >
-				</div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="resetModel()">Close</button>
-        <button type="button" class="btn btn-primary" (click)="uploadPic()" data-dismiss="modal">Save changes</button>
-      </div>
+            </div>
+            <!-- <div class="modal-body" id="modelBodyImg" style="display: flex; align-items: center !important; margin-bottom: 20px;">
+                <input type="file" style="display:none" #file class="btn btn-primary" (change)="fileChangeEvent($event);showImageCrop()" />
+                <button type="button" class="btn btn-primary" (click)="file.click();" style="position: absolute; top: 10px;">Upload Image</button>
+                <div class="text-center col-md-6" *ngIf="imgeDiv && show" style="margin-top: 50px;">
+                    <image-cropper [imageChangedEvent]="imageChangedEvent" [roundCropper]=true [maintainAspectRatio]="true" [aspectRatio]="4 / 4" [resizeToWidth]="256" format="png" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()" (cropperReady)="cropperReady()"
+                        (loadImageFailed)="loadImageFailed()"></image-cropper>
+                </div>
+                <div class="text-center col-md-6" *ngIf="imgeDiv && show" style="margin-top: 50px;">
+                    <img id="croppedimg" [src]="croppedImage" onerror="this.src='/assets/images/character.png';" class="preview_circle">
+                </div>
+            </div> -->
+            <div class="modal-body" id="modelBodyImg">
+                <input type="file" style="display:none" #file class="btn btn-primary" (change)="fileChangeEvent($event);showImageCrop()" />
+                <button type="button" class="btn btn-primary" (click)="file.click();" style="position: absolute; top: 10px;">Upload Image</button>
+                <div class="text-center col-md-6" *ngIf="imgeDiv" style="margin-top: 50px;">
+                    <image-cropper [imageChangedEvent]="imageChangedEvent" [roundCropper]=true [maintainAspectRatio]="true" [aspectRatio]="4 / 4" [resizeToWidth]="256" format="png" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()" (cropperReady)="cropperReady()"
+                        (loadImageFailed)="loadImageFailed()"></image-cropper>
+                </div>
+                <div class="text-center col-md-6" *ngIf="imgeDiv" style="margin-top: 50px;">
+                    <img [src]="croppedImage" onerror="this.src='/assets/images/character.png';" class="preview_circle">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="resetModel()">Close</button>
+                <button type="button" class="btn btn-primary" (click)="uploadPic()" data-dismiss="modal">Save changes</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 <!-- Modal For Cover Photo Upload -->
 <div class="modal fade" id="covermodel" tabindex="-1" role="dialog" aria-labelledby="covermodelLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document" style="max-width: 60%;">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="covermodelLabel">Upload Cover Photo</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <div class="modal-dialog" role="document" style="max-width: 60%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="covermodelLabel">Upload Cover Photo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-      </div>
-      <div class="modal-body" style="margin-bottom: 20px;">
-				<input type="file" style="display:none" #file class="btn btn-primary" (change)="fileCovChangeEvent($event);showImageCrop()" />
-				<button type="button" class="btn btn-primary" (click)="file.click();" style="position: absolute; top: 10px;">Upload Image</button>
-				<div class="text-center col-md-12" *ngIf="imgeDiv" style="margin-top: 50px;">
-						<image-cropper
-						[imageChangedEvent]="imageChangedEvent"
-						[maintainAspectRatio]="true"
-						[aspectRatio]="4 / 1"
-						[resizeToWidth]="1520"
-						format="png"
-						(imageCropped)="covImageCropped($event)"
-						(imageLoaded)="imageLoaded()"
-						(cropperReady)="cropperReady()"
-						(loadImageFailed)="loadImageFailed()"></image-cropper>
-				</div>
-				<div class="text-center col-md-12" *ngIf="imgeDiv" style="margin-top: 50px;">
-						<img [src]="croppedCovImage" onerror="this.src='/assets/images/character.png';" style="height: 210px; width: 100%;">
-				</div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="resetModel()">Close</button>
-        <button type="button" class="btn btn-primary" (click)="uploadCov()" data-dismiss="modal">Save changes</button>
-      </div>
+            </div>
+            <div class="modal-body" style="margin-bottom: 20px;">
+                <input type="file" style="display:none" #file class="btn btn-primary" (change)="fileCovChangeEvent($event);showImageCrop()" />
+                <button type="button" class="btn btn-primary" (click)="file.click();" style="position: absolute; top: 10px;">Upload Image</button>
+                <div class="text-center col-md-12" *ngIf="imgeDiv" style="margin-top: 50px;">
+                    <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="4 / 1" [resizeToWidth]="1520" format="png" (imageCropped)="covImageCropped($event)" (imageLoaded)="imageLoaded()" (cropperReady)="cropperReady()" (loadImageFailed)="loadImageFailed()"></image-cropper>
+                </div>
+                <div class="text-center col-md-12" *ngIf="imgeDiv" style="margin-top: 50px;">
+                    <img [src]="croppedCovImage" onerror="this.src='/assets/images/character.png';" style="height: 210px; width: 100%;">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="resetModel()">Close</button>
+                <button type="button" class="btn btn-primary" (click)="uploadCov()" data-dismiss="modal">Save changes</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>

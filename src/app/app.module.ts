@@ -70,6 +70,8 @@ import { InformationComponent } from './information/information.component';
 import { LazyLoadImageModule, LAZYLOAD_IMAGE_HOOKS, ScrollHooks } from 'ng-lazyload-image';
 import { NguiInComponent } from './ngui-in/ngui-in.component';
 import { ChatingComponent } from './chating/chating.component';
+import { SocketioService } from './socketio.service';
+//socketio
 
 
 @NgModule({
@@ -154,7 +156,8 @@ import { ChatingComponent } from './chating/chating.component';
       provide: LAZYLOAD_IMAGE_HOOKS,
       useClass: ScrollHooks
     },
-    CookieService
+    CookieService,
+    SocketioService
   ],
   bootstrap: [AppComponent]
 })

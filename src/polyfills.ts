@@ -56,8 +56,10 @@
  * Zone JS is required by default for Angular itself.
  */
 import 'zone.js/dist/zone';  // Included with Angular CLI.
+import 'hammerjs/hammer'; //
+// Add global to window, assigning the value of window itself.
 
-
+(window as any).global = window;
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */

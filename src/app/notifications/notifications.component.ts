@@ -20,7 +20,7 @@ export class NotificationsComponent implements OnInit {
     public authService: AuthService,
     private activatedRoute: ActivatedRoute,
   ) {
-    $(".right_sidebar").css("display", "none");
+    // $(".right_sidebar").css("display", "none");
     const current_login_User = JSON.parse(localStorage.getItem('currentUser'));
     this.id = current_login_User.data._id
 
