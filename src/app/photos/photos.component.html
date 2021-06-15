@@ -14,17 +14,17 @@
                     </div>
                 </div>
             </div>
-            <ng-container *ngIf="!shows ||urls.length === 0">
+            <ng-container *ngIf="shows">
                 <div class="main_post_content d-flex flex-column" style="color: #0F1B31">
-                    <h6>Sorry but user not uploaded any photos</h6>
+                    <h6>{{shows}}</h6>
                 </div>
             </ng-container>
         </div>
         <div class="tab-pane fade" id="album">
             <div class="container">
                 <div class="main_area_contents">
-                    <div class="album_nulls" *ngIf="!shows || album_urls.length === 0">
-                        <p>Oops User doesn't have any albums</p>
+                    <div class="album_nulls" *ngIf="album && !album_show">
+                        <p>{{album}}</p>
                     </div>
                     <div class="write_words position-relative">
                         <div *ngIf="album_show && user === id" class="show_images" (click)="openTextDialog($event)">

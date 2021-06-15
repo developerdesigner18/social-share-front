@@ -1,12 +1,11 @@
-
 <ng-container *ngIf="!shows">
-    <div class="item">     
-        <ng-image-slider [videoAutoPlay]=true [imageSize]="{width: '32.50 %', space: 3}" [videoAutoPlay]="true" [showArrow]=false [animationSpeed]="0.5" class="slider_image_photos" [images]="urls"></ng-image-slider>
+    <div class="item">
+        <ng-image-slider [videoAutoPlay]=true [imageSize]="{width: '32.50 %', space: 3}" [videoAutoPlay]="true" [showArrow]=false [animationSpeed]="0.5" class="slider_image_photos" [images]="urls | slice:0:totalDisplay"></ng-image-slider>
     </div>
 </ng-container>
 
 <ng-container *ngIf="shows">
     <div class="main_post_content d-flex flex-column" style="color: #0F1B31">
-      <h6>Sorry but user not uploaded any videos</h6>
+        <h6>{{shows}}</h6>
     </div>
 </ng-container>

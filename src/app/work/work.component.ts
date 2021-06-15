@@ -26,18 +26,18 @@ export class WorkComponent implements OnInit {
   show_work: boolean
   u_fill_work: boolean
   icons = false;
-  not_mention_work = false;
+  not_mention_work: any;
   dataId: any;
   data_id: any;
   fill_university = false;
   show_university: boolean
   u_fill_university: boolean
-  not_mention_university = false
+  not_mention_university: any;
   university_id: any;
   fill_school = false;
   show_school: boolean
   u_fill_school: boolean
-  not_mention_school = false
+  not_mention_school: any;
   school_id: any;
   university_show = true;
   school_show = true;
@@ -55,8 +55,8 @@ export class WorkComponent implements OnInit {
         this.current_user_profile = false
         this.icons = false
         this.authService.getAllData(this.friendid).subscribe(res => { 
-          if (res.userData[0] == null) {
-            this.not_mention_work = true
+          if (!res['success']) {
+            this.not_mention_work = "Work"
             this.working = false
           } else if (res.userData[0].work.length > 0) {   
             this.get_works = res.userData[0].work
@@ -64,31 +64,31 @@ export class WorkComponent implements OnInit {
             this.working = false
           } else {
             this.working = false
-            this.not_mention_work = true
+            this.not_mention_work = "Work"
           }
 
-          if (res.userData[0] == null) {
+          if (!res['success']) {
             this.university_show = false
-            this.not_mention_university = true
+            this.not_mention_university = "University"
           } else if (res.userData[0].university.length > 0) {   
             this.get_university = res.userData[0].university
             this.show_university = true 
             this.university_show = false
           } else {
             this.university_show = false
-            this.not_mention_university = true
+            this.not_mention_university = "University"
           }
 
-          if (res.userData[0] == null) {
+          if (!res['success']) {
             this.school_show = false
-            this.not_mention_school = true
+            this.not_mention_school = "School"
           } else if (res.userData[0].highSchool.length > 0) {   
             this.get_school = res.userData[0].highSchool
             this.show_school = true 
             this.school_show = false
           } else {
             this.school_show = false
-            this.not_mention_school = true
+            this.not_mention_school = "School"
           }
         })
       })
@@ -101,46 +101,48 @@ export class WorkComponent implements OnInit {
         this.current_user_profile = false
         this.icons = false
         this.authService.getAllData(id).subscribe(res => { 
-          if (res.userData[0] == null) {
+          if (!res['success']) {
             this.working = false
-            this.not_mention_work = true
+            this.not_mention_work = "Work"
           } else if (res.userData[0].work.length > 0) {   
             this.get_works = res.userData[0].work
             this.show_work = true 
             this.working = false
           } else {
             this.working = false
-            this.not_mention_work = true
+            this.not_mention_work = "Work"
           }
 
-          if (res.userData[0] == null) {
+          if (!res['success']) {
             this.university_show = false
-            this.not_mention_university = true
+            this.not_mention_university = "University"
           } else if (res.userData[0].university.length > 0) {   
             this.get_university = res.userData[0].university
             this.show_university = true 
             this.university_show = false
           } else {
             this.university_show = false
-            this.not_mention_university = true
+            this.not_mention_university = "University"
           }
 
-          if (res.userData[0] == null) {
+          if (!res['success']) {
             this.school_show = false
-            this.not_mention_school = true
+            this.not_mention_school = "School"
           } else if (res.userData[0].highSchool.length > 0) {   
             this.get_school = res.userData[0].highSchool
             this.show_school = true 
             this.school_show = false
           } else {
             this.school_show = false
-            this.not_mention_school = true
+            this.not_mention_school = "School"
           }
         })
       } else {
 
         this.authService.getAllData(id).subscribe(res => {
+
           this.icons = true
+          if(res['success']){
           if (res.userData[0].work !== undefined && res.userData[0] !== null) {
             this.get_works = res.userData[0].work
             this.dataId = res.userData[0].work.map((_id) => _id._id[0])
@@ -165,6 +167,9 @@ export class WorkComponent implements OnInit {
           } else {
             this.work = false
           }
+        } else {
+          console.log("res", res)
+        }
         })
       }
     }

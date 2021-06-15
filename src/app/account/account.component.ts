@@ -14,7 +14,6 @@ export class AccountComponent implements OnInit {
   @ViewChild('nameText') nameTextElement: any;
   constructor(
   ) {
-    // $(".hide_theme").css("display", "none");
   }
   ngOnInit(): void {
   }

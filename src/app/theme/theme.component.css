@@ -1,3 +1,4 @@
+
 .main,
 body {
     background: var(--background);
@@ -51,7 +52,7 @@ body {
     display: none;
 }
 
-.left_sidebars,
+/*.left_sidebars,
 .right_sidebar>div,
 .main_area_contents,
 .write_comments,
@@ -59,7 +60,7 @@ body {
 .item_desc {
     background: var(--background) !important;
     color: var(--on-background);
-}
+}*/
 
 
 /* .put_ads_here{

@@ -8,6 +8,18 @@
 .hide_theme {
     display: none;
 }
+div#tooltiptexts p {
+    margin: 0 !important;
+}
+.tooltiptext p {
+    margin: 0;
+    color: #000;
+}
+.main_post_content {
+    padding: 25px 20px !important;
+    /* overflow: hidden; */
+    margin-top: 25px;
+}
 
 .write_words input::placeholder {
     color: #616161 !important;
@@ -953,7 +965,7 @@ a {
     font-size: 20px;
     margin-right: 10px;
     font-weight: 600;
-    color: #fd9000;
+    /* color: #fd9000; */
 }
 
 .take_action>button span {
@@ -1679,6 +1691,21 @@ a.my_post_links:hover div>div {
     }
 }
 
+@media (max-width: 767px) {
+    .main_container {
+        flex-direction: column;
+    }
+    .left_sidebars {
+        width: 100%;
+    }
+    .take_action>* {
+        padding: 0 10px;
+    }
+    .main_post_contents {
+        padding: 25px 10px;
+    }
+}
+
 @media (min-width: 768px) and (max-width: 1023px) {
     .profile_pic_profile img {
         width: 70px;
@@ -1792,15 +1819,15 @@ div#tooltiptexts span {
 /* The Modal (background) */
 
 .modal {
-    display: block;
+    /*display: block;*/
     position: fixed;
-    z-index: 1;
+    /*z-index: 1;*/
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: black;
+    /*background-color: black;*/
 }
 
 

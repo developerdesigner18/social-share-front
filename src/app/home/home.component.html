@@ -73,7 +73,7 @@
                 </div>
             </div>
         </div>
-        <div class="main_area_contents timeline" *ngFor="let data of datas | slice:0:totalDisplayed;let i = index" id="posts_img">
+        <div class="main_area_contents timeline" *ngFor="let data of datas | slice:0:totalDisplay;let i = index" id="posts_img">
             <div *ngIf="ready" class="main_post_contents d-flex flex-column">
                 <div class="d-flex show_basic_info" style="width: 100%" (mouseleave)="showbasicProfile2[i]=false">
                     <div class="profile_pic_profile position-relative-img">
@@ -91,7 +91,9 @@
                             </div>
                             <div class="full-width-50" *ngIf="current_user['data']._id !== data.userId">
                                 <i class="fa fa-comments-o" style="margin: 0px 11px 0px 23px"></i>
+                                <a href="chating/{{id}}">
                                 <div style="display: contents;">Message</div>
+                            </a>
                             </div>
                             <div class="full-width-50" *ngIf="current_user['data']._id == data.userId">
                                 <i class="fa fa-comments-o" style="margin: 0px 11px 0px 23px"></i>
@@ -133,7 +135,9 @@
                                 </div>
                                 <div class="full-width-50" *ngIf="current_user['data']._id !== data.userId">
                                     <i class="fa fa-comments-o" style="margin: 0px 11px 0px 23px"></i>
+                                    <a href="chating/{{id}}">
                                     <div style="display: contents;">Message</div>
+                                </a>
                                 </div>
                                 <div class="full-width-50" *ngIf="current_user['data']._id == data.userId" (click)="showProfile()">
                                     <i class="fa fa-comments-o" style="margin: 0px 11px 0px 10px"></i>
@@ -196,15 +200,26 @@
                         </div>
                     </div>
                     <div [ngClass]="current_user['data']._id !== data.userId ? 'take_action' : 'no_share_action'">
-                        <button class="showLikes" (click)="likeIt(data._id, data.like.length);">
+                        <!-- <button class="showLikes" (click)="likeIt(data._id, data.like.length);">
 							<i class="fa" id="{{data._id}}" [ngClass]="postlikeId.includes(data._id) ? 'fa-thumbs-up' : 'fa-thumbs-o-up'"></i>
 							<div>Like<span id="count_{{data._id}}">{{data.like.length === 0 ? '' : data.like.length}}</span></div>
-						</button>
-                        <div class="tooltiptext" *ngIf="data.like.length > 0">
-                            <div id="tooltiptexts" class="tooltiptexts" *ngFor="let like of data.like.slice().reverse(); let i = index" [attr.data-index]="i">
-                                <span id="like_{{data._id}}_{{i}}" [innerText]="like.name ? like.name : ''"></span>
+						</button> -->
+                        <button class="showLikes" (click)="likeIt(data._id, data.like.length);">
+                            <i class="fa" id="{{data._id}}" [ngClass]="postlikeId.includes(data._id)  ? 'fa-thumbs-up' : 'fa-thumbs-o-up'"></i>
+                            <div *ngIf="data.like.length !== 0">Like<span>{{data.like.length !== 0 ? (data._id === tempLikePostId) ? data.like.length + temCntLike : (data.like.length + temCntLike === 0) ? '' : data.like.length : ''}}</span></div>
+                        </button>
+                        <div class="tooltiptext" id="like_{{data._id}}">
+                            <div id="tooltiptexts_{{data._id}}" class="tooltiptexts" *ngFor="let like of data.like.slice().reverse();">
+                                <span id="like" style="color: #000">{{like.name}}</span>
                             </div>
                         </div>
+                        <div class="tooltiptext">
+                            <div id="tooltiptexts" class="tooltiptexts" >
+                                <!-- <span id="like_{{data._id}}_{{i}}" [innerText]="like.name ? like.name : ''"></span> -->
+                                <span id="like_{{data._id}}"> </span>
+                            </div>
+                        </div>
+                        
                         <button class="comment_sec_{{data._id}} comment_sec" (click)="open_comments(data._id)">
 							<i class="far fa-comment-dots"></i>
 							<div *ngIf="data.comment.length !== 0">Comment<span>{{data.comment.length !== 0 ? (data._id === tempPostId) ? data.comment.length + temCmnt.length : data.comment.length : ''}}</span></div>
@@ -230,12 +245,12 @@
                     </div>
                     <div class="comments_container_{{data._id}} comments_container" style="display: none;" *ngIf="data.comment.length > 0 || temCmnt.length > 0">
                         <div class="comment_title">Comments:</div>
-                        <ng-container *ngIf="checkTem && tempPostId === data._id">
-                            <div class="comment_user d-flex" *ngFor="let temp of temCmnt.slice().reverse(); let i = index">
-                                <img [src]="tempProfile" onerror="this.src='/assets/images/character.png';">
+                        <ng-container *ngFor="let temp of temCmnt.slice().reverse(); let i = index">
+                            <div class="comment_user d-flex" *ngIf="checkTem && temp.postId === data._id">
+                                <img [src]="temp.profilePic" onerror="this.src='/assets/images/character.png';">
                                 <div>
-                                    <div class="commenter">{{tempName | titlecase}}</div>
-                                    <div class="comment_here">{{temp}}</div>
+                                    <div class="commenter"> {{temp.userName}} </div>
+                                    <div class="comment_here"> {{temp.data}} </div>
                                 </div>
                             </div>
                         </ng-container>
@@ -272,13 +287,13 @@
                 </div>
             </div>
         </div>
-
-        <div class="loads_btn">
-            <div *ngIf="show_load_more" class="load_btn" (click)="loadMore()">
-                <img class="load_more" src="../../assets/images/down-arrow.png" style="width: 40px;height: 40px;padding: 8px;" alt="load more" title="load more">
-            </div>
-        </div>
+        <ng-container *ngIf="message">
+                <div class="main_post_content d-flex flex-column" style="color: #0F1B31; background: #fff; text-align: center;">
+                    <h6>{{message}}</h6>
+                </div>
+            </ng-container>
     </div>
+
     <div class="right_sidebar">
         <div>
             <div class="cat_search position-relative">
@@ -312,44 +327,30 @@
                 </div>
                 <div class="online_sec">
                     <div class="online_title">Online</div>
-                    <div class="online_user">
-                        <img src="assets/images/profile.jpg">
-                        <div>Arturo flex</div>
+                    <div *ngFor="let frddetail of frdDetails | slice:0:5">
+                        <div class="online_user" *ngIf="frddetail.content == 1">
+                            <img [src]="frddetail.profileImgURl" onerror="this.src='/assets/images/character.png';">
+                            <div>{{frddetail.name}}</div>
+                        </div>
                     </div>
-                    <div class="online_user">
-                        <img src="assets/images/user2.jpg">
-                        <div>jessica simpson</div>
-                    </div>
-                    <div class="online_user">
-                        <img src="assets/images/user3.jpg">
-                        <div>fenny brown</div>
-                    </div>
-                    <div class="online_user">
-                        <img src="assets/images/user4.jpg">
-                        <div>bradd johnson</div>
+                    <div *ngIf="notAnyFrd">
+                        {{notAnyFrd}}
                     </div>
                 </div>
                 <div class="online_sec offline_sec">
                     <div class="online_title">Offline</div>
-                    <div class="online_user">
-                        <img src="assets/images/profile.jpg">
-                        <div>Arturo flex</div>
+                    <div *ngFor="let frddetail of frdDetails | slice:0:5">
+                        <div class="online_user" *ngIf="frddetail.content == 0">
+                            <img [src]="frddetail.profileImgURl" onerror="this.src='/assets/images/character.png';">
+                            <div>{{frddetail.name}}</div>
+                        </div>
                     </div>
-                    <div class="online_user">
-                        <img src="assets/images/user2.jpg">
-                        <div>jessica simpson</div>
-                    </div>
-                    <div class="online_user">
-                        <img src="assets/images/user3.jpg">
-                        <div>fenny brown</div>
-                    </div>
-                    <div class="online_user">
-                        <img src="assets/images/user4.jpg">
-                        <div>bradd johnson</div>
+                    <div *ngIf="notAnyFrd">
+                        {{notAnyFrd}}
                     </div>
                 </div>
-                <div>
-                    <a href="chating/{{id}}">Chat Panel</a>
+                <div style="display: flex;align-items: center;justify-content: center;">
+                    <a href="chating/{{id}}" style="color: #ff9000;">Chat Panel</a>
                 </div>
             </div>
         </div>

@@ -7,6 +7,9 @@
 .hide_theme {
     display: none;
 }
+.tooltiptext p {
+    margin: 0;
+}
 
 
 /* .ng-image-slider {
@@ -605,7 +608,7 @@ a div {
     margin: auto;
 }
 
-.notifiy>div:first-child div:before {
+/*.notifiy>div:first-child div:before {
     position: absolute;
     content: "";
     height: 10px;
@@ -615,6 +618,21 @@ a div {
     border-radius: 50%;
     left: -8px;
     top: 18px;
+}*/
+
+.notifiy > div:first-child:before {
+    position: absolute;
+    content: "";
+    height: 10px;
+    width: 10px;
+    border: 2px solid #FF9000;
+    background-color: transparent;
+    border-radius: 50%;
+    left: 32px;
+    top: 24px;
+}
+.notifiy > div:first-child{
+    position: relative;
 }
 
 .all_notification {
@@ -644,7 +662,7 @@ a div {
     color: #0F1B31;
     font-size: 14px;
     padding-left: 15px;
-    cursor: pointer;
+    cursor: text;
 }
 
 .say_words>div>div>a:hover {
@@ -1282,9 +1300,9 @@ button.owl-next span {
     font-weight: 500;
 }
 
-.show_album_images .ng-image-slider .ng-image-slider-container .main .main-inner .img-div {
+/*.show_album_images .ng-image-slider .ng-image-slider-container .main .main-inner .img-div {
     width: 208px !important;
-}
+}*/
 
 .show_album_images .ng-image-slider .ng-image-slider-container .main .main-inner .img-div video {
     width: 100%;

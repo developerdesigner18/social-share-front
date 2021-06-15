@@ -34,10 +34,8 @@ export class SigninComponent implements OnInit {
 
   ngOnInit(): void {
     const active = this.themeService.getActiveTheme();
-    console.log("active", active)
     let theme = active.name
     let themes = localStorage.getItem("theme") ? localStorage.getItem("theme") : theme
-    console.log("themes", themes)
     localStorage.setItem("theme", themes);
   }
 

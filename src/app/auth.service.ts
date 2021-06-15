@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { environment } from '../environments/environment';
-// import { environment } from '../environments/environment.prod';
+//import { environment } from '../environments/environment.prod';
 
 import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
@@ -162,6 +162,15 @@ export class AuthService {
   }
   updateUsername(userId, userName): Observable<any> {
     return this.httpClient.post(`${environment.apiUrl}/api/user/updateprofile`, { userId: userId, userName: userName }, { headers: this.headers }).pipe(
+      map((res: Response) => {
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  updateStatus(userId, status): Observable<any> {
+    return this.httpClient.post(`${environment.apiUrl}/api/user/status`, { userId: userId, status: status }, { headers: this.headers }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -882,8 +891,17 @@ export class AuthService {
   }
 
   //Insert Messages
-  insertMsg(message, sender, senderID, recieverID): Observable<any> {
-    return this.httpClient.post(`${environment.apiUrl}/api/chat/insertMsg`, { message: message, sender: sender, senderID: senderID, recieverID: recieverID }).pipe(
+  insertMsg(message, sender, senderID, recieverID, mergeId): Observable<any> {
+    return this.httpClient.post(`${environment.apiUrl}/api/chat/insertMsg`, { message: message, sender: sender, senderID: senderID, recieverID: recieverID, mergeId: mergeId }).pipe(
+      map((res: Response) => {
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  showMsg(mergeId): Observable<any> {
+    return this.httpClient.get(`${environment.apiUrl}/api/chat/showMsg?mergeId=${mergeId}`).pipe(
       map((res: Response) => {
         return res || {}
       }),

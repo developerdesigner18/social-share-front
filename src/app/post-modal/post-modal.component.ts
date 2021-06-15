@@ -136,7 +136,6 @@ export class PostModalComponent implements OnInit {
             if(window.location.href.split('/')[3] == "home"){
               window.location.replace('home/' + window.location.href.split('/')[4]);
             } else {
-              this.toastr.error(res);
               window.location.replace('profile/' + window.location.href.split('/')[4]);
             }
           })

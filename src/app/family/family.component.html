@@ -14,7 +14,7 @@
       <i (click)="deleteStatus(relationshipStatus)" class="pencil-icon fa fa-trash"></i>
     </div>
   </div>
-  <div class="no_mention" *ngIf="not_mention_relationship"><i class="fas fa-handshake-o handshake-d "> </i>&nbsp; Not mention </div>
+  <div class="no_mention" *ngIf="not_mention_relationship"><i class="fas fa-handshake-o handshake-d "> </i>&nbsp; {{not_mention_relationship}} </div>
   <div class="mobile" *ngIf="status">
     <select name="relationship" [(ngModel)]="relationshipStatus" required>
       <option value="undefined" selected disabled>Select options</option>
@@ -43,7 +43,7 @@
   <div (click)="newFamily()" *ngIf="family_show">
     <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add family member</a>
   </div>
-  <div class="no_mention" *ngIf="not_mention_family"><i class="fas fa-child" style="margin-right: 10px;"> </i>&nbsp; Not mention </div>
+  <div class="no_mention" *ngIf="not_mention_family"><i class="fas fa-child" style="margin-right: 10px;"> </i>&nbsp; {{not_mention_family}} </div>
   <div class="family" *ngIf="fill_family">
     <input type="text" [(ngModel)]="family"  name="family" id="relationship" value="" placeholder="Add family member"><br>
     <select name="family" value="Family" [(ngModel)]="relation" required>

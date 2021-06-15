@@ -32,7 +32,7 @@ export class FriendsComponent implements OnInit {
     public router: Router,
     public toastr: ToastrService
   ) {
-    $(".right_sidebar").css("display", "block");
+    // $(".right_sidebar").css("display", "block");
     let id = this.activatedRoute.parent.params['value']['id'];
     this.url_id = this.activatedRoute.parent.params['value']['id'];
     if (localStorage.getItem('friendId')) {
@@ -98,8 +98,6 @@ export class FriendsComponent implements OnInit {
         this.toastr.success("You successfully unfriended " + friend_name + " from your friends list.");
         location.reload();
       })
-    } else {
-      this.toastr.error("Oops some error occur. Please try again later.")
     }
     
   }

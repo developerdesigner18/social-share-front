@@ -176,12 +176,12 @@
           </div>
           <div class="comments_container_{{data._id}} comments_container" style="display: none;" *ngIf="data.comment.length > 0 || temCmnt.length > 0">
             <div class="comment_title">Comments:</div>
-            <ng-container *ngIf="checkTem && tempPostId === data._id">
-              <div class="comment_user d-flex"  *ngFor="let temp of temCmnt.slice().reverse()">
-                <img [src]="tempProfile" onerror="this.src='/assets/images/character.png';">
+            <ng-container *ngFor="let temp of temCmnt.slice().reverse()">
+              <div class="comment_user d-flex" *ngIf="checkTem && temp.postId === data._id" >
+                <img [src]="temp.profilePic" onerror="this.src='/assets/images/character.png';">
                 <div>
-                  <div class="commenter">{{tempName}}</div>
-                  <div class="comment_here">{{temp}}</div>
+                  <div class="commenter">{{temp.userName}}</div>
+                  <div class="comment_here">{{temp.data}}</div>
                 </div>
               </div>
             </ng-container>
@@ -210,11 +210,15 @@
           </div>
         </div>
       </div>
-      <div class="no_post_friend" *ngIf="frd_datas.length === 0">
-        <h6>No Posts avalible for this friend</h6>
+      
+      <div class="no_post_friend" *ngIf="msg">
+        <h6>No Posts available for this friend</h6>
       </div>
       </ng-container>
-
+      <ng-container>
+        
+      </ng-container>
+      
       <ng-container *ngIf="!timeline_hide">
         <router-outlet></router-outlet>
       </ng-container>

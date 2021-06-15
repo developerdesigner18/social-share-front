@@ -20,7 +20,7 @@ export class PlaceComponent implements OnInit {
   icons: boolean
   Required = false
   u_fill_home: boolean
-  not_mention_home = false
+  not_mention_home: any;
   not_mention_city = false
   show_city: boolean
   id: string;
@@ -45,14 +45,14 @@ export class PlaceComponent implements OnInit {
         }
       })
       this.authService.getAllData(this.friendid).subscribe(res => {
-        if (res.userData[0] == null) {
-          this.not_mention_home = true
+        if (!res['success']) {
+          this.not_mention_home = "Home"
         } else if (res.userData[0].homeTown !== undefined) {
           this.home_town = res.userData[0].homeTown
           this.show_home = true
           this.home = true
         } else {
-          this.not_mention_home = true
+          this.not_mention_home = "Home"
         }
       })
 
@@ -72,15 +72,15 @@ export class PlaceComponent implements OnInit {
           }
         })
         this.authService.getAllData(this.id).subscribe(res => {
-          if (res.userData[0] == null) {
-            this.not_mention_home = true
+          if (!res['success']) {
+            this.not_mention_home = "Home"
           }
           else if (res.userData[0].homeTown !== undefined) {
             this.home_town = res.userData[0].homeTown
             this.show_home = true
             this.home = true
           } else {
-            this.not_mention_home = true
+            this.not_mention_home = "Home"
           }
         })      
       } else {
@@ -96,7 +96,7 @@ export class PlaceComponent implements OnInit {
           }
         })
         this.authService.getAllData(this.id).subscribe(res => {          
-          if (res.userData[0] == null) {
+          if (!res['success']) {
             this.home = false
           }
           else if (res.userData[0].homeTown !== undefined) {

@@ -1,8 +1,8 @@
 <div class="container notification_body">
     <div class="noti_body">
             <p>Notifications</p>
-            <div class="noti_scroll">
-			<div [lazyLoad]="notif_data" class="all_notification" *ngFor="let data of notif_data">
+            <div class="noti_scroll" *ngIf="!show">
+			<div class="all_notification" *ngFor="let data of notif_data | slice:0:totalDisplay">
 				<div class="notifiy d-flex flex-column">
 					<div class="d-flex align-items-center">
 						<img [src]="data.userprofile" onerror="this.src='../../assets/images/character.png'" >
@@ -12,5 +12,10 @@
 				</div>
 			</div> 
         </div>
+        <ng-container *ngIf="show">
+    		<div class="main_post_content d-flex flex-column" style="color: #0F1B31">
+       		 	<h6> {{show}} </h6>
+    		</div>
+		</ng-container>
     </div>
 </div>

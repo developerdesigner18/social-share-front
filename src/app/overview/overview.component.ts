@@ -39,7 +39,8 @@ export class OverviewComponent implements OnInit {
         this.u_state = res.data.state
         this.u_city = res.data.city
           this.authService.getAllData(this.friendid).subscribe(other_res => {
-            if (other_res.userData[0] !== undefined) {
+            // if (other_res.userData[0] !== undefined) {
+            if (other_res['success']) {
               this.u_number = other_res.userData[0].mobileNumber;
               this.u_address = other_res.userData[0].address;
               this.u_website = other_res.userData[0].website;
@@ -59,7 +60,7 @@ export class OverviewComponent implements OnInit {
                 this.u_state = res.data.state
                 this.u_city = res.data.city
                   this.authService.getAllData(this.id).subscribe(other_res => {
-                    if (other_res.userData[0] !== undefined) {
+                    if (other_res['success']) {
                       this.u_number = other_res.userData[0].mobileNumber;
                       this.u_address = other_res.userData[0].address;
                       this.u_website = other_res.userData[0].website;

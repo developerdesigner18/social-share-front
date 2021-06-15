@@ -5,7 +5,7 @@
   <div (click)="newWork()" *ngIf="working">
     <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add Work Place</a>
   </div>
-  <div class="no_mention" *ngIf="not_mention_work"><i class="fas fa-briefcase"> </i><div class="works_shows"> Not mention </div></div>
+  <div class="no_mention" *ngIf="not_mention_work"><i class="fas fa-briefcase"> </i><div class="works_shows"> {{not_mention_work}} </div></div>
   <div class="work" *ngIf="fill_work">
     <input (keyup.enter)="save_add_work(event)" type="text" [(ngModel)]="event" name="" value="" placeholder="Add work place" required>
     <button type="button" name="button" (click)="save_add_work(event)">Save</button>
@@ -33,7 +33,7 @@
   <div (click)="newUniversity()" *ngIf="university_show">
     <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add university</a>
   </div>
-  <div class="no_mention" *ngIf="not_mention_university"><i class="fa fa-university"></i> <div class="works_shows"> Not mention </div></div>
+  <div class="no_mention" *ngIf="not_mention_university"><i class="fa fa-university"></i> <div class="works_shows"> {{not_mention_university}} </div></div>
   <div class="work" *ngIf="fill_university">
     <input (keyup.enter)="save_add_university(university)" type="text" [(ngModel)]="university" name="" value="" placeholder="Add university" required>
     <button type="button" name="button" (click)="save_add_university(university)">Save</button>
@@ -61,7 +61,7 @@
   <div (click)="newSchool()" *ngIf="school_show">
     <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add high school</a>
   </div>
-  <div class="no_mention" *ngIf="not_mention_school"><i class="fas fa-school"> </i> <div class="works_shows"> Not mention </div> </div>
+  <div class="no_mention" *ngIf="not_mention_school"><i class="fas fa-school"> </i> <div class="works_shows"> {{not_mention_school}} </div> </div>
   <div class="work" *ngIf="fill_school">
     <input (keyup.enter)="save_add_school(school)" type="text" [(ngModel)]="school" name="" value="" placeholder="Add high school" required>
     <button type="button" name="button" (click)="save_add_school(school)">Save</button>

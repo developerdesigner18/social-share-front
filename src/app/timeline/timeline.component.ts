@@ -65,6 +65,17 @@ export class TimelineComponent implements OnInit {
   url_id: string;
   shares: any;
   tool = [];
+  totalDisplay: number;
+  bodyHeight: number;
+
+  @HostListener("window:scroll")
+  onScroll(e: Event): void {
+    if (this.bottomReached()) {
+      this.totalDisplay += 1;
+      this.bodyHeight += 600;
+    }
+  }
+
   constructor(
     public  dialog:  MatDialog,
     private activatedRoute: ActivatedRoute,
@@ -75,8 +86,9 @@ export class TimelineComponent implements OnInit {
   ) {
     // $(".right_sidebar").css("display", "block");
     
-    this.totalDisplayed = 10;
-
+    // this.totalDisplayed = 10;
+    this.bodyHeight = 2000;
+    this.totalDisplay = 3;
     $(document).ready(function(){
       setTimeout(function(){
          $(".load_more").show();
@@ -151,6 +163,16 @@ export class TimelineComponent implements OnInit {
   get formControls() { return this.commentsForm.controls }
 
   ngOnInit(): void {
+  }
+
+  
+
+  getYPosition(e: Event): number {
+    return (e.target as Element).scrollTop;
+  }
+
+  bottomReached(): boolean {
+    return (window.innerHeight + window.scrollY * 1.1) >= this.bodyHeight;
   }
 
   ngOnChanges(): void {
@@ -260,39 +282,81 @@ export class TimelineComponent implements OnInit {
   }
 
   temCmnt = [];
+  tryCmnt: any = [];
   checkTem =  false
   tempPostId = '';
 
   temLike = 0;
+  tempLikePostId = ''
+  temCntLike: any = []
+  like_name: any = [];
+  like_length: any;
+  data: any = []
   likeIt(postId: string, likeCount: number){
 
     var trying = document.getElementById('tooltiptexts');
-    let index: any = trying.getAttribute('data-index');
+    // let index: any = trying.getAttribute('data-index');
 
     this.authService.sendLikePost(postId).subscribe(res => {
       if(res['success'])
       {
+        this.data = res['data']
+        this.like_length = this.data.length
+        // document.getElementById('like_' + postId).style.display = "none";
         this.checkTem = true
         if(document.getElementById(postId).classList[2] === 'fa-thumbs-up' || document.getElementById(postId).classList[1] === 'fa-thumbs-up')
         {
           document.getElementById(postId).classList.remove('fa-thumbs-up')
           document.getElementById(postId).classList.add('fa-thumbs-o-up')
-          this.temLike = likeCount - 1
-          this.temLike <= 0 ? document.getElementById('count_' + postId).innerHTML = '' : document.getElementById('count_' + postId).innerHTML = String(this.temLike);
-          document.getElementById('like_' + postId + '_' + index).innerHTML = this.u_name ? document.getElementById('like_' + postId + '_' + index).innerHTML = '' : document.getElementById('like_' + postId + '_' + index).innerHTML = this.u_name;
+          // this.temLike = likeCount - 1
+          // this.temLike <= 0 ? document.getElementById('count_' + postId).innerHTML = '' : document.getElementById('count_' + postId).innerHTML = String(this.temLike);
+          // document.getElementById('like_' + postId + '_' + index).innerHTML = this.u_name ? document.getElementById('like_' + postId + '_' + index).innerHTML = '' : document.getElementById('like_' + postId + '_' + index).innerHTML = this.u_name;
+          // // if (this.datas.map((id) => id._id).includes(postId)) {
+          // //   this.tempLikePostId = postId
+          // //   this.temCntLike--;
+          // // }
+          // document.getElementById('like_' + postId + '_' + index).innerHTML = this.u_name ? document.getElementById('like_' + postId + '_' + index).innerHTML = '' : document.getElementById('like_' + postId + '_' + index).innerHTML = this.u_name;
+          // $('like_' + postId + '_' + index).html(this.u_name ? document.getElementById('like_' + postId + '_' + index).innerHTML = '' : document.getElementById('like_' + postId + '_' + index).innerHTML = this.u_name);
+          if (this.datas.map((id) => id._id).includes(postId)) {
+              this.tempLikePostId = postId
+              this.temCntLike--;
+              document.getElementById('like_' + postId).innerHTML = "";
+              for(let i = 0; i < this.data.length; i++){
+                this.like_name = this.data[i].name
+              document.getElementById('like_' + postId).innerHTML += "<p>" + this.like_name + "</p>"
+              
+              }
+            }
         }else {
           document.getElementById(postId).classList.add('fa-thumbs-up')
-          this.temLike = likeCount + 1
-          if(likeCount < 1){
-            this.temLike = this.temLike - 1
-          }
-          if(this.temLike >= 2){
-            this.temLike = this.temLike - 1
-          }else{
-            this.temLike = this.temLike + 1
-          }
-          this.temLike <= 0 ? document.getElementById('count_' + postId).innerHTML = '' : document.getElementById('count_' + postId).innerHTML = String(this.temLike);
-            document.getElementById('like_' + postId + '_' + index).innerHTML = this.u_name
+          // this.temLike = likeCount + 1
+          // if(likeCount < 1){
+          //   this.temLike = this.temLike - 1
+          // }
+          // if(this.temLike >= 2){
+          //   this.temLike = this.temLike - 1
+          // }else{
+          //   this.temLike = this.temLike + 1
+          // }
+          // this.temLike <= 0 ? document.getElementById('count_' + postId).innerHTML = '' : document.getElementById('count_' + postId).innerHTML = String(this.temLike);
+          //   // document.getElementById('like_' + postId + '_' + index).innerHTML = this.u_name
+          //   // if (this.datas.map((id) => id._id).includes(postId)) {
+          //   //   this.tempLikePostId = postId
+          //   //   this.temCntLike++;
+          //   // }
+          //   document.getElementById('like_' + postId + '_' + index).innerText = this.u_name
+          // $('like_' + postId + '_' + index).html(this.u_name)
+          if (this.datas.map((id) => id._id).includes(postId)) {
+              this.tempLikePostId = postId
+              this.temCntLike++;
+              this.like_name = []
+              document.getElementById('like_' + postId).innerHTML = "";
+              for(let i = 0; i < this.data.length; i++){
+
+              this.like_name = this.data[i].name
+              document.getElementById('like_' + postId).innerHTML += "<p>" + this.like_name + "</p>"
+            }
+            }
         }
       }
     })
@@ -302,15 +366,20 @@ export class TimelineComponent implements OnInit {
   modalProfopen = true;
   next_img = false;
 
-  addComments(postId){
+  addComments(postId, userName, profilePic){
     this.objVal = Object.keys(this.commentsForm.value).map(key => ({type: key, value: this.commentsForm.value[key]}))
     this.authService.sendPostComment(postId, this.objVal[0].value).subscribe(res => {
       if(res['success']){
         $(`.comments_container_${postId}`).css('display','block');
         if(this.datas.map((id) => id._id).includes(postId)){
-          this.tempPostId = postId
+          //this.tempPostId = postId
+          //this.checkTem = true
+          //this.temCmnt.push(this.objVal[0].value)
+       this.tempPostId = postId
           this.checkTem = true
-          this.temCmnt.push(this.objVal[0].value)
+          var data = this.objVal[0].value
+          this.tryCmnt = { postId, userName, profilePic, data }
+          this.temCmnt.push(this.tryCmnt)
         }
       }
     })

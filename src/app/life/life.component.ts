@@ -19,7 +19,7 @@ export class LifeComponent implements OnInit {
   fill_life = false;
   u_fill_life: boolean
   icons: boolean
-  not_mention_life = false;
+  not_mention_life: any;
   get_life: any
   lifes = 'lifeEvents';
   id = this.activatedRoute.parent.parent.params['value']['id'];
@@ -39,8 +39,8 @@ export class LifeComponent implements OnInit {
       this.friendid = localStorage.getItem('friendId')
       this.icons = false
         this.authService.getAllData(this.friendid).subscribe(res => {
-          if (res.userData[0] == null) {
-            this.not_mention_life = true
+          if (!res['success']) {
+            this.not_mention_life = "Event Life"
             this.life_show = false
           } else if (res.userData[0].lifeEvents.length > 0) {
             this.get_life = res.userData[0].lifeEvents
@@ -49,7 +49,7 @@ export class LifeComponent implements OnInit {
             this.myDate = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
           } else {
             this.life_show = false
-            this.not_mention_life = true
+            this.not_mention_life = "Event Life"
           }
         })
     } else {
@@ -58,9 +58,9 @@ export class LifeComponent implements OnInit {
       if (currentUser.data._id !== id) {
         this.icons = false
         this.authService.getAllData(id).subscribe(res => {
-          if (res.userData[0] == null) {
+          if (!res['success']) {
             this.life_show = false
-            this.not_mention_life = true
+            this.not_mention_life = "Life Event"
           } else if (res.userData[0].lifeEvents.length > 0) {
             this.get_life = res.userData[0].lifeEvents
             this.show_life = true
@@ -68,7 +68,7 @@ export class LifeComponent implements OnInit {
             this.myDate = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
           } else {
             this.life_show = false
-            this.not_mention_life = true
+            this.not_mention_life = "Life Event"
           }
         })
       } else {

@@ -24,12 +24,13 @@ export class PhotosComponent implements OnInit {
   album_id: any;
   album_name: String;
   album_show: boolean;
-  div_shows: boolean = false;
-  shows: boolean = true
+  shows: any;
+  album: any;
   public frd_datas: any = [];
 
   public datas;
   totalDisplay: number;
+  height: number;
  
   constructor(
     public authService: AuthService,
@@ -42,46 +43,48 @@ export class PhotosComponent implements OnInit {
     this.token = localStorage.getItem('currentUser')
     this.id = this.activatedRoute.parent.params['value']['id'];
     this.totalDisplay = 3;
+    this.height = 1000;
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.user = currentUser.data._id
     
     if (this.router.url === '/friends/' + this.activatedRoute.parent.params['value']['id'] + '/photos') {
       this.album_show = false
       this.authService.getAllPhotos(localStorage.getItem('friendId')).subscribe(res => {
-        if (res.data.length === 0) {          
-          this.shows = false
-        } else {
+        if (res['success']) {
         for (let i = 0; i < res.data.length; i++){ 
             if (res.data[i].image.split('.').pop() !== 'mp4' && 'mkv') { 
               this.urls.push(res.data[i])
             }
           }
+        } else {
+          this.shows = res.message;
         }
       })
       this.authService.getAllAlbumsPhotos(localStorage.getItem('friendId')).subscribe(res => {
         if (res['success']) {
-          this.div_shows = false
           for (let i = 0; i < res.data.length; i++){        
             this.album_urls.push(res.data[i])
           }
         } else {
-          this.div_shows = true
+          this.album = res.message;
         }
     })      
     }else{
       localStorage.removeItem('friendId')
       this.album_show = true
       this.authService.getAllPhotos(this.id).subscribe(res => {
-        console.log('res',res);
+        if (res['success']) {
         for (let i = 0; i < res.data.length; i++){ 
           if (res.data[i].image.split('.').pop() !== 'mp4') { 
             this.urls.push(res.data[i])
           }
         }
+      } else {
+        this.shows = res.message;
+      }
       })
       this.authService.getAllAlbumsPhotos(this.id).subscribe(res => {
         if (res['success']) {
-          this.div_shows = false
           for (let i = 0; i < res.data.length; i++){        
             this.album_urls.push(res.data[i])
           }
@@ -94,12 +97,12 @@ export class PhotosComponent implements OnInit {
   onScroll(): void {
     if (this.bottomReached()) {
       this.totalDisplay += 3;
-      console.log('yup')
+      this.height += 150;
     }
   }
 
   bottomReached(): boolean {
-    return (window.innerHeight + window.scrollY) >= document.body.offsetHeight;
+    return (window.innerHeight + window.scrollY) >= this.height;
   }
   
   delAlbum(album_id: any, album_name: any) {

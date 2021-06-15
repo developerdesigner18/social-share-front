@@ -17,11 +17,11 @@ export class FamilyComponent implements OnInit {
   display5: any
   relationshipStatus: any
   u_status: any
-  not_mention_relationship = false;
+  not_mention_relationship: any;
   icons: boolean;
   family_show = true
   show_family: boolean
-  not_mention_family = false
+  not_mention_family: any;
   fill_family = false
   u_fill_family: boolean
   get_family = []
@@ -40,17 +40,17 @@ export class FamilyComponent implements OnInit {
       this.friendid = localStorage.getItem('friendId')
       this.icons = false
       this.authService.getAllData(this.friendid).subscribe(res => {
-        if (res.userData[0] == null) {
-          this.not_mention_relationship = true
+        if (!res['success']) {
+          this.not_mention_relationship = "Relationship"
         } else if (res.userData[0].relationshipStatus !== undefined) {
           this.display5 = true
           this.relationshipStatus = res.userData[0].relationshipStatus
         } else {
-          this.not_mention_relationship = true
+          this.not_mention_relationship = "Relationship"
         }
 
-        if (res.userData[0] == null) {
-          this.not_mention_family = true
+        if (!res['success']) {
+          this.not_mention_family = "Family"
           this.family_show = false
         } else if (res.userData[0].family.length > 0) {
           this.get_family = res.userData[0].family
@@ -58,7 +58,7 @@ export class FamilyComponent implements OnInit {
           this.family_show = false
         } else {
           this.family_show = false
-          this.not_mention_family = true
+          this.not_mention_family = "Family"
         }
       })
     } else {
@@ -66,32 +66,32 @@ export class FamilyComponent implements OnInit {
       if (current_login_User.data._id !== id) {
         this.icons = false
         this.authService.getAllData(id).subscribe(res => {
-          if (res.userData[0] == null) {
-            this.not_mention_relationship = true
+          if (!res['success']) {
+            this.not_mention_relationship = "Relationship"
           } else if (res.userData[0].relationshipStatus !== undefined) {
             this.display5 = true
             this.relationshipStatus = res.userData[0].relationshipStatus
           } else {
-            this.not_mention_relationship = true
+            this.not_mention_relationship = "Relationship"
           }
 
-          if (res.userData[0] == null) {
+          if (!res['success']) {
             this.family_show = false
-            this.not_mention_family = true
+            this.not_mention_family = "Family"
           } else if (res.userData[0].family.length > 0) {
             this.get_family = res.userData[0].family
             this.show_family = true
             this.family_show = false
           } else {
             this.family_show = false
-            this.not_mention_family = true
+            this.not_mention_family = "Family"
           }
         })
       } else {
         this.icons = true
         this.authService.getAllData(id).subscribe(res => {
 
-          if (res.userData[0] == null) {
+          if (!res['success']) {
             this.shows5 = true
           } else if (res.userData[0].relationshipStatus == null) {
             this.shows5 = true

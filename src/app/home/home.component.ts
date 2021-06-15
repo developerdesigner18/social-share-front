@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router, NavigationStart, NavigationEnd, Event, NavigationCancel, 
   NavigationError, RouteConfigLoadStart, RouteConfigLoadEnd } from '@angular/router';
@@ -82,6 +82,19 @@ export class HomeComponent implements OnInit {
   sharess: any;
   cookieValue: string;
   ids: any;
+  totalDisplay: number;
+  bodyHeight: number;
+  message: any;
+  frdDetails = [];
+  notAnyFrd: any;
+
+  @HostListener("window:scroll")
+  onScroll(e: Event): void {
+    if (this.bottomReached()) {
+      this.totalDisplay += 1;
+      this.bodyHeight += 500;
+    }
+  }
 
   constructor(
     public authService: AuthService,
@@ -92,22 +105,11 @@ export class HomeComponent implements OnInit {
     private route: ActivatedRoute,
     public toastr: ToastrService
   ) {
-
-    this.router.events.subscribe((routerEvent: Event) => {
-      if (routerEvent instanceof NavigationStart) {
-        this.showLoadingIndicator = true;
-      }
-
-      if (routerEvent instanceof NavigationEnd ||
-        routerEvent instanceof NavigationCancel ||
-        routerEvent instanceof NavigationError) {
-        this.showLoadingIndicator = false;
-      }
-    });
+    this.totalDisplay = 3;
+    this.bodyHeight = 1500;
 
     const current_login_User = JSON.parse(localStorage.getItem('currentUser'));
     this.ids = current_login_User.data._id
-    this.totalDisplayed = 10;
     $(".hide_theme").css("display", "none");
 
     $(document).ready(function(){
@@ -137,19 +139,21 @@ $(window).scroll(function() {
 
     this.authService.getFriends(id).subscribe(res => {
       this.friends = res.userInfo
+      if(res.success)
+      {
+        for(let i = 0; i < res.userInfo.length; i++){
+          this.frdDetails.push(res.userInfo[i])
+        }
+      }else{
+        this.notAnyFrd = res.message
+      }
     })
 
     this.token = localStorage.getItem('token')
     this.current_user = JSON.parse(localStorage.getItem('currentUser'))
     this.authService.getAllFriendPost(this.token).subscribe(res => {
-      if(res.message == "You are not any friend")
-      {
-        console.log("-=-=-=-=-Welcome to social share")
-      }else{
+      if (res['success']) {
         this.datas = res.posts
-        if (this.datas.length < 10) {
-          this.show_load_more = false
-        }
         const { image, thumbImage, alt, title } = res.posts;
         for(let i = 0; i < this.datas.length; i++){
           const images = []
@@ -158,8 +162,9 @@ $(window).scroll(function() {
           this.likes = this.datas[i].like
           this.comments = this.datas[i].comment.length
           this.url.push(this.datas[i].imageUrl)
-          this.datas[i].state =  (this.datas[i].state === undefined) ? 'Not mention' : this.datas[i].state
-          this.datas[i].city = (this.datas[i].city === undefined) ? 'Not mention' : this.datas[i].city
+          this.datas[i].state =  this.datas[i].state
+          this.datas[i].city = this.datas[i].city
+          // this.datas[i].city = (this.datas[i].city === undefined) ? 'Not mention' : this.datas[i].city
           this.authService.getHomePostProfile(this.datas[i].userId).subscribe(res => {
             this.datas[i].post_user_designation = res.data.designation
             this.datas[i].post_user_email = res.data.emailId
@@ -183,6 +188,8 @@ $(window).scroll(function() {
           }
         }
         return this.datas
+      } else {
+        this.message = res.message;
       }
     })
 
@@ -226,21 +233,22 @@ $(window).scroll(function() {
   get formControls() { return this.commentsForm.controls }
 
   ngOnInit(): void {
+    let id = this.activatedRoute.snapshot.paramMap.get('id');
+    let status = 1;
     this.toggle = this.toggle
-    this.router.events.subscribe(event => {
-      if (event instanceof RouteConfigLoadStart) {
-          this.loadingRouteConfig = true;
-      } else if (event instanceof RouteConfigLoadEnd) {
-          this.loadingRouteConfig = false;
+    this.authService.updateStatus(id, status).subscribe(res => {
+      if (res['success']) {
       }
-  });
+    })
   }
   ngAfterViewInit(){ this.ready = true; }
 
   open_comments(postId){
     $(`.comments_container_${postId}`).toggle();
   }
-
+  bottomReached(): boolean {
+    return (window.innerHeight + window.scrollY * 1.1) >= this.bodyHeight;
+  }
   share(postId) { 
     $(`.sharing_container_${postId}`).toggle();
   }
@@ -320,34 +328,73 @@ $(window).scroll(function() {
     $(`#sview_${postId}`).css('display', 'none');
   }
 
-  likeIt(postId, likeCount) {
+  tempLikePostId = ''
+  temCntLike: any = []
+  like_name: any = [];
+  like_length: any;
+  data: any = []
+  divHide: any = [];
+
+  likeIt(postId: string, likeCount: number) {
     var trying = document.getElementById('tooltiptexts');
-    let index: any = trying.getAttribute('data-index');
+    // let index: any = trying.getAttribute('data-index');
     this.authService.sendLikePost(postId).subscribe(res => {
       if(res['success'])
       {
+          this.data = res['data']
+          this.divHide = document.getElementById('like_' + postId);
+          this.like_length = this.data.length
           this.checkTem = true
           if(document.getElementById(postId).classList[2] === 'fa-thumbs-up' || document.getElementById(postId).classList[1] === 'fa-thumbs-up')
           {
             document.getElementById(postId).classList.remove('fa-thumbs-up')
             document.getElementById(postId).classList.add('fa-thumbs-o-up')
-            this.temLike = likeCount - 1
-            this.temLike <= 0 ? document.getElementById('count_' + postId).innerHTML = '' : document.getElementById('count_' + postId).innerHTML = String(this.temLike);
-            document.getElementById('like_' + postId + '_' + index).innerHTML = this.name ? document.getElementById('like_' + postId + '_' + index).innerHTML = '' : document.getElementById('like_' + postId + '_' + index).innerHTML = this.name;
+            // this.temLike = likeCount - 1
+            // this.temLike <= 0 ? document.getElementById('count_' + postId).innerHTML = '' : document.getElementById('count_' + postId).innerHTML = String(this.temLike);
+            // document.getElementById('like_' + postId + '_' + index).innerHTML = this.name ? document.getElementById('like_' + postId + '_' + index).innerHTML = '' : document.getElementById('like_' + postId + '_' + index).innerHTML = this.name;
+            if (this.datas.map((id) => id._id).includes(postId)) {
+              this.tempLikePostId = postId
+              this.temCntLike--;
+              document.getElementById('like_' + postId).innerHTML = "";
+              for(let i = 0; i < this.data.length; i++){
+              this.like_name = this.data[i].name
+              document.getElementById('like_' + postId).innerHTML += "<p>" + this.like_name + "</p>"
+              
+              }
+            }
+            // document.getElementById('like_' + postId).innerHTML = this.like_name
+            
+            // document.getElementById('like_' + postId + '_' + index).innerHTML = this.name ? document.getElementById('like_' + postId + '_' + index).innerHTML = '' : document.getElementById('like_' + postId + '_' + index).innerHTML = this.name;
+            // $('like_' + postId + '_' + index).html(this.name ? document.getElementById('like_' + postId + '_' + index).innerHTML = '' : document.getElementById('like_' + postId + '_' + index).innerHTML = this.name);
           }else {
             document.getElementById(postId).classList.add('fa-thumbs-up')
-            this.temLike = likeCount + 1
-            if(likeCount < 1){
-              this.temLike = this.temLike - 1
-            }
+            // this.temLike = likeCount + 1
+            // if(likeCount < 1){
+            //   this.temLike = this.temLike - 1
+            // }
+            
 
-            if(this.temLike >= 2){
-              this.temLike = this.temLike - 1
-            }else{
-              this.temLike = this.temLike + 1
+            // if(this.temLike >= 2){
+            //   this.temLike = this.temLike - 1
+            // }else{
+            //   this.temLike = this.temLike + 1
+            // }
+            if (this.datas.map((id) => id._id).includes(postId)) {
+              this.tempLikePostId = postId
+              this.temCntLike++;
+              this.like_name = []
+              document.getElementById('like_' + postId).innerHTML = "";
+              for(let i = 0; i < this.data.length; i++){
+
+              this.like_name = this.data[i].name
+              document.getElementById('like_' + postId).innerHTML += "<p>" + this.like_name + "</p>"
             }
-            this.temLike <= 0 ? document.getElementById('count_' + postId).innerHTML = '' : document.getElementById('count_' + postId).innerHTML = String(this.temLike);
-            document.getElementById('like_' + postId + '_' + index).innerHTML = this.name
+            }
+            
+            // this.temLike <= 0 ? document.getElementById('count_' + postId).innerHTML = '' : document.getElementById('count_' + postId).innerHTML = String(this.temLike);
+            // document.getElementById('like_' + postId + '_' + index).innerHTML = this.name
+            // document.getElementById('like_' + postId + '_' + index).innerText = this.name
+            // $('like_' + postId + '_' + index).html(this.name);
           }
       }
     })
@@ -379,7 +426,8 @@ $(window).scroll(function() {
     }
   };
 
-  temCmnt = [];
+  temCmnt: any = [];
+  tryCmnt: any = [];
   tempPostId = '';
   tempProfile = '';
   tempName = '';
@@ -393,16 +441,32 @@ $(window).scroll(function() {
       if (res['success']) {        
         $(`.comments_container_${postId}`).css('display', 'block');
         if (this.datas.map((id) => id._id).includes(postId)) {
-          this.check_temp = true
-          this.tempName = userName
-          this.tempProfile = profilePic
-          this.tempPostId = postId
-          this.checkTem = true
-          this.temCmnt.push(this.objVal[0].value)
+         // this.check_temp = true
+         // this.tempName = userName
+        //  this.tempProfile = profilePic
+        //  this.tempPostId = postId
+        //  this.checkTem = true
+       //   console.log("this.tempName", this.tempName)
+        //  console.log("postId", postId)
+          // this.temCmnt.push(this.objVal[0].value)
+       //   if (document.getElementById('com_' + postId) != null) {
+       //     document.getElementById('com_' + postId).innerHTML += this.objVal[0].value
+       //   }
           this.count_cmt = res['data']
+      //    console.log("this.objVal[0].value", this.objVal[0].value)
+       //   console.log("res['data']", res['data'])
+       this.tempName = userName
+       this.tempProfile = profilePic
+       this.tempPostId = postId
+          this.checkTem = true
+          var data = this.objVal[0].value
+          this.tryCmnt = { postId, userName, profilePic, data }
+          this.temCmnt.push(this.tryCmnt)
+          console.log("this.temCmnt", this.temCmnt)
         }
       }
     })
+    //this.temCmnt = [];
     this.commentsForm.reset()
   }
 }

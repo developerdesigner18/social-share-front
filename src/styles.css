@@ -13,6 +13,21 @@
 html{
   height: 100%;
 }
+#network-status-online {
+  background: green;
+  padding: 15px;
+  border-radius: 5px;
+  color: white;
+}
+
+#network-status-offline {
+  background: red;
+  padding: 15px;
+  border-radius: 5px;
+  color: white;
+  position: absolute;
+  transform: translateY(0) translateX(100%);
+}
 /* width */
 ::-webkit-scrollbar {
 	width: 7px;

@@ -60,13 +60,13 @@ export class ContactComponent implements OnInit {
   current_user_profile = true;
   icons: boolean;
   birth_value: any
-  not_mention_number = false;
-  not_mention_address = false;
-  not_mention_website = false;
-  not_mention_religious = false;
-  not_mention_gender = false;
-  not_mention_birth = false;
-  not_mention_langugae = false;
+  not_mention_number: any;
+  not_mention_address: any;
+  not_mention_website: any;
+  not_mention_religious: any;
+  not_mention_gender: any;
+  not_mention_birth: any;
+  not_mention_langugae: any;
   show_birth: boolean;
   u_fill_birth: boolean;
   show_langugae: boolean;
@@ -94,68 +94,68 @@ export class ContactComponent implements OnInit {
       this.authService.getProfileForFriend(this.friendid).subscribe(res => {
         this.authService.getAllData(this.friendid).subscribe(res => {
 
-          if (res.userData[0] == null) { 
-            this.not_mention_number = true
+          if (!res['success']) { 
+            this.not_mention_number = "Phone"
           }else if (res.userData[0].mobileNumber !== undefined ) {
             this.mobile_number = res.userData[0].mobileNumber
             this.show_mobile = true
             this.mobile = true
           } else {
-          this.not_mention_number = true
+          this.not_mention_number = "Phone"
           }
 
-          if (res.userData[0] == null) {
-            this.not_mention_address = true
+          if (!res['success']) {
+            this.not_mention_address = "Address"
           } else if (res.userData[0].address !== undefined && res.userData[0] !== null) {
             this.email_address = res.userData[0].address
             this.show_email = true
             this.email = true
           } else {
-            this.not_mention_address = true
+            this.not_mention_address = "Address"
           }
 
-          if (res.userData[0] == null) {
-            this.not_mention_website = true
+          if (!res['success']) {
+            this.not_mention_website = "Website"
           } else if (res.userData[0].website !== undefined && res.userData[0] !== null) {
             this.website_link = res.userData[0].website
             this.show_link = true
             this.link = true
           } else {
-            this.not_mention_website = true
+            this.not_mention_website = "Website"
           }
 
-          if (res.userData[0] == null) {
-            this.not_mention_religious = true
+          if (!res['success']) {
+            this.not_mention_religious = "Religious"
           } else if (res.userData[0].basicInfo !== undefined && res.userData[0] !== null) {
             this.religious_value = res.userData[0].basicInfo
             this.show_caste = true
             this.religious = true
           } else {
-            this.not_mention_religious = true
+            this.not_mention_religious = "Religious"
           }
 
-          if (res.userData[0] == null) {
-            this.not_mention_gender = true
+          if (!res['success']) {
+            this.not_mention_gender = "Gender"
           } else if (res.userData[0].gender !== undefined && res.userData[0] !== null) {
             this.gender_value = res.userData[0].gender
             this.show_gender = true
             this.genders = true
           } else {
-            this.not_mention_gender = true
+            this.not_mention_gender = "Gender"
           }
 
-          if (res.userData[0] == null) {
-            this.not_mention_birth = true
+          if (!res['success']) {
+            this.not_mention_birth = "Birthdate"
           } else if (res.userData[0].birthDate !== undefined && res.userData[0] !== null) {
             this.birth_value = res.userData[0].birthDate
             this.show_birth = true
             this.birth = true
           } else {
-            this.not_mention_birth = true
+            this.not_mention_birth = "Birthdate"
           }
 
-          if (res.userData[0] == null) {
-            this.not_mention_langugae = true
+          if (!res['success']) {
+            this.not_mention_langugae = "Language"
             this.languages = false
             this.text_language = false
           } else if (res.userData[0].language.length > 0) {   
@@ -166,7 +166,7 @@ export class ContactComponent implements OnInit {
           } else {
             this.languages = false
             this.text_language = false
-            this.not_mention_langugae = true
+            this.not_mention_langugae = "Language"
           }
        
       })
@@ -176,68 +176,68 @@ export class ContactComponent implements OnInit {
       if (current_login_User.data._id !== id) {
         this.icons = false
           this.authService.getAllData(id).subscribe(res => {
-            if (res.userData[0] == null) {
-              this.not_mention_number = true
+            if (!res['success']) {
+              this.not_mention_number = "Phone"
             } else if (res.userData[0].mobileNumber !== undefined) {
               this.mobile_number = res.userData[0].mobileNumber
               this.show_mobile = true
               this.mobile = true
             } else {
-            this.not_mention_number = true
+            this.not_mention_number = "Phone"
             }
   
-            if (res.userData[0] == null) {
-              this.not_mention_address = true
+            if (!res['success']) {
+              this.not_mention_address = "Address"
             } else if (res.userData[0].address !== undefined) {
               this.email_address = res.userData[0].address
               this.show_email = true
               this.email = true
             } else {
-              this.not_mention_address = true
+              this.not_mention_address = "Address"
             }
   
-            if (res.userData[0] == null) {
-              this.not_mention_website = true
+            if (!res['success']) {
+              this.not_mention_website = "Website"
             } else if (res.userData[0].website !== undefined) {
               this.website_link = res.userData[0].website
               this.show_link = true
               this.link = true
             } else {
-              this.not_mention_website = true
+              this.not_mention_website = "Website"
             }
   
-            if (res.userData[0] == null) {
-              this.not_mention_religious = true
+            if (!res['success']) {
+              this.not_mention_religious = "Religious"
             } else if (res.userData[0].basicInfo !== undefined) {
               this.religious_value = res.userData[0].basicInfo
               this.show_caste = true
               this.religious = true
             } else {
-              this.not_mention_religious = true
+              this.not_mention_religious = "Religious"
             }
   
-            if (res.userData[0] == null) {
-              this.not_mention_gender = true
+            if (!res['success']) {
+              this.not_mention_gender = "Gender"
             } else if (res.userData[0].gender !== undefined) {
               this.gender_value = res.userData[0].gender
               this.show_gender = true
               this.genders = true
             } else {
-              this.not_mention_gender = true
+              this.not_mention_gender = "Gender"
             }
 
-            if (res.userData[0] == null) {
-              this.not_mention_birth = true
+            if (!res['success']) {
+              this.not_mention_birth = "Birthdate"
             } else if (res.userData[0].birthDate !== undefined) {
               this.birth_value = res.userData[0].birthDate
               this.show_birth = true
               this.birth = true
             } else {
-              this.not_mention_birth = true
+              this.not_mention_birth = "Birthdate"
             }
 
-            if (res.userData[0] == null) {
-              this.not_mention_langugae = true
+            if (!res['success']) {
+              this.not_mention_langugae = "Language"
               this.languages = false
               this.text_language = false
             } else if (res.userData[0].language.length > 0) {   
@@ -248,14 +248,14 @@ export class ContactComponent implements OnInit {
             } else {
               this.languages = false
               this.text_language = false
-              this.not_mention_langugae = true
+              this.not_mention_langugae = "Language"
             }
          
         })
       } else {
         this.authService.getAllData(id).subscribe(res => {
         this.icons = true
-          if (res.userData[0] == null) {
+          if (!res['success']) {
             this.mobile = false
           }
           else if (res.userData[0].mobileNumber !== undefined) {
@@ -266,7 +266,7 @@ export class ContactComponent implements OnInit {
             this.mobile = false
           }
 
-          if (res.userData[0] == null) {
+          if (!res['success']) {
             this.email = false
           }
           else if (res.userData[0].address !== undefined) {
@@ -277,7 +277,7 @@ export class ContactComponent implements OnInit {
             this.email = false
           }
 
-          if (res.userData[0] == null) {
+          if (!res['success']) {
             this.link = false
           }
           else if (res.userData[0].website !== undefined) {
@@ -288,7 +288,7 @@ export class ContactComponent implements OnInit {
             this.link = false
           }
 
-          if (res.userData[0] == null) {
+          if (!res['success']) {
             this.religious = false
           }
           else if (res.userData[0].basicInfo !== undefined) {
@@ -299,7 +299,7 @@ export class ContactComponent implements OnInit {
             this.religious = false
           }
 
-          if (res.userData[0] == null) {
+          if (!res['success']) {
             this.genders = false
           }
           else if (res.userData[0].gender !== undefined) {
@@ -310,7 +310,7 @@ export class ContactComponent implements OnInit {
             this.genders = false
           }
         
-          if (res.userData[0] == null) {
+          if (!res['success']) {
             this.birth = false
           }
           else if (res.userData[0].birthDate !== undefined) {
@@ -321,7 +321,7 @@ export class ContactComponent implements OnInit {
             this.birth = false
           }
 
-          if (res.userData[0] == null) {
+          if (!res['success']) {
             
           }
           else if (res.userData[0].language !== undefined) {   

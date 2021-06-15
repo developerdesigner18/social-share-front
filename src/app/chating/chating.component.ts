@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { SocketioService } from '../socketio.service';
 import {io} from 'socket.io-client';
-// import { environment } from 'src/environments/environment';
+ import { environment } from 'src/environments/environment';
 import { AuthService } from '../auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { environment } from 'src/environments/environment.prod';
+//import { environment } from 'src/environments/environment.prod';
 
 // const SOCKET_ENDPOINT = 'localhost:8000';
 @Component({
@@ -21,6 +21,11 @@ export class ChatingComponent implements OnInit {
   id: any;
   datas: any;
   name: any;
+  showView: boolean = true;
+  recieverId: any;
+  mergeId: any;
+  chat_messages: any = [];
+  frdDetails = [];
   constructor(private socketService: SocketioService, public authService: AuthService,
     private activatedRoute: ActivatedRoute,
     public router: Router) { 
@@ -43,6 +48,19 @@ export class ChatingComponent implements OnInit {
         this.datas = res.data;
         this.name = res.data.name
       })
+
+    this.authService.getFriends(this.id).subscribe(res => {
+      // this.friends = res.userInfo
+      if(res.success)
+      {
+        for(let i = 0; i < res.userInfo.length; i++){
+          this.frdDetails.push(res.userInfo[i])
+        }
+      }
+    })
+
+    //show message
+    
   }
 
   ngOnInit(): void {
@@ -56,14 +74,22 @@ export class ChatingComponent implements OnInit {
       let typing = document.getElementById("typing");
       this.socket.on('my broadcast', (data: string) => {
         console.log('data', data);
-        if (data) {
-         const element = document.createElement('li');
-         element.innerHTML = data;
-         element.style.background = 'white';
-         element.style.padding =  '15px 30px';
-         element.style.margin = '10px';
-         document.getElementById('message-list').appendChild(element);
-         }
+       // if (data) {
+       //  const element = document.createElement('li');
+       //  element.innerHTML = data;
+       //  element.style.background = 'white';
+       //  element.style.padding =  '15px 30px';
+      //   element.style.margin = '10px';
+       //  document.getElementById('message-list').appendChild(element);
+       //  }
+       let value = [this.id, this.recieverId]
+       value.sort((a, b) => b.localeCompare(a))
+       this.mergeId = value.join()
+        this.authService.showMsg(this.mergeId).subscribe(res => {
+          if (res['success']) {
+            this.chat_messages = res.userData
+          }
+        })
        });
 
        messageInput.addEventListener("keypress", () => {
@@ -89,23 +115,45 @@ export class ChatingComponent implements OnInit {
   SendMessage() {
     this.socket.emit('my message', this.message);
     const element = document.createElement('li');
-    element.innerHTML = this.message;
-    element.style.background = 'white';
-    element.style.padding =  '15px 30px';
-    element.style.margin = '10px';
-    element.style.textAlign = 'right';
-    document.getElementById('message-list').appendChild(element);
+   // element.innerHTML = this.message;
+   // element.style.background = 'white';
+   // element.style.padding =  '15px 30px';
+   // element.style.margin = '10px';
+   // element.style.textAlign = 'right';
+   // document.getElementById('message-list').appendChild(element);
+    let value = [this.id, this.recieverId]
+    value.sort((a, b) => b.localeCompare(a))
+    this.mergeId = value.join()
     
     if (this.message !== undefined) {
-        this.authService.insertMsg(this.message, this.name, this.id, this.id).subscribe(res => {
+        this.authService.insertMsg(this.message, this.name, this.id, this.recieverId, this.mergeId).subscribe(res => {
           if (res['success']) {
-            console.log("success", res)
           }
         })
       } else {
-        console.log("error")
+    }
+    
+    this.authService.showMsg(this.mergeId).subscribe(res => {
+      if (res['success']) {
+        this.chat_messages = res.userData
       }
+    })
+    
       this.message = '';
+ }
+  openChat(id) {
+    this.recieverId = id
+    this.showView = false;
+    let value = [this.id, this.recieverId]
+    value.sort((a, b) => b.localeCompare(a))
+    this.mergeId = value.join()
+    this.authService.showMsg(this.mergeId).subscribe(res => {
+      if (res['success']) {
+        this.chat_messages = res.userData
+      } else {
+        
+      }
+    })
  }
 
  

@@ -54,6 +54,7 @@ export class RequestFriendsComponent implements OnInit {
   likes = [];
   objVal = [];
   commentsForm: FormGroup;
+  msg: boolean;
 
   cmntuname = '';
   cmntuprofile = '';
@@ -145,21 +146,26 @@ export class RequestFriendsComponent implements OnInit {
       this.u_email =  res.data.emailId
       this.newDate= new Date(res.data.createdAt);
       this.previewUrl = res.data.profileImgURl
-      this.imageCov = res.data.coverImgURl
-      if(this.imageCov == undefined){
-        this.imageCov = 'assets/images/bg.jpg'
-      }
+      this.imageCov = res.data.coverImgURl ? res.data.coverImgURl : 'assets/images/bg.jpg'
+      //if(this.imageCov == undefined){
+       // this.imageCov = 'assets/images/bg.jpg'
+      //}
     })
 
     localStorage.setItem('friendId', id)
     this.authService.getFriendPost(localStorage.getItem('friendId')).subscribe(res => {
-      this.frd_datas = res
-      const { image, thumbImage, alt, title } = res;
-      for(let i = 0; i < this.frd_datas.length; i++){
-        this.likes = this.frd_datas[i].like
-        if(this.likes.length > 0){
-          this.postlikeId.push(this.frd_datas[i]._id)
+      if (res['success']) {
+        this.msg = false;
+        this.frd_datas = res.data
+        const { image, thumbImage, alt, title } = res;
+        for (let i = 0; i < this.frd_datas.length; i++) {
+          this.likes = this.frd_datas[i].like
+          if (this.likes.length > 0) {
+            this.postlikeId.push(this.frd_datas[i]._id)
+          }
         }
+      } else {
+        this.msg = true
       }
     })
 
@@ -172,7 +178,7 @@ export class RequestFriendsComponent implements OnInit {
     this.router.navigate([`friends/${this.login_id}`])
   }
 
-  sendRequest(requestId){
+  sendRequest(requestId: any){
     let userId = this.activatedRoute.snapshot.paramMap.get('id');
     this.authService.sendFriendRequest(userId, requestId).subscribe(res => {
       $(`.cancel_friend_${requestId}`).attr('style', 'display: inline !important');
@@ -180,18 +186,18 @@ export class RequestFriendsComponent implements OnInit {
       $(`.remove_friend_${requestId}`).css('display','none');
     })
   }
-  share(postId) { 
+  share(postId: any) { 
     $(`.sharing_container_${postId}`).toggle();
   }
 
-  confirm_request(confirm_id){
+  confirm_request(confirm_id: any){
     let userId = this.activatedRoute.snapshot.paramMap.get('id');
     this.authService.acceptFriendRequest(userId, confirm_id).subscribe(res => {
       this.toastr.success("Friends Request is Accepted Successfully!");
     })
   }
 
-  reject_request(reject_id){
+  reject_request(reject_id: any){
     let userId = this.activatedRoute.snapshot.paramMap.get('id');
     this.authService.rejectFriendRequest(userId, reject_id).subscribe(res => {
       this.toastr.success("Friend Request is Rejected!");
@@ -199,7 +205,7 @@ export class RequestFriendsComponent implements OnInit {
   }
 
   //Reject for it's own request for already send
-  remove_send_request(reject_id){
+  remove_send_request(reject_id: any){
     let userId = this.activatedRoute.snapshot.paramMap.get('id');
     if (confirm('Are you sure you want to cancel this request ?')) { 
       this.authService.removeSendRequest(userId, reject_id).subscribe(res => {
@@ -217,20 +223,18 @@ export class RequestFriendsComponent implements OnInit {
   }
   }
 
-  sharing(postId, post_user) { 
+  sharing(postId: any, post_user: any) { 
     if (confirm("You are sharing "+ `${post_user}` +" post with in your timeline!")) {
       this.authService.sharingPosts(this.token, postId, this.login_id).subscribe(res => { 
         this.toastr.success("You are successfully shared the post!");
         window.location.reload();
       })
-
-    } else {
     }
   }
 
   temLike = 0;
   checkTem =  false
-  likeIt(postId, likeCount){
+  likeIt(postId: any, likeCount: any){
     this.authService.sendLikePost(postId).subscribe(res => {
       if(res['success'])
       {
@@ -259,28 +263,31 @@ export class RequestFriendsComponent implements OnInit {
   }
 
   temCmnt = [];
+  tryCmnt: any = [];
   tempPostId = '';
   tempProfile = '';
   tempName = '';
 
-  addComments(postId, userName, profilePic){
+  addComments(postId: any, userName: any, profilePic: any){
     this.objVal = Object.keys(this.commentsForm.value).map(key => ({type: key, value: this.commentsForm.value[key]}))
     this.authService.sendPostComment(postId, this.objVal[0].value).subscribe(res => {
       if(res['success']){
         $(`.comments_container_${postId}`).css('display','block');
         if(this.frd_datas.map((id) => id._id).includes(postId)){
           this.tempName = userName
-          this.tempProfile = profilePic
-          this.tempPostId = postId
+       this.tempProfile = profilePic
+       this.tempPostId = postId
           this.checkTem = true
-          this.temCmnt.push(this.objVal[0].value)
+          var data = this.objVal[0].value
+          this.tryCmnt = { postId, userName, profilePic, data }
+          this.temCmnt.push(this.tryCmnt)
         }
       }
     })
     this.commentsForm.reset()
   }
 
-  remove_people(people_id){
+  remove_people(people_id: any){
     $(`.remove_people_${people_id}`).parent().css('display','none');
   }
 

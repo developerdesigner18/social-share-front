@@ -90,11 +90,11 @@ export class SearchComponent implements OnInit {
     }
   }
 
-  sendRequest(requestId) {
+  sendRequest(requestId: any) {
     this.authService.sendFriendRequest(this.id, requestId).subscribe(res => {})
   }
 
-  reject_request(reject_id) {
+  reject_request(reject_id: any) {
     if (confirm('Are you sure you want to cancel this request ?')) {
       this.authService.rejectFriendRequest(reject_id, this.id).subscribe(res => {
       })

@@ -22,7 +22,7 @@
             <a [routerLink]="['videos']"><button id="videos" [routerLinkActive]="['active_tabs']">Videos</button></a>
             <a [routerLink]="['friends']"><button id="friends" [routerLinkActive]="['active_tabs']">Friends</button></a>
             <a *ngIf="cur_user === ids" [routerLink]="['notifications']"><button id="notifications" [routerLinkActive]="['active_tabs']">Notification</button></a>
-            <a *ngIf="cur_user === ids" href="chating/{{ids}}"><button id="notifications" [routerLinkActive]="['active_tabs']">Messages</button></a>
+            <!-- <a *ngIf="cur_user === ids" href="chating/{{ids}}"><button id="notifications" [routerLinkActive]="['active_tabs']">Messages</button></a> -->
 
         </div>
         <div class="main_action"></div>
