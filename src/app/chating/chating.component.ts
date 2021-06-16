@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren, ViewEncapsulation } from '@angular/core';
 import { SocketioService } from '../socketio.service';
 import {io} from 'socket.io-client';
  import { environment } from 'src/environments/environment';
@@ -26,13 +26,17 @@ export class ChatingComponent implements OnInit {
   mergeId: any;
   chat_messages: any = [];
   frdDetails = [];
+
+  @ViewChildren('messages') messages: QueryList<any>;
+  @ViewChild('content') content: ElementRef;
   constructor(private socketService: SocketioService, public authService: AuthService,
     private activatedRoute: ActivatedRoute,
     public router: Router) { 
     this.socket = io(environment.apiUrl);
     
     this.socket.on("notifyTyping", data => {
-      if(data){
+      if (data) {
+        console.log("data", data)
         const typing = document.getElementById("typing");
         typing.innerText = data.user + " " + data.message;
         this.type = data.user + " " + data.message;
@@ -68,6 +72,17 @@ export class ChatingComponent implements OnInit {
     this.setupSocketConnection();
   }
 
+  ngAfterViewInit() {
+    this.scrollToBottom();
+    this.messages.changes.subscribe(this.scrollToBottom);
+  }
+
+  scrollToBottom = () => {
+    try {
+      this.content.nativeElement.scrollTop = this.content.nativeElement.scrollHeight;
+    } catch (err) {console.log(err)}
+  }
+
     setupSocketConnection(){
       // this.socket = io.io(SOCKET_ENDPOINT);
       let messageInput = document.getElementById("message");
@@ -79,8 +94,8 @@ export class ChatingComponent implements OnInit {
        //  element.innerHTML = data;
        //  element.style.background = 'white';
        //  element.style.padding =  '15px 30px';
-      //   element.style.margin = '10px';
-       //  document.getElementById('message-list').appendChild(element);
+      //   elemene-lt.style.margin = '10px';
+       //  document.getElementById('messagist').appendChild(element);
        //  }
        let value = [this.id, this.recieverId]
        value.sort((a, b) => b.localeCompare(a))
@@ -97,6 +112,7 @@ export class ChatingComponent implements OnInit {
       });
       
       this.socket.on("notifyTyping", data => {
+        console.log("data", data)
         typing.innerText = data.user + " " + data.message;
         this.type = data.user + " " + data.message;
         console.log(data.user + data.message);

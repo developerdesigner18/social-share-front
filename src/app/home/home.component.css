@@ -20,7 +20,9 @@ div#tooltiptexts p {
     /* overflow: hidden; */
     margin-top: 25px;
 }
-
+.comment_here{
+    word-break: break-all;
+}
 .write_words input::placeholder {
     color: #616161 !important;
     font-size: 14px !important;

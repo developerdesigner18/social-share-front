@@ -39,9 +39,9 @@
 
 <div class="viewProfile" style="padding-top: 101px;" *ngIf="!showView">
   <div class="chat-messages">
-    <div class="chat-messages-show-container">
+    <div class="chat-messages-show-container" #content>
         <ul class="chat-messages-show-list" id="message-list" >
-          <li *ngFor="let chat of chat_messages" style="background: white;padding: 5px 30px;margin: 10px;" [ngStyle]="{'text-align':chat.senderID === id ? 'right' : 'left' }"> 
+          <li *ngFor="let chat of chat_messages" #messages style="background: white;padding: 5px 30px;margin: 10px;" [ngStyle]="{'text-align':chat.senderID === id ? 'right' : 'left' }"> 
             <span style="color: #ff9000;">{{chat.message}}</span>
             <div style="font-size: 12px;"> {{chat.createdAt | timeago}} </div>
           </li>
@@ -49,7 +49,7 @@
     </div>
     <div class="chat-messages-create-container">
         <i id="typing"></i>
-        <input id="message" class="chat-messages-create-input" [(ngModel)]="message" type="text" placeholder="Type your message here...">
+        <input id="message" class="chat-messages-create-input" [(ngModel)]="message" type="text" (keyup.enter)="SendMessage()" placeholder="Type your message here...">
         <button class="chat-messages-create-button" (click)="SendMessage()"> Send </button>
     </div>
     </div>
