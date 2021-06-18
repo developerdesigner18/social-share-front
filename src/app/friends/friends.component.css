@@ -45,7 +45,7 @@ a.my_post_links > div {
 }
 
 .profile_pics:before {
-    content: "";
+    /* content: ""; */
     position: absolute;
     right: 2px;
     top: 22px;

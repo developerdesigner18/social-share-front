@@ -101,6 +101,7 @@ export class ChatingComponent implements OnInit {
        value.sort((a, b) => b.localeCompare(a))
        this.mergeId = value.join()
         this.authService.showMsg(this.mergeId).subscribe(res => {
+          
           if (res['success']) {
             this.chat_messages = res.userData
           }
@@ -166,8 +167,6 @@ export class ChatingComponent implements OnInit {
     this.authService.showMsg(this.mergeId).subscribe(res => {
       if (res['success']) {
         this.chat_messages = res.userData
-      } else {
-        
       }
     })
  }

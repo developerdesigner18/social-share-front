@@ -43,6 +43,7 @@ export class VideosComponent implements OnInit {
               this.urls.push(res.data[i])
             }
           }
+          console.log("this.urls", this.urls)
         } else {
           this.shows = "User not uploaded any videos"
         }

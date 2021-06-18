@@ -83,11 +83,6 @@ export class UserProfileComponent implements OnInit {
       localStorage.removeItem('friendId')
     }
 
-    if(this.router.url === '/profile/' + this.activatedRoute.snapshot.paramMap.get('id') + '/notifications')
-    {
-      this.display = false;
-    }
-
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
     this.cur_user = currentUser.data._id;

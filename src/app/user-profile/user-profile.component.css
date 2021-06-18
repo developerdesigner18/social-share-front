@@ -622,7 +622,7 @@ a div {
 
 .notifiy > div:first-child:before {
     position: absolute;
-    content: "";
+    /* content: ""; */
     height: 10px;
     width: 10px;
     border: 2px solid #FF9000;
@@ -1066,6 +1066,7 @@ button.owl-next span {
     border-radius: 4px;
     margin-top: 10px;
     padding: 5px;
+    word-break: break-all;
 }
 
 

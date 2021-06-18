@@ -1,11 +1,11 @@
-<ng-container *ngIf="!shows">
+<ng-container *ngIf="!shows && urls.length != 0">
     <div class="item">
         <ng-image-slider [videoAutoPlay]=true [imageSize]="{width: '32.50 %', space: 3}" [videoAutoPlay]="true" [showArrow]=false [animationSpeed]="0.5" class="slider_image_photos" [images]="urls | slice:0:totalDisplay"></ng-image-slider>
     </div>
 </ng-container>
 
-<ng-container *ngIf="shows">
+<ng-container *ngIf="shows || urls.length == 0">
     <div class="main_post_content d-flex flex-column" style="color: #0F1B31">
-        <h6>{{shows}}</h6>
+        <h6>{{shows ? shows : 'Video not found'}}</h6>
     </div>
 </ng-container>

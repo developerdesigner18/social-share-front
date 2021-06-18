@@ -46,6 +46,9 @@
             <div style="font-size: 12px;"> {{chat.createdAt | timeago}} </div>
           </li>
         </ul>
+        <div class="default_thumbnail" *ngIf="chat_messages.length == 0">
+          <h1>Say Hi to your friend</h1>
+        </div>
     </div>
     <div class="chat-messages-create-container">
         <i id="typing"></i>
