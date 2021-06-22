@@ -70,6 +70,7 @@ export class ChatingComponent implements OnInit {
   ngOnInit(): void {
     this.socketService.setupSocketConnection();
     this.setupSocketConnection();
+    
   }
 
   ngAfterViewInit() {
@@ -83,7 +84,8 @@ export class ChatingComponent implements OnInit {
     } catch (err) {console.log(err)}
   }
 
-    setupSocketConnection(){
+  setupSocketConnection() {
+    this.socket.emit('login', {userId: this.id})
       // this.socket = io.io(SOCKET_ENDPOINT);
       let messageInput = document.getElementById("message");
       let typing = document.getElementById("typing");
@@ -106,12 +108,17 @@ export class ChatingComponent implements OnInit {
             this.chat_messages = res.userData
           }
         })
-       });
+      });
+    
+    this.socket.on('Online', (data: Object) => {
+      console.log("data", data)
+    })
 
-       messageInput.addEventListener("keypress", () => {
+    if (messageInput) {
+      messageInput.addEventListener('keypress', () => {
         this.socket.emit("typing", { user: this.name, message: "is typing..." });
       });
-      
+    }
       this.socket.on("notifyTyping", data => {
         console.log("data", data)
         typing.innerText = data.user + " " + data.message;
@@ -120,10 +127,11 @@ export class ChatingComponent implements OnInit {
       });
       
       //stop typing
+    if (messageInput) {
       messageInput.addEventListener("keyup", () => {
         this.socket.emit("stopTyping", "");
       });
-      
+    }
       this.socket.on("notifyStopTyping", () => {
         typing.innerText = "";
       });
