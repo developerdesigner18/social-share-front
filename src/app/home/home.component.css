@@ -1261,7 +1261,7 @@ a.my_post_links:hover div>div {
     padding: 10px;
     position: relative;
     background: #ffffff;
-    align-items: center;
+    /* align-items: center; */
 }
 
 .comment_user:not(:last-child) {

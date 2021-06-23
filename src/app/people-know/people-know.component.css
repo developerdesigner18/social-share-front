@@ -276,7 +276,7 @@ a.my_post_links{
     margin-top: -15px;
 }
 .profile_pic:before {
-    content: "";
+    /* content: ""; */
     position: absolute;
     right: 2px;
     top: 36px;

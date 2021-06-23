@@ -268,7 +268,7 @@ a.my_post_links{
     margin-top: -15px;
 }
 .profile_pic:before {
-    content: "";
+    /* content: ""; */
     position: absolute;
     right: 2px;
     top: 36px;
@@ -310,7 +310,7 @@ a.my_post_links{
     /* text-transform: capitalize; */
 }
 .post_by_user_second .profile_pic:before {
-    content: "";
+    /* content: ""; */
     position: absolute;
     right: 2px;
     top: 36px;

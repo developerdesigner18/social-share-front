@@ -172,7 +172,9 @@ export class FamilyComponent implements OnInit {
             if (res.userData[0].family !== undefined) {
               this.get_family = res.userData[0].family
             }
-           })
+          })
+          this.family = ''
+          this.relation = ''
         }
       })
     } else if (family === undefined || relation === undefined) {
@@ -193,7 +195,9 @@ export class FamilyComponent implements OnInit {
             if (res.userData[0].family !== undefined) {
               this.get_family = res.userData[0].family
             }
-           })
+          })
+          this.family = ''
+          this.relation = ''
         }
       })
     } else if (family === undefined || relation === undefined) {

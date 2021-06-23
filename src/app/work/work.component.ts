@@ -205,7 +205,8 @@ export class WorkComponent implements OnInit {
             if (res.userData[0].work !== undefined) {
               this.get_works = res.userData[0].work
             }
-           })
+          })
+          this.event = ''
         }
       })
     } else {
@@ -224,7 +225,8 @@ export class WorkComponent implements OnInit {
             if (res.userData[0].work !== undefined) {
               this.get_works = res.userData[0].work
             }
-           })
+          })
+          this.event = ''
         }
       })
     } else {
@@ -278,7 +280,8 @@ export class WorkComponent implements OnInit {
             if (res.userData[0].university !== undefined) {
               this.get_university = res.userData[0].university
             }
-           })
+          })
+          this.university = ''
         }
       })
     } else {
@@ -297,7 +300,8 @@ export class WorkComponent implements OnInit {
             if (res.userData[0].university !== undefined) {
               this.get_university = res.userData[0].university
             }
-           })
+          })
+          this.university = ''
         }
       })
     } else {
@@ -348,7 +352,8 @@ export class WorkComponent implements OnInit {
             if (res.userData[0].highSchool !== undefined) {
               this.get_school = res.userData[0].highSchool
             }
-           })
+          })
+          this.school = ''
         }
       })
     } else {
@@ -367,7 +372,8 @@ export class WorkComponent implements OnInit {
             if (res.userData[0].highSchool !== undefined) {
               this.get_school = res.userData[0].highSchool
             }
-           })
+          })
+          this.school = ''
         }
       })
     } else {

@@ -128,7 +128,8 @@ export class LifeComponent implements OnInit {
             if (res.userData[0].lifeEvents !== undefined) {
               this.get_life = res.userData[0].lifeEvents
             }
-           })
+          })
+          this.life = ''
         }
       })
     } else {
@@ -147,7 +148,8 @@ export class LifeComponent implements OnInit {
             if (res.userData[0].lifeEvents !== undefined) {
               this.get_life = res.userData[0].lifeEvents
             }
-           })
+          })
+          this.life = ''
         }
       })
     } else {
