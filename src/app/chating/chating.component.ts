@@ -1,10 +1,10 @@
 import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren, ViewEncapsulation } from '@angular/core';
 import { SocketioService } from '../socketio.service';
 import {io} from 'socket.io-client';
-//  import { environment } from 'src/environments/environment';
+ import { environment } from 'src/environments/environment';
 import { AuthService } from '../auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { environment } from 'src/environments/environment.prod';
+// import { environment } from 'src/environments/environment.prod';
 
 // const SOCKET_ENDPOINT = 'localhost:8000';
 @Component({
@@ -68,7 +68,6 @@ export class ChatingComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.socketService.setupSocketConnection();
     this.setupSocketConnection();
     
   }

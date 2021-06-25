@@ -15,15 +15,19 @@
   <div class="friend_list">
     <h3>Friends</h3>
   </div>
-  <div class="row" style="padding: 10px;border: 1px solid #fff;margin: 10px;" *ngFor="let data of frdDetails;let i = index">
+  <div class="parent_chat_panel">
+  <div class="row" class="chat_panel" *ngFor="let data of frdDetails;let i = index">
     <div class="remove_people remove_people_{{data._id}}" (click)="openChat(data._id)">
-      <div class="request_shows">
-        <img [src]="data.profileImgURl" onerror="this.src='/assets/images/character.png';" style="border-radius: 50%;" />
-        <div style="color: #fff">{{data.name}}</div>
-        <div *ngIf="data.content == 1" style="color: green;">Online</div>
-        <div *ngIf="data.content == 0" style="color: red;">Offline</div>
+      <div class="request_shows online_sec">
+        <div class="online_title">
+          <img [src]="data.profileImgURl" onerror="this.src='/assets/images/character.png';" style="border-radius: 50%;" />
+        </div>
+        <div class="user_name">{{data.name}}</div>
+        <!-- <div *ngIf="data.content == 1" >Online</div>
+        <div *ngIf="data.content == 0" >Offline</div> -->
       </div>
     </div>
+  </div>
   </div>
 </div>
 
@@ -38,12 +42,14 @@
 </div>
 
 <div class="viewProfile" style="padding-top: 101px;" *ngIf="!showView">
-  <div class="chat-messages">
+  <div class="chat-messages" >
     <div class="chat-messages-show-container" #content>
         <ul class="chat-messages-show-list" id="message-list" >
-          <li *ngFor="let chat of chat_messages" #messages style="background: white;padding: 5px 30px;margin: 10px;" [ngStyle]="{'text-align':chat.senderID === id ? 'right' : 'left' }"> 
-            <span style="color: #ff9000;">{{chat.message}}</span>
-            <div style="font-size: 12px;"> {{chat.createdAt | timeago}} </div>
+          <li *ngFor="let chat of chat_messages" #messages  [ngStyle]="{'text-align':chat.senderID === id ? 'right' : 'left', 'justify-content': chat.senderID === id ? 'flex-end' : 'flex-start'}" style="display: flex;"> 
+            <div [ngStyle]="{'background':chat.senderID === id ? '#ffffff' : '#0f1b31'}" class="chat_message_div">
+              <span [ngStyle]="{'color':chat.senderID === id ? '#0f1b31' : '#ffffff'}">{{chat.message ? chat.message : '.'}}</span>
+              <div [ngStyle]="{'color':chat.senderID === id ? '#949292' : '#909090'}" style="font-size: 12px;"> {{chat.createdAt | timeago}} </div>
+            </div>
           </li>
         </ul>
         <div class="default_thumbnail" *ngIf="chat_messages.length == 0">
