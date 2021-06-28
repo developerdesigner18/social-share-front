@@ -200,10 +200,6 @@
                         </div>
                     </div>
                     <div [ngClass]="current_user['data']._id !== data.userId ? 'take_action' : 'no_share_action'">
-                        <!-- <button class="showLikes" (click)="likeIt(data._id, data.like.length);">
-							<i class="fa" id="{{data._id}}" [ngClass]="postlikeId.includes(data._id) ? 'fa-thumbs-up' : 'fa-thumbs-o-up'"></i>
-							<div>Like<span id="count_{{data._id}}">{{data.like.length === 0 ? '' : data.like.length}}</span></div>
-						</button> -->
                         <button class="showLikes" (click)="likeIt(data._id, data.like.length);">
                             <i class="fa" id="{{data._id}}" [ngClass]="postlikeId.includes(data._id)  ? 'fa-thumbs-up' : 'fa-thumbs-o-up'"></i>
                             <div *ngIf="data.like.length !== 0">Like<span>{{data.like.length !== 0 ? (data._id === tempLikePostId) ? data.like.length + temCntLike : (data.like.length + temCntLike === 0) ? '' : data.like.length : ''}}</span></div>
@@ -215,7 +211,6 @@
                         </div>
                         <div class="tooltiptext">
                             <div id="tooltiptexts" class="tooltiptexts" >
-                                <!-- <span id="like_{{data._id}}_{{i}}" [innerText]="like.name ? like.name : ''"></span> -->
                                 <span id="like_{{data._id}}"> </span>
                             </div>
                         </div>

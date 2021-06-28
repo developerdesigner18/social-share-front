@@ -147,9 +147,6 @@ export class RequestFriendsComponent implements OnInit {
       this.newDate= new Date(res.data.createdAt);
       this.previewUrl = res.data.profileImgURl
       this.imageCov = res.data.coverImgURl ? res.data.coverImgURl : 'assets/images/bg.jpg'
-      //if(this.imageCov == undefined){
-       // this.imageCov = 'assets/images/bg.jpg'
-      //}
     })
 
     localStorage.setItem('friendId', id)

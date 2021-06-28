@@ -20,8 +20,6 @@ export class InformationComponent implements OnInit {
   constructor(public authService: AuthService,
     private activatedRoute: ActivatedRoute) {
     this.id = this.activatedRoute.parent.params['value']['id'];
-    this.authService.getAllData(this.id).subscribe(res => { 
-    })
     this.authService.getFriends(this.id).subscribe(res => {
       if(res['success']){
         this.count_frd = res.userInfo.length

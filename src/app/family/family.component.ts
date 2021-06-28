@@ -134,7 +134,6 @@ export class FamilyComponent implements OnInit {
     if (relationshipStatus !== undefined) {
       this.authService.addStatus(relationshipStatus).subscribe(res => {
         if (res['success']) {
-          // this.toastr.success("Your relationship is updated successfully")
           this.u_status = true
           $(`.relationShip`).css('display','none');
           this.display5 = false

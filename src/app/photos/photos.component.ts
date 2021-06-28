@@ -39,7 +39,6 @@ export class PhotosComponent implements OnInit {
     public dialog: MatDialog,
     public toastr: ToastrService
   ) {
-    // $(".right_sidebar").css("display", "block");
     this.token = localStorage.getItem('currentUser')
     this.id = this.activatedRoute.parent.params['value']['id'];
     this.totalDisplay = 3;

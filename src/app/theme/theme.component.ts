@@ -27,7 +27,6 @@ export class ThemeComponent implements OnInit {
     const current_login_User = JSON.parse(localStorage.getItem('currentUser'));
     this.id = current_login_User.data._id;
     this.authService.getUserProfile(this.id).subscribe(res => {
-      console.log("res", res)
       this.cookieValue = res.data.theme ? res.data.theme : localStorage.getItem('theme');
       this.themeService.setTheme(this.cookieValue);
     })
@@ -42,7 +41,6 @@ export class ThemeComponent implements OnInit {
     this.themeService.setTheme(themeChange);
     localStorage.setItem("theme", themeChange);
     this.authService.changeTheme(this.id, themeChange).subscribe(res => {
-      console.log("res", res)
     })
   }
 

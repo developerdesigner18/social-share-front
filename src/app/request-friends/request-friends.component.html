@@ -159,7 +159,6 @@
             <button class="share_sec_{{data._id}} share_sec" (click)="share(data._id)" *ngIf="login_id !== data.userId">
 							<i class="far fa-share"></i>
 							<div *ngIf="data.share.length !== 0">Share <span> {{data.share.length !== 0 ? data.share.length : ''}} </span> </div>
-							<!-- <div *ngIf="data.share.length === 0">Share</div> -->
 						</button>
             <div class="sharing_container_{{data._id}} sharing_container" style="display: none;">
 							<div class="share_users">

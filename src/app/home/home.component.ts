@@ -336,8 +336,6 @@ $(window).scroll(function() {
   divHide: any = [];
 
   likeIt(postId: string, likeCount: number) {
-    var trying = document.getElementById('tooltiptexts');
-    // let index: any = trying.getAttribute('data-index');
     this.authService.sendLikePost(postId).subscribe(res => {
       if(res['success'])
       {
@@ -349,9 +347,6 @@ $(window).scroll(function() {
           {
             document.getElementById(postId).classList.remove('fa-thumbs-up')
             document.getElementById(postId).classList.add('fa-thumbs-o-up')
-            // this.temLike = likeCount - 1
-            // this.temLike <= 0 ? document.getElementById('count_' + postId).innerHTML = '' : document.getElementById('count_' + postId).innerHTML = String(this.temLike);
-            // document.getElementById('like_' + postId + '_' + index).innerHTML = this.name ? document.getElementById('like_' + postId + '_' + index).innerHTML = '' : document.getElementById('like_' + postId + '_' + index).innerHTML = this.name;
             if (this.datas.map((id) => id._id).includes(postId)) {
               this.tempLikePostId = postId
               this.temCntLike--;
@@ -362,23 +357,8 @@ $(window).scroll(function() {
               
               }
             }
-            // document.getElementById('like_' + postId).innerHTML = this.like_name
-            
-            // document.getElementById('like_' + postId + '_' + index).innerHTML = this.name ? document.getElementById('like_' + postId + '_' + index).innerHTML = '' : document.getElementById('like_' + postId + '_' + index).innerHTML = this.name;
-            // $('like_' + postId + '_' + index).html(this.name ? document.getElementById('like_' + postId + '_' + index).innerHTML = '' : document.getElementById('like_' + postId + '_' + index).innerHTML = this.name);
           }else {
             document.getElementById(postId).classList.add('fa-thumbs-up')
-            // this.temLike = likeCount + 1
-            // if(likeCount < 1){
-            //   this.temLike = this.temLike - 1
-            // }
-            
-
-            // if(this.temLike >= 2){
-            //   this.temLike = this.temLike - 1
-            // }else{
-            //   this.temLike = this.temLike + 1
-            // }
             if (this.datas.map((id) => id._id).includes(postId)) {
               this.tempLikePostId = postId
               this.temCntLike++;
@@ -390,11 +370,6 @@ $(window).scroll(function() {
               document.getElementById('like_' + postId).innerHTML += "<p>" + this.like_name + "</p>"
             }
             }
-            
-            // this.temLike <= 0 ? document.getElementById('count_' + postId).innerHTML = '' : document.getElementById('count_' + postId).innerHTML = String(this.temLike);
-            // document.getElementById('like_' + postId + '_' + index).innerHTML = this.name
-            // document.getElementById('like_' + postId + '_' + index).innerText = this.name
-            // $('like_' + postId + '_' + index).html(this.name);
           }
       }
     })
@@ -441,20 +416,7 @@ $(window).scroll(function() {
       if (res['success']) {        
         $(`.comments_container_${postId}`).css('display', 'block');
         if (this.datas.map((id) => id._id).includes(postId)) {
-         // this.check_temp = true
-         // this.tempName = userName
-        //  this.tempProfile = profilePic
-        //  this.tempPostId = postId
-        //  this.checkTem = true
-       //   console.log("this.tempName", this.tempName)
-        //  console.log("postId", postId)
-          // this.temCmnt.push(this.objVal[0].value)
-       //   if (document.getElementById('com_' + postId) != null) {
-       //     document.getElementById('com_' + postId).innerHTML += this.objVal[0].value
-       //   }
           this.count_cmt = res['data']
-      //    console.log("this.objVal[0].value", this.objVal[0].value)
-       //   console.log("res['data']", res['data'])
        this.tempName = userName
        this.tempProfile = profilePic
        this.tempPostId = postId
@@ -466,7 +428,6 @@ $(window).scroll(function() {
         }
       }
     })
-    //this.temCmnt = [];
     this.commentsForm.reset()
   }
 }

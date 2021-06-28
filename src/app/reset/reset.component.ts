@@ -55,18 +55,12 @@ export class ResetComponent implements OnInit {
       }
       this.authService.resetPassword(this.token, this.password.value).subscribe(() => {
         if (this.authService.isLoggedIn) {
-          // this.dialog.open(DialogPasswordChangeComponent, {
-          //   width: '420px'
-          // })
           this.toastr.success("Your password successfully updated. Please login with your new password")
         } else {
           this.toastr.error("Oops some error occured. Please try again later")
         }
       })
     }else{
-      // this.dialog.open(DialogPassmatchComponent, {
-      //   width: '420px'
-      // })
       this.toastr.info("Password is not matched. Please enter your valid password")
     }
   }

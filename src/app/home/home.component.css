@@ -69,6 +69,7 @@ a:hover {
 body {
     background-color: #F1F1F1;
     background-image: none !important;
+    overflow-y: scroll;
 }
 
 header {

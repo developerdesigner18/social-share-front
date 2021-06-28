@@ -33,7 +33,6 @@ export class NotificationsComponent implements OnInit {
   ) {
     this.bodyHeight = 1000;
     this.totalDisplay = 12;
-    // $(".right_sidebar").css("display", "none");
     const current_login_User = JSON.parse(localStorage.getItem('currentUser'));
     this.id = current_login_User.data._id
 

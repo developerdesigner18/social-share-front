@@ -36,17 +36,12 @@ export class ChatingComponent implements OnInit {
     
     this.socket.on("notifyTyping", data => {
       if (data) {
-        console.log("data", data)
         const typing = document.getElementById("typing");
         typing.innerText = data.user + " " + data.message;
         this.type = data.user + " " + data.message;
       }
     });
-    // this.socket.on("notifyStopTyping", () => {
-    //     this.type = "";
-    // });
     const current_login_User = JSON.parse(localStorage.getItem('currentUser'));
-    // this.id = this.activatedRoute.parent.params['value']['id'];
     this.id = current_login_User.data._id
       this.authService.getProfileforAbout(this.id).subscribe(res => {
         this.datas = res.data;
@@ -54,7 +49,6 @@ export class ChatingComponent implements OnInit {
       })
 
     this.authService.getFriends(this.id).subscribe(res => {
-      // this.friends = res.userInfo
       if(res.success)
       {
         for(let i = 0; i < res.userInfo.length; i++){
@@ -80,24 +74,14 @@ export class ChatingComponent implements OnInit {
   scrollToBottom = () => {
     try {
       this.content.nativeElement.scrollTop = this.content.nativeElement.scrollHeight;
-    } catch (err) {console.log(err)}
+    } catch (err) {}
   }
 
   setupSocketConnection() {
     this.socket.emit('login', {userId: this.id})
-      // this.socket = io.io(SOCKET_ENDPOINT);
       let messageInput = document.getElementById("message");
       let typing = document.getElementById("typing");
       this.socket.on('my broadcast', (data: string) => {
-        console.log('data', data);
-       // if (data) {
-       //  const element = document.createElement('li');
-       //  element.innerHTML = data;
-       //  element.style.background = 'white';
-       //  element.style.padding =  '15px 30px';
-      //   elemene-lt.style.margin = '10px';
-       //  document.getElementById('messagist').appendChild(element);
-       //  }
        let value = [this.id, this.recieverId]
        value.sort((a, b) => b.localeCompare(a))
        this.mergeId = value.join()
@@ -110,7 +94,6 @@ export class ChatingComponent implements OnInit {
       });
     
     this.socket.on('Online', (data: Object) => {
-      console.log("data", data)
     })
 
     if (messageInput) {
@@ -119,10 +102,8 @@ export class ChatingComponent implements OnInit {
       });
     }
       this.socket.on("notifyTyping", data => {
-        console.log("data", data)
         typing.innerText = data.user + " " + data.message;
         this.type = data.user + " " + data.message;
-        console.log(data.user + data.message);
       });
       
       //stop typing
@@ -139,12 +120,6 @@ export class ChatingComponent implements OnInit {
   SendMessage() {
     this.socket.emit('my message', this.message);
     const element = document.createElement('li');
-   // element.innerHTML = this.message;
-   // element.style.background = 'white';
-   // element.style.padding =  '15px 30px';
-   // element.style.margin = '10px';
-   // element.style.textAlign = 'right';
-   // document.getElementById('message-list').appendChild(element);
     let value = [this.id, this.recieverId]
     value.sort((a, b) => b.localeCompare(a))
     this.mergeId = value.join()

@@ -32,7 +32,6 @@ export class FriendsComponent implements OnInit {
     public router: Router,
     public toastr: ToastrService
   ) {
-    // $(".right_sidebar").css("display", "block");
     let id = this.activatedRoute.parent.params['value']['id'];
     this.url_id = this.activatedRoute.parent.params['value']['id'];
     if (localStorage.getItem('friendId')) {

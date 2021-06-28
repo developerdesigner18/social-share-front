@@ -32,7 +32,6 @@ export class VideosComponent implements OnInit {
   ) { 
     this.bodyHeight = 1000;
     this.totalDisplay = 6;
-    // $(".right_sidebar").css("display", "block");
     this.token = localStorage.getItem('token')
     this.id = this.activatedRoute.parent.params['value']['id'];
     if(this.router.url === '/friends/' + this.activatedRoute.parent.params['value']['id'] + '/videos'){

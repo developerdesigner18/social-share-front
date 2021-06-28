@@ -662,6 +662,12 @@ img.logout {
     padding: 1px;
 }
 
+button:disabled,
+button[disabled]{
+  background-color: #ff900099;
+  color: #ffffffc7;
+}
+
 body .add_friend_btn {
     background: #0f1b31 !important;
     color: #f1f1f1;

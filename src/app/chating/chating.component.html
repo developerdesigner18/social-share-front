@@ -1,16 +1,5 @@
 <app-header></app-header>
 
-<!-- <div class="chat-messages">
-    <div class="chat-messages-show-container">
-        <ul class="chat-messages-show-list" id="message-list">
-        </ul>
-    </div>
-    <div class="chat-messages-create-container">
-        <i id="typing"></i>
-        <input id="message" class="chat-messages-create-input" [(ngModel)]="message" type="text" placeholder="Type your message here...">
-        <button class="chat-messages-create-button" (click)="SendMessage()"> Send </button>
-    </div>
-</div> -->
 <div class="sidenav left">
   <div class="friend_list">
     <h3>Friends</h3>
@@ -23,8 +12,6 @@
           <img [src]="data.profileImgURl" onerror="this.src='/assets/images/character.png';" style="border-radius: 50%;" />
         </div>
         <div class="user_name">{{data.name}}</div>
-        <!-- <div *ngIf="data.content == 1" >Online</div>
-        <div *ngIf="data.content == 0" >Offline</div> -->
       </div>
     </div>
   </div>
@@ -59,7 +46,7 @@
     <div class="chat-messages-create-container">
         <i id="typing"></i>
         <input id="message" class="chat-messages-create-input" [(ngModel)]="message" type="text" (keyup.enter)="SendMessage()" placeholder="Type your message here...">
-        <button class="chat-messages-create-button" (click)="SendMessage()"> Send </button>
+        <button class="chat-messages-create-button" [disabled]="!message" (click)="SendMessage()"> Send </button>
     </div>
     </div>
 </div>

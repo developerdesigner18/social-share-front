@@ -294,29 +294,16 @@ export class TimelineComponent implements OnInit {
   data: any = []
   likeIt(postId: string, likeCount: number){
 
-    var trying = document.getElementById('tooltiptexts');
-    // let index: any = trying.getAttribute('data-index');
-
     this.authService.sendLikePost(postId).subscribe(res => {
       if(res['success'])
       {
         this.data = res['data']
         this.like_length = this.data.length
-        // document.getElementById('like_' + postId).style.display = "none";
         this.checkTem = true
         if(document.getElementById(postId).classList[2] === 'fa-thumbs-up' || document.getElementById(postId).classList[1] === 'fa-thumbs-up')
         {
           document.getElementById(postId).classList.remove('fa-thumbs-up')
           document.getElementById(postId).classList.add('fa-thumbs-o-up')
-          // this.temLike = likeCount - 1
-          // this.temLike <= 0 ? document.getElementById('count_' + postId).innerHTML = '' : document.getElementById('count_' + postId).innerHTML = String(this.temLike);
-          // document.getElementById('like_' + postId + '_' + index).innerHTML = this.u_name ? document.getElementById('like_' + postId + '_' + index).innerHTML = '' : document.getElementById('like_' + postId + '_' + index).innerHTML = this.u_name;
-          // // if (this.datas.map((id) => id._id).includes(postId)) {
-          // //   this.tempLikePostId = postId
-          // //   this.temCntLike--;
-          // // }
-          // document.getElementById('like_' + postId + '_' + index).innerHTML = this.u_name ? document.getElementById('like_' + postId + '_' + index).innerHTML = '' : document.getElementById('like_' + postId + '_' + index).innerHTML = this.u_name;
-          // $('like_' + postId + '_' + index).html(this.u_name ? document.getElementById('like_' + postId + '_' + index).innerHTML = '' : document.getElementById('like_' + postId + '_' + index).innerHTML = this.u_name);
           if (this.datas.map((id) => id._id).includes(postId)) {
               this.tempLikePostId = postId
               this.temCntLike--;
@@ -329,23 +316,6 @@ export class TimelineComponent implements OnInit {
             }
         }else {
           document.getElementById(postId).classList.add('fa-thumbs-up')
-          // this.temLike = likeCount + 1
-          // if(likeCount < 1){
-          //   this.temLike = this.temLike - 1
-          // }
-          // if(this.temLike >= 2){
-          //   this.temLike = this.temLike - 1
-          // }else{
-          //   this.temLike = this.temLike + 1
-          // }
-          // this.temLike <= 0 ? document.getElementById('count_' + postId).innerHTML = '' : document.getElementById('count_' + postId).innerHTML = String(this.temLike);
-          //   // document.getElementById('like_' + postId + '_' + index).innerHTML = this.u_name
-          //   // if (this.datas.map((id) => id._id).includes(postId)) {
-          //   //   this.tempLikePostId = postId
-          //   //   this.temCntLike++;
-          //   // }
-          //   document.getElementById('like_' + postId + '_' + index).innerText = this.u_name
-          // $('like_' + postId + '_' + index).html(this.u_name)
           if (this.datas.map((id) => id._id).includes(postId)) {
               this.tempLikePostId = postId
               this.temCntLike++;
@@ -372,9 +342,6 @@ export class TimelineComponent implements OnInit {
       if(res['success']){
         $(`.comments_container_${postId}`).css('display','block');
         if(this.datas.map((id) => id._id).includes(postId)){
-          //this.tempPostId = postId
-          //this.checkTem = true
-          //this.temCmnt.push(this.objVal[0].value)
        this.tempPostId = postId
           this.checkTem = true
           var data = this.objVal[0].value
