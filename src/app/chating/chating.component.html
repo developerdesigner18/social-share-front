@@ -47,6 +47,42 @@
         <i id="typing"></i>
         <input id="message" class="chat-messages-create-input" [(ngModel)]="message" type="text" (keyup.enter)="SendMessage()" placeholder="Type your message here...">
         <button class="chat-messages-create-button" [disabled]="!message" (click)="SendMessage()"> Send </button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"> <img src="../../assets/images/chat.png" alt="" width="20px" height="20px"> </button>
     </div>
     </div>
+</div>
+
+<!-- The Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Video Calling</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div id="app">
+          <span id="myid"> </span>
+          <video id="selfview"></video>
+          <video id="remoteview"></video>
+          <button id="endCall" style="display: none;" onclick="endCurrentCall()">End Call </button>
+          <div id="list">
+              <ul id="users">
+  
+              </ul>
+          </div>
+      </div>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
 </div>

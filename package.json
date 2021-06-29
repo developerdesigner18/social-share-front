@@ -55,6 +55,7 @@
     "ngx-timeago": "^2.0.0",
     "ngx-toastr": "^13.2.0",
     "owl.carousel": "^2.3.4",
+    "pusher-js": "^7.0.3",
     "rxjs": "~6.5.4",
     "screenfull": "^3.3.0",
     "socket.io-client": "^4.0.1",

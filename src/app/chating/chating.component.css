@@ -9,6 +9,15 @@ header {
     margin: auto;
 }
 
+/* video calling */
+small {
+    border-bottom: 2px solid black;
+}
+
+li {
+    list-style: none;
+}
+
 header .logo,
 .login_container {
     flex: 1;
