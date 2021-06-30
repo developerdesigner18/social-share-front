@@ -36,6 +36,9 @@ export class ChatingComponent implements OnInit {
   caller: any
   localUserMedia;
   channel: any;
+  check_user: any;
+  temp_name: any;
+  current_user_id: any;
 
   @ViewChildren('messages') messages: QueryList<any>;
   @ViewChild('content') content: ElementRef;
@@ -120,7 +123,6 @@ export class ChatingComponent implements OnInit {
                       "room": this.room
                   });
               });
-  
           })
           .catch(error => {
               console.log('an error occured', error);
@@ -161,13 +163,13 @@ export class ChatingComponent implements OnInit {
       }
     });
     const current_login_User = JSON.parse(localStorage.getItem('currentUser'));
-    this.id = current_login_User.data._id
-      this.authService.getProfileforAbout(this.id).subscribe(res => {
+    this.current_user_id = current_login_User.data._id
+      this.authService.getProfileforAbout(this.current_user_id).subscribe(res => {
         this.datas = res.data;
         this.name = res.data.name
       })
 
-    this.authService.getFriends(this.id).subscribe(res => {
+    this.authService.getFriends(this.current_user_id).subscribe(res => {
       if(res.success)
       {
         for(let i = 0; i < res.userInfo.length; i++){
@@ -194,15 +196,17 @@ export class ChatingComponent implements OnInit {
 
   render() {
     var list = "";
-    this.users.forEach(function(user) {
-      list +=
-        `<li>` +
-        user +
-        ` <input type="button" style="float:right;"  value="Call" onclick="callUser('` +
-        user +
-        `')" id="makeCall" /></li>`;
-    });
-    document.getElementById("users").innerHTML = list;
+    console.log("users", this.users[0])
+    this.check_user = this.users[0]
+    // this.users.forEach(function(user) {
+    //   list +=
+    //     `<li>` +
+    //     user +
+    //     ` <input type="button" style="float:right;"  value="Call" (click)="callUser('` +
+    //     user +
+    //     `')" id="makeCall" /></li>`;
+    // });
+    // document.getElementById("users").innerHTML = list;
   }
 
   
@@ -266,6 +270,7 @@ export class ChatingComponent implements OnInit {
 
   //Create and send offer to remote peer on button click
   callUser(user) {
+    console.log("call")
     this.getCam()
       .then(stream => {
         var myImgsrc2: any = document.getElementById("selfview") as HTMLImageElement;
@@ -310,6 +315,13 @@ export class ChatingComponent implements OnInit {
     this.toggleEndCallButton();
   }
 
+  endCurrentCall() {
+    this.channel.trigger("client-endcall", {
+      room: this.room
+    });
+    this.endCall();
+  }
+
   scrollToBottom = () => {
     try {
       this.content.nativeElement.scrollTop = this.content.nativeElement.scrollHeight;
@@ -317,11 +329,11 @@ export class ChatingComponent implements OnInit {
   }
 
   setupSocketConnection() {
-    this.socket.emit('login', {userId: this.id})
+    this.socket.emit('login', {userId: this.current_user_id})
       let messageInput = document.getElementById("message");
       let typing = document.getElementById("typing");
       this.socket.on('my broadcast', (data: string) => {
-       let value = [this.id, this.recieverId]
+       let value = [this.current_user_id, this.recieverId]
        value.sort((a, b) => b.localeCompare(a))
        this.mergeId = value.join()
         this.authService.showMsg(this.mergeId).subscribe(res => {
@@ -359,17 +371,16 @@ export class ChatingComponent implements OnInit {
   SendMessage() {
     this.socket.emit('my message', this.message);
     const element = document.createElement('li');
-    let value = [this.id, this.recieverId]
+    let value = [this.current_user_id, this.recieverId]
     value.sort((a, b) => b.localeCompare(a))
     this.mergeId = value.join()
     
     if (this.message !== undefined) {
-        this.authService.insertMsg(this.message, this.name, this.id, this.recieverId, this.mergeId).subscribe(res => {
+        this.authService.insertMsg(this.message, this.name, this.current_user_id, this.recieverId, this.mergeId).subscribe(res => {
           if (res['success']) {
           }
         })
-      } else {
-    }
+      }
     
     this.authService.showMsg(this.mergeId).subscribe(res => {
       if (res['success']) {
@@ -379,10 +390,11 @@ export class ChatingComponent implements OnInit {
     
       this.message = '';
  }
-  openChat(id) {
+  openChat(id, name) {
+    this.temp_name = name
     this.recieverId = id
     this.showView = false;
-    let value = [this.id, this.recieverId]
+    let value = [this.current_user_id, this.recieverId]
     value.sort((a, b) => b.localeCompare(a))
     this.mergeId = value.join()
     this.authService.showMsg(this.mergeId).subscribe(res => {

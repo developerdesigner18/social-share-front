@@ -92,7 +92,7 @@
                             <div class="full-width-50" *ngIf="current_user['data']._id !== data.userId">
                                 <i class="fa fa-comments-o" style="margin: 0px 11px 0px 23px"></i>
                                 <a href="chating/{{id}}">
-                                <div style="display: contents;">Message</div>
+                                <div style="display: contents;color: #000;">Message</div>
                             </a>
                             </div>
                             <div class="full-width-50" *ngIf="current_user['data']._id == data.userId">
@@ -136,7 +136,7 @@
                                 <div class="full-width-50" *ngIf="current_user['data']._id !== data.userId">
                                     <i class="fa fa-comments-o" style="margin: 0px 11px 0px 23px"></i>
                                     <a href="chating/{{id}}">
-                                    <div style="display: contents;">Message</div>
+                                    <div style="display: contents;color: #000;">Message</div>
                                 </a>
                                 </div>
                                 <div class="full-width-50" *ngIf="current_user['data']._id == data.userId" (click)="showProfile()">
@@ -151,15 +151,15 @@
                                 </div>
                                 <div class="dropdown-container full-width-20" tabindex="-1">
                                     <div class="three-dots"></div>
-                                    <div class="dropdown">
+                                    <div class="dropdown" >
                                         <a href="profile/{{data.userId}}/about">
-                                            <div>About Me</div>
+                                            <div style="color: #000;">About Me</div>
                                         </a>
                                         <a href="profile/{{data.userId}}/photos">
-                                            <div>Photos</div>
+                                            <div style="color: #000;">Photos</div>
                                         </a>
                                         <a href="profile/{{data.userId}}/videos">
-                                            <div>Videos</div>
+                                            <div style="color: #000;">Videos</div>
                                         </a>
                                     </div>
                                 </div>

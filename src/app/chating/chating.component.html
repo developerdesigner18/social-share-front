@@ -6,7 +6,7 @@
   </div>
   <div class="parent_chat_panel">
   <div class="row" class="chat_panel" *ngFor="let data of frdDetails;let i = index">
-    <div class="remove_people remove_people_{{data._id}}" (click)="openChat(data._id)">
+    <div class="remove_people remove_people_{{data._id}}" (click)="openChat(data._id, data.name)">
       <div class="request_shows online_sec">
         <div class="online_title">
           <img [src]="data.profileImgURl" onerror="this.src='/assets/images/character.png';" style="border-radius: 50%;" />
@@ -32,10 +32,10 @@
   <div class="chat-messages" >
     <div class="chat-messages-show-container" #content>
         <ul class="chat-messages-show-list" id="message-list" >
-          <li *ngFor="let chat of chat_messages" #messages  [ngStyle]="{'text-align':chat.senderID === id ? 'right' : 'left', 'justify-content': chat.senderID === id ? 'flex-end' : 'flex-start'}" style="display: flex;"> 
-            <div [ngStyle]="{'background':chat.senderID === id ? '#ffffff' : '#0f1b31'}" class="chat_message_div">
-              <span [ngStyle]="{'color':chat.senderID === id ? '#0f1b31' : '#ffffff'}">{{chat.message ? chat.message : '.'}}</span>
-              <div [ngStyle]="{'color':chat.senderID === id ? '#949292' : '#909090'}" style="font-size: 12px;"> {{chat.createdAt | timeago}} </div>
+          <li *ngFor="let chat of chat_messages" #messages  [ngStyle]="{'text-align':chat.senderID === current_user_id ? 'right' : 'left', 'justify-content': chat.senderID === current_user_id ? 'flex-end' : 'flex-start'}" style="display: flex;"> 
+            <div [ngStyle]="{'background':chat.senderID === current_user_id ? '#ffffff' : '#0f1b31'}" class="chat_message_div">
+              <span [ngStyle]="{'color':chat.senderID === current_user_id ? '#0f1b31' : '#ffffff'}">{{chat.message ? chat.message : '.'}}</span>
+              <div [ngStyle]="{'color':chat.senderID === current_user_id ? '#949292' : '#909090'}" style="font-size: 12px;"> {{chat.createdAt | timeago}} </div>
             </div>
           </li>
         </ul>
@@ -59,7 +59,7 @@
 
       <!-- Modal Header -->
       <div class="modal-header">
-        <h4 class="modal-title">Video Calling</h4>
+        <h4 class="modal-title"> {{temp_name}} </h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
 
@@ -69,11 +69,9 @@
           <span id="myid"> </span>
           <video id="selfview"></video>
           <video id="remoteview"></video>
-          <button id="endCall" style="display: none;" onclick="endCurrentCall()">End Call </button>
-          <div id="list">
-              <ul id="users">
-  
-              </ul>
+          <div id="list" style="display: flex;justify-content: space-around;">
+            <button class="btn btn-primary" (click)="callUser(check_user)"> <img src="../../assets/images/telephone.png" alt="" width="40px" height="40px"></button>
+            <button id="endCall" class="btn btn-danger" style="display: none;" (click)="endCurrentCall()"><img src="../../assets/images/reject.png" alt="" width="40px" height="40px"> </button>
           </div>
       </div>
       </div>

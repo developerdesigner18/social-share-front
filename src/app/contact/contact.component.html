@@ -145,7 +145,7 @@
   </div>
   <div *ngIf="show_birth" class="update-list">
     <div class="update-display"> 
-    <i class="fa fa-birthday-cake"> </i> {{birth_value | date}}
+      <i class="fa fa-birthday-cake"> </i> {{birth_value | date}}
     </div>
     <div class="icons-pencil" *ngIf="icons">
       <i (click)="updateBirth(birth_value)" class="pencil-icon fa fa-pencil"></i>
