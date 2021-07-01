@@ -41,7 +41,7 @@
   </div>
   <div class="no_mention" *ngIf="not_mention_address"><i class="fa fa-envelope"> </i> {{not_mention_address}} </div>
   <div class="address" *ngIf="fill_email">
-    <input (keyup.enter)="addAddress(location)" type="email"  [(ngModel)]="location" inputmode="email" name="location" value="" placeholder="Add your email address" required>
+    <input (keyup.enter)="addAddress(location)" type="email"  [(ngModel)]="location" inputmode="email" name="location" value="" placeholder="Add your email address" pattern="/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/" required>
     <button type="button" name="a_button" (click)="A_Cancel()">Cancel</button>
     <button type="button" name="button" (click)="addAddress(location)">Save</button>
   </div>
@@ -86,7 +86,7 @@
   </div>
   <div  *ngIf="show_caste" class="update-list">
     <div class="update-display">
-    <i class="fas fa-pray"> </i> {{religious_value}}
+    <i class="fas fa-pray"> </i> <span style="word-break: break-all;"> {{religious_value}} </span>
     </div>
     <div class="icons-pencil" *ngIf="icons">
       <i (click)="updateBasicInfo(religious_value)" class="pencil-icon fa fa-pencil"></i>
@@ -95,12 +95,12 @@
   </div>
   <div class="no_mention" *ngIf="not_mention_religious"><i class="fas fa-pray"> </i> {{not_mention_religious}} </div>
   <div class="religious"  *ngIf="fil_caste">
-    <input (keyup.enter)="addBasicInfo(religious_value)" type="text" [(ngModel)]="religious_value" name="" value="" placeholder="Add your religious" required>
+    <input (keyup.enter)="addBasicInfo(religious_value)" type="text" maxlength="30" [(ngModel)]="religious_value" name="" value="" placeholder="Add your religious" required>
     <button type="button" name="button" (click)="R_Cancel()">Cancel</button>
     <button type="button" name="button" (click)="addBasicInfo(religious_value)">Save</button>
   </div>
   <div class="u_religious"  *ngIf="u_fill_caste">
-    <input (keyup.enter)="editBasicInfo(religious_value)" type="text" [(ngModel)]="religious_value" name="" value="" placeholder="Add your religious">
+    <input (keyup.enter)="editBasicInfo(religious_value)" type="text" maxlength="30" [(ngModel)]="religious_value" name="" value="" placeholder="Add your religious">
     <button type="button" name="button" (click)="u_cancel3()">Cancel</button>
     <button type="button" name="button" (click)="editBasicInfo(religious_value)">Save</button>
   </div>

@@ -8,7 +8,7 @@
   </div>
   <div  *ngIf="show_details" class="update-list">
     <div class="update-display2" >
-      <div class="details_show"> {{details_about}} </div>
+      <div class="details_show" style="word-break: break-all;"> {{details_about}} </div>
     </div>
     <div class="icons-pencil" *ngIf="icons">
       <i (click)="updateDetails(details_about)" class="pencil-icon fa fa-pencil"></i>
@@ -35,7 +35,7 @@
   </div>
   <div *ngIf="show_pronun" class="update-list">
     <div class="update-display">
-      <i class="fa fa-language"> </i> <div class="details_show"> {{pronun_value}} </div>
+      <i class="fa fa-language"> </i> <div class="details_show" style="word-break: break-all;"> {{pronun_value}} </div>
     </div>
     <div class="icons-pencil" *ngIf="icons">
       <i (click)="updatePronunciation(pronun_value)" class="pencil-icon fa fa-pencil"></i>
@@ -62,7 +62,7 @@
   </div>
   <div *ngIf="show_nickname" class="update-list">
     <div class="update-display">
-      <i class="fa fa-user"> </i> <div class="details_show"> {{nickname}} </div>
+      <i class="fa fa-user"> </i> <div class="details_show" style="word-break: break-all;"> {{nickname}} </div>
     </div>
     <div class="icons-pencil" *ngIf="icons">
       <i (click)="updateNickname(nickname)" class="pencil-icon fa fa-pencil"></i>
@@ -89,7 +89,7 @@
   </div>
   <div *ngIf="show_quotes" class="update-list">
     <div class="update-display2" >
-      <i class="fa fa-quote-left"> </i> <div class="details_show"> {{quote_value}} </div>
+      <i class="fa fa-quote-left"> </i> <div class="details_show" style="word-break: break-all;"> {{quote_value}} </div>
     </div>
     <div class="icons-pencil" *ngIf="icons">
       <i (click)="updateQuotes(quote_value)" class="pencil-icon fa fa-pencil"></i>

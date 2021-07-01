@@ -707,6 +707,7 @@ export class ContactComponent implements OnInit {
             }
            })
         }
+        this.language = ''
       })
     } else {
       this.toastr.error("Please enter your language")

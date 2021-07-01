@@ -20,7 +20,7 @@
     <div *ngFor="let life_data of get_life.slice().reverse()" class="work-record">
       <div class="update-display" >
         <img src="../../assets/images/event.png" alt="life events"> 
-        <div class="life_event_shows">
+        <div class="life_event_shows" style="word-break: break-all;">
           {{life_data.name}}
         </div>
       </div>
