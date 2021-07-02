@@ -366,7 +366,7 @@ export class ChatingComponent implements OnInit {
       this.socket.on("notifyStopTyping", () => {
         typing.innerText = "";
       });
-    }
+  }
 
   SendMessage() {
     this.socket.emit('my message', this.message);

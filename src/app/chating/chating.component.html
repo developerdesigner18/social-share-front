@@ -34,7 +34,7 @@
         <ul class="chat-messages-show-list" id="message-list" >
           <li *ngFor="let chat of chat_messages" #messages  [ngStyle]="{'text-align':chat.senderID === current_user_id ? 'right' : 'left', 'justify-content': chat.senderID === current_user_id ? 'flex-end' : 'flex-start'}" style="display: flex;"> 
             <div [ngStyle]="{'background':chat.senderID === current_user_id ? '#ffffff' : '#0f1b31'}" class="chat_message_div">
-              <span [ngStyle]="{'color':chat.senderID === current_user_id ? '#0f1b31' : '#ffffff'}">{{chat.message ? chat.message : '.'}}</span>
+              <span [ngStyle]="{'color':chat.senderID === current_user_id ? '#0f1b31' : '#ffffff'}">{{chat.message ? chat.message : message}}</span>
               <div [ngStyle]="{'color':chat.senderID === current_user_id ? '#949292' : '#909090'}" style="font-size: 12px;"> {{chat.createdAt | timeago}} </div>
             </div>
           </li>
@@ -73,7 +73,7 @@
             <button class="btn btn-primary" (click)="callUser(check_user)"> <img src="../../assets/images/telephone.png" alt="" width="40px" height="40px"></button>
             <button id="endCall" class="btn btn-danger" style="display: none;" (click)="endCurrentCall()"><img src="../../assets/images/reject.png" alt="" width="40px" height="40px"> </button>
           </div>
-      </div>
+        </div>
       </div>
 
       <!-- Modal footer -->
