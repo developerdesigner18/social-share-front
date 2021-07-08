@@ -71,51 +71,52 @@ export class AppComponent {
     //     this.noInternetConnection=true;  
     //   }  
     //   console.log("isConnected", isConnected);    })  
-      
+    if (this.authService.isLoggedIn() == true) {
       // sets an idle timeout of 5 seconds, for testing purposes.
-    idle.setIdle(600);
-    // sets a timeout period of 5 seconds. after 10 seconds of inactivity, the user will be considered timed out.
-    idle.setTimeout(300);
-    // sets the default interrupts, in this case, things like clicks, scrolls, touches to the document
-    idle.setInterrupts(DEFAULT_INTERRUPTSOURCES);
+      idle.setIdle(600);
+      // sets a timeout period of 5 seconds. after 10 seconds of inactivity, the user will be considered timed out.
+      idle.setTimeout(300);
+      // sets the default interrupts, in this case, things like clicks, scrolls, touches to the document
+      idle.setInterrupts(DEFAULT_INTERRUPTSOURCES);
 
-    idle.onIdleEnd.subscribe(() => { 
-      this.idleState = 'No longer idle.'
-      this.reset();
-    });
+      idle.onIdleEnd.subscribe(() => {
+        this.idleState = 'No longer idle.'
+        this.reset();
+      });
     
-    idle.onTimeout.subscribe(() => {
-      this.childModal.hide();
-      this.idleState = 'Timed out!';
-      this.timedOut = true;
-      localStorage.removeItem('currentUser');
-      localStorage.removeItem('token');
-      localStorage.removeItem('friendId');
-      window.location.replace('');
-    });
+      idle.onTimeout.subscribe(() => {
+        this.childModal.hide();
+        this.idleState = 'Timed out!';
+        this.timedOut = true;
+        localStorage.removeItem('currentUser');
+        localStorage.removeItem('token');
+        localStorage.removeItem('friendId');
+        window.location.replace('');
+      });
     
-    idle.onIdleStart.subscribe(() => {
+      idle.onIdleStart.subscribe(() => {
         this.idleState = 'You\'ve gone idle!'
         this.childModal.show();
-    });
+      });
     
-    idle.onTimeoutWarning.subscribe((countdown) => {
-      this.idleState = 'You will time out in ' + countdown + ' seconds!'
-    });
+      idle.onTimeoutWarning.subscribe((countdown) => {
+        this.idleState = 'You will time out in ' + countdown + ' seconds!'
+      });
 
-    // sets the ping interval to 15 seconds
-    keepalive.interval(150);
+      // sets the ping interval to 15 seconds
+      keepalive.interval(150);
 
-    keepalive.onPing.subscribe(() => this.lastPing = new Date());
+      keepalive.onPing.subscribe(() => this.lastPing = new Date());
 
-    if (this.authService.isLoggedIn() !== true) {
-      idle.watch()
-      this.timedOut = false;
-    } else {
-      idle.stop();
+      if (this.authService.isLoggedIn() !== true) {
+        idle.watch()
+        this.timedOut = false;
+      } else {
+        idle.stop();
+      }
+
+      this.reset();
     }
-
-    this.reset();
 
   }
 

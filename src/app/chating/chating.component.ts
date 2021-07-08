@@ -8,6 +8,7 @@ import Pusher from 'pusher-js'
 // import { environment } from 'src/environments/environment.prod';
 
 // const SOCKET_ENDPOINT = 'localhost:8000';
+declare var $: any;
 @Component({
   selector: 'app-chating',
   templateUrl: './chating.component.html',
@@ -43,11 +44,12 @@ export class ChatingComponent implements OnInit {
   @ViewChildren('messages') messages: QueryList<any>;
   @ViewChild('content') content: ElementRef;
   private pusherClient: Pusher;
+  video: HTMLVideoElement;
   constructor(private socketService: SocketioService, public authService: AuthService,
     private activatedRoute: ActivatedRoute,
     public router: Router) {
       Pusher.logToConsole = true;
-    this.pusherClient = new Pusher('36f6c0c04f1beb073837',
+    this.pusherClient = new Pusher('91455e0618617fd0e25d',
       {
         cluster: 'ap2',
         authEndpoint: `${environment.apiUrl}/pusher/auth`
@@ -65,7 +67,7 @@ export class ChatingComponent implements OnInit {
       //set the member count
       this.usersOnline = members.count;
       this.id = members.me.id;
-      document.getElementById("myid").innerHTML = ` My caller id is : ` + this.id;
+      // document.getElementById("myid").innerHTML = ` My caller id is : ` + this.id;
       members.each(member => {
         if (member.id != members.me.id) {
           this.users.push(member.id);
@@ -89,19 +91,26 @@ export class ChatingComponent implements OnInit {
       this.render();
     });
 
-    this.channel.bind("client-candidate", function(msg) {
+    this.channel.bind("client-candidate", (msg) => {
       if(msg.room==this.room){
           console.log("candidate received");
           this.caller.addIceCandidate(new RTCIceCandidate(msg.candidate));
       }
     });
     
-    this.channel.bind("client-sdp", function(msg) {
+    this.channel.bind("client-sdp", (msg) => {
+      console.log("msg", msg)
       if(msg.room == this.id){
-          var answer = confirm("You have a call from: "+ msg.from + "Would you like to answer?");
+          var answer = confirm("You have a call from: "+ msg.name + " Would you like to answer?");
           if(!answer){
-              return this.channel.trigger("client-reject", {"room": msg.room, "rejected":this.id});
-          }
+              return this.channel.trigger("client-reject", {"room": msg.room, "rejected":this.id, "name": msg.name});
+        }
+        if (answer) {
+          $("#myModal").modal('show', {
+            backdrop: 'static',
+            keyboard: false
+        });
+        }
           this.room = msg.room;
           this.getCam()
           .then(stream => {
@@ -116,7 +125,7 @@ export class ChatingComponent implements OnInit {
               this.caller.addStream(stream);
               var sessionDesc = new RTCSessionDescription(msg.sdp);
               this.caller.setRemoteDescription(sessionDesc);
-              this.caller.createAnswer().then(function(sdp) {
+              this.caller.createAnswer().then((sdp) => {
                   this.caller.setLocalDescription(new RTCSessionDescription(sdp));
                   this.channel.trigger("client-answer", {
                       "sdp": sdp,
@@ -129,20 +138,28 @@ export class ChatingComponent implements OnInit {
           })
       }
   });
-  this.channel.bind("client-answer", function(answer) {
+  this.channel.bind("client-answer", (answer) => {
     if (answer.room == this.room) {
       console.log("answer received");
       this.caller.setRemoteDescription(new RTCSessionDescription(answer.sdp));
     }
   });
   
-  this.channel.bind("client-reject", function(answer) {
+  this.channel.bind("client-reject", (answer) => {
     if (answer.room == this.room) {
       console.log("Call declined");
-      alert("call to " + answer.rejected + "was politely declined");
+      alert("call to " + answer.name + " was politely declined");
       this.endCall();
     }
   });
+    
+    this.channel.bind("client-endcall", answer => {
+      console.log("answer end call", answer)
+      if (answer.room == this.room) {
+        console.log("end call")
+        alert("Call is ended")
+      }
+    })
 
     //To iron over browser implementation anomalies like prefixes
   this.GetRTCPeerConnection();
@@ -151,8 +168,6 @@ export class ChatingComponent implements OnInit {
   //prepare the caller to use peerconnection
   this.prepareCaller();
 
-
-    
     this.socket = io(environment.apiUrl);
     
     this.socket.on("notifyTyping", data => {
@@ -232,21 +247,20 @@ export class ChatingComponent implements OnInit {
     //Initializing a peer connection
     this.caller = new window.RTCPeerConnection();
     //Listen for ICE Candidates and send them to remote peers
-    this.caller.onicecandidate = function(evt) {
+    this.caller.onicecandidate = (evt) => {
       if (!evt.candidate) return;
       console.log("onicecandidate called");
       this.onIceCandidate(this.caller, evt);
     };
     //onaddstream handler to receive remote feed and show in remoteview video element
-    this.caller.onaddstream = function(evt) {
+    console.log("call")
+    this.caller.onaddstream = (evt) => {
       console.log("onaddstream called");
-      var myImgsrc = document.getElementById("remoteview") as HTMLImageElement;
+      var myImgsrc =  <HTMLVideoElement>(document.querySelector("#remoteview"));
       if (window.URL) {
-        myImgsrc.src = window.URL.createObjectURL(
-          evt.stream
-        );
+        myImgsrc.srcObject = evt.stream;
       } else {
-        myImgsrc.src = evt.stream;
+        myImgsrc.srcObject = evt.stream;
       }
     };
   }
@@ -268,28 +282,84 @@ export class ChatingComponent implements OnInit {
     });
   }
 
+  ofVideo() {
+    return navigator.mediaDevices.getUserMedia({
+      video: false,
+      audio: true
+    });
+  }
+
+  ofAudio() {
+    return navigator.mediaDevices.getUserMedia({
+      audio: false,
+      video: false
+    }).then( stream => {
+      console.log("successfully audio is off", stream)
+    }).catch(function(err) {
+      //log to console first 
+      console.log(err); /* handle the error */
+      if (err.name == "NotFoundError" || err.name == "DevicesNotFoundError") {
+          //required track is missing 
+      } else if (err.name == "NotReadableError" || err.name == "TrackStartError") {
+          //webcam or mic are already in use 
+      } else if (err.name == "OverconstrainedError" || err.name == "ConstraintNotSatisfiedError") {
+          //constraints can not be satisfied by avb. devices 
+      } else if (err.name == "NotAllowedError" || err.name == "PermissionDeniedError") {
+          //permission denied in browser 
+      } else if (err.name == "TypeError" || err.name == "TypeError") {
+          //empty constraints object 
+      } else {
+          //other errors 
+      }
+  });
+  }
+
+  Audio_Change(i: number) {
+    if (i == 0) {
+      $("#audio_off").css("display", "block")
+      $("#audio_on").css("display", "none")
+      this.localUserMedia.getAudioTracks()[0].enabled = !(this.localUserMedia.getAudioTracks()[0].enabled);
+    } else {
+      $("#audio_off").css("display", "none")
+      $("#audio_on").css("display", "block")
+      this.localUserMedia.getAudioTracks()[0].enabled = !(this.localUserMedia.getAudioTracks()[0].enabled);
+    }
+  }
+
+  Video_Change(i: number) {
+    if (i == 0) {
+      $("#video_off").css("display", "block")
+      $("#video_on").css("display", "none")
+      this.localUserMedia.getVideoTracks()[0].enabled = !(this.localUserMedia.getVideoTracks()[0].enabled);
+    } else {
+      $("#video_off").css("display", "none")
+      $("#video_on").css("display", "block")
+      this.localUserMedia.getVideoTracks()[0].enabled = !(this.localUserMedia.getVideoTracks()[0].enabled);
+    }
+  }
   //Create and send offer to remote peer on button click
   callUser(user) {
     console.log("call")
     this.getCam()
       .then(stream => {
-        var myImgsrc2: any = document.getElementById("selfview") as HTMLImageElement;
+        this.video = <HTMLVideoElement>(document.querySelector("#selfview"));
         if (window.URL) {
-          myImgsrc2.src = window.URL.createObjectURL(
-            stream
-          );
+          console.log("call1", stream)
+          this.video.srcObject = stream;
         } else {
-          myImgsrc2.src = stream;
+          console.log("call2")
+          this.video.srcObject = stream;
         }
         this.toggleEndCallButton();
         this.caller.addStream(stream);
         this.localUserMedia = stream;
-        this.caller.createOffer().then(function(desc) {
+        this.caller.createOffer().then((desc) => {
           this.caller.setLocalDescription(new RTCSessionDescription(desc));
           this.channel.trigger("client-sdp", {
             sdp: desc,
             room: user,
-            from: this.id
+            from: this.id,
+            name: this.name
           });
           this.room = user;
         });
@@ -317,7 +387,8 @@ export class ChatingComponent implements OnInit {
 
   endCurrentCall() {
     this.channel.trigger("client-endcall", {
-      room: this.room
+      room: this.room,
+      name: this.temp_name
     });
     this.endCall();
   }

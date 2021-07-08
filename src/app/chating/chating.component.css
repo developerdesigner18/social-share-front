@@ -17,6 +17,77 @@ small {
 li {
     list-style: none;
 }
+video#remoteview {
+    width: 100%;
+    object-fit: cover;
+}
+video#selfview {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    border: 2px solid #ffffff;
+    object-fit: cover;
+    width: 200px;
+}
+.videoContainer {
+    position: relative;
+}
+#list{
+    display: flex;
+    justify-content: center;
+    padding-top: 5px;
+}
+.call_btn{
+    margin-right: 15px;
+}
+.audio_video_container a{
+    cursor: pointer;
+}
+/* .close{
+    height: 30px;
+    background: #080e19 !important;
+    opacity: 1;
+    font-size: 40px !important;
+    width: 30px;
+    font-weight: 300;
+    display: flex;
+    justify-content: center;
+    line-height: 30px !important;
+    align-items: center;
+    color: #ffffff;
+    box-sizing: content-box;
+    margin: 0;
+    padding: 0 6px;
+    padding-bottom: 9px;
+} */
+.audio_video_container{
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+}
+.image_icon{
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    padding: 10px;
+    background: #080e19f2;
+    border-radius: 50%;
+}
+.video_icon{
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    padding: 10px;
+    background: #080e19f2;
+    border-radius: 50%;
+    margin-left: 20px;
+}
+.sidenav .left{
+    overflow-x: scroll;
+}
 
 header .logo,
 .login_container {
@@ -164,7 +235,7 @@ img.logout {
     color: #aaa;
 }
 
-.online_title:before {
+.online_titles:before {
     content: "";
     background: #FF9000;
     height: 10px;
@@ -176,7 +247,7 @@ img.logout {
     margin: auto;
 }
 
-.offline_sec .online_title:before {
+.offline_sec .online_titles:before {
     content: "";
     height: 15px;
     width: 15px;
