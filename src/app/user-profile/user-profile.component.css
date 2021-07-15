@@ -1738,7 +1738,7 @@ button.show_more_notifications {
     position: absolute;
     width: 120px;
     background-color: #555;
-    color: #fff;
+    color: #0f1b31;
     text-align: center;
     border-radius: 6px;
     padding: 5px 0;
@@ -1747,9 +1747,16 @@ button.show_more_notifications {
     font-size: 14px;
 }
 
-.showLikes:hover+.tooltiptext {
+/* .showLikes:hover+.tooltiptext {
     display: block;
     opacity: 0.5;
+} */
+.showLikes:hover+.tooltiptext {
+    visibility: visible !important;
+    display: block !important;
+    opacity: 0.9;
+    background: aliceblue;
+    box-shadow: 0 0 20px 1px #0f1b3121;
 }
 
 .set_view_more {

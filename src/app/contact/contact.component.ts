@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { CookieService } from 'ngx-cookie-service';
 declare var jQuery: any;
 declare var $: any;
+
 
 @Component({
   selector: 'app-contact',
@@ -85,11 +87,13 @@ export class ContactComponent implements OnInit {
   constructor(
     public authService: AuthService,
     private activatedRoute: ActivatedRoute,
-    public toastr: ToastrService
+    public toastr: ToastrService,
+    public cookieService: CookieService
   ) {
     let id = this.activatedRoute.parent.parent.params['value']['id'];
-    if (localStorage.getItem('friendId')) {
-      this.friendid = localStorage.getItem('friendId')
+    if (this.cookieService.get('friendId')) {
+      // this.friendid = localStorage.getItem('friendId')
+      this.friendid = this.cookieService.get('friendId')
       this.icons = false
       this.authService.getProfileForFriend(this.friendid).subscribe(res => {
         this.authService.getAllData(this.friendid).subscribe(res => {
@@ -172,6 +176,7 @@ export class ContactComponent implements OnInit {
       })
       })
     } else {
+      this.cookieService.delete('friendId')
       const current_login_User = JSON.parse(localStorage.getItem('currentUser'));
       if (current_login_User.data._id !== id) {
         this.icons = false
@@ -395,6 +400,7 @@ export class ContactComponent implements OnInit {
         this.shows = true
         $(`.mobile`).css('display', 'block');
         this.u_mobile = false
+        this.mobile_number = ''
       } else {
         this.toastr.error("Oops some error occur. Please try again later")
       }
@@ -452,6 +458,7 @@ export class ContactComponent implements OnInit {
         this.shows1 = true
         $(`.address`).css('display', 'block');
         this.u_address = false
+        this.email_address = ''
       } else {
         this.toastr.error("Oops some error occured. Please try again later")
       }
@@ -510,6 +517,7 @@ export class ContactComponent implements OnInit {
         this.shows2 = true
         $(`.website`).css('display', 'block');
         this.u_website = false
+        this.website_link = ''
       } else {
         this.toastr.error("Oops some error occur. Please try again later.")
       }
@@ -569,6 +577,7 @@ export class ContactComponent implements OnInit {
         this.shows3 = true
         $(`.religious`).css('display', 'block');
         this.u_religious = false
+        this.religious_value = ''
       } else {
         this.toastr.error("Oops some error occur. Please try again later")
       }
@@ -627,6 +636,7 @@ export class ContactComponent implements OnInit {
         this.shows4 = true
         $(`.gender`).css('display', 'block');
         this.u_gender = false
+        this.gender_value = ''
       } else {
         this.toastr.error("Oops some error occur. Please try again later")
       }
@@ -686,6 +696,7 @@ export class ContactComponent implements OnInit {
         this.shows2 = true
         $(`.website`).css('display', 'block');
         this.u_website = false
+        this.birth_value = ''
       } else {
         this.toastr.error("Oops some error occur. Please try again later")
       }

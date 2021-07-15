@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 declare var jQuery: any;
 declare var $: any;
+
 
 @Component({
   selector: 'app-overview',
@@ -28,10 +30,12 @@ export class OverviewComponent implements OnInit {
   constructor(
     public authService: AuthService,
     private activatedRoute: ActivatedRoute,
-    public router: Router
+    public router: Router,
+    public cookieService: CookieService
   ) {
     if (this.router.url == '/friends/' + this.activatedRoute.parent.parent.params['value']['id'] + '/about/overview') {
-      this.friendid = localStorage.getItem('friendId')
+      // this.friendid = localStorage.getItem('friendId')
+      this.friendid = this.cookieService.get('friendId')
       this.authService.getProfileforAbout(this.friendid).subscribe(res => {
         this.u_designation = res.data.designation
         this.u_country = res.data.country
@@ -51,6 +55,7 @@ export class OverviewComponent implements OnInit {
       })  
     } else {
       localStorage.removeItem('friendId')
+      this.cookieService.delete('friendId')
       this.id = this.activatedRoute.parent.parent.params['value']['id'];
       this.authService.getProfileforAbout(this.id).subscribe(res => {
                 this.u_designation = res.data.designation

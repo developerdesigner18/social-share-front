@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../auth.service';
 
@@ -47,10 +48,12 @@ export class WorkComponent implements OnInit {
     public router: Router,
     public authService: AuthService,
     private activatedRoute: ActivatedRoute,
-    public toastr: ToastrService
+    public toastr: ToastrService,
+    public cookieService: CookieService
   ) {
-    if (localStorage.getItem('friendId')) {
-      this.friendid = localStorage.getItem('friendId')
+    if (this.cookieService.get('friendId')) {
+      // this.friendid = localStorage.getItem('friendId')
+      this.friendid = this.cookieService.get('friendId')
       this.authService.getFriendData(this.friendid).subscribe(res => {
         this.current_user_profile = false
         this.icons = false

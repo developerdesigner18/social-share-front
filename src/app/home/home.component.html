@@ -135,7 +135,7 @@
                                 </div>
                                 <div class="full-width-50" *ngIf="current_user['data']._id !== data.userId">
                                     <i class="fa fa-comments-o" style="margin: 0px 11px 0px 23px"></i>
-                                    <a href="chating/{{id}}">
+                                    <a href="chating/{{id}}?userId={{data.userId}}&&user={{data.post_user}}" >
                                     <div style="display: contents;color: #000;">Message</div>
                                 </a>
                                 </div>

@@ -5,6 +5,7 @@ import { MatDialog} from  '@angular/material/dialog';
 import { PostModalComponent } from '../post-modal/post-modal.component';
 import { AlbumsComponent } from '../albums/albums.component';
 import { ToastrService } from 'ngx-toastr';
+import { CookieService } from 'ngx-cookie-service';
 declare var jQuery: any;
 declare var $: any;
 
@@ -37,7 +38,8 @@ export class PhotosComponent implements OnInit {
     public router: Router,
     private activatedRoute: ActivatedRoute,
     public dialog: MatDialog,
-    public toastr: ToastrService
+    public toastr: ToastrService,
+    public cookieService: CookieService
   ) {
     this.token = localStorage.getItem('currentUser')
     this.id = this.activatedRoute.parent.params['value']['id'];
@@ -48,7 +50,7 @@ export class PhotosComponent implements OnInit {
     
     if (this.router.url === '/friends/' + this.activatedRoute.parent.params['value']['id'] + '/photos') {
       this.album_show = false
-      this.authService.getAllPhotos(localStorage.getItem('friendId')).subscribe(res => {
+      this.authService.getAllPhotos(this.cookieService.get('friendId')).subscribe(res => {
         if (res['success']) {
         for (let i = 0; i < res.data.length; i++){ 
             if (res.data[i].image.split('.').pop() !== 'mp4' && 'mkv') { 
@@ -68,7 +70,8 @@ export class PhotosComponent implements OnInit {
           this.album = res.message;
         }
     })      
-    }else{
+    } else {
+      this.cookieService.delete('friendId')
       localStorage.removeItem('friendId')
       this.album_show = true
       this.authService.getAllPhotos(this.id).subscribe(res => {

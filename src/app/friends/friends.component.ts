@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../auth.service';
 declare var jQuery: any;
@@ -30,12 +31,13 @@ export class FriendsComponent implements OnInit {
     public authService: AuthService,
     private activatedRoute: ActivatedRoute,
     public router: Router,
-    public toastr: ToastrService
+    public toastr: ToastrService,
+    public cookieService: CookieService
   ) {
     let id = this.activatedRoute.parent.params['value']['id'];
     this.url_id = this.activatedRoute.parent.params['value']['id'];
-    if (localStorage.getItem('friendId')) {
-      this.friendId = localStorage.getItem('friendId')
+    if (this.cookieService.get('friendId')) {
+      this.friendId = this.cookieService.get('friendId')
       this.show_friends = false
       this.authService.getFriends(this.friendId).subscribe(res => {
         this.allUsers = res.userInfo
@@ -72,7 +74,7 @@ export class FriendsComponent implements OnInit {
 
     //For friends panel set selected friend friends
     if(router.url === '/friends/'+id+'/friends'){
-      this.authService.getFriends(localStorage.getItem('friendId')).subscribe(res => {
+      this.authService.getFriends(this.cookieService.get('friendId')).subscribe(res => {
         if(res.success){
           for(let i = 0; i < res.userInfo.length; i++){
             this.frdDetails.push(res.userInfo[i])

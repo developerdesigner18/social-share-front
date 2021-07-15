@@ -17,7 +17,7 @@
   </div>
   <div class="no_mention" *ngIf="not_mention_number"><i class="fa fa-phone"> </i> {{not_mention_number}} </div>
   <div class="mobile" *ngIf="fill_mobile_no">
-    <input (keyup.enter)="addNumber(number)" type="text" [(ngModel)]="number" maxlength="10" inputmode="numeric"  name="numbers" id="number" value="" placeholder="Add mobile number" required>
+    <input (keyup.enter)="addNumber(number)" type="text" [(ngModel)]="number" maxlength="10" inputmode="numeric"  name="numbers" id="number" value="" placeholder="Add mobile number" onkeypress="if(event.which < 48 || event.which > 57 ) if(event.which != 8) if(event.keyCode != 9) return false;" required>
     <button type="button" name="button" (click)="Cancel()">Cancel</button>
     <button type="button" name="button" (click)="addNumber(number)">Save</button>
   </div>

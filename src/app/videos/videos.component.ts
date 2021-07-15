@@ -1,6 +1,7 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 declare var jQuery: any;
 declare var $: any;
 
@@ -28,14 +29,15 @@ export class VideosComponent implements OnInit {
   constructor(
     public authService: AuthService,
     public router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    public cookieService: CookieService
   ) { 
     this.bodyHeight = 1000;
     this.totalDisplay = 6;
     this.token = localStorage.getItem('token')
     this.id = this.activatedRoute.parent.params['value']['id'];
     if(this.router.url === '/friends/' + this.activatedRoute.parent.params['value']['id'] + '/videos'){
-      this.authService.getAllPhotos(localStorage.getItem('friendId')).subscribe(res => {
+      this.authService.getAllPhotos(this.cookieService.get('friendId')).subscribe(res => {
         if (res['success']) {
         for (let i = 0; i < res.data.length; i++){ 
           if (res.data[i].image.split('.').pop() !== 'jpg' && res.data[i].image.split('.').pop() !== 'png' && res.data[i].image.split('.').pop() !== 'jpeg' && res.data[i].image.split('.').pop() !== 'undefined' && res.data[i].image.split('.').pop() !== 'JPG') { 
@@ -47,7 +49,8 @@ export class VideosComponent implements OnInit {
           this.shows = "User not uploaded any videos"
         }
       })
-    }else{
+    } else {
+      this.cookieService.delete('friendId')
       localStorage.removeItem('friendId')
       this.authService.getAllPhotos(this.id).subscribe(res => {
         if (res['success']) {

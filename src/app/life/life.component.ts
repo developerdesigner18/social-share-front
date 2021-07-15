@@ -4,7 +4,7 @@ import { AuthService } from '../auth.service';
 import { DatePipe } from '@angular/common'
 import { Emoji } from '@ctrl/ngx-emoji-mart/ngx-emoji';
 import { ToastrService } from 'ngx-toastr';
-
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-life',
@@ -32,11 +32,13 @@ export class LifeComponent implements OnInit {
     public authService: AuthService,
     private activatedRoute: ActivatedRoute,
     private datePipe: DatePipe,
-    public toastr: ToastrService
+    public toastr: ToastrService,
+    public cookieService: CookieService
   ) {
     const id = this.activatedRoute.parent.parent.params['value']['id'];
-    if (localStorage.getItem('friendId')) {
-      this.friendid = localStorage.getItem('friendId')
+    if (this.cookieService.get('friendId')) {
+      // this.friendid = localStorage.getItem('friendId')
+      this.friendid = this.cookieService.get('friendId')
       this.icons = false
         this.authService.getAllData(this.friendid).subscribe(res => {
           if (!res['success']) {
@@ -53,6 +55,7 @@ export class LifeComponent implements OnInit {
           }
         })
     } else {
+      this.cookieService.delete('friendId')
       const currentUser = JSON.parse(localStorage.getItem('currentUser'));
       localStorage.removeItem('friendId')
       if (currentUser.data._id !== id) {

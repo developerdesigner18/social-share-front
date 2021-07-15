@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { ActivatedRoute, Router} from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { CookieService } from 'ngx-cookie-service';
+
 
 @Component({
   selector: 'app-place',
@@ -30,10 +32,12 @@ export class PlaceComponent implements OnInit {
     public router: Router,
     public authService: AuthService,
     private activatedRoute: ActivatedRoute,
-    public toastr: ToastrService
+    public toastr: ToastrService,
+    public cookieService: CookieService
   ) {
     if (this.router.url == '/friends/' + this.activatedRoute.parent.parent.params['value']['id'] + '/about/place') {
-      this.friendid = localStorage.getItem('friendId')
+      // this.friendid = localStorage.getItem('friendId')
+      this.friendid = this.cookieService.get('friendId')
       this.icons = false
       this.authService.getProfileforAbout(this.friendid).subscribe(res => {
         if (res.data.city !== undefined && res.data !== null) {
@@ -57,6 +61,7 @@ export class PlaceComponent implements OnInit {
       })
 
     } else {
+      this.cookieService.delete('friendId')
       localStorage.removeItem('friendId')
       this.id = this.activatedRoute.parent.parent.params['value']['id'];
       const current_login_User = JSON.parse(localStorage.getItem('currentUser'));
@@ -155,6 +160,7 @@ export class PlaceComponent implements OnInit {
     this.authService.deleteHomeTown(home_town).subscribe(res => {
       if (res['success']) {
         this.toastr.success("Your home town is deleted successfully")
+        this.home_town = ''
       } else {
         this.toastr.error("Oops some error occur. Please try again later")
       }

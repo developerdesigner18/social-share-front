@@ -4,6 +4,7 @@ import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { ToastrService } from 'ngx-toastr';
+import { CookieService } from 'ngx-cookie-service';
 declare var jQuery: any;
 declare var $: any;
 
@@ -68,7 +69,8 @@ export class RequestFriendsComponent implements OnInit {
     private router: Router,
     private location: Location,
     public formBuilder: FormBuilder,
-    public toastr: ToastrService
+    public toastr: ToastrService,
+    private cookieService: CookieService
   ) {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.login_id = currentUser.data._id
@@ -132,6 +134,7 @@ export class RequestFriendsComponent implements OnInit {
   openProfile(id){
     this.checkclick += 1
     this.showView = true
+    this.frd_datas = []
     $(".left").addClass("mobile_view");
     this.authService.getProfileForFriend(id).subscribe(res => {
       this.u_id = res.data._id
@@ -148,9 +151,10 @@ export class RequestFriendsComponent implements OnInit {
       this.previewUrl = res.data.profileImgURl
       this.imageCov = res.data.coverImgURl ? res.data.coverImgURl : 'assets/images/bg.jpg'
     })
-
+    this.cookieService.delete('friendId')
+    this.cookieService.set('friendId', id)
     localStorage.setItem('friendId', id)
-    this.authService.getFriendPost(localStorage.getItem('friendId')).subscribe(res => {
+    this.authService.getFriendPost(id).subscribe(res => {
       if (res['success']) {
         this.msg = false;
         this.frd_datas = res.data

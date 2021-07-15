@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { ActivatedRoute} from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { CookieService } from 'ngx-cookie-service';
 declare var jQuery: any;
 declare var $: any;
 
@@ -33,11 +34,13 @@ export class FamilyComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private activatedRoute: ActivatedRoute,
-    public toastr: ToastrService
+    public toastr: ToastrService,
+    public cookieService: CookieService
   ) {
     let id = this.activatedRoute.parent.parent.params['value']['id'];
-    if (localStorage.getItem('friendId')) { 
-      this.friendid = localStorage.getItem('friendId')
+    if (this.cookieService.get('friendId')) { 
+      // this.friendid = localStorage.getItem('friendId')
+      this.friendid = this.cookieService.get('friendId')
       this.icons = false
       this.authService.getAllData(this.friendid).subscribe(res => {
         if (!res['success']) {
@@ -62,6 +65,7 @@ export class FamilyComponent implements OnInit {
         }
       })
     } else {
+      this.cookieService.delete('friendId')
       const current_login_User = JSON.parse(localStorage.getItem('currentUser'));
       if (current_login_User.data._id !== id) {
         this.icons = false
@@ -152,6 +156,7 @@ export class FamilyComponent implements OnInit {
         this.shows5 = true
         $(`.relationShip`).css('display','block');
         this.display5 = false
+        this.relationshipStatus = ''
       } else {
         this.toastr.error("Oops some error occur. Please try again later")
       }
@@ -223,6 +228,8 @@ export class FamilyComponent implements OnInit {
         this.toastr.success("Your family data is deleted successfully")
         this.fill_family = false;
         this.show_family = false;
+        this.family = '';
+        this.relation = '';
         this.authService.getAllData(this.id).subscribe(res => {
           if (res.userData[0] == null) {
           }

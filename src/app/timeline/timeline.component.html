@@ -73,7 +73,7 @@
         <div>Like<span id="count_{{data._id}}">{{data.like.length !== 0 ? (data._id === tempLikePostId) ? data.like.length + temCntLike : (data.like.length + temCntLike === 0) ? '' : data.like.length : ''}}</span></div>
       </button>
         <div class="tooltiptext" id="like_{{data._id}}">
-                            <div id="tooltiptexts_{{data._id}}" class="tooltiptexts" *ngFor="let like of data.like.slice().reverse();">
+                            <div id="tooltiptexts_{{data._id}}" class="tooltiptexts" *ngFor="let like of data.like.slice().reverse() | slice:0:6;">
                                 <span id="like">{{like.name}}</span>
                             </div>
                         </div>

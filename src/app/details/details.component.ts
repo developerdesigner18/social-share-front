@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { CookieService } from 'ngx-cookie-service';
 declare var jQuery: any;
 declare var $: any;
 
@@ -60,11 +61,13 @@ export class DetailsComponent implements OnInit {
   constructor(
     public authService: AuthService,
     private activatedRoute: ActivatedRoute,
-    public toastr: ToastrService
+    public toastr: ToastrService,
+    public cookieService: CookieService
   ) {
     let id = this.activatedRoute.parent.parent.params['value']['id'];
-    if (localStorage.getItem('friendId')) {
-      this.friendid = localStorage.getItem('friendId')
+    if (this.cookieService.get('friendId')) {
+      // this.friendid = localStorage.getItem('friendId')
+      this.friendid = this.cookieService.get('friendId')
       this.icons = false
       this.authService.getAllData(this.friendid).subscribe(res => {
 
@@ -104,7 +107,8 @@ export class DetailsComponent implements OnInit {
           this.not_mention_quotes = "Quote"
         }
       })
-     } else {
+    } else {
+      this.cookieService.delete('friendId')
       const current_login_User = JSON.parse(localStorage.getItem('currentUser'));
 
       if (current_login_User.data._id !== id) {
@@ -251,6 +255,7 @@ export class DetailsComponent implements OnInit {
         this.shows6 = true
         $(`.details`).css('display', 'block');
         this.display7 = false
+        this.details_about = ''
       } else {
         this.toastr.error("Oops some error occur. Please try again later")
         this.display7 = true;
@@ -313,6 +318,7 @@ export class DetailsComponent implements OnInit {
         this.shows7 = true
         $(`.mobile`).css('display', 'block');
         this.display8 = false
+        this.pronun_value = ''
       } else {
         this.toastr.error("Oops some error occur. Please try again later")
         this.display8 = true;
@@ -374,6 +380,7 @@ export class DetailsComponent implements OnInit {
         this.shows8 = true
         $(`.nickname`).css('display', 'block');
         this.display9 = false
+        this.nickname = ''
       } else {
         this.toastr.error("Oops some error occur. Please try again later")
         this.display9 = true;
@@ -436,6 +443,7 @@ export class DetailsComponent implements OnInit {
         this.shows9 = true
         $(`.quote`).css('display', 'block');
         this.display10 = false
+        this.quote_value = ''
       } else {
         this.toastr.error("Oops some error occur. Please try again later")
         this.display10 = true;

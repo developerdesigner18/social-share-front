@@ -262,10 +262,12 @@ img.logout {
 }
 .chat_panel{
     padding: 10px;
-    background: #0f1b31;
     border-radius: 4px;
     background: #c3c3c3;
     border: 3px solid #ffffff;
+}
+.chat_panel:hover{
+    background: #ffffff;
 }
 .parent_chat_panel {
     display: grid;

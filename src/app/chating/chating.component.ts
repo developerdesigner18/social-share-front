@@ -3,9 +3,11 @@ import { SocketioService } from '../socketio.service';
 import {io} from 'socket.io-client';
  import { environment } from 'src/environments/environment';
 import { AuthService } from '../auth.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import Pusher from 'pusher-js'
+import { ToastrService } from 'ngx-toastr';
 // import { environment } from 'src/environments/environment.prod';
+
 
 // const SOCKET_ENDPOINT = 'localhost:8000';
 declare var $: any;
@@ -40,6 +42,8 @@ export class ChatingComponent implements OnInit {
   check_user: any;
   temp_name: any;
   current_user_id: any;
+  chat_userId: any;
+  chat_user: any;
 
   @ViewChildren('messages') messages: QueryList<any>;
   @ViewChild('content') content: ElementRef;
@@ -47,20 +51,24 @@ export class ChatingComponent implements OnInit {
   video: HTMLVideoElement;
   constructor(private socketService: SocketioService, public authService: AuthService,
     private activatedRoute: ActivatedRoute,
-    public router: Router) {
+    public router: Router,
+    public toastr: ToastrService) {
       Pusher.logToConsole = true;
     this.pusherClient = new Pusher('91455e0618617fd0e25d',
       {
         cluster: 'ap2',
         authEndpoint: `${environment.apiUrl}/pusher/auth`
       })
-    // var channel = this.pusherClient.subscribe('my-channel');
-    // channel.bind('my-event', function(data) {
-    //   alert(JSON.stringify(data));
-    //   console.log("data", JSON.stringify(data))
-    // });
 
     // video calling
+
+    this.activatedRoute.queryParamMap.subscribe((params: ParamMap) => {
+      this.chat_userId = params.get('userId');
+      this.chat_user = params.get('user')
+      if (this.chat_userId !== null && this.chat_user !== null) {
+        this.openChat(this.chat_userId, this.chat_user);
+      }
+    });
     this.channel = this.pusherClient.subscribe("presence-videocall");
 
     this.channel.bind("pusher:subscription_succeeded", members => {
@@ -213,15 +221,6 @@ export class ChatingComponent implements OnInit {
     var list = "";
     console.log("users", this.users[0])
     this.check_user = this.users[0]
-    // this.users.forEach(function(user) {
-    //   list +=
-    //     `<li>` +
-    //     user +
-    //     ` <input type="button" style="float:right;"  value="Call" (click)="callUser('` +
-    //     user +
-    //     `')" id="makeCall" /></li>`;
-    // });
-    // document.getElementById("users").innerHTML = list;
   }
 
   
@@ -275,44 +274,12 @@ export class ChatingComponent implements OnInit {
   }
   
   getCam() {
-    //Get local audio/video feed and show it in selfview video element
     return navigator.mediaDevices.getUserMedia({
       video: true,
       audio: true
     });
   }
 
-  ofVideo() {
-    return navigator.mediaDevices.getUserMedia({
-      video: false,
-      audio: true
-    });
-  }
-
-  ofAudio() {
-    return navigator.mediaDevices.getUserMedia({
-      audio: false,
-      video: false
-    }).then( stream => {
-      console.log("successfully audio is off", stream)
-    }).catch(function(err) {
-      //log to console first 
-      console.log(err); /* handle the error */
-      if (err.name == "NotFoundError" || err.name == "DevicesNotFoundError") {
-          //required track is missing 
-      } else if (err.name == "NotReadableError" || err.name == "TrackStartError") {
-          //webcam or mic are already in use 
-      } else if (err.name == "OverconstrainedError" || err.name == "ConstraintNotSatisfiedError") {
-          //constraints can not be satisfied by avb. devices 
-      } else if (err.name == "NotAllowedError" || err.name == "PermissionDeniedError") {
-          //permission denied in browser 
-      } else if (err.name == "TypeError" || err.name == "TypeError") {
-          //empty constraints object 
-      } else {
-          //other errors 
-      }
-  });
-  }
 
   Audio_Change(i: number) {
     if (i == 0) {
@@ -364,9 +331,29 @@ export class ChatingComponent implements OnInit {
           this.room = user;
         });
       })
-      .catch(error => {
-        console.log("an error occured", error);
-      });
+      .catch((err) => {
+        //log to console first 
+        // console.log(err); /* handle the error */
+        if (err.name == "NotFoundError" || err.name == "DevicesNotFoundError") {
+            //required track is missing 
+            this.toastr.info('Device is not found. Please check your mic and webcam is connected properly.')
+        } else if (err.name == "NotReadableError" || err.name == "TrackStartError") {
+            //webcam or mic are already in use 
+          this.toastr.info('Your webcam or mic are already used in other application. Please turn off there.')
+        } else if (err.name == "OverconstrainedError" || err.name == "ConstraintNotSatisfiedError") {
+            //constraints can not be satisfied by avb. devices 
+          this.toastr.info('Your device is not meet with our criteria.')
+        } else if (err.name == "NotAllowedError" || err.name == "PermissionDeniedError") {
+            //permission denied in browser 
+          this.toastr.info('Permission is denied by browser. Please allow to access mic or webcam.')
+        } else if (err.name == "TypeError" || err.name == "TypeError") {
+            //empty constraints object 
+          this.toastr.info('Please allow any one to access mic or webcam.')
+        } else {
+            //other errors 
+          this.toastr.info('We having problem with connecting your device. Please check your device is connected properly or check that your device is not running in another application.')
+        }
+    });
   }
   toggleEndCallButton() {
     if (document.getElementById("endCall").style.display == "block") {
@@ -462,6 +449,10 @@ export class ChatingComponent implements OnInit {
       this.message = '';
  }
   openChat(id, name) {
+    $('.chat_panel').css('background', '#c3c3c3');
+    $(`.main_${id}`).css('background', '#FFFFFF');
+    const current_login_User = JSON.parse(localStorage.getItem('currentUser'));
+    this.current_user_id = current_login_User.data._id
     this.temp_name = name
     this.recieverId = id
     this.showView = false;
@@ -473,6 +464,11 @@ export class ChatingComponent implements OnInit {
         this.chat_messages = res.userData
       }
     })
+    if (this.chat_userId == id && this.chat_user == name) {    
+    setTimeout(() => {
+      $(`.main_${id}`).css('background', '#FFFFFF');
+    }, 2000);
+  }
  }
 
  

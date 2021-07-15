@@ -7,12 +7,12 @@
   </div>
   <div class="no_mention" *ngIf="not_mention_life"><i class="fas fa-star-of-life"> </i>&nbsp; {{not_mention_life}} </div>
   <div class="work" *ngIf="fill_life" style="display: flex;">
-    <textarea class="text-area" (keyup.enter)="save_add_life(life)" type="text" [(ngModel)]="life" name="" value="" placeholder="Add life event" required></textarea>
+    <textarea class="text-area" type="text" [(ngModel)]="life" name="" value="" placeholder="Add life event" required></textarea>
     <button type="button" name="button" (click)="save_add_life(life)">Save</button>
     <button type="button" name="button" (click)="Life_Cancel()">Cancel</button>
   </div>
   <div class="u_mobile" *ngIf="u_fill_life" style="display: flex;">
-    <textarea class="text-area" (keyup.enter)="editLife(life)" type="text" [(ngModel)]="life" name="" value="" placeholder="Add life event"></textarea>
+    <textarea class="text-area" type="text" [(ngModel)]="life" name="" value="" placeholder="Add life event"></textarea>
     <button type="button" name="button" (click)="editLife(life)">Save</button>
     <button type="button" name="button" (click)="l_cancel()">Cancel</button>
   </div>

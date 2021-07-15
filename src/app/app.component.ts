@@ -38,39 +38,7 @@ export class AppComponent {
   @ViewChild('childModal', { static: false }) childModal: ModalDirective;
 
   constructor( private titleService: Title, private authService: AuthService, private router: Router, private themeService: ThemeService, private bnIdle: BnNgIdleService, private connectionService: ConnectionService, private idle: Idle, private keepalive: Keepalive, private modalService: BsModalService) {
-    // this.bnIdle.startWatching(600).subscribe((res) => {
-    //   if(res) {
-    //       const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    //       this.id = currentUser.data._id
-    //       let status = 0;
-          
-    //       this.titleService.setTitle('session expiring...');  
-    //       setTimeout(()=>{        
-    //         this.titleService.setTitle('Session Expired');
-    //         this.authService.updateStatus(this.id, status).subscribe(res => {
-    //         if (res['success']) {
-    //           console.log("res", res);
-    //           }
-    //         })
-    //         localStorage.removeItem('currentUser');
-    //         localStorage.removeItem('token');
-    //         localStorage.removeItem('friendId');
-    //         window.location.replace('');
-    //       }, 180000);
-    //   } else {
-    //     this.titleService.setTitle('Social Share');
-    //   }
-    // })
-    // this.connectionService.monitor().subscribe(isConnected => {  
-    //   this.isConnected = isConnected;  
-    //   if (this.isConnected) {  
-    //     this.noInternetConnection=false;  
-        
-    //   }  
-    //   else {  
-    //     this.noInternetConnection=true;  
-    //   }  
-    //   console.log("isConnected", isConnected);    })  
+    
     if (this.authService.isLoggedIn() == true) {
       // sets an idle timeout of 5 seconds, for testing purposes.
       idle.setIdle(600);
@@ -88,6 +56,12 @@ export class AppComponent {
         this.childModal.hide();
         this.idleState = 'Timed out!';
         this.timedOut = true;
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+         this.id = currentUser.data._id
+        let status = 0;
+        this.authService.updateStatus(this.id, status).subscribe(res => {
+          console.log("res", res)
+        })
         localStorage.removeItem('currentUser');
         localStorage.removeItem('token');
         localStorage.removeItem('friendId');
