@@ -217,9 +217,7 @@ export class FamilyComponent implements OnInit {
     this.show_family = false;
     this.u_fill_family = true;
     this.data_id = dataId
-    this.authService.updateFamily(this.id , family, dataId, relation).subscribe(res => {
-      
-    })
+    this.authService.updateFamily(this.id , family, dataId, relation).subscribe(res => {})
   }
 
   delFamily(dataId: any) {

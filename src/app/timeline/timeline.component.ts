@@ -221,8 +221,6 @@ export class TimelineComponent implements OnInit {
         this.toastr.success("Post is deleted successfully");
         window.location.reload()
       })
-    } else {
-      this.toastr.error("Deleting post is failed.");      
     }
   }
 

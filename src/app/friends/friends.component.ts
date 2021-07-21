@@ -99,6 +99,8 @@ export class FriendsComponent implements OnInit {
         this.toastr.success("You successfully unfriended " + friend_name + " from your friends list.");
         location.reload();
       })
+    } else {
+      location.reload();
     }
     
   }

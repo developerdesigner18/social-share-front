@@ -188,6 +188,7 @@ img.logout {
 .main_container {
     width: 95vw;
     margin: auto;
+    height: auto;
 }
 
 .left_sidebars,

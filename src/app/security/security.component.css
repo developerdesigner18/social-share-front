@@ -11,10 +11,10 @@
     margin-left: 20px;
     color: #ff9000;
 }
-.setting_details.pass .input_section {
+/* .setting_details.pass .input_section {
     display: flex;
     flex-direction: column;
-}
+} */
 .error_msgs {
     margin: 0 !important;
     display: flex;

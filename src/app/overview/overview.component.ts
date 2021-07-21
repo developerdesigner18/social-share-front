@@ -58,22 +58,22 @@ export class OverviewComponent implements OnInit {
       this.cookieService.delete('friendId')
       this.id = this.activatedRoute.parent.parent.params['value']['id'];
       this.authService.getProfileforAbout(this.id).subscribe(res => {
-                this.u_designation = res.data.designation
-                this.u_country = res.data.country
-                this.u_state = res.data.state
-                this.u_city = res.data.city
-                  this.authService.getAllData(this.id).subscribe(other_res => {
-                    if (other_res['success']) {
-                      this.u_number = other_res.userData[0].mobileNumber;
-                      this.u_address = other_res.userData[0].address;
-                      this.u_website = other_res.userData[0].website;
-                      this.u_religious = other_res.userData[0].basicInfo;
-                      this.u_status = other_res.userData[0].relationshipStatus;
-                      this.u_gender = other_res.userData[0].gender;
-                      this.u_birthdate = other_res.userData[0].birthDate
-                    }
-                  })
-              })
+        this.u_designation = res.data.designation
+        this.u_country = res.data.country
+        this.u_state = res.data.state
+        this.u_city = res.data.city
+        this.authService.getAllData(this.id).subscribe(other_res => {
+        if (other_res['success']) {
+          this.u_number = other_res.userData[0].mobileNumber;
+          this.u_address = other_res.userData[0].address;
+          this.u_website = other_res.userData[0].website;
+          this.u_religious = other_res.userData[0].basicInfo;
+          this.u_status = other_res.userData[0].relationshipStatus;
+          this.u_gender = other_res.userData[0].gender;
+          this.u_birthdate = other_res.userData[0].birthDate
+          }
+        })
+      })          
     }
   }
 

@@ -360,7 +360,7 @@ export class WorkComponent implements OnInit {
         }
       })
     } else {
-      this.toastr.error("Please enter your detail properly")
+      this.toastr.error("Please enter your school properly")
     }
   }
 
@@ -380,7 +380,7 @@ export class WorkComponent implements OnInit {
         }
       })
     } else {
-      this.toastr.error("Please enter your detail properly")
+      this.toastr.error("Please enter your school properly")
     }
   }
 

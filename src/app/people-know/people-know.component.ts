@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../auth.service';
 declare var jQuery: any;
 declare var $: any;
@@ -35,7 +36,8 @@ export class PeopleKnowComponent implements OnInit {
   constructor(
     public authService: AuthService,
     private activatedRoute: ActivatedRoute,
-    public router: Router
+    public router: Router,
+    private toaster:ToastrService
   ) {
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
     this.authService.getProfileforAbout(this.id).subscribe(res => {
@@ -87,7 +89,8 @@ export class PeopleKnowComponent implements OnInit {
   }
 
   sendRequest(requestId) {
-    this.authService.sendFriendRequest(this.id, requestId).subscribe(res => {})
+    this.authService.sendFriendRequest(this.id, requestId).subscribe(res => { })
+    this.toaster.success('Your Request Sent Successfully')
   }
 
   reject_request(reject_id) {

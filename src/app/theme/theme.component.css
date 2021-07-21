@@ -68,12 +68,12 @@ body {
 	color: var(--on-background);
   } */
 
-.profile_name_of_poster,
+/* .profile_name_of_poster,
 .province>div,
 .data_desc {
-    /* color: var(--on-background); */
+    color: var(--on-background); 
     color: var(--on-primary);
-}
+} */
 
 .slider {
     position: absolute;

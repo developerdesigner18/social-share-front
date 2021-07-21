@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 // import { jwt_decode } from 'jwt-decode';
 // import * as jwt_decode from "jwt-decode";
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -27,7 +27,8 @@ export class ResetComponent implements OnInit {
     private fb: FormBuilder,
     private authService: AuthService,
     public dialog: MatDialog,
-    public toastr: ToastrService
+    public toastr: ToastrService,
+    public router:Router
   ) {}
 
   ngOnInit(){
@@ -55,6 +56,8 @@ export class ResetComponent implements OnInit {
       }
       this.authService.resetPassword(this.token, this.password.value).subscribe(() => {
         if (this.authService.isLoggedIn) {
+          console.log("madhav");
+          this.router.navigateByUrl('/');
           this.toastr.success("Your password successfully updated. Please login with your new password")
         } else {
           this.toastr.error("Oops some error occured. Please try again later")

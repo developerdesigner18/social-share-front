@@ -1,12 +1,12 @@
 import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren, ViewEncapsulation } from '@angular/core';
 import { SocketioService } from '../socketio.service';
 import {io} from 'socket.io-client';
- import { environment } from 'src/environments/environment';
+//  import { environment } from 'src/environments/environment';
 import { AuthService } from '../auth.service';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import Pusher from 'pusher-js'
 import { ToastrService } from 'ngx-toastr';
-// import { environment } from 'src/environments/environment.prod';
+import { environment } from 'src/environments/environment.prod';
 
 
 // const SOCKET_ENDPOINT = 'localhost:8000';
@@ -117,7 +117,7 @@ export class ChatingComponent implements OnInit {
           $("#myModal").modal('show', {
             backdrop: 'static',
             keyboard: false
-        });
+          });
         }
           this.room = msg.room;
           this.getCam()
@@ -427,6 +427,7 @@ export class ChatingComponent implements OnInit {
   }
 
   SendMessage() {
+    if (this.message !== '') {
     this.socket.emit('my message', this.message);
     const element = document.createElement('li');
     let value = [this.current_user_id, this.recieverId]
@@ -438,6 +439,8 @@ export class ChatingComponent implements OnInit {
           if (res['success']) {
           }
         })
+    } else {
+      this.toastr.info("Please write something in message field.")
       }
     
     this.authService.showMsg(this.mergeId).subscribe(res => {
@@ -447,6 +450,10 @@ export class ChatingComponent implements OnInit {
     })
     
       this.message = '';
+    } else {
+      this.toastr.info("Please write something in message field.")
+    }
+    
  }
   openChat(id, name) {
     $('.chat_panel').css('background', '#c3c3c3');
