@@ -21,10 +21,7 @@ export class HeaderComponent implements OnInit {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.id = currentUser.data._id
     let status = 0;
-    this.authService.updateStatus(this.id, status).subscribe(res => {
-      if (res['success']) {
-      }
-    })
+    this.authService.updateStatus(this.id, status).subscribe(res => {})
     localStorage.removeItem('currentUser');
     localStorage.removeItem('token');
     localStorage.removeItem('friendId');

@@ -141,6 +141,9 @@ button.btn.save_btn {
     padding: 25px 15px !important;
     border-radius: 5px;
 }
+.show_album_images .ng-image-slider .ng-image-slider-container .main .main-inner .img-div{
+    width: 165px !important;
+}
 
 .photos_section .ng-image-slider .ng-image-slider-container .main {
     position: static !important;
@@ -2047,6 +2050,9 @@ button.show_more_notifications {
     top: 6px !important;
     left: 5px !important;
 }
+/* .ng-image-slider .ng-image-slider-container .main .main-inner .img-div{
+    width: 225px !important;
+} */
 
 .show_album_images .img-div {
     display: none !important;

@@ -13,6 +13,7 @@ import { User } from './user';
 import { DialogEmailErrorComponent } from './dialog-email-error/dialog-email-error.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { ToastrService } from 'ngx-toastr';
+import { DialogErrorComponent } from './dialog-error/dialog-error.component';
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +35,9 @@ export class AuthService {
   register(user: User): Observable<any> {
 
     return this.httpClient.post(`${environment.apiUrl}/auth/signup`, user).pipe(
+      map((res: Response) => {
+        return res || {}
+      }),
       catchError(this.handleError)
     )
   }
@@ -933,10 +937,17 @@ export class AuthService {
       console.error('An error occurred:', error.error.message);
       msg = 'An error occurred:', error.error.message;
     } else {
-      console.error(`Backend returned code ${error.status}, ` + `body was: ${error.error}`);
-      msg = 'Backend returned code ${error.status}, ` + `body was: ${error.error}'
+      console.error(`Backend returned code ${error.status}, ` + `body was: ${error.error.message}`);
+      msg = 'Backend returned code ${error.status}, ` + `body was: ${error.error.message}'
       if (error.status == 500) {
         this.toastr.error('Authentication is failed. Please check your email and paswword.');
+      }else if (error.status == 422) {
+        this.toastr.error('Email id is already exist.')
+        // this.dialog.open(DialogErrorComponent, {
+        //   width: '500px'
+        // })
+      } else {
+        console.error("some error occured", error.error.message)
       }
     }
     return throwError(msg);

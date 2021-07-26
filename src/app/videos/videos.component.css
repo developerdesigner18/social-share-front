@@ -11,6 +11,9 @@
     border-radius: 4px;
     /* padding: 25px 0; */
 }
+.ng-image-slider .ng-image-slider-container .main .main-inner .img-div {
+    width: 225px;
+}
 
 .hide_theme {
     display: none;
@@ -28,4 +31,11 @@
 
 .ng-image-slider {
     width: 101% !important;
+}
+
+@media (max-width: 768px) {
+    .ng-image-slider .ng-image-slider-container .main .main-inner .img-div{
+        width: 150px !important;
+        height: 150px !important;
+    }
 }

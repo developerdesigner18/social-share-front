@@ -1,6 +1,8 @@
 <ng-container *ngIf="!shows && urls.length != 0">
     <div class="item">
-        <ng-image-slider [videoAutoPlay]=true [imageSize]="{width: '32.50 %', space: 3}" [videoAutoPlay]="true" [showArrow]=false [animationSpeed]="0.5" class="slider_image_photos" [images]="urls | slice:0:totalDisplay"></ng-image-slider>
+        <ng-image-slider [videoAutoPlay]=true [imageSize]="{width: '32%', space: 3}" [videoAutoPlay]="true"
+            [showArrow]=false [animationSpeed]="0.5" class="slider_image_photos" [images]="urls | slice:0:totalDisplay">
+        </ng-image-slider>
     </div>
 </ng-container>
 

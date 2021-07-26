@@ -7,9 +7,8 @@ import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import Pusher from 'pusher-js'
 import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment.prod';
+import * as CryptoJS from 'crypto-js';
 
-
-// const SOCKET_ENDPOINT = 'localhost:8000';
 declare var $: any;
 @Component({
   selector: 'app-chating',
@@ -44,6 +43,8 @@ export class ChatingComponent implements OnInit {
   current_user_id: any;
   chat_userId: any;
   chat_user: any;
+  key: any;
+  value: any;
 
   @ViewChildren('messages') messages: QueryList<any>;
   @ViewChild('content') content: ElementRef;
@@ -53,6 +54,7 @@ export class ChatingComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     public router: Router,
     public toastr: ToastrService) {
+    this.key = environment.key
       Pusher.logToConsole = true;
     this.pusherClient = new Pusher('91455e0618617fd0e25d',
       {
@@ -398,6 +400,10 @@ export class ChatingComponent implements OnInit {
           
           if (res['success']) {
             this.chat_messages = res.userData
+        for (let i = 0; i < res.userData.length; i++){
+          this.value = this.Decrypt_chat(res.userData[i].message)
+          this.chat_messages[i].message = this.value
+        }
           }
         })
       });
@@ -434,8 +440,19 @@ export class ChatingComponent implements OnInit {
     value.sort((a, b) => b.localeCompare(a))
     this.mergeId = value.join()
     
-    if (this.message !== undefined) {
-        this.authService.insertMsg(this.message, this.name, this.current_user_id, this.recieverId, this.mergeId).subscribe(res => {
+      if (this.message !== undefined) {
+        // crypto encrypted
+        var key = CryptoJS.enc.Utf8.parse(this.key);
+        var iv = CryptoJS.enc.Utf8.parse(this.key);
+        var encrypted = CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(this.message.toString()), key,
+        {
+          keySize: 128 / 8,
+          iv: iv,
+          mode: CryptoJS.mode.CBC,
+          padding: CryptoJS.pad.Pkcs7
+          });
+        // end
+        this.authService.insertMsg(encrypted.toString(), this.name, this.current_user_id, this.recieverId, this.mergeId).subscribe(res => {
           if (res['success']) {
           }
         })
@@ -446,6 +463,10 @@ export class ChatingComponent implements OnInit {
     this.authService.showMsg(this.mergeId).subscribe(res => {
       if (res['success']) {
         this.chat_messages = res.userData
+        for (let i = 0; i < res.userData.length; i++){
+          this.value = this.Decrypt_chat(res.userData[i].message)
+          this.chat_messages[i].message = this.value
+        }
       }
     })
     
@@ -454,7 +475,20 @@ export class ChatingComponent implements OnInit {
       this.toastr.info("Please write something in message field.")
     }
     
- }
+  }
+  
+  Decrypt_chat(value) {
+    var key = CryptoJS.enc.Utf8.parse(this.key);
+        var iv = CryptoJS.enc.Utf8.parse(this.key);
+    var decrypted = CryptoJS.AES.decrypt(value.toString(), key, {
+          keySize: 128 / 8,
+          iv: iv,
+          mode: CryptoJS.mode.CBC,
+          padding: CryptoJS.pad.Pkcs7
+        });
+    return decrypted.toString(CryptoJS.enc.Utf8);
+  }
+
   openChat(id, name) {
     $('.chat_panel').css('background', '#c3c3c3');
     $(`.main_${id}`).css('background', '#FFFFFF');
@@ -468,7 +502,12 @@ export class ChatingComponent implements OnInit {
     this.mergeId = value.join()
     this.authService.showMsg(this.mergeId).subscribe(res => {
       if (res['success']) {
+        
         this.chat_messages = res.userData
+        for (let i = 0; i < res.userData.length; i++){
+          this.value = this.Decrypt_chat(res.userData[i].message)
+          this.chat_messages[i].message = this.value
+        }
       }
     })
     if (this.chat_userId == id && this.chat_user == name) {    

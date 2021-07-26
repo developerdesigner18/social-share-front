@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, ViewEncapsulation } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
@@ -8,7 +8,8 @@ declare var $: any;
 @Component({
   selector: 'app-videos',
   templateUrl: './videos.component.html',
-  styleUrls: ['./videos.component.css']
+  styleUrls: ['./videos.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class VideosComponent implements OnInit {
 

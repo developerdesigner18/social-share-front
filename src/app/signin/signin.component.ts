@@ -47,13 +47,22 @@ export class SigninComponent implements OnInit {
       return;
     }
     this.authService.register(this.registerForm.value).subscribe((res) => {
-     if (!res.result) {
-       this.registerForm.reset()
-       this.toastr.success("Congratulation now you are a member of social share")
-       this.isSubmitted = false;
-     } else {
-       this.toastr.error("Oops something is not right. Please try again after some time")
-     }
+      console.log("res", res)
+      if (res.status == 'OK') {
+           this.registerForm.reset()
+           this.toastr.success("Congratulation now you are a member of social share")
+           this.isSubmitted = false;
+      } else {
+        console.log("res", res.message)
+        this.toastr.error(res.message)
+      }
+    //  if (!res.result) {
+    //    this.registerForm.reset()
+    //    this.toastr.success("Congratulation now you are a member of social share")
+    //    this.isSubmitted = false;
+    //  } else {
+    //    this.toastr.error("Oops something is not right. Please try again after some time")
+    //  }
    })
   }
 }
