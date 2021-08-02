@@ -2,7 +2,7 @@
   <div class="place_tab">
     <h6>Place lived</h6>
   </div>
-  <br/>
+  <br />
   <div class="d-flex">
     <div class="place">
       <img width="40" height="40" src='assets/images/town.png' style="border-radius: 50%;" />
@@ -35,15 +35,20 @@
       </div>
       <div class="no_mention" *ngIf="not_mention_home"> {{not_mention_home}} </div>
       <div class="home" *ngIf="fill_home">
-        <input (keyup.enter)="addHome(home_town)" type="text" [(ngModel)]="home_town"   name="home_town" id="home_town" value="" placeholder="Add your home town" required>
+        <input (keyup.enter)="addHome(home_town)" autocomplete="off" type="text" [(ngModel)]="home_town"
+          name="home_town" id="home_town" value="" placeholder="Add your home town" required>
         <button type="button" name="button" (click)="Cancel1()">Cancel</button>
         <button type="button" name="button" (click)="addHome(home_town)">Save</button>
-        <div *ngIf="Required"><p style="color: red;">Please Filled Out Your Home Town</p></div>
+        <div *ngIf="Required">
+          <p style="color: red;">Please Filled Out Your Home Town</p>
+        </div>
       </div>
       <div class="u_home" *ngIf="u_fill_home">
-        <input type="text" [(ngModel)]="home_town" name="home_town" id="home_town" value="" placeholder="Add your home town">
+        <input type="text" [(ngModel)]="home_town" autocomplete="off" name="home_town" id="home_town" value=""
+          placeholder="Add your home town">
         <button type="button" name="button" (click)="u_cancel()">Cancel</button>
-        <button (keyup.enter)="editHome(home_town)" type="button" name="button" (click)="editHome(home_town)">Save</button>
+        <button (keyup.enter)="editHome(home_town)" type="button" name="button"
+          (click)="editHome(home_town)">Save</button>
       </div>
     </div>
   </div>

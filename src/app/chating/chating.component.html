@@ -5,16 +5,17 @@
     <h3>Friends</h3>
   </div>
   <div class="parent_chat_panel">
-  <div class="chat_panel main_{{data._id}}" *ngFor="let data of frdDetails;let i = index">
-    <div class="remove_people remove_people_{{data._id}}" (click)="openChat(data._id, data.name)">
-      <div class="request_shows online_sec">
-        <div class="online_titles">
-          <img [src]="data.profileImgURl" onerror="this.src='/assets/images/character.png';" style="border-radius: 50%;" />
+    <div class="chat_panel main_{{data._id}}" *ngFor="let data of frdDetails;let i = index">
+      <div class="remove_people remove_people_{{data._id}}" (click)="openChat(data._id, data.name)">
+        <div class="request_shows online_sec">
+          <div class="online_titles">
+            <img [src]="data.profileImgURl" onerror="this.src='/assets/images/character.png';"
+              style="border-radius: 50%;" />
+          </div>
+          <div class="user_name">{{data.name}}</div>
         </div>
-        <div class="user_name">{{data.name}}</div>
       </div>
     </div>
-  </div>
   </div>
 </div>
 
@@ -29,25 +30,32 @@
 </div>
 
 <div class="viewProfile" style="padding-top: 101px;" *ngIf="!showView">
-  <div class="chat-messages" >
+  <div class="chat-messages">
     <div class="chat-messages-show-container" #content>
-        <ul class="chat-messages-show-list" id="message-list" >
-          <li *ngFor="let chat of chat_messages" #messages  [ngStyle]="{'text-align':chat.senderID === current_user_id ? 'right' : 'left', 'justify-content': chat.senderID === current_user_id ? 'flex-end' : 'flex-start'}" style="display: flex;"> 
-            <div [ngStyle]="{'background':chat.senderID === current_user_id ? '#ffffff' : '#0f1b31'}" class="chat_message_div">
-              <span [ngStyle]="{'color':chat.senderID === current_user_id ? '#0f1b31' : '#ffffff'}">{{chat.message ? chat.message : message}}</span>
-              <div [ngStyle]="{'color':chat.senderID === current_user_id ? '#949292' : '#909090'}" style="font-size: 12px;"> {{chat.createdAt | timeago}} </div>
-            </div>
-          </li>
-        </ul>
-        <div class="default_thumbnail" *ngIf="chat_messages.length == 0">
-          <h1>Say Hi to your friend</h1>
-        </div>
+      <ul class="chat-messages-show-list" id="message-list">
+        <li *ngFor="let chat of chat_messages" #messages
+          [ngStyle]="{'text-align':chat.senderID === current_user_id ? 'right' : 'left', 'justify-content': chat.senderID === current_user_id ? 'flex-end' : 'flex-start'}"
+          style="display: flex;">
+          <div [ngStyle]="{'background':chat.senderID === current_user_id ? '#ffffff' : '#0f1b31'}"
+            class="chat_message_div">
+            <span [ngStyle]="{'color':chat.senderID === current_user_id ? '#0f1b31' : '#ffffff'}">{{chat.message ?
+              chat.message : message}}</span>
+            <div [ngStyle]="{'color':chat.senderID === current_user_id ? '#949292' : '#909090'}"
+              style="font-size: 12px;"> {{chat.createdAt | timeago}} </div>
+          </div>
+        </li>
+      </ul>
+      <div class="default_thumbnail" *ngIf="chat_messages.length == 0">
+        <h1>Say Hi to your friend</h1>
+      </div>
     </div>
     <div class="chat-messages-create-container">
-        <i id="typing"></i>
-        <input id="message" class="chat-messages-create-input" [(ngModel)]="message" type="text" (keyup.enter)="SendMessage()" placeholder="Type your message here...">
-        <button class="chat-messages-create-button" [disabled]="!message" (click)="SendMessage()"> Send </button>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"> <img src="../../assets/images/chat.png" alt="" width="20px" height="20px"> </button>
+      <i id="typing"></i>
+      <input id="message" class="chat-messages-create-input" [(ngModel)]="message" type="text"
+        (keyup.enter)="SendMessage()" placeholder="Type your message here...">
+      <button class="chat-messages-create-button" [disabled]="!message" (click)="SendMessage()"> Send </button>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"> <img
+          src="../../assets/images/chat.png" alt="" width="20px" height="20px"> </button>
     </div>
   </div>
 </div>
@@ -70,20 +78,26 @@
           <div class="videoContainer">
             <video id="remoteview" autoplay width="600px" height="400px"></video>
             <video id="selfview" autoplay width="300px" height="150px"></video>
-            <div class="audio_video_container" style="display: none;">
-              <a id="audio_on" (click)="Audio_Change(0)" ><img class="image_icon" src="../../assets/images/audio_up.png" alt=""></a>
-              <a id="audio_off" (click)="Audio_Change(1)" style="display: none;" ><img class="image_icon" src="../../assets/images/audio_down.png" alt=""></a>
-              <a id="video_on" (click)="Video_Change(0)"><img class="video_icon" src="../../assets/images/video_up.png" alt=""></a>
-              <a id="video_off" (click)="Video_Change(1)" style="display: none;" ><img class="video_icon" src="../../assets/images/video_down.png" alt=""></a>
+            <div class="audio_video_container">
+              <a id="audio_on" (click)="Audio_Change(0)"><img class="image_icon" src="../../assets/images/audio_up.png"
+                  alt=""></a>
+              <a id="audio_off" (click)="Audio_Change(1)" style="display: none;"><img class="image_icon"
+                  src="../../assets/images/audio_down.png" alt=""></a>
+              <a id="video_on" (click)="Video_Change(0)"><img class="video_icon" src="../../assets/images/video_up.png"
+                  alt=""></a>
+              <a id="video_off" (click)="Video_Change(1)" style="display: none;"><img class="video_icon"
+                  src="../../assets/images/video_down.png" alt=""></a>
             </div>
           </div>
           <div id="list">
-            <button class="btn btn-primary call_btn" (click)="callUser(check_user)"> <img src="../../assets/images/telephone.png" alt="" width="30px" height="30px"></button>
-            <button id="endCall" class="btn btn-danger" style="display: none;" (click)="endCurrentCall()"><img src="../../assets/images/reject.png" alt="" width="30px" height="30px"> </button>
+            <button class="btn btn-primary call_btn" (click)="callUser(check_user)"> <img
+                src="../../assets/images/telephone.png" alt="" width="30px" height="30px"></button>
+            <button id="endCall" class="btn btn-danger" style="display: none;" (click)="endCurrentCall()"><img
+                src="../../assets/images/reject.png" alt="" width="30px" height="30px"> </button>
           </div>
         </div>
       </div>
-      
+
     </div>
   </div>
 </div>

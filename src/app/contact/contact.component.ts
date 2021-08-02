@@ -401,6 +401,7 @@ export class ContactComponent implements OnInit {
         $(`.mobile`).css('display', 'block');
         this.u_mobile = false
         this.mobile_number = ''
+        this.number = ''
       } else {
         this.toastr.error("Oops some error occur. Please try again later")
       }
@@ -408,16 +409,26 @@ export class ContactComponent implements OnInit {
   }
 
   addAddress(location: any) {
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (re.test(String(location).toLowerCase())) {
+      console.log("validate")
+    } else {
+      console.log("not validate")
+    }
     if (location !== undefined) {
-      this.authService.addNewAddress(location).subscribe(res => {
-        if (res['success']) {
-          this.toastr.success("Your email is added successfully")
-          this.email_address = location
-          this.show_email = true
-          this.email = true
-          this.fill_email = false
-        }
-      })
+      if (re.test(String(location).toLowerCase())) {
+        this.authService.addNewAddress(location).subscribe(res => {
+          if (res['success']) {
+            this.toastr.success("Your email is added successfully")
+            this.email_address = location
+            this.show_email = true
+            this.email = true
+            this.fill_email = false
+          }
+        })
+      } else {
+        this.toastr.error("Invalid Email Address")
+      }
     } else {
       this.toastr.error("Please enter your email properly")
     }
@@ -459,6 +470,7 @@ export class ContactComponent implements OnInit {
         $(`.address`).css('display', 'block');
         this.u_address = false
         this.email_address = ''
+        this.location = ''
       } else {
         this.toastr.error("Oops some error occured. Please try again later")
       }
@@ -518,6 +530,7 @@ export class ContactComponent implements OnInit {
         $(`.website`).css('display', 'block');
         this.u_website = false
         this.website_link = ''
+        this.website = ''
       } else {
         this.toastr.error("Oops some error occur. Please try again later.")
       }
@@ -578,6 +591,7 @@ export class ContactComponent implements OnInit {
         $(`.religious`).css('display', 'block');
         this.u_religious = false
         this.religious_value = ''
+        this.caste = ''
       } else {
         this.toastr.error("Oops some error occur. Please try again later")
       }
@@ -637,6 +651,7 @@ export class ContactComponent implements OnInit {
         $(`.gender`).css('display', 'block');
         this.u_gender = false
         this.gender_value = ''
+        this.value = ''
       } else {
         this.toastr.error("Oops some error occur. Please try again later")
       }

@@ -14,7 +14,8 @@
       <i (click)="deleteStatus(relationshipStatus)" class="pencil-icon fa fa-trash"></i>
     </div>
   </div>
-  <div class="no_mention" *ngIf="not_mention_relationship"><i class="fas fa-handshake-o handshake-d "> </i>&nbsp; {{not_mention_relationship}} </div>
+  <div class="no_mention" *ngIf="not_mention_relationship"><i class="fas fa-handshake-o handshake-d "> </i>&nbsp;
+    {{not_mention_relationship}} </div>
   <div class="mobile" *ngIf="status">
     <select name="relationship" [(ngModel)]="relationshipStatus" required>
       <option value="undefined" selected disabled>Select options</option>
@@ -43,9 +44,11 @@
   <div (click)="newFamily()" *ngIf="family_show">
     <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add family member</a>
   </div>
-  <div class="no_mention" *ngIf="not_mention_family"><i class="fas fa-child" style="margin-right: 10px;"> </i>&nbsp; {{not_mention_family}} </div>
+  <div class="no_mention" *ngIf="not_mention_family"><i class="fas fa-child" style="margin-right: 10px;"> </i>&nbsp;
+    {{not_mention_family}} </div>
   <div class="family" *ngIf="fill_family">
-    <input type="text" [(ngModel)]="family"  name="family" id="relationship" value="" placeholder="Add family member"><br>
+    <input type="text" [(ngModel)]="family" autocomplete="off" name="family" id="relationship" value=""
+      placeholder="Add family member"><br>
     <select name="family" value="Family" [(ngModel)]="relation" required>
       <option value="undefined" selected disabled>Select options</option>
       <option value="Father">Father</option>
@@ -63,7 +66,8 @@
     <button type="button" name="button" (click)="addFamily(family, relation)">Save</button>
   </div>
   <div class="u_relationship" *ngIf="u_fill_family">
-    <input type="text" [(ngModel)]="family"  name="family" id="family" value="" placeholder="Add family member"><br>
+    <input type="text" [(ngModel)]="family" autocomplete="off" name="family" id="family" value=""
+      placeholder="Add family member"><br>
     <select name="relation" value="relation" [(ngModel)]="relation">
       <option value="undefined" selected disabled>Select options</option>
       <option value="Father">Father</option>
@@ -83,13 +87,19 @@
   <div *ngIf="show_family" class="update-list2 family-list">
     <div *ngFor="let family_data of get_family.slice().reverse()" class="work-record">
       <div class="update-display" style="display: flex;flex-direction: row;">
-        <img width="40" height="40" src="../../assets/images/character.png"onerror="this.src='/assets/images/character.png';" style="border-radius: 50%;" /> <div class="family_shows"> <div> {{family_data.name}} </div> <p>{{family_data.relationship}}</p> </div>
+        <img width="40" height="40" src="../../assets/images/character.png"
+          onerror="this.src='/assets/images/character.png';" style="border-radius: 50%;" />
+        <div class="family_shows">
+          <div> {{family_data.name}} </div>
+          <p>{{family_data.relationship}}</p>
+        </div>
       </div>
       <div class="icons-pencil" *ngIf="icons">
-        <i (click)="updateFamily(family_data._id, family_data.name, family_data.relationship)" class="pencil-icon fa fa-pencil"></i>
+        <i (click)="updateFamily(family_data._id, family_data.name, family_data.relationship)"
+          class="pencil-icon fa fa-pencil"></i>
         <i (click)="delFamily(family_data._id)" class="pencil-icon fa fa-trash"></i>
       </div>
     </div>
   </div>
-  
+
 </div>

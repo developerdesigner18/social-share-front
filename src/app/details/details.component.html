@@ -3,12 +3,15 @@
     <h6>About You</h6>
   </div>
   <!-- about -->
-  <div class="details" style="margin-bottom: 20px;" (click)="aboutDetails()" *ngIf="details === false && fill_details === false">
+  <div class="details" style="margin-bottom: 20px;" (click)="aboutDetails()"
+    *ngIf="details === false && fill_details === false">
     <i class="fa fa-plus-circle"></i> <a [routerLink]="">Write some details about yourself</a>
   </div>
-  <div  *ngIf="show_details" class="update-list">
-    <div class="update-display2" >
-      <div class="details_show" style="word-break: break-all;"> {{details_about}} </div>
+  <div *ngIf="show_details" class="update-list">
+    <div class="update-display2">
+      <div class="details_show" style="word-break: break-all;">
+        <p>{{details_about}}</p>
+      </div>
     </div>
     <div class="icons-pencil" *ngIf="icons">
       <i (click)="updateDetails(details_about)" class="pencil-icon fa fa-pencil"></i>
@@ -17,12 +20,14 @@
   </div>
   <div class="no_mention" *ngIf="not_mention_about"><i class="fa fa-info-circle"> </i> {{not_mention_about}} </div>
   <div class="details" *ngIf="fill_details">
-    <textarea class="text-area" (keyup.enter)="addDetails(details_about)" type="text" [(ngModel)]="details_about" name="" value="" placeholder="Write your details" required></textarea>
+    <textarea class="text-area" type="text" [(ngModel)]="details_about" name="" value=""
+      placeholder="Write your details" required></textarea>
     <button type="button" name="button" (click)="Cancel()">Cancel</button>
     <button type="button" name="button" (click)="addDetails(details_about)">Save</button>
   </div>
   <div class="u_details" *ngIf="u_fill_details">
-    <textarea class="text-area" (keyup.enter)="editDetails(details_about)" type="text" [(ngModel)]="details_about" name="" value="" placeholder="Write your details"></textarea>
+    <textarea class="text-area" type="text" [(ngModel)]="details_about" name="" value=""
+      placeholder="Write your details"></textarea>
     <button type="button" name="button" (click)="cancel1()">Cancel</button>
     <button type="button" name="button" (click)="editDetails(details_about)">Save</button>
   </div>
@@ -30,12 +35,14 @@
   <div class="work_tab">
     <h6>Names pronunciation</h6>
   </div>
-  <div class="pronunciation" style="margin-bottom: 20px;" (click)="newPronunciation()" *ngIf="pronun === false && fill_pronun === false">
+  <div class="pronunciation" style="margin-bottom: 20px;" (click)="newPronunciation()"
+    *ngIf="pronun === false && fill_pronun === false">
     <i class="fa fa-plus-circle"></i> <a [routerLink]="">Add a name pronunciation</a>
   </div>
   <div *ngIf="show_pronun" class="update-list">
     <div class="update-display">
-      <i class="fa fa-language"> </i> <div class="details_show" style="word-break: break-all;"> {{pronun_value}} </div>
+      <i class="fa fa-language"> </i>
+      <div class="details_show" style="word-break: break-all;"> {{pronun_value}} </div>
     </div>
     <div class="icons-pencil" *ngIf="icons">
       <i (click)="updatePronunciation(pronun_value)" class="pencil-icon fa fa-pencil"></i>
@@ -44,12 +51,14 @@
   </div>
   <div class="no_mention" *ngIf="not_mention_pronun"><i class="fa fa-language"> </i> {{not_mention_pronun}} </div>
   <div class="pronunciation" *ngIf="fill_pronun">
-    <input (keyup.enter)="addPronunciation(pronun_value)" type="text" [(ngModel)]="pronun_value" name="" value="" placeholder="Add a new pronunciation" required>
+    <input (keyup.enter)="addPronunciation(pronun_value)" autocomplete="off" type="text" [(ngModel)]="pronun_value"
+      name="" value="" placeholder="Add a new pronunciation" required>
     <button type="button" name="button" (click)="Cancel1()">Cancel</button>
     <button type="button" name="button" (click)="addPronunciation(pronun_value)">Save</button>
   </div>
   <div class="pronunciation" *ngIf="u_fill_pronun">
-    <input (keyup.enter)="editPronunciation(pronun_value)" type="text" [(ngModel)]="pronun_value" name="" value="" placeholder="Add a new pronunciation">
+    <input (keyup.enter)="editPronunciation(pronun_value)" autocomplete="off" type="text" [(ngModel)]="pronun_value"
+      name="" value="" placeholder="Add a new pronunciation">
     <button type="button" name="button" (click)="cancel2()">Cancel</button>
     <button type="button" name="button" (click)="editPronunciation(pronun_value)">Save</button>
   </div>
@@ -57,12 +66,14 @@
   <div class="work_tab">
     <h6>Other Names</h6>
   </div>
-  <div class="nickname" style="margin-bottom: 20px;" (click)="newNickname()" *ngIf="nick === false && fill_nickname === false">
+  <div class="nickname" style="margin-bottom: 20px;" (click)="newNickname()"
+    *ngIf="nick === false && fill_nickname === false">
     <i class="fa fa-plus-circle"></i> <a [routerLink]="">Add a nickname</a>
   </div>
   <div *ngIf="show_nickname" class="update-list">
     <div class="update-display">
-      <i class="fa fa-user"> </i> <div class="details_show" style="word-break: break-all;"> {{nickname}} </div>
+      <i class="fa fa-user"> </i>
+      <div class="details_show" style="word-break: break-all;"> {{nickname}} </div>
     </div>
     <div class="icons-pencil" *ngIf="icons">
       <i (click)="updateNickname(nickname)" class="pencil-icon fa fa-pencil"></i>
@@ -71,12 +82,14 @@
   </div>
   <div class="no_mention" *ngIf="not_mention_nickname"><i class="fa fa-user"> </i> {{not_mention_nickname}} </div>
   <div class="nickname" *ngIf="fill_nickname">
-    <input (keyup.enter)="addNickname(nickname)" type="text" [(ngModel)]="nickname" name="" value="" placeholder="Add your nickname" required>
+    <input (keyup.enter)="addNickname(nickname)" autocomplete="off" type="text" [(ngModel)]="nickname" name="" value=""
+      placeholder="Add your nickname" required>
     <button type="button" name="button" (click)="Cancel2()">Cancel</button>
     <button type="button" name="button" (click)="addNickname(nickname)">Save</button>
   </div>
   <div class="nickname" *ngIf="u_fill_nickname">
-    <input (keyup.enter)="editNickname(nickname)" type="text" [(ngModel)]="nickname" name="" value="" placeholder="Add your nickname">
+    <input (keyup.enter)="editNickname(nickname)" autocomplete="off" type="text" [(ngModel)]="nickname" name="" value=""
+      placeholder="Add your nickname">
     <button type="button" name="button" (click)="cancel3()">Cancel</button>
     <button type="button" name="button" (click)="editNickname(nickname)">Save</button>
   </div>
@@ -84,12 +97,14 @@
   <div class="work_tab">
     <h6>Favourite Quotes</h6>
   </div>
-  <div class="quotes" style="margin-bottom: 20px;" (click)="newQuotes()" *ngIf="quote === false && fill_quotes === false">
+  <div class="quotes" style="margin-bottom: 20px;" (click)="newQuotes()"
+    *ngIf="quote === false && fill_quotes === false">
     <i class="fa fa-plus-circle"></i> <a [routerLink]="">Add a quotes</a>
   </div>
   <div *ngIf="show_quotes" class="update-list">
-    <div class="update-display2" >
-      <i class="fa fa-quote-left"> </i> <div class="details_show" style="word-break: break-all;"> {{quote_value}} </div>
+    <div class="update-display2">
+      <i class="fa fa-quote-left"> </i>
+      <div class="details_show" style="word-break: break-all;"> {{quote_value}} </div>
     </div>
     <div class="icons-pencil" *ngIf="icons">
       <i (click)="updateQuotes(quote_value)" class="pencil-icon fa fa-pencil"></i>
@@ -98,12 +113,14 @@
   </div>
   <div class="no_mention" *ngIf="not_mention_quotes"><i class="fa fa-quote-left"> </i> {{not_mention_quotes}} </div>
   <div class="quotes" *ngIf="fill_quotes">
-    <input (keyup.enter)="addQuotes(quote_value)" type="text" [(ngModel)]="quote_value" name="" value="" placeholder="Add new quotes" required>
+    <input (keyup.enter)="addQuotes(quote_value)" autocomplete="off" type="text" [(ngModel)]="quote_value" name=""
+      value="" placeholder="Add new quotes" required>
     <button type="button" name="button" (click)="Cancel3()">Cancel</button>
     <button type="button" name="button" (click)="addQuotes(quote_value)">Save</button>
   </div>
   <div class="u_quotes" *ngIf="u_fill_quotes">
-    <input (keyup.enter)="editQuotes(quote_value)" type="text" [(ngModel)]="quote_value" name="" value="" placeholder="Add new quotes">
+    <input (keyup.enter)="editQuotes(quote_value)" autocomplete="off" type="text" [(ngModel)]="quote_value" name=""
+      value="" placeholder="Add new quotes">
     <button type="button" name="button" (click)="cancel4()">Cancel</button>
     <button type="button" name="button" (click)="editQuotes(quote_value)">Save</button>
   </div>

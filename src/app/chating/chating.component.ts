@@ -45,6 +45,7 @@ export class ChatingComponent implements OnInit {
   chat_user: any;
   key: any;
   value: any;
+  temp_member: any[] = []
 
   @ViewChildren('messages') messages: QueryList<any>;
   @ViewChild('content') content: ElementRef;
@@ -63,9 +64,11 @@ export class ChatingComponent implements OnInit {
       })
 
     // video calling
+    const current_login_User = JSON.parse(localStorage.getItem('currentUser'));
+    this.current_user_id = current_login_User.data._id
 
     this.activatedRoute.queryParamMap.subscribe((params: ParamMap) => {
-      this.chat_userId = params.get('userId');
+      this.chat_userId = params.get('userId');                    
       this.chat_user = params.get('user')
       if (this.chat_userId !== null && this.chat_user !== null) {
         this.openChat(this.chat_userId, this.chat_user);
@@ -73,29 +76,42 @@ export class ChatingComponent implements OnInit {
     });
     this.channel = this.pusherClient.subscribe("presence-videocall");
 
+    
+
     this.channel.bind("pusher:subscription_succeeded", members => {
       //set the member count
       this.usersOnline = members.count;
-      this.id = members.me.id;
+      // this.id = members.me.id;
+      this.id = this.current_user_id;
       // document.getElementById("myid").innerHTML = ` My caller id is : ` + this.id;
       members.each(member => {
-        if (member.id != members.me.id) {
-          this.users.push(member.id);
-        }
+        // console.log('memeber data', member)
+        // if (member.id != members.me.id) {
+          
+        // }
       });
       this.render();
     });
 
+    // User id changes
+
+    
+
+    this.channel.bind("client-static", (data:any) => {
+      console.log("data", data)
+    })
+
+    //end
+
     this.channel.bind("pusher:member_added", member => {
-      this.users.push(member.id);
+      // this.users.push(member.id);
       this.render();
     });
 
     this.channel.bind("pusher:member_removed", member => {
       // for remove member from list:
-      var index = this.users.indexOf(member.id);
-      this.users.splice(index, 1);
-      if (member.id == this.room) {
+      
+      if (this.users == this.room) {
         this.endCall();
       }
       this.render();
@@ -187,8 +203,7 @@ export class ChatingComponent implements OnInit {
         this.type = data.user + " " + data.message;
       }
     });
-    const current_login_User = JSON.parse(localStorage.getItem('currentUser'));
-    this.current_user_id = current_login_User.data._id
+    
       this.authService.getProfileforAbout(this.current_user_id).subscribe(res => {
         this.datas = res.data;
         this.name = res.data.name
@@ -282,7 +297,6 @@ export class ChatingComponent implements OnInit {
     });
   }
 
-
   Audio_Change(i: number) {
     if (i == 0) {
       $("#audio_off").css("display", "block")
@@ -308,7 +322,7 @@ export class ChatingComponent implements OnInit {
   }
   //Create and send offer to remote peer on button click
   callUser(user) {
-    console.log("call")
+    console.log("call", user)
     this.getCam()
       .then(stream => {
         this.video = <HTMLVideoElement>(document.querySelector("#selfview"));
@@ -490,6 +504,18 @@ export class ChatingComponent implements OnInit {
   }
 
   openChat(id, name) {
+    this.channel.trigger("client-static", {
+      "id": this.current_user_id,
+      "rec_id": id
+    })
+    this.users.push(id ? id : this.chat_userId);
+    console.log("length of users", this.users.length)
+    if (this.users.length >= 2) {
+      var index = this.users.indexOf(this.users[0]);
+      this.users.splice(index, 1);
+    }
+    console.log("user details", this.users)
+    this.render();
     $('.chat_panel').css('background', '#c3c3c3');
     $(`.main_${id}`).css('background', '#FFFFFF');
     const current_login_User = JSON.parse(localStorage.getItem('currentUser'));

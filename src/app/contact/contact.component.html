@@ -3,7 +3,8 @@
     <h6>Contact info</h6>
   </div>
   <!-- Mobile Number -->
-  <div class="mobile" style="margin-bottom: 10px;" (click)="newMobile()" *ngIf="mobile === false && fill_mobile_no === false">
+  <div class="mobile" style="margin-bottom: 10px;" (click)="newMobile()"
+    *ngIf="mobile === false && fill_mobile_no === false">
     <i class="fa fa-plus-circle"></i> <a [routerLink]="">Add mobile phone</a>
   </div>
   <div *ngIf="show_mobile" class="update-list">
@@ -17,20 +18,25 @@
   </div>
   <div class="no_mention" *ngIf="not_mention_number"><i class="fa fa-phone"> </i> {{not_mention_number}} </div>
   <div class="mobile" *ngIf="fill_mobile_no">
-    <input (keyup.enter)="addNumber(number)" type="text" [(ngModel)]="number" maxlength="10" inputmode="numeric"  name="numbers" id="number" value="" placeholder="Add mobile number" onkeypress="if(event.which < 48 || event.which > 57 ) if(event.which != 8) if(event.keyCode != 9) return false;" required>
+    <input (keyup.enter)="addNumber(number)" autocomplete="off" type="text" [(ngModel)]="number" maxlength="10"
+      inputmode="numeric" name="numbers" id="number" value="" placeholder="Add mobile number"
+      onkeypress="if(event.which < 48 || event.which > 57 ) if(event.which != 8) if(event.keyCode != 9) return false;"
+      required>
     <button type="button" name="button" (click)="Cancel()">Cancel</button>
     <button type="button" name="button" (click)="addNumber(number)">Save</button>
   </div>
   <div class="u_mobile" *ngIf="u_fill_mobile_no">
-    <input (keyup.enter)="editNumber(mobile_number)" type="text" [(ngModel)]="mobile_number" maxlength="10" name="number" id="number" value="" placeholder="Add your mobile number">
+    <input (keyup.enter)="editNumber(mobile_number)" autocomplete="off" type="text" [(ngModel)]="mobile_number"
+      maxlength="10" name="number" id="number" value="" placeholder="Add your mobile number">
     <button type="button" name="button" (click)="u_cancel()">Cancel</button>
     <button type="button" name="button" (click)="editNumber(mobile_number)">Save</button>
   </div>
   <!-- Address -->
-  <div class="address" style="margin-bottom: 10px;" (click)="newAddress()" *ngIf="email === false && fill_email === false">
+  <div class="address" style="margin-bottom: 10px;" (click)="newAddress()"
+    *ngIf="email === false && fill_email === false">
     <i class="fa fa-plus-circle"></i> <a [routerLink]="">Add your email address</a>
   </div>
-  <div  *ngIf="show_email" class="update-list">
+  <div *ngIf="show_email" class="update-list">
     <div class="update-display">
       <i class="fa fa-envelope"> </i> {{email_address}}
     </div>
@@ -41,12 +47,15 @@
   </div>
   <div class="no_mention" *ngIf="not_mention_address"><i class="fa fa-envelope"> </i> {{not_mention_address}} </div>
   <div class="address" *ngIf="fill_email">
-    <input (keyup.enter)="addAddress(location)" type="email"  [(ngModel)]="location" inputmode="email" name="location" value="" placeholder="Add your email address" pattern="/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/" required>
+    <input (keyup.enter)="addAddress(location)" autocomplete="off" type="email" [(ngModel)]="location" inputmode="email"
+      name="location" value="" placeholder="Add your email address" pattern="/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/"
+      required>
     <button type="button" name="a_button" (click)="A_Cancel()">Cancel</button>
     <button type="button" name="button" (click)="addAddress(location)">Save</button>
   </div>
   <div class="u_address" *ngIf="u_fill_email">
-    <input (keyup.enter)="editAddress(email_address)" type="text"  [(ngModel)]="email_address" inputmode="email" name="location" value="" placeholder="Add your email address">
+    <input (keyup.enter)="editAddress(email_address)" autocomplete="off" type="text" [(ngModel)]="email_address"
+      inputmode="email" name="location" value="" placeholder="Add your email address">
     <button type="button" name="button" (click)="u_cancel1()">Cancel</button>
     <button type="button" name="button" (click)="editAddress(email_address)">Save</button>
   </div>
@@ -54,12 +63,13 @@
   <div class="work_tab">
     <h6>Website and social links</h6>
   </div>
-  <div class="website" style="margin-bottom: 10px;" (click)="newWebsites()" *ngIf="link === false && fill_link === false">
+  <div class="website" style="margin-bottom: 10px;" (click)="newWebsites()"
+    *ngIf="link === false && fill_link === false">
     <i class="fa fa-plus-circle"></i> <a [routerLink]="">Add a Websites</a>
   </div>
-  <div  *ngIf="show_link" class="update-list">
+  <div *ngIf="show_link" class="update-list">
     <div class="update-display">
-    <i class="fa fa-link"> </i> {{website_link}}
+      <i class="fa fa-link"> </i> {{website_link}}
     </div>
     <div class="icons-pencil" *ngIf="icons">
       <i (click)="updateWebsite(website_link)" class="pencil-icon fa fa-pencil"></i>
@@ -68,25 +78,27 @@
   </div>
   <div class="no_mention" *ngIf="not_mention_website"><i class="fa fa-link"> </i> {{not_mention_website}} </div>
   <div class="website" *ngIf="fill_link">
-    <input (keyup.enter)="addWebsite(website_link)" type="text" [(ngModel)]="website_link" name="link" value="" placeholder="Add your Websites" required>
+    <input (keyup.enter)="addWebsite(website_link)" autocomplete="off" type="text" [(ngModel)]="website_link"
+      name="link" value="" placeholder="Add your Websites" required>
     <button type="button" name="button" (click)="W_Cancel()">Cancel</button>
     <button type="button" name="button" (click)="addWebsite(website_link)">Save</button>
   </div>
   <div class="u_website" *ngIf="u_fill_link">
-    <input (keyup.enter)="editWebsite(website_link)" type="text" [(ngModel)]="website_link" name="link" value="" placeholder="Add your Websites">
+    <input (keyup.enter)="editWebsite(website_link)" autocomplete="off" type="text" [(ngModel)]="website_link"
+      name="link" value="" placeholder="Add your Websites">
     <button type="button" name="button" (click)="u_cancel2()">Cancel</button>
     <button type="button" name="button" (click)="editWebsite(website_link)">Save</button>
   </div>
   <!-- Basic Info -->
-  <div class="work_tab" >
+  <div class="work_tab">
     <h6>Basic info</h6>
-	</div>
+  </div>
   <div (click)="newReligious()" *ngIf="religious === false && fil_caste === false">
     <i class="fa fa-plus-circle"></i> <a [routerLink]="">Add your religious views</a>
   </div>
-  <div  *ngIf="show_caste" class="update-list">
+  <div *ngIf="show_caste" class="update-list">
     <div class="update-display">
-    <i class="fas fa-pray"> </i> <span style="word-break: break-all;"> {{religious_value}} </span>
+      <i class="fas fa-pray"> </i> <span style="word-break: break-all;"> {{religious_value}} </span>
     </div>
     <div class="icons-pencil" *ngIf="icons">
       <i (click)="updateBasicInfo(religious_value)" class="pencil-icon fa fa-pencil"></i>
@@ -94,13 +106,15 @@
     </div>
   </div>
   <div class="no_mention" *ngIf="not_mention_religious"><i class="fas fa-pray"> </i> {{not_mention_religious}} </div>
-  <div class="religious"  *ngIf="fil_caste">
-    <input (keyup.enter)="addBasicInfo(religious_value)" type="text" maxlength="30" [(ngModel)]="religious_value" name="" value="" placeholder="Add your religious" required>
+  <div class="religious" *ngIf="fil_caste">
+    <input (keyup.enter)="addBasicInfo(religious_value)" autocomplete="off" type="text" maxlength="30"
+      [(ngModel)]="religious_value" name="" value="" placeholder="Add your religious" required>
     <button type="button" name="button" (click)="R_Cancel()">Cancel</button>
     <button type="button" name="button" (click)="addBasicInfo(religious_value)">Save</button>
   </div>
-  <div class="u_religious"  *ngIf="u_fill_caste">
-    <input (keyup.enter)="editBasicInfo(religious_value)" type="text" maxlength="30" [(ngModel)]="religious_value" name="" value="" placeholder="Add your religious">
+  <div class="u_religious" *ngIf="u_fill_caste">
+    <input (keyup.enter)="editBasicInfo(religious_value)" autocomplete="off" type="text" maxlength="30"
+      [(ngModel)]="religious_value" name="" value="" placeholder="Add your religious">
     <button type="button" name="button" (click)="u_cancel3()">Cancel</button>
     <button type="button" name="button" (click)="editBasicInfo(religious_value)">Save</button>
   </div>
@@ -110,8 +124,8 @@
     <i class="fa fa-plus-circle"></i> <a [routerLink]="">Add your gender</a>
   </div>
   <div *ngIf="show_gender" class="update-list">
-    <div class="update-display"> 
-    <i class="fas fa-venus-mars"> </i> {{gender_value}}
+    <div class="update-display">
+      <i class="fas fa-venus-mars"> </i> {{gender_value}}
     </div>
     <div class="icons-pencil" *ngIf="icons">
       <i (click)="updateGender(gender_value)" class="pencil-icon fa fa-pencil"></i>
@@ -129,7 +143,7 @@
     <button type="button" name="button" (click)="G_Cancel()">Cancel</button>
     <button type="button" name="button" (click)="addGender(gender_value)">Save</button>
   </div>
-  <div class="u_gender"  *ngIf="u_fill_gender">
+  <div class="u_gender" *ngIf="u_fill_gender">
     <select name="gender" value="gender_value" [(ngModel)]="gender_value">
       <option value="undefined" selected disabled>Select gender</option>
       <option value="Male">Male</option>
@@ -139,12 +153,12 @@
     <button type="button" name="button" (click)="u_cancel4()">Cancel</button>
     <button type="button" name="button" (click)="editGender(gender_value)">Save</button>
   </div>
-   <!-- Date Section -->
-   <div (click)="newBirthDate()" *ngIf="birth === false && fill_birth === false">
+  <!-- Date Section -->
+  <div (click)="newBirthDate()" *ngIf="birth === false && fill_birth === false">
     <i class="fa fa-plus-circle"></i> <a [routerLink]="">Add your Birth Date</a>
   </div>
   <div *ngIf="show_birth" class="update-list">
-    <div class="update-display"> 
+    <div class="update-display">
       <i class="fa fa-birthday-cake"> </i> {{birth_value | date}}
     </div>
     <div class="icons-pencil" *ngIf="icons">
@@ -154,33 +168,39 @@
   </div>
   <div class="no_mention" *ngIf="not_mention_birth"><i class="fa fa-birthday-cake"> </i> {{not_mention_birth}} </div>
   <div *ngIf="fill_birth">
-    <input (keyup.enter)="addBirthDate(birth_value)" class="birth_date" [matDatepicker]="picker" [(ngModel)]="birth_value" type="text" name="" id="" required>
+    <input (keyup.enter)="addBirthDate(birth_value)" autocomplete="off" class="birth_date" [matDatepicker]="picker"
+      [(ngModel)]="birth_value" type="text" name="" id="" required>
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
     <button type="button" name="button" (click)="B_Cancel()">Cancel</button>
     <button type="button" name="button" (click)="addBirthDate(birth_value)">Save</button>
   </div>
-  <div class="u_birth"  *ngIf="u_fill_birth">
-    <input (keyup.enter)="editBasicInfo(birth_value)" class="birth_date" [matDatepicker]="picker" [(ngModel)]="birth_value" type="text" name="" id="">
+  <div class="u_birth" *ngIf="u_fill_birth">
+    <input (keyup.enter)="editBasicInfo(birth_value)" autocomplete="off" class="birth_date" [matDatepicker]="picker"
+      [(ngModel)]="birth_value" type="text" name="" id="">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
     <button type="button" name="button" (click)="u_cancel5()">Cancel</button>
     <button type="button" name="button" (click)="editBirth(birth_value)">Save</button>
   </div>
   <!-- Laungage Section -->
-  <div style="margin-bottom: 10px;" (click)="newLanguage()" *ngIf="languages" >
+  <div style="margin-bottom: 10px;" (click)="newLanguage()" *ngIf="languages">
     <i class="fa fa-plus-circle"></i> <a [routerLink]="">Add your language</a>
   </div>
-  <div style="margin-bottom: 10px;" class="no_mention" *ngIf="not_mention_langugae"><i class="fas fa-language"> </i> {{not_mention_langugae}} </div>
-  <div *ngIf="text_language"><h6 style="padding-top: 5px;">Languages</h6></div>
+  <div style="margin-bottom: 10px;" class="no_mention" *ngIf="not_mention_langugae"><i class="fas fa-language"> </i>
+    {{not_mention_langugae}} </div>
+  <div *ngIf="text_language">
+    <h6 style="padding-top: 5px;">Languages</h6>
+  </div>
   <div class="work" *ngIf="fill_langugae">
-    <input (keyup.enter)="save_add_langugae(language)" type="text" maxlength="30" [(ngModel)]="language" name="" value="" placeholder="Add language" required>
+    <input (keyup.enter)="save_add_langugae(language)" autocomplete="off" type="text" maxlength="30"
+      [(ngModel)]="language" name="" value="" placeholder="Add language" required>
     <button type="button" name="button" (click)="language_Cancel()">Cancel</button>
     <button type="button" name="button" (click)="save_add_langugae(language)">Save</button>
   </div>
   <div style="margin-bottom: 10px;" *ngIf="show_langugae" class="langauge-list">
     <div *ngFor="let langugae_data of get_langugae.slice().reverse()" class="work-record">
-      <div class="update-display" >
+      <div class="update-display">
         <i class="fas fa-language"></i> {{langugae_data.name}}
       </div>
       <div class="icons-pencil" *ngIf="icons">
@@ -188,5 +208,5 @@
       </div>
     </div>
   </div>
-  
+
 </div>

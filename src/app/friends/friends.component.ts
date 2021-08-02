@@ -100,7 +100,7 @@ export class FriendsComponent implements OnInit {
         location.reload();
       })
     } else {
-      location.reload();
+      // location.reload();
     }
     
   }

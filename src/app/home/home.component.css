@@ -489,13 +489,12 @@ a.my_post_links {
 .sharing_container {
     position: absolute;
     top: 40px;
-    left: 0;
     right: 0;
-    min-width: 205px;
     background: #f0f8ff;
     border-radius: 4px;
     z-index: 3;
-    padding: 10px;
+    padding: 4px;
+    width: 130px;
 }
 
 .share_users {

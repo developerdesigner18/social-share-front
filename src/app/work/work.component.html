@@ -5,21 +5,26 @@
   <div (click)="newWork()" *ngIf="working">
     <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add Work Place</a>
   </div>
-  <div class="no_mention" *ngIf="not_mention_work"><i class="fas fa-briefcase"> </i><div class="works_shows"> {{not_mention_work}} </div></div>
+  <div class="no_mention" *ngIf="not_mention_work"><i class="fas fa-briefcase"> </i>
+    <div class="works_shows"> {{not_mention_work}} </div>
+  </div>
   <div class="work" *ngIf="fill_work">
-    <input (keyup.enter)="save_add_work(event)" type="text" [(ngModel)]="event" name="" value="" placeholder="Add work place" required>
+    <input (keyup.enter)="save_add_work(event)" autocomplete="off" type="text" [(ngModel)]="event" name="" value=""
+      placeholder="Add work place" required>
     <button type="button" name="button" (click)="save_add_work(event)">Save</button>
     <button type="button" name="button" (click)="work_Cancel()">Cancel</button>
   </div>
   <div class="u_mobile" *ngIf="u_fill_work">
-    <input (keyup.enter)="editWork(event)" type="text" [(ngModel)]="event" name="" value="" placeholder="Add work place">
+    <input (keyup.enter)="editWork(event)" type="text" autocomplete="off" [(ngModel)]="event" name="" value=""
+      placeholder="Add work place">
     <button type="button" name="button" (click)="w_cancel()">Cancel</button>
     <button type="button" name="button" (click)="editWork(event)">Save</button>
   </div>
   <div *ngIf="show_work" class="update-list">
     <div *ngFor="let works_data of get_works.slice().reverse()" class="work-record">
-      <div class="update-display" >
-        <i class="fas fa-briefcase"><i class=""></i> </i> <div class="works_shows"> {{works_data.name}} </div>
+      <div class="update-display">
+        <i class="fas fa-briefcase"><i class=""></i> </i>
+        <div class="works_shows"> {{works_data.name}} </div>
       </div>
       <div class="icons-pencil" *ngIf="icons">
         <i (click)="updateWork(works_data._id, works_data.name)" class="pencil-icon fa fa-pencil"></i>
@@ -33,21 +38,26 @@
   <div (click)="newUniversity()" *ngIf="university_show">
     <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add university</a>
   </div>
-  <div class="no_mention" *ngIf="not_mention_university"><i class="fa fa-university"></i> <div class="works_shows"> {{not_mention_university}} </div></div>
+  <div class="no_mention" *ngIf="not_mention_university"><i class="fa fa-university"></i>
+    <div class="works_shows"> {{not_mention_university}} </div>
+  </div>
   <div class="work" *ngIf="fill_university">
-    <input (keyup.enter)="save_add_university(university)" type="text" [(ngModel)]="university" name="" value="" placeholder="Add university" required>
+    <input (keyup.enter)="save_add_university(university)" autocomplete="off" type="text" [(ngModel)]="university"
+      name="" value="" placeholder="Add university" required>
     <button type="button" name="button" (click)="save_add_university(university)">Save</button>
     <button type="button" name="button" (click)="Uni_Cancel()">Cancel</button>
   </div>
   <div class="u_mobile" *ngIf="u_fill_university">
-    <input (keyup.enter)="editUniversity(university)" type="text" [(ngModel)]="university" name="" value="" placeholder="Add university">
+    <input (keyup.enter)="editUniversity(university)" autocomplete="off" type="text" [(ngModel)]="university" name=""
+      value="" placeholder="Add university">
     <button type="button" name="button" (click)="u_cancel()">Cancel</button>
     <button type="button" name="button" (click)="editUniversity(university)">Save</button>
   </div>
   <div *ngIf="show_university" class="update-list">
     <div *ngFor="let university_data of get_university.slice().reverse()" class="work-record">
-      <div class="update-display" >
-        <i class="fa fa-university"><i class=""></i> </i> <div class="works_shows"> {{university_data.name}} </div>
+      <div class="update-display">
+        <i class="fa fa-university"><i class=""></i> </i>
+        <div class="works_shows"> {{university_data.name}} </div>
       </div>
       <div class="icons-pencil" *ngIf="icons">
         <i (click)="updateUniversity(university_data._id, university_data.name)" class="pencil-icon fa fa-pencil"></i>
@@ -57,25 +67,30 @@
   </div>
   <div class="work_tab">
     <h6>High School</h6>
-	</div>
+  </div>
   <div (click)="newSchool()" *ngIf="school_show">
     <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add high school</a>
   </div>
-  <div class="no_mention" *ngIf="not_mention_school"><i class="fas fa-school"> </i> <div class="works_shows"> {{not_mention_school}} </div> </div>
+  <div class="no_mention" *ngIf="not_mention_school"><i class="fas fa-school"> </i>
+    <div class="works_shows"> {{not_mention_school}} </div>
+  </div>
   <div class="work" *ngIf="fill_school">
-    <input (keyup.enter)="save_add_school(school)" type="text" [(ngModel)]="school" name="" value="" placeholder="Add high school" required>
+    <input (keyup.enter)="save_add_school(school)" type="text" autocomplete="off" [(ngModel)]="school" name="" value=""
+      placeholder="Add high school" required>
     <button type="button" name="button" (click)="save_add_school(school)">Save</button>
     <button type="button" name="button" (click)="School_Cancel()">Cancel</button>
   </div>
   <div class="u_mobile" *ngIf="u_fill_school">
-    <input (keyup.enter)="editSchool(school)" type="text" [(ngModel)]="school" name="" value="" placeholder="Add high school">
+    <input (keyup.enter)="editSchool(school)" type="text" autocomplete="off" [(ngModel)]="school" name="" value=""
+      placeholder="Add high school">
     <button type="button" name="button" (click)="s_cancel()">Cancel</button>
     <button type="button" name="button" (click)="editSchool(school)">Save</button>
   </div>
   <div *ngIf="show_school" class="update-list">
     <div *ngFor="let school_data of get_school.slice().reverse()" class="work-record">
-      <div class="update-display" >
-        <i class="fas fa-school"></i> <div class="works_shows"> {{school_data.name}} </div>
+      <div class="update-display">
+        <i class="fas fa-school"></i>
+        <div class="works_shows"> {{school_data.name}} </div>
       </div>
       <div class="icons-pencil" *ngIf="icons">
         <i (click)="updateSchool(school_data._id, school_data.name)" class="pencil-icon fa fa-pencil"></i>

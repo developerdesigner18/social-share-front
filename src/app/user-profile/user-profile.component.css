@@ -2188,6 +2188,7 @@ a.my_post_links>div {
     font-size: 14px;
     padding: 8px 18px;
     margin: 0;
+    right: 0;
 }
 
 .more_options .dropdown div {
