@@ -58,6 +58,18 @@ export class UserProfileComponent implements OnInit {
     public elRef: ElementRef,
     public toastr: ToastrService
   ) {
+
+    // bottom to top btn
+
+$(window).scroll(function() {
+  if ($(window).scrollTop() > 300) {
+    $("#button_top").addClass("show");
+  } else {
+    $("#button_top").removeClass('show');
+  }
+});
+
+    // end here
     let id = this.activatedRoute.snapshot.paramMap.get('id');
 
     this.ids = this.activatedRoute.snapshot.paramMap.get('id');

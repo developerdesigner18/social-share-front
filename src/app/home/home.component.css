@@ -1566,6 +1566,16 @@ a.my_post_links:hover div>div {
         margin-bottom: 12px;
         font-size: 11px;
     }
+    .name_and_desc {
+        margin-left: 10px;
+    }
+    .one_image .ng-image-slider .ng-image-slider-container .main .main-inner .img-div img{
+        object-fit: cover;
+    }
+    .write_words input::-webkit-input-placeholder {
+        font-size: 10px !important;
+        font-weight: 600;
+    }
     .profile_pic_profile.position-relative img {
         width: 100%;
         border-radius: 50%;
@@ -1581,9 +1591,12 @@ a.my_post_links:hover div>div {
         width: 100%;
     }
     .logo {
-        width: 56%;
-        margin: 0 auto;
-        text-align: center;
+        width: 80%;
+    margin: 5px auto;
+    text-align: center;
+    }
+    .slider_image_5>div>div>div>.main-inner>div:nth-child(4):before{
+        font-size: 20px !important;
     }
     header .ads {
         margin-top: 15px;

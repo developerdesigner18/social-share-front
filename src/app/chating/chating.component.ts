@@ -504,18 +504,7 @@ export class ChatingComponent implements OnInit {
   }
 
   openChat(id, name) {
-    this.channel.trigger("client-static", {
-      "id": this.current_user_id,
-      "rec_id": id
-    })
-    this.users.push(id ? id : this.chat_userId);
-    console.log("length of users", this.users.length)
-    if (this.users.length >= 2) {
-      var index = this.users.indexOf(this.users[0]);
-      this.users.splice(index, 1);
-    }
-    console.log("user details", this.users)
-    this.render();
+    
     $('.chat_panel').css('background', '#c3c3c3');
     $(`.main_${id}`).css('background', '#FFFFFF');
     const current_login_User = JSON.parse(localStorage.getItem('currentUser'));
@@ -536,8 +525,22 @@ export class ChatingComponent implements OnInit {
         }
       }
     })
-    if (this.chat_userId == id && this.chat_user == name) {    
     setTimeout(() => {
+      this.channel.trigger("client-static", {
+        "id": this.current_user_id,
+        "rec_id": id
+      })
+      this.users.push(id ? id : this.chat_userId);
+      console.log("length of users", this.users.length)
+      if (this.users.length >= 2) {
+        var index = this.users.indexOf(this.users[0]);
+        this.users.splice(index, 1);
+      }
+      console.log("user details", this.users)
+      this.render();
+  }, 2000);
+    if (this.chat_userId == id && this.chat_user == name) {    
+      setTimeout(() => {
       $(`.main_${id}`).css('background', '#FFFFFF');
     }, 2000);
   }

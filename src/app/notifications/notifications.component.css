@@ -42,3 +42,8 @@
     margin: 0 25px;
     margin-right: 0;
 }
+@media (max-width: 320px) {
+    .child-notifiy{
+        flex-direction: column;
+    }
+}

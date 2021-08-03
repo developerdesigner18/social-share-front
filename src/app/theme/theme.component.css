@@ -204,7 +204,7 @@ a.my_post_links {
     margin: 0;
 }
 
-.setting_details button {
+/* .setting_details button {
     background-color: #0F1B31;
     color: #ffffff;
     border-radius: 4px;
@@ -212,7 +212,7 @@ a.my_post_links {
     font-size: 15px;
     font-weight: 500;
     width: 10%;
-}
+} */
 
 .setting_details_hide {
     display: flex;
@@ -416,7 +416,7 @@ img.logout {
     font-family: 'Josefin Sans', sans-serif;
 }
 
-@media (max-width: 320px) {
+/* @media (max-width: 320px) {
     .right_sidebar {
         display: none;
     }
@@ -605,4 +605,4 @@ img.logout {
     .province {
         padding: 5px 5px;
     }
-}
+} */

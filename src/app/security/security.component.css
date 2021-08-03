@@ -11,6 +11,27 @@
     margin-left: 20px;
     color: #ff9000;
 }
+.pass_section{
+	display: flex;
+}
+.pass_section>div {
+    margin-left: 20px;
+    color: #ff9000;
+}
+@media (max-width: 320px) {
+	.pass_section>div {
+		margin-left: 20px;
+		color: #ff9000;
+		word-break: break-all;
+		width: 50%;
+	}
+	.input_section{
+		align-items: center;
+	}
+	.change_button button{
+		padding: 8px 1px !important;
+	}
+}
 /* .setting_details.pass .input_section {
     display: flex;
     flex-direction: column;
@@ -106,7 +127,7 @@ a.my_post_links {
     height: 35px;
     font-size: 15px;
     font-weight: 500;
-    width: 10%;
+    width: 20%;
 	border: 0;
 }
 .change_button button {

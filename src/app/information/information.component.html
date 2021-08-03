@@ -3,24 +3,26 @@
         <div class="header">
             <p>Your Social Information</p>
         </div>
-        <app-themes></app-themes>
+        <!-- <app-themes></app-themes> -->
         <div class="body">
-            <div class="setting_details" >
+            <div class="setting_details">
                 <div class="input_section">
                     <p>Friends</p>
                     <div class="name_show"> {{count_frd ? count_frd : 'No friends please make some friends'}} </div>
                 </div>
             </div>
-            <div class="setting_details" >
+            <div class="setting_details">
                 <div class="input_section">
                     <p>Posts</p>
-                    <div class="name_show"> {{user_post ? user_post : 'No posts please upload some images/videos'}} </div>
+                    <div class="name_show"> {{user_post ? user_post : 'No posts please upload some images/videos'}}
+                    </div>
                 </div>
             </div>
             <div class="setting_details">
                 <div class="input_section">
                     <p>Places</p>
-                    <div class="name_show"> {{u_city ? u_city : 'Not Mention'}}, {{u_state ? u_state : 'Not Mention'}}, {{u_country ? u_country : 'Not Mention'}} </div>
+                    <div class="name_show"> {{u_city ? u_city : 'Not Mention'}}, {{u_state ? u_state : 'Not Mention'}},
+                        {{u_country ? u_country : 'Not Mention'}} </div>
                 </div>
             </div>
             <div class="setting_details">
@@ -33,7 +35,7 @@
                 <div class="input_section">
                     <p>Hobbies</p>
                     <div class="name_show" *ngFor="let hobby of hobbies">
-                        <p> {{hobby ? hobby : 'Not Mention'}} </p> 
+                        <p> {{hobby ? hobby : 'Not Mention'}} </p>
                     </div>
                 </div>
             </div>

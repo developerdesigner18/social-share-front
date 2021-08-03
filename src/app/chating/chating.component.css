@@ -264,10 +264,10 @@ img.logout {
     padding: 10px;
     border-radius: 4px;
     background: #c3c3c3;
-    border: 3px solid #ffffff;
+    /* border: 3px solid #ffffff; */
 }
 .chat_panel:hover{
-    background: #ffffff;
+    background: #ffffff !important;
 }
 .parent_chat_panel {
     display: grid;

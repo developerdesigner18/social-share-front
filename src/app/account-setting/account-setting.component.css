@@ -7,16 +7,6 @@
 .hide_theme{
 	display: none;
 }
-.input_section>div {
-    margin-left: 20px;
-    color: #ff9000;
-}
-.input_section {
-    display: flex;
-}
-.input_section input {
-    margin-left: 20px;
-}
 .write_words input::placeholder {
     color: #616161 !important;
     font-size: 14px !important;
@@ -95,6 +85,7 @@ a.my_post_links {
     font-size: 15px;
     font-weight: 500;
 	border: 0;
+	width: 20%;
 }
 .setting_details_hide {
     display: flex;

@@ -8,3 +8,8 @@
         justify-content: end;
     }
 }
+@media (max-width: 320px) {
+    .about_action_tabs ul{
+        flex-direction: column !important;
+    }
+}

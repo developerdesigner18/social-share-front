@@ -1510,6 +1510,8 @@ button.show_more_notifications {
     }
     .show_album_images .ng-image-slider .ng-image-slider-container .main .main-inner .img-div video {
         width: 94% !important;
+        height: 130px;
+        margin: 0;
     }
     .show_album_images p {
         margin-bottom: -11px;
@@ -2193,6 +2195,59 @@ a.my_post_links>div {
 
 .more_options .dropdown div {
     border-bottom: 1px solid #0f1b31;
+}
+/* Bottom to top button */
+
+#button_top {
+    display: inline-block;
+    background-color: #0F1B31;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    border-radius: 4px;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    transition: background-color .3s, opacity .5s, visibility .5s;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1000;
+}
+
+#button_top::after {
+    content: "\f077";
+    font-family: FontAwesome;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 2em;
+    line-height: 50px;
+    color: #fff;
+}
+
+#button_top:hover {
+    cursor: pointer;
+    background-color: #16243e;
+}
+
+#button_top:active {
+    background-color: #16243e;
+}
+
+#button_top.show {
+    opacity: 1;
+    visibility: visible;
+}
+/* end */
+@media (max-width: 320px) {
+    .one_image .ng-image-slider .ng-image-slider-container .main .main-inner .img-div img{
+        object-fit: cover;
+    }
+    #button_top{
+        display: none;
+    }
+    .modal-dialog{
+        max-width: 100% !important;
+    }
 }
 
 @media (max-width: 545px) {
