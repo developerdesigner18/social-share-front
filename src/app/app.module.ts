@@ -78,6 +78,7 @@ import {ConnectionServiceModule} from 'ng-connection-service';
 import { NgIdleKeepaliveModule } from '@ng-idle/keepalive'; // this includes the core NgIdleModule but includes keepalive providers for easy wireup
 import { MomentModule } from 'angular2-moment'; // optional, provides moment-style pipes for date formatting
 import { ModalModule } from 'ngx-bootstrap/modal';
+import {PushNotificationsModule} from 'ng-push-ivy'
 
 @NgModule({
   declarations: [
@@ -153,7 +154,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     LazyLoadImageModule,
     NgIdleKeepaliveModule.forRoot(),
     MomentModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    PushNotificationsModule
   ],
   
   providers: [

@@ -97,6 +97,16 @@ header .logo,
 .logo {
     width: 60%;
 }
+.msg_counter{
+    padding: 5px 10px; 
+    position: absolute; 
+    top: -20px; 
+    right: -15px;   
+    border-radius: 50%;
+    background-color: #ff9000;
+    display: inline-block;
+    color: #fff;
+}
 
 .main_container {
     width: 100%;
@@ -235,9 +245,20 @@ img.logout {
     color: #aaa;
 }
 
-.online_titles:before {
+.online:before {
     content: "";
     background: #FF9000;
+    height: 10px;
+    width: 10px;
+    position: absolute;
+    right: 0;
+    border-radius: 50%;
+    bottom: 5px;
+    margin: auto;
+}
+.offline:before {
+    content: "";
+    background: #ff0000;
     height: 10px;
     width: 10px;
     position: absolute;
@@ -273,8 +294,11 @@ img.logout {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 15px 15px;
-    margin: 0 10px;
+    margin: 5px 10px;
 }
+::-webkit-scrollbar {
+	width: 5px;
+  }
 
 
 /* Style time text */
@@ -298,7 +322,7 @@ img.logout {
     flex-direction: column;
     overflow: auto; */
     height: calc(100% - 60px) !IMPORTANT;
-    overflow: scroll;
+    overflow-x: scroll;
 }
 
 .chat-messages-show-list {
@@ -721,6 +745,7 @@ img.logout {
     flex-direction: column;
     align-items: center;
     border-radius: 4px;
+    position: relative;
 }
 
 .user_name {
@@ -1619,9 +1644,30 @@ button.comment_sec {
     /* .viewProfile {
     display: none;
     } */
+    /* .chat_float{
+		display: none;
+    } */
+    body{
+        overflow-y: auto;
+    }
+    .main_float{
+        display: none;
+    }
     .left {
         position: static;
         width: 100%;
+    }
+    .parent_chat_panel{
+        overflow-y: scroll;
+    }
+    .h1, h1 {
+        font-size: 1.5rem;
+    }
+    .mobile_view {
+        display: none !important;
+    }
+    .mobile_btn {
+        display: block;
     }
     .photos_section .ng-image-slider .ng-image-slider-container .main .main-inner {
         grid-template-columns: 1fr 1fr;
@@ -1748,7 +1794,26 @@ button.comment_sec {
         margin-left: 0 !important;
         padding-top: 0px !important;
         width: 100%;
+        position: relative;
         /* padding-bottom: 50px; */
+    }
+    .chat-messages-create-container{
+        position: unset;
+        bottom: 0;
+        left: 0;
+        width: auto;
+    }
+    .chat-messages-create-input {
+        padding: 12px;
+        margin: 14px 8px;
+    }
+    .chat-messages-create-button{
+        margin: auto 10px;
+    }
+    .video_calling{
+        position: absolute;
+        right: 0;
+        top: -5px;  
     }
     .mobile_view {
         display: none !important;

@@ -1,13 +1,14 @@
 import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren, ViewEncapsulation } from '@angular/core';
 import { SocketioService } from '../socketio.service';
 import {io} from 'socket.io-client';
-//  import { environment } from 'src/environments/environment';
+ import { environment } from 'src/environments/environment';
 import { AuthService } from '../auth.service';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import Pusher from 'pusher-js'
 import { ToastrService } from 'ngx-toastr';
-import { environment } from 'src/environments/environment.prod';
+// import { environment } from 'src/environments/environment.prod';
 import * as CryptoJS from 'crypto-js';
+import { PushNotificationsService } from 'ng-push-ivy';
 
 declare var $: any;
 @Component({
@@ -46,6 +47,8 @@ export class ChatingComponent implements OnInit {
   key: any;
   value: any;
   temp_member: any[] = []
+  check_msg: any[] = []
+  status: any;
 
   @ViewChildren('messages') messages: QueryList<any>;
   @ViewChild('content') content: ElementRef;
@@ -54,7 +57,7 @@ export class ChatingComponent implements OnInit {
   constructor(private socketService: SocketioService, public authService: AuthService,
     private activatedRoute: ActivatedRoute,
     public router: Router,
-    public toastr: ToastrService) {
+    public toastr: ToastrService, private _pushNotifications: PushNotificationsService) {
     this.key = environment.key
       Pusher.logToConsole = true;
     this.pusherClient = new Pusher('91455e0618617fd0e25d',
@@ -62,11 +65,10 @@ export class ChatingComponent implements OnInit {
         cluster: 'ap2',
         authEndpoint: `${environment.apiUrl}/pusher/auth`
       })
-
+      
     // video calling
     const current_login_User = JSON.parse(localStorage.getItem('currentUser'));
     this.current_user_id = current_login_User.data._id
-
     this.activatedRoute.queryParamMap.subscribe((params: ParamMap) => {
       this.chat_userId = params.get('userId');                    
       this.chat_user = params.get('user')
@@ -75,8 +77,13 @@ export class ChatingComponent implements OnInit {
       }
     });
     this.channel = this.pusherClient.subscribe("presence-videocall");
-
-    
+    this.router.navigate([], {
+      queryParams: {
+        'userId': null,
+        'user': null,
+      },
+      queryParamsHandling: 'merge'
+    })
 
     this.channel.bind("pusher:subscription_succeeded", members => {
       //set the member count
@@ -97,8 +104,9 @@ export class ChatingComponent implements OnInit {
 
     
 
+    this.check_msg = []
     this.channel.bind("client-static", (data:any) => {
-      console.log("data", data)
+      this.check_msg.push(data)
     })
 
     //end
@@ -125,7 +133,6 @@ export class ChatingComponent implements OnInit {
     });
     
     this.channel.bind("client-sdp", (msg) => {
-      console.log("msg", msg)
       if(msg.room == this.id){
           var answer = confirm("You have a call from: "+ msg.name + " Would you like to answer?");
           if(!answer){
@@ -182,7 +189,6 @@ export class ChatingComponent implements OnInit {
     this.channel.bind("client-endcall", answer => {
       console.log("answer end call", answer)
       if (answer.room == this.room) {
-        console.log("end call")
         alert("Call is ended")
       }
     })
@@ -220,11 +226,11 @@ export class ChatingComponent implements OnInit {
 
     //show message
     
+    
   }
 
   ngOnInit(): void {
     this.setupSocketConnection();
-    
   }
 
   ngAfterViewInit() {
@@ -236,7 +242,6 @@ export class ChatingComponent implements OnInit {
 
   render() {
     var list = "";
-    console.log("users", this.users[0])
     this.check_user = this.users[0]
   }
 
@@ -327,10 +332,8 @@ export class ChatingComponent implements OnInit {
       .then(stream => {
         this.video = <HTMLVideoElement>(document.querySelector("#selfview"));
         if (window.URL) {
-          console.log("call1", stream)
           this.video.srcObject = stream;
         } else {
-          console.log("call2")
           this.video.srcObject = stream;
         }
         this.toggleEndCallButton();
@@ -349,7 +352,6 @@ export class ChatingComponent implements OnInit {
       })
       .catch((err) => {
         //log to console first 
-        // console.log(err); /* handle the error */
         if (err.name == "NotFoundError" || err.name == "DevicesNotFoundError") {
             //required track is missing 
             this.toastr.info('Device is not found. Please check your mic and webcam is connected properly.')
@@ -406,7 +408,7 @@ export class ChatingComponent implements OnInit {
     this.socket.emit('login', {userId: this.current_user_id})
       let messageInput = document.getElementById("message");
       let typing = document.getElementById("typing");
-      this.socket.on('my broadcast', (data: string) => {
+    this.socket.on('my broadcast', (data: string) => {
        let value = [this.current_user_id, this.recieverId]
        value.sort((a, b) => b.localeCompare(a))
        this.mergeId = value.join()
@@ -420,9 +422,28 @@ export class ChatingComponent implements OnInit {
         }
           }
         })
-      });
+    });
+    
+      
+      this.socket.on('notify', (data) => {
+      })
+    
     
     this.socket.on('Online', (data: Object) => {
+    })
+
+    this.authService.showstatusMsg().subscribe(res => {
+      var msg = 0
+      setTimeout(() => {
+        this.frdDetails.forEach((item, index) => {
+          for (var i = 0; i < res.data.length; i++) {
+            if (item._id == res.data[i].senderID) {
+              msg += 1;
+              item.msg = msg
+            }
+          }
+        })
+      }, 1500)
     })
 
     if (messageInput) {
@@ -448,12 +469,14 @@ export class ChatingComponent implements OnInit {
 
   SendMessage() {
     if (this.message !== '') {
-    this.socket.emit('my message', this.message);
+      this.socket.emit('my message', this.message);
+      var push_data: any = { 'msg': this.message, 'user': this.recieverId, 'name': this.name, 'sender': this.current_user_id }
+      this.socket.emit('push data', push_data)
     const element = document.createElement('li');
     let value = [this.current_user_id, this.recieverId]
     value.sort((a, b) => b.localeCompare(a))
-    this.mergeId = value.join()
-    
+      this.mergeId = value.join()
+      
       if (this.message !== undefined) {
         // crypto encrypted
         var key = CryptoJS.enc.Utf8.parse(this.key);
@@ -466,10 +489,26 @@ export class ChatingComponent implements OnInit {
           padding: CryptoJS.pad.Pkcs7
           });
         // end
-        this.authService.insertMsg(encrypted.toString(), this.name, this.current_user_id, this.recieverId, this.mergeId).subscribe(res => {
-          if (res['success']) {
+        this.authService.getFriends(this.current_user_id).subscribe(res => {
+          if (res.success) {
+            for (let i = 0; i < res.userInfo.length; i++) {
+              if (res.userInfo[i]._id == this.recieverId) {
+                    if (res.userInfo[i].chatStatus == 1) {
+                      this.status = 1
+                      this.authService.insertMsg(encrypted.toString(), this.name, this.current_user_id, this.recieverId, this.mergeId, this.status).subscribe(res => {
+                        this.openChat(this.recieverId, this.name)
+                      })
+                    } else {
+                      this.status = 0
+                      this.authService.insertMsg(encrypted.toString(), this.name, this.current_user_id, this.recieverId, this.mergeId, this.status).subscribe(res => {
+                        this.openChat(this.recieverId, this.name)
+                      })
+                    }
+                  }
+            }
           }
         })
+        
     } else {
       this.toastr.info("Please write something in message field.")
       }
@@ -502,9 +541,14 @@ export class ChatingComponent implements OnInit {
         });
     return decrypted.toString(CryptoJS.enc.Utf8);
   }
+  view_chat_list() {
+    this.showView = true
+    $(".left").removeClass("mobile_view");
+    $(".viewProfile").addClass("mobile_view");
+  }
 
   openChat(id, name) {
-    
+    $(".left").addClass("mobile_view");
     $('.chat_panel').css('background', '#c3c3c3');
     $(`.main_${id}`).css('background', '#FFFFFF');
     const current_login_User = JSON.parse(localStorage.getItem('currentUser'));
@@ -520,30 +564,38 @@ export class ChatingComponent implements OnInit {
         
         this.chat_messages = res.userData
         for (let i = 0; i < res.userData.length; i++){
+          if (res.userData[i].status == 0 && this.current_user_id == res.userData[i].recieverID) {
+            this.authService.updateMsg(res.userData[i]._id).subscribe(res => { })
+          }
           this.value = this.Decrypt_chat(res.userData[i].message)
           this.chat_messages[i].message = this.value
         }
       }
     })
+
+    this.frdDetails.forEach((item, index) => {
+        if (item._id == this.recieverId) {
+          item.msg = 0;
+        }
+    })
+    
     setTimeout(() => {
       this.channel.trigger("client-static", {
         "id": this.current_user_id,
         "rec_id": id
       })
       this.users.push(id ? id : this.chat_userId);
-      console.log("length of users", this.users.length)
       if (this.users.length >= 2) {
         var index = this.users.indexOf(this.users[0]);
         this.users.splice(index, 1);
       }
-      console.log("user details", this.users)
       this.render();
   }, 2000);
     if (this.chat_userId == id && this.chat_user == name) {    
       setTimeout(() => {
       $(`.main_${id}`).css('background', '#FFFFFF');
     }, 2000);
-  }
+    }
  }
 
  

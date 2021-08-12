@@ -1242,6 +1242,10 @@ button.comment_sec {
     /* .viewProfile {
     display: none;
 	} */
+    .about_action_tabs{
+        border-right: none;
+        width: 100%;
+    }
     .left {
         position: static;
         width: 100%;
@@ -1307,10 +1311,10 @@ button.comment_sec {
         color: #0f1b31;
         cursor: pointer;
     }
-    .take_action>button {
+    /* .take_action>button {
         padding-left: 2px;
         padding-right: 2px;
-    }
+    } */
     .load_area {
         margin-left: 0px;
         margin-right: 0px;

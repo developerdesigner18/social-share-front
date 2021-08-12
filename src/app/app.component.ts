@@ -1,6 +1,6 @@
 import { Component, OnInit, HostListener, ViewChild, TemplateRef, ElementRef, AfterViewInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { Router } from '@angular/router';
+import { ResolveEnd, Router } from '@angular/router';
 import { AuthService } from './auth.service';
 import { ThemeService } from '../theme/theme.service';
 import { BnNgIdleService } from 'bn-ng-idle'; // import it to your component
@@ -10,6 +10,12 @@ import { Keepalive } from '@ng-idle/keepalive';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ModalDirective } from 'ngx-bootstrap/modal';
+import Pusher from 'pusher-js';
+import { environment } from 'src/environments/environment';
+import { SocketioService } from './socketio.service';
+import {io} from 'socket.io-client';
+import { PushNotificationsService } from 'ng-push-ivy';
+// import { environment } from 'src/environments/environment.prod';
 declare var jQuery: any;
 declare var $: any;
 
@@ -32,14 +38,60 @@ export class AppComponent {
   idleState = 'Not started.';
   timedOut = false;
   lastPing?: Date = null;
+  channel: any;
+  socket
 
   public modalRef: BsModalRef;
-
+  private pusherClient: Pusher;
+  video: HTMLVideoElement;
   @ViewChild('childModal', { static: false }) childModal: ModalDirective;
+  current_user_id: any;
+  usersOnline: any;
 
-  constructor( private titleService: Title, private authService: AuthService, private router: Router, private themeService: ThemeService, private bnIdle: BnNgIdleService, private connectionService: ConnectionService, private idle: Idle, private keepalive: Keepalive, private modalService: BsModalService) {
+  constructor( private titleService: Title, private authService: AuthService, private router: Router, private themeService: ThemeService, private bnIdle: BnNgIdleService, private connectionService: ConnectionService, private idle: Idle, private keepalive: Keepalive, private modalService: BsModalService, private socketService: SocketioService,private _pushNotifications: PushNotificationsService) {
     
     if (this.authService.isLoggedIn() == true) {
+      const current_login_User = JSON.parse(localStorage.getItem('currentUser'));
+      this.current_user_id = current_login_User.data._id
+      this.socket = io(environment.apiUrl);
+
+      
+
+      this.router.events.subscribe((routerData) => {
+        if(routerData instanceof ResolveEnd){ 
+          if(routerData.url === '/chating/' + this.current_user_id || window.location.search){
+            //Do something
+          var status = 1
+            this.authService.changechatStatus(this.current_user_id, status).subscribe(res => { })
+            $('.main_float').removeClass('chat_float')
+          } else {
+            $('.main_float').addClass('chat_float')
+            var status = 0
+            this.authService.getUserProfile(this.current_user_id).subscribe(res => {
+              if (res.data.chatStatus == 1) {
+                this.authService.changechatStatus(this.current_user_id, status).subscribe(res => { })
+              }
+            })
+          }
+        }
+      })
+
+      // chat push message
+      this.socket.on('notify', (data) => {
+        if (this.router.url == '/chating/' + this.current_user_id || window.location.search) {
+          console.log("yes iam on this page")
+        } else {
+          console.log("no i am not this page")
+          if (data.user == this.current_user_id) {
+            this._pushNotifications.requestPermission();
+            this._pushNotifications.create('You got a new message from ' + data.name, { body: data.msg }).subscribe(
+              res => console.log(res),
+              err => console.log(err)
+            )
+          }
+        }
+      })
+
       // sets an idle timeout of 5 seconds, for testing purposes.
       idle.setIdle(600);
       // sets a timeout period of 5 seconds. after 10 seconds of inactivity, the user will be considered timed out.
@@ -59,9 +111,7 @@ export class AppComponent {
         const currentUser = JSON.parse(localStorage.getItem('currentUser'));
          this.id = currentUser.data._id
         let status = 0;
-        this.authService.updateStatus(this.id, status).subscribe(res => {
-          console.log("res", res)
-        })
+        this.authService.updateStatus(this.id, status).subscribe(res => { })
         localStorage.removeItem('currentUser');
         localStorage.removeItem('token');
         localStorage.removeItem('friendId');

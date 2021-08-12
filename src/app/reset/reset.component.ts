@@ -56,7 +56,6 @@ export class ResetComponent implements OnInit {
       }
       this.authService.resetPassword(this.token, this.password.value).subscribe(() => {
         if (this.authService.isLoggedIn) {
-          console.log("madhav");
           this.router.navigateByUrl('/');
           this.toastr.success("Your password successfully updated. Please login with your new password")
         } else {

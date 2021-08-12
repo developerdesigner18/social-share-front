@@ -1,8 +1,7 @@
 <!-- <div *ngIf="noInternetConnection" id="network-status-offline">You might be offline, please check your internet connection! ☹️</div> -->
 <router-outlet></router-outlet>
 <!-- <div *ngIf="!noInternetConnection" id="network-status-online">You are back online! 😎</div> -->
-<div bsModal #childModal="bs-modal" class="modal fade" tabindex="-1"
-     role="dialog" aria-labelledby="dialog-child-name">
+<div bsModal #childModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-child-name">
   <div class="modal-dialog modal-md">
     <div class="modal-content">
       <div class="modal-header">
@@ -12,16 +11,18 @@
         </button>
       </div>
       <div class="modal-body">
-         {{idleState}}
+        {{idleState}}
         <div class="row mrgbtm">
           <div class="col-md-6">
-              <button type="button" (click)="logout()" class="btn btn-danger">Logout</button>
+            <button type="button" (click)="logout()" class="btn btn-danger">Logout</button>
           </div>
           <div class="col-md-6">
-              <button type="button" (click)="stay()" class="btn btn-success">Stay</button>
+            <button type="button" (click)="stay()" class="btn btn-success">Stay</button>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+<a href="chating/{{current_user_id}}"><img class="main_float chat_float" src="../assets/images/chat_icon.png"
+    alt=""></a>

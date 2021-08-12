@@ -424,7 +424,6 @@ $(window).scroll(function() {
           var data = this.objVal[0].value
           this.tryCmnt = { postId, userName, profilePic, data }
           this.temCmnt.push(this.tryCmnt)
-          console.log("this.temCmnt", this.temCmnt)
         }
       }
     })

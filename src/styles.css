@@ -281,9 +281,9 @@ img.connecting_image {
 	header {
     padding: 25px 0;
 	}
-	body {
+	/* body {
     background-repeat-y: no-repeat;
-	}
+	} */
 }
 
 .error { color: red; }
@@ -309,6 +309,20 @@ img.connecting_image {
 
 .text-spaces{
 	margin-bottom: 15px;
+}
+
+.main_float.chat_float{
+    display: none;
+}
+@media (max-width: 767px) {
+    .main_float.chat_float{
+		display: block;
+		position: fixed;
+		bottom: 30px;
+		right: 20px;
+		width: 40px;
+		z-index: 99;
+    }
 }
 
 

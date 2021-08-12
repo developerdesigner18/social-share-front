@@ -170,9 +170,7 @@ export class WorkComponent implements OnInit {
           } else {
             this.work = false
           }
-        } else {
-          console.log("res", res)
-        }
+        } else { }
         })
       }
     }

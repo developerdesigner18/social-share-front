@@ -410,11 +410,7 @@ export class ContactComponent implements OnInit {
 
   addAddress(location: any) {
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if (re.test(String(location).toLowerCase())) {
-      console.log("validate")
-    } else {
-      console.log("not validate")
-    }
+    
     if (location !== undefined) {
       if (re.test(String(location).toLowerCase())) {
         this.authService.addNewAddress(location).subscribe(res => {
@@ -435,14 +431,19 @@ export class ContactComponent implements OnInit {
   }
 
   editAddress(location: any) {
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (location !== undefined) {
-      this.authService.addNewAddress(location).subscribe(res => {
-        if (res['success']) {
-          this.toastr.success("Your email is updated successfully")
-          this.show_email = true
-          this.u_fill_email = false
-        }
-      })
+      if (re.test(String(location).toLowerCase())) {
+        this.authService.addNewAddress(location).subscribe(res => {
+          if (res['success']) {
+            this.toastr.success("Your email is updated successfully")
+            this.show_email = true
+            this.u_fill_email = false
+          }
+        })
+      } else {
+        this.toastr.error("Invalid Email Address")
+      }
     } else {
       this.toastr.error("Your email is not updated")
     }

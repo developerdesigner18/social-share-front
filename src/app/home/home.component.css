@@ -1334,7 +1334,10 @@ a.my_post_links:hover div>div {
         width: 100%;
         padding: 0;
     }
-    #button_top {
+    #button_top{
+        display: none;
+    }
+    /* #button_top {
         width: 35px;
         height: 35px;
     }
@@ -1346,7 +1349,7 @@ a.my_post_links:hover div>div {
         font-size: 2em;
         line-height: 35px;
         color: #fff;
-    }
+    } */
     .logo {
         width: 70%;
     }

@@ -8,11 +8,12 @@
     <div class="chat_panel main_{{data._id}}" *ngFor="let data of frdDetails;let i = index">
       <div class="remove_people remove_people_{{data._id}}" (click)="openChat(data._id, data.name)">
         <div class="request_shows online_sec">
-          <div class="online_titles">
+          <div class="online_titles" [ngClass]="data.content == 1 ? 'online': 'offline'">
             <img [src]="data.profileImgURl" onerror="this.src='/assets/images/character.png';"
               style="border-radius: 50%;" />
           </div>
           <div class="user_name">{{data.name}}</div>
+          <span *ngIf="data.msg > 0" class="msg_counter"> {{data.msg}} </span>
         </div>
       </div>
     </div>
@@ -30,6 +31,10 @@
 </div>
 
 <div class="viewProfile" style="padding-top: 101px;" *ngIf="!showView">
+  <button (click)="view_chat_list()" class="mobile_btn">
+    <img src="/assets/images/back_btn.png" alt="Back-Track">
+    <div class="back_btn">Go Back</div>
+  </button>
   <div class="chat-messages">
     <div class="chat-messages-show-container" #content>
       <ul class="chat-messages-show-list" id="message-list">
@@ -38,8 +43,14 @@
           style="display: flex;">
           <div [ngStyle]="{'background':chat.senderID === current_user_id ? '#ffffff' : '#0f1b31'}"
             class="chat_message_div">
-            <span [ngStyle]="{'color':chat.senderID === current_user_id ? '#0f1b31' : '#ffffff'}">{{chat.message ?
-              chat.message : message}}</span>
+            <div>
+              <span [ngStyle]="{'color':chat.senderID === current_user_id ? '#0f1b31' : '#ffffff'}">{{chat.message ?
+                chat.message : message}}</span>
+              <span style="padding-left: 5px;" *ngIf="chat.senderID === current_user_id"> <img
+                  [src]="chat.status == 0 ? '../../assets/images/check.png' : '../../assets/images/check2.png'"
+                  width="15px" alt="">
+              </span>
+            </div>
             <div [ngStyle]="{'color':chat.senderID === current_user_id ? '#949292' : '#909090'}"
               style="font-size: 12px;"> {{chat.createdAt | timeago}} </div>
           </div>
@@ -54,7 +65,7 @@
       <input id="message" class="chat-messages-create-input" [(ngModel)]="message" type="text"
         (keyup.enter)="SendMessage()" placeholder="Type your message here...">
       <button class="chat-messages-create-button" [disabled]="!message" (click)="SendMessage()"> Send </button>
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"> <img
+      <button type="button" class="btn btn-primary video_calling" data-toggle="modal" data-target="#myModal"> <img
           src="../../assets/images/chat.png" alt="" width="20px" height="20px"> </button>
     </div>
   </div>

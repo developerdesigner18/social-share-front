@@ -3,8 +3,8 @@ import { Injectable, Injector } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
-// import { environment } from '../environments/environment';
-import { environment } from '../environments/environment.prod';
+import { environment } from '../environments/environment';
+// import { environment } from '../environments/environment.prod';
 
 import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
@@ -438,7 +438,6 @@ export class AuthService {
     return this.httpClient.post(`${environment.apiUrl}/api/notification/getnotify`, { userId: userId }, { headers: this.headers }).pipe(
       map((res: Response) => {
         return res || {}
-        console.log("res.......", res);
       }),
       catchError(this.handleError)
     )
@@ -896,8 +895,8 @@ export class AuthService {
   }
 
   //Insert Messages
-  insertMsg(message, sender, senderID, recieverID, mergeId): Observable<any> {
-    return this.httpClient.post(`${environment.apiUrl}/api/chat/insertMsg`, { message: message, sender: sender, senderID: senderID, recieverID: recieverID, mergeId: mergeId }).pipe(
+  insertMsg(message, sender, senderID, recieverID, mergeId, status): Observable<any> {
+    return this.httpClient.post(`${environment.apiUrl}/api/chat/insertMsg`, { message: message, sender: sender, senderID: senderID, recieverID: recieverID, mergeId: mergeId, status: status }).pipe(
       map((res: Response) => {
         return res || {}
       }),
@@ -907,6 +906,33 @@ export class AuthService {
 
   showMsg(mergeId): Observable<any> {
     return this.httpClient.get(`${environment.apiUrl}/api/chat/showMsg?mergeId=${mergeId}`).pipe(
+      map((res: Response) => {
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  updateMsg(id): Observable<any> {
+    return this.httpClient.post(`${environment.apiUrl}/api/chat/updateMsg`, {id: id}).pipe(
+      map((res: Response) => {
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  showstatusMsg(): Observable<any> {
+    return this.httpClient.get(`${environment.apiUrl}/api/chat/showstatusMSG`).pipe(
+      map((res: Response) => {
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  changechatStatus(userId, status): Observable<any> {
+    return this.httpClient.post(`${environment.apiUrl}/api/user/changechatStatus`, {userId: userId, status: status}).pipe(
       map((res: Response) => {
         return res || {}
       }),
