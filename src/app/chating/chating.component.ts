@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren, ViewEncapsulation } from '@angular/core';
 import { SocketioService } from '../socketio.service';
 import {io} from 'socket.io-client';
  import { environment } from 'src/environments/environment';
@@ -57,7 +57,7 @@ export class ChatingComponent implements OnInit {
   constructor(private socketService: SocketioService, public authService: AuthService,
     private activatedRoute: ActivatedRoute,
     public router: Router,
-    public toastr: ToastrService, private _pushNotifications: PushNotificationsService) {
+    public toastr: ToastrService, private _pushNotifications: PushNotificationsService, private cdref: ChangeDetectorRef) {
     this.key = environment.key
       Pusher.logToConsole = true;
     this.pusherClient = new Pusher('91455e0618617fd0e25d',
@@ -88,22 +88,11 @@ export class ChatingComponent implements OnInit {
     this.channel.bind("pusher:subscription_succeeded", members => {
       //set the member count
       this.usersOnline = members.count;
-      // this.id = members.me.id;
       this.id = this.current_user_id;
-      // document.getElementById("myid").innerHTML = ` My caller id is : ` + this.id;
-      members.each(member => {
-        // console.log('memeber data', member)
-        // if (member.id != members.me.id) {
-          
-        // }
-      });
       this.render();
     });
 
     // User id changes
-
-    
-
     this.check_msg = []
     this.channel.bind("client-static", (data:any) => {
       this.check_msg.push(data)
@@ -238,10 +227,13 @@ export class ChatingComponent implements OnInit {
     this.messages.changes.subscribe(this.scrollToBottom);
   }
 
+  ngAfterContentChecked() {
+    this.cdref.detectChanges();
+  }
+
   // video calling
 
   render() {
-    var list = "";
     this.check_user = this.users[0]
   }
 
@@ -412,25 +404,23 @@ export class ChatingComponent implements OnInit {
        let value = [this.current_user_id, this.recieverId]
        value.sort((a, b) => b.localeCompare(a))
        this.mergeId = value.join()
-        this.authService.showMsg(this.mergeId).subscribe(res => {
-          
-          if (res['success']) {
-            this.chat_messages = res.userData
-        for (let i = 0; i < res.userData.length; i++){
-          this.value = this.Decrypt_chat(res.userData[i].message)
-          this.chat_messages[i].message = this.value
-        }
+      this.authService.showMsg(this.mergeId).subscribe(res => {
+      if (res['success']) {
+          this.chat_messages = res.userData
+          for (let i = 0; i < res.userData.length; i++){
+            this.value = this.Decrypt_chat(res.userData[i].message)
+            this.chat_messages[i].message = this.value
+          }
+          this.authService.getUserProfile(this.current_user_id).subscribe(res => {
+            if (res.data.chatStatus == 1) {
+              setTimeout(() => {
+                this.refreshChat(this.current_user_id, this.recieverId)
+              }, 1500)
+              }
+            })
           }
         })
     });
-    
-      
-      this.socket.on('notify', (data) => {
-      })
-    
-    
-    this.socket.on('Online', (data: Object) => {
-    })
 
     this.authService.showstatusMsg().subscribe(res => {
       var msg = 0
@@ -471,7 +461,7 @@ export class ChatingComponent implements OnInit {
     if (this.message !== '') {
       this.socket.emit('my message', this.message);
       var push_data: any = { 'msg': this.message, 'user': this.recieverId, 'name': this.name, 'sender': this.current_user_id }
-      this.socket.emit('push data', push_data)
+      this.socket.emit('push_data', push_data)
     const element = document.createElement('li');
     let value = [this.current_user_id, this.recieverId]
     value.sort((a, b) => b.localeCompare(a))
@@ -545,6 +535,7 @@ export class ChatingComponent implements OnInit {
     this.showView = true
     $(".left").removeClass("mobile_view");
     $(".viewProfile").addClass("mobile_view");
+    $('.chat_panel').css('background', '#c3c3c3');
   }
 
   openChat(id, name) {
@@ -578,6 +569,7 @@ export class ChatingComponent implements OnInit {
           item.msg = 0;
         }
     })
+    // this.setupSocketConnection()
     
     setTimeout(() => {
       this.channel.trigger("client-static", {
@@ -590,13 +582,28 @@ export class ChatingComponent implements OnInit {
         this.users.splice(index, 1);
       }
       this.render();
-  }, 2000);
+    }, 2000);
     if (this.chat_userId == id && this.chat_user == name) {    
       setTimeout(() => {
-      $(`.main_${id}`).css('background', '#FFFFFF');
-    }, 2000);
+        $(`.main_${id}`).css('background', '#FFFFFF');
+      }, 2000);
     }
- }
-
- 
+  }
+  
+  refreshChat(id, recieve) {
+    this.current_user_id = id
+    this.recieverId = recieve
+    let value = [this.current_user_id, this.recieverId]
+    value.sort((a, b) => b.localeCompare(a))
+    this.mergeId = value.join()
+    this.authService.showMsg(this.mergeId).subscribe(res => {
+      if (res['success']) {
+        this.chat_messages = res.userData
+        for (let i = 0; i < res.userData.length; i++){
+          this.value = this.Decrypt_chat(res.userData[i].message)
+          this.chat_messages[i].message = this.value
+        }
+      }
+    })
+  } 
 }

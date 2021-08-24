@@ -10,7 +10,9 @@
 .tooltiptext p {
     margin: 0;
 }
-
+::-webkit-scrollbar {
+    width: 5px;
+}
 
 /* .ng-image-slider {
     width: 101% !important;
@@ -1037,8 +1039,8 @@ button.owl-next span {
     margin-top: 15px;
     color: #0F1B31;
     padding: 15px;
-    /* height: 40vh;
-    overflow-y: scroll; */
+    height: 40vh;
+    overflow-y: scroll;
 }
 
 .comment_title {

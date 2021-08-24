@@ -31,7 +31,8 @@
         <a class="my_post_links" href="friends/{{id}}">
             <div class="left_content">
                 <i class="fas fa-user-plus"></i>
-                <div class="badges_for_fr position-relative" [attr.data-content]="frd_request_count !== 0 ? frd_request_count : ''">Friend Requests</div>
+                <div class="badges_for_fr position-relative"
+                    [attr.data-content]="frd_request_count !== 0 ? frd_request_count : ''">Friend Requests</div>
             </div>
         </a>
         <a class="my_post_links" href="search/{{id}}">
@@ -40,12 +41,12 @@
                 <div>Search for someone</div>
             </div>
         </a>
-        <a class="my_post_links" href="theme">
+        <!-- <a class="my_post_links" href="theme">
             <div class="left_content">
                 <i class="fas fa-cog"></i>
                 <div>Customization</div>
             </div>
-        </a>
+        </a> -->
     </div>
     <div class="main_area">
         <div class="main_area_content timeline">
@@ -55,7 +56,7 @@
                         <div class="profile_name_of_poster">Peoples May You Know</div>
                     </div>
                 </div>
-                <hr/>
+                <hr />
                 <div class="search_display" *ngIf="shows">
                     <div class="d-flex allusers_set" *ngFor="let user of allUsers;let i = index">
                         <div class="profile_pic position-relative">
@@ -71,8 +72,13 @@
                         </div>
                         <div class="icon_container d-flex justify-content-end">
                             <div class="position-relative Send_request_icon">
-                                <i class="fas fa-user-plus" id="open" *ngIf="friend_id.includes(user._id) !== true" [hidden]="hideme[i]" (click)="sendRequest(user._id);hideme[i] = !hideme[i]" title="Send Request"></i>
-                                <i class="fas fa-user-times" id="close" *ngIf="hideme[i] || friend_id.includes(user._id)" (click)="reject_request(user._id);hideme[i] = !hideme[i]" title="Cancel Request"></i>
+                                <i class="fas fa-user-plus" id="open" *ngIf="friend_id.includes(user._id) !== true"
+                                    [hidden]="hideme[i]" (click)="sendRequest(user._id);hideme[i] = !hideme[i]"
+                                    title="Send Request"></i>
+                                <i class="fas fa-user-times" id="close"
+                                    *ngIf="hideme[i] || friend_id.includes(user._id)"
+                                    (click)="reject_request(user._id);hideme[i] = !hideme[i]"
+                                    title="Cancel Request"></i>
                             </div>
                         </div>
                     </div>

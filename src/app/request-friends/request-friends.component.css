@@ -923,7 +923,7 @@ button.comment_sec {
     height: auto !important;
 } */
 
-.commenter:before {
+/* .commenter:before {
     position: absolute;
     content: "";
     height: 10px;
@@ -932,7 +932,7 @@ button.comment_sec {
     border-radius: 50%;
     bottom: -11px;
     left: -29px;
-}
+} */
 
 .slider_bid_like-share {
     width: 100%;

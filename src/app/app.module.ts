@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -78,8 +78,11 @@ import {ConnectionServiceModule} from 'ng-connection-service';
 import { NgIdleKeepaliveModule } from '@ng-idle/keepalive'; // this includes the core NgIdleModule but includes keepalive providers for easy wireup
 import { MomentModule } from 'angular2-moment'; // optional, provides moment-style pipes for date formatting
 import { ModalModule } from 'ngx-bootstrap/modal';
-import {PushNotificationsModule} from 'ng-push-ivy'
+//ng-push-notification
+import { PushNotificationsModule } from 'ng-push-ivy'
 
+//ngx-spinner
+import { NgxSpinnerModule } from "ngx-spinner";
 @NgModule({
   declarations: [
     AppComponent,
@@ -155,7 +158,8 @@ import {PushNotificationsModule} from 'ng-push-ivy'
     NgIdleKeepaliveModule.forRoot(),
     MomentModule,
     ModalModule.forRoot(),
-    PushNotificationsModule
+    PushNotificationsModule,
+    NgxSpinnerModule
   ],
   
   providers: [
@@ -171,6 +175,7 @@ import {PushNotificationsModule} from 'ng-push-ivy'
     SocketioService,
     BnNgIdleService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

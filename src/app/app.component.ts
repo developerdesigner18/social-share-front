@@ -79,13 +79,22 @@ export class AppComponent {
       // chat push message
       this.socket.on('notify', (data) => {
         if (this.router.url == '/chating/' + this.current_user_id || window.location.search) {
-          console.log("yes iam on this page")
+          // console.log("yes iam on this page")
         } else {
-          console.log("no i am not this page")
+          // console.log("no i am not this page")
           if (data.user == this.current_user_id) {
             this._pushNotifications.requestPermission();
             this._pushNotifications.create('You got a new message from ' + data.name, { body: data.msg }).subscribe(
-              res => console.log(res),
+              res => {
+                console.log(res);
+                if (res.event.type === 'click') {
+                  // You can do anything else here
+                  // const url = `chating/{{this.current_user_id}}?userId={{data.userId}}&&user={{data.post_user}}`
+                  const url = 'chating/' + this.current_user_id
+                  this.router.navigate([url], {queryParams: {userId: data.userId, user: data.post_user}})
+                  res.notification.close();
+              }
+              },
               err => console.log(err)
             )
           }

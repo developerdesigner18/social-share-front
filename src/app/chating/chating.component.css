@@ -258,7 +258,7 @@ img.logout {
 }
 .offline:before {
     content: "";
-    background: #ff0000;
+    background: #ff900000;
     height: 10px;
     width: 10px;
     position: absolute;
@@ -266,6 +266,7 @@ img.logout {
     border-radius: 50%;
     bottom: 5px;
     margin: auto;
+    border: 2px solid;
 }
 
 .offline_sec .online_titles:before {
@@ -765,8 +766,8 @@ img.logout {
 }
 
 .remove_people img {
-    border: 2px solid #ffffff;
-    padding: 1px;
+    border: 1px solid #ffffff;
+    padding: 2px;
 }
 
 button:disabled,
@@ -1325,7 +1326,7 @@ button.comment_sec {
     height: auto !important;
 } */
 
-.commenter:before {
+/* .commenter:before {
     position: absolute;
     content: "";
     height: 10px;
@@ -1334,7 +1335,7 @@ button.comment_sec {
     border-radius: 50%;
     bottom: -11px;
     left: -29px;
-}
+} */
 
 .slider_bid_like-share {
     width: 100%;
@@ -1657,6 +1658,13 @@ button.comment_sec {
         position: static;
         width: 100%;
     }
+    .main_div {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    .friend_list {
+        margin: 20px 16px 15px 12px;
+    }
     .parent_chat_panel{
         overflow-y: scroll;
     }
@@ -1678,7 +1686,6 @@ button.comment_sec {
         height: 170px !important;
     }
     .update-list2 {
-        /* height: 60vh; */
         overflow-y: auto;
     }
     .about_description {

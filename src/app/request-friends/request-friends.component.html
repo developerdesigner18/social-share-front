@@ -19,7 +19,7 @@
           (click)="confirm_request(frdProfile._id);accept_hideme[i] = !accept_hideme[i];hideme[i] = hideme[i];">Confirm</button>
         <button type="button" name="button" style="margin-left: 15px;" class="btn btn-secondary"
           [hidden]="hideme[i] || accept_hideme[i]"
-          (click)="reject_request(frdProfile._id);hideme[i] = !hideme[i];accept_hideme[i] = accept_hideme[i]">Delete</button>
+          (click)="reject_request(frdProfile._id);hideme[i] = !hideme[i];accept_hideme[i] = accept_hideme[i]">Cancel</button>
         <label [hidden]="!accept_hideme[i] || hideme[i]">Accept request</label>
         <label [hidden]="!hideme[i] || accept_hideme[i]">Reject request</label>
       </div>
@@ -262,9 +262,6 @@
           <div class="no_post_friend" *ngIf="msg">
             <h6>No Posts Uploaded</h6>
           </div>
-        </ng-container>
-        <ng-container>
-
         </ng-container>
 
         <ng-container *ngIf="!timeline_hide">

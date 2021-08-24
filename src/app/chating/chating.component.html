@@ -1,35 +1,36 @@
 <app-header></app-header>
 
-<div class="sidenav left">
-  <div class="friend_list">
-    <h3>Friends</h3>
-  </div>
-  <div class="parent_chat_panel">
-    <div class="chat_panel main_{{data._id}}" *ngFor="let data of frdDetails;let i = index">
-      <div class="remove_people remove_people_{{data._id}}" (click)="openChat(data._id, data.name)">
-        <div class="request_shows online_sec">
-          <div class="online_titles" [ngClass]="data.content == 1 ? 'online': 'offline'">
-            <img [src]="data.profileImgURl" onerror="this.src='/assets/images/character.png';"
-              style="border-radius: 50%;" />
+<div class="main_div">
+  <div class="sidenav left">
+    <div class="friend_list">
+      <h3>Friends</h3>
+    </div>
+    <div class="parent_chat_panel">
+      <div class="chat_panel main_{{data._id}}" *ngFor="let data of frdDetails;let i = index">
+        <div class="remove_people remove_people_{{data._id}}" (click)="openChat(data._id, data.name)">
+          <div class="request_shows online_sec">
+            <div class="online_titles" [ngClass]="data.content == 1 ? 'online': 'offline'">
+              <img [src]="data.profileImgURl" onerror="this.src='/assets/images/character.png';"
+                style="border-radius: 50%;" />
+            </div>
+            <div class="user_name">{{data.name}}</div>
+            <span *ngIf="data.msg > 0" class="msg_counter"> {{data.msg}} </span>
           </div>
-          <div class="user_name">{{data.name}}</div>
-          <span *ngIf="data.msg > 0" class="msg_counter"> {{data.msg}} </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="viewProfile show_View" style="justify-content: center;display: flex;height:100%" *ngIf="showView">
+    <div class="container" style="position: relative;">
+      <div class="vertical-center" style="position: inherit;top: 50%;transform: translateY(-50%);text-align: center;">
+        <div class="display_people_data">
+          Select people's names to start chatting with them.
         </div>
       </div>
     </div>
   </div>
 </div>
-
-<div class="viewProfile show_View" style="justify-content: center;display: flex;height:100%" *ngIf="showView">
-  <div class="container" style="position: relative;">
-    <div class="vertical-center" style="position: inherit;top: 50%;transform: translateY(-50%);text-align: center;">
-      <div class="display_people_data">
-        Select people's names to start chatting with them.
-      </div>
-    </div>
-  </div>
-</div>
-
 <div class="viewProfile" style="padding-top: 101px;" *ngIf="!showView">
   <button (click)="view_chat_list()" class="mobile_btn">
     <img src="/assets/images/back_btn.png" alt="Back-Track">

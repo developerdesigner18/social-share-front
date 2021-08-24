@@ -152,7 +152,7 @@ export class RequestFriendsComponent implements OnInit {
       this.imageCov = res.data.coverImgURl ? res.data.coverImgURl : 'assets/images/bg.jpg'
     })
     this.cookieService.delete('friendId')
-    this.cookieService.set('friendId', id)
+    this.cookieService.set('friendId', id, { expires: 2, sameSite: 'None', secure: true })
     localStorage.setItem('friendId', id)
     this.authService.getFriendPost(id).subscribe(res => {
       if (res['success']) {
@@ -221,7 +221,7 @@ export class RequestFriendsComponent implements OnInit {
         }
       })
       location.reload();
-  }
+    }
   }
 
   sharing(postId: any, post_user: any) { 

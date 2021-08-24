@@ -19,7 +19,7 @@
     display: none;
 }
 
-.item {
+.item.video_item{
     padding-top: 25px;
 }
 

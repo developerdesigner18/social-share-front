@@ -4,6 +4,9 @@
     box-sizing: border-box;
     /* font-family: 'Roboto Slab', serif; */
 }
+::-webkit-scrollbar {
+    width: 5px;
+}
 
 .hide_theme {
     display: none;
@@ -1223,8 +1226,8 @@ a.my_post_links:hover div>div {
     margin-top: 15px;
     color: #0F1B31;
     padding: 15px;
-    /* height: 40vh;
-    overflow-y: scroll; */
+    height: 40vh;
+    overflow-y: scroll;
 }
 
 .comment_title {
@@ -1247,16 +1250,16 @@ a.my_post_links:hover div>div {
     position: relative;
 }
 
-.commenter:before {
+/* .commenter:before {
     position: absolute;
-    /* content: ""; */
+    content: "";
     height: 10px;
     width: 10px;
     background-color: #ff9000;
     border-radius: 50%;
     bottom: -20px;
     left: -29px;
-}
+} */
 
 .comment_user {
     padding: 10px;
