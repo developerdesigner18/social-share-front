@@ -1,5 +1,7 @@
 <app-header></app-header>
-
+<ngx-spinner bdColor="rgba(255,255,255,0.7)" size="medium" color="#ff9000" type="ball-triangle-path"
+  [fullScreen]="true">
+</ngx-spinner>
 <div class="sidenav left">
   <div class="friend_list">
     <h3>Friends</h3>
@@ -176,7 +178,9 @@
                 <button class="showLikes" (click)="likeIt(data._id, data.like.length);">
                   <i class="fa" id="{{data._id}}"
                     [ngClass]="postlikeId.includes(data._id) ? 'fa-thumbs-up': 'fa-thumbs-o-up'"></i>
-                  <div>Like<span id="count_{{data._id}}">{{data.like.length === 0 ? '' : data.like.length}}</span></div>
+                  <!-- <div>Like<span id="count_{{data._id}}">{{data.like.length === 0 ? '' : data.like.length}}</span></div> -->
+                  <div>Like<span id="count_{{data._id}}">{{data.like.length !== 0 ? data.like.length + temLike : temLike
+                      == 0 ? "" : temLike}}</span></div>
                 </button>
 
                 <div class="tooltiptext" *ngIf="data.like.length > 0">
@@ -208,7 +212,7 @@
               </div>
               <div class="write_comments">
                 <form (ngSubmit)="addComments(data._id, cmntuname, cmntuprofile)" [formGroup]="commentsForm">
-                  <input type="text" placeholder=" Write a comment...!" formControlName="newcomment">
+                  <input type="text" autocomplete="off" placeholder=" Write a comment...!" formControlName="newcomment">
                 </form>
               </div>
               <div class="comments_container_{{data._id}} comments_container" style="display: none;"

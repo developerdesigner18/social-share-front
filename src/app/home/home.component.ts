@@ -8,6 +8,8 @@ import { AuthService } from '../auth.service';
  import { NgImageSliderComponent } from 'ng-image-slider';
 import { ToastrService } from 'ngx-toastr';
 import { ThemeService } from '../../theme/theme.service';
+import { NgxSpinnerService } from "ngx-spinner";
+import { finalize, tap } from 'rxjs/operators';
 declare var jQuery: any;
 declare var $: any;
 
@@ -103,7 +105,8 @@ export class HomeComponent implements OnInit {
     public formBuilder: FormBuilder,
     public router: Router,
     private route: ActivatedRoute,
-    public toastr: ToastrService
+    public toastr: ToastrService,
+    private spinner: NgxSpinnerService
   ) {
     this.totalDisplay = 3;
     this.bodyHeight = 1500;
@@ -151,7 +154,8 @@ $(window).scroll(function() {
 
     this.token = localStorage.getItem('token')
     this.current_user = JSON.parse(localStorage.getItem('currentUser'))
-    this.authService.getAllFriendPost(this.token).subscribe(res => {
+    this.spinner.show();
+    this.authService.getAllFriendPost(this.token).pipe(finalize(() => { this.spinner.hide(); Notification.requestPermission() })).subscribe(res => {
       if (res['success']) {
         this.datas = res.posts
         const { image, thumbImage, alt, title } = res.posts;
@@ -240,6 +244,12 @@ $(window).scroll(function() {
       if (res['success']) {
       }
     })
+    // this.spinner.show();
+    // setTimeout(() => {
+    //   /** spinner ends after 5 seconds */
+    //   this.spinner.hide();
+    // }, 3000);
+  
   }
   ngAfterViewInit(){ this.ready = true; }
 

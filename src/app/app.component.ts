@@ -55,8 +55,6 @@ export class AppComponent {
       this.current_user_id = current_login_User.data._id
       this.socket = io(environment.apiUrl);
 
-      
-
       this.router.events.subscribe((routerData) => {
         if(routerData instanceof ResolveEnd){ 
           if(routerData.url === '/chating/' + this.current_user_id || window.location.search){
@@ -78,6 +76,7 @@ export class AppComponent {
 
       // chat push message
       this.socket.on('notify', (data) => {
+        // console.log("data", data)
         if (this.router.url == '/chating/' + this.current_user_id || window.location.search) {
           // console.log("yes iam on this page")
         } else {

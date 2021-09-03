@@ -2,6 +2,8 @@ import { Component, OnInit, HostListener, ViewEncapsulation } from '@angular/cor
 import { AuthService } from '../auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { NgxSpinnerService } from "ngx-spinner";
+import { finalize } from 'rxjs/operators';
 declare var jQuery: any;
 declare var $: any;
 
@@ -31,14 +33,16 @@ export class VideosComponent implements OnInit {
     public authService: AuthService,
     public router: Router,
     private activatedRoute: ActivatedRoute,
-    public cookieService: CookieService
+    public cookieService: CookieService,
+    private spinner: NgxSpinnerService
   ) { 
     this.bodyHeight = 1000;
     this.totalDisplay = 6;
     this.token = localStorage.getItem('token')
     this.id = this.activatedRoute.parent.params['value']['id'];
+    this.spinner.show()
     if(this.router.url === '/friends/' + this.activatedRoute.parent.params['value']['id'] + '/videos'){
-      this.authService.getAllPhotos(this.cookieService.get('friendId')).subscribe(res => {
+      this.authService.getAllPhotos(this.cookieService.get('friendId')).pipe(finalize(() => this.spinner.hide())).subscribe(res => {
         if (res['success']) {
         for (let i = 0; i < res.data.length; i++){ 
           if (res.data[i].image.split('.').pop() !== 'jpg' && res.data[i].image.split('.').pop() !== 'png' && res.data[i].image.split('.').pop() !== 'jpeg' && res.data[i].image.split('.').pop() !== 'undefined' && res.data[i].image.split('.').pop() !== 'JPG') { 
@@ -52,7 +56,7 @@ export class VideosComponent implements OnInit {
     } else {
       this.cookieService.delete('friendId')
       localStorage.removeItem('friendId')
-      this.authService.getAllPhotos(this.id).subscribe(res => {
+      this.authService.getAllPhotos(this.id).pipe(finalize(() => this.spinner.hide())).subscribe(res => {
         if (res['success']) {
         for (let i = 0; i < res.data.length; i++){ 
           if (res.data[i].image.split('.').pop() !== 'jpg' && res.data[i].image.split('.').pop() !== 'png' && res.data[i].image.split('.').pop() !== 'jpeg' && res.data[i].image.split('.').pop() !== 'undefined' && res.data[i].image.split('.').pop() !== 'JPG') { 

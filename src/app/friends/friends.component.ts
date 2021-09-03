@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../auth.service';
+import { NgxSpinnerService } from "ngx-spinner";
+import { finalize } from 'rxjs/operators';
 declare var jQuery: any;
 declare var $: any;
 
@@ -32,7 +34,8 @@ export class FriendsComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     public router: Router,
     public toastr: ToastrService,
-    public cookieService: CookieService
+    public cookieService: CookieService,
+    private spinner: NgxSpinnerService
   ) {
     let id = this.activatedRoute.parent.params['value']['id'];
     this.url_id = this.activatedRoute.parent.params['value']['id'];
@@ -57,10 +60,10 @@ export class FriendsComponent implements OnInit {
     }
     
     this.friend_id = '/profile/' + id + '/friends'
-    
+    this.spinner.show()
     if (router.url === '/profile/' + id + '/friends') {
       this.show_friends = true
-      this.authService.getFriends(id).subscribe(res => {
+      this.authService.getFriends(id).pipe(finalize(() => this.spinner.hide())).subscribe(res => {
         if(res.success)
         {
           for(let i = 0; i < res.userInfo.length; i++){
@@ -74,7 +77,7 @@ export class FriendsComponent implements OnInit {
 
     //For friends panel set selected friend friends
     if(router.url === '/friends/'+id+'/friends'){
-      this.authService.getFriends(this.cookieService.get('friendId')).subscribe(res => {
+      this.authService.getFriends(this.cookieService.get('friendId')).pipe(finalize(() => this.spinner.hide())).subscribe(res => {
         if(res.success){
           for(let i = 0; i < res.userInfo.length; i++){
             this.frdDetails.push(res.userInfo[i])

@@ -10,7 +10,7 @@
                     <div>
                         <div class="item photos_section">
                             <ng-image-slider [imageSize]="{width: '100%', height: '100%', space: 3}"
-                                [animationSpeed]="0.5" [lazyLoad]="urls" [showArrow]=false class="slider_image_photos"
+                                [animationSpeed]="0.5" [showArrow]=false class="slider_image_photos"
                                 [images]="urls | slice:0:totalDisplay"></ng-image-slider>
                         </div>
                     </div>
@@ -35,8 +35,8 @@
                         </div>
                         <div class="show_album_images" *ngFor="let data of album_urls">
                             <ng-image-slider [animationSpeed]="0.3" [videoAutoPlay]="true"
-                                [imageSize]="{width: '30%', height: '20%'}" [showArrow]=false
-                                class="slider_image_photos" [images]="data.imageUrl"></ng-image-slider>
+                                [imageSize]="{width: 150, height: 120}" [showArrow]=false class="slider_image_photos"
+                                [images]="data.imageUrl"></ng-image-slider>
                             <i *ngIf="album_show && user === id" (click)="delAlbum(data._id, data.name)"
                                 class="pencil-icon fa fa-trash" title="Delete Album"></i>
                             <p class="album_names"> {{data.name.length > 20 ? (data.name | slice:0:20) + '...':

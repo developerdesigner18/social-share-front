@@ -5,6 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { CookieService } from 'ngx-cookie-service';
+import { NgxSpinnerService } from "ngx-spinner";
+import { finalize } from 'rxjs/operators';
 declare var jQuery: any;
 declare var $: any;
 
@@ -70,7 +72,8 @@ export class RequestFriendsComponent implements OnInit {
     private location: Location,
     public formBuilder: FormBuilder,
     public toastr: ToastrService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private spinner: NgxSpinnerService
   ) {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.login_id = currentUser.data._id
@@ -154,7 +157,8 @@ export class RequestFriendsComponent implements OnInit {
     this.cookieService.delete('friendId')
     this.cookieService.set('friendId', id, { expires: 2, sameSite: 'None', secure: true })
     localStorage.setItem('friendId', id)
-    this.authService.getFriendPost(id).subscribe(res => {
+    this.spinner.show()
+    this.authService.getFriendPost(id).pipe(finalize(() => this.spinner.hide())).subscribe(res => {
       if (res['success']) {
         this.msg = false;
         this.frd_datas = res.data

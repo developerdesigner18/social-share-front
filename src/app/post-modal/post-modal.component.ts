@@ -3,7 +3,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from  '@angular/material/dialog';
 import { AuthService } from '../auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-
+import { NgxSpinnerService } from "ngx-spinner";
+import { finalize } from 'rxjs/operators';
 declare var jQuery: any;
 declare var $: any;
 
@@ -48,7 +49,8 @@ export class PostModalComponent implements OnInit {
     public authService: AuthService,
     private activatedRoute: ActivatedRoute,
     public router: Router,
-    public toastr: ToastrService
+    public toastr: ToastrService,
+    private spinner: NgxSpinnerService
   ) {
     this.authService.getProfileforAbout(data.id).subscribe(res => {
       this.name =  res.data.name
@@ -57,7 +59,7 @@ export class PostModalComponent implements OnInit {
 
     this.fileData.push(data.file)
     this.images = data.images
-
+    
     if (data.images && data.files != '') {
       // this.shows = true
       if(Object.keys(this.fileData[0]).length === 2)
@@ -120,6 +122,7 @@ export class PostModalComponent implements OnInit {
       
       let arrayRemoveNull = this.arrayfile.filter(e => e)
       if (arrayRemoveNull[0].name.split('.').pop() !== 'png') {
+          this.spinner.show()
           for (let i = 0; i < arrayRemoveNull.length; i++){
             this.fileCovToReturn.push(this.base64ToFile(
               this.images[i],
@@ -132,7 +135,7 @@ export class PostModalComponent implements OnInit {
           this.toastr.info("png format is not supported used other format like jpg or jpeg")
         }
         reader.onload = (_event) => {
-          this.authService.newPost(this.token, this.postMesssgeElement.nativeElement.value, this.fileCovToReturn).subscribe((res) => {
+          this.authService.newPost(this.token, this.postMesssgeElement.nativeElement.value, this.fileCovToReturn).pipe(finalize(() => this.spinner.hide())).subscribe((res) => {
             if(window.location.href.split('/')[3] == "home"){
               window.location.replace('home/' + window.location.href.split('/')[4]);
             } else {
@@ -217,9 +220,12 @@ export class PostModalComponent implements OnInit {
           this.fileData.push(event.target.files[0])
           var reader = new FileReader();
           reader.onload = (event:any) => {
-              this.images.push(event.target.result);
+            this.images.push(event.target.result);
+            this.images.sort((img1, img2) => img1.length > img2.length ? 1 : -1)
           }
           reader.readAsDataURL(event.target.files[i]);
+          this.arrayfile.splice(Object.keys(this.fileData[0]).length, 0, event.target.files[i])
+          this.arrayfile.sort((fileA, fileB) => fileA.size > fileB.size ? 1 : -1)
         }
         this.arrayfile = this.fileData.filter(item => item)
       }else{
@@ -227,11 +233,14 @@ export class PostModalComponent implements OnInit {
         for (let i = 0; i < filesAmount; i++) {
           var reader = new FileReader();
 
-          reader.onload = (event:any) => {
-             this.images.push(event.target.result);
+          reader.onload = (event: any) => {
+            console.log("event", event)
+            this.images.push(event.target.result);
+            this.images.sort((img1, img2) => img1.length > img2.length ? 1 : -1)
           }
           reader.readAsDataURL(event.target.files[i]);
           this.arrayfile.splice(Object.keys(this.fileData[0]).length, 0, event.target.files[i])
+          this.arrayfile.sort((fileA, fileB) => fileA.size > fileB.size ? 1 : -1)
         }
       }
     }

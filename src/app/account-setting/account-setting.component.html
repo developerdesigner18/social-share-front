@@ -15,10 +15,12 @@
             <div class="setting_details_hide" *ngIf="edit_name">
                 <div class="input_section">
                     <p>Name</p>
-                    <input #nameText type="text" [(ngModel)]="name" name="name" id="name" [value]="datas.name">
+                    <input #nameText type="text" [(ngModel)]="name" name="name" id="name" [value]="datas.name"
+                        autocomplete="off">
                 </div>
                 <div style="display: flex;">
-                    <button type="button" name="button" [disabled]="!name || !(name?.length > 1)" (click)="save_names(name)">Save</button>
+                    <button type="button" name="button" [disabled]="!name || !(name?.length > 1)"
+                        (click)="save_names(name)">Save</button>
                     <button type="button" name="button" (click)="cancel_names()">Cancel</button>
                 </div>
             </div>
@@ -32,10 +34,12 @@
             <div class="setting_details_hide" *ngIf="edit_user">
                 <div class="input_section">
                     <p>Username</p>
-                    <input #nameText type="text" [(ngModel)]="user" name="user" id="user" [value]="datas.userName">
+                    <input #nameText type="text" [(ngModel)]="user" name="user" id="user" [value]="datas.userName"
+                        autocomplete="off">
                 </div>
                 <div style="display: flex;">
-                    <button type="button" name="button" [disabled]="!user || !(user?.length > 1)" (click)="save_users(user)">Save</button>
+                    <button type="button" name="button" [disabled]="!user || !(user?.length > 1)"
+                        (click)="save_users(user)">Save</button>
                     <button type="button" name="button" (click)="cancel_users()">Cancel</button>
                 </div>
             </div>

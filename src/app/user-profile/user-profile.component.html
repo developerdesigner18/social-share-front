@@ -1,3 +1,6 @@
+<ngx-spinner bdColor="rgba(255,255,255,0.7)" size="medium" color="#ff9000" type="ball-triangle-path"
+  [fullScreen]="true">
+</ngx-spinner>
 <app-header></app-header>
 <a id="button_top" onclick="window.scrollTo(0, 0);"></a>
 <div class="cover_pic" [ngStyle]="{ 'background-image': 'url(' + imageCov + ')', 'background-size': 'cover'}">
@@ -118,7 +121,7 @@
         <div class="notifiy w_90 d-flex flex-column">
           <div class="d-flex">
             <img [src]="data.userprofile" onerror="this.src='../../assets/images/character.png'">
-            <div class="notify_content">{{data.content | titlecase}}</div>
+            <div class="notify_content">{{data.content | titlecase | slice:0:40}}</div>
           </div>
           <div class="time_ago">{{data.date | timeago}}</div>
         </div>

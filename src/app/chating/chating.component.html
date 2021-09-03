@@ -63,7 +63,7 @@
     </div>
     <div class="chat-messages-create-container">
       <i id="typing"></i>
-      <input id="message" class="chat-messages-create-input" [(ngModel)]="message" type="text"
+      <input autocomplete="off" id="message" class="chat-messages-create-input" [(ngModel)]="message" type="text"
         (keyup.enter)="SendMessage()" placeholder="Type your message here...">
       <button class="chat-messages-create-button" [disabled]="!message" (click)="SendMessage()"> Send </button>
       <button type="button" class="btn btn-primary video_calling" data-toggle="modal" data-target="#myModal"> <img

@@ -6,6 +6,8 @@ import { PostModalComponent } from '../post-modal/post-modal.component';
 import { AuthService } from '../auth.service';
 import { NgImageSliderComponent } from 'ng-image-slider';
 import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from "ngx-spinner";
+import { finalize } from 'rxjs/operators';
 declare var jQuery: any;
 declare var $: any;
 
@@ -82,7 +84,8 @@ export class TimelineComponent implements OnInit {
     public authService: AuthService,
     public router: Router,
     public formBuilder: FormBuilder,
-    public toastr: ToastrService
+    public toastr: ToastrService,
+    private spinner: NgxSpinnerService
   ) {
     // $(".right_sidebar").css("display", "block");
     
@@ -113,7 +116,8 @@ export class TimelineComponent implements OnInit {
       this.allUsers = res.userInfo
     })
 
-    this.authService.getProfilePost(this.id).subscribe(res => {
+    this.spinner.show();
+    this.authService.getProfilePost(this.id).pipe(finalize(()=> this.spinner.hide())).subscribe(res => {
       if(res.length > 0){
         this.datas = res        
         if (this.datas.length < 10) {
@@ -316,7 +320,8 @@ export class TimelineComponent implements OnInit {
           document.getElementById(postId).classList.add('fa-thumbs-up')
           if (this.datas.map((id) => id._id).includes(postId)) {
               this.tempLikePostId = postId
-              this.temCntLike++;
+            this.temCntLike++;
+            console.log("like", this.temCntLike)
               this.like_name = []
               document.getElementById('like_' + postId).innerHTML = "";
               for(let i = 0; i < this.data.length; i++){

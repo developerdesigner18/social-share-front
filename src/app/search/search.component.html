@@ -1,3 +1,6 @@
+<ngx-spinner bdColor="rgba(255,255,255,0.7)" size="medium" color="#ff9000" type="ball-triangle-path"
+    [fullScreen]="true">
+</ngx-spinner>
 <app-header>
 </app-header>
 <div class="main_container d-flex align-items-start">
@@ -104,7 +107,8 @@
                         <div class="icon_container d-flex justify-content-end">
                             <div class="position-relative Send_request_icon">
                                 <i class="fas fa-user-plus" id="open" *ngIf="friend_id.includes(user._id) != true"
-                                    [hidden]="hideme[i]" (click)="sendRequest(user._id);hideme[i] = !hideme[i]"
+                                    [hidden]="hideme[i]"
+                                    (click)="sendRequest(user._id,user.name);hideme[i] = !hideme[i]"
                                     title="Send Request"></i>
                                 <i class="fas fa-user-times" id="close"
                                     *ngIf="hideme[i] || friend_id.includes(user._id)"

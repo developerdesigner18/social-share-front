@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { NgxSpinnerService } from "ngx-spinner";
+import { finalize } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
 declare var jQuery: any;
 declare var $: any;
 
@@ -34,14 +37,17 @@ export class SearchComponent implements OnInit {
   constructor(
     public authService: AuthService,
     private activatedRoute: ActivatedRoute,
-    public router: Router
+    public router: Router,
+    private spinner: NgxSpinnerService,
+    public toastr: ToastrService
   ) {
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
     this.authService.getProfileforAbout(this.id).subscribe(res => {
       this.name = res.data.name
       this.user_profile = res.data.profileImgURl
     })
-    this.authService.getAllFriends(localStorage.getItem("token")).subscribe(res => {
+    this.spinner.show()
+    this.authService.getAllFriends(localStorage.getItem("token")).pipe(finalize(() => this.spinner.hide())).subscribe(res => {
       this.allUsers = res.AllUser[0]
     })
     this.authService.getFriendData(this.id).subscribe(res => {
@@ -90,8 +96,9 @@ export class SearchComponent implements OnInit {
     }
   }
 
-  sendRequest(requestId: any) {
-    this.authService.sendFriendRequest(this.id, requestId).subscribe(res => {})
+  sendRequest(requestId: any, name: any) {
+    this.authService.sendFriendRequest(this.id, requestId).subscribe(res => { })
+    this.toastr.success('Friend Request send to ' + name)
   }
 
   reject_request(reject_id: any) {

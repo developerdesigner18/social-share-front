@@ -1,7 +1,8 @@
 <div class="login_container">
   <form class="form-login" [formGroup]="loginForm" (ngSubmit)="onSubmit()" style="display: flex;">
     <div>
-      <input type="text" formControlName="email" name="email" id="email" placeholder="Email or phone">
+      <input type="text" autocomplete="off" formControlName="email" name="email" id="email"
+        placeholder="Email or phone">
     </div>
     <div>
       <div class="d-flex align-items-center login-passerror" style="align-items: baseline !important;">

@@ -6,6 +6,8 @@ import { PostModalComponent } from '../post-modal/post-modal.component';
 import { AlbumsComponent } from '../albums/albums.component';
 import { ToastrService } from 'ngx-toastr';
 import { CookieService } from 'ngx-cookie-service';
+import { NgxSpinnerService } from "ngx-spinner";
+import { finalize } from 'rxjs/operators';
 declare var jQuery: any;
 declare var $: any;
 
@@ -39,7 +41,8 @@ export class PhotosComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     public dialog: MatDialog,
     public toastr: ToastrService,
-    public cookieService: CookieService
+    public cookieService: CookieService,
+    private spinner: NgxSpinnerService
   ) {
     this.token = localStorage.getItem('currentUser')
     this.id = this.activatedRoute.parent.params['value']['id'];
@@ -49,8 +52,9 @@ export class PhotosComponent implements OnInit {
     this.user = currentUser.data._id
     
     if (this.router.url === '/friends/' + this.activatedRoute.parent.params['value']['id'] + '/photos') {
+      this.spinner.show()
       this.album_show = false
-      this.authService.getAllPhotos(this.cookieService.get('friendId')).subscribe(res => {
+      this.authService.getAllPhotos(this.cookieService.get('friendId')).pipe(finalize(() => this.spinner.hide())).subscribe(res => {
         if (res['success']) {
         for (let i = 0; i < res.data.length; i++){ 
             if (res.data[i].image.split('.').pop() !== 'mp4' && 'mkv') { 
@@ -61,7 +65,7 @@ export class PhotosComponent implements OnInit {
           this.shows = res.message;
         }
       })
-      this.authService.getAllAlbumsPhotos(localStorage.getItem('friendId')).subscribe(res => {
+      this.authService.getAllAlbumsPhotos(localStorage.getItem('friendId')).pipe(finalize(() => this.spinner.hide())).subscribe(res => {
         if (res['success']) {
           for (let i = 0; i < res.data.length; i++){        
             this.album_urls.push(res.data[i])
@@ -74,18 +78,20 @@ export class PhotosComponent implements OnInit {
       this.cookieService.delete('friendId')
       localStorage.removeItem('friendId')
       this.album_show = true
-      this.authService.getAllPhotos(this.id).subscribe(res => {
+      this.spinner.show()
+      this.authService.getAllPhotos(this.id).pipe(finalize(() => this.spinner.hide())).subscribe(res => {
         if (res['success']) {
         for (let i = 0; i < res.data.length; i++){ 
           if (res.data[i].image.split('.').pop() !== 'mp4') { 
             this.urls.push(res.data[i])
+            this.urls.reverse()
           }
         }
       } else {
         this.shows = res.message;
       }
       })
-      this.authService.getAllAlbumsPhotos(this.id).subscribe(res => {
+      this.authService.getAllAlbumsPhotos(this.id).pipe(finalize(() => this.spinner.hide())).subscribe(res => {
         if (res['success']) {
           for (let i = 0; i < res.data.length; i++){        
             this.album_urls.push(res.data[i])

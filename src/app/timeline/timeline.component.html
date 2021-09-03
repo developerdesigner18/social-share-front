@@ -1,9 +1,9 @@
 <div *ngIf="url_id === id" app-theme class="say_words position-relative timeline"
   style="padding-bottom: 10px !important">
-  <input #textmsgPost type="text" placeholder=" Say something!" (click)="openTextDialog($event)"
+  <input #textmsgPost type="text" autocomplete="off" placeholder=" Say something!" (click)="openTextDialog($event)"
     *ngIf="current_user_profile" />
-  <input #textmsgPost type="text" placeholder=" Say something to {{ u_name }}!" (click)="openTextDialog($event)"
-    *ngIf="!current_user_profile" />
+  <input #textmsgPost type="text" autocomplete="off" placeholder=" Say something to {{ u_name }}!"
+    (click)="openTextDialog($event)" *ngIf="!current_user_profile" />
   <div class="slider_bid_like-share d-flex flex-column">
     <input type="file" style="display: none" #file class="btn btn-primary" (change)="openDialog($event)" multiple="" />
     <div class="take_action post_take_action" (click)="file.click()" title="Photos/Videos">
@@ -69,15 +69,15 @@
       </div>
       <div *ngIf="data.imageUrl.length == 2">
         <div class="item">
-          <ng-image-slider [videoAutoPlay]="true" [lazyLoad]="data.imageUrl" [animationSpeed]="0.3" [autoSlide]="0"
-            [imageSize]="{ width: '49%' }" [showArrow]="false" class="slider_image" [images]="data.imageUrl" #nav>
+          <ng-image-slider [videoAutoPlay]="true" [animationSpeed]="0.3" [autoSlide]="0" [imageSize]="{ width: '49%' }"
+            [showArrow]="false" class="slider_image" [images]="data.imageUrl" #nav>
           </ng-image-slider>
         </div>
       </div>
       <div *ngIf="data.imageUrl.length == 3">
         <div class="item" *ngIf="data.imageUrl[0].size == 100">
-          <ng-image-slider [videoAutoPlay]="true" [lazyLoad]="data.imageUrl" [animationSpeed]="0.3" [autoSlide]="0"
-            [imageSize]="{ width: '99%' }" [showArrow]="false" class="slider_image" [images]="data.imageUrl" #nav>
+          <ng-image-slider [videoAutoPlay]="true" [animationSpeed]="0.3" [autoSlide]="0" [imageSize]="{ width: '99%' }"
+            [showArrow]="false" class="slider_image" [images]="data.imageUrl" #nav>
           </ng-image-slider>
           <ng-image-slider [videoAutoPlay]="true" [animationSpeed]="0.3" [autoSlide]="0"
             [imageSize]="{ width: '49%', height: 200 }" [showArrow]="false" class="slider_image_2"
@@ -86,22 +86,21 @@
       </div>
       <div *ngIf="data.imageUrl.length == 4">
         <div class="item">
-          <ng-image-slider [videoAutoPlay]="true" [lazyLoad]="data.imageUrl" [animationSpeed]="0.3" [autoSlide]="0"
-            [imageSize]="{ width: '49%' }" [showArrow]="false" class="slider_image" [images]="data.imageUrl" #nav>
+          <ng-image-slider [videoAutoPlay]="true" [animationSpeed]="0.3" [autoSlide]="0" [imageSize]="{ width: '49%' }"
+            [showArrow]="false" class="slider_image" [images]="data.imageUrl" #nav>
           </ng-image-slider>
-          <ng-image-slider [videoAutoPlay]="true" [lazyLoad]="data.imageUrl" [animationSpeed]="0.3" [autoSlide]="0"
-            [imageSize]="{ width: '49%' }" [showArrow]="false" class="slider_image_4" [images]="data.imageUrl" #nav>
+          <ng-image-slider [videoAutoPlay]="true" [animationSpeed]="0.3" [autoSlide]="0" [imageSize]="{ width: '49%' }"
+            [showArrow]="false" class="slider_image_4" [images]="data.imageUrl" #nav>
           </ng-image-slider>
         </div>
       </div>
       <div *ngIf="data.imageUrl.length > 4">
         <div class="item">
-          <ng-image-slider [videoAutoPlay]="true" [lazyLoad]="data.imageUrl" [animationSpeed]="0.3" [autoSlide]="0"
-            [imageSize]="{ width: '49%' }" [showArrow]="false" class="slider_image" [images]="data.imageUrl" #nav>
+          <ng-image-slider [videoAutoPlay]="true" [animationSpeed]="0.3" [autoSlide]="0" [imageSize]="{ width: '49%' }"
+            [showArrow]="false" class="slider_image" [images]="data.imageUrl" #nav>
           </ng-image-slider>
-          <ng-image-slider [videoAutoPlay]="true" [lazyLoad]="data.imageUrl" [animationSpeed]="0.3" [autoSlide]="0"
-            [imageSize]="{ width: '49%' }" [showArrow]="false" class="slider_image_5" [images]="data.imageUrl"
-            title="more" #nav></ng-image-slider>
+          <ng-image-slider [videoAutoPlay]="true" [animationSpeed]="0.3" [autoSlide]="0" [imageSize]="{ width: '49%' }"
+            [showArrow]="false" class="slider_image_5" [images]="data.imageUrl" title="more" #nav></ng-image-slider>
         </div>
       </div>
       <div [ngClass]="current_user_profile ? 'no_share_action' : 'take_action'">
@@ -109,7 +108,7 @@
           <i class="fa" id="{{ data._id }}" [ngClass]="
               postlikeId.includes(data._id) ? 'fa-thumbs-up' : 'fa-thumbs-o-up'
             "></i>
-          <div>
+          <!-- <div>
             Like<span id="count_{{ data._id }}">{{
               data.like.length !== 0
               ? data._id === tempLikePostId
@@ -118,7 +117,11 @@
               ? ""
               : data.like.length
               : ""
-              }}</span>
+              }} {{data.like.length !== 0 ? data.like.length + temCntLike : temCntLike == 0 ? "" : temCntLike}}</span>
+          </div> -->
+          <div>
+            Like<span id="count_{{ data._id }}">{{data.like.length !== 0 ? data.like.length + temCntLike : temCntLike ==
+              0 ? "" : temCntLike}}</span>
           </div>
         </button>
         <div class="tooltiptext" id="like_{{ data._id }}">
@@ -168,7 +171,7 @@
       </div>
       <div class="write_comments">
         <form (ngSubmit)="addComments(data._id, u_name, profileImg)" [formGroup]="commentsForm">
-          <input type="text" placeholder=" Write a comment...!" formControlName="newcomment" />
+          <input type="text" autocomplete="off" placeholder=" Write a comment...!" formControlName="newcomment" />
         </form>
       </div>
       <div class="comments_container_{{ data._id }} comments_container" style="display: none"
