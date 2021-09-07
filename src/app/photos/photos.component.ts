@@ -81,7 +81,7 @@ export class PhotosComponent implements OnInit {
       this.spinner.show()
       this.authService.getAllPhotos(this.id).pipe(finalize(() => this.spinner.hide())).subscribe(res => {
         if (res['success']) {
-        for (let i = 0; i < res.data.length; i++){ 
+          for (let i = 0; i < res.data.length; i++){
           if (res.data[i].image.split('.').pop() !== 'mp4') { 
             this.urls.push(res.data[i])
             this.urls.reverse()

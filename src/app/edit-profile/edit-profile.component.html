@@ -7,30 +7,11 @@
     <input id="country" autocomplete="off" formControlName="country" class="form-control text-spaces" type="text"
       placeholder="Enter Country" value="{{countryList}}">
 
-    <!-- <select (change)="changeCountry($event.target.value)" class="form-control text-spaces" formControlName="country">
-      <option value="">Select Country</option>
-      <option *ngFor ="let count of countryList" value={{count.name}}>{{count.name}} </option>
-    </select> -->
-
     <input id="state" autocomplete="off" formControlName="state" class="form-control text-spaces" type="text"
       placeholder="Enter State" value="{{stateList}}">
 
-    <!-- <select (change)="changeState($event.target.value)" class="form-control text-spaces" formControlName="state">
-      <option *ngIf=data.state selected disabled>{{data.state}} </option>
-      <option *ngIf="data.state !== '' && stateList" disabled>____________</option>
-      <option *ngIf="stateList || data.state == undefined || data.state == ''" value="">Select Province</option>
-      <option *ngFor ="let state of stateList" value={{state.states}}>{{state.states}} </option>
-    </select> -->
-
     <input id="city" autocomplete="off" formControlName="city" class="form-control text-spaces" type="text"
       placeholder="Enter City" value="{{cities}}">
-
-    <!-- <select class="form-control text-spaces" formControlName="city">
-      <option *ngIf=data.city selected disabled>{{data.city}} </option>
-      <option *ngIf="data.city !== '' && cities" disabled>____________</option>
-      <option *ngIf="cities || data.city == undefined || data.city == ''" value="">Select City</option>
-      <option *ngFor ="let city of cities" value={{city}}>{{city}} </option>
-    </select> -->
 
     <input id="hobbies" autocomplete="off" formControlName="hobbies" class="form-control text-spaces" type="text"
       placeholder="Enter Hobbies" value="{{data.hobbies}}">

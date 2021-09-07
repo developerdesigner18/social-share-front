@@ -12,6 +12,9 @@
   line-height: 14px;
   min-width: auto;
 }
+.img_show{
+  display: inline-flex;
+}
 
 button.close{
   color: white;
@@ -33,13 +36,14 @@ a.cancel_btn:hover {
 
 a.cancel_btn {
   position: absolute;
-  right: 22px;
+  right: 40px;
   top: 11px;
   cursor: pointer;
   padding: 0px;
   background: #ffffff8a;
   border-radius: 50%;
   padding: 5px;
+  z-index: 999;
 }
 img.blur_image:nth-child(5) {
   filter: blur(5px);

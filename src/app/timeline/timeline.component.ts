@@ -321,7 +321,6 @@ export class TimelineComponent implements OnInit {
           if (this.datas.map((id) => id._id).includes(postId)) {
               this.tempLikePostId = postId
             this.temCntLike++;
-            console.log("like", this.temCntLike)
               this.like_name = []
               document.getElementById('like_' + postId).innerHTML = "";
               for(let i = 0; i < this.data.length; i++){

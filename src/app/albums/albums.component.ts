@@ -37,6 +37,7 @@ export class AlbumsComponent implements OnInit {
   fiveimg = false;
   closeDialog = false;
   shows: boolean = false;
+  temp_images:any = []
 
   @ViewChild('postMsg') postMesssgeElement: any;
   @ViewChild('postName') postNameElement: any;
@@ -97,8 +98,8 @@ export class AlbumsComponent implements OnInit {
     }
   
     cancel() {
-      while(this.images.length > 0) {
-        this.images.pop();
+      while(this.temp_images.length > 0) {
+        this.temp_images.pop();
     }
       while(this.data.file.length > 0) {
         this.data.file.pop();
@@ -141,7 +142,6 @@ export class AlbumsComponent implements OnInit {
           reader.onload = (_event) => {
             this.authService.newAlbumPost(this.token, this.postNameElement.nativeElement.value, this.postMesssgeElement.nativeElement.value, this.fileCovToReturn).pipe(finalize(() => this.spinner.hide())).subscribe((res) => {
               var data = 'profile/' + window.location.href.split('/')[4]
-              console.log("res", res, data)
               if (res.success == true) {
                 window.location.replace('profile/' + window.location.href.split('/')[4] + '/photos');
               }
@@ -232,7 +232,12 @@ export class AlbumsComponent implements OnInit {
           this.arrayfile = this.fileData[0]
           for (let i = 0; i < filesAmount; i++) {
             var reader = new FileReader();
-            reader.onload = (event:any) => {
+            reader.onload = (event: any) => {
+              if (event.target.result.split(';')[0] == 'data:video/mp4') {
+                this.temp_images.push({data: 'video', src: event.target.result})
+              } else {
+                this.temp_images.push({data: 'img', src: event.target.result})
+              }
               this.images.push(event.target.result);
               this.images.sort((img1, img2) => img1.length > img2.length ? 1 : -1)
             }

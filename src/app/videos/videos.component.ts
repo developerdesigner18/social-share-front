@@ -26,7 +26,7 @@ export class VideosComponent implements OnInit {
   onScroll(e: Event): void {
     if (this.bottomReached()) {
       this.totalDisplay += 3;
-      this.bodyHeight += 400;
+      this.bodyHeight += 225;
     }
   }
   constructor(
@@ -58,11 +58,11 @@ export class VideosComponent implements OnInit {
       localStorage.removeItem('friendId')
       this.authService.getAllPhotos(this.id).pipe(finalize(() => this.spinner.hide())).subscribe(res => {
         if (res['success']) {
-        for (let i = 0; i < res.data.length; i++){ 
-          if (res.data[i].image.split('.').pop() !== 'jpg' && res.data[i].image.split('.').pop() !== 'png' && res.data[i].image.split('.').pop() !== 'jpeg' && res.data[i].image.split('.').pop() !== 'undefined' && res.data[i].image.split('.').pop() !== 'JPG') { 
+          for (let i = 0; i < res.data.length; i++){
+          if (res.data[i].image.split('.').pop() !== 'jpg' && res.data[i].image.split('.').pop() !== 'png' && res.data[i].image.split('.').pop() !== 'jpeg' && res.data[i].image.split('.').pop() !== 'undefined' && res.data[i].image.split('.').pop() !== 'JPG') {
             this.urls.push(res.data[i])
           }
-        }
+          }
       } else {
         this.shows = "User not uploaded any videos"
       }

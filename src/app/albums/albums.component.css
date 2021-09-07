@@ -15,6 +15,9 @@
   a.cancel_btn:hover {
     background: aliceblue;
 }
+.img_show{
+  display: inline-flex;
+}
   
   button.close{
     color: #fff;
@@ -26,13 +29,14 @@
   
   a.cancel_btn {
     position: absolute;
-    right: 22px;
+    right: 40px;
     top: 11px;
     cursor: pointer;
     padding: 0px;
     background: #ffffff8a;
     border-radius: 50%;
     padding: 5px;
+    z-index: 999;
   }
   .video_set_size{
     height: 290px;

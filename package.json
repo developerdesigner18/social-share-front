@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "all": "npm start && cd.. && cd social-share-backend && npm run devstart"
   },
   "private": true,
   "dependencies": {

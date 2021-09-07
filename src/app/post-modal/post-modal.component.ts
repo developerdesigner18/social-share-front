@@ -37,6 +37,7 @@ export class PostModalComponent implements OnInit {
   fiveimg = false;
   closeDialog = false;
   shows: boolean = false;
+  temp_images:any = [];
 
   @ViewChild('postMsg') postMesssgeElement: any;
   @ViewChildren('postImage') postImageElement: QueryList<ElementRef>;
@@ -98,8 +99,8 @@ export class PostModalComponent implements OnInit {
     this.dialogRef.close();
   }
   cancel() {
-    while(this.images.length > 0) {
-      this.images.pop();
+    while(this.temp_images.length > 0) {
+      this.temp_images.pop();
   }
     while(this.data.file.length > 0) {
       this.data.file.pop();
@@ -180,7 +181,6 @@ export class PostModalComponent implements OnInit {
       }
     }
     // this.shows = true
-
     if(this.images.length === 1 || this.textOnlylength === 1)
     {
       this.shows = true
@@ -234,7 +234,11 @@ export class PostModalComponent implements OnInit {
           var reader = new FileReader();
 
           reader.onload = (event: any) => {
-            console.log("event", event)
+            if (event.target.result.split(';')[0] == 'data:video/mp4') {
+              this.temp_images.push({data: 'video', src: event.target.result})
+            } else {
+              this.temp_images.push({data: 'img', src: event.target.result})
+            }
             this.images.push(event.target.result);
             this.images.sort((img1, img2) => img1.length > img2.length ? 1 : -1)
           }
