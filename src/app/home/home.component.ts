@@ -93,7 +93,7 @@ export class HomeComponent implements OnInit {
   @HostListener("window:scroll")
   onScroll(e: Event): void {
     if (this.bottomReached()) {
-      this.totalDisplay += 1;
+      this.totalDisplay += 5;
       this.bodyHeight += 500;
     }
   }
@@ -346,6 +346,7 @@ $(window).scroll(function() {
   divHide: any = [];
 
   likeIt(postId: string, likeCount: number) {
+    console.log("postId", postId)
     this.authService.sendLikePost(postId).subscribe(res => {
       if(res['success'])
       {
@@ -421,22 +422,27 @@ $(window).scroll(function() {
   totalImg = 0;
 
   addComments(postId, userName, profilePic){
-    this.objVal = Object.keys(this.commentsForm.value).map(key => ({type: key, value: this.commentsForm.value[key]}))
-    this.authService.sendPostComment(postId, this.objVal[0].value).subscribe(res => {
-      if (res['success']) {        
-        $(`.comments_container_${postId}`).css('display', 'block');
-        if (this.datas.map((id) => id._id).includes(postId)) {
-          this.count_cmt = res['data']
-       this.tempName = userName
-       this.tempProfile = profilePic
-       this.tempPostId = postId
-          this.checkTem = true
-          var data = this.objVal[0].value
-          this.tryCmnt = { postId, userName, profilePic, data }
-          this.temCmnt.push(this.tryCmnt)
+    this.objVal = Object.keys(this.commentsForm.value).map(key => ({ type: key, value: this.commentsForm.value[key] }))
+  
+    if (this.objVal[0].value !== '') {
+      this.authService.sendPostComment(postId, this.objVal[0].value).subscribe(res => {
+        if (res['success']) {
+          $(`.comments_container_${postId}`).css('display', 'block');
+          if (this.datas.map((id) => id._id).includes(postId)) {
+            this.count_cmt = res['data']
+            this.tempName = userName
+            this.tempProfile = profilePic
+            this.tempPostId = postId
+            this.checkTem = true
+            var data = this.objVal[0].value
+            this.tryCmnt = { postId, userName, profilePic, data }
+            this.temCmnt.push(this.tryCmnt)
+          }
         }
-      }
-    })
-    this.commentsForm.reset()
+      })
+      this.commentsForm.reset()
+    } else {
+      this.toastr.info("You can't submit empty comment")
+    }
   }
 }

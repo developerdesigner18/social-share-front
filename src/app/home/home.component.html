@@ -243,14 +243,9 @@
                         <button class="showLikes" (click)="likeIt(data._id, data.like.length);">
                             <i class="fa" id="{{data._id}}"
                                 [ngClass]="postlikeId.includes(data._id)  ? 'fa-thumbs-up' : 'fa-thumbs-o-up'"></i>
-                            <!-- <div *ngIf="data.like.length !== 0">Like<span>{{data.like.length !== 0 ? (data._id ===
+                            <div *ngIf="data.like.length !== 0">Like<span>{{data.like.length !== 0 ? (data._id ===
                                     tempLikePostId) ? data.like.length + temCntLike : (data.like.length + temCntLike ===
-                                    0) ? '' : data.like.length : ''}}</span></div> -->
-                            <div>
-                                Like<span id="count_{{ data._id }}">{{data.like.length !== 0 ? data.like.length +
-                                    temCntLike : temCntLike ==
-                                    0 ? "" : temCntLike}}</span>
-                            </div>
+                                    0) ? '' : data.like.length : ''}}</span></div>
                         </button>
                         <div class="tooltiptext" id="like_{{data._id}}">
                             <div id="tooltiptexts_{{data._id}}" class="tooltiptexts"

@@ -10,9 +10,9 @@
 .tooltiptext p {
     margin: 0;
 }
-::-webkit-scrollbar {
-    width: 5px;
-}
+/* ::-webkit-scrollbar {
+    width: 18px;
+} */
 .notify_content{
     word-break: break-word;
 }

@@ -104,6 +104,12 @@ export class AlbumsComponent implements OnInit {
       while(this.data.file.length > 0) {
         this.data.file.pop();
       }
+      while(this.images.length > 0) {
+        this.images.pop();
+      }
+      while(this.arrayfile.length > 0) {
+        this.arrayfile.pop();
+      }
       this.shows = false
       $(".set_view_more").css('display', 'none');
       this.toastr.info("All images are removed. Please select new ones")
@@ -123,7 +129,7 @@ export class AlbumsComponent implements OnInit {
           this.toastr.error("Please select one or more images")
         }
         if (arrayRemoveNull[0].name.split('.').pop() !== 'png') {
-        this.spinner.show()
+        
           for (let i = 0; i < arrayRemoveNull.length; i++){
             this.fileCovToReturn.push(this.base64ToFile(
               this.images[i],
@@ -137,8 +143,10 @@ export class AlbumsComponent implements OnInit {
         }
         
         if (this.postNameElement.nativeElement.value === '') {
+          this.fileCovToReturn = []
           this.toastr.info('Please Fill the Album Name');
         } else {
+          this.spinner.show()
           reader.onload = (_event) => {
             this.authService.newAlbumPost(this.token, this.postNameElement.nativeElement.value, this.postMesssgeElement.nativeElement.value, this.fileCovToReturn).pipe(finalize(() => this.spinner.hide())).subscribe((res) => {
               var data = 'profile/' + window.location.href.split('/')[4]

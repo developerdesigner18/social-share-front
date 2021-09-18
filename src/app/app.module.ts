@@ -80,7 +80,7 @@ import { MomentModule } from 'angular2-moment'; // optional, provides moment-sty
 import { ModalModule } from 'ngx-bootstrap/modal';
 //ng-push-notification
 import { PushNotificationsModule } from 'ng-push-ivy'
-
+import {NgxImageCompressService} from 'ngx-image-compress'; 
 //ngx-spinner
 import { NgxSpinnerModule } from "ngx-spinner";
 @NgModule({
@@ -173,7 +173,8 @@ import { NgxSpinnerModule } from "ngx-spinner";
     },
     CookieService,
     SocketioService,
-    BnNgIdleService
+    BnNgIdleService,
+    NgxImageCompressService
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

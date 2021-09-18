@@ -5,21 +5,23 @@
   <div style="margin-bottom: 10px;" (click)="newLifeEvent()" *ngIf="life_show">
     <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add life event</a>
   </div>
-  <div class="no_mention" *ngIf="not_mention_life"><i class="fas fa-star-of-life"> </i>&nbsp; {{not_mention_life}} </div>
+  <div class="no_mention" *ngIf="not_mention_life"><i class="fas fa-star-of-life"> </i>&nbsp; {{not_mention_life}}
+  </div>
   <div class="work" *ngIf="fill_life" style="display: flex;">
-    <textarea class="text-area" type="text" [(ngModel)]="life" name="" value="" placeholder="Add life event" required></textarea>
-    <button type="button" name="button" (click)="save_add_life(life)">Save</button>
+    <textarea class="text-area" type="text" [(ngModel)]="life" name="" value="" placeholder="Add life event"
+      required></textarea>
     <button type="button" name="button" (click)="Life_Cancel()">Cancel</button>
+    <button type="button" name="button" (click)="save_add_life(life)">Save</button>
   </div>
   <div class="u_mobile" *ngIf="u_fill_life" style="display: flex;">
     <textarea class="text-area" type="text" [(ngModel)]="life" name="" value="" placeholder="Add life event"></textarea>
-    <button type="button" name="button" (click)="editLife(life)">Save</button>
     <button type="button" name="button" (click)="l_cancel()">Cancel</button>
+    <button type="button" name="button" (click)="editLife(life)">Save</button>
   </div>
   <div *ngIf="show_life" class="update-list">
     <div *ngFor="let life_data of get_life.slice().reverse()" class="work-record">
-      <div class="update-display" >
-        <img src="../../assets/images/event.png" alt="life events"> 
+      <div class="update-display">
+        <img src="../../assets/images/event.png" alt="life events">
         <div class="life_event_shows" style="word-break: break-all;">
           {{life_data.name}}
         </div>

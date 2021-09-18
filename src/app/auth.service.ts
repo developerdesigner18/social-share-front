@@ -3,8 +3,8 @@ import { Injectable, Injector } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
-import { environment } from '../environments/environment';
-// import { environment } from '../environments/environment.prod';
+// import { environment } from '../environments/environment';
+import { environment } from '../environments/environment.prod';
 
 import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
@@ -203,13 +203,14 @@ export class AuthService {
 
   // new post save
   newAlbumPost(u_token, name, msg, imgUrl): Observable<any> {
+    console.log("data", u_token, name, msg, imgUrl)
     const formData: any = new FormData();
     formData.append('description', msg);
     formData.append('name', name);
     for (let i = 0; i < imgUrl.length; i++) {
       formData.append('Url', imgUrl[i]);
     }
-
+    console.log("formData", formData)
     return this.httpClient.post(`${environment.apiUrl}/api/photos/newPosts`, formData, { headers: { token: u_token } }).pipe(
       catchError(this.handleError)
     )

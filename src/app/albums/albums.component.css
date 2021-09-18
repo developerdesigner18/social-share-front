@@ -17,6 +17,7 @@
 }
 .img_show{
   display: inline-flex;
+  width: 45%;
 }
   
   button.close{
@@ -89,12 +90,13 @@
   
   .set_view_more{
     position: absolute;
-    top: 75%;
-    left: 75%;
+    top: 65%;
+    left: 72%;
     transform: translate(-50%, -50%);
     font-size: 21px;
     color: #ffffff;
     bottom: auto;
     right: auto;
+    background: #00000085;
   }
   

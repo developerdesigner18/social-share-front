@@ -49,6 +49,7 @@ export class VideosComponent implements OnInit {
               this.urls.push(res.data[i])
             }
           }
+          this.urls.reverse();
         } else {
           this.shows = "User not uploaded any videos"
         }
@@ -63,6 +64,7 @@ export class VideosComponent implements OnInit {
             this.urls.push(res.data[i])
           }
           }
+          this.urls.reverse();
       } else {
         this.shows = "User not uploaded any videos"
       }

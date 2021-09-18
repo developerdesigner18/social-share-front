@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from "ngx-spinner";
 import { finalize } from 'rxjs/operators';
+import {NgxImageCompressService} from 'ngx-image-compress';
 declare var jQuery: any;
 declare var $: any;
 
@@ -51,7 +52,8 @@ export class PostModalComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     public router: Router,
     public toastr: ToastrService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private imageCompress: NgxImageCompressService
   ) {
     this.authService.getProfileforAbout(data.id).subscribe(res => {
       this.name =  res.data.name
@@ -104,6 +106,12 @@ export class PostModalComponent implements OnInit {
   }
     while(this.data.file.length > 0) {
       this.data.file.pop();
+    }
+    while(this.images.length > 0) {
+      this.images.pop();
+    }
+    while(this.arrayfile.length > 0) {
+      this.arrayfile.pop();
     }
     $(".set_view_more").css('display', 'none');
     this.shows = false
@@ -230,17 +238,24 @@ export class PostModalComponent implements OnInit {
         this.arrayfile = this.fileData.filter(item => item)
       }else{
         this.arrayfile = this.fileData[0]
+        var orientation = -1;
         for (let i = 0; i < filesAmount; i++) {
           var reader = new FileReader();
 
           reader.onload = (event: any) => {
-            if (event.target.result.split(';')[0] == 'data:video/mp4') {
-              this.temp_images.push({data: 'video', src: event.target.result})
-            } else {
-              this.temp_images.push({data: 'img', src: event.target.result})
-            }
-            this.images.push(event.target.result);
-            this.images.sort((img1, img2) => img1.length > img2.length ? 1 : -1)
+            // console.log("image", event.target.result)
+            this.imageCompress.compressFile(event.target.result, orientation, 75, 50).then(
+              result => {
+                console.warn('Size in bytes is now:', this.imageCompress.byteCount(result));
+                if (result.split(';')[0] == 'data:video/mp4' || result.split(';')[0] == 'data:video/avi') {
+                  this.temp_images.push({data: 'video', src: result})
+                } else {
+                  this.temp_images.push({data: 'img', src: result})
+                }
+                console.log("temp_images", this.temp_images)
+                this.images.push(result);
+                this.images.sort((img1, img2) => img1.length > img2.length ? 1 : -1)
+              });
           }
           reader.readAsDataURL(event.target.files[i]);
           this.arrayfile.splice(Object.keys(this.fileData[0]).length, 0, event.target.files[i])
