@@ -244,18 +244,19 @@ export class PostModalComponent implements OnInit {
 
           reader.onload = (event: any) => {
             // console.log("image", event.target.result)
-            this.imageCompress.compressFile(event.target.result, orientation, 75, 50).then(
-              result => {
-                console.warn('Size in bytes is now:', this.imageCompress.byteCount(result));
-                if (result.split(';')[0] == 'data:video/mp4' || result.split(';')[0] == 'data:video/avi') {
-                  this.temp_images.push({data: 'video', src: result})
-                } else {
-                  this.temp_images.push({data: 'img', src: result})
-                }
-                console.log("temp_images", this.temp_images)
-                this.images.push(result);
-                this.images.sort((img1, img2) => img1.length > img2.length ? 1 : -1)
-              });
+            if (event.target.result.split(';')[0] == 'data:video/mp4' || event.target.result.split(';')[0] == 'data:video/avi') {
+              this.temp_images.push({data: 'video', src: event.target.result})
+              this.images.push(event.target.result);
+            } else {
+              this.temp_images.push({data: 'img', src: event.target.result})
+              this.imageCompress.compressFile(event.target.result, orientation, 75, 50).then(
+                result => {
+                  console.warn('Size in bytes is now:', this.imageCompress.byteCount(result));
+                  console.log("temp_images", this.temp_images)
+                  this.images.push(result);
+                });
+              }
+              this.images.sort((img1, img2) => img1.length > img2.length ? 1 : -1)
           }
           reader.readAsDataURL(event.target.files[i]);
           this.arrayfile.splice(Object.keys(this.fileData[0]).length, 0, event.target.files[i])

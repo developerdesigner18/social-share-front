@@ -32,10 +32,16 @@
                 </div>
             </div>
             <div class="setting_details">
-                <div class="input_section">
+                <div class="input_section" *ngIf="hobbies.length > 0">
                     <p>Hobbies</p>
                     <div class="name_show" *ngFor="let hobby of hobbies">
                         <p> {{hobby ? hobby : 'Not Mention'}} </p>
+                    </div>
+                </div>
+                <div class="input_section" *ngIf="hobbies.length == 0">
+                    <p>Hobbies</p>
+                    <div class="name_show">
+                        <p> {{'Not Mention'}} </p>
                     </div>
                 </div>
             </div>

@@ -346,7 +346,7 @@ $(window).scroll(function() {
   divHide: any = [];
 
   likeIt(postId: string, likeCount: number) {
-    console.log("postId", postId)
+    console.log("likeCount", likeCount)
     this.authService.sendLikePost(postId).subscribe(res => {
       if(res['success'])
       {

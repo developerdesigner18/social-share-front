@@ -184,7 +184,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="data_album" *ngIf="data.name !== undefined">Album: {{data.name}} </div>
+                        <div class="data_album" *ngIf="data.name !== undefined"> <span
+                                style="font-weight: bold;font-size: 16px;"> Album: </span> {{data.name}} </div>
                         <div id="sview_{{data._id}}" class="item_desc mt-2" style="width: 100%;word-wrap: break-word;">
                             {{data.description.length > 60 ? (data.description | slice:0:60) + '...' :
                             data.description}}</div>
@@ -246,6 +247,8 @@
                             <div *ngIf="data.like.length !== 0">Like<span>{{data.like.length !== 0 ? (data._id ===
                                     tempLikePostId) ? data.like.length + temCntLike : (data.like.length + temCntLike ===
                                     0) ? '' : data.like.length : ''}}</span></div>
+                            <!-- <div>Like<span>{{ (data._id === tempLikePostId ) ? data.like.length + temCntLike :
+                                    (data.like.length + temCntLike === 0) ? '' : data.like.length }}</span></div> -->
                         </button>
                         <div class="tooltiptext" id="like_{{data._id}}">
                             <div id="tooltiptexts_{{data._id}}" class="tooltiptexts"

@@ -222,20 +222,20 @@ export class ChatingComponent implements OnInit {
     this.setupSocketConnection();
   }
 
-  // ngAfterViewInit() {
-  //   setTimeout(() => {
-  //     this.cdref.detectChanges();
-  //     this.scrollToBottom();
-  //     this.messages.changes.subscribe(this.scrollToBottom);
-  //   }, 1000)
-  // }
-
-  ngAfterContentChecked() {
-    setTimeout(() => {
+  ngAfterViewInit() {
+    // setTimeout(() => {
       this.cdref.detectChanges();
       this.scrollToBottom();
       this.messages.changes.subscribe(this.scrollToBottom);
-    }, 1000)
+    // }, 1000)
+  }
+
+  ngAfterContentChecked() {
+    // setTimeout(() => {
+      this.cdref.detectChanges();
+      this.scrollToBottom();
+      this.messages.changes.subscribe(this.scrollToBottom);
+    // }, 1000)
   }
 
   // video calling

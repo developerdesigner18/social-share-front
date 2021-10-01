@@ -78,6 +78,7 @@ export class AppComponent {
       this.socket.on('notify', (data) => {
         if (this.router.url == '/chating/' + this.current_user_id || window.location.search) {
         } else {
+          console.log("data", data)
           if (data.user == this.current_user_id) {
             this._pushNotifications.requestPermission();
             this._pushNotifications.create('You got a new message from ' + data.name, { body: data.msg }).subscribe(
@@ -143,6 +144,16 @@ export class AppComponent {
 
       this.reset();
     }
+
+    // setInterval(function () {
+    // window.onload = () => {
+    //   var ifConnected = window.navigator.onLine;
+    //   console.log("ifConnected",ifConnected)
+    //   if (!ifConnected) {
+    //     alert("Oops you are offline!")
+    //   }
+    // }
+    // }, 3000)
 
   }
 

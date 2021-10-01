@@ -58,7 +58,7 @@ input {
 .data_album {
     color: #0F1B31;
     font-size: 14px;
-    margin-top: 15px;
+    /* margin-top: 15px; */
 }
 
 .hide_theme {
@@ -981,10 +981,10 @@ a {
     font-size: 16px;
 }
 
-.take_action>button div {
+/* .take_action>button div {
     display: flex;
     align-items: center;
-}
+} */
 
 .no_share_action>button span {
     color: #ff9000;
@@ -1789,7 +1789,7 @@ a.my_post_links:hover div>div {
     text-align: center;
     border-radius: 6px;
     padding: 5px 0;
-    margin-top: 5%;
+    margin-top: 7%;
     margin-left: 12%;
     font-size: 14px;
     z-index: 9;

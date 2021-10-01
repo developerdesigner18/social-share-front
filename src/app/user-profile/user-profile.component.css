@@ -2086,6 +2086,7 @@ button.show_more_notifications {
     color: #f3efef;
     padding: 5px;
     border-radius: 4px;
+    cursor: pointer;
 }
 
 .a_friend h6 {
