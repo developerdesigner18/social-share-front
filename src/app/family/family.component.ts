@@ -189,7 +189,7 @@ export class FamilyComponent implements OnInit {
   }
 
   editFamily(family, relation) {
-    if (family !== undefined && relation !== undefined) {
+    if (family !== undefined && relation !== undefined && family !== '') {
       this.authService.updateFamily(this.id , family, this.data_id, relation).subscribe(res => {
         if (res['success']) {
           this.toastr.success("Your family data is updated successfully")

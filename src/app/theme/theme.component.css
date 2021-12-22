@@ -6,10 +6,10 @@ body {
     background-color: var(--background);
 }
 
-.contain {
+/* .contain {
     background: var(--background) !important;
     color: var(--on-background);
-}
+} */
 
 .innerdiv {
     background: var(--primary);

@@ -20,7 +20,7 @@
             <div class="setting_details pass">
                 <div class="pass_section">
                     <p>Password</p>
-                    <div *ngIf="enter_pass" class="encrypt_pass"> {{user_data.password}} </div>
+                    <!-- <div *ngIf="enter_pass" class="encrypt_pass"> {{user_data.password}} </div> -->
                     <div *ngIf="change_pass" class="error_msgs">
                         <input *ngIf="input_pass" type="password" name="pass" id="pass" minlength="10"
                             [(ngModel)]="pass" placeholder="Please enter password"
@@ -28,7 +28,7 @@
                         <span style="color: red;" *ngIf="pass?.length < 10"> Password should be greater than 10 letters
                         </span>
                         <span style="color: red;" *ngIf="!pass">Password is required</span>
-                        <div class="change_button" style="display: flex;" *ngIf="change_pass">
+                        <div class="change_button" *ngIf="change_pass">
                             <button type="button" name="button" [disabled]="!pass || !(pass?.length > 9)"
                                 (click)="changePass(pass)">Changes</button>
                             <button type="button" type="button" (click)="cancel_btn()">Cancel</button>

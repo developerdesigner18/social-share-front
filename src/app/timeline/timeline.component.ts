@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, ViewChild, HostListener} from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild, HostListener, AfterViewInit, ElementRef} from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog} from  '@angular/material/dialog';
@@ -16,7 +16,7 @@ declare var $: any;
   templateUrl: './timeline.component.html',
   encapsulation: ViewEncapsulation.None
 })
-export class TimelineComponent implements OnInit {
+export class TimelineComponent implements OnInit, AfterViewInit {
   id = '';
   postImage: any = '';
   images = [];
@@ -57,6 +57,7 @@ export class TimelineComponent implements OnInit {
 
   @ViewChild('textmsgPost') postMesssgeElement: any;
   @ViewChild('nav') slider: NgImageSliderComponent;
+  @ViewChild('container') container: ElementRef<HTMLElement>;
 
   public datas: any[];
   u_country: any;
@@ -169,6 +170,14 @@ export class TimelineComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  ngAfterViewInit(): void {
+    this.activatedRoute.params.subscribe(param => {
+      var id = this.router.url.split("#").pop()
+      // const section = this.container.nativeElement.getElemen(`${this.router.url.split("#").pop()}`)
+      const section2 = document.getElementById(`${id}`);
+      // section?.scrollIntoView()
+    })
+  }
   
 
   getYPosition(e: Event): number {

@@ -217,7 +217,7 @@ export class DetailsComponent implements OnInit {
   }
   
   editDetails(about: any) {
-    if (about !== undefined) {
+    if (about !== undefined && about !== '') {
       this.authService.addNewNumber(about).subscribe(res => {
         if (res['success']) {
           this.toastr.success("Your about info is updated successfully")
@@ -280,7 +280,7 @@ export class DetailsComponent implements OnInit {
   }
   
   editPronunciation(words: any) {
-    if (words !== undefined) {      
+    if (words !== undefined && words !== '') {      
       this.authService.addPronunciation(words).subscribe(res => {
         if (res['success']) {
           this.toastr.success("Your pronunciation name is updated successfully")
@@ -343,7 +343,7 @@ export class DetailsComponent implements OnInit {
   }
   
   editNickname(nickname: any) {
-    if (nickname !== undefined) {
+    if (nickname !== undefined && nickname !== '') {
       this.authService.addNickname(nickname).subscribe(res => {
         if (res['success']) {
           this.toastr.success("Your nickname is updated successfully")
@@ -405,7 +405,7 @@ export class DetailsComponent implements OnInit {
   }
   
   editQuotes(quote_value: any) {
-    if (quote_value !== undefined) {
+    if (quote_value !== undefined && quote_value !== '') {
       this.authService.addQuotes(quote_value).subscribe(res => {
         if (res['success']) {
           this.toastr.success("Your quote is updated successfully")

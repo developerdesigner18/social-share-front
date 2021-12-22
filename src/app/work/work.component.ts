@@ -216,7 +216,7 @@ export class WorkComponent implements OnInit {
   }
 
   editWork(event: any) {
-    if (event !== undefined) {
+    if (event !== undefined && event !== '') {
       this.authService.updateWork(this.id , event, this.data_id, this.works).subscribe(res => {
         if (res['success']) {
           this.toastr.success("Work place is updated successfully")
@@ -291,7 +291,7 @@ export class WorkComponent implements OnInit {
   }
 
   editUniversity(university: any) {
-    if (university !== undefined) {
+    if (university !== undefined && university !== '') {
       this.authService.updateUniversity(this.id , university, this.university_id, this.University).subscribe(res => {
         if (res['success']) {
           this.toastr.success("University is updated successfully")
@@ -363,7 +363,7 @@ export class WorkComponent implements OnInit {
   }
 
   editSchool(school: any) {
-    if (school !== undefined) {
+    if (school !== undefined && school !== '') {
       this.authService.updateSchool(this.id , school, this.school_id, this.School).subscribe(res => {
         if (res['success']) {
           this.toastr.success("High School is updated successfully")

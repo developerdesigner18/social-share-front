@@ -252,7 +252,6 @@ export class PostModalComponent implements OnInit {
               this.imageCompress.compressFile(event.target.result, orientation, 75, 50).then(
                 result => {
                   console.warn('Size in bytes is now:', this.imageCompress.byteCount(result));
-                  console.log("temp_images", this.temp_images)
                   this.images.push(result);
                 });
               }

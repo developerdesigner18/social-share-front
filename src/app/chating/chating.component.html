@@ -1,4 +1,6 @@
-<app-header></app-header>
+<div class="chat_header">
+  <app-header></app-header>
+</div>
 
 <div class="main_div">
   <div class="sidenav left">
@@ -62,9 +64,10 @@
       </div>
     </div>
     <div class="chat-messages-create-container">
-      <i id="typing"></i>
-      <input autocomplete="off" id="message" class="chat-messages-create-input" [(ngModel)]="message" type="text"
-        (keyup.enter)="SendMessage()" placeholder="Type your message here...">
+      <i id="typing" *ngIf="msg_status"> {{msg_typing}} </i>
+      <input autocomplete="off" id="message" class="chat-messages-create-input" [(ngModel)]="message"
+        (ngModelChange)="NotifyMessage(message, $event)" type="text" (keyup.enter)="SendMessage()"
+        placeholder="Type your message here...">
       <button class="chat-messages-create-button" [disabled]="!message" (click)="SendMessage()"> Send </button>
       <button type="button" class="btn btn-primary video_calling" data-toggle="modal" data-target="#myModal"> <img
           src="../../assets/images/chat.png" alt="" width="20px" height="20px"> </button>

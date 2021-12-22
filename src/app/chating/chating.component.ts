@@ -1,12 +1,12 @@
 import { ChangeDetectorRef, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren, ViewEncapsulation } from '@angular/core';
 import { SocketioService } from '../socketio.service';
 import {io} from 'socket.io-client';
-//  import { environment } from 'src/environments/environment';
+ import { environment } from 'src/environments/environment';
 import { AuthService } from '../auth.service';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import Pusher from 'pusher-js'
 import { ToastrService } from 'ngx-toastr';
-import { environment } from 'src/environments/environment.prod';
+// import { environment } from 'src/environments/environment.prod';
 import * as CryptoJS from 'crypto-js';
 import { PushNotificationsService } from 'ng-push-ivy';
 
@@ -49,6 +49,8 @@ export class ChatingComponent implements OnInit {
   temp_member: any[] = []
   check_msg: any[] = []
   status: any;
+  msg_status: boolean;
+  msg_typing: String;
 
   @ViewChildren('messages') messages: QueryList<any>;
   @ViewChild('content') content: ElementRef;
@@ -115,7 +117,7 @@ export class ChatingComponent implements OnInit {
     });
 
     this.channel.bind("client-candidate", (msg) => {
-      if(msg.room==this.room){
+      if (msg.room == this.room) {
           console.log("candidate received");
           this.caller.addIceCandidate(new RTCIceCandidate(msg.candidate));
       }
@@ -179,6 +181,8 @@ export class ChatingComponent implements OnInit {
       console.log("answer end call", answer)
       if (answer.room == this.room) {
         alert("Call is ended")
+        this.endCall();
+        $("#myModal").modal('hide');
       }
     })
 
@@ -215,28 +219,30 @@ export class ChatingComponent implements OnInit {
 
     //show message
     
-    
   }
 
   ngOnInit(): void {
     this.setupSocketConnection();
-  }
-
-  ngAfterViewInit() {
-    // setTimeout(() => {
-      this.cdref.detectChanges();
+    this.cdref.detectChanges();
       this.scrollToBottom();
       this.messages.changes.subscribe(this.scrollToBottom);
-    // }, 1000)
   }
 
-  ngAfterContentChecked() {
-    // setTimeout(() => {
-      this.cdref.detectChanges();
-      this.scrollToBottom();
-      this.messages.changes.subscribe(this.scrollToBottom);
-    // }, 1000)
-  }
+  // ngAfterViewInit() {
+  //   // setTimeout(() => {
+  //     this.cdref.detectChanges();
+  //     this.scrollToBottom();
+  //     this.messages.changes.subscribe(this.scrollToBottom);
+  //   // }, 1000)
+  // }
+
+  // ngAfterContentChecked() {
+  //   // setTimeout(() => {
+  //     this.cdref.detectChanges();
+  //     this.scrollToBottom();
+  //     this.messages.changes.subscribe(this.scrollToBottom);
+  //   // }, 1000)
+  // }
 
   // video calling
 
@@ -404,10 +410,11 @@ export class ChatingComponent implements OnInit {
   }
 
   setupSocketConnection() {
-    this.socket.emit('login', {userId: this.current_user_id})
+    // this.socket.emit('login', {userId: this.current_user_id})
       let messageInput = document.getElementById("message");
       let typing = document.getElementById("typing");
     this.socket.on('my broadcast', (data: string) => {
+      console.log("data", data)
        let value = [this.current_user_id, this.recieverId]
        value.sort((a, b) => b.localeCompare(a))
        this.mergeId = value.join()
@@ -443,12 +450,15 @@ export class ChatingComponent implements OnInit {
       }, 1500)
     })
 
-    if (messageInput) {
-      messageInput.addEventListener('keypress', () => {
-        this.socket.emit("typing", { user: this.name, message: "is typing..." });
-      });
-    }
-      this.socket.on("notifyTyping", data => {
+    
+    // if (messageInput) {
+    //   messageInput.addEventListener('keypress', () => {
+    //     console.log("call")
+    //     this.socket.emit("typing", { user: this.name, message: "is typing..." });
+    //   });
+    // }
+    this.socket.on("notifyTyping", data => {
+        console.log("data", data)
         typing.innerText = data.user + " " + data.message;
         this.type = data.user + " " + data.message;
       });
@@ -462,6 +472,37 @@ export class ChatingComponent implements OnInit {
       this.socket.on("notifyStopTyping", () => {
         typing.innerText = "";
       });
+    
+    this.socket.on('notifyStart', (data) => {
+      console.log("data", data)
+      if (data.recieverId == this.current_user_id) {
+        this.msg_status = true
+        this.msg_typing = data.user + ' is typing....'
+      }
+    })
+
+    this.socket.on('notifyStop', (data) => {
+      console.log("call")
+      if (data.recieverId == this.current_user_id) {
+        this.msg_status = false
+      }
+    })
+  }
+
+  NotifyMessage(message, e) {
+    var data = { user: String, id: Number, recieverId: Number };
+    data.user = this.name
+    data.id = this.current_user_id
+    data.recieverId = this.recieverId
+    this.socket.emit("typing", data);
+    var lastTypingTime = (new Date()).getTime();
+    setTimeout(() => {
+      var typingTimer = (new Date()).getTime();
+      var timeDiff = typingTimer - lastTypingTime;
+      if (timeDiff >= 500) {
+          this.socket.emit("notifyStop", data);
+      }
+  }, 500);
   }
 
   SendMessage() {

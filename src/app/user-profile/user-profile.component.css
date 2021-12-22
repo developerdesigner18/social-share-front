@@ -2059,7 +2059,7 @@ button.show_more_notifications {
 .show_album_images .ng-image-slider .ng-image-slider-container .main .main-inner .img-div img, .show_album_images .ng-image-slider .ng-image-slider-container .main .main-inner .img-div video {
     top: 6px !important;
     left: 5px !important;
-    width: 74% !important;
+    width: 80% !important;
     margin: 0 !important;
 }
 /* .ng-image-slider .ng-image-slider-container .main .main-inner .img-div{

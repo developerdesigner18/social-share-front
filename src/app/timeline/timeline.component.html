@@ -14,9 +14,10 @@
     </div>
   </div>
 </div>
-<ng-container *ngIf="notfound !== 404">
+<ng-container #container *ngIf="notfound !== 404">
   <div app-theme *ngFor="let data of datas | slice: 0:totalDisplay; let i = index"
-    class="main_post_content d-flex flex-column timeline">
+    class="main_post_content d-flex flex-column timeline"
+    id="{{ data.imageUrl.length > 0 ? data.imageUrl[0].image.split('/').pop() : ''}}">
     <div class="d-flex show_basic_info" style="width: 100%; align-items: baseline;">
       <div class="profile_pic_profile position-relative">
         <img [src]="profileImg" onerror="this.src='/assets/images/character.png';" />

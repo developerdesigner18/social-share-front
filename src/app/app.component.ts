@@ -49,17 +49,17 @@ export class AppComponent {
   usersOnline: any;
 
   constructor( private titleService: Title, private authService: AuthService, private router: Router, private themeService: ThemeService, private bnIdle: BnNgIdleService, private connectionService: ConnectionService, private idle: Idle, private keepalive: Keepalive, private modalService: BsModalService, private socketService: SocketioService,private _pushNotifications: PushNotificationsService) {
-    
-    if (this.authService.isLoggedIn() == true) {
+    if (this.authService.isLoggedIn()) {
       const current_login_User = JSON.parse(localStorage.getItem('currentUser'));
       this.current_user_id = current_login_User.data._id
       this.socket = io(environment.apiUrl);
-
+      var status = 1
+      this.socket.emit('login', {userId: this.current_user_id, status: status})
       this.router.events.subscribe((routerData) => {
         if(routerData instanceof ResolveEnd){ 
           if(routerData.url === '/chating/' + this.current_user_id || window.location.search){
             //Do something
-          var status = 1
+            var status = 1
             this.authService.changechatStatus(this.current_user_id, status).subscribe(res => { })
             $('.main_float').removeClass('chat_float')
           } else {
@@ -78,7 +78,6 @@ export class AppComponent {
       this.socket.on('notify', (data) => {
         if (this.router.url == '/chating/' + this.current_user_id || window.location.search) {
         } else {
-          console.log("data", data)
           if (data.user == this.current_user_id) {
             this._pushNotifications.requestPermission();
             this._pushNotifications.create('You got a new message from ' + data.name, { body: data.msg }).subscribe(
@@ -114,7 +113,7 @@ export class AppComponent {
         const currentUser = JSON.parse(localStorage.getItem('currentUser'));
          this.id = currentUser.data._id
         let status = 0;
-        this.authService.updateStatus(this.id, status).subscribe(res => { })
+        // this.authService.updateStatus(this.id, status).subscribe(res => { })
         localStorage.removeItem('currentUser');
         localStorage.removeItem('token');
         localStorage.removeItem('friendId');
@@ -141,19 +140,11 @@ export class AppComponent {
       } else {
         idle.stop();
       }
+      var status = 0
+      // this.socket.emit('disconnect', {userId: this.current_user_id, status: status})
 
       this.reset();
     }
-
-    // setInterval(function () {
-    // window.onload = () => {
-    //   var ifConnected = window.navigator.onLine;
-    //   console.log("ifConnected",ifConnected)
-    //   if (!ifConnected) {
-    //     alert("Oops you are offline!")
-    //   }
-    // }
-    // }, 3000)
 
   }
 

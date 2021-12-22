@@ -364,7 +364,7 @@ export class ContactComponent implements OnInit {
   }
 
   editNumber(number: any) {
-    if (number !== undefined || number != this.mobile_number) {
+    if ((number !== undefined || number != this.mobile_number) && number !== '') {
       this.authService.addNewNumber(number).subscribe(res => {
         if (res['success']) {
           this.show_mobile = true
@@ -496,7 +496,7 @@ export class ContactComponent implements OnInit {
   }
 
   editWebsite(website: any) {
-    if (website !== undefined) {
+    if (website !== undefined && website !== '') {
       this.authService.addNewWebsite(website).subscribe(res => {
         this.toastr.success("Your website is updated successfully")
         if (res['success']) {
@@ -557,7 +557,7 @@ export class ContactComponent implements OnInit {
   }
 
   editBasicInfo(caste: any) {
-    if (caste !== undefined) {
+    if (caste !== undefined && caste !== '') {
       this.authService.addBasicInfo(caste).subscribe(res => {
         if (res['success']) {
           this.toastr.success("Your religious is updated successfully")

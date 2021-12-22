@@ -4,6 +4,9 @@
     box-sizing: border-box;
     /* font-family: 'Roboto Slab', serif; */
 }
+a {
+    outline: none;
+}
 /* ::-webkit-scrollbar {
     width: px;
 } */
@@ -73,6 +76,14 @@ body {
     background-color: #F1F1F1;
     background-image: none !important;
     overflow-y: scroll;
+}
+
+#collapseExample{
+    position: absolute;
+    width: 25%;
+    right: 11em;
+    top: 4.5em;
+    z-index: 9999;
 }
 
 header {
@@ -210,7 +221,7 @@ img.logout {
     display: flex;
     justify-content: center;
     background-color: #ffffff;
-    box-shadow: 0px 1px 15px 0px rgba(0, 52, 89, 0.58);
+    box-shadow: 0px 1px 7px 2px rgb(0 52 89 / 22%);
     position: relative;
     top: 20px;
     flex-direction: column;
@@ -301,8 +312,8 @@ button.load_btn {
 #button_top {
     display: inline-block;
     background-color: #0F1B31;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     text-align: center;
     border-radius: 4px;
     position: fixed;
@@ -319,9 +330,13 @@ button.load_btn {
     font-family: FontAwesome;
     font-weight: normal;
     font-style: normal;
-    font-size: 2em;
-    line-height: 50px;
+    font-size: 1em;
+    line-height: 1em;
     color: #fff;
+    position: absolute;
+    top: calc(50% - 8px);
+    left: 0;
+    right: 0;
 }
 
 #button_top:hover {
@@ -1304,7 +1319,7 @@ a.my_post_links:hover div>div {
 
 .province {
     padding: 5px 10px;
-    box-shadow: 0 0 4px #0F1B31;
+    box-shadow: 0 0 4px #0f1b3180;
     border-radius: 4px;
 }
 
@@ -1421,7 +1436,7 @@ a.my_post_links:hover div>div {
 }
 
 .write_words input::placeholder {
-    color: #0F1B31 !important;
+    color: #283448 !important;
     letter-spacing: normal;
     font-size: 15px;
     font-family: 'Josefin Sans', sans-serif;
@@ -2060,7 +2075,7 @@ body.modal {
     justify-content: center;
     align-items: center;
     padding: 5px 10px;
-    font-size: 25px;
+    font-size: 20px;
     background: #0f1b31bf;
 }
 

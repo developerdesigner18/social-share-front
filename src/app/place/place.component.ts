@@ -133,12 +133,13 @@ export class PlaceComponent implements OnInit {
   }
 
   editHome(home_town: any) {
-    if (home_town !== undefined) {
+    if (home_town !== undefined && home_town !== '') {
       this.authService.addHomeTown(home_town).subscribe(res => {
         if (res['success']) {
           this.toastr.success("Your home town is updated successfully")
           this.show_home = true
           this.u_fill_home = false
+          this.home_town = home_town 
         }
       })
     } else {

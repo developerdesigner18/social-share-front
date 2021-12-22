@@ -10,6 +10,9 @@ import { ToastrService } from 'ngx-toastr';
 import { ThemeService } from '../../theme/theme.service';
 import { NgxSpinnerService } from "ngx-spinner";
 import { finalize, tap } from 'rxjs/operators';
+import {io} from 'socket.io-client';
+// import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.prod';
 declare var jQuery: any;
 declare var $: any;
 
@@ -75,7 +78,7 @@ export class HomeComponent implements OnInit {
   showMore: boolean;
   u_city: any;
   loadingRouteConfig: boolean;
-
+  socket;
   @ViewChild('nav') slider: NgImageSliderComponent;
   count_cmt: any;
   check_temp: boolean;
@@ -89,6 +92,8 @@ export class HomeComponent implements OnInit {
   message: any;
   frdDetails = [];
   notAnyFrd: any;
+  comment_length: number = 3;
+  increase_comment: number = 5;
 
   @HostListener("window:scroll")
   onScroll(e: Event): void {
@@ -109,8 +114,8 @@ export class HomeComponent implements OnInit {
     private spinner: NgxSpinnerService
   ) {
     this.totalDisplay = 3;
-    this.bodyHeight = 1500;
-
+    this.bodyHeight = 1000;
+    this.socket = io(environment.apiUrl);
     const current_login_User = JSON.parse(localStorage.getItem('currentUser'));
     this.ids = current_login_User.data._id
     $(".hide_theme").css("display", "none");
@@ -140,18 +145,6 @@ $(window).scroll(function() {
       this.profileImg = res.data.profileImgURl
     })
 
-    this.authService.getFriends(id).subscribe(res => {
-      this.friends = res.userInfo
-      if(res.success)
-      {
-        for(let i = 0; i < res.userInfo.length; i++){
-          this.frdDetails.push(res.userInfo[i])
-        }
-      }else{
-        this.notAnyFrd = res.message
-      }
-    })
-
     this.token = localStorage.getItem('token')
     this.current_user = JSON.parse(localStorage.getItem('currentUser'))
     this.spinner.show();
@@ -168,7 +161,6 @@ $(window).scroll(function() {
           this.url.push(this.datas[i].imageUrl)
           this.datas[i].state =  this.datas[i].state
           this.datas[i].city = this.datas[i].city
-          // this.datas[i].city = (this.datas[i].city === undefined) ? 'Not mention' : this.datas[i].city
           this.authService.getHomePostProfile(this.datas[i].userId).subscribe(res => {
             this.datas[i].post_user_designation = res.data.designation
             this.datas[i].post_user_email = res.data.emailId
@@ -196,7 +188,6 @@ $(window).scroll(function() {
         this.message = res.message;
       }
     })
-
 
     this.authService.getAllFriends(localStorage.getItem("token")).subscribe(res => {
       this.allUsers = res.AllUser[0]
@@ -233,25 +224,43 @@ $(window).scroll(function() {
     this.commentsForm= this.formBuilder.group({
       newcomment: ['']
     })
+
+    this.socket.on('User_status', (data) => {
+      this.frdDetails.filter((e) => e._id == data ? this.update_status() : '')
+    })
   }
   get formControls() { return this.commentsForm.controls }
 
   ngOnInit(): void {
     let id = this.activatedRoute.snapshot.paramMap.get('id');
-    let status = 1;
     this.toggle = this.toggle
-    this.authService.updateStatus(id, status).subscribe(res => {
-      if (res['success']) {
-      }
+      this.authService.getFriends(id).subscribe(res => {
+        this.frdDetails = []
+        this.friends = res.userInfo
+        if(res.success){
+          for(let i = 0; i < res.userInfo.length; i++){
+            this.frdDetails.push(res.userInfo[i])
+          }
+        }else{
+          this.notAnyFrd = res.message
+        }
     })
-    // this.spinner.show();
-    // setTimeout(() => {
-    //   /** spinner ends after 5 seconds */
-    //   this.spinner.hide();
-    // }, 3000);
-  
   }
-  ngAfterViewInit(){ this.ready = true; }
+  ngAfterViewInit() { this.ready = true; }
+  
+  update_status() {
+    this.authService.getFriends(this.id).subscribe(res => {
+      this.frdDetails = []
+      this.friends = res.userInfo
+      if(res.success){
+        for(let i = 0; i < res.userInfo.length; i++){
+          this.frdDetails.push(res.userInfo[i])
+        }
+      }else{
+        this.notAnyFrd = res.message
+      }
+  })
+  }
 
   open_comments(postId){
     $(`.comments_container_${postId}`).toggle();
@@ -338,6 +347,10 @@ $(window).scroll(function() {
     $(`#sview_${postId}`).css('display', 'none');
   }
 
+  view_more_comment(value){
+    // console.log("value", value)
+  }
+
   tempLikePostId = ''
   temCntLike: any = []
   like_name: any = [];
@@ -346,7 +359,6 @@ $(window).scroll(function() {
   divHide: any = [];
 
   likeIt(postId: string, likeCount: number) {
-    console.log("likeCount", likeCount)
     this.authService.sendLikePost(postId).subscribe(res => {
       if(res['success'])
       {
@@ -401,7 +413,6 @@ $(window).scroll(function() {
         this.toastr.success("You are successfully shared the post!");
         window.location.reload();
       })
-    } else {
     }
   }
 

@@ -144,11 +144,11 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body" id="modelBodyImg">
+      <div class="modal-body" id="modelBodyImg" style="padding: 2rem 1rem;">
         <input type="file" style="display:none" #file class="btn btn-primary"
           (change)="fileChangeEvent($event);showImageCrop()" />
         <button type="button" class="btn btn-primary" (click)="file.click();"
-          style="position: absolute; top: 10px;">Upload Image</button>
+          style="position: absolute; top: 12px;">Upload Image</button>
         <div class="text-center col-md-6" *ngIf="imgeDiv" style="margin-top: 50px;">
           <image-cropper [imageChangedEvent]="imageChangedEvent" [roundCropper]=true [maintainAspectRatio]="true"
             [aspectRatio]="4 / 4" [resizeToWidth]="256" format="png" (imageCropped)="imageCropped($event)"

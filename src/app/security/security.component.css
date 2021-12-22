@@ -37,12 +37,20 @@
     flex-direction: column;
 } */
 .error_msgs {
-    margin: 0 !important;
+    /* margin: 0 !important; */
     display: flex;
     flex-direction: column;
 }
+.change_button{
+	display: flex;
+	padding-top: 5px;
+}
 .setting_details.pass input {
     margin: 0;
+	padding: 5px 10px;
+    border: 1px solid #ff9000;
+    color: #000;
+    border-radius: 20px;
 }
 .input_section {
     display: flex;

@@ -141,7 +141,7 @@ export class LifeComponent implements OnInit {
   }
 
   editLife(life: any) {
-    if (life !== undefined) {
+    if (life !== undefined && life !== '') {
       this.authService.updateLifeEvent(this.id , life, this.data_id, this.lifes).subscribe(res => {
         if (res['success']) {
           this.toastr.success("Your life event is updated successfully")
