@@ -17,6 +17,7 @@ declare var $: any;
 export class UserProfileComponent implements OnInit {
   name = '';
   u_designation = '';
+  u_intro = ''
   u_state = '';
   u_country = '';
   u_city = '';
@@ -35,6 +36,7 @@ export class UserProfileComponent implements OnInit {
   user_state = '';
   user_country = '';
   user_hobbies = '';
+  user_intro = '';
   notfound = 0;
   ids = '';
   cur_user = '';
@@ -49,6 +51,7 @@ export class UserProfileComponent implements OnInit {
   @ViewChild('state') stateElement: any;
   @ViewChild('country') countryElement: any;
   @ViewChild('hobbies') hobbiesElement: any;
+  @ViewChild('intro') introElement: any;
   
   constructor(
     public authService: AuthService,
@@ -77,6 +80,7 @@ $(window).scroll(function() {
     this.authService.getUserProfile(id).subscribe(res => {
       this.name =  res.data.name
       this.u_designation =  res.data.designation
+      this.u_intro = res.data.intro
       this.u_country =  res.data.country
       this.u_state =  res.data.state
       this.u_city =  res.data.city
@@ -131,9 +135,12 @@ $(window).scroll(function() {
     })
 
     this.authService.getNotifications(id).subscribe(res => {
-      if (res['message'].length > 0) {
+      if(res['success']){
         this.notif_data = res['message']
+      } else {
+        this.notif_data = []
       }
+      
     })
   }
 
@@ -155,7 +162,9 @@ $(window).scroll(function() {
     this.user_state = (this.stateElement !== undefined) ? this.stateElement.nativeElement.textContent : this.user_state;
     this.user_country = (this.countryElement !== undefined) ? this.countryElement.nativeElement.textContent : this.user_country;
     this.user_hobbies = (this.hobbiesElement !== undefined) ? this.hobbiesElement.nativeElement.textContent : this.user_hobbies;
-    this.authService.openDialog(this.user_post, this.user_city, this.user_state, this.user_country, this.user_hobbies)
+    this.user_intro = (this.introElement !== undefined) ? this.introElement.nativeElement.textContent : this.introElement;
+    console.log("this.user_intro", this.user_intro)
+    this.authService.openDialog(this.user_post, this.user_city, this.user_state, this.user_country, this.user_hobbies, this.user_intro)
   }
 
   uploadPic() {

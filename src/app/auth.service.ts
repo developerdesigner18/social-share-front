@@ -3,8 +3,8 @@ import { Injectable, Injector } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
-import { environment } from '../environments/environment';
-// import { environment } from '../environments/environment.prod';
+// import { environment } from '../environments/environment';
+import { environment } from '../environments/environment.prod';
 
 import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
@@ -139,10 +139,10 @@ export class AuthService {
     )
   }
 
-  openDialog(postition, city, state, country, hobbies): any {
+  openDialog(postition, city, state, country, hobbies, intro): any {
     const dialogRef = this.dialog.open(EditProfileComponent, {
       width: '550px',
-      data: { postition: postition, city: city, state: state, country: country, hobbies: hobbies }
+      data: { postition: postition, city: city, state: state, country: country, hobbies: hobbies, intro: intro }
     });
 
     return dialogRef.afterClosed();
@@ -199,10 +199,11 @@ export class AuthService {
   }
 
   // new post save
-  newAlbumPost(u_token, name, msg, imgUrl): Observable<any> {
+  newAlbumPost(u_token, name, msg, imgUrl, status): Observable<any> {
     const formData: any = new FormData();
     formData.append('description', msg);
     formData.append('name', name);
+    formData.append('status', status);
     for (let i = 0; i < imgUrl.length; i++) {
       formData.append('Url', imgUrl[i]);
     }
@@ -211,9 +212,10 @@ export class AuthService {
     )
   }
 
-  newPost(u_token, msg, imgUrl): Observable<any> {
+  newPost(u_token, msg, imgUrl, status): Observable<any> {
     const formData: any = new FormData();
     formData.append('description', msg);
+    formData.append('status', status);
     for (let i = 0; i < imgUrl.length; i++) {
       formData.append('Url', imgUrl[i]);
     }

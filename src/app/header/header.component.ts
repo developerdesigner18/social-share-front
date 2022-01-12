@@ -9,7 +9,7 @@ import { AuthService } from '../auth.service';
 export class HeaderComponent implements OnInit {
   id= '';
   chat: boolean = false
-  notif_data: any;
+  notif_data: any[] = [];
   constructor(public authService: AuthService, private router: Router) { 
     this.router.events.subscribe((event: any) =>{
       if(event instanceof NavigationEnd){
@@ -24,7 +24,11 @@ export class HeaderComponent implements OnInit {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.id = currentUser.data._id
     this.authService.getNotifications(this.id).subscribe(res => {
-      this.notif_data = res['message']
+      if(res['success']){
+        this.notif_data = res['message']
+      } else {
+        this.notif_data = []
+      }
     })
   }
 

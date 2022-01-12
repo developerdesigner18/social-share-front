@@ -1,6 +1,9 @@
 <h2 mat-dialog-title>Edit Details</h2>
 <mat-dialog-content>
   <form class="edit_formGroup" [formGroup]="profileForm" (ngSubmit)="updateProfile()" style="display: contents;">
+    <input id="intro" autocomplete="off" formControlName="intro" class="form-control text-spaces" type="text"
+      placeholder="Enter Intro" value="{{data.intro}}">
+
     <input id="designation" autocomplete="off" formControlName="designation" class="form-control text-spaces"
       type="text" placeholder="Enter Designation" value="{{data.postition}}">
 

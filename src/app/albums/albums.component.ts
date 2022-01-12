@@ -38,6 +38,7 @@ export class AlbumsComponent implements OnInit {
   closeDialog = false;
   shows: boolean = false;
   temp_images:any = []
+  status: any;
 
   @ViewChild('postMsg') postMesssgeElement: any;
   @ViewChild('postName') postNameElement: any;
@@ -138,24 +139,23 @@ export class AlbumsComponent implements OnInit {
             var reader = new FileReader();
             reader.readAsDataURL(this.fileCovToReturn[i]);
           }
+          if (this.postNameElement.nativeElement.value === '') {
+            this.fileCovToReturn = []
+            this.toastr.info('Please Fill the Album Name');
+          } else {
+            this.spinner.show()
+            reader.onload = (_event) => {
+              this.authService.newAlbumPost(this.token, this.postNameElement.nativeElement.value, this.postMesssgeElement.nativeElement.value, this.fileCovToReturn, this.status).pipe(finalize(() => this.spinner.hide())).subscribe((res) => {
+                var data = 'profile/' + window.location.href.split('/')[4]
+                if (res.success == true) {
+                  window.location.replace('profile/' + window.location.href.split('/')[4] + '/photos');
+                }
+              
+              })
+            }
+          }
         } else {
         this.toastr.info("png format is not supported use other format like jpg or jpeg")
-        }
-        
-        if (this.postNameElement.nativeElement.value === '') {
-          this.fileCovToReturn = []
-          this.toastr.info('Please Fill the Album Name');
-        } else {
-          this.spinner.show()
-          reader.onload = (_event) => {
-            this.authService.newAlbumPost(this.token, this.postNameElement.nativeElement.value, this.postMesssgeElement.nativeElement.value, this.fileCovToReturn).pipe(finalize(() => this.spinner.hide())).subscribe((res) => {
-              var data = 'profile/' + window.location.href.split('/')[4]
-              if (res.success == true) {
-                window.location.replace('profile/' + window.location.href.split('/')[4] + '/photos');
-              }
-            
-            })
-          }
         }
       } else {
         this.toastr.info("Please select one or more images to add in album.")

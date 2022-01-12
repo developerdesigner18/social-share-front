@@ -39,8 +39,9 @@
   <div class="left_sidebar">
     <div class="intro">
       <div class="left_title w_90">Intro</div>
-      <div class="some_words w_90">I Do not know how? But i believe that it is possible one day if i stay with my dream
-        all time!</div>
+      <!-- <div class="some_words w_90">I Do not know how? But i believe that it is possible one day if i stay with my dream
+        all time!</div> -->
+      <div class="some_words w_90" #intro> {{u_intro}} </div>
       <div class="info_container w_90 d-flex align-items-center">
         <i class="fas fa-briefcase"></i>
         <div #designation>{{u_designation ? u_designation : 'Designation'}}</div>
@@ -114,7 +115,7 @@
   </div>
 
   <div *ngIf="cur_user === ids && display" class="right_sidebar">
-    <div class="notification_sec">
+    <div class="notification_sec" *ngIf="notif_data.length > 0; else elseNotify">
       <div class="right_title w_90">Recent Notification</div>
 
       <div class="all_notification w_90" *ngFor="let data of notif_data | slice:0:5;">
@@ -129,6 +130,10 @@
       <button *ngIf="notif_data.length > 5" class="show_more_notifications" [routerLink]="['notifications']">Show More
         Notifications</button>
     </div>
+    <ng-template #elseNotify>
+      <div class="right_title w_90">Recent Notification</div>
+      <div style="color: #000;">No Notification</div>
+    </ng-template>
   </div>
 </div>
 

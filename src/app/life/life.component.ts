@@ -49,6 +49,7 @@ export class LifeComponent implements OnInit {
             this.show_life = true
             this.life_show = false
             this.myDate = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
+            console.log("data check 1", this.get_life, this.myDate)
           } else {
             this.life_show = false
             this.not_mention_life = "Event Life"
@@ -69,6 +70,7 @@ export class LifeComponent implements OnInit {
             this.show_life = true
             this.life_show = false
             this.myDate = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
+            console.log("data check 2", this.get_life, this.myDate)
           } else {
             this.life_show = false
             this.not_mention_life = "Life Event"

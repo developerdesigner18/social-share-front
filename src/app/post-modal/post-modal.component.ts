@@ -39,6 +39,7 @@ export class PostModalComponent implements OnInit {
   closeDialog = false;
   shows: boolean = false;
   temp_images:any = [];
+  status: any;
 
   @ViewChild('postMsg') postMesssgeElement: any;
   @ViewChildren('postImage') postImageElement: QueryList<ElementRef>;
@@ -144,7 +145,7 @@ export class PostModalComponent implements OnInit {
           this.toastr.info("png format is not supported used other format like jpg or jpeg")
         }
         reader.onload = (_event) => {
-          this.authService.newPost(this.token, this.postMesssgeElement.nativeElement.value, this.fileCovToReturn).pipe(finalize(() => this.spinner.hide())).subscribe((res) => {
+          this.authService.newPost(this.token, this.postMesssgeElement.nativeElement.value, this.fileCovToReturn, this.status).pipe(finalize(() => this.spinner.hide())).subscribe((res) => {
             if(window.location.href.split('/')[3] == "home"){
               window.location.replace('home/' + window.location.href.split('/')[4]);
             } else {

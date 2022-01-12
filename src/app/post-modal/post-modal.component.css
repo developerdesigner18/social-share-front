@@ -25,6 +25,13 @@ button.close{
   padding: 8px;
 }
 
+.status_post select {
+  padding: 5px;
+  margin-bottom: 5px;
+  border-radius: 8px;
+  border: 1px solid #0a1221;
+  cursor: pointer;
+}
 
 .video_set_size{
   height: 290px;

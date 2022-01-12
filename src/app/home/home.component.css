@@ -772,7 +772,8 @@ a.premium_upgrade {
 }
 
 .autocomplete-container .suggestions-container ul li a {
-    padding: 5px 8px 20px 15px !important;
+    /* padding: 5px 8px 20px 15px !important; */
+    padding: 14px 15px;
 }
 
 .main_post_contents {
@@ -1511,7 +1512,8 @@ a.my_post_links:hover div>div {
 
 .allusers_set {
     padding-left: 15px;
-    margin-top: 10px;
+    /* margin-top: 10px; */
+    align-items: center;
     border-bottom: 1px solid #e5e5e5;
 }
 

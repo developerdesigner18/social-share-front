@@ -23,9 +23,9 @@
     </div>
   </div>
 
-  <div class="viewProfile show_View" style="justify-content: center;display: flex;height:100%" *ngIf="showView">
-    <div class="container" style="position: relative;">
-      <div class="vertical-center" style="position: inherit;top: 50%;transform: translateY(-50%);text-align: center;">
+  <div class="viewProfile show_View" *ngIf="showView">
+    <div class="container">
+      <div class="vertical-center" style="text-align: center;">
         <div class="display_people_data">
           Select people's names to start chatting with them.
         </div>
@@ -33,7 +33,7 @@
     </div>
   </div>
 </div>
-<div class="viewProfile" style="padding-top: 101px;" *ngIf="!showView">
+<div class="viewProfile" *ngIf="!showView">
   <button (click)="view_chat_list()" class="mobile_btn">
     <img src="/assets/images/back_btn.png" alt="Back-Track">
     <div class="back_btn">Go Back</div>

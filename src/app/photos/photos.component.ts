@@ -56,8 +56,9 @@ export class PhotosComponent implements OnInit {
       this.album_show = false
       this.authService.getAllPhotos(this.cookieService.get('friendId')).pipe(finalize(() => this.spinner.hide())).subscribe(res => {
         if (res['success']) {
+          console.log("res", res)
         for (let i = 0; i < res.data.length; i++){ 
-            if (res.data[i].image.split('.').pop() !== 'mp4' && 'mkv') { 
+            if ((res.data[i].image.split('.').pop() !== 'mp4' && 'mkv') && res.data[i].status === 0) { 
               this.urls.push(res.data[i])
             }
           }
@@ -66,9 +67,12 @@ export class PhotosComponent implements OnInit {
         }
       })
       this.authService.getAllAlbumsPhotos(localStorage.getItem('friendId')).pipe(finalize(() => this.spinner.hide())).subscribe(res => {
+        console.log("res", res)
         if (res['success']) {
-          for (let i = 0; i < res.data.length; i++){        
-            this.album_urls.push(res.data[i])
+          for (let i = 0; i < res.data.length; i++){     
+            if(res.data[i].status === 0){
+              this.album_urls.push(res.data[i])
+            }   
           }
         } else {
           this.album = res.message;

@@ -11,11 +11,11 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import Pusher from 'pusher-js';
-import { environment } from 'src/environments/environment';
+// import { environment } from 'src/environments/environment';
 import { SocketioService } from './socketio.service';
 import {io} from 'socket.io-client';
 import { PushNotificationsService } from 'ng-push-ivy';
-// import { environment } from 'src/environments/environment.prod';
+import { environment } from 'src/environments/environment.prod';
 declare var jQuery: any;
 declare var $: any;
 
@@ -40,6 +40,7 @@ export class AppComponent {
   lastPing?: Date = null;
   channel: any;
   socket
+  chat: boolean;
 
   public modalRef: BsModalRef;
   private pusherClient: Pusher;
@@ -48,12 +49,13 @@ export class AppComponent {
   current_user_id: any;
   usersOnline: any;
 
-  constructor( private titleService: Title, private authService: AuthService, private router: Router, private themeService: ThemeService, private bnIdle: BnNgIdleService, private connectionService: ConnectionService, private idle: Idle, private keepalive: Keepalive, private modalService: BsModalService, private socketService: SocketioService,private _pushNotifications: PushNotificationsService) {
+  constructor( private titleService: Title, public authService: AuthService, private router: Router, private themeService: ThemeService, private bnIdle: BnNgIdleService, private connectionService: ConnectionService, private idle: Idle, private keepalive: Keepalive, private modalService: BsModalService, private socketService: SocketioService,private _pushNotifications: PushNotificationsService) {
     if (this.authService.isLoggedIn()) {
       const current_login_User = JSON.parse(localStorage.getItem('currentUser'));
       this.current_user_id = current_login_User.data._id
       this.socket = io(environment.apiUrl);
       var status = 1
+      this.chat = true
       this.socket.emit('login', {userId: this.current_user_id, status: status})
       this.router.events.subscribe((routerData) => {
         if(routerData instanceof ResolveEnd){ 
@@ -144,6 +146,8 @@ export class AppComponent {
       // this.socket.emit('disconnect', {userId: this.current_user_id, status: status})
 
       this.reset();
+    } else {
+      this.chat = false
     }
 
   }

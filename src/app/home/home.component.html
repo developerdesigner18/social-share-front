@@ -290,7 +290,6 @@
                                         <span id="like_{{data._id}}"> </span>
                                     </div>
                                 </div>
-
                                 <button class="comment_sec_{{data._id}} comment_sec" (click)="open_comments(data._id)">
                                     <i class="far fa-comment-dots"></i>
                                     <div *ngIf="data.comment.length !== 0">Comment<span>{{data.comment.length !== 0 ?
@@ -435,9 +434,6 @@
                                         onerror="this.src='/assets/images/character.png';">
                                     <div>{{frddetail.name}}</div>
                                 </div>
-                            </div>
-                            <div *ngIf="notAnyFrd">
-                                {{notAnyFrd}}
                             </div>
                         </div>
                         <div class="online_sec offline_sec">

@@ -89,6 +89,13 @@
             class="create_post_photo_icon" />
         <h6 style="margin-bottom: 0px; ">Upload Photos/Videos</h6>
     </div>
+    <div class="status_post">
+        <select name="status" [(ngModel)]="status" required>
+            <option value="undefined" selected disabled>Select options</option>
+            <option value="0">Public</option>
+            <option value="1">Private</option>
+        </select>
+    </div>
     <div>
         <button type="button" class="btn btn-primary" style="width: 100%;background: #0a1221;border: 0;"
             (click)="postSave()">Post</button>

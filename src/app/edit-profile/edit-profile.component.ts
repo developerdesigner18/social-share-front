@@ -32,7 +32,8 @@ export class EditProfileComponent implements OnInit {
       country: [data.country],
       state: [data.state],
       city: [data.city],
-      hobbies: [data.hobbies]
+      hobbies: [data.hobbies],
+      intro: [data.intro]
     })
   }
 

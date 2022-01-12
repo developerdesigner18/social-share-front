@@ -42,6 +42,18 @@ ul.nav.nav-pills.flex-column li {
     cursor: pointer;
 }
 
+.view_all_notification{
+    text-align: center;
+    padding-top: 1em;
+}
+
+.view_all_notification a{
+    padding: 5px 10px;
+    color: #fff;
+    background: #ff8100;
+    border-radius: 4px;
+}
+
 .user_friend img {
     height: 50px;
     width: 50px;

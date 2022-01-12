@@ -50,7 +50,7 @@ html{
 	background: #FF9000;
   }
 body {
-    height: 100vh;
+    /* height: 100vh; */
     /* background-image: linear-gradient(180deg,rgba(27,31,37,0.3) 0%,#ffffffdb 100%),url(assets/images/background.png)!important; */
     background-image: url(assets/images/background_2.jpg)!important;
     background-size: cover;
@@ -103,6 +103,7 @@ header{
 	border-radius: 4px;
 	color: #ffffff;
 	font-size: 14px;
+	padding-left: 1em;
 }
 
 body .ng-image-fullscreen-view .lightbox-wrapper .lightbox-div .lightbox-image-main .lightbox-image .custom-image-main {
