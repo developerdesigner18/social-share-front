@@ -371,10 +371,10 @@ a.my_post_links:hover div > div {
 	.badges_for_fr:before {
 		right: 210px;
     }
-    .name_and_desc > div {
+    /* .name_and_desc > div {
         flex-direction: column;
         align-items: baseline !important;
-    }
+    } */
 
 	.left_sidebar { display: none; }
 

@@ -11,8 +11,8 @@
   <div class="work" *ngIf="fill_work">
     <input (keyup.enter)="save_add_work(event)" autocomplete="off" type="text" [(ngModel)]="event" name="" value=""
       placeholder="Add work place" required>
-    <button type="button" name="button" (click)="save_add_work(event)">Save</button>
     <button type="button" name="button" (click)="work_Cancel()">Cancel</button>
+    <button type="button" name="button" (click)="save_add_work(event)">Save</button>
   </div>
   <div class="u_mobile" *ngIf="u_fill_work">
     <input (keyup.enter)="editWork(event)" type="text" autocomplete="off" [(ngModel)]="event" name="" value=""
@@ -44,8 +44,8 @@
   <div class="work" *ngIf="fill_university">
     <input (keyup.enter)="save_add_university(university)" autocomplete="off" type="text" [(ngModel)]="university"
       name="" value="" placeholder="Add university" required>
-    <button type="button" name="button" (click)="save_add_university(university)">Save</button>
     <button type="button" name="button" (click)="Uni_Cancel()">Cancel</button>
+    <button type="button" name="button" (click)="save_add_university(university)">Save</button>
   </div>
   <div class="u_mobile" *ngIf="u_fill_university">
     <input (keyup.enter)="editUniversity(university)" autocomplete="off" type="text" [(ngModel)]="university" name=""
@@ -77,8 +77,8 @@
   <div class="work" *ngIf="fill_school">
     <input (keyup.enter)="save_add_school(school)" type="text" autocomplete="off" [(ngModel)]="school" name="" value=""
       placeholder="Add high school" required>
-    <button type="button" name="button" (click)="save_add_school(school)">Save</button>
     <button type="button" name="button" (click)="School_Cancel()">Cancel</button>
+    <button type="button" name="button" (click)="save_add_school(school)">Save</button>
   </div>
   <div class="u_mobile" *ngIf="u_fill_school">
     <input (keyup.enter)="editSchool(school)" type="text" autocomplete="off" [(ngModel)]="school" name="" value=""

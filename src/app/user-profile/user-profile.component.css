@@ -510,7 +510,7 @@ body .profile_pic_main_tabs_sec .actions {
 .friends_container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 10px;
+    grid-gap: 5px;
 }
 
 .photos_container_all {
@@ -1118,10 +1118,10 @@ button.owl-next span {
 }
 
 .owl-stage {
-    display: -webkit-box;
+    display: -webkit-flex;
     display: -moz-box;
-    display: -ms-box;
-    display: box;
+    display: -ms-flexbox;
+    display: flex;
 }
 
 .profile_edit i {
@@ -1966,6 +1966,7 @@ button.show_more_notifications {
 
 .a_friend div {
     text-transform: capitalize;
+    text-align: center;
 }
 
 .slider_image_2>div>div>div>.main-inner>div:nth-child(1) {
@@ -2224,8 +2225,8 @@ a.my_post_links>div {
 #button_top {
     display: inline-block;
     background-color: #0F1B31;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     text-align: center;
     border-radius: 4px;
     position: fixed;
@@ -2242,8 +2243,8 @@ a.my_post_links>div {
     font-family: FontAwesome;
     font-weight: normal;
     font-style: normal;
-    font-size: 2em;
-    line-height: 50px;
+    font-size: 1.2em;
+    line-height: 40px;
     color: #fff;
 }
 

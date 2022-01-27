@@ -83,6 +83,7 @@ import { PushNotificationsModule } from 'ng-push-ivy'
 import {NgxImageCompressService} from 'ngx-image-compress'; 
 //ngx-spinner
 import { NgxSpinnerModule } from "ngx-spinner";
+import { UpdateModalComponent } from './update-modal/update-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -124,6 +125,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
     InformationComponent,
     NguiInComponent,
     ChatingComponent,
+    UpdateModalComponent,
     // TimeAgoPipe
   ],
   entryComponents: [DialogBodyComponent],

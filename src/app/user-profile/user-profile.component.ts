@@ -163,7 +163,6 @@ $(window).scroll(function() {
     this.user_country = (this.countryElement !== undefined) ? this.countryElement.nativeElement.textContent : this.user_country;
     this.user_hobbies = (this.hobbiesElement !== undefined) ? this.hobbiesElement.nativeElement.textContent : this.user_hobbies;
     this.user_intro = (this.introElement !== undefined) ? this.introElement.nativeElement.textContent : this.introElement;
-    console.log("this.user_intro", this.user_intro)
     this.authService.openDialog(this.user_post, this.user_city, this.user_state, this.user_country, this.user_hobbies, this.user_intro)
   }
 

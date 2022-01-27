@@ -56,6 +56,17 @@ a.my_post_links {
 .header {
     margin: 15px;
 }
+.input_section{
+	display: flex;
+}
+.input_section div{
+	margin-left: 20px;
+}
+.input_section input {
+    margin-left: 20px;
+	padding: 0 10px;
+    border: 2px solid #ff9000;
+}
 .header p {
     margin: 0;
     border-bottom: 1px solid;

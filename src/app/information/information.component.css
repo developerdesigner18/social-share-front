@@ -16,6 +16,8 @@
 }
 .input_section input {
     margin-left: 20px;
+	padding: 0 10px;
+    border: 2px solid #ff9000;
 }
 .write_words input::placeholder {
     color: #616161 !important;

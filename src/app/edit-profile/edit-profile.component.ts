@@ -73,6 +73,6 @@ export class EditProfileComponent implements OnInit {
     setTimeout(() => {
      this.dialogRef.close();
      window.location.replace('profile/' + window.location.href.split('/')[4]);
-   }, 2000);
+   }, 1000);
   }
 }

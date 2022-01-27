@@ -208,11 +208,11 @@ $(window).scroll(function() {
       }
     })
 
-    this.authService.getFriends(id).subscribe(res => {
-      if(res['success']){
-        this.count_frd = res.userInfo.length
-      }
-    })
+    // this.authService.getFriends(id).subscribe(res => {
+    //   if(res['success']){
+    //     this.count_frd = res.userInfo.length
+    //   }
+    // })
 
     this.authService.getSuggestUser(id).subscribe(res => {
       this.countSuggest = res['data'].length
@@ -236,8 +236,9 @@ $(window).scroll(function() {
     this.toggle = this.toggle
       this.authService.getFriends(id).subscribe(res => {
         this.frdDetails = []
-        this.friends = res.userInfo
         if(res.success){
+          this.friends = res.userInfo
+          this.count_frd = res.userInfo.length
           for(let i = 0; i < res.userInfo.length; i++){
             this.frdDetails.push(res.userInfo[i])
           }
@@ -312,7 +313,7 @@ $(window).scroll(function() {
   images = [];
   files_data: any = [];
   openDialog(event: any): void{
-
+    console.log("event", event)
     //Multipul Image upload
     if (event.target.files && event.target.files[0]) {
       var filesAmount = event.target.files.length;
@@ -326,10 +327,11 @@ $(window).scroll(function() {
         this.files_data.push(event.target.files[i]);
       }
     }
+    console.log("check data", this.images, this.files_data)
     const dialogRef = this.dialog.open(PostModalComponent, {
       width: '550px',
       panelClass: 'custom-dialog-container',
-      data: { id: this.id, images: this.images, file: this.files_data  }
+      data: { id: this.id, images: this.images, file: this.files_data, event: event }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -358,7 +360,7 @@ $(window).scroll(function() {
   data: any = []
   divHide: any = [];
 
-  likeIt(postId: string, likeCount: number) {
+  likeIt(postId: string) {
     this.authService.sendLikePost(postId).subscribe(res => {
       if(res['success'])
       {
@@ -395,11 +397,6 @@ $(window).scroll(function() {
             }
           }
       }
-    })
-  }
-
-  DoNotlikeIt(postId, likeCount){
-    this.authService.sendLikePost(postId).subscribe(res => {
     })
   }
 

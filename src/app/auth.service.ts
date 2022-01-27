@@ -236,6 +236,46 @@ export class AuthService {
     )
   }
 
+  updatePost(u_token, msg, imgUrl, status, exist, post_id): Observable<any> {
+    const formData: any = new FormData();
+    formData.append('description', msg);
+    formData.append('status', status);
+    formData.append('exist', exist);
+    formData.append('post_id', post_id);
+    for (let i = 0; i < imgUrl.length; i++) {
+      formData.append('Url', imgUrl[i]);
+    }
+
+    return this.httpClient.post(`${environment.apiUrl}/api/photos/updatePosts`, formData, { headers: { token: u_token } }).pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  updateWithoutPost(u_token, msg, status, exist, post_id): Observable<any> {
+    const formData: any = new FormData();
+    formData.append('description', msg);
+    formData.append('status', status);
+    formData.append('exist', exist);
+    formData.append('post_id', post_id);
+
+    return this.httpClient.post(`${environment.apiUrl}/api/photos/updatePosts`, formData, { headers: { token: u_token } }).pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  updatetextPost(u_token, msg, status, post_id): Observable<any> {
+    const formData: any = new FormData();
+    formData.append('description', msg);
+    formData.append('status', status);
+    formData.append('post_id', post_id);
+    return this.httpClient.post(`${environment.apiUrl}/api/photos/updatePosts`, formData, { headers: { token: u_token } }).pipe(
+      map((res: Response) => {
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
   getProfilePost(id): Observable<any> {
     // this.headers.append('token', u_token)
     return this.httpClient.get(`${environment.apiUrl}/api/photos/show?id=${id}`, { headers: this.headers }).pipe(

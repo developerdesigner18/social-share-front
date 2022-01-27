@@ -8,6 +8,7 @@ import { NgImageSliderComponent } from 'ng-image-slider';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from "ngx-spinner";
 import { finalize } from 'rxjs/operators';
+import { UpdateModalComponent } from '../update-modal/update-modal.component';
 declare var jQuery: any;
 declare var $: any;
 
@@ -145,6 +146,7 @@ export class TimelineComponent implements OnInit, AfterViewInit {
             $('.comments_container').css('overflow-y', 'scroll');
           }
         }
+        console.log("check datas", this.datas)
         return this.datas
       }else{
         this.notfound = res.code
@@ -283,13 +285,26 @@ export class TimelineComponent implements OnInit, AfterViewInit {
     const dialogRef = this.dialog.open(PostModalComponent, {
       width: '550px',
       panelClass: 'custom-dialog-container',
-      data: { id: this.id, images: this.images, file: this.files_data  }
+      data: { id: this.id, images: this.images, file: this.files_data, event: event }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       this.images = [];
       this.files_data = [];
     });
+  }
+
+  editPost(data): void{
+    const dialogRef2 = this.dialog.open(UpdateModalComponent, {
+      width: '550px',
+      panelClass: 'custom-dialog-container',
+      data: { id: this.id, post_id: data._id, desc: data.description, img: data.imageUrl, status: data.status }
+    })
+
+    dialogRef2.afterClosed().subscribe(result => {
+      
+    });
+
   }
 
   temCmnt = [];

@@ -24,7 +24,7 @@
       </div>
       <div class="name_and_desc" style="width: 100%">
         <div class="d-flex justify-content-between align-items-center">
-          <a href="profile/{{ data.userId }}">
+          <a>
             <div class="profile_name_of_poster">{{ u_name }}</div>
           </a>
           <div *ngIf="url_id !== id" class="province d-flex align-items-center">
@@ -37,7 +37,7 @@
           <div *ngIf="url_id === id" class="more_options dropdown-container" tabindex="-1">
             <div><i class="fas fa-ellipsis-v"></i></div>
             <div class="dropdown">
-              <div><a *ngIf="false">Edit</a></div>
+              <div *ngIf="data.name === undefined" (click)="editPost(data)"><a>Edit</a></div>
               <div (click)="DeletePost(data._id)"><a>Delete</a></div>
             </div>
           </div>
@@ -45,14 +45,16 @@
         <div style="color: #0f1b31; font-size: 14px" *ngIf="data.name !== undefined">
           <span style="font-weight: bold;font-size: 16px;"> Album: </span>{{ data.name }}
         </div>
-        <div id="sview_{{ data._id }}" class="item_desc mt-2" style="width: 100%; word-wrap: break-word">
+        <div id="sview_{{ data._id }}" class="item_desc mt-2"
+          style="width: 100%; word-wrap: break-word; white-space: pre-line;">
           {{
           data.description.length > 60
           ? (data.description | slice: 0:60) + "..."
           : data.description
           }}
         </div>
-        <div id="view_{{ data._id }}" class="item_desc mt-2 desc_contain" style="word-wrap: break-word; display: none">
+        <div id="view_{{ data._id }}" class="item_desc mt-2 desc_contain"
+          style="word-wrap: break-word; display: none; white-space: pre-line;">
           {{ data.description }}
         </div>
         <a class="view_more_{{ data._id }}" id="view_more_{{ data._id }}" style="

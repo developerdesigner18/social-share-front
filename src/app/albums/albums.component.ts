@@ -145,7 +145,7 @@ export class AlbumsComponent implements OnInit {
           } else {
             this.spinner.show()
             reader.onload = (_event) => {
-              this.authService.newAlbumPost(this.token, this.postNameElement.nativeElement.value, this.postMesssgeElement.nativeElement.value, this.fileCovToReturn, this.status).pipe(finalize(() => this.spinner.hide())).subscribe((res) => {
+              this.authService.newAlbumPost(this.token, this.postNameElement.nativeElement.value, this.postMesssgeElement.nativeElement.value, this.fileCovToReturn, this.status ? this.status : 0).pipe(finalize(() => this.spinner.hide())).subscribe((res) => {
                 var data = 'profile/' + window.location.href.split('/')[4]
                 if (res.success == true) {
                   window.location.replace('profile/' + window.location.href.split('/')[4] + '/photos');

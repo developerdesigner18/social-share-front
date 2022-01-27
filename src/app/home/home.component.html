@@ -21,9 +21,6 @@
                     <div class="my_friends_numbers">{{user_post <= 100 ? user_post : '100+' }}</div>
                     </div>
                 </div>
-                <div>
-                    <!-- <app-themes></app-themes> -->
-                </div>
                 <a class="my_post_links" href="profile/{{id}}">
                     <div class="left_content">
                         <i class="fas fa-user"></i>
@@ -203,11 +200,12 @@
                                         {{data.type}} Post</span>
                                 </div>
                                 <div id="sview_{{data._id}}" class="item_desc mt-2"
-                                    style="width: 100%;word-wrap: break-word;">
+                                    style="width: 100%;word-wrap: break-word;white-space: pre-line;">
                                     {{data.description.length > 60 ? (data.description | slice:0:60) + '...' :
                                     data.description}}</div>
                                 <div id="view_{{data._id}}" class="item_desc mt-2 desc_contain"
-                                    style="word-wrap: break-word;display: none;">{{data.description}}</div>
+                                    style="word-wrap: break-word;display: none;white-space: pre-line;">
+                                    {{data.description}}</div>
                                 <a class="view_more_{{data._id}}" id="view_more_{{data._id}}"
                                     style="color: #ff9000;cursor: pointer;text-decoration: underline;font-size: 14px;"
                                     *ngIf="data.description.length > 60" (click)="view_more(data._id)">View More</a>
@@ -268,7 +266,7 @@
                             </div>
                             <div
                                 [ngClass]="current_user['data']._id !== data.userId ? 'take_action' : 'no_share_action'">
-                                <button class="showLikes" (click)="likeIt(data._id, data.like.length);">
+                                <button class="showLikes" (click)="likeIt(data._id);">
                                     <i class="fa" id="{{data._id}}"
                                         [ngClass]="postlikeId.includes(data._id)  ? 'fa-thumbs-up' : 'fa-thumbs-o-up'"></i>
                                     <div *ngIf="data.like.length !== 0">Like<span>{{data.like.length !== 0 ? (data._id
