@@ -6,7 +6,7 @@
     <div class="ads d-flex align-items-center justify-content-center">advertisements here</div>
     <div class="login_container d-flex justify-content-end align-items-center">
       <div class="icon_initiallize mr-3" style="background: none;">
-        <div class="notification" style="background: none; cursor: pointer;">
+        <div class="notification" style="background: none; cursor: pointer;" (clickOutside)="onClickedOutside($event)">
           <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
             aria-controls="collapseExample">
             <img src="assets/images/bell-ring.png" alt="Slidicon" width="30px">

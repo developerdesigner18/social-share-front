@@ -81,6 +81,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 //ng-push-notification
 import { PushNotificationsModule } from 'ng-push-ivy'
 import {NgxImageCompressService} from 'ngx-image-compress'; 
+import { ClickOutsideModule } from 'ng-click-outside';
+// import { ClickOutsideModule } from 'ng2-click-outside';
 //ngx-spinner
 import { NgxSpinnerModule } from "ngx-spinner";
 import { UpdateModalComponent } from './update-modal/update-modal.component';
@@ -161,7 +163,8 @@ import { UpdateModalComponent } from './update-modal/update-modal.component';
     MomentModule,
     ModalModule.forRoot(),
     PushNotificationsModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    ClickOutsideModule
   ],
   
   providers: [

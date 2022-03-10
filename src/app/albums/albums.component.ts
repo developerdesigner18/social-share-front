@@ -113,7 +113,7 @@ export class AlbumsComponent implements OnInit {
       }
       this.shows = false
       $(".set_view_more").css('display', 'none');
-      this.toastr.info("All images are removed. Please select new ones")
+      this.toastr.info("All media are removed. Please select new ones")
     }
   
     postSave(){

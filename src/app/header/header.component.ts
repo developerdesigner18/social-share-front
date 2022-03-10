@@ -16,8 +16,6 @@ export class HeaderComponent implements OnInit {
         event.url.split('/')[1] == 'chating' ? this.chat = true : this.chat = false
       }
     })
-
-    
   }
 
   ngOnInit(): void {
@@ -49,4 +47,10 @@ export class HeaderComponent implements OnInit {
     this.chat = !this.chat
   }
 
+  onClickedOutside(event: any){
+    console.log('event outside', event);
+    // $('#collapseExample').collapse({
+    //   toggle: false
+    // })
+  }
 }

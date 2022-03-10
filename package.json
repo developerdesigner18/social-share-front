@@ -47,6 +47,7 @@
     "jwt-decode": "^2.2.0",
     "lighthouse": "^7.3.0",
     "mdbootstrap": "^4.19.2",
+    "ng-click-outside": "^8.0.0",
     "ng-connection-service": "^1.0.4",
     "ng-image-slider": "^2.6.4",
     "ng-lazyload-image": "^9.1.0",

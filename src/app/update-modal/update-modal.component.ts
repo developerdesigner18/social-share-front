@@ -96,7 +96,7 @@ export class UpdateModalComponent implements OnInit {
       this.arrayfile.pop();
     }
     $(".set_view_more").css('display', 'none');
-    this.toastr.info("All images are removed. Please select new ones")
+    this.toastr.info("All media are removed. Please select new ones")
   }
 
   openNewDialog(event: any): void {

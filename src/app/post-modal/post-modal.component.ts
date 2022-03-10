@@ -117,7 +117,7 @@ export class PostModalComponent implements OnInit {
     }
     $(".set_view_more").css('display', 'none');
     this.shows = false
-    this.toastr.info("All images are removed. Please select new ones")
+    this.toastr.info("All media are removed. Please select new ones")
   }
 
   postSave(){
