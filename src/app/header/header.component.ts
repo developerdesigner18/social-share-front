@@ -48,9 +48,10 @@ export class HeaderComponent implements OnInit {
   }
 
   onClickedOutside(event: any){
-    console.log('event outside', event);
-    // $('#collapseExample').collapse({
-    //   toggle: false
-    // })
+    ($("#collapseExample") as any).collapse({
+      toggle: false
+    })
+    console.log('clicked');
+    
   }
 }

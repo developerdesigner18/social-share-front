@@ -110,8 +110,12 @@ body .ng-image-fullscreen-view .lightbox-wrapper .lightbox-div .lightbox-image-m
     background-color: #0F1B31;
 }
 body .ng-image-fullscreen-view .lightbox-wrapper .close {
-    background-image: url(../src/assets/images/close.png);
-	background-color: #0f1b31;
+    /* background-image: url(../src/assets/images/close.png);
+	background-color: #0f1b31; */
+	opacity: 0.20;
+}
+body .ng-image-fullscreen-view .lightbox-wrapper .close:not(:disabled):not(.disabled):hover {
+    opacity: 0.80;
 }
 body .ng-image-fullscreen-view .lightbox-wrapper .lightbox-div .next.disable, .ng-image-fullscreen-view .lightbox-wrapper .lightbox-div .prev.disable{
 	display: none;
