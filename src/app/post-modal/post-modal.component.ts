@@ -5,7 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from "ngx-spinner";
 import { finalize } from 'rxjs/operators';
-import {NgxImageCompressService} from 'ngx-image-compress';
+import { NgxImageCompressService } from 'ngx-image-compress';
+import { NgxMasonryOptions } from 'ngx-masonry';
 declare var jQuery: any;
 declare var $: any;
 
@@ -44,7 +45,7 @@ export class PostModalComponent implements OnInit {
   @ViewChild('postMsg') postMesssgeElement: any;
   @ViewChildren('postImage') postImageElement: QueryList<ElementRef>;
   textOnlylength: number;
-  frienId: any;
+  friendId: any;
 
   constructor(
     private dialogRef:  MatDialogRef<PostModalComponent>,
@@ -98,6 +99,13 @@ export class PostModalComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  
+  public gridOptions: NgxMasonryOptions = {
+    gutter: 20,
+    resize: !20,
+    initLayout: !0,
+    fitWidth: !0,  
+  };
 
   public Close() {
     this.dialogRef.close();
@@ -122,7 +130,7 @@ export class PostModalComponent implements OnInit {
 
   postSave(){
     this.token = localStorage.getItem('token')
-    this.frienId = localStorage.getItem('friendId')
+    this.friendId = localStorage.getItem('friendId')
     if (this.postImageElement.length !== 0) {        
       if(this.fileData[0] !== undefined)
       {
@@ -192,28 +200,28 @@ export class PostModalComponent implements OnInit {
         this.textOnlylength = i
       }
     }
-    // this.shows = true
+    this.shows = true
     if(this.images.length === 1 || this.textOnlylength === 1)
     {
-      this.shows = true
+      // this.shows = true
       this.twoimg = true
       this.threeimg = false
       this.fourimg = false
       this.fiveimg = false
     } else if (this.images.length === 2 || this.textOnlylength === 2) {
-      this.shows = true
+      // this.shows = true
       this.threeimg = true
       this.twoimg = false
       this.fourimg = false
       this.fiveimg = false
     } else if (this.images.length === 3 || this.textOnlylength === 3) {
-      this.shows = true
+      // this.shows = true
       this.fourimg = true
       this.threeimg = false
       this.twoimg = false
       this.fiveimg = false
     } else if (this.images.length >= 4 || this.textOnlylength >= 4) {
-      this.shows = true
+      // this.shows = true
       this.fourimg = false
       this.threeimg = false
       this.twoimg = false

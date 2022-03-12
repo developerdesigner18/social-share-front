@@ -54,6 +54,7 @@ export class HomeComponent implements OnInit {
   showbasicProfile3 = [];
   showLikes = [];
   share_display: boolean = false;
+  show_more: boolean = false;
 
   checkPostsId: any;
   commentsForm: FormGroup;
@@ -344,9 +345,17 @@ $(window).scroll(function() {
   checkTem = false
   
   view_more(postId) {
+    this.show_more = true;
     $(`#view_more_${postId}`).css('display', 'none');
     $(`#view_${postId}`).css('display', 'block');
     $(`#sview_${postId}`).css('display', 'none');
+  }
+
+  view_less(postId) {
+    this.show_more = false;
+    $(`#view_more_${postId}`).css('display', 'block');
+    $(`#view_${postId}`).css('display', 'none');
+    $(`#sview_${postId}`).css('display', 'block');
   }
 
   view_more_comment(value){

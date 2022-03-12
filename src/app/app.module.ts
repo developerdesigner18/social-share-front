@@ -86,6 +86,8 @@ import { ClickOutsideModule } from 'ng-click-outside';
 //ngx-spinner
 import { NgxSpinnerModule } from "ngx-spinner";
 import { UpdateModalComponent } from './update-modal/update-modal.component';
+//post-image grid package
+import { NgxMasonryModule } from 'ngx-masonry';
 @NgModule({
   declarations: [
     AppComponent,
@@ -164,7 +166,8 @@ import { UpdateModalComponent } from './update-modal/update-modal.component';
     ModalModule.forRoot(),
     PushNotificationsModule,
     NgxSpinnerModule,
-    ClickOutsideModule
+    ClickOutsideModule,
+    NgxMasonryModule
   ],
   
   providers: [
