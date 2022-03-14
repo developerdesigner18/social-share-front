@@ -81,7 +81,7 @@
                 <div class="main_area_contents timeline" *ngFor="let data of datas | slice:0:totalDisplay;let i = index"
                     id="posts_img">
                     <div *ngIf="ready" class="main_post_contents d-flex flex-column"
-                        id="{{ data.imageUrl.length > 0 ? data.imageUrl[0].image.split('/').pop() : ''}}">
+                        id="main_post_contents_{{data._id}}">
                         <div class="d-flex show_basic_info" style="width: 100%"
                             (mouseleave)="showbasicProfile2[i]=false">
                             <div class="profile_pic_profile position-relative-img">
@@ -136,9 +136,12 @@
                                         <div class="profile_name_of_poster">{{data.post_user}}</div>
                                     </a>
                                     <div class="province d-flex align-items-center">
-                                        <img src="assets/images/add_ob.png">
-                                        <div>{{data.city ? data.city : 'City'}}, {{data.state ? data.state :
-                                            'Province'}}</div>
+                                        <a class="location_btn" style="display: flex; flex-direction: row; align-items: center;" href="https://www.google.com/maps/search/?api=1&query={{data.city ? data.city : 'New York'}}%2C%20{{data.state ? data.state :
+                                            'United States of America'}}" target="_blank">
+                                            <img src="assets/images/add_ob.png">
+                                            <div>{{data.city ? data.city : 'City'}}, {{data.state ? data.state :
+                                                'Province'}}</div>
+                                        </a>
                                     </div>
                                     <div class="basic_info" *ngIf="showbasicProfile2[i]"
                                         (mouseleave)="showbasicProfile2[i]=false">
@@ -152,10 +155,10 @@
                                                     </div>
                                                 </a>
                                                 <div class="profile_basic_info"><i class="fas fa-user-tie"
-                                                        style="margin-right: 10px"></i>{{data.post_user_designation ?
+                                                        style="margin-right: 10px; color: #0F1B31;"></i>{{data.post_user_designation ?
                                                     data.post_user_designation : 'designation'}}</div>
                                                 <div class="profile_basic_info"><i class="fas fa-envelope"
-                                                        style="margin-right: 10px"></i>{{data.post_user_email ?
+                                                        style="margin-right: 10px; color: #0F1B31;"></i>{{data.post_user_email ?
                                                     data.post_user_email : 'Email'}}</div>
                                             </div>
                                         </div>
@@ -208,10 +211,10 @@
                                     {{data.description}}</div>
                                 <a class="view_more_{{data._id}}" id="view_more_{{data._id}}"
                                     style="color: #ff9000;cursor: pointer;text-decoration: underline;font-size: 14px;"
-                                    *ngIf="data.description.length > 60" (click)="view_more(data._id)">View More</a>
+                                    *ngIf="data.description.length > 60 && !show_more" (click)="view_more(data._id)">View More</a>
                                 <a class="view_less_{{data._id}}" id="view_less_{{data._id}}"
                                     style="color: #ff9000;cursor: pointer;text-decoration: underline;font-size: 14px;"
-                                    *ngIf="show_more" (click)="view_less(data._id)">View Less</a>
+                                    *ngIf="data.description.length > 60 && show_more" (click)="view_less(data._id)">View Less</a>
                             </div>
                         </div>
 
@@ -277,6 +280,11 @@
                                             tempLikePostId) ? data.like.length + temCntLike : (data.like.length +
                                             temCntLike ===
                                             0) ? '' : data.like.length : ''}}</span></div>
+                                    <!-- <div *ngIf="data.like.length === 0">Like<span>{{data.like.length === 0 ? (data._id
+                                            ===
+                                            tempLikePostId) ? data.like.length + temCntLike : (data.like.length +
+                                            temCntLike ===
+                                            0) ? '' : data.like.length}}</span></div> -->
                                     <!-- <div>Like<span>{{ (data._id === tempLikePostId ) ? data.like.length + temCntLike :
                                     (data.like.length + temCntLike === 0) ? '' : data.like.length }}</span></div> -->
                                 </button>

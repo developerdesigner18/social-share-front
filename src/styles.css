@@ -30,24 +30,24 @@ html{
 }
 /* width */
 ::-webkit-scrollbar {
-	width: 4px;
+	width: 5px;
   }
   
   /* Track */
   ::-webkit-scrollbar-track {
-    border-radius: 4px;
+    border-radius: 5px;
     background: #ffffff40;
 }
   
   /* Handle */
   ::-webkit-scrollbar-thumb {
+	border-radius: 5px;
     background: #ff9000;
-    border-radius: 4px;
 }
   
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
-	background: #FF9000;
+	background: #0F1B31;
   }
 body {
     /* height: 100vh; */

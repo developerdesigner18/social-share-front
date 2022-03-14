@@ -346,16 +346,22 @@ $(window).scroll(function() {
   
   view_more(postId) {
     this.show_more = true;
-    $(`#view_more_${postId}`).css('display', 'none');
+    // $(`#view_more_${postId}`).css('display', 'none');
+    // $(`#view_less_${postId}`).css('display', 'block');
     $(`#view_${postId}`).css('display', 'block');
     $(`#sview_${postId}`).css('display', 'none');
+    document.getElementById(`main_post_contents_${postId}`).scrollIntoView({
+      behavior: 'smooth'
+    });
   }
 
   view_less(postId) {
     this.show_more = false;
-    $(`#view_more_${postId}`).css('display', 'block');
+    // $(`#view_more_${postId}`).css('display', 'block');
+    // $(`#view_less_${postId}`).css('display', 'block');
     $(`#view_${postId}`).css('display', 'none');
     $(`#sview_${postId}`).css('display', 'block');
+    document.getElementById(`main_post_contents_${postId}`).scrollIntoView();
   }
 
   view_more_comment(value){
