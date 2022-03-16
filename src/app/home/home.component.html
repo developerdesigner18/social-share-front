@@ -203,12 +203,14 @@
                                         {{data.type}} Post</span>
                                 </div>
                                 <div id="sview_{{data._id}}" class="item_desc mt-2"
-                                    style="width: 100%;word-wrap: break-word;white-space: pre-line;">
-                                    {{data.description.length > 60 ? (data.description | slice:0:60) + '...' :
-                                    data.description}}</div>
+                                    style="width: 100%;word-wrap: break-word;white-space: pre-line;" [innerHtml]="data.description">
+                                    <!-- {{data.description.length > 60 ? (data.description | slice:0:60) + '...' :
+                                    data.description}} -->
+                                </div>
                                 <div id="view_{{data._id}}" class="item_desc mt-2 desc_contain"
-                                    style="word-wrap: break-word;display: none;white-space: pre-line;">
-                                    {{data.description}}</div>
+                                    style="word-wrap: break-word;display: none;white-space: pre-line;" [innerHtml]="data.description">
+                                    <!-- {{data.description}} -->
+                                </div>
                                 <a class="view_more_{{data._id}}" id="view_more_{{data._id}}"
                                     style="color: #ff9000;cursor: pointer;text-decoration: underline;font-size: 14px;"
                                     *ngIf="data.description.length > 60 && !show_more" (click)="view_more(data._id)">View More</a>

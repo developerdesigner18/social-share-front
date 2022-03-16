@@ -11,11 +11,11 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import Pusher from 'pusher-js';
-// import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment';
 import { SocketioService } from './socketio.service';
 import {io} from 'socket.io-client';
 import { PushNotificationsService } from 'ng-push-ivy';
-import { environment } from 'src/environments/environment.prod';
+// import { environment } from 'src/environments/environment.prod';
 declare var jQuery: any;
 declare var $: any;
 

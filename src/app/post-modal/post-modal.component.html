@@ -17,11 +17,10 @@
                 style="width: 100%; height: 100%; border: none; padding: 8px; min-height: 70px; max-height: 70px;"
                 required></textarea>
         </div>
-        <ngx-masonry [options]="gridOptions" [ordered]="true">
-            <!-- <span *ngFor="let image of temp_images; let i = index;"> -->
+        <!-- Comment in future use -->
+        <!-- <ngx-masonry [options]="gridOptions" [ordered]="true">
                 <img *ngFor="let image of temp_images;" [src]="image.src"/>
-            <!-- </span> -->
-        </ngx-masonry>
+        </ngx-masonry> -->
 
         <div class="text-center col-md-12 load_new_image" style="margin-top: 10px;" id="load_new_image_id">
             <ng-container *ngIf="!twoimg && !threeimg && !fourimg && !fiveimg">

@@ -130,6 +130,7 @@ export class TimelineComponent implements OnInit, AfterViewInit {
           this.description = this.datas[i].description;
           this.urls.push(this.datas[i].imageUrl)
           this.likes = this.datas[i].like
+          
           for (let j = 0; j < this.datas[i].comment.length; j++){
             this.authService.getHomePostProfile(this.datas[i].comment[j].userId).subscribe(res => {
               this.datas[i].post_profileImg = res.data.profileImgURl
@@ -145,8 +146,10 @@ export class TimelineComponent implements OnInit, AfterViewInit {
             $('.comments_container').css('height', '40vh');
             $('.comments_container').css('overflow-y', 'scroll');
           }
+          let element = document.getElementById(`sview_${this.datas[i]._id}`)
+          // console.log('element', element)
+          // element.innerHTML = `${this.description}`
         }
-        console.log("check datas", this.datas)
         return this.datas
       }else{
         this.notfound = res.code
@@ -294,11 +297,12 @@ export class TimelineComponent implements OnInit, AfterViewInit {
     });
   }
 
-  editPost(data): void{
+ async editPost(data): Promise<void>{
+   let message = await linkify(data.description)
     const dialogRef2 = this.dialog.open(UpdateModalComponent, {
       width: '550px',
       panelClass: 'custom-dialog-container',
-      data: { id: this.id, post_id: data._id, desc: data.description, img: data.imageUrl, status: data.status }
+      data: { id: this.id, post_id: data._id, desc: message, img: data.imageUrl, status: data.status }
     })
 
     dialogRef2.afterClosed().subscribe(result => {
@@ -387,4 +391,19 @@ export class TimelineComponent implements OnInit, AfterViewInit {
     this.router.navigate([`profile/${this.id}`])
   }
 
+
 }
+
+// URL Detector
+function linkify(inputText) {
+  var replacedText, replacePattern1, replacePattern2, replacePattern3;
+
+  //URLs starting with "www." (without // before it, or it'd re-link the ones done above).
+  // replacePattern2 = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
+  replacedText = inputText.replace(/<a.*?>/i, '');
+  replacedText = replacedText.replace(/<\/a>/i, '');
+  console.log('replacePattern',  replacedText)
+
+  return replacedText;
+}
+

@@ -30,26 +30,31 @@
   <div class="peopleknow_label">
     <h6 class="people_title">People you may know</h6>
   </div>
-  <div class="row" style="padding: 10px;" *ngFor="let data of datas;let i = index">
-    <div class="col-md-12 remove_people remove_people_{{data._id}}" (click)="openProfile(data._id);">
-      <img width="60" height="60" [src]="data.profileImgURl" onerror="this.src='/assets/images/character.png';"
-        style="border-radius: 50%;" />
-      <div class="request_shows">
-        <label>{{data.name}}</label>
-        <div class="remove_people_{{data._id}}">
-          <button type="button" *ngIf="friend_id.includes(data._id) != true"
-            class="btn btn-primary add_friend_btn add_friend_{{data._id}}" [hidden]="hideme[i]"
-            (click)="sendRequest(data._id);hideme[i] = !hideme[i];">Add Friend</button>
-          <button type="button" class="btn btn-secondary show_add_friend show_add_friend_{{data._id}}"
-            *ngIf="hideme[i] || friend_id.includes(data._id)"
-            (click)="remove_send_request(data._id);hideme[i] = hideme[i];">Cancel Request</button>
-          <button type="button" class="btn btn-secondary remove_friend_btn remove_friend_{{data._id}}"
-            [hidden]="hideme[i]" *ngIf="friend_id.includes(data._id) != true"
-            (click)="remove_people(data._id)">Remove</button>
+  <div *ngIf="datas.length > 0; else elseData">
+    <div class="row" style="padding: 10px;" *ngFor="let data of datas;let i = index">
+      <div class="col-md-12 remove_people remove_people_{{data._id}}">
+        <img width="60" height="60" [src]="data.profileImgURl" onerror="this.src='/assets/images/character.png';"
+          style="border-radius: 50%;" (click)="openProfile(data._id);"/>
+        <div class="request_shows">
+          <label (click)="openProfile(data._id);">{{data.name}}</label>
+          <div class="remove_people_{{data._id}}">
+            <button type="button" *ngIf="friend_id.includes(data._id) != true"
+              class="btn btn-primary add_friend_btn add_friend_{{data._id}}" [hidden]="hideme[i]"
+              (click)="sendRequest(data._id);hideme[i] = !hideme[i];">Add Friend</button>
+            <button type="button" class="btn btn-secondary show_add_friend show_add_friend_{{data._id}}"
+              *ngIf="hideme[i] || friend_id.includes(data._id)"
+              (click)="remove_send_request(data._id);hideme[i] = hideme[i];">Cancel Request</button>
+            <button type="button" class="btn btn-secondary remove_friend_btn remove_friend_{{data._id}}"
+              [hidden]="hideme[i]" *ngIf="friend_id.includes(data._id) != true"
+              (click)="remove_people(data._id)">Remove</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
+  <ng-template #elseData>
+    <div><h5 style="color: #fff; text-align: center;"> Oops No Data Found </h5></div>
+  </ng-template>
 </div>
 
 <div class="viewProfile show_View" style="justify-content: center;display: flex;height:100%" *ngIf="showView != true">

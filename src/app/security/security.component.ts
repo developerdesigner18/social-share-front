@@ -24,7 +24,9 @@ export class SecurityComponent implements OnInit {
     this.id = this.activatedRoute.parent.params['value']['id'];
     this.token = localStorage.getItem('token')
     this.authService.getAllData(this.id).subscribe(res => {
-      this.data = res.userData[0]
+      if(res.success){
+        this.data = res.userData[0]
+      }
     });
 
     this.authService.getUserProfile(this.id).subscribe(res => { 

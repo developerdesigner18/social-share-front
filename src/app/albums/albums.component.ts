@@ -144,8 +144,9 @@ export class AlbumsComponent implements OnInit {
             this.toastr.info('Please Fill the Album Name');
           } else {
             this.spinner.show()
-            reader.onload = (_event) => {
-              this.authService.newAlbumPost(this.token, this.postNameElement.nativeElement.value, this.postMesssgeElement.nativeElement.value, this.fileCovToReturn, this.status ? this.status : 0).pipe(finalize(() => this.spinner.hide())).subscribe((res) => {
+            reader.onload = async(_event) => {
+              let message = await linkify(this.postNameElement.nativeElement.value)
+              this.authService.newAlbumPost(this.token, message, this.postMesssgeElement.nativeElement.value, this.fileCovToReturn, this.status ? this.status : 0).pipe(finalize(() => this.spinner.hide())).subscribe((res) => {
                 var data = 'profile/' + window.location.href.split('/')[4]
                 if (res.success == true) {
                   window.location.replace('profile/' + window.location.href.split('/')[4] + '/photos');
@@ -161,7 +162,8 @@ export class AlbumsComponent implements OnInit {
         this.toastr.info("Please select one or more images to add in album.")
         if(this.postMesssgeElement.nativeElement.value == ''){
         }else if(this.postMesssgeElement.nativeElement.value.valid !== ''){
-          this.authService.newtextPost(this.token, this.postMesssgeElement.nativeElement.value).subscribe((res) => {
+          let message = linkify(this.postNameElement.nativeElement.value)
+          this.authService.newtextPost(this.token, message).subscribe((res) => {
             if(window.location.href.split('/')[3] == "home"){
               window.location.replace('home/' + window.location.href.split('/')[4]);
             }else{
@@ -256,4 +258,23 @@ export class AlbumsComponent implements OnInit {
         }
       }
     }
+}
+
+// URL Detector
+function linkify(inputText) {
+  var replacedText, replacePattern1, replacePattern2, replacePattern3;
+
+  //URLs starting with http://, https://, or ftp://
+  replacePattern1 = /(\b(https?|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gim;
+  replacedText = inputText.replace(replacePattern1, '<a href="$1" target="_blank">$1</a>');
+
+  //URLs starting with "www." (without // before it, or it'd re-link the ones done above).
+  replacePattern2 = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
+  replacedText = replacedText.replace(replacePattern2, '$1<a href="http://$2" target="_blank">$2</a>');
+
+  //Change email addresses to mailto:: links.
+  replacePattern3 = /(([a-zA-Z0-9\-\_\.])+@[a-zA-Z\_]+?(\.[a-zA-Z]{2,6})+)/gim;
+  replacedText = replacedText.replace(replacePattern3, '<a href="mailto:$1">$1</a>');
+
+  return replacedText;
 }

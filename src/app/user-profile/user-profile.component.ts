@@ -25,8 +25,8 @@ export class UserProfileComponent implements OnInit {
   newDate: Date = null;
   fileDataVal: File = null;
   previewUrl:any = null;
-  // imageCov:any = 'assets/images/bg.jpg';
-  imageCov:any = 'assets/images/15457.jpg';
+  imageCov:any = 'assets/images/bg.jpg';
+  // imageCov:any = 'assets/images/15457.jpg';
   token = '';
   current_user_profile = true
   frdDetails = [];
@@ -90,7 +90,7 @@ $(window).scroll(function() {
       this.imageCov = res.data.coverImgURl
 
       if(this.imageCov == undefined){
-        this.imageCov = 'assets/images/15457.jpg'
+        this.imageCov = 'assets/images/bg.jpg';
       }
     })
 

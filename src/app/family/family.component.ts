@@ -105,10 +105,11 @@ export class FamilyComponent implements OnInit {
             this.display5 = true
             this.relationshipStatus = res.userData[0].relationshipStatus
           }
-
-          if (res.userData[0].family !== undefined && res.userData[0] !== null) {
-            this.get_family = res.userData[0].family
-            this.show_family = true
+          if(res.success){
+            if (res.userData[0].family !== undefined && res.userData[0] !== null) {
+              this.get_family = res.userData[0].family
+              this.show_family = true
+            }
           }
         })
       }

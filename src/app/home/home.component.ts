@@ -150,9 +150,8 @@ $(window).scroll(function() {
     this.current_user = JSON.parse(localStorage.getItem('currentUser'))
     this.spinner.show();
     this.authService.getAllFriendPost(this.token).pipe(finalize(() => { this.spinner.hide(); Notification.requestPermission() })).subscribe(res => {
-      if (res['success']) {
+      if (res['success'] && res.posts) {
         this.datas = res.posts
-        const { image, thumbImage, alt, title } = res.posts;
         for(let i = 0; i < this.datas.length; i++){
           const images = []
           this.shares = this.datas[i].share.length
@@ -191,14 +190,18 @@ $(window).scroll(function() {
     })
 
     this.authService.getAllFriends(localStorage.getItem("token")).subscribe(res => {
-      this.allUsers = res.AllUser[0]
+      if(res.success){
+        this.allUsers = res.AllUser[0]
+      }
     })
 
     this.authService.getFriendData(id).subscribe(res => {
-      this.frd_request_count = res.list.length
-      if (this.frd_request_count !== 0) {  
-        $(".badges_for_fr").addClass("show_count");
-      } 
+      if(res.success){
+        this.frd_request_count = res.list.length
+        if (this.frd_request_count !== 0) {  
+          $(".badges_for_fr").addClass("show_count");
+        } 
+      }
     })
 
     this.authService.getProfilePost(id).subscribe(res => {
@@ -209,16 +212,13 @@ $(window).scroll(function() {
       }
     })
 
-    // this.authService.getFriends(id).subscribe(res => {
-    //   if(res['success']){
-    //     this.count_frd = res.userInfo.length
-    //   }
-    // })
 
-    this.authService.getSuggestUser(id).subscribe(res => {
-      this.countSuggest = res['data'].length
-      if (this.countSuggest !== 0) { 
-        $(".badges_for_pymk").addClass("show_know_friend");
+    this.authService.getSuggestUser(id).subscribe((res:any) => {
+      if(res.success){
+        this.countSuggest = res['data'].length
+        if (this.countSuggest !== 0) { 
+          $(".badges_for_pymk").addClass("show_know_friend");
+        }
       }
     })
 
@@ -261,7 +261,7 @@ $(window).scroll(function() {
       }else{
         this.notAnyFrd = res.message
       }
-  })
+    })
   }
 
   open_comments(postId){
@@ -314,7 +314,6 @@ $(window).scroll(function() {
   images = [];
   files_data: any = [];
   openDialog(event: any): void{
-    console.log("event", event)
     //Multipul Image upload
     if (event.target.files && event.target.files[0]) {
       var filesAmount = event.target.files.length;
@@ -328,7 +327,6 @@ $(window).scroll(function() {
         this.files_data.push(event.target.files[i]);
       }
     }
-    console.log("check data", this.images, this.files_data)
     const dialogRef = this.dialog.open(PostModalComponent, {
       width: '550px',
       panelClass: 'custom-dialog-container',

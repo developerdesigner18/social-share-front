@@ -79,10 +79,12 @@ export class LifeComponent implements OnInit {
       } else {
         this.authService.getAllData(id).subscribe(res => {
           this.icons = true
-          if (res.userData[0].lifeEvents !== undefined && res.userData[0] !== null) {
-            this.get_life = res.userData[0].lifeEvents
-            this.show_life = true
-            this.myDate = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
+          if(res.success){
+            if (res.userData[0].lifeEvents !== undefined && res.userData[0] !== null) {
+              this.get_life = res.userData[0].lifeEvents
+              this.show_life = true
+              this.myDate = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
+            }
           }
         })
       }

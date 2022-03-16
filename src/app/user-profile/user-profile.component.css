@@ -58,6 +58,9 @@ ul.nav.nav-pills.flex-column li {
     height: 50px;
     width: 50px;
 }
+.item_desc a {
+    color: #000;
+}
 
 button.load_btn {
     font-family: 'Josefin Sans', sans-serif;

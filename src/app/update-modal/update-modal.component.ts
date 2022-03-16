@@ -162,8 +162,9 @@ export class UpdateModalComponent implements OnInit {
             }
             console.log("reader", reader)
             if(reader !== undefined){
-              reader.onload = (_event) => {
-                this.authService.updatePost(this.token, this.desc, this.fileCovToReturn, this.status, res.exist, this.data.post_id).pipe(finalize(() => this.spinner.hide())).subscribe((res) => {
+              reader.onload = async(_event) => {
+                let message = await linkify(this.desc)
+                this.authService.updatePost(this.token, message, this.fileCovToReturn, this.status, res.exist, this.data.post_id).pipe(finalize(() => this.spinner.hide())).subscribe((res) => {
                   if(window.location.href.split('/')[3] == "home"){
                     window.location.replace('home/' + window.location.href.split('/')[4]);
                   } else {
@@ -172,7 +173,8 @@ export class UpdateModalComponent implements OnInit {
                 })
               }
             } else {
-              this.authService.updateWithoutPost(this.token, this.desc, this.status, res.exist, this.data.post_id).pipe(finalize(() => this.spinner.hide())).subscribe((res) => {
+              let message = linkify(this.desc)
+              this.authService.updateWithoutPost(this.token, message, this.status, res.exist, this.data.post_id).pipe(finalize(() => this.spinner.hide())).subscribe((res) => {
                 if(window.location.href.split('/')[3] == "home"){
                   window.location.replace('home/' + window.location.href.split('/')[4]);
                 } else {
@@ -187,7 +189,8 @@ export class UpdateModalComponent implements OnInit {
       if(this.desc == ''){
         this.toastr.info("You are not set description!");
       }else if(this.desc !== ''){
-        this.authService.updatetextPost(this.token, this.desc, this.status, this.data.post_id).subscribe((res) => {
+        let message = linkify(this.desc)
+        this.authService.updatetextPost(this.token, message, this.status, this.data.post_id).subscribe((res) => {
           if(window.location.href.split('/')[3] == "home"){
             window.location.replace('home/' + window.location.href.split('/')[4]);
           }else{
@@ -262,4 +265,23 @@ export class UpdateModalComponent implements OnInit {
     return value
   }
 
+}
+
+// URL Detector
+function linkify(inputText) {
+  var replacedText, replacePattern1, replacePattern2, replacePattern3;
+
+  //URLs starting with http://, https://, or ftp://
+  replacePattern1 = /(\b(https?|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gim;
+  replacedText = inputText.replace(replacePattern1, '<a href="$1" target="_blank">$1</a>');
+
+  //URLs starting with "www." (without // before it, or it'd re-link the ones done above).
+  replacePattern2 = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
+  replacedText = replacedText.replace(replacePattern2, '$1<a href="http://$2" target="_blank">$2</a>');
+
+  //Change email addresses to mailto:: links.
+  replacePattern3 = /(([a-zA-Z0-9\-\_\.])+@[a-zA-Z\_]+?(\.[a-zA-Z]{2,6})+)/gim;
+  replacedText = replacedText.replace(replacePattern3, '<a href="mailto:$1">$1</a>');
+
+  return replacedText;
 }

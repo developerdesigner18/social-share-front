@@ -153,9 +153,11 @@ export class PostModalComponent implements OnInit {
         } else {
           this.toastr.info("png format is not supported used other format like jpg or jpeg")
         }
-        reader.onload = (_event) => {
+        reader.onload = async(_event) => {
           console.log("this.status", this.status)
-          this.authService.newPost(this.token, this.postMesssgeElement.nativeElement.value, this.fileCovToReturn, this.status ? this.status : 0).pipe(finalize(() => this.spinner.hide())).subscribe((res) => {
+          let message = await linkify(this.postMesssgeElement.nativeElement.value)
+          console.log('message', message)
+          this.authService.newPost(this.token, message, this.fileCovToReturn, this.status ? this.status : 0).pipe(finalize(() => this.spinner.hide())).subscribe((res) => {
             if(window.location.href.split('/')[3] == "home"){
               window.location.replace('home/' + window.location.href.split('/')[4]);
             } else {
@@ -168,7 +170,8 @@ export class PostModalComponent implements OnInit {
       if(this.postMesssgeElement.nativeElement.value == ''){
         this.toastr.info("You are not set description!");
       }else if(this.postMesssgeElement.nativeElement.value.valid !== ''){
-        this.authService.newtextPost(this.token, this.postMesssgeElement.nativeElement.value).subscribe((res) => {
+        let message = linkify(this.postMesssgeElement.nativeElement.value)
+        this.authService.newtextPost(this.token, message).subscribe((res) => {
           if(window.location.href.split('/')[3] == "home"){
             window.location.replace('home/' + window.location.href.split('/')[4]);
           }else{
@@ -308,3 +311,24 @@ export class PostModalComponent implements OnInit {
     return item.id; 
   }
 }
+
+
+// URL Detector
+function linkify(inputText) {
+  var replacedText, replacePattern1, replacePattern2, replacePattern3;
+
+  //URLs starting with http://, https://, or ftp://
+  replacePattern1 = /(\b(https?|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gim;
+  replacedText = inputText.replace(replacePattern1, '<a href="$1" target="_blank">$1</a>');
+
+  //URLs starting with "www." (without // before it, or it'd re-link the ones done above).
+  replacePattern2 = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
+  replacedText = replacedText.replace(replacePattern2, '$1<a href="http://$2" target="_blank">$2</a>');
+
+  //Change email addresses to mailto:: links.
+  replacePattern3 = /(([a-zA-Z0-9\-\_\.])+@[a-zA-Z\_]+?(\.[a-zA-Z]{2,6})+)/gim;
+  replacedText = replacedText.replace(replacePattern3, '<a href="mailto:$1">$1</a>');
+
+  return replacedText;
+}
+
