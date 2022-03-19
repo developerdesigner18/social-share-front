@@ -26,6 +26,9 @@ div#tooltiptexts p {
     /* overflow: hidden; */
     margin-top: 25px;
 }
+.main_post_content h6 {
+    color: #FF9000;
+}
 .comment_here{
     word-break: break-all;
 }
@@ -794,6 +797,10 @@ a.premium_upgrade {
     font-size: 14px;
     color: #0F1B31;
     margin-top: -15px;
+}
+
+.item_desc a {
+    color: #ff9000;
 }
 
 .profile_pics:before {

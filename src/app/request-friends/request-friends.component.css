@@ -683,6 +683,10 @@ body .profile_pic_main_tabs_sec .actions {
     margin-top: -15px;
 }
 
+.item_desc a {
+    color: #ff9000;
+}
+
 .owl-stage {
     display: -webkit-box;
     display: -moz-box;

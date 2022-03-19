@@ -267,6 +267,9 @@ a.my_post_links{
     color: #0F1B31;
     margin-top: -15px;
 }
+.item_desc a {
+    color: #ff9000;
+}
 .profile_pic:before {
     /* content: ""; */
     position: absolute;
