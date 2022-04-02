@@ -29,8 +29,6 @@ export class PeopleKnowComponent implements OnInit {
   mutulFrd = [];
   friend_id:any = []
   shows: boolean = true
-  open_show: boolean = true
-  close_show: boolean
   @ViewChild('searchText') searchTextElement: any;
 
   constructor(
@@ -96,8 +94,8 @@ export class PeopleKnowComponent implements OnInit {
   reject_request(reject_id) {
     if (confirm('Are you sure you want to cancel this request ?')) {
       this.authService.rejectFriendRequest(reject_id, this.id).subscribe(res => {
-      })
-      location.reload();
+    })
+    location.reload();
   }
   }
 

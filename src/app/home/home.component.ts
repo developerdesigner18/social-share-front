@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, HostListener, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router, NavigationStart, NavigationEnd, Event, NavigationCancel, 
   NavigationError, RouteConfigLoadStart, RouteConfigLoadEnd } from '@angular/router';
@@ -13,6 +13,7 @@ import { finalize, tap } from 'rxjs/operators';
 import {io} from 'socket.io-client';
 // import { environment } from 'src/environments/environment';
 import { environment } from 'src/environments/environment.prod';
+import 'web-social-share';
 declare var jQuery: any;
 declare var $: any;
 
@@ -112,7 +113,8 @@ export class HomeComponent implements OnInit {
     public router: Router,
     private route: ActivatedRoute,
     public toastr: ToastrService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private cdr: ChangeDetectorRef
   ) {
     this.totalDisplay = 3;
     this.bodyHeight = 1000;
@@ -212,7 +214,6 @@ $(window).scroll(function() {
       }
     })
 
-
     this.authService.getSuggestUser(id).subscribe((res:any) => {
       if(res.success){
         this.countSuggest = res['data'].length
@@ -248,7 +249,7 @@ $(window).scroll(function() {
         }
     })
   }
-  ngAfterViewInit() { this.ready = true; }
+  ngAfterViewInit() { this.ready = true; this.cdr.detectChanges();}
   
   update_status() {
     this.authService.getFriends(this.id).subscribe(res => {

@@ -41,6 +41,7 @@ export class PostModalComponent implements OnInit {
   shows: boolean = false;
   temp_images:any = [];
   status: any;
+  postMsgDoc: any = '';
 
   @ViewChild('postMsg') postMesssgeElement: any;
   @ViewChildren('postImage') postImageElement: QueryList<ElementRef>;
@@ -99,6 +100,20 @@ export class PostModalComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  showEmojiPicker = false;
+
+  toggleEmojiPicker() {
+    this.showEmojiPicker = !this.showEmojiPicker;
+  }
+
+addEmoji(event) {
+  this.postMsgDoc += event.emoji.native
+}
+
+onFocus() {
+  this.showEmojiPicker = false;
+}
   
   public gridOptions: NgxMasonryOptions = {
     gutter: 20,
@@ -125,7 +140,7 @@ export class PostModalComponent implements OnInit {
     }
     $(".set_view_more").css('display', 'none');
     this.shows = false
-    this.toastr.info("All media are removed. Please select new ones")
+    this.toastr.info("All media are removed.")
   }
 
   postSave(){

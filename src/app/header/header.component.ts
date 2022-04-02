@@ -10,6 +10,7 @@ export class HeaderComponent implements OnInit {
   id= '';
   chat: boolean = false
   notif_data: any[] = [];
+  toggle: boolean = false;
   constructor(public authService: AuthService, private router: Router) { 
     this.router.events.subscribe((event: any) =>{
       if(event instanceof NavigationEnd){
@@ -48,10 +49,9 @@ export class HeaderComponent implements OnInit {
   }
 
   onClickedOutside(event: any){
-    ($("#collapseExample") as any).collapse({
-      toggle: false
-    })
-    console.log('clicked');
-    
+    $('#collapseExample').toggle(false)
+  }
+  toggleDetect(){
+    $('#collapseExample').toggle(true)
   }
 }

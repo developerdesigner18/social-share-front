@@ -53,6 +53,17 @@ ul.nav.nav-pills.flex-column li {
     background: #ff8100;
     border-radius: 4px;
 }
+.emoji-mart.emoji-mart-dark {
+    height: 40vh;
+  }
+  .emoji-mart-scroll {
+    height: 20vh !important;
+  }
+  a.emoji-content {
+    padding: 1em;
+    cursor: pointer;
+    float: right;
+}
 
 .user_friend img {
     height: 50px;

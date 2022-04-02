@@ -88,6 +88,11 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { UpdateModalComponent } from './update-modal/update-modal.component';
 //post-image grid package
 import { NgxMasonryModule } from 'ngx-masonry';
+import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
+
+// social-share
+import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
+import { ShareIconsModule } from 'ngx-sharebuttons/icons';
 @NgModule({
   declarations: [
     AppComponent,
@@ -167,7 +172,9 @@ import { NgxMasonryModule } from 'ngx-masonry';
     PushNotificationsModule,
     NgxSpinnerModule,
     ClickOutsideModule,
-    NgxMasonryModule
+    NgxMasonryModule,
+    // ShareButtonsModule,
+    // ShareIconsModule,
   ],
   
   providers: [
@@ -182,7 +189,9 @@ import { NgxMasonryModule } from 'ngx-masonry';
     CookieService,
     SocketioService,
     BnNgIdleService,
-    NgxImageCompressService
+    NgxImageCompressService,
+    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+    JwtHelperService
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

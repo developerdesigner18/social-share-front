@@ -14,6 +14,9 @@ a {
 .hide_theme {
     display: none;
 }
+.item_desc a {
+    color: blue;
+}
 div#tooltiptexts p {
     margin: 0 !important;
 }

@@ -7,7 +7,7 @@
     <div class="friend_list">
       <h3>Friends</h3>
     </div>
-    <div class="parent_chat_panel">
+    <div class="parent_chat_panel" *ngIf="frdDetails.length > 0; else elseFriend">
       <div class="chat_panel main_{{data._id}}" *ngFor="let data of frdDetails;let i = index">
         <div class="remove_people remove_people_{{data._id}}" (click)="openChat(data._id, data.name)">
           <div class="request_shows online_sec">
@@ -21,6 +21,12 @@
         </div>
       </div>
     </div>
+    <ng-template #elseFriend class="card card-body">
+      <div class="view_all_notification"
+        style="text-align: center;">
+        <a style="padding: 5px 10px;color: #fff;">No Friends Please make some friends to chat with them. 😊</a>
+      </div>
+    </ng-template>
   </div>
 
   <div class="viewProfile show_View" *ngIf="showView">

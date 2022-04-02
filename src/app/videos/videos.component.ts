@@ -60,9 +60,9 @@ export class VideosComponent implements OnInit {
       this.authService.getAllPhotos(this.id).pipe(finalize(() => this.spinner.hide())).subscribe(res => {
         if (res['success']) {
           for (let i = 0; i < res.data.length; i++){
-          if (res.data[i].image.split('.').pop() !== 'jpg' && res.data[i].image.split('.').pop() !== 'png' && res.data[i].image.split('.').pop() !== 'jpeg' && res.data[i].image.split('.').pop() !== 'undefined' && res.data[i].image.split('.').pop() !== 'JPG' && res.data[i].image.split('.').pop() !== 'gif') {
-            this.urls.push(res.data[i])
-          }
+            if (res.data[i].image.split('.').pop() !== 'jpg' && res.data[i].image.split('.').pop() !== 'png' && res.data[i].image.split('.').pop() !== 'jpeg' && res.data[i].image.split('.').pop() !== 'undefined' && res.data[i].image.split('.').pop() !== 'JPG' && res.data[i].image.split('.').pop() !== 'gif') {
+              this.urls.push(res.data[i])
+            }
           }
           this.urls.reverse();
       } else {

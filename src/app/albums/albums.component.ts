@@ -39,6 +39,7 @@ export class AlbumsComponent implements OnInit {
   shows: boolean = false;
   temp_images:any = []
   status: any;
+  postMsgDoc: any
 
   @ViewChild('postMsg') postMesssgeElement: any;
   @ViewChild('postName') postNameElement: any;
@@ -93,6 +94,20 @@ export class AlbumsComponent implements OnInit {
   
     ngOnInit(): void {
     }
+
+    showEmojiPicker = false;
+
+  toggleEmojiPicker() {
+    this.showEmojiPicker = !this.showEmojiPicker;
+  }
+
+  addEmoji(event) {
+    this.postMsgDoc += event.emoji.native
+  }
+
+  onFocus() {
+    this.showEmojiPicker = false;
+  }
   
     public Close() {
       this.dialogRef.close();

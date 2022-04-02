@@ -20,6 +20,18 @@ html{
   color: white;
 }
 
+.emoji-mart.emoji-mart-dark {
+    height: 40vh;
+  }
+  .emoji-mart-scroll {
+    height: 20vh !important;
+  }
+  a.emoji-content {
+    padding: 1em;
+    cursor: pointer;
+    float: right;
+}
+
 #network-status-offline {
   background: red;
   padding: 15px;

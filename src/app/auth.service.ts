@@ -14,6 +14,7 @@ import { DialogEmailErrorComponent } from './dialog-email-error/dialog-email-err
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { ToastrService } from 'ngx-toastr';
 import { DialogErrorComponent } from './dialog-error/dialog-error.component';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,7 @@ export class AuthService {
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   currentUser = {};
 
-  constructor(private httpClient: HttpClient, public router: Router, public dialog: MatDialog, private injector: Injector, private toastr: ToastrService) { }
+  constructor(private httpClient: HttpClient, public router: Router, public dialog: MatDialog, private injector: Injector, private toastr: ToastrService,public jwtHelper: JwtHelperService) { }
 
   redirectUrl: string;
 
@@ -55,6 +56,13 @@ export class AuthService {
       }),
         catchError(this.handleError.bind(this))
       )
+  }
+
+  isAuthenticated(): boolean {
+    // console.log (localStorage['token']);
+    const token = localStorage.getItem('token');
+    // Check wheter the token is expired and return true or false
+    return !this.jwtHelper.isTokenExpired(token);
   }
 
   forget(user: User): Observable<any> {

@@ -317,6 +317,16 @@
                                 <button class="share_sec_{{data._id}} share_sec" (click)="share(data._id)"
                                     *ngIf="current_user['data']._id !== data.userId">
                                     <i class="far fa-share"></i>
+                                    <!-- todo work on share button tomorrow -->
+                                    <!-- <share-buttons theme="circles-dark"
+                                        [include]="['copy', 'facebook', 'email', 'messenger', 'mix', 'line', 'linkedin', 'pinterest', 'print', 'reddit', 'sms', 'telegram', 'tumblr', 'twitter', 'viber', 'vk', 'xing', 'whatsapp']"
+                                        [showIcon]="true"
+                                        [showText]="false"
+                                        url="https://rodrigo.kamada.com.br/"
+                                        description="Angular Share Buttons"
+                                        twitterAccount="rodrigokamada"
+                                        class="pt-5">
+                                    </share-buttons> -->
                                     <div *ngIf="data.share.length !== 0">Share <span> {{data.share.length}} </span>
                                     </div>
                                     <div *ngIf="data.share.length === 0">Share</div>
@@ -437,29 +447,34 @@
                             <i class="far fa-comments"></i>
                             <div>Chat</div>
                         </div>
-                        <div class="online_sec">
-                            <div class="online_title">Online</div>
-                            <div *ngFor="let frddetail of frdDetails | slice:0:5">
-                                <div class="online_user" *ngIf="frddetail.content == 1">
-                                    <img [src]="frddetail.profileImgURl"
-                                        onerror="this.src='/assets/images/character.png';">
-                                    <div>{{frddetail.name}}</div>
+                        <div *ngIf="frdDetails.length > 0; else elseFriend">
+                            <div class="online_sec">
+                                <div class="online_title">Online</div>
+                                <div *ngFor="let frddetail of frdDetails | slice:0:5">
+                                    <div class="online_user" *ngIf="frddetail.content == 1">
+                                        <img [src]="frddetail.profileImgURl"
+                                            onerror="this.src='/assets/images/character.png';">
+                                        <div>{{frddetail.name}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="online_sec offline_sec">
+                                <div class="online_title">Offline</div>
+                                <div *ngFor="let frddetail of frdDetails | slice:0:5">
+                                    <div class="online_user" *ngIf="frddetail.content == 0">
+                                        <img [src]="frddetail.profileImgURl"
+                                            onerror="this.src='/assets/images/character.png';">
+                                        <div>{{frddetail.name}}</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="online_sec offline_sec">
-                            <div class="online_title">Offline</div>
-                            <div *ngFor="let frddetail of frdDetails | slice:0:5">
-                                <div class="online_user" *ngIf="frddetail.content == 0">
-                                    <img [src]="frddetail.profileImgURl"
-                                        onerror="this.src='/assets/images/character.png';">
-                                    <div>{{frddetail.name}}</div>
-                                </div>
+                        <ng-template #elseFriend class="card card-body">
+                            <div class="view_all_notification"
+                              style="text-align: center;padding: 0.5em;">
+                              <a style="padding: 5px 10px;color: #ff9000;background: none;">Oops you have not make any friend till now 😯</a>
                             </div>
-                            <div *ngIf="notAnyFrd">
-                                {{notAnyFrd}}
-                            </div>
-                        </div>
+                        </ng-template>
                         <div style="display: flex;align-items: center;justify-content: center;">
                             <a href="chating/{{id}}" style="color: #ff9000;">Chat Panel</a>
                         </div>
