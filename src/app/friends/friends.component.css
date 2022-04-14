@@ -6,14 +6,14 @@
 	display: none;
 }
 .cat_search input {
-    background-color: #f1f1f1;
+    background-color: var(--background-color);
     border: 0;
     padding: 5px 10px;
     width: 100%;
     border-radius: 4px;
 }
 .cat_search i {
-    color: #0F1B31;
+    color: var(--secondary-color);
     position: absolute;
     right: 10px;
     top: 0;
@@ -49,7 +49,7 @@ a.my_post_links > div {
     position: absolute;
     right: 2px;
     top: 22px;
-    background: #ff9000;
+    background: var(--accent-color);
     width: 12px;
     height: 12px;
     border-radius: 50%;
@@ -57,7 +57,7 @@ a.my_post_links > div {
 
 .search_somenone_profile{
 	font-size: 15px;
-	color: #0F1B31;
+	color: var(--secondary-color);
     line-height: 1;
     /* text-transform: capitalize; */
     margin-top: -5px;

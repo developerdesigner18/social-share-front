@@ -50,10 +50,10 @@
         <li *ngFor="let chat of chat_messages" #messages
           [ngStyle]="{'text-align':chat.senderID === current_user_id ? 'right' : 'left', 'justify-content': chat.senderID === current_user_id ? 'flex-end' : 'flex-start'}"
           style="display: flex;">
-          <div [ngStyle]="{'background':chat.senderID === current_user_id ? '#ffffff' : '#0f1b31'}"
+          <div [ngStyle]="{'background':chat.senderID === current_user_id ? '#ffffff' : '#0F1B31'}"
             class="chat_message_div">
             <div>
-              <span [ngStyle]="{'color':chat.senderID === current_user_id ? '#0f1b31' : '#ffffff'}">{{chat.message ?
+              <span [ngStyle]="{'color':chat.senderID === current_user_id ? '#0F1B31' : '#ffffff'}">{{chat.message ?
                 chat.message : message}}</span>
               <span style="padding-left: 5px;" *ngIf="chat.senderID === current_user_id"> <img
                   [src]="chat.status == 0 ? '../../assets/images/check.png' : '../../assets/images/check2.png'"

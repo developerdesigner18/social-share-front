@@ -30,7 +30,7 @@ div#tooltiptexts p {
     margin-top: 25px;
 }
 .main_post_content h6 {
-    color: #FF9000;
+    color: var(--accent-color);
 }
 .comment_here{
     word-break: break-all;
@@ -42,7 +42,7 @@ div#tooltiptexts p {
 }
 
 .user_profile p {
-    color: #0f1b31;
+    color: var(--secondary-color);
     font-size: 14px;
 }
 
@@ -52,7 +52,7 @@ div#tooltiptexts p {
 }
 
 html {
-    background-color: #F1F1F1;
+    background-color: var(--background-color);
 }
 
 button,
@@ -65,7 +65,7 @@ input {
 }
 
 .data_album {
-    color: #0F1B31;
+    color: var(--secondary-color);
     font-size: 14px;
     /* margin-top: 15px; */
 }
@@ -79,7 +79,7 @@ a:hover {
 }
 
 body {
-    background-color: #F1F1F1;
+    background-color: var(--background-color);
     background-image: none !important;
     overflow-y: scroll;
 }
@@ -93,7 +93,7 @@ body {
 }
 
 header {
-    background-color: #0f1b31;
+    background-color: var(--secondary-color);
     padding: 15px 0;
     position: unset;
 }
@@ -191,7 +191,7 @@ header .logo,
 .login_container div {
     display: inline-flex;
     position: relative;
-    background: #FF9000;
+    background: var(--accent-color);
     border-radius: 4px;
     margin: 10px 0 10px 0;
 }
@@ -218,7 +218,7 @@ img.logout {
 
 .main_areas {
     flex: 2.5;
-    margin: 0 25px;
+    margin: 0 25px 75px;
 }
 
 .left_sidebars,
@@ -236,13 +236,13 @@ img.logout {
 }
 
 button.load_btn {
-    font-family: 'Josefin Sans', sans-serif;
+    font-family: var(--josefin-sans);
     width: 100%;
     border-radius: 4px;
     padding: 3px;
     margin-top: 15px;
     border: 0;
-    background: #0f1b31;
+    background: var(--secondary-color);
     color: white;
     margin-bottom: 20px;
     display: none;
@@ -317,7 +317,7 @@ button.load_btn {
 
 #button_top {
     display: inline-block;
-    background-color: #0F1B31;
+    background-color: var(--secondary-color);
     width: 40px;
     height: 40px;
     text-align: center;
@@ -369,7 +369,7 @@ button.load_btn {
     width: 100%;
     padding: 10px;
     margin: 0px 0px 10px;
-    background-color: #f1f1f1;
+    background-color: var(--background-color);
     border-radius: 4px;
 }
 
@@ -378,7 +378,7 @@ a.my_post_links {
 }
 
 .left_content div {
-    color: #0F1B31;
+    color: var(--secondary-color);
     margin-left: 10px;
     font-size: 14px;
 }
@@ -399,20 +399,20 @@ a.my_post_links {
 }
 
 .left_content i {
-    color: #0F1B31;
+    color: var(--secondary-color);
     font-size: 18px;
 }
 
 .profile_name {
     font-weight: 400;
-    color: #0F1B31;
+    color: var(--secondary-color);
     font-size: 20px;
     text-transform: capitalize;
-    font-family: 'Josefin Sans', sans-serif;
+    font-family: var(--josefin-sans);
 }
 
 .friends_Posts div {
-    font-family: 'Josefin Sans', sans-serif;
+    font-family: var(--josefin-sans);
     font-weight: 400;
 }
 
@@ -428,7 +428,7 @@ a.my_post_links {
     font-size: 9px;
     width: 20px;
     height: 20px;
-    background-color: #ff9000;
+    background-color: var(--accent-color);
     border-radius: 50%;
     color: #ffffff;
     display: flex;
@@ -450,7 +450,7 @@ a.my_post_links {
     font-size: 9px;
     width: 20px;
     height: 20px;
-    background-color: #ff9000;
+    background-color: var(--accent-color);
     border-radius: 50%;
     color: #ffffff;
     display: flex;
@@ -475,7 +475,7 @@ a.my_post_links {
     font-size: 9px;
     width: 20px;
     height: 20px;
-    background-color: #ff9000;
+    background-color: var(--accent-color);
     border-radius: 50%;
     color: #ffffff;
     display: flex;
@@ -496,7 +496,7 @@ a.my_post_links {
     font-size: 9px;
     width: 20px;
     height: 20px;
-    background-color: #ff9000;
+    background-color: var(--accent-color);
     border-radius: 50%;
     color: #ffffff;
     display: flex;
@@ -539,7 +539,7 @@ a.my_post_links {
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    color: #0f1b31;
+    color: var(--secondary-color);
     box-shadow: 0 0 2px 0px #0f1b318f;
 }
 
@@ -561,12 +561,12 @@ a.my_post_links {
 }
 
 .share_users:not(:last-child) {
-    border-bottom: 1px dashed#ff9000;
+    border-bottom: 1px dashed var(--accent-color);
 }
 
 .upgrade_premium i {
     font-size: 20px;
-    color: #ff9000;
+    color: var(--accent-color);
 }
 
 a.premium_upgrade {
@@ -577,7 +577,7 @@ a.premium_upgrade {
     display: flex;
     justify-content: center;
     width: 100%;
-    color: #0F1B31;
+    color: var(--secondary-color);
 }
 
 .upgrade_premium div {
@@ -593,7 +593,7 @@ a.premium_upgrade {
 }
 
 .cat_search input {
-    background-color: #f1f1f1;
+    background-color: var(--background-color);
     border: 0;
     padding: 5px 10px;
     width: 100%;
@@ -605,7 +605,7 @@ a.premium_upgrade {
 }
 
 .cat_search i {
-    color: #0F1B31;
+    color: var(--secondary-color);
     position: absolute;
     right: 10px;
     top: 0;
@@ -630,7 +630,7 @@ a.premium_upgrade {
     margin: 25px 0 0;
     width: 90%;
     height: 300px;
-    background-color: #0F1B31;
+    background-color: var(--secondary-color);
     color: #ffffff;
     display: flex;
     justify-content: center;
@@ -643,7 +643,7 @@ a.premium_upgrade {
 }
 
 .chat_title {
-    color: #0F1B31;
+    color: var(--secondary-color);
     width: 100%;
     display: flex;
     justify-content: center;
@@ -660,21 +660,21 @@ a.premium_upgrade {
 
 .chat_title i {
     font-size: 30px;
-    color: #ff9000;
+    color: var(--accent-color);
     margin-right: 10px;
     display: flex;
     align-items: center;
 }
 
 .chat_title div {
-    color: #0F1B31;
+    color: var(--secondary-color);
     font-size: 18px;
     font-weight: 400;
-    font-family: 'Josefin Sans', sans-serif;
+    font-family: var(--josefin-sans);
 }
 
 .online_title {
-    color: #0F1B31;
+    color: var(--secondary-color);
     font-weight: 500;
     margin-top: 20px;
     padding-left: 25px;
@@ -682,13 +682,13 @@ a.premium_upgrade {
     margin-bottom: 10px;
     border-bottom: 1px solid;
     padding-bottom: 10px;
-    border-color: #ff9000;
-    font-family: 'Josefin Sans', sans-serif;
+    border-color: var(--accent-color);
+    font-family: var(--josefin-sans);
 }
 
 .online_title:before {
     content: "";
-    background: #FF9000;
+    background: var(--accent-color);
     height: 15px;
     width: 15px;
     position: absolute;
@@ -718,7 +718,7 @@ a.premium_upgrade {
 .online_user div {
     margin-left: 10px;
     font-size: 14px;
-    color: #0F1B31;
+    color: var(--secondary-color);
 }
 
 .offline_sec .online_title:before {
@@ -731,7 +731,7 @@ a.premium_upgrade {
     top: -10px;
     bottom: 0;
     margin: auto;
-    border: 2px solid #FF9000;
+    border: 2px solid var(--accent-color);
     background: none;
 }
 
@@ -742,20 +742,20 @@ a.premium_upgrade {
 }
 
 .posts input {
-    background-color: #f1f1f1;
+    background-color: var(--background-color);
     border: 0;
     padding: 5px 10px;
     width: 100%;
     border-radius: 4px;
     height: 55px;
     padding-right: 12.6%;
-    color: #0F1B31;
+    color: var(--secondary-color);
     font-size: 14px;
     padding-left: 15px;
 }
 
 .posts button {
-    background-color: #0F1B31;
+    background-color: var(--secondary-color);
     border: 0;
     color: #ffffff;
     padding: 7px 18px;
@@ -798,12 +798,12 @@ a.premium_upgrade {
 
 .item_desc {
     font-size: 14px;
-    color: #0F1B31;
+    color: var(--secondary-color);
     margin-top: -15px;
 }
 
 .item_desc a {
-    color: #ff9000;
+    color: var(--accent-color);
 }
 
 .profile_pics:before {
@@ -811,7 +811,7 @@ a.premium_upgrade {
     position: absolute;
     right: 2px;
     top: 22px;
-    background: #ff9000;
+    background: var(--accent-color);
     width: 12px;
     height: 12px;
     border-radius: 50%;
@@ -909,7 +909,7 @@ a {
     display: flex;
     justify-content: center;
     margin-top: 15px;
-    color: #0F1B31;
+    color: var(--secondary-color);
     font-size: 18px;
 }
 
@@ -921,14 +921,14 @@ a {
     background-color: aliceblue;
     padding: 5px 15px;
     margin-left: 10px;
-    color: #0F1B31;
+    color: var(--secondary-color);
     font-size: 20px;
     font-weight: 500;
     border-radius: 4px;
 }
 
 .bid_now button {
-    background-color: #ff9000;
+    background-color: var(--accent-color);
     border: 0;
     color: #ffffff;
     padding: 7px 18px;
@@ -968,7 +968,7 @@ a {
     text-align: center;
     font-size: 14px;
     font-weight: 500;
-    color: #0F1B31;
+    color: var(--secondary-color);
 }
 
 .no_share_action>button {
@@ -980,7 +980,7 @@ a {
     text-align: center;
     font-size: 14px;
     font-weight: 500;
-    color: #0F1B31;
+    color: var(--secondary-color);
 }
 
 .take_action>button i {
@@ -1001,7 +1001,7 @@ a {
 }
 
 .take_action>button span {
-    color: #ff9000;
+    color: var(--accent-color);
     padding-left: 5px;
     font-weight: 500;
     font-size: 16px;
@@ -1013,14 +1013,14 @@ a {
 } */
 
 .no_share_action>button span {
-    color: #ff9000;
+    color: var(--accent-color);
     padding-left: 5px;
     font-weight: 600;
     font-size: 16px;
 }
 
 .data_desc {
-    color: #0F1B31;
+    color: var(--secondary-color);
     font-size: 14px;
 }
 
@@ -1031,21 +1031,21 @@ a {
 }
 
 .take_action>button.comment_sec {
-    border: 1px solid #ff9000 !important;
+    border: 1px solid var(--accent-color) !important;
     border-top: 0 !important;
     border-bottom: 0 !important;
 }
 
 .no_share_action>button.comment_sec {
-    border: 1px solid #ff9000 !important;
+    border: 1px solid var(--accent-color) !important;
     border-top: 0 !important;
     border-bottom: 0 !important;
     border-right: 0 !important;
 }
 
 .Comment_sec {
-    border-left: 1px solid #ff9000;
-    border-right: 1px solid #ff9000;
+    border-left: 1px solid var(--accent-color);
+    border-right: 1px solid var(--accent-color);
 }
 
 .friends_Posts {
@@ -1054,7 +1054,7 @@ a {
     margin-top: 15px;
     font-size: 15px;
     padding: 10px;
-    color: #0F1B31;
+    color: var(--secondary-color);
     background-color: aliceblue;
     border-radius: 4px;
 }
@@ -1063,11 +1063,16 @@ a {
     flex: 1;
 }
 
+.my_friends:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 .my_friends_numbers {
     font-size: 16px;
     margin-left: 5px;
     font-weight: 500;
-    color: #FF9000;
+    color: var(--accent-color);
 }
 
 .friends_Posts>div {
@@ -1075,19 +1080,19 @@ a {
 }
 
 .total_friends_of_user {
-    border-right: 1px solid #ff9000;
+    border-right: 1px solid var(--accent-color);
 }
 
 .profile_name_of_poster {
     font-weight: 500;
     font-size: 20px;
-    color: #0F1B31;
+    color: var(--secondary-color);
     line-height: 1;
 }
 
 .search_somenone_profile {
     font-size: 15px;
-    color: #0F1B31;
+    color: var(--secondary-color);
     line-height: 1;
 }
 
@@ -1096,8 +1101,8 @@ a {
 }
 
 .autocomplete-container .input-container input {
-    background-color: #0f1b31 !important;
-    font-family: 'Josefin Sans', sans-serif;
+    background-color: var(--secondary-color) !important;
+    font-family: var(--josefin-sans);
     color: rgb(241 241 241)!important;
 }
 
@@ -1146,7 +1151,7 @@ a {
 button.owl-prev span {
     position: absolute;
     font-size: 34px;
-    color: #0F1B31;
+    color: var(--secondary-color);
     top: -6px;
     bottom: 0;
     margin: auto;
@@ -1160,7 +1165,7 @@ button.owl-prev span {
 button.owl-next span {
     position: absolute;
     font-size: 34px;
-    color: #0F1B31;
+    color: var(--secondary-color);
     top: -6px;
     bottom: 0;
     margin: auto;
@@ -1187,7 +1192,7 @@ button.owl-prev,
     height: 30px;
     width: 30px;
     border-radius: 50% !important;
-    box-shadow: 0 0 6px 0px #0F1B31;
+    box-shadow: 0 0 6px 0px var(--secondary-color);
 }
 
 .post_by_user_second .profile_pics:before {
@@ -1199,14 +1204,14 @@ button.owl-prev,
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    border: 2px solid #ff9000;
+    border: 2px solid var(--accent-color);
 }
 
 .upgrade_premium {
     padding: 7px;
     border: 2px solid #0F1B31db;
     border-radius: 4px;
-    color: #0F1B31;
+    color: var(--secondary-color);
     display: flex;
     align-items: center;
 }
@@ -1224,7 +1229,7 @@ a.my_post_links:hover div>div {
     content: "";
     height: 10px;
     width: 10px;
-    background-color: #ff9000;
+    background-color: var(--accent-color);
     border-radius: 50%;
     bottom: -3px;
     left: -18px;
@@ -1239,7 +1244,7 @@ a.my_post_links:hover div>div {
     content: "";
     height: 10px;
     width: 10px;
-    border: 2px solid #FF9000;
+    border: 2px solid var(--accent-color);
     background-color: transparent;
     border-radius: 50%;
     bottom: -3px;
@@ -1250,7 +1255,7 @@ a.my_post_links:hover div>div {
     background-color: #f0f8ff;
     border-radius: 4px;
     margin-top: 15px;
-    color: #0F1B31;
+    color: var(--secondary-color);
     padding: 15px;
     height: 40vh;
     overflow-y: scroll;
@@ -1258,7 +1263,7 @@ a.my_post_links:hover div>div {
 
 .comment_title {
     font-weight: 500;
-    color: #ff9000;
+    color: var(--accent-color);
     font-size: 18px;
     margin-bottom: 20px;
 }
@@ -1281,7 +1286,7 @@ a.my_post_links:hover div>div {
     content: "";
     height: 10px;
     width: 10px;
-    background-color: #ff9000;
+    background-color: var(--accent-color);
     border-radius: 50%;
     bottom: -20px;
     left: -29px;
@@ -1301,7 +1306,7 @@ a.my_post_links:hover div>div {
 .commenter {
     font-size: 16px !important;
     line-height: 1.2;
-    color: #ff9000 !important;
+    color: var(--accent-color) !important;
 }
 
 
@@ -1315,7 +1320,7 @@ a.my_post_links:hover div>div {
     margin-top: 5px;
     padding: 0;
     font-size: 14px !important;
-    color: #0f1b31;
+    color: var(--secondary-color);
 }
 
 .province img {
@@ -1324,7 +1329,7 @@ a.my_post_links:hover div>div {
 }
 
 .province div {
-    color: #0F1B31;
+    color: var(--secondary-color);
     font-size: 13px;
 }
 
@@ -1335,7 +1340,7 @@ a.my_post_links:hover div>div {
 }
 
 .cat_bid {
-    color: #0F1B31;
+    color: var(--secondary-color);
 }
 
 .category {
@@ -1435,7 +1440,7 @@ a.my_post_links:hover div>div {
     width: 100%;
     border-radius: 4px;
     height: 50px;
-    color: #0F1B31;
+    color: var(--secondary-color);
     font-size: 13px;
     padding: 10px;
     margin-bottom: 0;
@@ -1450,7 +1455,7 @@ a.my_post_links:hover div>div {
     color: #283448 !important;
     letter-spacing: normal;
     font-size: 15px;
-    font-family: 'Josefin Sans', sans-serif;
+    font-family: var(--josefin-sans);
 }
 
 .write_words div {
@@ -1460,7 +1465,7 @@ a.my_post_links:hover div>div {
 
 
 /* .write_words button {
-    background-color: #0F1B31;
+    background-color: var(--secondary-color);
     border: 0;
     color: #ffffff;
     padding: 7px 18px;
@@ -1572,15 +1577,15 @@ a.my_post_links:hover div>div {
 .profile_basic_info {
     font-weight: 500;
     font-size: 20px;
-    /* color: #0F1B31; */
-    color: #FF9000;
+    /* color: var(--secondary-color); */
+    color: var(--accent-color);
     line-height: 1;
     margin-bottom: 12px;
     font-size: 16px;
 }
 
 .profile_basic_info i{
-    color: #0F1B31;
+    color: var(--secondary-color);
 }
 
 
@@ -1589,7 +1594,7 @@ a.my_post_links:hover div>div {
 .profile_name_of_poster {
     margin-right: 10px;
     text-transform: capitalize;
-    font-family: 'Josefin Sans', sans-serif;
+    font-family: var(--josefin-sans);
 }
 
 @media (max-width: 320px) {
@@ -1823,7 +1828,7 @@ a.my_post_links:hover div>div {
     position: absolute;
     width: 120px;
     background-color: #555;
-    color: #0f1b31;
+    color: var(--secondary-color);
     text-align: center;
     border-radius: 6px;
     padding: 5px 0;
@@ -1853,8 +1858,18 @@ a.my_post_links:hover div>div {
     box-shadow: 0 0 20px 1px #0f1b3121;
 }
 
+button.showLikes:hover {
+    color: var(--accent-color);
+}
+button.comment_sec:hover {
+    color: var(--accent-color);
+}
+button.share_sec:hover {
+    color: var(--accent-color);
+}
+
 div#tooltiptexts span {
-    color: #0f1b31 !important;
+    color: var(--secondary-color) !important;
 }
 
 .my_custom_img>img {
@@ -1931,7 +1946,7 @@ div#tooltiptexts span {
     padding: 5px 15px;
     border-radius: 50%;
     font-weight: 500;
-    color: #0F1B31 !important;
+    color: var(--secondary-color) !important;
     opacity: 0.5;
 }
 
@@ -2003,7 +2018,7 @@ div#tooltiptexts span {
 }
 
 .numbertext {
-    color: #FF9000;
+    color: var(--accent-color);
     font-size: 20px;
     padding: 8px 12px;
     position: absolute;

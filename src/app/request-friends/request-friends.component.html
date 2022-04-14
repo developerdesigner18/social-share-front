@@ -1,5 +1,5 @@
 <app-header></app-header>
-<ngx-spinner bdColor="rgba(255,255,255,0.7)" size="medium" color="#ff9000" type="ball-triangle-path"
+<ngx-spinner bdColor="rgba(255,255,255,0.7)" size="medium" color="#FF9000" type="ball-triangle-path"
   [fullScreen]="true">
 </ngx-spinner>
 <div class="sidenav left">
@@ -59,7 +59,7 @@
 
 <div class="viewProfile show_View" style="justify-content: center;display: flex;height:100%" *ngIf="showView != true">
   <div class="container" style="position: relative;">
-    <div class="vertical-center" style="position: inherit;top: 50%;transform: translateY(-50%);text-align: center;">
+    <div class="vertical-center" style="position: inherit;top: 50%;padding-top: 15px;transform: translateY(-50%);text-align: center;">
       <div>
         <img width="60" height="60" src='/assets/images/user.png' style="border-radius: 50%;" />
       </div>
@@ -137,7 +137,7 @@
                       <div>{{u_city ? u_city : 'City'}}, {{u_state ? u_state : 'Province'}}</div>
                     </div>
                   </div>
-                  <div style="color: #0F1B31;font-size: 14px;" *ngIf="data.name !== undefined">Album: {{data.name}}
+                  <div style="color: #0F1B31; font-size: 14px;" *ngIf="data.name !== undefined">Album: {{data.name}}
                   </div>
                   <div class="item_desc mt-2" style="width: 100%;word-wrap: break-word;">{{data.description.length > 60
                     ?
@@ -277,7 +277,7 @@
 
           <div class="main_area">
             <div class="no_post_friend" *ngIf="msg">
-              <h6>No Posts Uploaded</h6>
+              <h6>No Posts Yet</h6>
             </div>
           </div>
         </ng-container>

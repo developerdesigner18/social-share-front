@@ -21,7 +21,7 @@
 } */
 
 html {
-    background-color: #F1F1F1;
+    background-color: var(--background-color);
 }
 
 ul.nav.nav-pills.flex-column li {
@@ -29,12 +29,12 @@ ul.nav.nav-pills.flex-column li {
 }
 
 #myTopnav button.active_tabs {
-    background: #0F1B31;
+    background: var(--secondary-color);
     color: #f0f8ff;
 }
 
 .active_tabs {
-    background: #0F1B31;
+    background: var(--secondary-color);
     color: #f0f8ff;
 }
 
@@ -71,13 +71,13 @@ ul.nav.nav-pills.flex-column li {
 }
 
 button.load_btn {
-    font-family: 'Josefin Sans', sans-serif;
+    font-family: var(--josefin-sans);
     width: 100%;
     border-radius: 4px;
     padding: 3px;
     margin-top: 15px;
     border: 0;
-    background: #0f1b31;
+    background: var(--secondary-color);
     color: white;
     margin-bottom: 20px;
     display: none;
@@ -138,13 +138,13 @@ button.load_btn {
 }
 
 button.btn.cancel_btn {
-    border: 1px solid #0F1B31;
-    color: #0f1b31;
+    border: 1px solid var(--secondary-color);
+    color: var(--secondary-color);
     font-weight: 500;
 }
 
 button.btn.save_btn {
-    background: #0F1B31;
+    background: var(--secondary-color);
     color: aliceblue;
 }
 
@@ -238,8 +238,8 @@ i.unfriend img {
 }
 
 .unfriend_image a {
-    color: #0F1B31;
-    font-family: 'Josefin Sans', sans-serif;
+    color: var(--secondary-color);
+    font-family: var(--josefin-sans);
     font-weight: 600;
 }
 
@@ -261,12 +261,12 @@ a:hover {
 }
 
 body {
-    background-color: #F1F1F1;
+    background-color: var(--background-color);
     background-image: none !important;
 }
 
 header {
-    background-color: #0f1b31;
+    background-color: var(--secondary-color);
     padding: 15px 0;
 }
 
@@ -311,7 +311,7 @@ header .logo,
 .login_container div {
     display: inline-flex;
     position: relative;
-    background: #FF9000;
+    background: var(--accent-color);
     border-radius: 4px;
 }
 
@@ -391,13 +391,13 @@ img.logout {
 
 .profile_name {
     text-align: center;
-    color: #0F1B31;
+    color: var(--secondary-color);
     font-size: 22px;
     position: relative;
     /* top: 10px; */
     font-weight: 600;
     text-transform: capitalize;
-    font-family: 'Josefin Sans', sans-serif;
+    font-family: var(--josefin-sans);
 }
 
 .profile_pic_main_tabs_sec>div {
@@ -413,7 +413,7 @@ body .profile_pic_main_tabs_sec .actions {
     margin: 0 15px;
     border: 0;
     background: none;
-    color: #0F1B31;
+    color: var(--secondary-color);
     padding: 6px 10px;
     background-color: aliceblue;
     border-radius: 4px;
@@ -432,7 +432,7 @@ body .profile_pic_main_tabs_sec .actions {
     padding: 6px 16px;
     font-size: 15px;
     color: #ffffff;
-    background-color: #ff9000;
+    background-color: var(--accent-color);
     border: 0;
 }
 
@@ -476,7 +476,7 @@ body .profile_pic_main_tabs_sec .actions {
 }
 
 .some_words {
-    color: #0F1B31;
+    color: var(--secondary-color);
     font-size: 14px;
     font-style: italic;
     font-weight: 500;
@@ -487,13 +487,13 @@ body .profile_pic_main_tabs_sec .actions {
 .right_title {
     margin: 0px 0 15px;
     font-size: 20px;
-    color: #0F1B31;
+    color: var(--secondary-color);
     line-height: 1;
-    font-family: 'Josefin Sans', sans-serif;
+    font-family: var(--josefin-sans);
 }
 
 .info_container i {
-    color: #0F1B31;
+    color: var(--secondary-color);
     padding-right: 10px;
     font-size: 18px;
     padding-left: 5px;
@@ -501,9 +501,9 @@ body .profile_pic_main_tabs_sec .actions {
 
 .info_container {
     margin: 0 0 10px;
-    color: #0F1B31;
+    color: var(--secondary-color);
     font-size: 15px;
-    background-color: #f1f1f1;
+    background-color: var(--background-color);
     border-radius: 4px;
     padding: 5px;
 }
@@ -556,12 +556,12 @@ body .profile_pic_main_tabs_sec .actions {
     /* text-align: center; */
     margin-top: 5px;
     font-weight: 500;
-    color: #0F1B31;
+    color: var(--secondary-color);
 }
 
 .a_photos h6 {
     font-size: 14px;
-    color: #ff9204;
+    color: var(--accent-color);
 }
 
 .three-dots:after {
@@ -621,7 +621,7 @@ a div {
 
 .notifiy>div:first-child div {
     font-size: 14px;
-    color: #0F1B31;
+    color: var(--secondary-color);
     padding-left: 10px;
     position: relative;
 }
@@ -630,7 +630,7 @@ a div {
     font-size: 14px;
     color: #5a5a5a;
     margin-top: 5px;
-    font-family: 'Josefin Sans', sans-serif;
+    font-family: var(--josefin-sans);
 }
 
 .notifiy {
@@ -643,7 +643,7 @@ a div {
     content: "";
     height: 10px;
     width: 10px;
-    border: 2px solid #FF9000;
+    border: 2px solid var(--accent-color);
     background-color: transparent;
     border-radius: 50%;
     left: -8px;
@@ -655,7 +655,7 @@ a div {
     /* content: ""; */
     height: 10px;
     width: 10px;
-    border: 2px solid #FF9000;
+    border: 2px solid var(--accent-color);
     background-color: transparent;
     border-radius: 50%;
     left: 32px;
@@ -668,7 +668,7 @@ a div {
 .all_notification {
     background-color: aliceblue;
     border-radius: 4px;
-    border-bottom: 1px solid #ff9000;
+    border-bottom: 1px solid var(--accent-color);
 }
 
 .notifiy>div {
@@ -682,14 +682,14 @@ a div {
 }
 
 .say_words input {
-    background-color: #f1f1f1;
+    background-color: var(--background-color);
     border: 0;
     padding: 5px 10px;
     width: 100%;
     border-radius: 4px;
     height: 55px;
     padding-right: 12.6%;
-    color: #0F1B31;
+    color: var(--secondary-color);
     font-size: 14px;
     padding-left: 15px;
     cursor: text;
@@ -705,7 +705,7 @@ a div {
     /* content: ""; */
     height: 10px;
     width: 10px;
-    background-color: #ff9000;
+    background-color: var(--accent-color);
     border-radius: 50%;
     bottom: -11px;
     left: -29px;
@@ -716,7 +716,7 @@ a div {
 }
 
 .say_words button {
-    background-color: #0F1B31;
+    background-color: var(--secondary-color);
     border: 0;
     color: #ffffff;
     padding: 7px 18px;
@@ -736,7 +736,7 @@ a div {
 .main_post_content h6 {
     font-size: 18px;
     font-weight: 400;
-    color: #ff9204;
+    color: var(--accent-color);
 }
 
 .profile_pic_profile img {
@@ -749,23 +749,23 @@ a div {
 .profile_name_of_poster {
     font-weight: 500;
     font-size: 20px;
-    color: #0F1B31;
+    color: var(--secondary-color);
     line-height: 1;
     text-transform: capitalize;
-    font-family: 'Josefin Sans', sans-serif;
+    font-family: var(--josefin-sans);
 }
 
 .province {
     padding: 5px 10px;
-    box-shadow: 0 0 4px #0F1B31;
+    box-shadow: 0 0 4px var(--secondary-color);
     border-radius: 4px;
 }
 
 .province div {
-    color: #0F1B31;
+    color: var(--secondary-color);
     font-size: 13px;
     font-weight: 500;
-    /* font-family: 'Josefin Sans', sans-serif; */
+    /* font-family: var(--josefin-sans); */
 }
 
 .province img {
@@ -779,12 +779,16 @@ a div {
 
 .item_desc {
     font-size: 14px;
-    color: #0F1B31;
+    color: var(--secondary-color);
     margin-top: -15px;
 }
 
 .item_desc a {
-    color: #ff9000;
+    color: var(--accent-color);
+}
+
+.item_desc a:hover {
+    text-decoration: underline;
 }
 
 .owl-stage {
@@ -851,7 +855,7 @@ button.owl-prev,
     height: 30px;
     width: 30px;
     border-radius: 50% !important;
-    box-shadow: 0 0 6px 0px #0F1B31;
+    box-shadow: 0 0 6px 0px var(--secondary-color);
 }
 
 button.owl-prev {
@@ -867,7 +871,7 @@ button.owl-next {
 button.owl-prev span {
     position: absolute;
     font-size: 34px;
-    color: #0F1B31;
+    color: var(--secondary-color);
     top: -6px;
     bottom: 0;
     margin: auto;
@@ -881,7 +885,7 @@ button.owl-prev span {
 button.owl-next span {
     position: absolute;
     font-size: 34px;
-    color: #0F1B31;
+    color: var(--secondary-color);
     top: -6px;
     bottom: 0;
     margin: auto;
@@ -897,7 +901,7 @@ button.owl-next span {
 }
 
 .cat_bid {
-    color: #0F1B31;
+    color: var(--secondary-color);
 }
 
 .category {
@@ -928,7 +932,7 @@ button.owl-next span {
     display: flex;
     justify-content: center;
     margin-top: 15px;
-    color: #0F1B31;
+    color: var(--secondary-color);
     font-size: 18px;
 }
 
@@ -936,14 +940,14 @@ button.owl-next span {
     background-color: aliceblue;
     padding: 5px 15px;
     margin-left: 10px;
-    color: #0F1B31;
+    color: var(--secondary-color);
     font-size: 20px;
     font-weight: 500;
     border-radius: 4px;
 }
 
 .bid_now button {
-    background-color: #ff9000;
+    background-color: var(--accent-color);
     border: 0;
     color: #ffffff;
     padding: 7px 18px;
@@ -982,7 +986,7 @@ button.owl-next span {
     text-align: center;
     font-size: 14px;
     font-weight: 500;
-    color: #0F1B31;
+    color: var(--secondary-color);
 }
 
 .no_share_action>button {
@@ -994,7 +998,7 @@ button.owl-next span {
     text-align: center;
     font-size: 14px;
     font-weight: 500;
-    color: #0F1B31;
+    color: var(--secondary-color);
 }
 
 .take_action>button i {
@@ -1012,18 +1016,18 @@ button.owl-next span {
 .take_action>button div {
     display: flex;
     align-items: center;
-    font-family: 'Josefin Sans', sans-serif;
+    font-family: var(--josefin-sans);
 }
 
 .take_action>button span {
-    color: #ff9000;
+    color: var(--accent-color);
     padding-left: 5px;
     font-weight: 500;
     font-size: 16px;
 }
 
 .no_share_action>button span {
-    color: #ff9000;
+    color: var(--accent-color);
     padding-left: 5px;
     font-weight: 500;
     font-size: 16px;
@@ -1050,13 +1054,13 @@ button.owl-next span {
 }
 
 .take_action>button.comment_sec {
-    border: 1px solid #ff9000 !important;
+    border: 1px solid var(--accent-color) !important;
     border-top: 0 !important;
     border-bottom: 0 !important;
 }
 
 .no_share_action>button.comment_sec {
-    border: 1px solid #ff9000 !important;
+    border: 1px solid var(--accent-color) !important;
     border-top: 0 !important;
     border-bottom: 0 !important;
     border-right: 0 !important;
@@ -1066,7 +1070,7 @@ button.owl-next span {
     background-color: #f0f8ff;
     border-radius: 4px;
     margin-top: 15px;
-    color: #0F1B31;
+    color: var(--secondary-color);
     padding: 15px;
     height: 40vh;
     overflow-y: scroll;
@@ -1074,7 +1078,7 @@ button.owl-next span {
 
 .comment_title {
     font-weight: 500;
-    color: #ff9000;
+    color: var(--accent-color);
     font-size: 18px;
     margin-bottom: 20px;
 }
@@ -1124,7 +1128,7 @@ button.owl-next span {
     margin-left: 10px;
     font-size: 14px;
     position: relative;
-    color: #0f1b31;
+    color: var(--secondary-color);
 }
 
 .notification_sec {
@@ -1152,7 +1156,7 @@ button.owl-next span {
     align-items: center;
     justify-content: center;
     background-color: #0f1b31d9;
-    color: #FF9000;
+    color: var(--accent-color);
     box-shadow: 0 0 8px 3px #B8B8B8;
     cursor: pointer;
 }
@@ -1216,7 +1220,7 @@ button.owl-next span {
 
 .edit-button {
     width: 100%;
-    background-color: #0F1B31;
+    background-color: var(--secondary-color);
     color: #ffffff;
     border-radius: 4px;
     height: 35px;
@@ -1271,7 +1275,7 @@ button.owl-next span {
 .about-menu {
     border: 0;
     background: none;
-    color: #0F1B31;
+    color: var(--secondary-color);
     text-decoration: none;
     padding: 6px 4px;
     border-radius: 4px;
@@ -1281,9 +1285,9 @@ button.owl-next span {
 }
 
 .about_action_tabs li:hover {
-    /* background-color: #f1f1f1; */
+    /* background-color: var(--background-color); */
     /* padding: 10px; */
-    color: #ff9000;
+    color: var(--accent-color);
     background-color: #f0f8ff;
 }
 
@@ -1300,23 +1304,23 @@ button.owl-next span {
 }
 
 .about_action_tabs li:hover a {
-    color: #ff9000;
+    color: var(--accent-color);
 }
 
 .about_action_tabs li.active a {
-    color: #ff9000;
+    color: var(--accent-color);
 }
 
 .title-about {
     padding-left: 10px;
     margin-bottom: 25px;
-    color: #0F1B31;
-    font-family: 'Josefin Sans', sans-serif;
+    color: var(--secondary-color);
+    font-family: var(--josefin-sans);
 }
 
 .overview_tab i {
     margin-right: 10px;
-    color: #0F1B31;
+    color: var(--secondary-color);
     font-size: 16px;
 }
 
@@ -1324,7 +1328,7 @@ button.owl-next span {
     display: flex;
     align-items: center;
     margin-bottom: 15px;
-    color: #0F1B31;
+    color: var(--secondary-color);
 }
 
 .overview_tab div {
@@ -1389,17 +1393,17 @@ ul.nav.nav-pills.flex-column li:focus {
 
 button.edit-button {
     border: 0;
-    font-family: 'Josefin Sans', sans-serif;
+    font-family: var(--josefin-sans);
 }
 
 button.show_more_notifications {
-    font-family: 'Josefin Sans', sans-serif;
+    font-family: var(--josefin-sans);
     width: 90%;
     border-radius: 4px;
     padding: 3px;
     margin-top: 15px;
     border: 0;
-    background: #0f1b31;
+    background: var(--secondary-color);
     color: white;
 }
 
@@ -1431,7 +1435,7 @@ button.show_more_notifications {
 .profile_basic_info {
     font-weight: 500;
     font-size: 20px;
-    color: #0F1B31;
+    color: var(--secondary-color);
     line-height: 1;
     margin-bottom: 12px;
     font-size: 16px;
@@ -1469,7 +1473,7 @@ button.show_more_notifications {
 .album_nulls p {
     font-size: 16px;
     font-weight: 500;
-    color: #ff9000;
+    color: var(--accent-color);
 }
 
 
@@ -1774,7 +1778,7 @@ button.show_more_notifications {
     position: absolute;
     width: 120px;
     background-color: #555;
-    color: #0f1b31;
+    color: var(--secondary-color);
     text-align: center;
     border-radius: 6px;
     padding: 5px 0;
@@ -1876,7 +1880,7 @@ button.show_more_notifications {
 }
 
 .numbertext {
-    color: #FF9000;
+    color: var(--accent-color);
     font-size: 20px;
     padding: 8px 12px;
     position: absolute;
@@ -1894,7 +1898,7 @@ button.show_more_notifications {
     padding: 5px 15px;
     border-radius: 50%;
     font-weight: 500;
-    color: #0F1B31 !important;
+    color: var(--secondary-color) !important;
     opacity: 0.5;
 }
 
@@ -2119,7 +2123,7 @@ button.show_more_notifications {
 
 .a_friend h6 {
     font-size: 15px;
-    color: #ff9204;
+    color: var(--accent-color);
     font-weight: 500;
 }
 
@@ -2178,14 +2182,14 @@ button.show_more_notifications {
 }
 
 .no_friend_show {
-    color: #ff9000;
+    color: var(--accent-color);
     font-weight: 500;
 }
 
 .about_description.tab-content {
     margin-top: 25px;
     font-size: 18px;
-    color: #0F1B31;
+    color: var(--secondary-color);
     font-weight: 600;
 }
 
@@ -2198,7 +2202,7 @@ a.my_post_links>div {
 }
 
 .no_friend_show {
-    color: #ff9000;
+    color: var(--accent-color);
     font-weight: 400;
     margin-top: 15px;
 }
@@ -2217,7 +2221,7 @@ a.my_post_links>div {
 
 .title_changes {
     padding: 5px 20px;
-    background: #0f1b31;
+    background: var(--secondary-color);
     color: #fff;
     border-radius: 4px;
 }
@@ -2233,13 +2237,13 @@ a.my_post_links>div {
 }
 
 .more_options .dropdown div {
-    border-bottom: 1px solid #0f1b31;
+    border-bottom: 1px solid var(--secondary-color);
 }
 /* Bottom to top button */
 
 #button_top {
     display: inline-block;
-    background-color: #0F1B31;
+    background-color: var(--secondary-color);
     width: 40px;
     height: 40px;
     text-align: center;

@@ -5,8 +5,8 @@
 .overview_tab img {
   /* font-size: 10px !important; */
   width: 17px;
-  color: #0F1B31;
-  /* background-color: #0F1B31; */
+  color: var(--secondary-color);
+  /* background-color: var(--secondary-color); */
   margin-right: 5px;
 }
 .hide_theme{

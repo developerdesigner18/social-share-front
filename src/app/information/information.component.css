@@ -9,7 +9,7 @@
 }
 .input_section>div {
     margin-left: 20px;
-    color: #ff9000;
+    color: var(--accent-color);
 }
 .input_section {
     display: flex;
@@ -17,7 +17,7 @@
 .input_section input {
     margin-left: 20px;
 	padding: 0 10px;
-    border: 2px solid #ff9000;
+    border: 2px solid var(--accent-color);
 }
 .write_words input::placeholder {
     color: #616161 !important;
@@ -25,7 +25,7 @@
     font-weight: 400;
 }
 html{
-	background-color: #F1F1F1;
+	background-color: var(--background-color);
 }
 button, input {
     outline: none !important;
@@ -39,7 +39,7 @@ a.my_post_links {
     width: 100%;
     padding: 10px;
     margin: 0px 0px 10px;
-    background-color: #f1f1f1;
+    background-color: var(--background-color);
     border-radius: 4px;
 }
 .left_content.active_tabs i {
@@ -49,14 +49,14 @@ a.my_post_links {
     color: #fff;
 }
 .left_content.active_tabs {
-    background: #0f1b31;
+    background: var(--secondary-color);
 }
 .left_content i {
-    color: #0F1B31;
+    color: var(--secondary-color);
     font-size: 18px;
 }
 .left_content div {
-    color: #0F1B31;
+    color: var(--secondary-color);
     margin-left: 10px;
     font-size: 14px;
 }
@@ -99,7 +99,7 @@ a.my_post_links {
     margin: 0;
 }
 .setting_details button {
-    background-color: #0F1B31;
+    background-color: var(--secondary-color);
     color: #ffffff;
     border-radius: 4px;
     height: 35px;
@@ -117,7 +117,7 @@ a.my_post_links {
     margin: 0;
 }
 .setting_details_hide button {
-    background-color: #0F1B31;
+    background-color: var(--secondary-color);
     color: #ffffff;
     border-radius: 4px;
     /* height: 35px; */
@@ -136,11 +136,11 @@ a:hover{
     text-decoration: none;
 }
 body {
-    background-color: #F1F1F1;
+    background-color: var(--background-color);
     background-image: none !important;
 }
 header{
-	background-color: #0f1b31;
+	background-color: var(--secondary-color);
 	padding: 15px 0;
 	position: unset;
 }
@@ -213,7 +213,7 @@ header .logo, .login_container {
 .login_container div {
     display: inline-flex;
     position: relative;
-    background: #FF9000;
+    background: var(--accent-color);
     border-radius: 4px;
 		margin: 10px 0 10px 0;
 }
@@ -349,7 +349,7 @@ img.logout {
 .profile_basic_info{
 	font-weight: 500;
     font-size: 20px;
-    color: #0F1B31;
+    color: var(--secondary-color);
     line-height: 1;
 	margin-bottom: 12px;
 	font-size: 16px;
@@ -360,7 +360,7 @@ img.logout {
 .profile_name_of_poster {
     margin-right: 10px;
     text-transform: capitalize;
-    font-family: 'Josefin Sans', sans-serif;
+    font-family: var(--josefin-sans);
 }
 
 

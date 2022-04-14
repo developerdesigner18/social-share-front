@@ -105,7 +105,7 @@ header .logo,
     top: -20px; 
     right: -15px;   
     border-radius: 50%;
-    background-color: #ff9000;
+    background-color: var(--accent-color);
     display: inline-block;
     color: #fff;
 }
@@ -156,7 +156,7 @@ img.logout {
 }
 .container {
     border: 2px solid #dedede;
-    background-color: #f1f1f1;
+    background-color: var(--background-color);
     border-radius: 5px;
     padding: 10px;
 }
@@ -167,7 +167,7 @@ img.logout {
     bottom: 0;
     height: auto;
     width: 75vw;
-    background-color: #f1f1f1;
+    background-color: var(--background-color);
     overflow-x: hidden;
     padding-top: 12em;
     z-index: 1;
@@ -220,7 +220,7 @@ img.logout {
 
 .online:before {
     content: "";
-    background: #ff9000;
+    background: var(--accent-color);
     height: 10px;
     width: 10px;
     position: absolute;
@@ -252,7 +252,7 @@ img.logout {
     top: -10px;
     bottom: 0;
     margin: auto;
-    border: 2px solid #ff9000;
+    border: 2px solid var(--accent-color);
     background: none;
 }
 .chat_panel{
@@ -305,7 +305,7 @@ img.logout {
     padding: 0;
 }
 .chat-messages-show-list li{
-    /* background: #0f1b31; */
+    /* background: var(--secondary-color); */
     margin: 10px;
     text-align: right;
     border-radius: 4px;
@@ -317,7 +317,7 @@ img.logout {
     border-radius: 4px;
 }
 .video_calling {
-    background: #0f1b31;
+    background: var(--secondary-color);
     border: 0;
 }
 .video_calling img{
@@ -358,7 +358,7 @@ img.logout {
     padding: 10px 16px 7px;
     font-size: 15px;
     color: #ffffff;
-    background-color: #ff9000;
+    background-color: var(--accent-color);
     border: 0;
     margin: auto 30px;
 }
@@ -382,14 +382,14 @@ a:hover {
 }
 
 body {
-    background-color: #F1F1F1;
+    background-color: var(--background-color);
     background-image: none !important;
     overflow-x: hidden;
     /* overflow-y: hidden; */
 }
 
 header {
-    background-color: #0f1b31;
+    background-color: var(--secondary-color);
     padding: 10px 0;
     width: 100%;
     z-index: 99;
@@ -434,7 +434,7 @@ img.logout {
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: #0f1b31;
+    background-color: var(--secondary-color);
     overflow-x: hidden;
     padding-top: 20px;
 }
@@ -448,7 +448,7 @@ img.logout {
 }
 
 .sidenav a:hover {
-    color: #f1f1f1;
+    color: var(--background-color);
 }
 
 .left {
@@ -468,7 +468,7 @@ img.logout {
     bottom: 0;
     height: auto;
     width: 76.5vw;
-    background-color: #f1f1f1;
+    background-color: var(--background-color);
     overflow-x: hidden;
     z-index: 1;
 }
@@ -509,7 +509,7 @@ img.logout {
 .request_shows div {
     margin-left: 0 !important;
     font-size: 16px;
-    color: #0f1b31;
+    color: var(--secondary-color);
     position: relative;
     /* margin-top: 10px; */
     text-transform: capitalize;
@@ -545,7 +545,7 @@ img.logout {
 
 .about_description.tab-content {
     margin-top: 15px;
-    color: #0F1B31;
+    color: var(--secondary-color);
     font-weight: 400;
 }
 
@@ -553,7 +553,7 @@ img.logout {
     /* margin: 0 15px; */
     border: 0;
     background: none;
-    color: #0F1B31;
+    color: var(--secondary-color);
     /* color: inherit; */
     text-decoration: none;
     padding: 6px 4px;
@@ -565,9 +565,9 @@ img.logout {
 }
 
 .about_action_tabs li:hover {
-    /* background-color: #f1f1f1; */
+    /* background-color: var(--background-color); */
     /* padding: 10px; */
-    color: #ff9000;
+    color: var(--accent-color);
     background-color: #f0f8ff;
 }
 
@@ -584,17 +584,17 @@ img.logout {
 }
 
 .about_action_tabs li:hover a {
-    color: #ff9000;
+    color: var(--accent-color);
 }
 
 .about_action_tabs li.active a {
-    color: #ff9000;
+    color: var(--accent-color);
 }
 
 .title-about {
     padding-left: 10px;
     margin-bottom: 25px;
-    color: #0F1B31;
+    color: var(--secondary-color);
 }
 
 
@@ -619,7 +619,7 @@ img.logout {
 .profile_name_of_poster {
     font-weight: 500;
     font-size: 20px;
-    color: #0F1B31;
+    color: var(--secondary-color);
     line-height: 1;
     text-transform: capitalize;
 }
@@ -655,7 +655,7 @@ img.logout {
 }
 
 .unfriend_image a {
-    color: #0F1B31;
+    color: var(--secondary-color);
 }
 
 .row.friends_display {
@@ -668,12 +668,12 @@ img.logout {
 
 .province {
     padding: 5px 10px;
-    box-shadow: 0 0 4px #0F1B31;
+    box-shadow: 0 0 4px var(--secondary-color);
     border-radius: 4px;
 }
 
 .province div {
-    color: #0F1B31;
+    color: var(--secondary-color);
     font-size: 14px;
 }
 
@@ -684,7 +684,7 @@ img.logout {
 
 .item_desc {
     font-size: 14px;
-    color: #0F1B31;
+    color: var(--secondary-color);
     margin-top: -15px;
 }
 
@@ -732,7 +732,7 @@ button.owl-prev,
     height: 30px;
     width: 30px;
     border-radius: 50% !important;
-    box-shadow: 0 0 6px 0px #0F1B31;
+    box-shadow: 0 0 6px 0px var(--secondary-color);
 }
 
 button.owl-prev {
@@ -748,7 +748,7 @@ button.owl-next {
 button.owl-prev span {
     position: absolute;
     font-size: 34px;
-    color: #0F1B31;
+    color: var(--secondary-color);
     top: -6px;
     bottom: 0;
     margin: auto;
@@ -762,7 +762,7 @@ button.owl-prev span {
 button.owl-next span {
     position: absolute;
     font-size: 34px;
-    color: #0F1B31;
+    color: var(--secondary-color);
     top: -6px;
     bottom: 0;
     margin: auto;
@@ -778,7 +778,7 @@ button.owl-next span {
 }
 
 .cat_bid {
-    color: #0F1B31;
+    color: var(--secondary-color);
 }
 
 .category {
@@ -805,7 +805,7 @@ button.owl-next span {
     display: flex;
     justify-content: center;
     margin-top: 15px;
-    color: #0F1B31;
+    color: var(--secondary-color);
     font-size: 18px;
 }
 
@@ -813,14 +813,14 @@ button.owl-next span {
     background-color: aliceblue;
     padding: 5px 15px;
     margin-left: 10px;
-    color: #0F1B31;
+    color: var(--secondary-color);
     font-size: 20px;
     font-weight: 500;
     border-radius: 4px;
 }
 
 .bid_now button {
-    background-color: #ff9000;
+    background-color: var(--accent-color);
     border: 0;
     color: #ffffff;
     padding: 7px 18px;
@@ -850,7 +850,7 @@ button.owl-next span {
     text-align: center;
     font-size: 14px;
     font-weight: 500;
-    color: #0F1B31;
+    color: var(--secondary-color);
 }
 
 .take_action>button i {
@@ -865,14 +865,14 @@ button.owl-next span {
 }
 
 .take_action>button span {
-    color: #ff9000;
+    color: var(--accent-color);
     padding-left: 5px;
     font-weight: 500;
     font-size: 16px;
 }
 
 button.comment_sec {
-    border: 1px solid #ff9000 !important;
+    border: 1px solid var(--accent-color) !important;
     border-top: 0 !important;
     border-bottom: 0 !important;
 }
@@ -881,7 +881,7 @@ button.comment_sec {
     background-color: #f0f8ff;
     border-radius: 4px;
     margin-top: 15px;
-    color: #0F1B31;
+    color: var(--secondary-color);
     padding: 15px;
     height: 40vh;
     overflow-y: scroll;
@@ -889,7 +889,7 @@ button.comment_sec {
 
 .comment_title {
     font-weight: 500;
-    color: #ff9000;
+    color: var(--accent-color);
     font-size: 18px;
     margin-bottom: 20px;
 }
@@ -933,7 +933,7 @@ button.comment_sec {
     content: "";
     height: 10px;
     width: 10px;
-    background-color: #ff9000;
+    background-color: var(--accent-color);
     border-radius: 50%;
     bottom: -11px;
     left: -29px;
@@ -967,12 +967,12 @@ button.comment_sec {
     display: flex;
     align-items: center;
     margin-bottom: 15px;
-    color: #0F1B31;
+    color: var(--secondary-color);
 }
 
 .overview_tab i {
     margin-right: 10px;
-    color: #0F1B31;
+    color: var(--secondary-color);
     font-size: 16px;
 }
 
@@ -990,7 +990,7 @@ button.comment_sec {
 }
 
 .say_words button {
-    background-color: #0F1B31;
+    background-color: var(--secondary-color);
     border: 0;
     color: #ffffff;
     padding: 7px 18px;
@@ -1054,7 +1054,7 @@ button.comment_sec {
 .profile_basic_info {
     font-weight: 500;
     font-size: 20px;
-    color: #0F1B31;
+    color: var(--secondary-color);
     line-height: 1;
     margin-bottom: 12px;
     font-size: 16px;
@@ -1199,7 +1199,7 @@ button.comment_sec {
         display: flex;
         flex-direction: row;
         align-items: center;
-        border: 1px solid #f1f1f1;
+        border: 1px solid var(--background-color);
     }
     button.mobile_btn img {
         width: 2em;

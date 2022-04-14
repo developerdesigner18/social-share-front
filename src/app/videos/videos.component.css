@@ -26,7 +26,7 @@
 .main_post_content h6 {
     font-size: 18px;
     font-weight: 400;
-    color: #ff9204;
+    color: var(--accent-color);
 }
 
 

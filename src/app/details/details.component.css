@@ -1,12 +1,12 @@
 input{
-  background-color: #f1f1f1;
+  background-color: var(--background-color);
     border: 0;
     /* padding: 5px 10px; */
     /* width: 100%; */
     border-radius: 4px;
     height: 40px;
     padding-right: 12.6%;
-    color: #0F1B31;
+    color: var(--secondary-color);
     font-size: 14px;
     padding-left: 15px;
 }
@@ -31,14 +31,14 @@ button{
 }
 
 .overview-main a {
-  color: #ff9000;
+  color: var(--accent-color);
   font-size: 14px;
 }
 
 .pencil-icon{
   background: #efefef;
   padding: 5px;
-  color: #ff9000;
+  color: var(--accent-color);
   border-radius: 50%;
   cursor: pointer;
 }

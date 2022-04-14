@@ -3,12 +3,20 @@
 @import '~@ctrl/ngx-emoji-mart/picker';
 @import '~ngx-toastr/toastr';
 
+:root{
+	--primary-color: #FFFFFF;
+	--accent-color: #FF9000;
+	--secondary-color: #0F1B31;
+	--background-color: #F1F1F1;
+	--text-color: #2d2d2d;
+	--josefin-sans: 'Josefin Sans', sans-serif;
+}
 *{
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
 	/* font-family: 'Quicksand', sans-serif; */
-	font-family: 'Josefin Sans', sans-serif;
+	font-family: var(--josefin-sans);
 }
 html{
   height: 100%;
@@ -22,12 +30,12 @@ html{
 
 .emoji-mart.emoji-mart-dark {
     height: 40vh;
-  }
-  .emoji-mart-scroll {
-    height: 20vh !important;
-  }
-  a.emoji-content {
-    padding: 1em;
+}
+.emoji-mart-scroll {
+	height: 20vh !important;
+}
+a.emoji-content {
+	padding: 1em;
     cursor: pointer;
     float: right;
 }
@@ -54,12 +62,12 @@ html{
   /* Handle */
   ::-webkit-scrollbar-thumb {
 	border-radius: 5px;
-    background: #ff9000;
+    background: var(--accent-color);
 }
   
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
-	background: #0F1B31;
+	background: var(--secondary-color);
   }
 body {
     /* height: 100vh; */
@@ -70,7 +78,7 @@ body {
 }
 
 header{
-	background-color: #0f1b31;
+	background-color: var(--secondary-color);
 	padding: 5px;
 	/* border-bottom: 1px solid #334c6b; */
 }
@@ -109,7 +117,7 @@ header{
 }
 
 .login_container button {
-	background: #FF9000;
+	background: var(--accent-color);
 	border: 0;
 	padding: 5px 12px;
 	border-radius: 4px;
@@ -119,11 +127,11 @@ header{
 }
 
 body .ng-image-fullscreen-view .lightbox-wrapper .lightbox-div .lightbox-image-main .lightbox-image .custom-image-main {
-    background-color: #0F1B31;
+    background-color: var(--secondary-color);
 }
 body .ng-image-fullscreen-view .lightbox-wrapper .close {
     /* background-image: url(../src/assets/images/close.png);
-	background-color: #0f1b31; */
+	background-color: var(--secondary-color); */
 	opacity: 0.20;
 }
 body .ng-image-fullscreen-view .lightbox-wrapper .close:not(:disabled):not(.disabled):hover {
@@ -154,7 +162,7 @@ body .ng-image-fullscreen-view .lightbox-wrapper .lightbox-div .next.disable, .n
 }
 
 .forget-link:hover{
-  color: #FF9000;
+  color: var(--accent-color);
 }
 
 .sign_up_sec{
@@ -179,7 +187,7 @@ img.connecting_image {
 }
 .sign_up_title {
     font-size: 28px;
-    color: #ff9000;
+    color: var(--accent-color);
     font-weight: 500;
 }
 .sign_up_subtitle {
@@ -206,8 +214,8 @@ img.connecting_image {
     margin-top: 25px;
 }
 .form_of_sign_up button {
-    border: 2px solid #1f314b;
-    color: #1f314b;
+    border: 2px solid var(--secondary-color);
+    color: var(--secondary-color);
     padding: 7px 0;
     background-color: #ffffffcf;
     font-weight: 600;

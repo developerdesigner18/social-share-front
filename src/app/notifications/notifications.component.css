@@ -21,9 +21,9 @@
 .noti_body p {
     margin: 0px 0 15px;
     font-size: 20px;
-    color: #0F1B31;
+    color: var(--secondary-color);
     line-height: 1;
-    font-family: 'Josefin Sans', sans-serif;
+    font-family: var(--josefin-sans);
 }
 .noti_scroll {
     height: auto;

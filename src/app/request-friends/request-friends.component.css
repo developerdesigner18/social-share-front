@@ -18,7 +18,7 @@ ul.nav.nav-pills.flex-column li {
 }
 
 html {
-    background-color: #F1F1F1;
+    background-color: var(--background-color);
 }
 
 button,
@@ -93,13 +93,13 @@ a:hover {
 }
 
 body {
-    background-color: #F1F1F1;
+    background-color: var(--background-color);
     background-image: none !important;
     overflow-x: hidden;
 }
 
 header {
-    background-color: #0f1b31;
+    background-color: var(--secondary-color);
     padding: 15px 0;
     position: fixed;
     width: 100%;
@@ -158,7 +158,7 @@ header .ads {
 .profile_basic_info {
     font-weight: 500;
     font-size: 20px;
-    color: #0F1B31;
+    color: var(--secondary-color);
     line-height: 1;
     margin-bottom: 12px;
     font-size: 16px;
@@ -212,7 +212,7 @@ header .logo,
 .login_container div {
     display: inline-flex;
     position: relative;
-    background: #FF9000;
+    background: var(--accent-color);
     border-radius: 4px;
 }
 
@@ -232,7 +232,7 @@ img.logout {
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: #0f1b31;
+    background-color: var(--secondary-color);
     overflow-x: hidden;
     padding-top: 20px;
 }
@@ -246,7 +246,7 @@ img.logout {
 }
 
 .sidenav a:hover {
-    color: #f1f1f1;
+    color: var(--background-color);
 }
 
 .left {
@@ -318,12 +318,12 @@ img.logout {
 .no_post_friend h6 {
     font-size: 18px;
     font-weight: 400;
-    color: #ff9204;
+    color: var(--accent-color);
     text-align: center;
 }
 
 .no_friend_show {
-    color: #ff9000;
+    color: var(--accent-color);
     font-weight: 400;
     margin-top: 15px;
 }
@@ -334,12 +334,12 @@ img.logout {
 }
 
 .active_tabs {
-    background: #0F1B31 !important;
+    background: var(--secondary-color) !important;
     color: #f0f8ff !important;
 }
 
 .permanent_tabs {
-    background: #ff9000 !important;
+    background: var(--accent-color) !important;
     color: #f0f8ff !important;
 }
 
@@ -353,8 +353,8 @@ img.logout {
 }
 
 .show_add_friend {
-    color: #f1f1f1;
-    background: #0f1b31;
+    color: var(--background-color);
+    background: var(--secondary-color);
     border: 1px solid #f0f8ff;
 }
 
@@ -369,13 +369,13 @@ img.logout {
 }
 
 .remove_people img {
-    border: 1.5px solid #f1f1f1;
+    border: 1.5px solid var(--background-color);
     padding: 2px;
 }
 
 body .add_friend_btn {
-    background: #0f1b31 !important;
-    color: #f1f1f1;
+    background: var(--secondary-color) !important;
+    color: var(--background-color);
     border: 1px solid #ffffff !important;
 }
 
@@ -387,7 +387,7 @@ body .add_friend_btn {
 body button.btn.remove_friend_btn {
     background: #F0F8FF !important;
     border: 0 !important;
-    color: #0f1b31 !important;
+    color: var(--secondary-color) !important;
 }
 
 .request_shows button {
@@ -425,7 +425,7 @@ body button.btn.remove_friend_btn {
 
 .display_people_data {
     margin-top: 15px;
-    color: #0f1b31;
+    color: var(--secondary-color);
 }
 
 .friend_div>div:first-child {
@@ -485,7 +485,7 @@ body button.btn.remove_friend_btn {
 
 .profile_name {
     text-align: center;
-    color: #0F1B31;
+    color: var(--secondary-color);
     font-size: 22px;
     position: relative;
     /* top: 10px; */
@@ -506,7 +506,7 @@ body .profile_pic_main_tabs_sec .actions {
     margin: 0 15px;
     border: 0;
     background: none;
-    color: #0F1B31;
+    color: var(--secondary-color);
     padding: 6px 10px;
     background-color: aliceblue;
     border-radius: 4px;
@@ -540,7 +540,7 @@ body .profile_pic_main_tabs_sec .actions {
 
 .about_description.tab-content {
     margin-top: 15px;
-    color: #0F1B31;
+    color: var(--secondary-color);
     font-weight: 400;
 }
 
@@ -548,7 +548,7 @@ body .profile_pic_main_tabs_sec .actions {
     /* margin: 0 15px; */
     border: 0;
     background: none;
-    color: #0F1B31;
+    color: var(--secondary-color);
     /* color: inherit; */
     text-decoration: none;
     padding: 6px 4px;
@@ -560,9 +560,9 @@ body .profile_pic_main_tabs_sec .actions {
 }
 
 .about_action_tabs li:hover {
-    /* background-color: #f1f1f1; */
+    /* background-color: var(--background-color); */
     /* padding: 10px; */
-    color: #ff9000;
+    color: var(--accent-color);
     background-color: #f0f8ff;
 }
 
@@ -579,17 +579,17 @@ body .profile_pic_main_tabs_sec .actions {
 }
 
 .about_action_tabs li:hover a {
-    color: #ff9000;
+    color: var(--accent-color);
 }
 
 .about_action_tabs li.active a {
-    color: #ff9000;
+    color: var(--accent-color);
 }
 
 .title-about {
     padding-left: 10px;
     margin-bottom: 25px;
-    color: #0F1B31;
+    color: var(--secondary-color);
 }
 
 
@@ -614,7 +614,7 @@ body .profile_pic_main_tabs_sec .actions {
 .profile_name_of_poster {
     font-weight: 500;
     font-size: 20px;
-    color: #0F1B31;
+    color: var(--secondary-color);
     line-height: 1;
     text-transform: capitalize;
 }
@@ -650,7 +650,7 @@ body .profile_pic_main_tabs_sec .actions {
 }
 
 .unfriend_image a {
-    color: #0F1B31;
+    color: var(--secondary-color);
 }
 
 .row.friends_display {
@@ -663,12 +663,12 @@ body .profile_pic_main_tabs_sec .actions {
 
 .province {
     padding: 5px 10px;
-    box-shadow: 0 0 4px #0F1B31;
+    box-shadow: 0 0 4px var(--secondary-color);
     border-radius: 4px;
 }
 
 .province div {
-    color: #0F1B31;
+    color: var(--secondary-color);
     font-size: 14px;
 }
 
@@ -679,12 +679,12 @@ body .profile_pic_main_tabs_sec .actions {
 
 .item_desc {
     font-size: 14px;
-    color: #0F1B31;
+    color: var(--secondary-color);
     margin-top: -15px;
 }
 
 .item_desc a {
-    color: #ff9000;
+    color: var(--accent-color);
 }
 
 .owl-stage {
@@ -731,7 +731,7 @@ button.owl-prev,
     height: 30px;
     width: 30px;
     border-radius: 50% !important;
-    box-shadow: 0 0 6px 0px #0F1B31;
+    box-shadow: 0 0 6px 0px var(--secondary-color);
 }
 
 button.owl-prev {
@@ -747,7 +747,7 @@ button.owl-next {
 button.owl-prev span {
     position: absolute;
     font-size: 34px;
-    color: #0F1B31;
+    color: var(--secondary-color);
     top: -6px;
     bottom: 0;
     margin: auto;
@@ -761,7 +761,7 @@ button.owl-prev span {
 button.owl-next span {
     position: absolute;
     font-size: 34px;
-    color: #0F1B31;
+    color: var(--secondary-color);
     top: -6px;
     bottom: 0;
     margin: auto;
@@ -777,7 +777,7 @@ button.owl-next span {
 }
 
 .cat_bid {
-    color: #0F1B31;
+    color: var(--secondary-color);
 }
 
 .category {
@@ -804,7 +804,7 @@ button.owl-next span {
     display: flex;
     justify-content: center;
     margin-top: 15px;
-    color: #0F1B31;
+    color: var(--secondary-color);
     font-size: 18px;
 }
 
@@ -812,14 +812,14 @@ button.owl-next span {
     background-color: aliceblue;
     padding: 5px 15px;
     margin-left: 10px;
-    color: #0F1B31;
+    color: var(--secondary-color);
     font-size: 20px;
     font-weight: 500;
     border-radius: 4px;
 }
 
 .bid_now button {
-    background-color: #ff9000;
+    background-color: var(--accent-color);
     border: 0;
     color: #ffffff;
     padding: 7px 18px;
@@ -849,7 +849,7 @@ button.owl-next span {
     text-align: center;
     font-size: 14px;
     font-weight: 500;
-    color: #0F1B31;
+    color: var(--secondary-color);
 }
 
 .take_action>button i {
@@ -864,14 +864,14 @@ button.owl-next span {
 }
 
 .take_action>button span {
-    color: #ff9000;
+    color: var(--accent-color);
     padding-left: 5px;
     font-weight: 500;
     font-size: 16px;
 }
 
 button.comment_sec {
-    border: 1px solid #ff9000 !important;
+    border: 1px solid var(--accent-color) !important;
     border-top: 0 !important;
     border-bottom: 0 !important;
 }
@@ -880,7 +880,7 @@ button.comment_sec {
     background-color: #f0f8ff;
     border-radius: 4px;
     margin-top: 15px;
-    color: #0F1B31;
+    color: var(--secondary-color);
     padding: 15px;
     height: 40vh;
     overflow-y: scroll;
@@ -888,7 +888,7 @@ button.comment_sec {
 
 .comment_title {
     font-weight: 500;
-    color: #ff9000;
+    color: var(--accent-color);
     font-size: 18px;
     margin-bottom: 20px;
 }
@@ -932,7 +932,7 @@ button.comment_sec {
     content: "";
     height: 10px;
     width: 10px;
-    background-color: #ff9000;
+    background-color: var(--accent-color);
     border-radius: 50%;
     bottom: -11px;
     left: -29px;
@@ -966,12 +966,12 @@ button.comment_sec {
     display: flex;
     align-items: center;
     margin-bottom: 15px;
-    color: #0F1B31;
+    color: var(--secondary-color);
 }
 
 .overview_tab i {
     margin-right: 10px;
-    color: #0F1B31;
+    color: var(--secondary-color);
     font-size: 16px;
 }
 
@@ -989,7 +989,7 @@ button.comment_sec {
 }
 
 .say_words button {
-    background-color: #0F1B31;
+    background-color: var(--secondary-color);
     border: 0;
     color: #ffffff;
     padding: 7px 18px;
@@ -1053,7 +1053,7 @@ button.comment_sec {
 .profile_basic_info {
     font-weight: 500;
     font-size: 20px;
-    color: #0F1B31;
+    color: var(--secondary-color);
     line-height: 1;
     margin-bottom: 12px;
     font-size: 16px;
@@ -1110,14 +1110,14 @@ button.comment_sec {
     position: absolute;
     right: 95px;
     margin-top: 40px;
-    background-color: #0f1b31;
+    background-color: var(--secondary-color);
     color: #fff;
     border-radius: 8px;
 }
 
 
 /* .share_users {
-    background-color: #ff9000;
+    background-color: var(--accent-color);
     color: #fff;
 } */
 
@@ -1312,7 +1312,7 @@ button.comment_sec {
     }
     .back_btn {
         padding-left: 5px;
-        color: #0f1b31;
+        color: var(--secondary-color);
         cursor: pointer;
     }
     /* .take_action>button {

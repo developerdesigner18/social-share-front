@@ -1,12 +1,12 @@
 input{
-  background-color: #f1f1f1;
+  background-color: var(--background-color);
     border: 0;
     /* padding: 5px 10px; */
     /* width: 100%; */
     border-radius: 4px;
     height: 40px;
     padding-right: 12.6%;
-    color: #0F1B31;
+    color: var(--secondary-color);
     font-size: 14px;
     padding-left: 15px;
 }
@@ -40,10 +40,10 @@ button{
 .add-city{
   margin-top: 5px;
   margin-bottom: 0 !important;
-  color: #ff9000;
+  color: var(--accent-color);
 }
 .add-city * {
-  color: #ff9000;
+  color: var(--accent-color);
 }
 .place{
   align-items: center;
@@ -51,7 +51,7 @@ button{
 }
 img{
   border-radius: 50%;
-  border: 1px solid #0f1b31;
+  border: 1px solid var(--secondary-color);
   padding: 1px;
 }
 .text_placed {
@@ -68,7 +68,7 @@ img{
 .pencil-icon{
   background: #efefef;
   padding: 5px;
-  color: #ff9000;
+  color: var(--accent-color);
   border-radius: 50%;
   cursor: pointer;
 }
