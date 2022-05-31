@@ -1,6 +1,6 @@
 <app-header>
 </app-header>
-<ngx-spinner bdColor="rgba(255,255,255,0.7)" size="medium" color="#ff9000" type="ball-triangle-path"
+<ngx-spinner bdColor="rgba(255,255,255,0.7)" size="medium" color="#FF9000" type="ball-triangle-path"
     [fullScreen]="true">
 </ngx-spinner>
 <ng-container *ngIf="loadingRouteConfig">Loading route config...</ng-container>
@@ -13,11 +13,11 @@
         <div class="profile_name">{{name}}</div>
         <div class="friends_Posts d-flex align-items-center">
             <div class="total_friends_of_user d-flex align-items-center">
-                <div class="my_friends">Friends</div>
+                <div class="my_friends" routerLink="/friends/{{id}}">Friends</div>
                 <div class="my_friends_numbers">{{count_frd <= 100 ? count_frd : '100+' }}</div>
                 </div>
                 <div class="total_posts_of_user d-flex align-items-center">
-                    <div class="my_friends">Posts</div>
+                    <div class="my_friends" routerLink="/profile/{{id}}">Posts</div>
                     <div class="my_friends_numbers">{{user_post <= 100 ? user_post : '100+' }}</div>
                     </div>
                 </div>
@@ -202,21 +202,25 @@
                                     <span style="font-weight: bold;font-size: 16px;text-transform: capitalize;">
                                         {{data.type}} Post</span>
                                 </div>
+                                <div id="desc" #desc [hidden]="true" [innerHtml]="data.description"></div>                               
                                 <div id="sview_{{data._id}}" class="item_desc mt-2"
-                                    style="width: 100%;word-wrap: break-word;white-space: pre-line;" [innerHtml]="data.description">
-                                    <!-- {{data.description.length > 60 ? (data.description | slice:0:60) + '...' :
+                                style="width: 100%;word-wrap: break-word;white-space: pre-line;" [innerHtml]="desc.textContent.length > 60 ? (data.description | slice:0:60) + '...' :
+                                data.description">
+                                <!-- {{desc.textContent.length > 60 ? (data.description | slice:0:60) + '...' :
                                     data.description}} -->
                                 </div>
                                 <div id="view_{{data._id}}" class="item_desc mt-2 desc_contain"
-                                    style="word-wrap: break-word;display: none;white-space: pre-line;" [innerHtml]="data.description">
-                                    <!-- {{data.description}} -->
+                                style="word-wrap: break-word;display: none;white-space: pre-line;" [innerHtml]="data.description">
+                                <!-- {{data.description}} -->
                                 </div>
                                 <a class="view_more_{{data._id}}" id="view_more_{{data._id}}"
-                                    style="color: #ff9000;cursor: pointer;text-decoration: underline;font-size: 14px;"
-                                    *ngIf="data.description.length > 60 && !show_more" (click)="view_more(data._id)">View More</a>
+                                style="color: #FF9000;cursor: pointer;text-decoration: underline;font-size: 13px;"
+                                *ngIf="desc.textContent.length > 60" [class.is-hidden]="isHidden" (click)="view_more(data._id)">View More</a>
+                                <!-- *ngIf="desc.textContent.length > 60 && !show_more" (click)="view_more(data._id)">View More</a> -->
                                 <a class="view_less_{{data._id}}" id="view_less_{{data._id}}"
-                                    style="color: #ff9000;cursor: pointer;text-decoration: underline;font-size: 14px;"
-                                    *ngIf="data.description.length > 60 && show_more" (click)="view_less(data._id)">View Less</a>
+                                style="color: #FF9000;cursor: pointer;text-decoration: underline;font-size: 13px;"
+                                *ngIf="desc.textContent.length > 60" [class.is-hidden]="!isHidden" (click)="view_less(data._id)">View Less</a>
+                                <!-- *ngIf="desc.textContent.length > 60 && show_more" (click)="view_less(data._id)">View Less</a> -->
                             </div>
                         </div>
 
@@ -282,11 +286,11 @@
                                             tempLikePostId) ? data.like.length + temCntLike : (data.like.length +
                                             temCntLike ===
                                             0) ? '' : data.like.length : ''}}</span></div>
-                                    <!-- <div *ngIf="data.like.length === 0">Like<span>{{data.like.length === 0 ? (data._id
+                                    <div *ngIf="data.like.length === 0">Like<span>{{data.like.length === 0 ? (data._id
                                             ===
                                             tempLikePostId) ? data.like.length + temCntLike : (data.like.length +
                                             temCntLike ===
-                                            0) ? '' : data.like.length}}</span></div> -->
+                                            0) ? '' : '' : ''}}</span></div>
                                     <!-- <div>Like<span>{{ (data._id === tempLikePostId ) ? data.like.length + temCntLike :
                                     (data.like.length + temCntLike === 0) ? '' : data.like.length }}</span></div> -->
                                 </button>
@@ -311,7 +315,7 @@
                                     <div *ngIf="data.comment.length === 0">Comment<span>{{data.comment.length === 0 ?
                                             (data._id
                                             === tempPostId) ? data.comment.length + temCmnt.length : ''
-                                            :data.comment.length
+                                            : data.comment.length
                                             }}</span></div>
                                 </button>
                                 <button class="share_sec_{{data._id}} share_sec" (click)="share(data._id)"
@@ -472,11 +476,11 @@
                         <ng-template #elseFriend class="card card-body">
                             <div class="view_all_notification"
                               style="text-align: center;padding: 0.5em;">
-                              <a style="padding: 5px 10px;color: #ff9000;background: none;">Oops you have not make any friend till now 😯</a>
+                              <a style="padding: 5px 10px;color: #FF9000;background: none;">Oops you have not make any friend till now 😯</a>
                             </div>
                         </ng-template>
                         <div style="display: flex;align-items: center;justify-content: center;">
-                            <a href="chating/{{id}}" style="color: #ff9000;">Chat Panel</a>
+                            <a href="chating/{{id}}" style="color: #FF9000;">Chat Panel</a>
                         </div>
                     </div>
                 </div>

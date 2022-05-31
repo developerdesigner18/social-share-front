@@ -1,12 +1,11 @@
 import { ChangeDetectorRef, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren, ViewEncapsulation } from '@angular/core';
 import { SocketioService } from '../socketio.service';
 import {io} from 'socket.io-client';
-//  import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment';
 import { AuthService } from '../auth.service';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import Pusher from 'pusher-js'
 import { ToastrService } from 'ngx-toastr';
-import { environment } from 'src/environments/environment.prod';
 import * as CryptoJS from 'crypto-js';
 import { PushNotificationsService } from 'ng-push-ivy';
 

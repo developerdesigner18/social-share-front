@@ -1890,6 +1890,9 @@ div#tooltiptexts span {
     cursor: pointer;
 }
 
+.is-hidden {
+    display: none;
+}
 
 /* The Modal (background) */
 

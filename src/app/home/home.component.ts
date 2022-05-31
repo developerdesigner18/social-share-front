@@ -11,8 +11,7 @@ import { ThemeService } from '../../theme/theme.service';
 import { NgxSpinnerService } from "ngx-spinner";
 import { finalize, tap } from 'rxjs/operators';
 import {io} from 'socket.io-client';
-// import { environment } from 'src/environments/environment';
-import { environment } from 'src/environments/environment.prod';
+import { environment } from 'src/environments/environment';
 import 'web-social-share';
 declare var jQuery: any;
 declare var $: any;
@@ -55,7 +54,7 @@ export class HomeComponent implements OnInit {
   showbasicProfile3 = [];
   showLikes = [];
   share_display: boolean = false;
-  show_more: boolean = false;
+  isHidden: boolean;
 
   checkPostsId: any;
   commentsForm: FormGroup;
@@ -77,7 +76,6 @@ export class HomeComponent implements OnInit {
   public showLoadingIndicator: boolean = true;
 
   postImageData = {}
-  showMore: boolean;
   u_city: any;
   loadingRouteConfig: boolean;
   socket;
@@ -344,9 +342,9 @@ $(window).scroll(function() {
   checkTem = false
   
   view_more(postId) {
-    this.show_more = true;
+    this.isHidden = true;
     // $(`#view_more_${postId}`).css('display', 'none');
-    // $(`#view_less_${postId}`).css('display', 'block');
+    // $(`#view_less_${postId}`).css('display', 'block');     
     $(`#view_${postId}`).css('display', 'block');
     $(`#sview_${postId}`).css('display', 'none');
     document.getElementById(`main_post_contents_${postId}`).scrollIntoView({
@@ -355,7 +353,7 @@ $(window).scroll(function() {
   }
 
   view_less(postId) {
-    this.show_more = false;
+    this.isHidden = false;
     // $(`#view_more_${postId}`).css('display', 'block');
     // $(`#view_less_${postId}`).css('display', 'block');
     $(`#view_${postId}`).css('display', 'none');

@@ -16,8 +16,8 @@
 </div>
 <ng-container #container *ngIf="notfound !== 404">
   <div app-theme *ngFor="let data of datas | slice: 0:totalDisplay; let i = index"
-    class="main_post_content d-flex flex-column timeline"
-    id="{{ data.imageUrl.length > 0 ? data.imageUrl[0].image.split('/').pop() : ''}}">
+  class="main_post_content d-flex flex-column timeline"
+  id="main_post_contents_{{data._id}}">
     <div class="d-flex show_basic_info" style="width: 100%;">
       <div class="profile_pic_profile position-relative">
         <img [src]="profileImg" onerror="this.src='/assets/images/character.png';" />
@@ -42,14 +42,16 @@
             </div>
           </div>
         </div>
-        <div style="color: #0f1b31; font-size: 14px" *ngIf="data.name !== undefined">
+        <div style="color: #0F1B31; font-size: 14px" *ngIf="data.name !== undefined">
           <span style="font-weight: bold;font-size: 16px;"> Album: </span>{{ data.name }}
         </div>
+        <div id="desc" #desc [hidden]="true" [innerHtml]="data.description"></div>                               
         <div id="sview_{{ data._id }}" class="item_desc mt-2"
-          style="width: 100%; word-wrap: break-word; white-space: pre-line;" [innerHtml]="data.description">
+        style="width: 100%; word-wrap: break-word; white-space: pre-line;" [innerHtml]="desc.textContent.length > 60 ? (data.description | slice:0:60) + '...' :
+        data.description">
           <!-- <ng-template>
             {{
-              data.description.length > 60
+              desc.textContent.length > 60
               ? (data.description | slice: 0:60) + "..."
               : data.description
             }}
@@ -59,12 +61,12 @@
           style="word-wrap: break-word; display: none; white-space: pre-line;" [innerHtml]="data.description">
           <!-- {{ data.description }} -->
         </div>
-        <a class="view_more_{{ data._id }}" id="view_more_{{ data._id }}" style="
-            color: #ff9000;
-            cursor: pointer;
-            text-decoration: underline;
-            font-size: 14px;
-          " *ngIf="data.description.length > 90" (click)="view_more(data._id)">View More</a>
+        <a class="view_more_{{ data._id }}" id="view_more_{{ data._id }}"
+        style="color: #FF9000; cursor: pointer; text-decoration: underline; font-size: 13px;"
+        *ngIf="desc.textContent.length > 60" [class.is-hidden]="isHidden" (click)="view_more(data._id)">View More</a>
+        <a class="view_less_{{ data._id }}" id="view_less_{{ data._id }}"
+        style="color: #FF9000; cursor: pointer; text-decoration: underline; font-size: 13px;"
+        *ngIf="desc.textContent.length > 60" [class.is-hidden]="!isHidden" (click)="view_less(data._id)">View Less</a>
       </div>
     </div>
     <div class="slider_bid_like-share d-flex flex-column" style="width: 100%">
@@ -235,6 +237,6 @@
 </ng-container>
 <ng-container *ngIf="notfound == 404">
   <div class="main_post_content d-flex flex-column">
-    <h6>Not Any Posts Found</h6>
+    <h6>There Are No Posts Yet</h6>
   </div>
 </ng-container>

@@ -5,6 +5,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { MatDialog } from  '@angular/material/dialog';
 import { DialogErrorComponent } from '../dialog-error/dialog-error.component';
 import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from "ngx-spinner";
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -24,8 +26,9 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     public router: Router,
     public dialog: MatDialog,
-    public toastr: ToastrService
-  ) {
+    public toastr: ToastrService,
+    private spinner: NgxSpinnerService
+      ) {
     this.show = false;
   }
 
@@ -43,10 +46,12 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
+    this.spinner.show();
     if(!this.loginForm.valid){
       this.toastr.error("Authentication is failed. Please check your email and password.")
+      this.spinner.hide();
     }
-    this.authService.login(this.email.value, this.password.value).subscribe(() => {
+    this.authService.login(this.email.value, this.password.value).pipe(finalize(() => { this.spinner.hide(); })).subscribe(() => {
       this.toastr.success("Welcome User in Social Share")
     });
     if (this.authService.isLoggedIn() !== true) {

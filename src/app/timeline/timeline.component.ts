@@ -71,6 +71,7 @@ export class TimelineComponent implements OnInit, AfterViewInit {
   tool = [];
   totalDisplay: number;
   bodyHeight: number;
+  isHidden: boolean;
 
   @HostListener("window:scroll")
   onScroll(e: Event): void {
@@ -202,14 +203,29 @@ export class TimelineComponent implements OnInit, AfterViewInit {
   open_comments(postId){
     $(`.comments_container_${postId}`).toggle();
   }
+
   view_more(postId) {
-    $(`#view_more_${postId}`).css('display', 'none');
+    this.isHidden = true;
     $(`#view_${postId}`).css('display', 'block');
     $(`#sview_${postId}`).css('display', 'none');
+    document.getElementById(`main_post_contents_${postId}`).scrollIntoView({
+      behavior: 'smooth'
+    });
   }
+  
+  view_less(postId) {
+    this.isHidden = false;
+    // $(`#view_more_${postId}`).css('display', 'block');
+    // $(`#view_less_${postId}`).css('display', 'block');
+    $(`#view_${postId}`).css('display', 'none');
+    $(`#sview_${postId}`).css('display', 'block');
+    document.getElementById(`main_post_contents_${postId}`).scrollIntoView();
+  }
+  
   trackByFn(i) {
     return i;
   }
+
 
   loadMore() {
     this.totalDisplayed += 10;  

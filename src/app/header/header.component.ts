@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+// declare var $ :any;
 
 @Component({
   selector: 'app-header',
@@ -46,6 +47,13 @@ export class HeaderComponent implements OnInit {
   chatting(){
     this.router.navigate(['chating/', this.id])
     this.chat = !this.chat
+  }
+
+  clickedOutOfNotif(event: any){
+    ($("#collapseExample") as any).collapse({
+      toggle: false
+    })
+    // $("#collapseExample").modal('toggle')    
   }
 
   onClickedOutside(event: any){
