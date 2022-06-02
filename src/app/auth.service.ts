@@ -1012,7 +1012,7 @@ export class AuthService {
       msg = 'Backend returned code ${error.status}, ` + `body was: ${error.error.message}'
       if (error.status == 500) {
         this.toastr.error('Authentication is failed. Please check your email and paswword.');
-      }else if (error.status == 422) {
+      } else if (error.status == 422) {
         this.toastr.error('Email id is already exist.')
         // this.dialog.open(DialogErrorComponent, {
         //   width: '500px'

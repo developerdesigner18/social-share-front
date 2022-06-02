@@ -35,12 +35,12 @@ export class ForgetComponent implements OnInit {
     if(!this.forgetForm.valid){
       return;
     }
-    this.authService.forget(this.forgetForm.value).subscribe((res) => {
-     if (!res.result) {
+    this.authService.forget(this.forgetForm.value).subscribe((res) => {      
+     if (res.success) {
        this.forgetForm.reset()
-       this.toastr.info("Sent link in your email please check and get back into your account")
-     } else {
-       this.toastr.error("Email address is not found. Please check your email address")
+       this.toastr.info("We've sent a password reset link to your mail inbox. Please use it get your account back.")
+     } else if (!res.success) {
+       this.toastr.error("This E-mail address was not found in our system.")
      }
      this.isSubmitted = false;
    })
