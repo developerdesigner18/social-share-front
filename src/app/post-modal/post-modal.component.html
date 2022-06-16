@@ -30,10 +30,10 @@
                 <a *ngIf="shows" class="cancel_btn" (click)="cancel()"><img src="../../assets/images/closes.png"
                         width="25px" height="25px" alt="image_post_show"> </a>
                 <span *ngFor="let image of temp_images; let i = index;">
-                    <img #postImage *ngIf="image.data == 'img'" class="change_width" style="width: 100%; height: 130px;"
+                    <img #postImage *ngIf="image.data == 'img'" class="change_width" style="width: 100%; height: 100%;"
                         [src]="image.src" />
                     <video #postImage controls *ngIf="image.data == 'video'" class="change_width"
-                        style="width: 100%; height: 130px;" [src]="image.src"></video>
+                        style="width: 100%; height: 100%;" [src]="image.src"></video>
                 </span>
             </ng-container>
             <ng-container *ngIf="twoimg && !threeimg && !fiveimg && !fourimg">
@@ -42,9 +42,9 @@
                 <!-- <div> -->
                 <span class="img_show" *ngFor="let image of temp_images; let i = index;">
                     <img #postImage *ngIf="image.data == 'img'" class="change_width"
-                        style="width: 100%; height: 130px; object-fit: cover;" [src]="image.src" />
+                        style="width: 100%; height: 100%; object-fit: cover;" [src]="image.src" />
                     <video #postImage controls *ngIf="image.data == 'video'" class="change_width"
-                        style="width: 100%; height: 130px; object-fit: cover;" [src]="image.src"></video>
+                        style="width: 100%; height: 100%; object-fit: cover;" [src]="image.src"></video>
                 </span>
                 <!-- </div> -->
             </ng-container>
