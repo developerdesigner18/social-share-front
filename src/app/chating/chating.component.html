@@ -24,7 +24,7 @@
     <ng-template #elseFriend class="card card-body">
       <div class="view_all_notification"
         style="text-align: center;">
-        <a style="padding: 5px 10px;color: #fff;">No Friends Please make some friends to chat with them. 😊</a>
+        <a style="padding: 5px 10px;color: #FFFFFF;">No Friends Please make some friends to chat with them. 😊</a>
       </div>
     </ng-template>
   </div>
@@ -50,10 +50,10 @@
         <li *ngFor="let chat of chat_messages" #messages
           [ngStyle]="{'text-align':chat.senderID === current_user_id ? 'right' : 'left', 'justify-content': chat.senderID === current_user_id ? 'flex-end' : 'flex-start'}"
           style="display: flex;">
-          <div [ngStyle]="{'background':chat.senderID === current_user_id ? '#ffffff' : '#0F1B31'}"
+          <div [ngStyle]="{'background':chat.senderID === current_user_id ? '#FFFFFF' : '#0F1B31'}"
             class="chat_message_div">
             <div>
-              <span [ngStyle]="{'color':chat.senderID === current_user_id ? '#0F1B31' : '#ffffff'}">{{chat.message ?
+              <span [ngStyle]="{'color':chat.senderID === current_user_id ? '#0F1B31' : '#FFFFFF'}">{{chat.message ?
                 chat.message : message}}</span>
               <span style="padding-left: 5px;" *ngIf="chat.senderID === current_user_id"> <img
                   [src]="chat.status == 0 ? '../../assets/images/check.png' : '../../assets/images/check2.png'"

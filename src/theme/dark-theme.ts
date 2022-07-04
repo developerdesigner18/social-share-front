@@ -6,7 +6,7 @@ export const darkTheme: Theme = {
     '--background': '#1F2125',
     '--on-background': '#a3a3a3',
     '--primary': 'darkorange',
-    '--on-primary': '#fff',
+    '--on-primary': '#FFFFFF',
     '--back': '#000000'
   }
 } 

@@ -15,13 +15,13 @@ input{
 }
 
 button{
-  border: 1px solid #f0f8ff;
-    background-color: #f0f8ff;
-    /* height: 0px; */
-    color: #fa9000;
-    margin-left: 5px;
-    height: 38px;
-    padding: 0px 9px;
+  border: 1px solid var(--div-background-color);
+  background-color: var(--div-background-color);
+  /* height: 0px; */
+  color: var(--accent-color);
+  margin-left: 5px;
+  height: 38px;
+  padding: 0px 9px;
 }
 .overview-main a {
   color: var(--accent-color);

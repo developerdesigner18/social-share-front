@@ -27,7 +27,7 @@
     </div>
     <div class="collapse" id="collapseExample">
     <!-- <div class="collapse" id="collapseExample" (clickOutside)="clickedOutOfNotif($event)"> -->
-      <div *ngIf="notif_data.length > 0; else elseNotify" class="card card-body" style="background: #f0f8ff;">
+      <div *ngIf="notif_data.length > 0; else elseNotify" class="card card-body" style="background: #F0F8FF;">
         <div class="all_notification" *ngFor="let data of notif_data | slice:0:6"
           style="padding: 10px 0 0 0; border-bottom: 2px solid #ff9100;">
           <div class="d-flex flex-column">
@@ -46,13 +46,13 @@
         </div>
         <div class="view_all_notification" style="text-align: center; padding-top: 1em;">
           <a href="profile/{{id}}/notifications"
-            style="padding: 5px 10px;color: #fff; background: #ff8100;border-radius: 4px;">View All</a>
+            style="padding: 5px 10px;color: #FFFFFF; background: #ff8100;border-radius: 4px;">View All</a>
         </div>
       </div>
-      <ng-template #elseNotify class="card card-body" style="background: #f0f8ff;">
+      <ng-template #elseNotify class="card card-body" style="background: #F0F8FF;">
         <div class="view_all_notification"
-          style="text-align: center; padding: 1em; background: #fff; border-radius: 8px;">
-          <a style="padding: 5px 10px;color: #fff; background: #ff8100;border-radius: 4px;">No notifications to show</a>
+          style="text-align: center; padding: 1em; background: #FFFFFF; border-radius: 8px;">
+          <a style="padding: 5px 10px;color: #FFFFFF; background: #ff8100;border-radius: 4px;">No notifications to show</a>
         </div>
       </ng-template>
     </div>

@@ -53,7 +53,7 @@ input {
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 10px;
     width: 100% !important;
-    background-color: #ffffff;
+    background-color: #FFFFFF;
     box-shadow: 0px 1px 15px 0px rgba(0, 52, 89, 0.58);
     padding: 25px 15px !important;
     /* padding-right: 5px !important; */
@@ -120,7 +120,7 @@ header {
     border: 0;
     padding: 6px 12px;
     border-radius: 4px;
-    color: #ffffff;
+    color: #FFFFFF;
     font-size: 14px;
     margin-left: 20px;
 }
@@ -131,7 +131,7 @@ header .ads {
     text-align: center;
     padding: 5px;
     border-radius: 4px;
-    color: #f0f8ff;
+    color: var(--div-background-color);
     height: 70px;
 }
 
@@ -149,7 +149,7 @@ header .ads {
     position: absolute;
     z-index: 9;
     top: 15px;
-    background-color: #ffffff;
+    background-color: #FFFFFF;
     box-shadow: 0px 1px 15px 0px rgba(0, 52, 89, 0.58);
     display: block !important;
     padding: 15px;
@@ -194,7 +194,7 @@ header .ads {
     position: absolute;
     z-index: 9;
     /* bottom: 75px; */
-    background-color: #ffffff;
+    background-color: #FFFFFF;
     box-shadow: 0px 1px 15px 0px rgba(0, 52, 89, 0.58);
     display: flex !important;
     padding: 10px;
@@ -274,7 +274,7 @@ img.logout {
     /* .left_sidebar > div, .right_sidebar > div, .main_area > div > app-timeline > div, .main_area > div > app-about > div, .main_area > div > app-photos > div, .main_area > div > app-friends > div { */
     display: flex;
     justify-content: center;
-    background-color: #ffffff;
+    background-color: #FFFFFF;
     box-shadow: 0px 1px 15px 0px rgba(0, 52, 89, 0.58);
     position: relative;
     top: 0;
@@ -312,7 +312,7 @@ img.logout {
 }
 
 .profile_pic_main_tabs_sec {
-    background-color: #ffffff;
+    background-color: #FFFFFF;
 }
 
 .no_post_friend h6 {
@@ -335,12 +335,12 @@ img.logout {
 
 .active_tabs {
     background: var(--secondary-color) !important;
-    color: #f0f8ff !important;
+    color: var(--div-background-color) !important;
 }
 
 .permanent_tabs {
     background: var(--accent-color) !important;
-    color: #f0f8ff !important;
+    color: var(--div-background-color) !important;
 }
 
 .friend_list h3 {
@@ -355,7 +355,7 @@ img.logout {
 .show_add_friend {
     color: var(--background-color);
     background: var(--secondary-color);
-    border: 1px solid #f0f8ff;
+    border: 1px solid var(--div-background-color);
 }
 
 .request_shows {
@@ -376,7 +376,7 @@ img.logout {
 body .add_friend_btn {
     background: var(--secondary-color) !important;
     color: var(--background-color);
-    border: 1px solid #ffffff !important;
+    border: 1px solid #FFFFFF !important;
 }
 
 .remove_people {
@@ -385,7 +385,7 @@ body .add_friend_btn {
 }
 
 body button.btn.remove_friend_btn {
-    background: #F0F8FF !important;
+    background: var(--div-background-color) !important;
     border: 0 !important;
     color: var(--secondary-color) !important;
 }
@@ -395,12 +395,12 @@ body button.btn.remove_friend_btn {
 }
 
 .request_shows label {
-    color: #ffffff;
+    color: #FFFFFF;
     cursor: pointer;
 }
 
 .profile_pic_main_tabs_sec {
-    background-color: #ffffff;
+    background-color: #FFFFFF;
     display: flex;
     align-items: center;
     padding: 15px 0;
@@ -417,7 +417,7 @@ body button.btn.remove_friend_btn {
     position: static !important;
     top: -218px;
     left: 0;
-    border: 5px solid #ffffff;
+    border: 5px solid #FFFFFF;
     right: 0;
     margin: auto;
     margin-top: -165px;
@@ -443,7 +443,7 @@ body button.btn.remove_friend_btn {
 }
 
 .friend_div input {
-    background: #f0f8ff !important;
+    background: var(--div-background-color) !important;
 }
 
 .friend_div .autocomplete-container {
@@ -563,7 +563,7 @@ body .profile_pic_main_tabs_sec .actions {
     /* background-color: var(--background-color); */
     /* padding: 10px; */
     color: var(--accent-color);
-    background-color: #f0f8ff;
+    background-color: var(--div-background-color);
 }
 
 .about_action_tabs li.active {
@@ -727,7 +727,7 @@ img.slider_image {
 
 button.owl-prev,
 .owl-next {
-    background: #ffffff !important;
+    background: #FFFFFF !important;
     height: 30px;
     width: 30px;
     border-radius: 50% !important;
@@ -821,7 +821,7 @@ button.owl-next span {
 .bid_now button {
     background-color: var(--accent-color);
     border: 0;
-    color: #ffffff;
+    color: #FFFFFF;
     padding: 7px 18px;
     border-radius: 4px;
     margin-left: 10px;
@@ -877,7 +877,7 @@ button.comment_sec {
 }
 
 .comments_container {
-    background-color: #f0f8ff;
+    background-color: var(--div-background-color);
     border-radius: 4px;
     margin-top: 15px;
     color: var(--secondary-color);
@@ -916,7 +916,7 @@ button.comment_sec {
 }
 
 .comment_here {
-    background: #ffffff;
+    background: #FFFFFF;
     border-radius: 4px;
     margin-top: 10px;
     padding: 5px;
@@ -947,18 +947,18 @@ button.comment_sec {
 }
 
 .people_title {
-    color: #ffffff;
+    color: #FFFFFF;
 }
 
 .friend_list {
     margin: 0px 16px 15px 12px;
-    color: #ffffff;
-    border-bottom: 1px solid #f0f8ff;
+    color: #FFFFFF;
+    border-bottom: 1px solid var(--div-background-color);
 }
 
 .receive_request {
     margin: 0px 16px 8px 12px;
-    color: #ffffff;
+    color: #FFFFFF;
     border-bottom: 1px solid #334c6b;
 }
 
@@ -991,7 +991,7 @@ button.comment_sec {
 .say_words button {
     background-color: var(--secondary-color);
     border: 0;
-    color: #ffffff;
+    color: #FFFFFF;
     padding: 7px 18px;
     border-radius: 4px;
     margin-left: 10px;
@@ -1044,7 +1044,7 @@ button.comment_sec {
     position: absolute;
     z-index: 9;
     top: 50px;
-    background-color: #ffffff;
+    background-color: #FFFFFF;
     box-shadow: 0px 1px 15px 0px rgba(0, 52, 89, 0.58);
     display: block !important;
     padding: 15px;
@@ -1069,7 +1069,7 @@ button.comment_sec {
     position: absolute;
     width: 120px;
     background-color: #555;
-    color: #fff;
+    color: #FFFFFF;
     text-align: center;
     border-radius: 6px;
     padding: 5px 0;
@@ -1111,14 +1111,14 @@ button.comment_sec {
     right: 95px;
     margin-top: 40px;
     background-color: var(--secondary-color);
-    color: #fff;
+    color: #FFFFFF;
     border-radius: 8px;
 }
 
 
 /* .share_users {
     background-color: var(--accent-color);
-    color: #fff;
+    color: #FFFFFF;
 } */
 
 .user_profile {
@@ -1136,7 +1136,7 @@ button.comment_sec {
     left: 0;
     right: 0;
     bottom: 0;
-    color: #ffffff;
+    color: #FFFFFF;
     z-index: 9;
     display: flex;
     justify-content: center;
@@ -1235,7 +1235,7 @@ button.comment_sec {
 }
 
 .contain ul {
-    background-color: #ffffff;
+    background-color: #FFFFFF;
     margin-left: -10px;
     padding-top: 10px;
     border-radius: 8px;

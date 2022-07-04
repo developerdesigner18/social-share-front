@@ -25,7 +25,7 @@
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 10px;
     width: 100% !important;
-    background-color: #ffffff;
+    background-color: #FFFFFF;
     box-shadow: 0px 1px 15px 0px rgba(0, 52, 89, 0.58);
     padding: 25px 15px !important;
     border-radius: 5px;
@@ -97,7 +97,7 @@
     padding: 5px;
     width: 100%;
     display: flex;
-    color: #ffffff;
+    color: #FFFFFF;
     position: absolute;
     bottom: 0px;
     left: 0;
@@ -144,7 +144,7 @@
     top: 0;
 }
 .prev, .next {
-    background-color: #ffffff;
+    background-color: #FFFFFF;
     padding: 5px 15px;
     border-radius: 50%;
     font-weight: 500;
@@ -190,7 +190,7 @@
 /* On hover, add a black background color with a little bit see-through */
 .prev:hover,
 .next:hover {
-  background-color: #ffffff;
+  background-color: #FFFFFF;
 }
 
 .contain ul#myTab {
@@ -233,7 +233,7 @@
     padding: 25px 20px !important;
     overflow: hidden;
     justify-content: center;
-    background-color: #ffffff;
+    background-color: #FFFFFF;
     box-shadow: 0px 1px 15px 0px rgb(0 52 89 / 58%);
     position: relative;
     top: 25px;
@@ -300,7 +300,7 @@
 
 .contain ul li a.active {
     background: var(--secondary-color) !important;
-    color: #fff !important;
+    color: #FFFFFF !important;
 }
 .write_words {
     display: grid;

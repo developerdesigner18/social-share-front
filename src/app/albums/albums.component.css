@@ -28,7 +28,7 @@
 }
   
   button.close{
-    color: #fff;
+    color: #FFFFFF;
     font-weight: 400;
     position: relative;
     right: 10px;
@@ -101,7 +101,7 @@
     left: 72%;
     transform: translate(-50%, -50%);
     font-size: 21px;
-    color: #ffffff;
+    color: #FFFFFF;
     bottom: auto;
     right: auto;
     background: #00000085;

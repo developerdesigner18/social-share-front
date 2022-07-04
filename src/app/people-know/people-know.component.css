@@ -50,7 +50,7 @@ header{
 	border: 0;
 	padding: 6px 12px;
 	border-radius: 4px;
-	color: #ffffff;
+	color: #FFFFFF;
 	font-size: 14px;
 	margin-left: 20px;
 }
@@ -60,7 +60,7 @@ header .ads {
     text-align: center;
     padding: 5px;
     border-radius: 4px;
-    color: #f0f8ff;
+    color: var(--div-background-color);
     height: 70px;
 }
 header .logo, .login_container, .icon_container {
@@ -110,7 +110,7 @@ img.logout {
 .left_sidebar, .main_area_content{
     display: flex;
     justify-content: center;
-    background-color: #ffffff;
+    background-color: #FFFFFF;
     box-shadow: 0px 1px 15px 0px rgba(0, 52, 89, 0.58);
     position: relative;
     top: 20px;
@@ -169,7 +169,7 @@ a.my_post_links{
     height: 20px;
     background-color: var(--accent-color);
     border-radius: 50%;
-    color: #ffffff;
+    color: #FFFFFF;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -189,7 +189,7 @@ a.my_post_links{
     height: 20px;
     background-color: var(--accent-color);
     border-radius: 50%;
-    color: #ffffff;
+    color: #FFFFFF;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -210,7 +210,7 @@ a.my_post_links{
     height: 20px;
     background-color: var(--accent-color);
     border-radius: 50%;
-    color: #ffffff;
+    color: #FFFFFF;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -244,7 +244,7 @@ a.my_post_links{
 .post button {
     background-color: var(--secondary-color);
     border: 0;
-    color: #ffffff;
+    color: #FFFFFF;
     padding: 7px 18px;
     border-radius: 4px;
     margin-left: 10px;
@@ -365,7 +365,7 @@ a.my_post_links:hover div > div {
 		/* height: 32px; */
 	/* } */
 	.profile_name {
-		color: #ffffff;
+		color: #FFFFFF;
 	}
 	.badges_for_pymk:before{
 		right: 165px;
@@ -441,7 +441,7 @@ a.my_post_links:hover div > div {
     color: var(--secondary-color) !important;
 }
 .Send_request_icon {
-    background: #ffffff;
+    background: #FFFFFF;
     padding-left: 3px;
     cursor: pointer;
     height: 34px;
