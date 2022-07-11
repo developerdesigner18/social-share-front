@@ -72,7 +72,6 @@ export class UpdateModalComponent implements OnInit {
     //     this.fiveimg = true
     //   }
     // }
-    console.log("check data", data)
    }
 
   ngOnInit(): void {
@@ -100,7 +99,6 @@ export class UpdateModalComponent implements OnInit {
   }
 
   openNewDialog(event: any): void {
-    console.log("check event", event)
     if(event.target.files){
       var orientation = -1;
       for(var i = 0; i < event.target.files.length; i++){
@@ -125,8 +123,6 @@ export class UpdateModalComponent implements OnInit {
         this.arrayfile.splice(event.target.files.length, 0, event.target.files[i])
         this.arrayfile.sort((fileA, fileB) => fileA.size > fileB.size ? 1 : -1)
       }
-      console.log("images", this.images, this.arrayfile)
-
     }
   }
 
@@ -147,7 +143,6 @@ export class UpdateModalComponent implements OnInit {
     if(this.images.length > 0){
       this.PostCheck(this.images).then((res) => {
         this.checkPng(res.new).then((status) => {
-          console.log("res", res, this.arrayfile, status)
           if(status){
             this.toastr.info("png format is not supported used other format like jpg or jpeg")
           } else {
@@ -160,7 +155,6 @@ export class UpdateModalComponent implements OnInit {
               var reader = new FileReader();
               reader.readAsDataURL(this.fileCovToReturn[i]);
             }
-            console.log("reader", reader)
             if(reader !== undefined){
               reader.onload = async(_event) => {
                 let message = await linkify(this.desc)
@@ -213,7 +207,6 @@ export class UpdateModalComponent implements OnInit {
   }
 
   async postDataSet(data){
-    console.log("data", data.length)
     if (data.length > 0) {
       if(data.length === 2)
       {
@@ -249,7 +242,6 @@ export class UpdateModalComponent implements OnInit {
           value.new.push(element)
         }
     });
-    console.log("check", check, value)
     return value;
   }
 
@@ -257,7 +249,6 @@ export class UpdateModalComponent implements OnInit {
     var value = false
     await data.forEach(element => {
       if(element.includes("png")){
-        console.log("call")
         value = true
       }
     });

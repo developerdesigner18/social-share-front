@@ -40,7 +40,6 @@ export class InformationComponent implements OnInit {
     //   this.u_city = res.data.city
     //   this.designation = res.data.designation
     //   this.hobbies = res.data.hobbies
-    //   console.log("this.hobbies", this.hobbies.length)
     // })
     this.authService
       .getUserProfile(this.id)

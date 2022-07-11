@@ -362,7 +362,7 @@ $(window).scroll(function() {
   }
 
   view_more_comment(value){
-    // console.log("value", value)
+
   }
 
   tempLikePostId = ''

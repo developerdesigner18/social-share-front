@@ -148,7 +148,6 @@ export class TimelineComponent implements OnInit, AfterViewInit {
             $('.comments_container').css('overflow-y', 'scroll');
           }
           let element = document.getElementById(`sview_${this.datas[i]._id}`)
-          // console.log('element', element)
           // element.innerHTML = `${this.description}`
         }
         return this.datas
@@ -418,7 +417,7 @@ function linkify(inputText) {
   // replacePattern2 = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
   replacedText = inputText.replace(/<a.*?>/i, '');
   replacedText = replacedText.replace(/<\/a>/i, '');
-  console.log('replacePattern',  replacedText)
+  console.log('linkify - replacePattern',  replacedText)
 
   return replacedText;
 }

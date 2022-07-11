@@ -154,7 +154,6 @@ onFocus() {
         this.arrayfile = this.fileData
         }
         let arrayRemoveNull = this.arrayfile.filter((a, i) => this.arrayfile.findIndex((s) => a.name === s.name) === i)
-        console.log("check image file", this.arrayfile)
       if (arrayRemoveNull[0].name.split('.').pop() !== 'png') {
           this.spinner.show()
           for (let i = 0; i < arrayRemoveNull.length; i++){
@@ -169,9 +168,7 @@ onFocus() {
           this.toastr.info("png format is not supported used other format like jpg or jpeg")
         }
         reader.onload = async(_event) => {
-          console.log("this.status", this.status)
           let message = await linkify(this.postMesssgeElement.nativeElement.value)
-          console.log('message', message)
           this.authService.newPost(this.token, message, this.fileCovToReturn, this.status ? this.status : 0).pipe(finalize(() => this.spinner.hide())).subscribe((res) => {
             if(window.location.href.split('/')[3] == "home"){
               window.location.replace('home/' + window.location.href.split('/')[4]);
@@ -211,7 +208,6 @@ onFocus() {
 
 
   openNewDialog(event: any): void {
-    console.log("check event", event)
     for (var i = 0; i < event.target.files.length; i++) {
       if (i === event.target.files.length - 1)
       {
@@ -273,7 +269,6 @@ onFocus() {
           var reader = new FileReader();
 
           reader.onload = (event: any) => {
-            // console.log("image", event.target.result)
             if (event.target.result.split(';')[0] == 'data:video/mp4' || event.target.result.split(';')[0] == 'data:video/avi') {
               this.temp_images.push({data: 'video', src: event.target.result})
               this.images.push(event.target.result);

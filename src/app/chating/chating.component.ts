@@ -117,7 +117,7 @@ export class ChatingComponent implements OnInit {
 
     this.channel.bind("client-candidate", (msg) => {
       if (msg.room == this.room) {
-          console.log("candidate received");
+          console.log("client candidate received");
           this.caller.addIceCandidate(new RTCIceCandidate(msg.candidate));
       }
     });
@@ -164,21 +164,21 @@ export class ChatingComponent implements OnInit {
   });
   this.channel.bind("client-answer", (answer) => {
     if (answer.room == this.room) {
-      console.log("answer received");
+      console.log("call answered");
       this.caller.setRemoteDescription(new RTCSessionDescription(answer.sdp));
     }
   });
   
   this.channel.bind("client-reject", (answer) => {
     if (answer.room == this.room) {
-      console.log("Call declined");
+      console.log("call declined");
       alert("call to " + answer.name + " was politely declined");
       this.endCall();
     }
   });
     
     this.channel.bind("client-endcall", answer => {
-      console.log("answer end call", answer)
+      console.log("end call", answer)
       if (answer.room == this.room) {
         alert("Call is ended")
         this.endCall();
@@ -279,7 +279,7 @@ export class ChatingComponent implements OnInit {
       this.onIceCandidate(this.caller, evt);
     };
     //onaddstream handler to receive remote feed and show in remoteview video element
-    console.log("call")
+    console.log("prepareCaller")
     this.caller.onaddstream = (evt) => {
       console.log("onaddstream called");
       var myImgsrc =  <HTMLVideoElement>(document.querySelector("#remoteview"));
@@ -332,7 +332,7 @@ export class ChatingComponent implements OnInit {
   }
   //Create and send offer to remote peer on button click
   callUser(user) {
-    console.log("call", user)
+    console.log("callUser", user)
     this.getCam()
       .then(stream => {
         this.video = <HTMLVideoElement>(document.querySelector("#selfview"));
@@ -414,7 +414,6 @@ export class ChatingComponent implements OnInit {
       let messageInput = document.getElementById("message");
       let typing = document.getElementById("typing");
     this.socket.on('my broadcast', (data: string) => {
-      console.log("data", data)
        let value = [this.current_user_id, this.recieverId]
        value.sort((a, b) => b.localeCompare(a))
        this.mergeId = value.join()
@@ -453,12 +452,11 @@ export class ChatingComponent implements OnInit {
     
     // if (messageInput) {
     //   messageInput.addEventListener('keypress', () => {
-    //     console.log("call")
     //     this.socket.emit("typing", { user: this.name, message: "is typing..." });
     //   });
     // }
     this.socket.on("notifyTyping", data => {
-        console.log("data", data)
+        console.log("notifyTyping - data", data)
         typing.innerText = data.user + " " + data.message;
         this.type = data.user + " " + data.message;
       });
@@ -474,7 +472,7 @@ export class ChatingComponent implements OnInit {
       });
     
     this.socket.on('notifyStart', (data) => {
-      console.log("data", data)
+      console.log("notifyStart - data", data)
       if (data.recieverId == this.current_user_id) {
         this.msg_status = true
         this.msg_typing = data.user + ' is typing....'
@@ -482,7 +480,7 @@ export class ChatingComponent implements OnInit {
     })
 
     this.socket.on('notifyStop', (data) => {
-      console.log("call")
+      console.log("notifyStop")
       if (data.recieverId == this.current_user_id) {
         this.msg_status = false
       }
