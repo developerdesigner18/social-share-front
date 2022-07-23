@@ -8,7 +8,7 @@ declare var $: any;
 @Component({
   selector: 'app-people-know',
   templateUrl: './people-know.component.html',
-  styleUrls: ['./people-know.component.css'],
+  styleUrls: ['./people-know.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
 export class PeopleKnowComponent implements OnInit {

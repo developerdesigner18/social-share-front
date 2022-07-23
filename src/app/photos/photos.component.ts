@@ -14,7 +14,7 @@ declare var $: any;
 @Component({
   selector: 'app-photos',
   templateUrl: './photos.component.html',
-  styleUrls: ['./photos.component.css']
+  styleUrls: ['./photos.component.scss']
 })
 export class PhotosComponent implements OnInit {
   slideIndex = 1

@@ -13,7 +13,7 @@ declare var $: any;
 @Component({
   selector: 'app-chating',
   templateUrl: './chating.component.html',
-  styleUrls: ['./chating.component.css'],
+  styleUrls: ['./chating.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class ChatingComponent implements OnInit {

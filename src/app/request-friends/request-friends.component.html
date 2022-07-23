@@ -224,6 +224,7 @@
                   <form (ngSubmit)="addComments(data._id, cmntuname, cmntuprofile)" [formGroup]="commentsForm">
                     <input type="text" autocomplete="off" placeholder=" Write a comment...!"
                       formControlName="newcomment">
+                      <button type="submit"><i class="fas fa-paper-plane"></i></button>
                   </form>
                 </div>
                 <div class="comments_container_{{data._id}} comments_container" style="display: none;"

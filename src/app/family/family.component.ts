@@ -9,7 +9,7 @@ declare var $: any;
 @Component({
   selector: 'app-family',
   templateUrl: './family.component.html',
-  styleUrls: ['./family.component.css']
+  styleUrls: ['./family.component.scss']
 })
 export class FamilyComponent implements OnInit {
   status: boolean;

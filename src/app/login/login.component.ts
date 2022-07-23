@@ -11,7 +11,7 @@ import { finalize } from 'rxjs/operators';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     public dialog: MatDialog,
     public toastr: ToastrService,
     private spinner: NgxSpinnerService
-      ) {
+    ) {
     this.show = false;
   }
 
@@ -37,8 +37,6 @@ export class LoginComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
-
-    this.authService.logout();
   }
 
   get email() { return this.loginForm.get('email'); }

@@ -7,7 +7,7 @@ import { AuthService } from '../auth.service';
 @Component({
   selector: 'app-themes',
   templateUrl: './theme.component.html',
-  styleUrls: ['./theme.component.css', './theme.scss'],
+  styleUrls: ['./theme.component.scss', './theme.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class ThemeComponent implements OnInit {

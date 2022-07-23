@@ -93,6 +93,7 @@ import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
 // social-share
 import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
 import { ShareIconsModule } from 'ngx-sharebuttons/icons';
+import { GamerzCoinComponent } from './gamerz-coin/gamerz-coin.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -135,6 +136,7 @@ import { ShareIconsModule } from 'ngx-sharebuttons/icons';
     NguiInComponent,
     ChatingComponent,
     UpdateModalComponent,
+    GamerzCoinComponent,
     // TimeAgoPipe
   ],
   entryComponents: [DialogBodyComponent],

@@ -7,7 +7,7 @@ import { AuthService } from '../auth.service';
 @Component({
   selector: 'app-work',
   templateUrl: './work.component.html',
-  styleUrls: ['./work.component.css']
+  styleUrls: ['./work.component.scss']
 })
 export class WorkComponent implements OnInit {
   work: boolean;

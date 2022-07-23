@@ -1016,14 +1016,24 @@ button.comment_sec {
     margin-top: 15px;
     border-radius: 4px;
 }
-
-.write_comments>form>input {
+.write_comments form {
+  display: flex;
+  flex-direction: row;
+  padding: 2px;
+}
+.write_comments > form > input {
     padding: 4px;
     background: #ecedee;
     border: none;
     border-radius: 5px;
     padding-left: 10px;
     width: 100%;
+}
+.write_comments > form > button {
+    color: var(--accent-color);
+    background: none;
+    border: none;
+    width: 35px;
 }
 
 

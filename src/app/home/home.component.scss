@@ -384,9 +384,9 @@ a.my_post_links {
 }
 
 .profile_image img {
-    width: 130px;
+    height: 200px;
+    width: 200px;
     border-radius: 50%;
-    height: 130px;
     -o-object-fit: cover;
     object-fit: cover;
     border: 1.5px dashed #ff9900;
@@ -1515,14 +1515,24 @@ a.my_post_links:hover div>div {
     margin-top: 15px;
     border-radius: 4px;
 }
-
-.write_comments>form>input {
+.write_comments form {
+  display: flex;
+  flex-direction: row;
+  padding: 2px;
+}
+.write_comments > form > input {
     padding: 4px;
     background: #ecedee;
     border: none;
     border-radius: 5px;
     padding-left: 10px;
     width: 100%;
+}
+.write_comments > form > button {
+    color: var(--accent-color);
+    background: none;
+    border: none;
+    width: 35px;
 }
 
 .allusers_set {

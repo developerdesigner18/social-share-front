@@ -5,7 +5,7 @@ declare var $: any;
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
-  styleUrls: ['./account.component.css'],
+  styleUrls: ['./account.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class AccountComponent implements OnInit {

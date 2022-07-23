@@ -13,7 +13,7 @@ declare var $: any;
 @Component({
   selector: 'app-request-friends',
   templateUrl: './request-friends.component.html',
-  styleUrls: ['./request-friends.component.css'],
+  styleUrls: ['./request-friends.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class RequestFriendsComponent implements OnInit {

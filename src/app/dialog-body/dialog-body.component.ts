@@ -4,7 +4,7 @@ import {MatDialogRef, MAT_DIALOG_DATA, MatDialog} from  '@angular/material/dialo
 @Component({
   selector: 'app-dialog-body',
   templateUrl: './dialog-body.component.html',
-  styleUrls: ['./dialog-body.component.css']
+  styleUrls: ['./dialog-body.component.scss']
 })
 export class DialogBodyComponent implements OnInit {
 

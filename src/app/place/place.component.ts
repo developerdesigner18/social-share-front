@@ -8,7 +8,7 @@ import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-place',
   templateUrl: './place.component.html',
-  styleUrls: ['./place.component.css']
+  styleUrls: ['./place.component.scss']
 })
 export class PlaceComponent implements OnInit {
   u_country = '';

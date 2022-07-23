@@ -19,7 +19,7 @@ declare var $: any;
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
+  styleUrls: ['./home.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class HomeComponent implements OnInit {
@@ -126,16 +126,15 @@ export class HomeComponent implements OnInit {
          $(".load_more").show();
        }, 5000);
     });
-// bottom to top btn
 
-$(window).scroll(function() {
-  if ($(window).scrollTop() > 300) {
-    $("#button_top").addClass("show");
-  } else {
-    $("#button_top").removeClass('show');
-  }
-});
-
+    // bottom to top btn
+    $(window).scroll(function() {
+      if ($(window).scrollTop() > 300) {
+        $("#button_top").addClass("show");
+      } else {
+        $("#button_top").removeClass('show');
+      }
+    });
     // end here
     
     let id = this.activatedRoute.snapshot.paramMap.get('id');
@@ -444,25 +443,22 @@ $(window).scroll(function() {
   addComments(postId, userName, profilePic){
     this.objVal = Object.keys(this.commentsForm.value).map(key => ({ type: key, value: this.commentsForm.value[key] }))
   
-    if (this.objVal[0].value !== '') {
-      this.authService.sendPostComment(postId, this.objVal[0].value).subscribe(res => {
-        if (res['success']) {
-          $(`.comments_container_${postId}`).css('display', 'block');
-          if (this.datas.map((id) => id._id).includes(postId)) {
-            this.count_cmt = res['data']
-            this.tempName = userName
-            this.tempProfile = profilePic
-            this.tempPostId = postId
-            this.checkTem = true
-            var data = this.objVal[0].value
-            this.tryCmnt = { postId, userName, profilePic, data }
-            this.temCmnt.push(this.tryCmnt)
-          }
+    if (this.objVal[0].value === '') return this.toastr.info("You can't submit an empty comment");
+    this.authService.sendPostComment(postId, this.objVal[0].value).subscribe(res => {
+      if (res['success']) {
+        $(`.comments_container_${postId}`).css('display', 'block');
+        if (this.datas.map((id) => id._id).includes(postId)) {
+          this.count_cmt = res['data']
+          this.tempName = userName
+          this.tempProfile = profilePic
+          this.tempPostId = postId
+          this.checkTem = true
+          var data = this.objVal[0].value
+          this.tryCmnt = { postId, userName, profilePic, data }
+          this.temCmnt.push(this.tryCmnt)
         }
-      })
-      this.commentsForm.reset()
-    } else {
-      this.toastr.info("You can't submit empty comment")
-    }
+      }
+    })
+    this.commentsForm.reset()
   }
 }

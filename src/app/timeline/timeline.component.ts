@@ -383,23 +383,20 @@ export class TimelineComponent implements OnInit, AfterViewInit {
 
   addComments(postId, userName, profilePic){
     this.objVal = Object.keys(this.commentsForm.value).map(key => ({ type: key, value: this.commentsForm.value[key] }))
-    if (this.objVal[0].value !== '') {
-      this.authService.sendPostComment(postId, this.objVal[0].value).subscribe(res => {
-        if (res['success']) {
-          $(`.comments_container_${postId}`).css('display', 'block');
-          if (this.datas.map((id) => id._id).includes(postId)) {
-            this.tempPostId = postId
-            this.checkTem = true
-            var data = this.objVal[0].value
-            this.tryCmnt = { postId, userName, profilePic, data }
-            this.temCmnt.push(this.tryCmnt)
-          }
+    if (this.objVal[0].value === '') return this.toastr.info("You can't submit an empty comment");
+    this.authService.sendPostComment(postId, this.objVal[0].value).subscribe(res => {
+      if (res['success']) {
+        $(`.comments_container_${postId}`).css('display', 'block');
+        if (this.datas.map((id) => id._id).includes(postId)) {
+          this.tempPostId = postId
+          this.checkTem = true
+          var data = this.objVal[0].value
+          this.tryCmnt = { postId, userName, profilePic, data }
+          this.temCmnt.push(this.tryCmnt)
         }
-      })
-      this.commentsForm.reset()
-    } else {
-      this.toastr.info("You can't submit empty comment")
-    }
+      }
+    })
+    this.commentsForm.reset()
   }
 
   showProfile(){

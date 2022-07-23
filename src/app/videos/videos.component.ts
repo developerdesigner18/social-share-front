@@ -10,7 +10,7 @@ declare var $: any;
 @Component({
   selector: 'app-videos',
   templateUrl: './videos.component.html',
-  styleUrls: ['./videos.component.css'],
+  styleUrls: ['./videos.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class VideosComponent implements OnInit {

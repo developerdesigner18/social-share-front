@@ -9,7 +9,7 @@ import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-life',
   templateUrl: './life.component.html',
-  styleUrls: ['./life.component.css'],
+  styleUrls: ['./life.component.scss'],
   providers: [DatePipe]
 })
 export class LifeComponent implements OnInit {

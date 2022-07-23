@@ -6,7 +6,7 @@ import { AuthService } from '../auth.service';
 @Component({
   selector: 'app-security',
   templateUrl: './security.component.html',
-  styleUrls: ['./security.component.css'],
+  styleUrls: ['./security.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class SecurityComponent implements OnInit {

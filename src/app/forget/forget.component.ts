@@ -8,7 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-forget',
   templateUrl: './forget.component.html',
-  styleUrls: ['./forget.component.css']
+  styleUrls: ['./forget.component.scss']
 })
 export class ForgetComponent implements OnInit {
   forgetForm: FormGroup;

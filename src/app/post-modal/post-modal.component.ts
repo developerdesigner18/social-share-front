@@ -13,7 +13,7 @@ declare var $: any;
 @Component({
   selector: 'app-post-modal',
   templateUrl: './post-modal.component.html',
-  styleUrls: ['./post-modal.component.css']
+  styleUrls: ['./post-modal.component.scss']
 })
 export class PostModalComponent implements OnInit {
   name = '';
@@ -147,10 +147,10 @@ onFocus() {
     this.token = localStorage.getItem('token')
     this.friendId = localStorage.getItem('friendId')
     if (this.postImageElement.length !== 0) {        
-      if(this.fileData[0] !== undefined)
+      if (this.fileData[0] !== undefined)
       {
         this.arrayfile = this.fileData[0]
-      }else{
+      } else {
         this.arrayfile = this.fileData
         }
         let arrayRemoveNull = this.arrayfile.filter((a, i) => this.arrayfile.findIndex((s) => a.name === s.name) === i)
@@ -170,7 +170,7 @@ onFocus() {
         reader.onload = async(_event) => {
           let message = await linkify(this.postMesssgeElement.nativeElement.value)
           this.authService.newPost(this.token, message, this.fileCovToReturn, this.status ? this.status : 0).pipe(finalize(() => this.spinner.hide())).subscribe((res) => {
-            if(window.location.href.split('/')[3] == "home"){
+            if (window.location.href.split('/')[3] == "home") {
               window.location.replace('home/' + window.location.href.split('/')[4]);
             } else {
               window.location.replace('profile/' + window.location.href.split('/')[4]);
@@ -179,14 +179,14 @@ onFocus() {
         }
     } else {
       this.toastr.info("Please add images to post")
-      if(this.postMesssgeElement.nativeElement.value == ''){
+      if (this.postMesssgeElement.nativeElement.value == '') {
         this.toastr.info("You are not set description!");
-      }else if(this.postMesssgeElement.nativeElement.value.valid !== ''){
+      } else if (this.postMesssgeElement.nativeElement.value.valid !== '') {
         let message = linkify(this.postMesssgeElement.nativeElement.value)
         this.authService.newtextPost(this.token, message).subscribe((res) => {
-          if(window.location.href.split('/')[3] == "home"){
+          if (window.location.href.split('/')[3] == "home"){
             window.location.replace('home/' + window.location.href.split('/')[4]);
-          }else{
+          } else {
             window.location.replace('profile/' + window.location.href.split('/')[4]);
           }
         })

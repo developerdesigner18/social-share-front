@@ -5,7 +5,7 @@ import { AuthService } from '../auth.service';
 @Component({
   selector: 'app-information',
   templateUrl: './information.component.html',
-  styleUrls: ['./information.component.css'],
+  styleUrls: ['./information.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
 export class InformationComponent implements OnInit {

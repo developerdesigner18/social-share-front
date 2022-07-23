@@ -8,7 +8,7 @@ import { AuthService } from '../auth.service';
 @Component({
   selector: 'app-account-setting',
   templateUrl: './account-setting.component.html',
-  styleUrls: ['./account-setting.component.css'],
+  styleUrls: ['./account-setting.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
   

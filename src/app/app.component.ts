@@ -13,7 +13,7 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
 import Pusher from 'pusher-js';
 import { environment } from 'src/environments/environment';
 import { SocketioService } from './socketio.service';
-import {io} from 'socket.io-client';
+import { io } from 'socket.io-client';
 import { PushNotificationsService } from 'ng-push-ivy';
 declare var jQuery: any;
 declare var $: any;
