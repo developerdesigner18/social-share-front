@@ -115,9 +115,7 @@ export class AuthService {
   getUserHome(id): Observable<any> {
     return this.httpClient.get(`${environment.apiUrl}/api/user/profile?id=${id}`, { headers: this.headers }).pipe(
       map((res: Response) => {
-        console.log('turu');
         if (res['success'] == true) {
-          
           this.router.navigate([`home/${id}`])
         }
         return res || {}

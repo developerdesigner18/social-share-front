@@ -4,7 +4,7 @@
 @import '~@ctrl/ngx-emoji-mart/picker';
 @import '~ngx-toastr/toastr';
 
-:root{
+:root {
 	--accent-color: #FF9000;
 	--secondary-color: #0F1B31;
 	--background-color: #F1F1F1;
@@ -12,14 +12,14 @@
 	--text-color: #2D2D2D;
 	--josefin-sans: 'Josefin Sans', sans-serif;
 }
-*{
+* {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
 	/* font-family: 'Quicksand', sans-serif; */
 	font-family: var(--josefin-sans);
 }
-html{
+html {
   height: 100%;
 }
 #network-status-online {
@@ -181,6 +181,7 @@ body .ng-image-fullscreen-view .lightbox-wrapper .lightbox-div .next.disable, .n
     width: 40%;
     margin: auto;
     background-image: linear-gradient(100deg,rgb(31 49 75) 20%,#ffffff00 100%)!important;
+	backdrop-filter: blur(10px);
 }
 img.connecting_image {
     width: 100%;
@@ -226,7 +227,7 @@ img.connecting_image {
 }
 .privacy_aggrement {
     margin-top: 30px;
-    font-weight: 300;
+    font-weight: 400;
     color: #FFFFFF;
     font-size: 13px;
 }
