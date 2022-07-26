@@ -80,7 +80,7 @@ body {
 
 header{
 	background-color: var(--secondary-color);
-	padding: 5px;
+    padding: 5px 25px;
 	/* border-bottom: 1px solid #334c6b; */
 }
 .logo {
@@ -102,10 +102,10 @@ header{
 
 .login_container input {
   padding: 5px 10px;
-  border-radius: 4px;
+  border-radius: 20px;
   border: 0;
   font-size: 14px;
-  margin-right: .8rem;
+  margin: 0rem 0.4rem;
 }
 
 .login_container .title{
@@ -121,7 +121,7 @@ header{
 	background: var(--accent-color);
 	border: 0;
 	padding: 5px 12px;
-	border-radius: 4px;
+	border-radius: 20px;
 	color: #FFFFFF;
 	font-size: 14px;
 	padding-left: 1em;
@@ -145,7 +145,7 @@ body .ng-image-fullscreen-view .lightbox-wrapper .lightbox-div .next.disable, .n
 .icon-password {
 	top: 24px;
 	position: absolute !important;
-	right: 115px;
+    right: 125px;
 	width: auto !important;
 }
 
@@ -177,7 +177,7 @@ body .ng-image-fullscreen-view .lightbox-wrapper .lightbox-div .next.disable, .n
     display: flex;
     flex-direction: column;
     padding: 25px;
-    border-radius: 4px;
+    border-radius: 20px;
     width: 40%;
     margin: auto;
     background-image: linear-gradient(100deg,rgb(31 49 75) 20%,#ffffff00 100%)!important;
@@ -223,7 +223,7 @@ img.connecting_image {
     font-weight: 600;
     text-transform: uppercase;
     margin-top: 15px;
-    border-radius: 4px;
+    border-radius: 20px;
 }
 .privacy_aggrement {
     margin-top: 30px;
@@ -232,7 +232,7 @@ img.connecting_image {
     font-size: 13px;
 }
 .form_of_sign_up input, button {
-    border-radius: 4px;
+    border-radius: 20px;
 }
 
 @media (max-width: 768px){

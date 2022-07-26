@@ -51,7 +51,7 @@ ul.nav.nav-pills.flex-column li {
     padding: 5px 10px;
     color: #FFFFFF;
     background: #ff8100;
-    border-radius: 4px;
+    border-radius: 20px;
 }
 .emoji-mart.emoji-mart-dark {
     height: 40vh;
@@ -73,7 +73,7 @@ ul.nav.nav-pills.flex-column li {
 button.load_btn {
     font-family: var(--josefin-sans);
     width: 100%;
-    border-radius: 4px;
+    border-radius: 20px;
     padding: 3px;
     margin-top: 15px;
     border: 0;
@@ -151,7 +151,7 @@ button.btn.save_btn {
 .user_friend {
     padding: 10px !important;
     background-color: hsl(208, 100%, 97%);
-    border-radius: 4px;
+    border-radius: 20px;
     align-items: center;
     border: 0 !important;
     display: flex;
@@ -283,7 +283,7 @@ header {
     background: #FF900000;
     border: 0;
     padding: 6px 12px;
-    border-radius: 4px;
+    border-radius: 20px;
     color: #FFFFFF;
     font-size: 14px;
     margin-left: 20px;
@@ -294,7 +294,7 @@ header .ads {
     background-color: #f0f8ff1c;
     text-align: center;
     padding: 5px;
-    border-radius: 4px;
+    border-radius: 20px;
     color: var(--div-background-color);
     height: 70px;
 }
@@ -312,7 +312,7 @@ header .logo,
     display: inline-flex;
     position: relative;
     background: var(--accent-color);
-    border-radius: 4px;
+    border-radius: 20px;
 }
 
 img.logout {
@@ -346,7 +346,7 @@ img.logout {
     width: 100%;
     height: 250px;
     object-fit: cover;
-    border-radius: 4px;
+    border-radius: 20px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     background-position: center;
@@ -416,7 +416,7 @@ body .profile_pic_main_tabs_sec .actions {
     color: var(--secondary-color);
     padding: 6px 10px;
     background-color: aliceblue;
-    border-radius: 4px;
+    border-radius: 20px;
     font-size: 13px;
     text-transform: uppercase;
     font-weight: 600;
@@ -428,7 +428,7 @@ body .profile_pic_main_tabs_sec .actions {
 }
 
 .main_action button {
-    border-radius: 4px;
+    border-radius: 20px;
     padding: 6px 16px;
     font-size: 15px;
     color: #FFFFFF;
@@ -467,7 +467,7 @@ body .profile_pic_main_tabs_sec .actions {
     top: 25px;
     flex-direction: column;
     align-items: center;
-    border-radius: 4px;
+    border-radius: 20px;
     padding: 25px 0;
 }
 
@@ -504,7 +504,7 @@ body .profile_pic_main_tabs_sec .actions {
     color: var(--secondary-color);
     font-size: 15px;
     background-color: var(--background-color);
-    border-radius: 4px;
+    border-radius: 20px;
     padding: 5px;
 }
 
@@ -533,7 +533,7 @@ body .profile_pic_main_tabs_sec .actions {
 .photos_container img {
     width: 100%;
     height: 100%;
-    border-radius: 4px;
+    border-radius: 20px;
     object-fit: cover;
 }
 
@@ -544,7 +544,7 @@ body .profile_pic_main_tabs_sec .actions {
 .a_friend img {
     width: 100%;
     height: auto;
-    border-radius: 4px;
+    border-radius: 20px;
     -o-object-fit: cover;
     object-fit: cover;
     -o-object-position: top;
@@ -667,7 +667,7 @@ a div {
 
 .all_notification {
     background-color: aliceblue;
-    border-radius: 4px;
+    border-radius: 20px;
     border-bottom: 1px solid var(--accent-color);
 }
 
@@ -686,7 +686,7 @@ a div {
     border: 0;
     padding: 5px 10px;
     width: 100%;
-    border-radius: 4px;
+    border-radius: 20px;
     height: 55px;
     padding-right: 12.6%;
     color: var(--secondary-color);
@@ -720,7 +720,7 @@ a div {
     border: 0;
     color: #FFFFFF;
     padding: 7px 18px;
-    border-radius: 4px;
+    border-radius: 20px;
     margin-left: 10px;
     position: absolute;
     right: 35px;
@@ -758,7 +758,7 @@ a div {
 .province {
     padding: 5px 10px;
     box-shadow: 0 0 4px var(--secondary-color);
-    border-radius: 4px;
+    border-radius: 20px;
 }
 
 .province div {
@@ -817,7 +817,7 @@ a div {
 }
 
 img.slider_image {
-    border-radius: 4px;
+    border-radius: 20px;
     object-fit: cover;
 }
 
@@ -907,7 +907,7 @@ button.owl-next span {
 .category {
     background-color: #ecedee;
     padding: 5px 7px;
-    border-radius: 4px;
+    border-radius: 20px;
     font-size: 14px;
     letter-spacing: 1px;
 }
@@ -920,7 +920,7 @@ button.owl-next span {
 .bid_current>div:last-child {
     padding: 5px 7px;
     background-color: aliceblue;
-    border-radius: 4px;
+    border-radius: 20px;
     font-size: 18px;
 }
 
@@ -943,7 +943,7 @@ button.owl-next span {
     color: var(--secondary-color);
     font-size: 20px;
     font-weight: 500;
-    border-radius: 4px;
+    border-radius: 20px;
 }
 
 .bid_now button {
@@ -951,7 +951,7 @@ button.owl-next span {
     border: 0;
     color: #FFFFFF;
     padding: 7px 18px;
-    border-radius: 4px;
+    border-radius: 20px;
     margin-left: 10px;
 }
 
@@ -961,7 +961,7 @@ button.owl-next span {
     grid-template-columns: 1fr 1fr 1fr;
     padding: 5px 10px;
     margin-top: 15px;
-    border-radius: 4px;
+    border-radius: 20px;
 }
 
 .no_share_action {
@@ -970,7 +970,7 @@ button.owl-next span {
     grid-template-columns: 1fr 1fr;
     padding: 5px;
     margin-top: 15px;
-    border-radius: 4px;
+    border-radius: 20px;
 }
 
 .post_take_action {
@@ -1041,7 +1041,7 @@ button.owl-next span {
 .write_comments {
     display: grid;
     margin-top: 15px;
-    border-radius: 4px;
+    border-radius: 20px;
 }
 .write_comments form {
   display: flex;
@@ -1052,7 +1052,7 @@ button.owl-next span {
     padding: 4px;
     background: #ecedee;
     border: none;
-    border-radius: 5px;
+    border-radius: 20px;
     padding-left: 10px;
     width: 100%;
 }
@@ -1078,7 +1078,7 @@ button.owl-next span {
 
 .comments_container {
     background-color: var(--div-background-color);
-    border-radius: 4px;
+    border-radius: 20px;
     margin-top: 15px;
     color: var(--secondary-color);
     padding: 15px;
@@ -1111,7 +1111,7 @@ button.owl-next span {
 
 .comment_here {
     background: #FFFFFF;
-    border-radius: 4px;
+    border-radius: 20px;
     margin-top: 10px;
     padding: 5px;
     word-break: break-all;
@@ -1232,7 +1232,7 @@ button.owl-next span {
     width: 100%;
     background-color: var(--secondary-color);
     color: #FFFFFF;
-    border-radius: 4px;
+    border-radius: 20px;
     height: 35px;
     width: 90% !important;
     font-size: 15px;
@@ -1251,7 +1251,7 @@ button.owl-next span {
     top: 25px;
     flex-direction: column;
     align-items: center;
-    border-radius: 4px;
+    border-radius: 20px;
 }
 
 
@@ -1288,7 +1288,7 @@ button.owl-next span {
     color: var(--secondary-color);
     text-decoration: none;
     padding: 6px 4px;
-    border-radius: 4px;
+    border-radius: 20px;
     font-size: 13px;
     text-transform: uppercase;
     font-weight: 500
@@ -1409,7 +1409,7 @@ button.edit-button {
 button.show_more_notifications {
     font-family: var(--josefin-sans);
     width: 90%;
-    border-radius: 4px;
+    border-radius: 20px;
     padding: 3px;
     margin-top: 15px;
     border: 0;
@@ -1476,7 +1476,7 @@ button.show_more_notifications {
     top: 25px;
     flex-direction: column;
     align-items: center;
-    border-radius: 4px;
+    border-radius: 20px;
     padding: 25px 0;
 }
 
@@ -2131,7 +2131,7 @@ button.show_more_notifications {
     background-color: rgb(0 0 0 / 30%);
     color: #f3efef;
     padding: 5px;
-    border-radius: 4px;
+    border-radius: 20px;
     cursor: pointer;
 }
 
@@ -2237,7 +2237,7 @@ a.my_post_links>div {
     padding: 5px 20px;
     background: var(--secondary-color);
     color: #FFFFFF;
-    border-radius: 4px;
+    border-radius: 20px;
 }
 
 .more_options .dropdown {
@@ -2261,7 +2261,7 @@ a.my_post_links>div {
     width: 40px;
     height: 40px;
     text-align: center;
-    border-radius: 4px;
+    border-radius: 20px;
     position: fixed;
     bottom: 30px;
     right: 30px;

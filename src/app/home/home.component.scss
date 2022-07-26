@@ -111,7 +111,7 @@ header {
     background: #FF900000;
     border: 0;
     padding: 6px 12px;
-    border-radius: 4px;
+    border-radius: 20px;
     color: #FFFFFF;
     font-size: 14px;
     margin-left: 20px;
@@ -122,7 +122,7 @@ header .ads {
     background-color: #f0f8ff1c;
     text-align: center;
     padding: 5px;
-    border-radius: 4px;
+    border-radius: 20px;
     color: var(--div-background-color);
     height: 70px;
 }
@@ -192,7 +192,7 @@ header .logo,
     display: inline-flex;
     position: relative;
     background: var(--accent-color);
-    border-radius: 4px;
+    border-radius: 20px;
     margin: 10px 0 10px 0;
 }
 
@@ -232,13 +232,13 @@ img.logout {
     top: 20px;
     flex-direction: column;
     align-items: center;
-    border-radius: 4px;
+    border-radius: 20px;
 }
 
 button.load_btn {
     font-family: var(--josefin-sans);
     width: 100%;
-    border-radius: 4px;
+    border-radius: 20px;
     padding: 3px;
     margin-top: 15px;
     border: 0;
@@ -321,7 +321,7 @@ button.load_btn {
     width: 40px;
     height: 40px;
     text-align: center;
-    border-radius: 4px;
+    border-radius: 20px;
     position: fixed;
     bottom: 30px;
     right: 30px;
@@ -370,7 +370,7 @@ button.load_btn {
     padding: 10px;
     margin: 0px 0px 10px;
     background-color: var(--background-color);
-    border-radius: 4px;
+    border-radius: 20px;
 }
 
 a.my_post_links {
@@ -515,7 +515,7 @@ a.my_post_links {
     top: 40px;
     right: 0;
     background: var(--div-background-color);
-    border-radius: 4px;
+    border-radius: 20px;
     z-index: 3;
     padding: 4px;
     width: 130px;
@@ -527,7 +527,7 @@ a.my_post_links {
     justify-content: space-between;
     align-items: center;
     background: #e2f2ff;
-    border-radius: 4px;
+    border-radius: 20px;
     transition: 0.2s ease;
 }
 
@@ -597,7 +597,7 @@ a.premium_upgrade {
     border: 0;
     padding: 5px 10px;
     width: 100%;
-    border-radius: 4px;
+    border-radius: 20px;
 }
 
 .one_image {
@@ -635,7 +635,7 @@ a.premium_upgrade {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 4px;
+    border-radius: 20px;
 }
 
 .chat {
@@ -655,7 +655,7 @@ a.premium_upgrade {
     background-color: aliceblue;
     padding: 25px 10px;
     margin: 25px 0 0;
-    border-radius: 4px;
+    border-radius: 20px;
 }
 
 .chat_title i {
@@ -711,7 +711,7 @@ a.premium_upgrade {
     align-items: center;
     background-color: #FFFFFF;
     padding: 7px 10px;
-    border-radius: 4px;
+    border-radius: 20px;
     margin-bottom: 15px;
 }
 
@@ -746,7 +746,7 @@ a.premium_upgrade {
     border: 0;
     padding: 5px 10px;
     width: 100%;
-    border-radius: 4px;
+    border-radius: 20px;
     height: 55px;
     padding-right: 12.6%;
     color: var(--secondary-color);
@@ -759,7 +759,7 @@ a.premium_upgrade {
     border: 0;
     color: #FFFFFF;
     padding: 7px 18px;
-    border-radius: 4px;
+    border-radius: 20px;
     margin-left: 10px;
     position: absolute;
     right: 22px;
@@ -824,7 +824,7 @@ a.premium_upgrade {
 }
 
 img.slider_image {
-    border-radius: 4px;
+    border-radius: 20px;
     object-fit: cover;
 }
 
@@ -924,7 +924,7 @@ a {
     color: var(--secondary-color);
     font-size: 20px;
     font-weight: 500;
-    border-radius: 4px;
+    border-radius: 20px;
 }
 
 .bid_now button {
@@ -932,7 +932,7 @@ a {
     border: 0;
     color: #FFFFFF;
     padding: 7px 18px;
-    border-radius: 4px;
+    border-radius: 20px;
     margin-left: 10px;
 }
 
@@ -943,7 +943,7 @@ a {
     padding: 5px;
     margin-top: 15px;
     position: relative;
-    border-radius: 4px;
+    border-radius: 20px;
 }
 
 .no_share_action {
@@ -952,7 +952,7 @@ a {
     grid-template-columns: 1fr 1fr;
     padding: 5px;
     margin-top: 15px;
-    border-radius: 4px;
+    border-radius: 20px;
 }
 
 .post_take_action {
@@ -974,7 +974,7 @@ a {
 .no_share_action>button {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-self: center;
     background-color: #ffffff00;
     border: 0;
     text-align: center;
@@ -1056,7 +1056,7 @@ a {
     padding: 10px;
     color: var(--secondary-color);
     background-color: aliceblue;
-    border-radius: 4px;
+    border-radius: 20px;
 }
 
 .friends_Posts>div {
@@ -1210,7 +1210,7 @@ button.owl-prev,
 .upgrade_premium {
     padding: 7px;
     border: 2px solid #0F1B31db;
-    border-radius: 4px;
+    border-radius: 20px;
     color: var(--secondary-color);
     display: flex;
     align-items: center;
@@ -1253,7 +1253,7 @@ a.my_post_links:hover div>div {
 
 .comments_container {
     background-color: var(--div-background-color);
-    border-radius: 4px;
+    border-radius: 20px;
     margin-top: 15px;
     color: var(--secondary-color);
     padding: 15px;
@@ -1316,7 +1316,7 @@ a.my_post_links:hover div>div {
 
 .comment_here {
     /* background: #FFFFFF; */
-    border-radius: 4px;
+    border-radius: 20px;
     margin-top: 5px;
     padding: 0;
     font-size: 14px !important;
@@ -1336,7 +1336,7 @@ a.my_post_links:hover div>div {
 .province {
     padding: 5px 10px;
     box-shadow: 0 0 4px #0f1b3180;
-    border-radius: 4px;
+    border-radius: 20px;
 }
 
 .cat_bid {
@@ -1346,7 +1346,7 @@ a.my_post_links:hover div>div {
 .category {
     background-color: #ecedee;
     padding: 5px 7px;
-    border-radius: 4px;
+    border-radius: 20px;
     font-size: 14px;
     letter-spacing: 1px;
 }
@@ -1359,7 +1359,7 @@ a.my_post_links:hover div>div {
 .bid_current>div:last-child {
     padding: 5px 7px;
     background-color: aliceblue;
-    border-radius: 4px;
+    border-radius: 20px;
     font-size: 18px;
 }
 
@@ -1438,7 +1438,7 @@ a.my_post_links:hover div>div {
     border: 0;
     padding: 5px 10px;
     width: 100%;
-    border-radius: 4px;
+    border-radius: 20px;
     height: 50px;
     color: var(--secondary-color);
     font-size: 13px;
@@ -1469,7 +1469,7 @@ a.my_post_links:hover div>div {
     border: 0;
     color: #FFFFFF;
     padding: 7px 18px;
-    border-radius: 4px;
+    border-radius: 20px;
     margin-left: 10px;
     position: absolute;
     right: 35px;
@@ -1513,7 +1513,7 @@ a.my_post_links:hover div>div {
 .write_comments {
     display: grid;
     margin-top: 15px;
-    border-radius: 4px;
+    border-radius: 20px;
 }
 .write_comments form {
   display: flex;
@@ -1524,7 +1524,7 @@ a.my_post_links:hover div>div {
     padding: 4px;
     background: #ecedee;
     border: none;
-    border-radius: 5px;
+    border-radius: 20px;
     padding-left: 10px;
     width: 100%;
 }
