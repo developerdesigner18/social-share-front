@@ -236,7 +236,7 @@ img.logout {
 }
 
 button.load_btn {
-    font-family: var(--josefin-sans);
+    font-family: var(--quicksand-sans-serif);
     width: 100%;
     border-radius: 20px;
     padding: 3px;
@@ -404,15 +404,14 @@ a.my_post_links {
 }
 
 .profile_name {
-    font-weight: 400;
-    color: var(--secondary-color);
+    font-weight: 600;
     font-size: 20px;
     text-transform: capitalize;
-    font-family: var(--josefin-sans);
+    font-family: var(--quicksand-sans-serif);
 }
 
 .friends_Posts div {
-    font-family: var(--josefin-sans);
+    font-family: var(--quicksand-sans-serif);
     font-weight: 400;
 }
 
@@ -654,7 +653,7 @@ a.premium_upgrade {
     width: 90%;
     background-color: aliceblue;
     padding: 25px 10px;
-    margin: 25px 0 0;
+    margin: 25px 0px;
     border-radius: 20px;
 }
 
@@ -670,7 +669,7 @@ a.premium_upgrade {
     color: var(--secondary-color);
     font-size: 18px;
     font-weight: 400;
-    font-family: var(--josefin-sans);
+    font-family: var(--quicksand-sans-serif);
 }
 
 .online_title {
@@ -683,7 +682,7 @@ a.premium_upgrade {
     border-bottom: 1px solid;
     padding-bottom: 10px;
     border-color: var(--accent-color);
-    font-family: var(--josefin-sans);
+    font-family: var(--quicksand-sans-serif);
 }
 
 .online_title:before {
@@ -1084,7 +1083,7 @@ a {
 }
 
 .profile_name_of_poster {
-    font-weight: 500;
+    font-weight: 600;
     font-size: 20px;
     color: var(--secondary-color);
     line-height: 1;
@@ -1102,7 +1101,7 @@ a {
 
 .autocomplete-container .input-container input {
     background-color: var(--secondary-color) !important;
-    font-family: var(--josefin-sans);
+    font-family: var(--quicksand-sans-serif);
     color: rgb(241 241 241)!important;
 }
 
@@ -1455,7 +1454,7 @@ a.my_post_links:hover div>div {
     color: #283448 !important;
     letter-spacing: normal;
     font-size: 15px;
-    font-family: var(--josefin-sans);
+    font-family: var(--quicksand-sans-serif);
 }
 
 .write_words div {
@@ -1604,7 +1603,7 @@ a.my_post_links:hover div>div {
 .profile_name_of_poster {
     margin-right: 10px;
     text-transform: capitalize;
-    font-family: var(--josefin-sans);
+    font-family: var(--quicksand-sans-serif);
 }
 
 @media (max-width: 320px) {

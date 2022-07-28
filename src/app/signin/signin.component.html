@@ -22,7 +22,7 @@
         </div>
 
         <div class="form-group" [ngClass]="{ 'has-error': formControls.uname.errors }">
-          <input autocomplete="username" formControlName="uname" id="uname" class="form-control" type="text"
+          <input autocomplete="off" formControlName="uname" id="uname" class="form-control" type="text"
             placeholder="User name">
           <div *ngIf="isSubmitted && formControls.uname.errors">
             <div *ngIf="formControls.uname.errors.required" class="error">User name is required.</div>
@@ -30,7 +30,7 @@
         </div>
 
         <div class="form-group" [ngClass]="{ 'has-error': formControls.password.errors }">
-          <input autocomplete="new-password" formControlName="password" id="password" class="form-control" type="password"
+          <input autocomplete="off" formControlName="password" id="password" class="form-control" type="password"
             placeholder="Password">
           <div *ngIf="isSubmitted && formControls.password.errors">
             <div *ngIf="formControls.password.errors.required" class="error">Password is required.</div>
@@ -38,7 +38,6 @@
               character.</div>
           </div>
         </div>
-
         <button type="submit" class="btn-full">Sign up</button>
       </form>
     </div>

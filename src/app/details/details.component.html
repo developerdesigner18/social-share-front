@@ -10,7 +10,7 @@
   <div *ngIf="show_details" class="update-list">
     <div class="update-display2">
       <div class="details_show" style="word-break: break-all;">
-        <p>{{details_about}}</p>
+        <p>{{ details_about }}</p>
       </div>
     </div>
     <div class="icons-pencil" *ngIf="icons">
@@ -18,7 +18,7 @@
       <i (click)="delDetails(details_about)" class="pencil-icon fa fa-trash"></i>
     </div>
   </div>
-  <div class="no_mention" *ngIf="not_mention_about"><i class="fa fa-info-circle"> </i> {{not_mention_about}} </div>
+  <div class="no_mention" *ngIf="not_mention_about"><i class="fa fa-info-circle"> </i> {{ not_mention_about }} </div>
   <div class="details" *ngIf="fill_details">
     <textarea class="text-area" type="text" [(ngModel)]="details_about" name="" value=""
       placeholder="Write your details" required></textarea>
@@ -42,14 +42,14 @@
   <div *ngIf="show_pronun" class="update-list">
     <div class="update-display">
       <i class="fa fa-language"> </i>
-      <div class="details_show" style="word-break: break-all;"> {{pronun_value}} </div>
+      <div class="details_show" style="word-break: break-all;"> {{ pronun_value }} </div>
     </div>
     <div class="icons-pencil" *ngIf="icons">
       <i (click)="updatePronunciation(pronun_value)" class="pencil-icon fa fa-pencil"></i>
       <i (click)="deletePronunciation(pronun_value)" class="pencil-icon fa fa-trash"></i>
     </div>
   </div>
-  <div class="no_mention" *ngIf="not_mention_pronun"><i class="fa fa-language"> </i> {{not_mention_pronun}} </div>
+  <div class="no_mention" *ngIf="not_mention_pronun"><i class="fa fa-language"> </i> {{ not_mention_pronun }} </div>
   <div class="pronunciation" *ngIf="fill_pronun">
     <input (keyup.enter)="addPronunciation(pronun_value)" autocomplete="off" type="text" [(ngModel)]="pronun_value"
       name="" value="" placeholder="Add a new pronunciation" required>
@@ -73,14 +73,14 @@
   <div *ngIf="show_nickname" class="update-list">
     <div class="update-display">
       <i class="fa fa-user"> </i>
-      <div class="details_show" style="word-break: break-all;"> {{nickname}} </div>
+      <div class="details_show" style="word-break: break-all;"> {{ nickname }} </div>
     </div>
     <div class="icons-pencil" *ngIf="icons">
       <i (click)="updateNickname(nickname)" class="pencil-icon fa fa-pencil"></i>
       <i (click)="deleteNickname(nickname)" class="pencil-icon fa fa-trash"></i>
     </div>
   </div>
-  <div class="no_mention" *ngIf="not_mention_nickname"><i class="fa fa-user"> </i> {{not_mention_nickname}} </div>
+  <div class="no_mention" *ngIf="not_mention_nickname"><i class="fa fa-user"> </i> {{ not_mention_nickname }} </div>
   <div class="nickname" *ngIf="fill_nickname">
     <input (keyup.enter)="addNickname(nickname)" autocomplete="off" type="text" [(ngModel)]="nickname" name="" value=""
       placeholder="Add your nickname" required>
@@ -104,14 +104,14 @@
   <div *ngIf="show_quotes" class="update-list">
     <div class="update-display2">
       <i class="fa fa-quote-left"> </i>
-      <div class="details_show" style="word-break: break-all;"> {{quote_value}} </div>
+      <div class="details_show" style="word-break: break-all;"> {{ quote_value }} </div>
     </div>
     <div class="icons-pencil" *ngIf="icons">
       <i (click)="updateQuotes(quote_value)" class="pencil-icon fa fa-pencil"></i>
       <i (click)="deleteQuotes(quote_value)" class="pencil-icon fa fa-trash"></i>
     </div>
   </div>
-  <div class="no_mention" *ngIf="not_mention_quotes"><i class="fa fa-quote-left"> </i> {{not_mention_quotes}} </div>
+  <div class="no_mention" *ngIf="not_mention_quotes"><i class="fa fa-quote-left"> </i> {{ not_mention_quotes }} </div>
   <div class="quotes" *ngIf="fill_quotes">
     <input (keyup.enter)="addQuotes(quote_value)" autocomplete="off" type="text" [(ngModel)]="quote_value" name=""
       value="" placeholder="Add new quotes" required>

@@ -8,18 +8,18 @@
         <div class="profile_image">
             <img [src]="user_profile" onerror="this.src='/assets/images/character.png';">
         </div>
-        <div class="profile_name">{{name}}</div>
+        <div class="profile_name">{{ name }}</div>
         <div class="friends_Posts d-flex align-items-center">
             <div class="total_friends_of_user d-flex align-items-center">
                 <div class="my_friends">Friends</div>
-                <div class="my_friends_numbers">{{count_frd <= 100 ? count_frd : '100+' }}</div>
+                <div class="my_friends_numbers">{{ count_frd <= 100 ? count_frd : '100+' }}</div>
                 </div>
                 <div class="total_posts_of_user d-flex align-items-center">
                     <div class="my_friends">Posts</div>
-                    <div class="my_friends_numbers">{{user_post <= 100 ? user_post : '100+' }}</div>
+                    <div class="my_friends_numbers">{{ user_post <= 100 ? user_post : '100+' }}</div>
                     </div>
                 </div>
-                <a class="my_post_links" href="profile/{{id}}">
+                <a class="my_post_links" href="profile/{{ id }}">
                     <div class="left_content">
                         <i class="fas fa-user"></i>
                         <div>Go to your Profile</div>
@@ -31,14 +31,14 @@
                         <div>Account Setting</div>
                     </div>
                 </a>
-                <a class="my_post_links" href="friends/{{id}}">
+                <a class="my_post_links" href="friends/{{ id }}">
                     <div class="left_content">
                         <i class="fas fa-user-plus"></i>
                         <div class="badges_for_fr position-relative"
                             [attr.data-content]="frd_request_count !== 0 ? frd_request_count : ''">Friend Requests</div>
                     </div>
                 </a>
-                <a class="my_post_links" href="peopleknow/{{id}}">
+                <a class="my_post_links" href="peopleknow/{{ id }}">
                     <div class="left_content">
                         <i class="fas fa-users"></i>
                         <div class="badges_for_pymk position-relative"
@@ -69,7 +69,7 @@
                                     </div>
                                     <div>
                                         <div class="d-flex justify-content-between align-items-center">
-                                            <a href="profile/{{item._id}}">
+                                            <a href="profile/{{ item._id }}">
                                                 <div class="profile_name_of_poster" [innerHTML]="item.name"></div>
                                             </a>
                                         </div>
@@ -100,8 +100,8 @@
                                 </div>
                                 <div class="name_and_desc">
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <a href="profile/{{user._id}}">
-                                            <div class="profile_name_of_poster">{{user.name}}</div>
+                                        <a href="profile/{{ user._id }}">
+                                            <div class="profile_name_of_poster">{{ user.name }}</div>
                                         </a>
                                     </div>
                                 </div>
@@ -127,7 +127,7 @@
                             </div>
                             <div class="name_and_desc">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <div class="profile_name_of_poster">{{dt_name.name}}</div>
+                                    <div class="profile_name_of_poster">{{ dt_name.name }}</div>
                                 </div>
                             </div>
                         </div>

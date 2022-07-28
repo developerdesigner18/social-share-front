@@ -10,14 +10,15 @@
 	--background-color: #F1F1F1;
 	--div-background-color: #F0F8FF;
 	--text-color: #2D2D2D;
-	--josefin-sans: 'Josefin Sans', sans-serif;
+	--josefin-sans-serif: 'Josefin Sans', sans-serif;
+	--quicksand-sans-serif: 'Quicksand', sans-serif;
 }
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
 	/* font-family: 'Quicksand', sans-serif; */
-	font-family: var(--josefin-sans);
+	font-family: var(--quicksand-sans-serif);
 }
 html {
   height: 100%;

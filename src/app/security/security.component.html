@@ -8,19 +8,19 @@
             <div class="setting_details">
                 <div class="input_section">
                     <p>User ID:</p>
-                    <div class="name_show"> {{data.userId ? data.userId : 'User ID'}} </div>
+                    <div class="name_show"> {{ data.userId ? data.userId : 'User ID' }} </div>
                 </div>
             </div>
             <div class="setting_details">
                 <div class="input_section">
                     <p>Email:</p>
-                    <div class="username_show"> {{user_data.emailId ? user_data.emailId : 'Email'}} </div>
+                    <div class="username_show"> {{ user_data.emailId ? user_data.emailId : 'Email' }} </div>
                 </div>
             </div>
             <div class="setting_details pass">
                 <div class="pass_section">
                     <p>Password</p>
-                    <!-- <div *ngIf="enter_pass" class="encrypt_pass"> {{user_data.password}} </div> -->
+                    <!-- <div *ngIf="enter_pass" class="encrypt_pass"> {{ user_data.password }} </div> -->
                     <div *ngIf="change_pass" class="error_msgs">
                         <input *ngIf="input_pass" type="password" name="pass" id="pass" minlength="10"
                             [(ngModel)]="pass" placeholder="Please enter password"

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "social-share": {
+    "gamerz-net": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/social-share",
+            "outputPath": "dist/gamerz-net",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -72,18 +72,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "social-share:build"
+            "browserTarget": "gamerz-net:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "social-share:build:production"
+              "browserTarget": "gamerz-net:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "social-share:build"
+            "browserTarget": "gamerz-net:build"
           }
         },
         "test": {
@@ -121,18 +121,18 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "social-share:serve"
+            "devServerTarget": "gamerz-net:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "social-share:serve:production"
+              "devServerTarget": "gamerz-net:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "social-share",
+  "defaultProject": "gamerz-net",
   "cli": {
     "analytics": false
   },

@@ -17,7 +17,7 @@
         <i class="fa fa-camera" title="Upload Profile Photo" id="OpenImgUpload" data-toggle="modal"
           data-target="#profilemodel" *ngIf="current_user_profile"></i>
       </div>
-      <div class="profile_name">{{name}}</div>
+      <div class="profile_name">{{ name }}</div>
     </div>
 
     <div name="top" class="actions" id="myTopnav">
@@ -28,7 +28,7 @@
       <a [routerLink]="['friends']"><button id="friends" [routerLinkActive]="['active_tabs']">Friends</button></a>
       <a *ngIf="cur_user === ids" [routerLink]="['notifications']"><button id="notifications"
           [routerLinkActive]="['active_tabs']">Notification</button></a>
-      <!-- <a *ngIf="cur_user === ids" href="chating/{{ids}}"><button id="notifications" [routerLinkActive]="['active_tabs']">Messages</button></a> -->
+      <!-- <a *ngIf="cur_user === ids" href="chating/{{ ids }}"><button id="notifications" [routerLinkActive]="['active_tabs']">Messages</button></a> -->
 
     </div>
     <div class="main_action"></div>
@@ -41,33 +41,33 @@
       <div class="left_title w_90">Intro</div>
       <!-- <div class="some_words w_90">I Do not know how? But i believe that it is possible one day if i stay with my dream
         all time!</div> -->
-      <div class="some_words w_90" #intro> {{u_intro}} </div>
+      <div class="some_words w_90" #intro> {{ u_intro }} </div>
       <div class="info_container w_90 d-flex align-items-center">
         <i class="fas fa-briefcase"></i>
-        <div #designation>{{u_designation ? u_designation : 'Designation'}}</div>
+        <div #designation>{{ u_designation ? u_designation : 'Designation' }}</div>
       </div>
 
       <div class="info_container w_90 d-flex align-items-center">
         <i class="fas fa-globe"></i>
-        <div #country>{{u_country ? u_country : 'Country'}}</div>
+        <div #country>{{ u_country ? u_country : 'Country' }}</div>
       </div>
 
       <div class="info_container w_90 d-flex align-items-center">
         <i class="fa fa-map"></i>
-        <div #state>{{u_state ? u_state : 'Province'}}</div>
+        <div #state>{{ u_state ? u_state : 'Province' }}</div>
       </div>
       <div class="info_container w_90 d-flex align-items-center">
         <i class="fas fa-map-marker-alt"></i>
-        <div #city>{{u_city ? u_city : 'City'}}</div>
+        <div #city>{{ u_city ? u_city : 'City' }}</div>
       </div>
       <div class="info_container w_90 d-flex align-items-center">
         <i class="fas fa-grin-hearts"></i>
-        <div #hobbies>{{u_hobbies ? u_hobbies : 'Hobbies'}}</div>
+        <div #hobbies>{{ u_hobbies ? u_hobbies : 'Hobbies' }}</div>
         <div *ngIf="u_hobbies.length == undefined || u_hobbies.length == 0 || u_hobbies == ''">Hobbies</div>
       </div>
       <div class="info_container w_90 d-flex align-items-center">
         <i class="fas fa-stopwatch"></i>
-        <div>Joined on {{newDate | date:"dd MMMM yyyy"}}</div>
+        <div>Joined on {{ newDate | date:"dd MMMM yyyy" }}</div>
       </div>
       <button class="edit-button" (click)="openDialog()" *ngIf="current_user_profile">Edit Details</button>
     </div>
@@ -91,8 +91,8 @@
       <div class="friends_container w_90" *ngIf="frdDetails">
         <div class="a_friend" *ngFor="let frddetail of frdDetails | slice:0:9; let i = index">
           <img [src]="frddetail.profileImgURl" onerror="this.src='/assets/images/character.png';">
-          <a href="profile/{{frddetail._id}}">
-            <div>{{frddetail.name}}</div>
+          <a href="profile/{{ frddetail._id }}">
+            <div>{{ frddetail.name }}</div>
           </a>
         </div>
       </div>
@@ -122,9 +122,9 @@
         <div class="notifiy w_90 d-flex flex-column">
           <div class="d-flex">
             <img [src]="data.userprofile" onerror="this.src='../../assets/images/character.png'">
-            <div class="notify_content">{{data.content | titlecase | slice:0:40}}</div>
+            <div class="notify_content">{{ data.content | titlecase | slice:0:40 }}</div>
           </div>
-          <div class="time_ago">{{data.date | timeago}}</div>
+          <div class="time_ago">{{ data.date | timeago }}</div>
         </div>
       </div>
       <button *ngIf="notif_data.length > 5" class="show_more_notifications" [routerLink]="['notifications']">Show More

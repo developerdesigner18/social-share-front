@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
       this.spinner.hide();
     }
     this.authService.login(this.email.value, this.password.value).pipe(finalize(() => { this.spinner.hide(); })).subscribe(() => {
-      this.toastr.success("Welcome User in Social Share")
+      this.toastr.success("Welcome User in GamerzNet!")
     });
     if (this.authService.isLoggedIn() !== true) {
       this.loginForm.reset();

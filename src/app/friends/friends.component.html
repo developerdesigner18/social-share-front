@@ -15,7 +15,7 @@
               </div>
               <div>
                 <div class="d-flex justify-content-between align-items-center">
-                  <a href="profile/{{item._id}}">
+                  <a href="profile/{{ item._id }}">
                     <div class="search_somenone_profile" [innerHTML]="item.name | titlecase"></div>
                   </a>
                 </div>
@@ -29,10 +29,10 @@
         </div>
       </div>
       <div class="display_friends" *ngIf="show_friends && user === url_id">
-        <a style="color: #0F1B31;" class="my_post_links" href="friends/{{id}}">
+        <a style="color: #0F1B31;" class="my_post_links" href="friends/{{ id }}">
           <div style="font-weight: 600;" class="badges_for_fr position-relative">Friend Requests</div>
         </a>
-        <a style="color: #0F1B31;" class="my_post_links" href="peopleknow/{{id}}">
+        <a style="color: #0F1B31;" class="my_post_links" href="peopleknow/{{ id }}">
           <div style="font-weight: 600;" class="badges_for_pymk position-relative">Find Friends</div>
         </a>
       </div>
@@ -48,7 +48,7 @@
         <img width="40" height="40" [src]="frddetail.profileImgURl" onerror="this.src='/assets/images/character.png';"
           style="border-radius: 50%;" />
         <div class="unfriend_image">
-          <a href="profile/{{frddetail._id}}"> {{frddetail.name}} </a>
+          <a href="profile/{{ frddetail._id }}"> {{ frddetail.name }} </a>
         </div>
       </div>
       <div class="unfriend_btn">
@@ -57,7 +57,7 @@
       </div>
     </div>
     <div class="col-md-12 no_friend_show" *ngIf="notAnyFrd" style="text-align: center; ">
-      {{notAnyFrd}}
+      {{ notAnyFrd }}
     </div>
   </div>
 
@@ -68,12 +68,12 @@
         <img width="40" height="40" [src]="frddetail.profileImgURl" onerror="this.src='/assets/images/character.png';"
           style="border-radius: 50%;" />
         <div class="unfriend_image">
-          <a href="profile/{{frddetail._id}}"> {{frddetail.name}} </a>
+          <a href="profile/{{ frddetail._id }}"> {{ frddetail.name }} </a>
         </div>
       </div>
     </div>
     <div class="col-md-6 no_friend_show" *ngIf="notAnyFrd" style="text-align: center; margin-left: 25%;">
-      {{notAnyFrd}}
+      {{ notAnyFrd }}
     </div>
   </div>
 

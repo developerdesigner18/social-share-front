@@ -18,7 +18,7 @@
             </div>
             <ng-container *ngIf="shows">
                 <div class="main_post_content d-flex flex-column" style="color: #0F1B31">
-                    <h6>{{shows}}</h6>
+                    <h6>{{ shows }}</h6>
                 </div>
             </ng-container>
         </div>
@@ -26,7 +26,7 @@
             <div class="container">
                 <div class="main_area_contents">
                     <div class="album_nulls main_post_content" *ngIf="album && !album_show">
-                        <p>{{album}}</p>
+                        <p>{{ album }}</p>
                     </div>
                     <div class="write_words position-relative">
                         <div *ngIf="album_show && user === id" class="show_images" (click)="openTextDialog($event)">
@@ -39,8 +39,8 @@
                                 [images]="data.imageUrl"></ng-image-slider>
                             <i *ngIf="album_show && user === id" (click)="delAlbum(data._id, data.name)"
                                 class="pencil-icon fa fa-trash" title="Delete Album"></i>
-                            <p class="album_names"> {{data.name.length > 20 ? (data.name | slice:0:20) + '...':
-                                data.name}} </p>
+                            <p class="album_names"> {{ data.name.length > 20 ? (data.name | slice:0:20) + '...':
+                                data.name }} </p>
                         </div>
                     </div>
                 </div>

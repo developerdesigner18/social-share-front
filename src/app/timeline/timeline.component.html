@@ -17,7 +17,7 @@
 <ng-container #container *ngIf="notfound !== 404">
   <div app-theme *ngFor="let data of datas | slice: 0:totalDisplay; let i = index"
   class="main_post_content d-flex flex-column timeline"
-  id="main_post_contents_{{data._id}}">
+  id="main_post_contents_{{ data._id }}">
     <div class="d-flex show_basic_info" style="width: 100%;">
       <div class="profile_pic_profile position-relative">
         <img [src]="profileImg" onerror="this.src='/assets/images/character.png';" />
@@ -50,7 +50,7 @@
         style="width: 100%; word-wrap: break-word; white-space: pre-line;" [innerHtml]="desc.textContent.length > 60 ? (data.description | slice:0:60) + '...' :
         data.description">
           <!-- <ng-template>
-            {{
+            {{ 
               desc.textContent.length > 60
               ? (data.description | slice: 0:60) + "..."
               : data.description
@@ -116,7 +116,7 @@
               postlikeId.includes(data._id) ? 'fa-thumbs-up' : 'fa-thumbs-o-up'
             "></i>
           <div>
-            Like<span id="count_{{ data._id }}">{{
+            Like<span id="count_{{ data._id }}">{{ 
               data.like.length !== 0
               ? data._id === tempLikePostId
               ? data.like.length + temCntLike
@@ -137,7 +137,7 @@
         <button class="comment_sec_{{ data._id }} comment_sec" (click)="open_comments(data._id)">
           <i class="far fa-comment-dots"></i>
           <div *ngIf="data.comment.length !== 0">
-            Comment<span>{{
+            Comment<span>{{ 
               data.comment.length !== 0
               ? data._id === tempPostId
               ? data.comment.length + temCmnt.length
@@ -146,7 +146,7 @@
               }}</span>
           </div>
           <div *ngIf="data.comment.length === 0">
-            Comment<span>{{
+            Comment<span>{{ 
               data.comment.length === 0
               ? data._id === tempPostId
               ? data.comment.length + temCmnt.length
@@ -219,13 +219,10 @@
                   </a>
                   <div class="icons_showing_card">
                     <div class="profile_basic_info">
-                      <i class="fas fa-user-tie" style="padding-right: 10px"></i>{{
-                      comnt.designation ? comnt.designation : "Designation"
-                      }}
+                      <i class="fas fa-user-tie" style="padding-right: 10px"></i>{{ comnt.designation ? comnt.designation : "Designation" }}
                     </div>
                     <div class="profile_basic_info">
-                      <i class="fas fa-envelope" style="margin-right: 10px"></i>{{ comnt.email ? comnt.email : "Email"
-                      }}
+                      <i class="fas fa-envelope" style="margin-right: 10px"></i>{{ comnt.email ? comnt.email : "Email" }}
                     </div>
                   </div>
                 </div>

@@ -8,7 +8,7 @@
             <div class="setting_details" *ngIf="name_shows">
                 <div class="input_section">
                     <p>Name:</p>
-                    <div class="name_show"> {{name ? name : 'Name'}} </div>
+                    <div class="name_show"> {{ name ? name : 'Name' }} </div>
                 </div>
                 <button type="button" name="button" (click)="edit_names()">Edit</button>
             </div>
@@ -27,7 +27,7 @@
             <div class="setting_details" *ngIf="user_shows">
                 <div class="input_section">
                     <p>Username:</p>
-                    <div class="username_show"> {{user ? user : 'Username'}} </div>
+                    <div class="username_show"> {{ user ? user : 'Username' }} </div>
                 </div>
                 <button type="button" name="button" (click)="edit_users()">Edit</button>
             </div>
@@ -46,7 +46,7 @@
             <div class="setting_details">
                 <div class="input_section">
                     <p>Contact:</p>
-                    <div class="email_show"> {{datas.emailId ? datas.emailId : 'Contact'}} </div>
+                    <div class="email_show"> {{ datas.emailId ? datas.emailId : 'Contact' }} </div>
                 </div>
             </div>
         </div>

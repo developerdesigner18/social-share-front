@@ -23,7 +23,7 @@ declare var $: any;
   templateUrl: './app.component.html'
 })
 export class AppComponent {
-  title = 'Social Share'
+  title = 'GamerzNet'
   // display: any;
   id: any;
   duration: number;
@@ -32,8 +32,8 @@ export class AppComponent {
   seconds: number;
   sessionUser = false;
   show: boolean = false;
-  isConnected = true;  
-  noInternetConnection: boolean; 
+  isConnected = true;
+  noInternetConnection: boolean;
   idleState = 'Not started.';
   timedOut = false;
   lastPing?: Date = null;
@@ -48,17 +48,17 @@ export class AppComponent {
   current_user_id: any;
   usersOnline: any;
 
-  constructor( private titleService: Title, public authService: AuthService, private router: Router, private themeService: ThemeService, private bnIdle: BnNgIdleService, private connectionService: ConnectionService, private idle: Idle, private keepalive: Keepalive, private modalService: BsModalService, private socketService: SocketioService,private _pushNotifications: PushNotificationsService) {
+  constructor(private titleService: Title, public authService: AuthService, private router: Router, private themeService: ThemeService, private bnIdle: BnNgIdleService, private connectionService: ConnectionService, private idle: Idle, private keepalive: Keepalive, private modalService: BsModalService, private socketService: SocketioService, private _pushNotifications: PushNotificationsService) {
     if (this.authService.isLoggedIn()) {
       const current_login_User = JSON.parse(localStorage.getItem('currentUser'));
       this.current_user_id = current_login_User.data._id
       this.socket = io(environment.apiUrl);
       var status = 1
       this.chat = true
-      this.socket.emit('login', {userId: this.current_user_id, status: status})
+      this.socket.emit('login', { userId: this.current_user_id, status: status })
       this.router.events.subscribe((routerData) => {
-        if(routerData instanceof ResolveEnd){ 
-          if(routerData.url === '/chating/' + this.current_user_id || window.location.search){
+        if (routerData instanceof ResolveEnd) {
+          if (routerData.url === '/chating/' + this.current_user_id || window.location.search) {
             //Do something
             var status = 1
             this.authService.changechatStatus(this.current_user_id, status).subscribe(res => { })
@@ -85,7 +85,7 @@ export class AppComponent {
               res => {
                 if (res.event.type === 'click') {
                   const url = 'chating/' + this.current_user_id
-                  this.router.navigate([url], {queryParams: {userId: data.userId, user: data.post_user}})
+                  this.router.navigate([url], { queryParams: { userId: data.userId, user: data.post_user } })
                   res.notification.close();
                 }
               },
@@ -106,7 +106,7 @@ export class AppComponent {
         this.idleState = 'No longer idle.'
         this.reset();
       });
-    
+
       idle.onTimeout.subscribe(() => {
         this.childModal.hide();
         this.idleState = 'Timed out!';
@@ -120,12 +120,12 @@ export class AppComponent {
         localStorage.removeItem('friendId');
         window.location.replace('');
       });
-    
+
       idle.onIdleStart.subscribe(() => {
         this.idleState = 'You\'ve gone idle!'
         this.childModal.show();
       });
-    
+
       idle.onTimeoutWarning.subscribe((countdown) => {
         this.idleState = 'You will time out in ' + countdown + ' seconds!'
       });
@@ -174,14 +174,14 @@ export class AppComponent {
     this.titleService.setTitle(title);
   }
 
-  logout(){
+  logout() {
     this.childModal.hide();
     localStorage.removeItem('currentUser');
     localStorage.removeItem('token');
     localStorage.removeItem('friendId');
     window.location.replace('');
   }
-  
+
 
   @HostListener('window:popstate', ['$event'])
   onPopState(event) {

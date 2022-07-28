@@ -6,7 +6,7 @@
 <div style="padding: 20px 20px 20px 20px;">
     <div>
         <img width="40" height="40" [src]="smallProfile" onerror="this.src='/assets/images/character.png';"
-            style="border-radius: 50%;" /> {{name}}
+            style="border-radius: 50%;" /> {{ name }}
     </div>
     <br />
     <div style="max-height: 60vh;">
@@ -51,12 +51,12 @@
             <ng-container *ngIf="threeimg && !twoimg && !fiveimg && !fourimg">
                 <a *ngIf="shows" class="cancel_btn" (click)="cancel()"><img src="../../assets/images/closes.png"
                         width="25px" height="25px" alt="image_post_show"> </a>
-                <span class="img_show" *ngFor="let image of temp_images; let i = index;first as isFirst">
+                <span class="img_show" *ngFor="let image of temp_images; let i = index; first as isFirst">
                     <img #postImage *ngIf="image.data == 'img'" class="change_width"
-                        style="width: '{{(isFirst) ? '100%' : '100%'}}'; height: 130px; object-fit: cover;"
+                        style="width: '{{ (isFirst) ? '100%' : '100%' }}'; height: 130px; object-fit: cover;"
                         [src]="image.src" />
                     <video #postImage controls *ngIf="image.data == 'video'" class="change_width"
-                        style="width: '{{(isFirst) ? '100%' : '100%'}}'; height: 130px; object-fit: cover;"
+                        style="width: '{{ (isFirst) ? '100%' : '100%' }}'; height: 130px; object-fit: cover;"
                         [src]="image.src"></video>
                 </span>
             </ng-container>
@@ -75,10 +75,10 @@
                 <a *ngIf="shows" class="cancel_btn" (click)="cancel()"><img src="../../assets/images/closes.png"
                         width="25px" height="25px" alt="image_post_show"> </a>
                 <span class="img_show" *ngFor="let image of temp_images; let i = index; last as isLast">
-                    <img #postImage class="{{(i + 1 > 4) ? 'hidden_last_img' : 'change_width'}} blur_image"
+                    <img #postImage class="{{ (i + 1 > 4) ? 'hidden_last_img' : 'change_width' }} blur_image"
                         style="width: 100%; height: 130px; object-fit: cover;" *ngIf="image.data == 'img'"
                         [src]="image.src" />
-                    <video #postImage controls class="{{(i + 1 > 4) ? 'hidden_last_img' : 'change_width'}} blur_image"
+                    <video #postImage controls class="{{ (i + 1 > 4) ? 'hidden_last_img' : 'change_width' }} blur_image"
                         style="width: 100%; height: 130px; object-fit: cover;" *ngIf="image.data == 'video'"
                         [src]="image.src"> </video>
                 </span>

@@ -2,22 +2,22 @@
 <mat-dialog-content>
   <form class="edit_formGroup" [formGroup]="profileForm" (ngSubmit)="updateProfile()" style="display: contents;">
     <input id="intro" autocomplete="off" formControlName="intro" class="form-control text-spaces" type="text"
-      placeholder="Enter Intro" value="{{data.intro}}">
+      placeholder="Enter Intro" value="{{ data.intro }}">
 
     <input id="designation" autocomplete="off" formControlName="designation" class="form-control text-spaces"
-      type="text" placeholder="Enter Designation" value="{{data.postition}}">
+      type="text" placeholder="Enter Designation" value="{{ data.postition }}">
 
     <input id="country" autocomplete="off" formControlName="country" class="form-control text-spaces" type="text"
-      placeholder="Enter Country" value="{{countryList}}">
+      placeholder="Enter Country" value="{{ countryList }}">
 
     <input id="state" autocomplete="off" formControlName="state" class="form-control text-spaces" type="text"
-      placeholder="Enter State" value="{{stateList}}">
+      placeholder="Enter State" value="{{ stateList }}">
 
     <input id="city" autocomplete="off" formControlName="city" class="form-control text-spaces" type="text"
-      placeholder="Enter City" value="{{cities}}">
+      placeholder="Enter City" value="{{ cities }}">
 
     <input id="hobbies" autocomplete="off" formControlName="hobbies" class="form-control text-spaces" type="text"
-      placeholder="Enter Hobbies" value="{{data.hobbies}}">
+      placeholder="Enter Hobbies" value="{{ data.hobbies }}">
 
     <button class="btn save_btn" style="margin-right: 10px;" (click)="save()">Save</button>
   </form>

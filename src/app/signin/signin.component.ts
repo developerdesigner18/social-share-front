@@ -49,7 +49,7 @@ export class SigninComponent implements OnInit {
     this.authService.register(this.registerForm.value).subscribe((res) => {
       if (res.status == 'OK') {
            this.registerForm.reset()
-           this.toastr.success("Congratulation now you are a member of social share")
+           this.toastr.success("Congratulation now you are a member of GamerzNet!")
            this.isSubmitted = false;
       } else {
         this.toastr.error(res.message)

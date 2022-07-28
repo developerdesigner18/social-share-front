@@ -7,7 +7,7 @@
   </div>
   <div *ngIf="display5" class="relationship-update">
     <div class="relation-status">
-      <img src="../../assets/images/love.png" alt="Relationship status">{{relationshipStatus}}
+      <img src="../../assets/images/love.png" alt="Relationship status">{{ relationshipStatus }}
     </div>
     <div class="icons-pencil" *ngIf="icons">
       <i (click)="updateStatus(relationshipStatus)" class="pencil-icon fa fa-pencil"></i>
@@ -15,7 +15,7 @@
     </div>
   </div>
   <div class="no_mention" *ngIf="not_mention_relationship"><i class="fas fa-handshake-o handshake-d "> </i>&nbsp;
-    {{not_mention_relationship}} </div>
+    {{ not_mention_relationship }} </div>
   <div class="mobile" *ngIf="status">
     <select name="relationship" [(ngModel)]="relationshipStatus" required>
       <option value="undefined" selected disabled>Select options</option>
@@ -45,7 +45,7 @@
     <i class="fa fa-plus-circle"></i> &nbsp;<a [routerLink]="">Add family member</a>
   </div>
   <div class="no_mention" *ngIf="not_mention_family"><i class="fas fa-child" style="margin-right: 10px;"> </i>&nbsp;
-    {{not_mention_family}} </div>
+    {{ not_mention_family }} </div>
   <div class="family" *ngIf="fill_family">
     <input type="text" [(ngModel)]="family" autocomplete="off" name="family" id="relationship" value=""
       placeholder="Add family member"><br>
@@ -90,8 +90,8 @@
         <img width="40" height="40" src="../../assets/images/character.png"
           onerror="this.src='/assets/images/character.png';" style="border-radius: 50%;" />
         <div class="family_shows">
-          <div> {{family_data.name}} </div>
-          <p>{{family_data.relationship}}</p>
+          <div> {{ family_data.name }} </div>
+          <p>{{ family_data.relationship }}</p>
         </div>
       </div>
       <div class="icons-pencil" *ngIf="icons">

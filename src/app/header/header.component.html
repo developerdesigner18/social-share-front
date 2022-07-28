@@ -1,7 +1,7 @@
 <header>
   <div class="header_alignment d-flex justify-content-between align-items-center">
     <div class="logo">
-      <a [routerLink]="['/home/', id]"><img class="logo" src="assets/images/logo2.png"></a>
+      <a [routerLink]="['/home/', id]"><img class="logo" src="assets/images/gamerznet-logo-white.png"></a>
     </div>
     <div class="ads d-flex align-items-center justify-content-center">advertisements here</div>
     <div class="login_container d-flex justify-content-end align-items-center">
@@ -34,18 +34,18 @@
             <div class="child-notifiy d-flex align-items-center">
               <img [src]="data.userprofile" onerror="this.src='../../assets/images/character.png'" width="30px">
               <div class="notify_content" style="word-break: break-all;">
-                <a *ngIf="data.userPostId" href="profile/{{data.userPostId}}#{{data.phostImg[0].split('/').pop()}}"
-                  style="color: #000;"> {{data.content | titlecase }} </a>
-                <a *ngIf="data.userLikedId" href="profile/{{data.userLikedId}}" style="color: #000;"> {{data.content |
+                <a *ngIf="data.userPostId" href="profile/{{ data.userPostId }}#{{ data.phostImg[0].split('/').pop() }}"
+                  style="color: #000;"> {{ data.content | titlecase }} </a>
+                <a *ngIf="data.userLikedId" href="profile/{{ data.userLikedId }}" style="color: #000;"> {{ data.content |
                   titlecase }} </a>
-                <a *ngIf="data.userCommentId" href="profile/{{data.userCommentId}}" style="color: #000;"> {{data.content
+                <a *ngIf="data.userCommentId" href="profile/{{ data.userCommentId }}" style="color: #000;"> {{ data.content
                   | titlecase }} </a>
               </div>
             </div>
           </div>
         </div>
         <div class="view_all_notification" style="text-align: center; padding-top: 1em;">
-          <a href="profile/{{id}}/notifications"
+          <a href="profile/{{ id }}/notifications"
             style="padding: 5px 10px;color: #FFFFFF; background: #ff8100;border-radius: 20px;">View All</a>
         </div>
       </div>
