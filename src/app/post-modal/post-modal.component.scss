@@ -1,6 +1,9 @@
 .cdk-overlay-pane.my-dialog {
   position: relative!important;
 }
+:host {
+  border-radius: 20px;
+}
 .hide_theme{
 	display: none;
 }

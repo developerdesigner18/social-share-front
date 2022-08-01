@@ -94,12 +94,13 @@ body {
 
 header {
     background-color: var(--secondary-color);
-    padding: 15px 0;
+    padding: 10px 0px;
     position: unset;
 }
 
 .logo {
-    width: 60%;
+    width: 45%;
+    margin: 0px 0px 0px 40px;
 }
 
 .header_alignment {
@@ -984,12 +985,13 @@ a {
 
 .take_action>button i {
     font-size: 18px;
-    margin-right: 10px;
+    margin: 5px;
     font-weight: 600;
 }
 
 .take_action.post_take_action div {
     font-size: 13px !important;
+    margin: 5px;
 }
 
 .no_share_action>button i {

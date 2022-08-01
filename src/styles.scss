@@ -332,7 +332,7 @@ img.connecting_image {
 }
 
 .header-item{
-	padding:20px;
+	padding: 20px;
 }
 
 .text-spaces{
@@ -342,6 +342,7 @@ img.connecting_image {
 .main_float.chat_float{
     display: none;
 }
+
 @media (max-width: 767px) {
     .main_float.chat_float{
 		display: block;
@@ -352,5 +353,3 @@ img.connecting_image {
 		z-index: 99;
     }
 }
-
-
